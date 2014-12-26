@@ -1,3 +1,8 @@
+ecm_setup_version(${KDEKDCHARTLIBS_VERSION}
+    VARIABLE_PREFIX KDEKDCHART
+    PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KDEKDChartConfigVersion.cmake"
+)
+
 include_directories(
     ${CMAKE_SOURCE_DIR}/kdablibfakes/include
     ${CMAKE_CURRENT_SOURCE_DIR}/Cartesian
@@ -5,8 +10,6 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/Polar
     ${CMAKE_CURRENT_SOURCE_DIR}/Ternary
 )
-
-add_definitions(-DKDCHART_BUILD_KDCHART_LIB)
 
 set( kdchart_LIB_SRCS
     KDChartMeasure.cpp
@@ -123,8 +126,103 @@ target_link_libraries(kde-kdchart LINK_PRIVATE
     Qt5::Core
 )
 set_target_properties( kde-kdchart PROPERTIES
-  VERSION     ${KDEKDCHARTLIBS_LIB_VERSION}
-  SOVERSION   ${KDEKDCHARTLIBS_LIB_SOVERSION}
+  VERSION     ${KDEKDCHART_VERSION}
+  SOVERSION   ${KDEKDCHART_SOVERSION}
 )
 
-install( TARGETS kde-kdchart ${INSTALL_TARGETS_DEFAULT_ARGS} )
+install( TARGETS kde-kdchart
+    EXPORT KDEKDChartTargets
+    ${INSTALL_TARGETS_DEFAULT_ARGS})
+
+set( kdchart_LIB_HEADERS
+    KDChartRelativePosition.h
+    KDChartHeaderFooter.h
+    KDChartAttributesModel.h
+    KDChartAbstractAreaBase.h
+    KDChartAbstractAreaWidget.h
+    KDChartAbstractProxyModel.h
+    KDChartLegend.h
+    KDChartPaintContext.h
+    Cartesian/KDChartAbstractCartesianDiagram.h
+    Cartesian/KDChartStockBarAttributes.h
+    Cartesian/KDChartBarDiagram.h
+    Cartesian/KDChartThreeDBarAttributes.h
+    Cartesian/KDChartCartesianDiagramDataCompressor_p.h
+    Cartesian/KDChartBarAttributes.h
+    Cartesian/KDChartLeveyJenningsAxis.h
+    Cartesian/KDChartCartesianCoordinatePlane.h
+    Cartesian/KDChartLeveyJenningsDiagram.h
+    Cartesian/KDChartPlotter.h
+    Cartesian/KDChartStockDiagram.h
+    Cartesian/KDChartCartesianAxis.h
+    Cartesian/KDChartLeveyJenningsGridAttributes.h
+    Cartesian/KDChartLeveyJenningsCoordinatePlane.h
+    Cartesian/KDChartLineDiagram.h
+    KDChartFrameAttributes.h
+    KDChartLayoutItems.h
+    KDChartGridAttributes.h
+    KDChartMarkerAttributes.h
+    KDChartRulerAttributes.h
+    KDChartDatasetSelector.h
+    KDChartDatasetProxyModel.h
+    KDChartModelDataCache_p.h
+    Polar/KDChartPolarCoordinatePlane.h
+    Polar/KDChartRingDiagram.h
+    Polar/KDChartPieAttributes.h
+    Polar/KDChartAbstractPolarDiagram.h
+    Polar/KDChartRadarDiagram.h
+    Polar/KDChartAbstractPieDiagram.h
+    Polar/KDChartPolarDiagram.h
+    Polar/KDChartRadarCoordinatePlane.h
+    Polar/KDChartThreeDPieAttributes.h
+    Polar/KDChartPieDiagram.h
+    KDChartTextArea.h
+    KDChartAbstractCoordinatePlane.h
+    KDChartMeasure.h
+    KDChartValueTrackerAttributes.h
+    KDChartAbstractArea.h
+    KDChartDiagramObserver.h
+    KDChartThreeDLineAttributes.h
+    KDChartAbstractAxis.h
+    KDChartAbstractDiagram.h
+    KDChartPalette.h
+    KDChartLineAttributes.h
+    KDChartChart.h
+    KDChartWidget.h
+    KDChartAbstractThreeDAttributes.h
+    KDChartPosition.h
+    KDChartEnums.h
+    Ternary/KDChartTernaryPointDiagram.h
+    Ternary/KDChartTernaryCoordinatePlane.h
+    Ternary/KDChartTernaryAxis.h
+    Ternary/KDChartTernaryLineDiagram.h
+    Ternary/KDChartAbstractTernaryDiagram.h
+    KDChartBackgroundAttributes.h
+    KDChartTextAttributes.h
+    KDChartDataValueAttributes.h
+)
+
+install(FILES
+            ${CMAKE_CURRENT_BINARY_DIR}/kde-kdchart_export.h
+            ${kdchart_LIB_HEADERS}
+        DESTINATION ${INCLUDE_INSTALL_DIR}/KDEKDChart
+        COMPONENT Devel)
+
+# create a Config.cmake and a ConfigVersion.cmake file and install them
+set(CMAKECONFIG_INSTALL_DIR "${CMAKECONFIG_INSTALL_PREFIX}/KDEKDChart")
+
+ecm_configure_package_config_file(
+    "${CMAKE_CURRENT_SOURCE_DIR}/KDEKDChartConfig.cmake.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/KDEKDChartConfig.cmake"
+    INSTALL_DESTINATION ${CMAKECONFIG_INSTALL_DIR}
+)
+
+install(FILES
+            "${CMAKE_CURRENT_BINARY_DIR}/KDEKDChartConfig.cmake"
+            "${CMAKE_CURRENT_BINARY_DIR}/KDEKDChartConfigVersion.cmake"
+        DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
+        COMPONENT Devel)
+
+install(EXPORT KDEKDChartTargets
+        DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
+        FILE KDEKDChartTargets.cmake)

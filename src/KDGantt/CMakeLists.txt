@@ -1,4 +1,9 @@
-add_definitions(-DKDAB_NO_UNIT_TESTS -DKDGANTT_SHAREDLIB -DKDGANTT_BUILD_KDGANTT_LIB)
+ecm_setup_version(${KDEKDCHARTLIBS_VERSION}
+    VARIABLE_PREFIX KDEKDGANTT
+    PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KDEKDGanttConfigVersion.cmake"
+)
+
+add_definitions(-DKDAB_NO_UNIT_TESTS)
 
 set( kdgantt_LIB_SRCS
     kdganttglobal.cpp
@@ -29,17 +34,18 @@ generate_export_header( kde-kdgantt )
 
 target_link_libraries( kde-kdgantt LINK_PRIVATE
     Qt5::Core
-    Qt5::Gui
     Qt5::Widgets
     Qt5::PrintSupport
 )
 
 set_target_properties( kde-kdgantt PROPERTIES
-  VERSION     ${KDEKDCHARTLIBS_LIB_VERSION}
-  SOVERSION   ${KDEKDCHARTLIBS_LIB_SOVERSION}
+  VERSION     ${KDEKDGANTT_VERSION}
+  SOVERSION   ${KDEKDGANTT_SOVERSION}
 )
 
-install( TARGETS kde-kdgantt ${INSTALL_TARGETS_DEFAULT_ARGS} )
+install( TARGETS kde-kdgantt
+    EXPORT KDEKDGanttTargets
+    ${INSTALL_TARGETS_DEFAULT_ARGS})
 
 ecm_generate_headers(kdgantt_LIB_HEADERS
     HEADER_NAMES
@@ -71,3 +77,22 @@ install(FILES
             ${kdgantt_LIB_HEADERS}
         DESTINATION ${INCLUDE_INSTALL_DIR}/KDEKDGantt
         COMPONENT Devel)
+
+# create a Config.cmake and a ConfigVersion.cmake file and install them
+set(CMAKECONFIG_INSTALL_DIR "${CMAKECONFIG_INSTALL_PREFIX}/KDEKDGantt")
+
+ecm_configure_package_config_file(
+    "${CMAKE_CURRENT_SOURCE_DIR}/KDEKDGanttConfig.cmake.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/KDEKDGanttConfig.cmake"
+    INSTALL_DESTINATION ${CMAKECONFIG_INSTALL_DIR}
+)
+
+install(FILES
+            "${CMAKE_CURRENT_BINARY_DIR}/KDEKDGanttConfig.cmake"
+            "${CMAKE_CURRENT_BINARY_DIR}/KDEKDGanttConfigVersion.cmake"
+        DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
+        COMPONENT Devel)
+
+install(EXPORT KDEKDGanttTargets
+        DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
+        FILE KDEKDGanttTargets.cmake)

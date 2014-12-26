@@ -38,7 +38,7 @@ namespace KDChart {
  *
  * It provides different subtypes which are set using \a setType.
  */
-class KDCHART_EXPORT LeveyJenningsDiagram : public LineDiagram
+class KDE_KDCHART_EXPORT LeveyJenningsDiagram : public LineDiagram
 {
     Q_OBJECT
 

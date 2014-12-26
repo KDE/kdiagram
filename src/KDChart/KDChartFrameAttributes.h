@@ -30,7 +30,7 @@ namespace KDChart {
 /**
   * @brief A set of attributes for frames around items
   */
-class KDCHART_EXPORT FrameAttributes
+class KDE_KDCHART_EXPORT FrameAttributes
 {
 public:
     FrameAttributes();
@@ -62,7 +62,7 @@ private:
 }
 
 #if !defined(QT_NO_DEBUG_STREAM)
-KDCHART_EXPORT QDebug operator<<(QDebug, const KDChart::FrameAttributes& );
+KDE_KDCHART_EXPORT QDebug operator<<(QDebug, const KDChart::FrameAttributes& );
 #endif /* QT_NO_DEBUG_STREAM */
 
 KDCHART_DECLARE_SWAP_SPECIALISATION( KDChart::FrameAttributes )

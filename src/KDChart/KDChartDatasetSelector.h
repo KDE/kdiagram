@@ -41,7 +41,7 @@ QT_END_NAMESPACE
 
 namespace KDChart {
 
-    class KDCHART_EXPORT DatasetSelectorWidget : public QFrame
+    class KDE_KDCHART_EXPORT DatasetSelectorWidget : public QFrame
     {
         Q_OBJECT
 

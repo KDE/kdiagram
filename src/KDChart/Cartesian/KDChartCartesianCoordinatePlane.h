@@ -33,7 +33,7 @@ namespace KDChart {
     /**
       * @brief Cartesian coordinate plane
       */
-    class KDCHART_EXPORT CartesianCoordinatePlane : public AbstractCoordinatePlane
+    class KDE_KDCHART_EXPORT CartesianCoordinatePlane : public AbstractCoordinatePlane
     {
         Q_OBJECT
 

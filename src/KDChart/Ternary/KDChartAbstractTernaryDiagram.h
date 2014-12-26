@@ -31,7 +31,7 @@ namespace KDChart {
     /**
       * @brief Base class for diagrams based on a ternary coordinate plane.
       */
-    class KDCHART_EXPORT AbstractTernaryDiagram : public AbstractDiagram
+    class KDE_KDCHART_EXPORT AbstractTernaryDiagram : public AbstractDiagram
     {
         Q_OBJECT
         Q_DISABLE_COPY( AbstractTernaryDiagram )

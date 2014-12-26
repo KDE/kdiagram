@@ -49,7 +49,7 @@ namespace KDChart {
    * includes things like the text attributes (font, color), what
    * markers are used, how many decimal digits are displayed, etc.
    */
-class KDCHART_EXPORT DataValueAttributes
+class KDE_KDCHART_EXPORT DataValueAttributes
 {
 public:
   DataValueAttributes();
@@ -310,7 +310,7 @@ private:
 }
 
 #if !defined(QT_NO_DEBUG_STREAM)
-KDCHART_EXPORT QDebug operator<<(QDebug, const KDChart::DataValueAttributes& );
+KDE_KDCHART_EXPORT QDebug operator<<(QDebug, const KDChart::DataValueAttributes& );
 #endif /* QT_NO_DEBUG_STREAM */
 
 KDCHART_DECLARE_SWAP_SPECIALISATION( KDChart::DataValueAttributes )

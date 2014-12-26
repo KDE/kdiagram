@@ -69,7 +69,7 @@ switch ( yourPosition().value() ) {
 \endverbatim
  * \sa RelativePosition, KDChartEnums::PositionValue
  */
-class KDCHART_EXPORT Position
+class KDE_KDCHART_EXPORT Position
 {
     Q_DECLARE_TR_FUNCTIONS( Position )
     Position( int value );
@@ -139,7 +139,7 @@ inline bool Position::operator!=( int other ) const { return !operator==( other 
   * @brief Stores the absolute target points of a Position
   * \internal
   */
-class KDCHART_EXPORT PositionPoints
+class KDE_KDCHART_EXPORT PositionPoints
 {
   public:
     PositionPoints() {} // all points get initialized with the default automatically
@@ -284,7 +284,7 @@ class KDCHART_EXPORT PositionPoints
 
 
 #if !defined(QT_NO_DEBUG_STREAM)
-KDCHART_EXPORT QDebug operator<<(QDebug, const KDChart::Position& );
+KDE_KDCHART_EXPORT QDebug operator<<(QDebug, const KDChart::Position& );
 #endif /* QT_NO_DEBUG_STREAM */
 
 QT_BEGIN_NAMESPACE

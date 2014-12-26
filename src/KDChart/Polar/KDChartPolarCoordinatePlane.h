@@ -30,7 +30,7 @@ namespace KDChart {
     /**
       * @brief Polar coordinate plane
       */
-    class KDCHART_EXPORT PolarCoordinatePlane : public AbstractCoordinatePlane
+    class KDE_KDCHART_EXPORT PolarCoordinatePlane : public AbstractCoordinatePlane
     {
         Q_OBJECT
 

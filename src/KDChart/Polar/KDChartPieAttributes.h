@@ -29,7 +29,7 @@ namespace KDChart {
 /**
   * @brief A set of attributes controlling the appearance of pie charts
   */
-class KDCHART_EXPORT PieAttributes
+class KDE_KDCHART_EXPORT PieAttributes
 {
 public:
     PieAttributes();
@@ -78,7 +78,7 @@ private:
 }
 
 #if !defined(QT_NO_DEBUG_STREAM)
-KDCHART_EXPORT QDebug operator<<(QDebug, const KDChart::PieAttributes& );
+KDE_KDCHART_EXPORT QDebug operator<<(QDebug, const KDChart::PieAttributes& );
 #endif /* QT_NO_DEBUG_STREAM */
 
 KDCHART_DECLARE_SWAP_SPECIALISATION( KDChart::PieAttributes )

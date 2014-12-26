@@ -28,7 +28,7 @@
 namespace KDChart {
     class PaintContext;
 
-class KDCHART_EXPORT StockDiagram : public AbstractCartesianDiagram
+class KDE_KDCHART_EXPORT StockDiagram : public AbstractCartesianDiagram
 {
     Q_OBJECT
 

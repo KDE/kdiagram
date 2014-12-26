@@ -28,7 +28,7 @@ namespace KDChart {
 /**
   * @brief Attributes to customize the appearance of a column in a stock chart
   */
-class KDCHART_EXPORT StockBarAttributes
+class KDE_KDCHART_EXPORT StockBarAttributes
 {
 public:
     StockBarAttributes();

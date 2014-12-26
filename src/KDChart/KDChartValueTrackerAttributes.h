@@ -36,7 +36,7 @@ namespace KDChart {
      * specific points in a line diagram.
    */
 
-    class KDCHART_EXPORT ValueTrackerAttributes
+    class KDE_KDCHART_EXPORT ValueTrackerAttributes
     {
         public:
             ValueTrackerAttributes();
@@ -122,7 +122,7 @@ namespace KDChart {
 }
 
 #if !defined(QT_NO_DEBUG_STREAM)
-KDCHART_EXPORT QDebug operator<<(QDebug, const KDChart::ValueTrackerAttributes& );
+KDE_KDCHART_EXPORT QDebug operator<<(QDebug, const KDChart::ValueTrackerAttributes& );
 #endif /* QT_NO_DEBUG_STREAM */
 
 KDCHART_DECLARE_SWAP_SPECIALISATION( KDChart::ValueTrackerAttributes )

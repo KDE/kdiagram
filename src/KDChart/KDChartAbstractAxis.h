@@ -24,7 +24,7 @@
 // #include <QRectF>
 // #include <QWidget>
 
-#include "kdchart_export.h"
+#include "kde-kdchart_export.h"
 #include "KDChartGlobal.h"
 #include "KDChartAbstractArea.h"
 #include "KDChartTextAttributes.h"
@@ -51,7 +51,7 @@ namespace KDChart {
       *
       * \sa PolarAxis, AbstractCartesianDiagram
       */
-    class KDCHART_EXPORT AbstractAxis : public AbstractArea
+    class KDE_KDCHART_EXPORT AbstractAxis : public AbstractArea
     {
         Q_OBJECT
 

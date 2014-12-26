@@ -35,7 +35,7 @@ namespace KDChart {
      * specific to diagrams based on a cartesian coordinate system to the
      * basic AbstractDiagram interface.
      */
-    class KDCHART_EXPORT AbstractCartesianDiagram : public AbstractDiagram
+    class KDE_KDCHART_EXPORT AbstractCartesianDiagram : public AbstractDiagram
     {
         Q_OBJECT
         Q_DISABLE_COPY( AbstractCartesianDiagram )

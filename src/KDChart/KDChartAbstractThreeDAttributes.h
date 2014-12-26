@@ -28,7 +28,7 @@ namespace KDChart {
 /**
   * @brief Base class for 3D attributes
   */
-class KDCHART_EXPORT AbstractThreeDAttributes
+class KDE_KDCHART_EXPORT AbstractThreeDAttributes
 {
 public:
     AbstractThreeDAttributes();
@@ -62,7 +62,7 @@ public:
 }
 
 #if !defined(QT_NO_DEBUG_STREAM)
-KDCHART_EXPORT QDebug operator<<(QDebug, const KDChart::AbstractThreeDAttributes& );
+KDE_KDCHART_EXPORT QDebug operator<<(QDebug, const KDChart::AbstractThreeDAttributes& );
 #endif /* QT_NO_DEBUG_STREAM */
 
 

@@ -30,7 +30,7 @@ namespace KDChart
       * @brief Base class for all proxy models used inside KD Chart
       * \internal
       */
-    class KDCHART_EXPORT AbstractProxyModel : public QAbstractProxyModel
+    class KDE_KDCHART_EXPORT AbstractProxyModel : public QAbstractProxyModel
     {
         Q_OBJECT
     public:

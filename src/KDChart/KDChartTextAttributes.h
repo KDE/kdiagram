@@ -40,7 +40,7 @@ namespace KDChart {
      * text. This includes font, fontsize, color, whether the text
      * is rotated, etc
      */
-class KDCHART_EXPORT TextAttributes
+class KDE_KDCHART_EXPORT TextAttributes
 {
 public:
   TextAttributes();
@@ -223,7 +223,7 @@ private:
 }
 
 #if !defined(QT_NO_DEBUG_STREAM)
-KDCHART_EXPORT QDebug operator<<(QDebug, const KDChart::TextAttributes& );
+KDE_KDCHART_EXPORT QDebug operator<<(QDebug, const KDChart::TextAttributes& );
 #endif /* QT_NO_DEBUG_STREAM */
 
 KDCHART_DECLARE_SWAP_SPECIALISATION( KDChart::TextAttributes )

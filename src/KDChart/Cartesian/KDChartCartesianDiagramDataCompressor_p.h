@@ -42,7 +42,7 @@
 #include "KDChartDataValueAttributes.h"
 #include "KDChartModelDataCache_p.h"
 
-#include "kdchart_export.h"
+#include "kde-kdchart_export.h"
 
 class CartesianDiagramDataCompressorTests;
 QT_BEGIN_NAMESPACE
@@ -64,9 +64,9 @@ namespace KDChart {
     // (b) if possible, this class is going to be templatized for
     // different diagram types
 
-    // KDCHART_EXPORT is needed as long there's a test using
+    // KDE_KDCHART_EXPORT is needed as long there's a test using
     // this class directly
-    class KDCHART_EXPORT CartesianDiagramDataCompressor : public QObject
+    class KDE_KDCHART_EXPORT CartesianDiagramDataCompressor : public QObject
     {
         Q_OBJECT
         friend class ::CartesianDiagramDataCompressorTests;

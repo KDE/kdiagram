@@ -31,7 +31,7 @@ namespace KDChart {
 /**
   * @brief A header or footer displaying text above or below charts
   */
-class KDCHART_EXPORT HeaderFooter : public TextArea
+class KDE_KDCHART_EXPORT HeaderFooter : public TextArea
 {
     Q_OBJECT
 

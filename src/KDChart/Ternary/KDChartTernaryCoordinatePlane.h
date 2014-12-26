@@ -29,7 +29,7 @@ namespace KDChart {
     /**
       * @brief Ternary coordinate plane
       */
-    class KDCHART_EXPORT TernaryCoordinatePlane
+    class KDE_KDCHART_EXPORT TernaryCoordinatePlane
         : public AbstractCoordinatePlane
     {
         Q_OBJECT

@@ -54,7 +54,7 @@ namespace KDChart {
      *
      * If you want to use KD Chart with Model/View, use KDChart::Chart instead.
      */
-    class KDCHART_EXPORT Widget : public QWidget
+    class KDE_KDCHART_EXPORT Widget : public QWidget
     {
         Q_OBJECT
 

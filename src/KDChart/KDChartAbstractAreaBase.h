@@ -59,7 +59,7 @@ namespace KDChart {
   *
   * @sa AbstractArea, AbstractAreaWidget
   */
-class KDCHART_EXPORT AbstractAreaBase
+class KDE_KDCHART_EXPORT AbstractAreaBase
 {
     Q_DISABLE_COPY( AbstractAreaBase )
     KDCHART_DECLARE_PRIVATE_BASE_POLYMORPHIC( AbstractAreaBase )

@@ -45,7 +45,7 @@ namespace KDChart {
   *
   */
 
-class KDCHART_EXPORT Measure
+class KDE_KDCHART_EXPORT Measure
 {
 public:
     Measure();
@@ -178,7 +178,7 @@ private:
 }
 
 #if !defined(QT_NO_DEBUG_STREAM)
-KDCHART_EXPORT QDebug operator<<(QDebug, const KDChart::Measure& );
+KDE_KDCHART_EXPORT QDebug operator<<(QDebug, const KDChart::Measure& );
 #endif /* QT_NO_DEBUG_STREAM */
 
 #endif // KDCHARTMEASURE_H

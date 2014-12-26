@@ -28,7 +28,7 @@ namespace KDChart {
 /**
   * @brief Set of attributes for changing the appearance of line charts
   */
-class KDCHART_EXPORT LineAttributes
+class KDE_KDCHART_EXPORT LineAttributes
 {
 public:
     /**
@@ -91,7 +91,7 @@ private:
 }
 
 #if !defined(QT_NO_DEBUG_STREAM)
-KDCHART_EXPORT QDebug operator<<(QDebug, const KDChart::LineAttributes& );
+KDE_KDCHART_EXPORT QDebug operator<<(QDebug, const KDChart::LineAttributes& );
 #endif /* QT_NO_DEBUG_STREAM */
 
 KDCHART_DECLARE_SWAP_SPECIALISATION( KDChart::LineAttributes )

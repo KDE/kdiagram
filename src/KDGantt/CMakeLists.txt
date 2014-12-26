@@ -1,7 +1,3 @@
-include_directories(
-    ${CMAKE_SOURCE_DIR}/src/KDChart
-)
-
 add_definitions(-DKDAB_NO_UNIT_TESTS -DKDGANTT_SHAREDLIB -DKDGANTT_BUILD_KDGANTT_LIB)
 
 set( kdgantt_LIB_SRCS
@@ -32,7 +28,6 @@ add_library( kde-kdgantt SHARED ${kdgantt_LIB_SRCS} )
 generate_export_header( kde-kdgantt )
 
 target_link_libraries( kde-kdgantt LINK_PRIVATE
-    kde-kdchart
     Qt5::Core
     Qt5::Gui
     Qt5::Widgets

@@ -32,7 +32,7 @@ namespace KDGantt {
     class Constraint;
     class ConstraintModel;
 
-    class KDGANTT_EXPORT ConstraintProxy : public QObject {
+    class KDE_KDGANTT_EXPORT ConstraintProxy : public QObject {
         Q_OBJECT
     public:
         explicit ConstraintProxy( QObject* parent = 0 );

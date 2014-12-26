@@ -34,7 +34,7 @@ namespace KDGantt {
     class AbstractRowController;
     class Span;
 
-    class KDGANTT_EXPORT AbstractGrid : public QObject {
+    class KDE_KDGANTT_EXPORT AbstractGrid : public QObject {
         Q_OBJECT
         KDGANTT_DECLARE_PRIVATE_BASE_POLYMORPHIC( AbstractGrid )
 	friend class GraphicsScene;

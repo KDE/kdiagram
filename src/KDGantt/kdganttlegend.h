@@ -27,7 +27,7 @@
 
 namespace KDGantt 
 {
-    class KDGANTT_EXPORT Legend : public QAbstractItemView
+    class KDE_KDGANTT_EXPORT Legend : public QAbstractItemView
     {
         Q_OBJECT
         KDGANTT_DECLARE_PRIVATE_BASE_POLYMORPHIC( Legend )

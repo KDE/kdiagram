@@ -32,7 +32,7 @@
 #endif
 
 namespace KDGantt {
-    class KDGANTT_EXPORT Constraint {
+    class KDE_KDGANTT_EXPORT Constraint {
         class Private;
     public:
         enum Type
@@ -98,7 +98,7 @@ namespace KDGantt {
 }
 
 #ifndef QT_NO_DEBUG_STREAM
-QDebug KDCHART_EXPORT operator<<( QDebug dbg, const KDGantt::Constraint& c );
+QDebug KDE_KDGANTT_EXPORT operator<<( QDebug dbg, const KDGantt::Constraint& c );
 #endif /* QT_NO_DEBUG_STREAM */
 
 #endif /* KDGANTTCONSTRAINT_H */

@@ -22,7 +22,6 @@
 
 #ifndef KDAB_NO_UNIT_TESTS
 
-#include "kdchart_export.h"
 #include "kdganttglobal.h"
 
 #include <QtGlobal>

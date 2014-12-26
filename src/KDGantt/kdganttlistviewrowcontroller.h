@@ -28,7 +28,7 @@ class QListView;
 QT_END_NAMESPACE
 
 namespace KDGantt {
-    class KDGANTT_EXPORT ListViewRowController : public AbstractRowController {
+    class KDE_KDGANTT_EXPORT ListViewRowController : public AbstractRowController {
         KDGANTT_DECLARE_PRIVATE_BASE_POLYMORPHIC(ListViewRowController)
     public:
 	ListViewRowController( QListView* lv, QAbstractProxyModel* proxy );

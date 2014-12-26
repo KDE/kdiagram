@@ -27,7 +27,7 @@
 namespace KDGantt {
     class GraphicsScene;
 
-    class KDGANTT_EXPORT ConstraintGraphicsItem : public QGraphicsItem {
+    class KDE_KDGANTT_EXPORT ConstraintGraphicsItem : public QGraphicsItem {
     public:
         enum { Type = UserType + 43 };
 

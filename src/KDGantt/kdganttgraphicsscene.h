@@ -42,7 +42,7 @@ namespace KDGantt {
     class ConstraintGraphicsItem;
     class ItemDelegate;
 
-    class KDCHART_EXPORT GraphicsScene : public QGraphicsScene {
+    class KDE_KDGANTT_EXPORT GraphicsScene : public QGraphicsScene {
         Q_OBJECT
         KDGANTT_DECLARE_PRIVATE_BASE_POLYMORPHIC( GraphicsScene )
     public:

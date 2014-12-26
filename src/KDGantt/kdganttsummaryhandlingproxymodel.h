@@ -23,7 +23,7 @@
 #include "kdganttforwardingproxymodel.h"
 
 namespace KDGantt {
-    class KDCHART_EXPORT SummaryHandlingProxyModel : public ForwardingProxyModel {
+    class KDE_KDGANTT_EXPORT SummaryHandlingProxyModel : public ForwardingProxyModel {
         Q_OBJECT
         KDGANTT_DECLARE_PRIVATE_BASE_POLYMORPHIC( SummaryHandlingProxyModel )
     public:

@@ -32,6 +32,10 @@ add_library( kde-kdgantt SHARED ${kdgantt_LIB_SRCS} )
 
 generate_export_header( kde-kdgantt )
 
+target_include_directories(kde-kdgantt
+    INTERFACE "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}/KDEKDGantt>"
+)
+
 target_link_libraries( kde-kdgantt LINK_PRIVATE
     Qt5::Core
     Qt5::Widgets

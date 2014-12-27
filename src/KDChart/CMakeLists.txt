@@ -79,6 +79,7 @@ set( kdchart_LIB_SRCS
     Cartesian/PaintingHelpers_p.cpp
     Cartesian/DiagramFlavors/KDChartNormalPlotter_p.cpp
     Cartesian/DiagramFlavors/KDChartPercentPlotter_p.cpp
+    Cartesian/DiagramFlavors/KDChartStackedPlotter_p.cpp
     Cartesian/DiagramFlavors/KDChartStackedLyingBarDiagram_p.cpp
     Cartesian/DiagramFlavors/KDChartStackedLineDiagram_p.cpp
     Cartesian/DiagramFlavors/KDChartStackedBarDiagram_p.cpp

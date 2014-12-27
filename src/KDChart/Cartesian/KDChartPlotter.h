@@ -62,7 +62,8 @@ public:
 
     enum PlotType {
         Normal =  0,
-        Percent
+        Percent,
+        Stacked
     };
 
 

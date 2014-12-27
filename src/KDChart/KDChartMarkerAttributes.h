@@ -46,17 +46,28 @@ namespace KDChart {
 
         ~MarkerAttributes();
 
-        enum MarkerStyle { MarkerCircle  = 0,
-                           MarkerSquare  = 1,
-                           MarkerDiamond = 2,
-                           Marker1Pixel  = 3,
-                           Marker4Pixels = 4,
-                           MarkerRing    = 5,
-                           MarkerCross   = 6,
-                           MarkerFastCross = 7,
-                           NoMarker = 8,
-                           PainterPathMarker = 9,
-                           StartCustomMarkers = 10 };
+        enum MarkerStyle { NoMarker = 0,
+                           MarkerCircle  = 1,
+                           MarkerSquare  = 2,
+                           MarkerDiamond = 3,
+                           Marker1Pixel  = 4,
+                           Marker4Pixels = 5,
+                           MarkerRing    = 6,
+                           MarkerCross   = 7,
+                           MarkerFastCross = 8,
+                           MarkerArrowDown     =  9,
+                           MarkerArrowUp       = 10,
+                           MarkerArrowRight    = 11,
+                           MarkerArrowLeft     = 12,
+                           MarkerBowTie        = 13,
+                           MarkerHourGlass     = 14,
+                           MarkerStar          = 15,
+                           MarkerX             = 16,
+                           MarkerAsterisk      = 17,
+                           MarkerHorizontalBar = 18,
+                           MarkerVerticalBar   = 19,
+                           PainterPathMarker = 255,
+                           StartCustomMarkers = 256 };
 
         void setVisible( bool visible );
         bool isVisible() const;

@@ -121,6 +121,10 @@ add_library(kde-kdchart SHARED ${kdchart_LIB_SRCS})
 
 generate_export_header( kde-kdchart )
 
+target_include_directories(kde-kdchart
+    INTERFACE "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}/KDEKDChart>"
+)
+
 target_link_libraries(kde-kdchart LINK_PRIVATE
     Qt5::Svg
     Qt5::Widgets
@@ -275,7 +279,7 @@ install(FILES
             ${CMAKE_CURRENT_BINARY_DIR}/kde-kdchart_export.h
             ${kdchart_LIB_HEADERS}
             ${kdchart_LIB_FWDHEADERS}
-        DESTINATION ${INCLUDE_INSTALL_DIR}
+        DESTINATION ${INCLUDE_INSTALL_DIR}/KDEKDChart
         COMPONENT Devel)
 
 # create a Config.cmake and a ConfigVersion.cmake file and install them

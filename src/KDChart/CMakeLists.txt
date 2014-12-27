@@ -121,6 +121,8 @@ add_library(kde-kdchart SHARED ${kdchart_LIB_SRCS})
 
 generate_export_header( kde-kdchart )
 
+add_library(KDEKDChart ALIAS kde-kdchart)
+
 target_include_directories(kde-kdchart
     INTERFACE "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}/KDEKDChart>"
 )
@@ -133,6 +135,7 @@ target_link_libraries(kde-kdchart LINK_PRIVATE
 set_target_properties( kde-kdchart PROPERTIES
   VERSION     ${KDEKDCHART_VERSION}
   SOVERSION   ${KDEKDCHART_SOVERSION}
+  EXPORT_NAME "KDEKDChart"
 )
 
 install( TARGETS kde-kdchart

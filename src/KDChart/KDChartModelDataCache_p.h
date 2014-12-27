@@ -36,7 +36,7 @@ namespace KDChart
 {
     namespace ModelDataCachePrivate
     {
-        class KDE_KDCHART_EXPORT ModelSignalMapper
+        class ModelSignalMapper
         {
         protected:
             ModelSignalMapper() {}

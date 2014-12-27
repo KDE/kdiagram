@@ -135,6 +135,7 @@ install( TARGETS kde-kdchart
     ${INSTALL_TARGETS_DEFAULT_ARGS})
 
 set( kdchart_LIB_HEADERS
+    KDChartGlobal.h
     KDChartRelativePosition.h
     KDChartHeaderFooter.h
     KDChartAttributesModel.h
@@ -147,7 +148,6 @@ set( kdchart_LIB_HEADERS
     Cartesian/KDChartStockBarAttributes.h
     Cartesian/KDChartBarDiagram.h
     Cartesian/KDChartThreeDBarAttributes.h
-    Cartesian/KDChartCartesianDiagramDataCompressor_p.h
     Cartesian/KDChartBarAttributes.h
     Cartesian/KDChartLeveyJenningsAxis.h
     Cartesian/KDChartCartesianCoordinatePlane.h
@@ -165,7 +165,6 @@ set( kdchart_LIB_HEADERS
     KDChartRulerAttributes.h
     KDChartDatasetSelector.h
     KDChartDatasetProxyModel.h
-    KDChartModelDataCache_p.h
     Polar/KDChartPolarCoordinatePlane.h
     Polar/KDChartRingDiagram.h
     Polar/KDChartPieAttributes.h
@@ -202,10 +201,80 @@ set( kdchart_LIB_HEADERS
     KDChartDataValueAttributes.h
 )
 
+# TODO: fix ecm_generate_headers to support camelcase .h files
+set( kdchart_LIB_FWDHEADERS
+    include/KDChart
+    include/KDChartGlobal
+    include/KDChartRelativePosition
+    include/KDChartHeaderFooter
+    include/KDChartAttributesModel
+    include/KDChartAbstractAreaBase
+    include/KDChartAbstractAreaWidget
+    include/KDChartAbstractProxyModel
+    include/KDChartLegend
+    include/KDChartPaintContext
+    include/KDChartAbstractCartesianDiagram
+    include/KDChartStockBarAttributes
+    include/KDChartBarDiagram
+    include/KDChartThreeDBarAttributes
+    include/KDChartBarAttributes
+    include/KDChartLeveyJenningsAxis
+    include/KDChartCartesianCoordinatePlane
+    include/KDChartLeveyJenningsDiagram
+    include/KDChartPlotter
+    include/KDChartStockDiagram
+    include/KDChartCartesianAxis
+    include/KDChartLeveyJenningsGridAttributes
+    include/KDChartLeveyJenningsCoordinatePlane
+    include/KDChartLineDiagram
+    include/KDChartFrameAttributes
+    include/KDChartLayoutItems
+    include/KDChartGridAttributes
+    include/KDChartMarkerAttributes
+    include/KDChartRulerAttributes
+    include/KDChartDatasetSelector
+    include/KDChartDatasetProxyModel
+    include/KDChartPolarCoordinatePlane
+    include/KDChartRingDiagram
+    include/KDChartPieAttributes
+    include/KDChartAbstractPolarDiagram
+    include/KDChartRadarDiagram
+    include/KDChartAbstractPieDiagram
+    include/KDChartPolarDiagram
+    include/KDChartRadarCoordinatePlane
+    include/KDChartThreeDPieAttributes
+    include/KDChartPieDiagram
+    include/KDChartTextArea
+    include/KDChartAbstractCoordinatePlane
+    include/KDChartMeasure
+    include/KDChartValueTrackerAttributes
+    include/KDChartAbstractArea
+    include/KDChartDiagramObserver
+    include/KDChartThreeDLineAttributes
+    include/KDChartAbstractAxis
+    include/KDChartAbstractDiagram
+    include/KDChartPalette
+    include/KDChartLineAttributes
+    include/KDChartChart
+    include/KDChartWidget
+    include/KDChartAbstractThreeDAttributes
+    include/KDChartPosition
+    include/KDChartEnums
+    include/KDChartTernaryPointDiagram
+    include/KDChartTernaryCoordinatePlane
+    include/KDChartTernaryAxis
+    include/KDChartTernaryLineDiagram
+    include/KDChartAbstractTernaryDiagram
+    include/KDChartBackgroundAttributes
+    include/KDChartTextAttributes
+    include/KDChartDataValueAttributes
+)
+
 install(FILES
             ${CMAKE_CURRENT_BINARY_DIR}/kde-kdchart_export.h
             ${kdchart_LIB_HEADERS}
-        DESTINATION ${INCLUDE_INSTALL_DIR}/KDEKDChart
+            ${kdchart_LIB_FWDHEADERS}
+        DESTINATION ${INCLUDE_INSTALL_DIR}
         COMPONENT Devel)
 
 # create a Config.cmake and a ConfigVersion.cmake file and install them

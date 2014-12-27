@@ -74,6 +74,13 @@ static int numSignificantDecimalPlaces( qreal floatNumber )
 // to something like {1, 2, 5} * 10^n. Or even better, something that achieves round values in the
 // remaining labels.
 
+// ensure we take the const-overload of any following function, esp. required for strict iterators
+template<typename T>
+static const T& constify(T &v)
+{
+    return v;
+}
+
 TickIterator::TickIterator( CartesianAxis* a, CartesianCoordinatePlane* plane, uint majorThinningFactor,
                             bool omitLastTick )
    : m_axis( a ),
@@ -270,7 +277,7 @@ void TickIterator::computeMajorTickLabel( int decimalPlaces )
         // if m_axis is null, we are dealing with grid lines. grid lines never need labels.
         if ( m_axis && ( m_majorLabelCount++ % m_majorThinningFactor ) == 0 ) {
             QMap< qreal, QString >::ConstIterator it =
-                m_dataHeaderLabels.lowerBound( slightlyLessThan( m_position ) );
+                constify(m_dataHeaderLabels).lowerBound( slightlyLessThan( m_position ) );
 
             if ( it != m_dataHeaderLabels.constEnd() && areAlmostEqual( it.key(), m_position ) ) {
                 m_text = it.value();
@@ -300,7 +307,7 @@ void TickIterator::operator++()
     // make sure to find the next tick at a value strictly greater than m_position
 
     if ( !m_annotations.isEmpty() ) {
-        QMap< qreal, QString >::ConstIterator it = m_annotations.upperBound( m_position );
+        QMap< qreal, QString >::ConstIterator it = constify(m_annotations).upperBound( m_position );
         if ( it != m_annotations.constEnd() ) {
             m_position = it.key();
             m_text = it.value();

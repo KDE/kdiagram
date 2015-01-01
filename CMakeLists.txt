@@ -7,8 +7,7 @@ find_package(ECM 1.4.0 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
 
 include(KDEInstallDirs)
-# include(KDEFrameworkCompilerSettings) fails for some reason with qmap const/non-const overloads
-include(KDECompilerSettings)
+include(KDEFrameworkCompilerSettings)
 include(KDECMakeSettings)
 
 include(FeatureSummary)

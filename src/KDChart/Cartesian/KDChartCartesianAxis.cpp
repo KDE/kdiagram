@@ -40,8 +40,6 @@
 #include "KDChartLineDiagram.h"
 #include "KDChartPrintingParameters.h"
 
-#include <KDABLibFakes>
-
 using namespace KDChart;
 
 #define d (d_func())
@@ -396,7 +394,7 @@ CartesianAxis::~CartesianAxis()
         AbstractCartesianDiagram *cd = qobject_cast< AbstractCartesianDiagram* >( d->mDiagram );
         cd->takeAxis( this );
     }
-    KDAB_FOREACH( AbstractDiagram *diagram, d->secondaryDiagrams ) {
+    Q_FOREACH( AbstractDiagram *diagram, d->secondaryDiagrams ) {
         AbstractCartesianDiagram *cd = qobject_cast< AbstractCartesianDiagram* >( diagram );
         cd->takeAxis( this );
     }

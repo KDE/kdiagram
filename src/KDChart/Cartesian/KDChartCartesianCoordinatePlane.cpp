@@ -30,8 +30,6 @@
 #include "KDChartBarDiagram.h"
 #include "KDChartStockDiagram.h"
 
-#include <KDABLibFakes>
-
 #include <QApplication>
 #include <QFont>
 #include <QList>
@@ -783,7 +781,7 @@ AbstractCoordinatePlane* CartesianCoordinatePlane::sharedAxisMasterPlane( QPaint
     if ( diag != 0 )
     {
         const CartesianAxisList axes = diag->axes();
-        KDAB_FOREACH( const CartesianAxis* a, axes )
+        Q_FOREACH( const CartesianAxis* a, axes )
         {
             CartesianCoordinatePlane* p = const_cast< CartesianCoordinatePlane* >(
                                               dynamic_cast< const CartesianCoordinatePlane* >( a->coordinatePlane() ) );

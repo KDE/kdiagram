@@ -31,8 +31,6 @@
 #include <QSvgRenderer>
 #include <QVector>
 
-#include <KDABLibFakes>
-
 using namespace KDChart;
 using namespace std;
 
@@ -371,7 +369,7 @@ void LeveyJenningsDiagram::calculateMeanAndStandardDeviation() const
 
     qreal sum = 0.0;
     qreal sumSquares = 0.0;
-    KDAB_FOREACH( qreal value, values )
+    Q_FOREACH( qreal value, values )
     {
         sum += value;
         sumSquares += value * value;
@@ -492,14 +490,14 @@ void LeveyJenningsDiagram::drawChanges( PaintContext* ctx )
 {
     const unsigned int minTime = timeRange().first.toTime_t();
 
-    KDAB_FOREACH( const QDateTime& dt, d->fluidicsPackChanges )
+    Q_FOREACH( const QDateTime& dt, d->fluidicsPackChanges )
     {
         const qreal xValue = ( dt.toTime_t() - minTime ) / static_cast< qreal >( 24 * 60 * 60 );
         const QPointF point( xValue, 0.0 );
         drawFluidicsPackChangedSymbol( ctx, point );
     }
 
-    KDAB_FOREACH( const QDateTime& dt, d->sensorChanges )
+    Q_FOREACH( const QDateTime& dt, d->sensorChanges )
     {
         const qreal xValue = ( dt.toTime_t() - minTime ) / static_cast< qreal >( 24 * 60 * 60 );
         const QPointF point( xValue, 0.0 );

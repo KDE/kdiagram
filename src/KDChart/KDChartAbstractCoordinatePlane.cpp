@@ -23,8 +23,6 @@
 #include "KDChartChart.h"
 #include "KDChartGridAttributes.h"
 
-#include <KDABLibFakes>
-
 #include <QGridLayout>
 #include <QRubberBand>
 #include <QMouseEvent>
@@ -328,7 +326,7 @@ void KDChart::AbstractCoordinatePlane::mousePressEvent( QMouseEvent* event )
         }
     }
 
-    KDAB_FOREACH( AbstractDiagram * a, d->diagrams )
+    Q_FOREACH( AbstractDiagram * a, d->diagrams )
     {
         a->mousePressEvent( event );
     }
@@ -342,7 +340,7 @@ void KDChart::AbstractCoordinatePlane::mouseDoubleClickEvent( QMouseEvent* event
         // which is pretty annoying when zooming out fast
         mousePressEvent( event );
     }
-    KDAB_FOREACH( AbstractDiagram * a, d->diagrams )
+    Q_FOREACH( AbstractDiagram * a, d->diagrams )
     {
         a->mouseDoubleClickEvent( event );
     }
@@ -395,7 +393,7 @@ void KDChart::AbstractCoordinatePlane::mouseReleaseEvent( QMouseEvent* event )
         event->accept();
     }
 
-    KDAB_FOREACH( AbstractDiagram * a, d->diagrams )
+    Q_FOREACH( AbstractDiagram * a, d->diagrams )
     {
         a->mouseReleaseEvent( event );
     }
@@ -411,7 +409,7 @@ void KDChart::AbstractCoordinatePlane::mouseMoveEvent( QMouseEvent* event )
         event->accept();
     }
 
-    KDAB_FOREACH( AbstractDiagram * a, d->diagrams )
+    Q_FOREACH( AbstractDiagram * a, d->diagrams )
     {
         a->mouseMoveEvent( event );
     }

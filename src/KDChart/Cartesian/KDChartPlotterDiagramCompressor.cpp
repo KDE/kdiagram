@@ -20,10 +20,9 @@
 #include "KDChartPlotterDiagramCompressor.h"
 
 #include "KDChartPlotterDiagramCompressor_p.h"
-#include <QtCore/QPointF>
+#include "KDChartMath_p.h"
 
-#include <limits>
-#include <KDABLibFakes>
+#include <QtCore/QPointF>
 
 using namespace KDChart;
 

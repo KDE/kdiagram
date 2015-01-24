@@ -36,8 +36,7 @@
 #include <KDChartAbstractDiagram_p.h>
 #include <KDChartAbstractThreeDAttributes.h>
 #include <KDChartGridAttributes.h>
-
-#include <KDABLibFakes>
+#include "KDChartMath_p.h"
 
 
 namespace KDChart {

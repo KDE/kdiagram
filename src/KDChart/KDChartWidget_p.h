@@ -35,8 +35,7 @@
 #include <KDChartChart.h>
 #include <KDChartCartesianCoordinatePlane.h>
 #include <KDChartPolarCoordinatePlane.h>
-
-#include <KDABLibFakes>
+#include "KDChartMath_p.h"
 
 #include <QGridLayout>
 #include <QStandardItemModel>

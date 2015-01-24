@@ -19,12 +19,10 @@
 
 #include "KDChartRulerAttributes.h"
 
-#include <limits>
+#include "KDChartMath_p.h"
 
 #include <QPen>
 #include <QDebug>
-
-#include <KDABLibFakes>
 
 #define d d_func()
 

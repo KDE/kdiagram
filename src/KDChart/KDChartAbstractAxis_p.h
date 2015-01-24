@@ -36,11 +36,10 @@
 
 #include "KDChartAbstractArea_p.h"
 #include "KDChartAbstractDiagram.h"
+#include "KDChartMath_p.h"
 #include <KDChartTextAttributes.h>
 #include <KDChartRulerAttributes.h>
 #include <KDChartDiagramObserver.h>
-
-#include <KDABLibFakes>
 
 
 namespace KDChart {

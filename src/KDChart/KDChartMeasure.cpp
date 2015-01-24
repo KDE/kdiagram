@@ -19,16 +19,14 @@
 
 #include "KDChartMeasure.h"
 
-#include <QWidget>
-
 #include <KDChartAbstractArea.h>
 #include <KDChartCartesianCoordinatePlane.h>
 #include <KDChartTextAttributes.h>
 #include <KDChartFrameAttributes.h>
 #include <KDChartBackgroundAttributes.h>
+#include "KDChartMath_p.h"
 
-#include <KDABLibFakes>
-
+#include <QWidget>
 
 namespace KDChart {
 

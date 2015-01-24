@@ -26,8 +26,7 @@
 #include "KDChartAbstractDiagram.h"
 #include "KDChartAbstractPolarDiagram.h"
 #include "KDChartPolarDiagram.h"
-
-#include <math.h>
+#include "KDChartMath_p.h"
 
 #include <QFont>
 #include <QList>
@@ -35,7 +34,6 @@
 #include <QPainter>
 #include <QTimer>
 
-#include <KDABLibFakes>
 
 using namespace KDChart;
 

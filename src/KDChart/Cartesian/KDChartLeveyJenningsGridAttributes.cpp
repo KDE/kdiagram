@@ -19,11 +19,11 @@
 
 #include "KDChartLeveyJenningsGridAttributes.h"
 
+#include "KDChartMath_p.h"
+
 #include <QBrush>
 #include <QMap>
 #include <QPen>
-
-#include <KDABLibFakes>
 
 #define d d_func()
 

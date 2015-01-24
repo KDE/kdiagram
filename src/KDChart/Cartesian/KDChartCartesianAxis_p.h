@@ -34,10 +34,8 @@
 #include "KDChartCartesianAxis.h"
 #include "KDChartAbstractCartesianDiagram.h"
 #include "KDChartAbstractAxis_p.h"
+#include "KDChartMath_p.h"
 
-#include <KDABLibFakes>
-
-#include <limits>
 
 namespace KDChart {
 

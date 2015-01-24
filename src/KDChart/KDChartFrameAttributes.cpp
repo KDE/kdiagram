@@ -19,7 +19,7 @@
 
 #include "KDChartFrameAttributes.h"
 
-#include <KDABLibFakes>
+#include "KDChartMath_p.h"
 
 #define d d_func()
 

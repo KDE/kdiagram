@@ -21,7 +21,7 @@
 #define PAINTINGHELPERS_P_H
 
 #include "KDChartAbstractDiagram_p.h"
-#include <KDABLibFakes>
+#include "KDChartMath_p.h"
 
 #include <QPointF>
 #include <QVector>

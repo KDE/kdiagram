@@ -35,8 +35,7 @@
 
 #include "KDChartThreeDLineAttributes.h"
 #include "KDChartLineDiagram_p.h"
-
-#include <KDABLibFakes>
+#include "KDChartMath_p.h"
 
 QT_BEGIN_NAMESPACE
 class QSvgRenderer;

@@ -23,12 +23,11 @@
 #include <QDebug>
 #include "KDChartRelativePosition.h"
 #include "KDChartPosition.h"
+#include "KDChartMath_p.h"
 #include <KDChartTextAttributes.h>
 #include <KDChartFrameAttributes.h>
 #include <KDChartBackgroundAttributes.h>
 #include <KDChartMarkerAttributes.h>
-
-#include <KDABLibFakes>
 
 // FIXME till
 #define KDCHART_DATA_VALUE_AUTO_DIGITS 4

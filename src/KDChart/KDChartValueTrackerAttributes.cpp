@@ -18,8 +18,8 @@
  */
 
 #include "KDChartValueTrackerAttributes.h"
+#include "KDChartMath_p.h"
 
-#include <KDABLibFakes>
 #include <QPen>
 #include <QSizeF>
 #include <QBrush>

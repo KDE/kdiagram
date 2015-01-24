@@ -18,14 +18,14 @@
  */
 
 #include <KDChartPosition.h>
+
 #include <KDChartEnums.h>
+#include "KDChartMath_p.h"
 
 #include <QString>
 #include <QStringList>
 #include <QList>
 #include <QByteArray>
-
-#include <KDABLibFakes>
 
 #include <cassert>
 

@@ -20,12 +20,12 @@
 #include "KDChartAbstractArea.h"
 #include "KDChartAbstractArea_p.h"
 
+#include "KDChartMath_p.h"
+
 #include <qglobal.h>
 
 #include <QPainter>
 #include <QRect>
-
-#include <KDABLibFakes>
 
 
 using namespace KDChart;

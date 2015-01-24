@@ -18,9 +18,10 @@
  */
 
 #include "KDChartLineAttributes.h"
-#include <QDebug>
 
-#include <KDABLibFakes>
+#include "KDChartMath_p.h"
+
+#include <QDebug>
 
 #define d d_func()
 

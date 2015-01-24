@@ -26,11 +26,10 @@
 #include "KDChartAbstractGrid.h"
 #include "KDChartPainterSaver_p.h"
 
-#include <KDABLibFakes>
-
 #include "KDChartNormalLineDiagram_p.h"
 #include "KDChartStackedLineDiagram_p.h"
 #include "KDChartPercentLineDiagram_p.h"
+#include "KDChartMath_p.h"
 
 #include <QDebug>
 #include <QPainter>

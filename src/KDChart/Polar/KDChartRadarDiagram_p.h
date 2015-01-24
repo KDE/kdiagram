@@ -33,8 +33,7 @@
 
 #include "KDChartAbstractPolarDiagram_p.h"
 #include "KDChartRadarDiagram.h"
-
-#include <KDABLibFakes>
+#include "KDChartMath_p.h"
 
 
 namespace KDChart {

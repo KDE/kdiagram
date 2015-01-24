@@ -20,9 +20,9 @@
 #include "KDChartPieAttributes.h"
 #include "KDChartPieAttributes_p.h"
 
-#include <QDebug>
+#include "KDChartMath_p.h"
 
-#include <KDABLibFakes>
+#include <QDebug>
 
 #define d d_func()
 

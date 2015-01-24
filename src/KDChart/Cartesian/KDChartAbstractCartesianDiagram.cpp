@@ -20,7 +20,7 @@
 #include "KDChartAbstractCartesianDiagram.h"
 #include "KDChartAbstractCartesianDiagram_p.h"
 
-#include <KDABLibFakes>
+#include "KDChartMath_p.h"
 
 
 using namespace KDChart;

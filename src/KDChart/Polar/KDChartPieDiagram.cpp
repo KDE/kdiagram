@@ -17,10 +17,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QDebug>
-#include <QPainter>
-#include <QStack>
-
 #include "KDChartPieDiagram.h"
 #include "KDChartPieDiagram_p.h"
 
@@ -29,8 +25,11 @@
 #include "KDChartPolarCoordinatePlane_p.h"
 #include "KDChartThreeDPieAttributes.h"
 #include "KDChartPainterSaver_p.h"
+#include "KDChartMath_p.h"
 
-#include <KDABLibFakes>
+#include <QDebug>
+#include <QPainter>
+#include <QStack>
 
 
 using namespace KDChart;

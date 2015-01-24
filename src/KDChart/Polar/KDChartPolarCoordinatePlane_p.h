@@ -34,8 +34,7 @@
 #include "KDChartAbstractCoordinatePlane_p.h"
 #include "KDChartZoomParameters.h"
 #include "KDChartPolarGrid.h"
-
-#include <KDABLibFakes>
+#include "KDChartMath_p.h"
 
 
 namespace KDChart {

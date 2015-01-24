@@ -20,7 +20,7 @@
 #include "KDChartAbstractPolarDiagram.h"
 #include "KDChartAbstractPolarDiagram_p.h"
 
-#include <KDABLibFakes>
+#include "KDChartMath_p.h"
 
 
 using namespace KDChart;

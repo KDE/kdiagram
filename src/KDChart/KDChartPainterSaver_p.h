@@ -31,9 +31,9 @@
 // We mean it.
 //
 
-#include <qpainter.h>
+#include "KDChartMath_p.h"
 
-#include <KDABLibFakes>
+#include <qpainter.h>
 
 
 namespace KDChart {

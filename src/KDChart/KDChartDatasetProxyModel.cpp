@@ -19,9 +19,9 @@
 
 #include "KDChartDatasetProxyModel.h"
 
-#include <QtDebug>
+#include "KDChartMath_p.h"
 
-#include <KDABLibFakes>
+#include <QtDebug>
 
 
 using namespace KDChart;

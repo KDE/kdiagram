@@ -30,10 +30,9 @@
 #include <KDChartPolarDiagram.h>
 #include <KDChartRingDiagram.h>
 #include <KDChartLegend.h>
+#include "KDChartMath_p.h"
 
 #include <QDebug>
-
-#include <KDABLibFakes>
 
 #define d d_func()
 

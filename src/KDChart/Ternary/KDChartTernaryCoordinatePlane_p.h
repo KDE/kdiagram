@@ -31,12 +31,11 @@
 // We mean it.
 //
 
-#include <QRectF>
-
 #include "KDChartTernaryGrid.h"
 #include "KDChartAbstractCoordinatePlane_p.h"
+#include "KDChartMath_p.h"
 
-#include <KDABLibFakes>
+#include <QRectF>
 
 namespace KDChart {
 

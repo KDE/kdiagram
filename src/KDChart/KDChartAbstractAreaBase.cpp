@@ -19,14 +19,15 @@
 
 #include "KDChartAbstractAreaBase.h"
 #include "KDChartAbstractAreaBase_p.h"
+
 #include <KDChartBackgroundAttributes.h>
 #include <KDChartFrameAttributes.h>
 #include <KDChartTextAttributes.h>
 #include "KDChartPainterSaver_p.h"
 #include "KDChartPrintingParameters.h"
-#include <QPainter>
+#include "KDChartMath_p.h"
 
-#include <KDABLibFakes>
+#include <QPainter>
 
 
 using namespace KDChart;

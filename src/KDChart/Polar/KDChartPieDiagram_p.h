@@ -32,8 +32,7 @@
 //
 
 #include "KDChartAbstractPieDiagram_p.h"
-
-#include <KDABLibFakes>
+#include "KDChartMath_p.h"
 
 
 namespace KDChart {

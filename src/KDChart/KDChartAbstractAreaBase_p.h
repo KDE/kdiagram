@@ -39,8 +39,7 @@
 #include "KDChartTextAttributes.h"
 #include "KDChartFrameAttributes.h"
 #include "KDChartBackgroundAttributes.h"
-
-#include <KDABLibFakes>
+#include "KDChartMath_p.h"
 
 
 namespace KDChart {

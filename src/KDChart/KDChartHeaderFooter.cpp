@@ -22,6 +22,9 @@
 
 #include "KDChartChart.h"
 #include <KDChartTextAttributes.h>
+#include "KDTextDocument.h"
+#include "KDChartMath_p.h"
+
 #include <QFont>
 #include <QPainter>
 #include <QAbstractTextDocumentLayout>
@@ -29,9 +32,6 @@
 #include <QTextBlock>
 #include <QtDebug>
 #include <QLabel>
-#include "KDTextDocument.h"
-
-#include <KDABLibFakes>
 
 using namespace KDChart;
 

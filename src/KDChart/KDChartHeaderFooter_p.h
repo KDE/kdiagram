@@ -34,9 +34,9 @@
 #include "KDChartHeaderFooter.h"
 #include "KDChartTextArea_p.h"
 #include "KDChartChart.h"
-#include <QMap>
+#include "KDChartMath_p.h"
 
-#include <KDABLibFakes>
+#include <QMap>
 
 
 class KDTextDocument;

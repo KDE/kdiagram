@@ -18,12 +18,13 @@
  */
 
 #include "KDTextDocument.h"
+
+#include "KDChartMath_p.h"
+
 #include <QRect>
 #include <QAbstractTextDocumentLayout>
 #include <QtDebug>
 #include <QTextBlock>
-
-#include <KDABLibFakes>
 
 // This is an internal class that mimicks some of the behavior of a
 // QLabel with rich text assigned, this is mostly a workaround around

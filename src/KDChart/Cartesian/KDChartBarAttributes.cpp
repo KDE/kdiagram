@@ -18,9 +18,10 @@
  */
 
 #include "KDChartBarAttributes.h"
-#include <qglobal.h>
 
-#include <KDABLibFakes>
+#include "KDChartMath_p.h"
+
+#include <qglobal.h>
 
 #define d d_func()
 

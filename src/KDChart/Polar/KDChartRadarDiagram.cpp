@@ -20,11 +20,11 @@
 #include "KDChartRadarDiagram.h"
 #include "KDChartRadarDiagram_p.h"
 
-#include <QPainter>
 #include "KDChartPaintContext.h"
 #include "KDChartPainterSaver_p.h"
+#include "KDChartMath_p.h"
 
-#include <KDABLibFakes>
+#include <QPainter>
 
 using namespace KDChart;
 

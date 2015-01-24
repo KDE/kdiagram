@@ -23,8 +23,8 @@
 #include <QAbstractItemModel>
 
 #include "KDChartAbstractCartesianDiagram.h"
+#include "KDChartMath_p.h"
 
-#include <KDABLibFakes>
 
 using namespace KDChart;
 using namespace std;

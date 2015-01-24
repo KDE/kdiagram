@@ -18,14 +18,15 @@
  */
 
 #include "KDChartRadarGrid.h"
+
 #include "KDChartPaintContext.h"
 #include "KDChartRadarDiagram.h"
 #include "KDChartPieDiagram.h"
 #include "KDChartPrintingParameters.h"
+#include "KDChartMath_p.h"
 
 #include <QPainter>
 
-#include <KDABLibFakes>
 
 using namespace KDChart;
 

@@ -23,11 +23,10 @@
 #include "KDChartMeasure.h"
 #include "KDChartPosition.h"
 #include "KDChartAbstractArea.h"
+#include "KDChartMath_p.h"
 
 #include <QWidget>
 #include <QLayout>
-
-#include <KDABLibFakes>
 
 using namespace KDChart;
 

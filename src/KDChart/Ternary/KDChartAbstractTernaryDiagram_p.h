@@ -38,10 +38,10 @@
 #include <KDChartAbstractThreeDAttributes.h>
 #include <KDChartGridAttributes.h>
 #include "KDChartPainterSaver_p.h"
+#include "KDChartMath_p.h"
 
 #include "ReverseMapper.h"
 #include "ChartGraphicsItem.h"
-#include <KDABLibFakes>
 
 namespace KDChart {
 

@@ -18,10 +18,10 @@
  */
 
 #include <KDChartDiagramObserver.h>
+
 #include <KDChartAbstractDiagram.h>
 #include <KDChartAttributesModel.h>
-
-#include <KDABLibFakes>
+#include "KDChartMath_p.h"
 
 #include <QDebug>
 

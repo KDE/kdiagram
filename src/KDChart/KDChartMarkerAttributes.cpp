@@ -18,6 +18,9 @@
  */
 
 #include "KDChartMarkerAttributes.h"
+
+#include "KDChartMath_p.h"
+
 #include <QColor>
 #include <QMap>
 #include <QPen>
@@ -25,8 +28,6 @@
 #include <QSizeF>
 #include <QDebug>
 #include <qglobal.h>
-
-#include <KDABLibFakes>
 
 using namespace KDChart;
 

@@ -33,7 +33,7 @@
 
 #include <KDChartAbstractThreeDAttributes.h>
 
-#include <KDABLibFakes>
+#include "KDChartMath_p.h"
 
 
 namespace KDChart {

@@ -23,10 +23,9 @@
 #include "KDChartAttributesModel.h"
 #include "KDChartPieAttributes.h"
 #include "KDChartThreeDPieAttributes.h"
+#include "KDChartMath_p.h"
 
 #include <QMap>
-
-#include <KDABLibFakes>
 
 
 using namespace KDChart;

@@ -41,8 +41,7 @@
 #include "KDChartFrameAttributes.h"
 #include "KDChartBackgroundAttributes.h"
 #include "KDChartLayoutItems.h"
-
-#include <KDABLibFakes>
+#include "KDChartMath_p.h"
 
 
 namespace KDChart {

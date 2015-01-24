@@ -20,9 +20,10 @@
 #include "KDChartAbstractThreeDAttributes.h"
 #include "KDChartAbstractThreeDAttributes_p.h"
 
+#include "KDChartMath_p.h"
+
 #include <QDebug>
 #include <QBrush>
-#include <KDABLibFakes>
 
 #define d d_func()
 

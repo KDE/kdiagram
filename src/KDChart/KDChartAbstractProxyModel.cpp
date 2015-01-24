@@ -19,9 +19,9 @@
 
 #include "KDChartAbstractProxyModel.h"
 
-#include <QDebug>
+#include "KDChartMath_p.h"
 
-#include <KDABLibFakes>
+#include <QDebug>
 
 #ifdef __GNUC__
 #if __GNUC__ > 3

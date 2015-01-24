@@ -20,7 +20,7 @@
 #include "KDChartAbstractAreaWidget.h"
 #include "KDChartAbstractAreaWidget_p.h"
 
-#include <KDABLibFakes>
+#include "KDChartMath_p.h"
 
 
 using namespace KDChart;

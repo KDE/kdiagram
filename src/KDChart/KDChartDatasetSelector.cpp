@@ -17,13 +17,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QtDebug>
-
 #include "KDChartDatasetSelector.h"
 
 #include "ui_KDChartDatasetSelector.h"
 
-#include <KDABLibFakes>
+#include "KDChartMath_p.h"
 
 using namespace KDChart;
 

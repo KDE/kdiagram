@@ -18,10 +18,11 @@
  */
 
 #include "KDChartPalette.h"
+
+#include "KDChartMath_p.h"
+
 #include <QBrush>
 #include <QVector>
-
-#include <KDABLibFakes>
 
 using namespace KDChart;
 

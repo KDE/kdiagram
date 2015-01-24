@@ -18,9 +18,10 @@
  */
 
 #include "KDChartBackgroundAttributes.h"
-#include <QPixmap>
 
-#include <KDABLibFakes>
+#include "KDChartMath_p.h"
+
+#include <QPixmap>
 
 #define d d_func()
 

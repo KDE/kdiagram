@@ -24,12 +24,9 @@
 #include "KDChartPrintingParameters.h"
 #include "KDChartFrameAttributes.h"
 #include "KDChartCartesianAxis_p.h"
+#include "KDChartMath_p.h"
 
 #include <QPainter>
-
-#include <KDABLibFakes>
-
-#include <limits>
 
 using namespace KDChart;
 

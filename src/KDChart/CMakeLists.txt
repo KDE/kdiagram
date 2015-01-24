@@ -4,7 +4,6 @@ ecm_setup_version(${KDEKDCHARTLIBS_VERSION}
 )
 
 include_directories(
-    ${CMAKE_SOURCE_DIR}/kdablibfakes/include
     ${CMAKE_CURRENT_SOURCE_DIR}/Cartesian
     ${CMAKE_CURRENT_SOURCE_DIR}/Cartesian/DiagramFlavors
     ${CMAKE_CURRENT_SOURCE_DIR}/Polar

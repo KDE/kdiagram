@@ -21,6 +21,7 @@
 
 #include <KDChartCartesianCoordinatePlane.h>
 #include <KDChartCartesianCoordinatePlane_p.h>
+#include "KDChartMath_p.h"
 
 #include <QFont>
 #include <QPen>
@@ -28,7 +29,6 @@
 #include <QApplication>
 #include <QSharedPointer>
 #include <QTextDocument>
-#include <KDABLibFakes>
 
 #define d d_func()
 

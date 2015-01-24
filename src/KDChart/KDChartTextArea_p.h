@@ -37,8 +37,7 @@
 
 #include "KDChartTextArea.h"
 #include "KDChartAbstractAreaBase_p.h"
-
-#include <KDABLibFakes>
+#include "KDChartMath_p.h"
 
 
 namespace KDChart {

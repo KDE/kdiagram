@@ -36,8 +36,7 @@
 #include <KDChartGridAttributes.h>
 #include <KDChartAbstractGrid.h>
 #include <KDChartZoomParameters.h>
-
-#include <KDABLibFakes>
+#include "KDChartMath_p.h"
 
 #include <QStack>
 

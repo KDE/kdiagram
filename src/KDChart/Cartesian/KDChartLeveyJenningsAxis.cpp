@@ -30,10 +30,7 @@
 #include "KDChartPainterSaver_p.h"
 #include "KDChartLayoutItems.h"
 #include "KDChartPrintingParameters.h"
-
-#include <KDABLibFakes>
-
-#include <limits>
+#include "KDChartMath_p.h"
 
 using namespace KDChart;
 

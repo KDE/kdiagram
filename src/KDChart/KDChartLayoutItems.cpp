@@ -18,6 +18,7 @@
  */
 
 #include "KDChartLayoutItems.h"
+
 #include "KDTextDocument.h"
 #include "KDChartAbstractArea.h"
 #include "KDChartAbstractDiagram.h"
@@ -26,6 +27,8 @@
 #include "KDChartPaintContext.h"
 #include "KDChartPainterSaver_p.h"
 #include "KDChartPrintingParameters.h"
+#include "KDChartMath_p.h"
+
 #include <QTextCursor>
 #include <QTextBlockFormat>
 #include <QTextDocumentFragment>
@@ -37,10 +40,6 @@
 #include <QApplication>
 #include <QStringList>
 #include <QStyle>
-
-#include <KDABLibFakes>
-
-#include <math.h>
 
 
 //#define DEBUG_ITEMS_PAINT

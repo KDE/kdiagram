@@ -37,8 +37,7 @@
 
 #include "KDChartAbstractCartesianDiagram_p.h"
 #include "KDChartThreeDBarAttributes.h"
-
-#include <KDABLibFakes>
+#include "KDChartMath_p.h"
 
 
 namespace KDChart {

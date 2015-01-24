@@ -23,8 +23,7 @@
 #include "KDChartAbstractCartesianDiagram.h"
 #include "KDChartEnums.h"
 #include "KDChartMeasure.h"
-
-#include <KDABLibFakes>
+#include "KDChartMath_p.h"
 
 using namespace KDChart;
 

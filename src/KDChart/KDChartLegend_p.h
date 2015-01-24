@@ -32,16 +32,17 @@
 //
 
 #include "KDChartLegend.h"
+
 #include <KDChartDiagramObserver.h>
 #include "KDChartAbstractAreaWidget_p.h"
 #include <KDChartTextAttributes.h>
 #include <KDChartMarkerAttributes.h>
+#include "KDChartMath_p.h"
+
 #include <QList>
 #include <QAbstractTextDocumentLayout>
 #include <QPainter>
 #include <QVector>
-
-#include <KDABLibFakes>
 
 QT_BEGIN_NAMESPACE
 class QGridLayout;

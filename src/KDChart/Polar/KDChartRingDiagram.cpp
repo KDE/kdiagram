@@ -27,10 +27,9 @@
 #include "KDChartPolarCoordinatePlane_p.h"
 #include "KDChartThreeDPieAttributes.h"
 #include "KDChartDataValueAttributes.h"
+#include "KDChartMath_p.h"
 
 #include <QPainter>
-
-#include <KDABLibFakes>
 
 using namespace KDChart;
 

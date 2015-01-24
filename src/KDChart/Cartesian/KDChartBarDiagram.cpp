@@ -29,14 +29,13 @@
 #include <QPainter>
 #include <QDebug>
 
-#include <KDABLibFakes>
-
 #include "KDChartNormalBarDiagram_p.h"
 #include "KDChartStackedBarDiagram_p.h"
 #include "KDChartPercentBarDiagram_p.h"
 #include "KDChartNormalLyingBarDiagram_p.h"
 #include "KDChartStackedLyingBarDiagram_p.h"
 #include "KDChartPercentLyingBarDiagram_p.h"
+#include "KDChartMath_p.h"
 
 
 using namespace KDChart;

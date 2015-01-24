@@ -20,9 +20,9 @@
 #include "KDChartAbstractGrid.h"
 #include "KDChartPaintContext.h"
 
-#include <qglobal.h>
+#include "KDChartMath_p.h"
 
-#include <KDABLibFakes>
+#include <qglobal.h>
 
 
 using namespace KDChart;

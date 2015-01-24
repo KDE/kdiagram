@@ -18,8 +18,10 @@
  */
 
 #include "KDChartAttributesModel.h"
+
 #include "KDChartPalette.h"
 #include "KDChartGlobal.h"
+#include "KDChartMath_p.h"
 
 #include <QDebug>
 #include <QPen>
@@ -40,8 +42,6 @@
 #include <KDChartThreeDPieAttributes.h>
 #include <KDChartGridAttributes.h>
 #include <KDChartValueTrackerAttributes.h>
-
-#include <KDABLibFakes>
 
 
 using namespace KDChart;

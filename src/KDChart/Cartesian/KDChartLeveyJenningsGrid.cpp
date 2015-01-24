@@ -18,14 +18,14 @@
  */
 
 #include "KDChartLeveyJenningsGrid.h"
+
 #include "KDChartLeveyJenningsDiagram.h"
 #include "KDChartPaintContext.h"
 #include "KDChartPainterSaver_p.h"
 #include "KDChartPrintingParameters.h"
+#include "KDChartMath_p.h"
 
 #include <QPainter>
-
-#include <KDABLibFakes>
 
 
 using namespace KDChart;

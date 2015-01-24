@@ -35,8 +35,7 @@
 
 #include "KDChartLeveyJenningsGrid.h"
 #include "KDChartCartesianCoordinatePlane_p.h"
-
-#include <KDABLibFakes>
+#include "KDChartMath_p.h"
 
 namespace KDChart {
 

@@ -36,7 +36,7 @@
 #include "KDChartCartesianGrid.h"
 #include "KDChartZoomParameters.h"
 
-#include <KDABLibFakes>
+#include "KDChartMath_p.h"
 
 
 namespace KDChart {

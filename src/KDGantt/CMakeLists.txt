@@ -101,3 +101,14 @@ install(FILES
 install(EXPORT KDEKDGanttTargets
         DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
         FILE KDEKDGanttTargets.cmake)
+
+ecm_generate_pri_file(
+    BASE_NAME KDEKDGantt
+    LIB_NAME KDEKDGantt
+    DEPS "widgets printsupport"
+    FILENAME_VAR PRI_FILENAME
+    INCLUDE_INSTALL_DIR ${INCLUDE_INSTALL_DIR}/KDEKDGantt
+)
+
+install(FILES ${PRI_FILENAME}
+        DESTINATION ${ECM_MKSPECS_INSTALL_DIR})

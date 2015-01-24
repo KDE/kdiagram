@@ -16,6 +16,7 @@ include(GenerateExportHeader)
 include(ECMGenerateHeaders)
 include(ECMSetupVersion)
 include(ECMPackageConfigHelpers)
+include(ECMGeneratePriFile)
 
 set(REQUIRED_QT_VERSION "5.2.0")
 

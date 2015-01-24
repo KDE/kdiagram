@@ -301,3 +301,14 @@ install(FILES
 install(EXPORT KDEKDChartTargets
         DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
         FILE KDEKDChartTargets.cmake)
+
+ecm_generate_pri_file(
+    BASE_NAME KDEKDChart
+    LIB_NAME KDEKDChart
+    DEPS "widgets svg"
+    FILENAME_VAR PRI_FILENAME
+    INCLUDE_INSTALL_DIR ${INCLUDE_INSTALL_DIR}/KDEKDChart
+)
+
+install(FILES ${PRI_FILENAME}
+        DESTINATION ${ECM_MKSPECS_INSTALL_DIR})

@@ -28,29 +28,27 @@ set( kdgantt_LIB_SRCS
     kdganttlegend.cpp
 )
 
-add_library( kde-kdgantt SHARED ${kdgantt_LIB_SRCS} )
+add_library( KDEKDGantt SHARED ${kdgantt_LIB_SRCS} )
 
-generate_export_header( kde-kdgantt )
+generate_export_header( KDEKDGantt )
 
-add_library( KDEKDGantt ALIAS kde-kdgantt )
-
-target_include_directories(kde-kdgantt
+target_include_directories(KDEKDGantt
     INTERFACE "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}/KDEKDGantt>"
 )
 
-target_link_libraries( kde-kdgantt LINK_PRIVATE
+target_link_libraries( KDEKDGantt LINK_PRIVATE
     Qt5::Core
     Qt5::Widgets
     Qt5::PrintSupport
 )
 
-set_target_properties( kde-kdgantt PROPERTIES
+set_target_properties( KDEKDGantt PROPERTIES
   VERSION     ${KDEKDGANTT_VERSION}
   SOVERSION   ${KDEKDGANTT_SOVERSION}
   EXPORT_NAME "KDEKDGantt"
 )
 
-install( TARGETS kde-kdgantt
+install( TARGETS KDEKDGantt
     EXPORT KDEKDGanttTargets
     ${INSTALL_TARGETS_DEFAULT_ARGS})
 

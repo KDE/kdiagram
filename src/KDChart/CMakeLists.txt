@@ -115,30 +115,28 @@ qt5_wrap_ui(kdchart_LIB_SRCS
     KDChartDatasetSelector.ui
 )
 
-qt_wrap_cpp(kde-kdchart kdchart_LIB_SRCS KDChartEnums.h)
+qt_wrap_cpp(KDEKDChart kdchart_LIB_SRCS KDChartEnums.h)
 
-add_library(kde-kdchart SHARED ${kdchart_LIB_SRCS})
+add_library(KDEKDChart SHARED ${kdchart_LIB_SRCS})
 
-generate_export_header( kde-kdchart )
+generate_export_header( KDEKDChart )
 
-add_library(KDEKDChart ALIAS kde-kdchart)
-
-target_include_directories(kde-kdchart
+target_include_directories(KDEKDChart
     INTERFACE "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}/KDEKDChart>"
 )
 
-target_link_libraries(kde-kdchart LINK_PRIVATE
+target_link_libraries(KDEKDChart LINK_PRIVATE
     Qt5::Svg
     Qt5::Widgets
     Qt5::Core
 )
-set_target_properties( kde-kdchart PROPERTIES
+set_target_properties( KDEKDChart PROPERTIES
   VERSION     ${KDEKDCHART_VERSION}
   SOVERSION   ${KDEKDCHART_SOVERSION}
   EXPORT_NAME "KDEKDChart"
 )
 
-install( TARGETS kde-kdchart
+install( TARGETS KDEKDChart
     EXPORT KDEKDChartTargets
     ${INSTALL_TARGETS_DEFAULT_ARGS})
 

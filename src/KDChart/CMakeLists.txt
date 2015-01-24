@@ -114,6 +114,10 @@ qt5_wrap_ui(kdchart_LIB_SRCS
     KDChartDatasetSelector.ui
 )
 
+qt5_add_resources(kdchart_LIB_SRCS
+    KDAB_kdchart_LeveyJennings_resources.qrc
+)
+
 qt_wrap_cpp(KDEKDChart kdchart_LIB_SRCS KDChartEnums.h)
 
 add_library(KDEKDChart SHARED ${kdchart_LIB_SRCS})

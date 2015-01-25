@@ -52,6 +52,7 @@ set( KDEKDCHARTLIBS_VERSION "2.6.0" )
 
 add_subdirectory( src )
 add_subdirectory( examples )
+add_subdirectory( tests )
 
 if(Qt5Test_FOUND)
     add_subdirectory( qtests )

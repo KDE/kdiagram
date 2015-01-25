@@ -51,5 +51,10 @@ add_definitions(
 set( KDEKDCHARTLIBS_VERSION "2.6.0" )
 
 add_subdirectory( src )
+add_subdirectory( examples )
+
+if(Qt5Test_FOUND)
+    add_subdirectory( qtests )
+endif()
 
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)

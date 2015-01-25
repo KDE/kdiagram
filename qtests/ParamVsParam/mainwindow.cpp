@@ -22,7 +22,8 @@
 #include "ModelParamVsParam.h"
 #include "ModelParamVsParamPlot.h"
 
-#include <QtGui>
+#include <QtWidgets>
+
 
 #include <KDChartChart>
 #include <KDChartDataValueAttributes>

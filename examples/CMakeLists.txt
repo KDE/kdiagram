@@ -1,3 +1,7 @@
+# KDGantt examples
+add_subdirectory(Gantt)
+
+# KDChart examples
 include_directories(
     ${CMAKE_SOURCE_DIR}/examples/tools
     ${CMAKE_SOURCE_DIR}/src/KDChart

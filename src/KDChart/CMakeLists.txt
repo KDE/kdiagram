@@ -122,6 +122,14 @@ qt_wrap_cpp(KDEKDChart kdchart_LIB_SRCS KDChartEnums.h)
 
 add_library(KDEKDChart SHARED ${kdchart_LIB_SRCS})
 
+# TODO: check if this snippet from .pro file should be ported, otherwise remove file
+# linux-*{
+#   version_script{
+#     QMAKE_LFLAGS += -Wl,--version-script=libkdchart.map
+#     TARGETDEPS += libkdchart.map
+#   }
+# }
+
 generate_export_header( KDEKDChart )
 
 target_include_directories(KDEKDChart

@@ -1,3 +1,4 @@
+# TODO CMAKE PORTING not yet done
 *-g++* {
   NORMAL_CFLAGS = -Wno-long-long
   !win32-g++:NORMAL_CFLAGS +=-ansi

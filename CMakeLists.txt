@@ -57,6 +57,18 @@ add_definitions(
 
 set( KDEKDCHARTLIBS_VERSION "2.6.0" )
 
+# TODO: port from .pro
+#  NOMINMAX avoids conflicting definitions of min and max
+#  _USE_MATH_DEFINES makes M_PI defined
+# win32 {
+# !win32-g++ {
+#     DEFINES += NOMINMAX _USE_MATH_DEFINES
+#     QMAKE_CXXFLAGS += /GR /EHsc /wd4251
+# }
+# }
+
+# TODO: port g++.pri to cmake and check what is still needed
+
 add_subdirectory( src )
 
 if(BUILD_TESTING)

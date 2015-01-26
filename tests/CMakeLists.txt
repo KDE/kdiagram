@@ -1,3 +1,5 @@
+add_subdirectory( Gantt )
+
 include_directories(
     ${CMAKE_SOURCE_DIR}/src/KDChart
     ${CMAKE_SOURCE_DIR}/src/KDChart/include

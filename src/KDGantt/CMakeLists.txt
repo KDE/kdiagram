@@ -54,7 +54,9 @@ install( TARGETS KDEKDGantt
 
 ecm_generate_headers(kdgantt_LIB_HEADERS
     HEADER_NAMES
+    KDGanttGlobal
     KDGanttView
+    KDGanttListViewRowController
     KDGanttStyleOptionGanttItem
     KDGanttGraphicsView
     KDGanttAbstractRowController

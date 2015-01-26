@@ -1,0 +1,7 @@
+add_subdirectory(Advanced)
+add_subdirectory(BigDataset)
+add_subdirectory(BubbleChart)
+add_subdirectory(Isometric)
+add_subdirectory(Logarithmic)
+add_subdirectory(Simple)
+add_subdirectory(Timeline)

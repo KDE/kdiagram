@@ -1,0 +1,6 @@
+add_subdirectory(Advanced)
+add_subdirectory(AreaPerCell)
+add_subdirectory(Parameters)
+add_subdirectory(PointChart)
+add_subdirectory(PointWidget)
+add_subdirectory(SimpleLineWidget)

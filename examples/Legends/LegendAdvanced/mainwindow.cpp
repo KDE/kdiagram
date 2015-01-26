@@ -243,7 +243,7 @@ void MainWindow::on_removeLegendPB_clicked()
 {
     if ( legendsTV->selectedItems().size() == 0 ) return;
     QList<QTreeWidgetItem*> items = legendsTV->selectedItems();
-    for ( QList<QTreeWidgetItem*>::const_iterator it = items.begin();
+    for ( QList<QTreeWidgetItem*>::iterator it = items.begin();
          it != items.end(); ++it )
     {
         KDChart::Legend* legend = static_cast<LegendItem*>( (*it) )->legend();

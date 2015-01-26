@@ -26,11 +26,11 @@
 
 #include <QComboBox>
 
-#include <KDChart/KDChartChart>
-#include <KDChart/KDChartCartesianAxis>
-#include <KDChart/KDChartCartesianCoordinatePlane>
-#include <KDChart/KDChartAbstractCartesianDiagram>
-#include <KDChart/KDChartRulerAttributes>
+#include <KDChartChart>
+#include <KDChartCartesianAxis>
+#include <KDChartCartesianCoordinatePlane>
+#include <KDChartAbstractCartesianDiagram>
+#include <KDChartRulerAttributes>
 
 #include <QDebug>
 

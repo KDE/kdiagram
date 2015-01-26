@@ -20,8 +20,8 @@
 #include "datasetsettings.h"
 #include "ui_datasetsettings.h"
 
-#include <KDChart/KDChartAbstractCoordinatePlane>
-#include <KDChart/KDChartChart>
+#include <KDChartAbstractCoordinatePlane>
+#include <KDChartChart>
 
 #include <QColorDialog>
 #include <QFileDialog>

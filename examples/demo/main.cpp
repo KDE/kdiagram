@@ -19,8 +19,8 @@
 
 #include <QtGui/QtGui>
 #include <QApplication>
-#include <KDChart/KDChartChart>
-#include <KDChart/KDChartBarDiagram>
+#include <KDChartChart>
+#include <KDChartBarDiagram>
 
 
 //class ChartWidget : public QWidget {

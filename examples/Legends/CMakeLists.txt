@@ -1,0 +1,4 @@
+add_subdirectory(LegendAdvanced)
+add_subdirectory(LegendOverDiagram)
+add_subdirectory(LegendParameters)
+add_subdirectory(LegendSimple)

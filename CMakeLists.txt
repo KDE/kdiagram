@@ -32,6 +32,10 @@ find_package(Qt5Test QUIET)
 if (NOT Qt5Test_FOUND)
   message(STATUS "Qt5Test not found, unit tests will not be built.")
 endif()
+find_package(Qt5Sql QUIET)
+if (NOT Qt5Sql_FOUND)
+  message(STATUS "Qt5Sql not found, examples with SQL will not be built.")
+endif()
 
 # We want users of kdchart to be able to use the lib without interference with Qt-specific keywords, e.g. "signals" that collides with Boost's Signals
 add_definitions(

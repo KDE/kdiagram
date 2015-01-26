@@ -20,15 +20,15 @@
 #include "diagramtypedialog.h"
 #include "ui_diagramtypedialog.h"
 
-#include <KDChart/KDChartChart>
-#include <KDChart/KDChartAbstractCoordinatePlane>
-#include <KDChart/KDChartCartesianCoordinatePlane>
-#include <KDChart/KDChartPolarCoordinatePlane>
+#include <KDChartChart>
+#include <KDChartAbstractCoordinatePlane>
+#include <KDChartCartesianCoordinatePlane>
+#include <KDChartPolarCoordinatePlane>
 
-#include <KDChart/KDChartBarDiagram>
-#include <KDChart/KDChartLineDiagram>
-#include <KDChart/KDChartPieDiagram>
-#include <KDChart/KDChartPlotter>
+#include <KDChartBarDiagram>
+#include <KDChartLineDiagram>
+#include <KDChartPieDiagram>
+#include <KDChartPlotter>
 
 #include <QDebug>
 

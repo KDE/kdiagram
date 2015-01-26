@@ -142,7 +142,7 @@ void MainWindow::on_removeHeaderPB_clicked()
 {
     if ( headersTV->selectedItems().size() == 0 ) return;
     QList<QTreeWidgetItem*> items = headersTV->selectedItems();
-    for ( QList<QTreeWidgetItem*>::const_iterator it = items.begin(); it != items.end(); ++it )
+    for ( QList<QTreeWidgetItem*>::iterator it = items.begin(); it != items.end(); ++it )
     {
         KDChart::HeaderFooter* headerFooter
                 = static_cast<HeaderItem*>( (*it) )->header();

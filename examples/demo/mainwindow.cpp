@@ -19,24 +19,24 @@
 
 #include "mainwindow.h"
 
-#include <KDChart/KDChartChart>
-#include <KDChart/KDChartCartesianCoordinatePlane>
-#include <KDChart/KDChartAbstractCoordinatePlane>
-#include <KDChart/KDChartCartesianAxis>
-#include <KDChart/KDChartCartesianGrid>
-#include <KDChart/KDChartAbstractDiagram>
-#include <KDChart/KDChartBarDiagram>
-#include <KDChart/KDChartLineDiagram>
-#include <KDChart/KDChartPlotter>
-#include <KDChart/KDChartPieDiagram>
-#include <KDChart/KDChartPolarCoordinatePlane>
-#include <KDChart/KDChartLegend>
-#include <KDChart/KDChartDataValueAttributes>
-#include <KDChart/KDChartMarkerAttributes>
-#include <KDChart/KDChartTextAttributes>
-#include <KDChart/KDChartGridAttributes>
-#include <KDChart/KDChartRulerAttributes>
-#include <KDChart/KDChartPieAttributes>
+#include <KDChartChart>
+#include <KDChartCartesianCoordinatePlane>
+#include <KDChartAbstractCoordinatePlane>
+#include <KDChartCartesianAxis>
+#include <KDChartCartesianGrid>
+#include <KDChartAbstractDiagram>
+#include <KDChartBarDiagram>
+#include <KDChartLineDiagram>
+#include <KDChartPlotter>
+#include <KDChartPieDiagram>
+#include <KDChartPolarCoordinatePlane>
+#include <KDChartLegend>
+#include <KDChartDataValueAttributes>
+#include <KDChartMarkerAttributes>
+#include <KDChartTextAttributes>
+#include <KDChartGridAttributes>
+#include <KDChartRulerAttributes>
+#include <KDChartPieAttributes>
 
 #include <TableModel.h>
 

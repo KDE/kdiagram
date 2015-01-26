@@ -32,17 +32,17 @@
 
 #include <QFileDialog>
 
-#include <KDChart/KDChartThreeDBarAttributes>
-#include <KDChart/KDChartThreeDLineAttributes>
-#include <KDChart/KDChartThreeDPieAttributes>
+#include <KDChartThreeDBarAttributes>
+#include <KDChartThreeDLineAttributes>
+#include <KDChartThreeDPieAttributes>
 
-#include <KDChart/KDChartChart>
-#include <KDChart/KDChartBarDiagram>
-#include <KDChart/KDChartLineDiagram>
-#include <KDChart/KDChartPieDiagram>
-#include <KDChart/KDChartCartesianCoordinatePlane>
+#include <KDChartChart>
+#include <KDChartBarDiagram>
+#include <KDChartLineDiagram>
+#include <KDChartPieDiagram>
+#include <KDChartCartesianCoordinatePlane>
 
-#include <KDChart/KDChartBackgroundAttributes>
+#include <KDChartBackgroundAttributes>
 
 using namespace KDChart;
 

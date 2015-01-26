@@ -3,7 +3,9 @@ ecm_setup_version(${KDEKDCHARTLIBS_VERSION}
     PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KDEKDGanttConfigVersion.cmake"
 )
 
-add_definitions(-DKDAB_NO_UNIT_TESTS)
+if(NOT BUILD_TESTING)
+    add_definitions(-DKDAB_NO_UNIT_TESTS)
+endif()
 
 set( kdgantt_LIB_SRCS
     kdganttglobal.cpp
@@ -26,6 +28,8 @@ set( kdgantt_LIB_SRCS
     kdganttabstractgrid.cpp
     kdganttdatetimegrid.cpp
     kdganttlegend.cpp
+    unittest/test.cpp
+    unittest/testregistry.cpp
 )
 
 add_library( KDEKDGantt SHARED ${kdgantt_LIB_SRCS} )

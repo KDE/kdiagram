@@ -28,7 +28,7 @@ class QModelIndex;
 QT_END_NAMESPACE
 
 namespace KDGantt {
-    class KDE_KDGANTT_EXPORT AbstractRowController {
+    class KDEKDGANTT_EXPORT AbstractRowController {
     public:
         AbstractRowController();
         virtual ~AbstractRowController();

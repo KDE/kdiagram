@@ -29,7 +29,7 @@ Contains KDGantt macros.  */
 #include <QDebug>
 #include <QMetaType>
 
-#include "kde-kdgantt_export.h"
+#include "kdekdgantt_export.h"
 
 #if (defined(__MINGW32__) || defined(__MINGW64__)) && (__GNUC__ == 4) && (__GNUC_MINOR__ == 4) && (__GNUC_PATCHLEVEL__ == 0)
 // workaround a mingw bug, http://sourceforge.net/tracker/index.php?func=detail&aid=2373234&group_id=2435&atid=102435
@@ -290,10 +290,10 @@ namespace KDGantt {
 Q_DECLARE_METATYPE(KDGantt::ItemType)
 
 #ifndef QT_NO_DEBUG_STREAM
-QDebug KDE_KDGANTT_EXPORT operator<<( QDebug dbg, KDGantt::ItemDataRole r);
-QDebug KDE_KDGANTT_EXPORT operator<<( QDebug dbg, KDGantt::ItemType t);
-QDebug KDE_KDGANTT_EXPORT operator<<( QDebug dbg, const KDGantt::Span& s );
-QDebug KDE_KDGANTT_EXPORT operator<<( QDebug dbg, const KDGantt::DateTimeSpan& s );
+QDebug KDEKDGANTT_EXPORT operator<<( QDebug dbg, KDGantt::ItemDataRole r);
+QDebug KDEKDGANTT_EXPORT operator<<( QDebug dbg, KDGantt::ItemType t);
+QDebug KDEKDGANTT_EXPORT operator<<( QDebug dbg, const KDGantt::Span& s );
+QDebug KDEKDGANTT_EXPORT operator<<( QDebug dbg, const KDGantt::DateTimeSpan& s );
 #endif /* QT_NO_DEBUG_STREAM */
 
 QT_BEGIN_NAMESPACE

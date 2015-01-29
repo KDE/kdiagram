@@ -35,7 +35,7 @@ namespace UnitTest {
     class Test;
     class TestFactory;
 
-    class KDE_KDGANTT_EXPORT TestRegistry {
+    class KDEKDGANTT_EXPORT TestRegistry {
         friend class ::KDAB::UnitTest::TestFactory;
         static TestRegistry * mSelf;
         TestRegistry();
@@ -57,7 +57,7 @@ namespace UnitTest {
         std::map< std::string, std::vector<const TestFactory*> > mTests;
     };
 
-    class KDE_KDGANTT_EXPORT Runner {
+    class KDEKDGANTT_EXPORT Runner {
     public:
         ~Runner();
         unsigned int run( const char * group=0 ) const;

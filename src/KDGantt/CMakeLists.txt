@@ -84,7 +84,7 @@ ecm_generate_headers(kdgantt_LIB_HEADERS
 )
 
 install(FILES
-            ${CMAKE_CURRENT_BINARY_DIR}/kde-kdgantt_export.h
+            ${CMAKE_CURRENT_BINARY_DIR}/kdekdgantt_export.h
             ${kdgantt_LIB_HEADERS}
         DESTINATION ${INCLUDE_INSTALL_DIR}/KDEKDGantt
         COMPONENT Devel)

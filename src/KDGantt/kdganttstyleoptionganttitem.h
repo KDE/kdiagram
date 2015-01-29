@@ -28,7 +28,7 @@
 
 namespace KDGantt {
     class AbstractGrid;
-    class KDE_KDGANTT_EXPORT StyleOptionGanttItem : public QStyleOptionViewItem {
+    class KDEKDGANTT_EXPORT StyleOptionGanttItem : public QStyleOptionViewItem {
     public:
         enum Position { Left, Right, Center, Hidden };
 

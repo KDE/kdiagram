@@ -31,7 +31,7 @@ namespace KDGantt {
     class StyleOptionGanttItem;
     class Constraint;
 
-    class KDE_KDGANTT_EXPORT ItemDelegate : public QItemDelegate {
+    class KDEKDGANTT_EXPORT ItemDelegate : public QItemDelegate {
         Q_OBJECT
         KDGANTT_DECLARE_PRIVATE_BASE_POLYMORPHIC( ItemDelegate )
     public:

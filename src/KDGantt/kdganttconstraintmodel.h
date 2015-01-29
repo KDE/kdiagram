@@ -27,7 +27,7 @@
 #include "kdganttconstraint.h"
 
 namespace KDGantt {
-    class KDE_KDGANTT_EXPORT ConstraintModel : public QObject {
+    class KDEKDGANTT_EXPORT ConstraintModel : public QObject {
         Q_OBJECT
         KDGANTT_DECLARE_PRIVATE_DERIVED_PARENT( ConstraintModel, QObject* )
      public:
@@ -71,8 +71,8 @@ namespace KDGantt {
 #ifndef QT_NO_DEBUG_STREAM
 #include <QDebug>
 
-QDebug KDE_KDGANTT_EXPORT operator<<( QDebug dbg, const KDGantt::ConstraintModel& model );
-inline QDebug KDE_KDGANTT_EXPORT operator<<( QDebug dbg, KDGantt::ConstraintModel* model )
+QDebug KDEKDGANTT_EXPORT operator<<( QDebug dbg, const KDGantt::ConstraintModel& model );
+inline QDebug KDEKDGANTT_EXPORT operator<<( QDebug dbg, KDGantt::ConstraintModel* model )
 {
     return operator<<(dbg,*model);
 }

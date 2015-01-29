@@ -28,7 +28,7 @@ class QTreeView;
 QT_END_NAMESPACE
 
 namespace KDGantt {
-    class KDE_KDGANTT_EXPORT TreeViewRowController :  public AbstractRowController {
+    class KDEKDGANTT_EXPORT TreeViewRowController :  public AbstractRowController {
         KDGANTT_DECLARE_PRIVATE_BASE_POLYMORPHIC(TreeViewRowController)
     public:
         TreeViewRowController( QTreeView* tv, QAbstractProxyModel* proxy );

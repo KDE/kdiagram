@@ -29,7 +29,7 @@ namespace KDGantt {
 
     class DateTimeScaleFormatter;
 
-    class KDE_KDGANTT_EXPORT DateTimeGrid : public AbstractGrid
+    class KDEKDGANTT_EXPORT DateTimeGrid : public AbstractGrid
     {
         Q_OBJECT
         KDGANTT_DECLARE_PRIVATE_DERIVED( DateTimeGrid )
@@ -120,7 +120,7 @@ namespace KDGantt {
         /* reimp */ void drawForeground(QPainter* paint, const QRectF& rect);
     };
 
-    class KDE_KDGANTT_EXPORT DateTimeScaleFormatter
+    class KDEKDGANTT_EXPORT DateTimeScaleFormatter
     {
         KDGANTT_DECLARE_PRIVATE_BASE_POLYMORPHIC( DateTimeScaleFormatter )
     public:
@@ -158,7 +158,7 @@ namespace KDGantt {
 
 
 #ifndef QT_NO_DEBUG_STREAM
-QDebug KDE_KDGANTT_EXPORT operator<<( QDebug dbg, KDGantt::DateTimeScaleFormatter::Range );
+QDebug KDEKDGANTT_EXPORT operator<<( QDebug dbg, KDGantt::DateTimeScaleFormatter::Range );
 #endif
 
 #endif /* KDGANTTDATETIMEGRID_H */

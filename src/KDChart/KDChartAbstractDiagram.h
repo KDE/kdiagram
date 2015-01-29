@@ -44,7 +44,7 @@ namespace KDChart {
      * to function within the KDChart framework. It extends Interview's
      * QAbstractItemView.
      */
-    class KDE_KDCHART_EXPORT AbstractDiagram : public QAbstractItemView
+    class KDEKDCHART_EXPORT AbstractDiagram : public QAbstractItemView
     {
         Q_OBJECT
         Q_DISABLE_COPY( AbstractDiagram )

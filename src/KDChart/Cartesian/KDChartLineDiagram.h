@@ -38,7 +38,7 @@ namespace KDChart {
  *
  * It provides different subtypes which are set using \a setType.
  */
-class KDE_KDCHART_EXPORT LineDiagram : public AbstractCartesianDiagram
+class KDEKDCHART_EXPORT LineDiagram : public AbstractCartesianDiagram
 {
     Q_OBJECT
 

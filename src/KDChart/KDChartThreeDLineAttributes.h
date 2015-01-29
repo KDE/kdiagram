@@ -29,7 +29,7 @@ namespace KDChart {
   /**
     * @brief A set of 3D line attributes
     */
-  class KDE_KDCHART_EXPORT ThreeDLineAttributes : public AbstractThreeDAttributes
+  class KDEKDCHART_EXPORT ThreeDLineAttributes : public AbstractThreeDAttributes
   {
   public:
     ThreeDLineAttributes();
@@ -56,7 +56,7 @@ namespace KDChart {
 }
 
 #if !defined(QT_NO_DEBUG_STREAM)
-KDE_KDCHART_EXPORT QDebug operator<<(QDebug, const KDChart::ThreeDLineAttributes& );
+KDEKDCHART_EXPORT QDebug operator<<(QDebug, const KDChart::ThreeDLineAttributes& );
 #endif /* QT_NO_DEBUG_STREAM */
 
 KDCHART_DECLARE_SWAP_SPECIALISATION_DERIVED( KDChart::ThreeDLineAttributes )

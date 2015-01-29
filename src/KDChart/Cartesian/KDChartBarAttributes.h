@@ -28,7 +28,7 @@ namespace KDChart {
 /**
   * @brief Set of attributes for changing the appearance of bar charts
   */
-class KDE_KDCHART_EXPORT BarAttributes
+class KDEKDCHART_EXPORT BarAttributes
 {
 public:
     BarAttributes();

@@ -34,7 +34,7 @@ namespace KDChart {
     /**
       * The class for ternary axes
       */
-    class KDE_KDCHART_EXPORT TernaryAxis : public AbstractAxis
+    class KDEKDCHART_EXPORT TernaryAxis : public AbstractAxis
     {
         Q_OBJECT
 

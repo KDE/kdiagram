@@ -33,7 +33,7 @@ namespace KDChart {
 /**
   * @brief A set of attributes controlling the appearance of grids
   */
-class KDE_KDCHART_EXPORT GridAttributes
+class KDEKDCHART_EXPORT GridAttributes
 {
 public:
     GridAttributes();
@@ -113,7 +113,7 @@ private:
 }
 
 #if !defined(QT_NO_DEBUG_STREAM)
-KDE_KDCHART_EXPORT QDebug operator<<(QDebug, const KDChart::GridAttributes& );
+KDEKDCHART_EXPORT QDebug operator<<(QDebug, const KDChart::GridAttributes& );
 #endif /* QT_NO_DEBUG_STREAM */
 
 KDCHART_DECLARE_SWAP_SPECIALISATION( KDChart::GridAttributes )

@@ -51,7 +51,7 @@ namespace KDChart {
   \li or you specify a set of points, using setReferencePoints,
   \li or you don't use either, leaving it to KD Chart to find a suitable reference area.
   */
-class KDE_KDCHART_EXPORT RelativePosition
+class KDEKDCHART_EXPORT RelativePosition
 {
 public:
     RelativePosition();
@@ -205,7 +205,7 @@ inline bool RelativePosition::operator!=( const RelativePosition & other ) const
 }
 
 #if !defined(QT_NO_DEBUG_STREAM)
-KDE_KDCHART_EXPORT QDebug operator<<(QDebug, const KDChart::RelativePosition& );
+KDEKDCHART_EXPORT QDebug operator<<(QDebug, const KDChart::RelativePosition& );
 #endif /* QT_NO_DEBUG_STREAM */
 
 KDCHART_DECLARE_SWAP_SPECIALISATION( KDChart::RelativePosition )

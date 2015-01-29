@@ -29,7 +29,7 @@ namespace KDChart {
   /**
     * @brief A set of 3D bar attributes
     */
-  class KDE_KDCHART_EXPORT ThreeDBarAttributes : public AbstractThreeDAttributes
+  class KDEKDCHART_EXPORT ThreeDBarAttributes : public AbstractThreeDAttributes
   {
   public:
     ThreeDBarAttributes();
@@ -58,7 +58,7 @@ namespace KDChart {
 }
 
 #if !defined(QT_NO_DEBUG_STREAM)
-KDE_KDCHART_EXPORT QDebug operator<<(QDebug, const KDChart::ThreeDBarAttributes& );
+KDEKDCHART_EXPORT QDebug operator<<(QDebug, const KDChart::ThreeDBarAttributes& );
 #endif /* QT_NO_DEBUG_STREAM */
 
 KDCHART_DECLARE_SWAP_SPECIALISATION_DERIVED( KDChart::ThreeDBarAttributes )

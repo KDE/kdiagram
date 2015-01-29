@@ -23,7 +23,7 @@
 #include <QVector>
 #include <QSortFilterProxyModel>
 
-#include "kde-kdchart_export.h"
+#include "kdekdchart_export.h"
 
 namespace KDChart {
 
@@ -49,7 +49,7 @@ namespace KDChart {
         the source column is mapped to in the resulting model. Any other value
         is an error.
     */
-    class KDE_KDCHART_EXPORT DatasetProxyModel : public QSortFilterProxyModel
+    class KDEKDCHART_EXPORT DatasetProxyModel : public QSortFilterProxyModel
     {
         Q_OBJECT
     public:

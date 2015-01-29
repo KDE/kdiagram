@@ -38,7 +38,7 @@ namespace KDChart {
     /**
       * @brief Base class common for all coordinate planes, CartesianCoordinatePlane, PolarCoordinatePlane, TernaryCoordinatePlane
       */
-    class KDE_KDCHART_EXPORT AbstractCoordinatePlane : public AbstractArea
+    class KDEKDCHART_EXPORT AbstractCoordinatePlane : public AbstractArea
     {
         Q_OBJECT
 

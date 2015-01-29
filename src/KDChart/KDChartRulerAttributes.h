@@ -33,7 +33,7 @@ namespace KDChart {
 /**
   * @brief A set of attributes controlling the appearance of axis rulers
   */
-class KDE_KDCHART_EXPORT RulerAttributes
+class KDEKDCHART_EXPORT RulerAttributes
 {
 public:
 	RulerAttributes();
@@ -135,7 +135,7 @@ private:
 }
 
 #if !defined(QT_NO_DEBUG_STREAM)
-KDE_KDCHART_EXPORT QDebug operator<<(QDebug, const KDChart::RulerAttributes& );
+KDEKDCHART_EXPORT QDebug operator<<(QDebug, const KDChart::RulerAttributes& );
 #endif /* QT_NO_DEBUG_STREAM */
 
 KDCHART_DECLARE_SWAP_SPECIALISATION( KDChart::RulerAttributes )

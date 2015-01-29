@@ -38,7 +38,7 @@ namespace KDChart {
      * \brief A DiagramObserver watches the associated diagram for
      * changes and deletion and emits corresponsing signals.
      */
-    class KDE_KDCHART_EXPORT DiagramObserver : public QObject
+    class KDEKDCHART_EXPORT DiagramObserver : public QObject
     {
         Q_OBJECT
     public:

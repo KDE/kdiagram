@@ -41,7 +41,7 @@ namespace KDChart {
   * The reason for this triple inheritance is that neither AbstractAreaBase nor
   * TextLayoutItem inherit QObject.
   */
-class KDE_KDCHART_EXPORT TextArea : public QObject, public AbstractAreaBase, public TextLayoutItem
+class KDEKDCHART_EXPORT TextArea : public QObject, public AbstractAreaBase, public TextLayoutItem
 {
     Q_OBJECT
 

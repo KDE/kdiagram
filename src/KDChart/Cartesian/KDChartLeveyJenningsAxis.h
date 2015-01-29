@@ -38,7 +38,7 @@ namespace KDChart {
       *
       * \sa PolarAxis, AbstractCartesianDiagram
       */
-    class KDE_KDCHART_EXPORT LeveyJenningsAxis : public CartesianAxis
+    class KDEKDCHART_EXPORT LeveyJenningsAxis : public CartesianAxis
     {
         Q_OBJECT
 

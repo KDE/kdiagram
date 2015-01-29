@@ -34,7 +34,7 @@ namespace KDChart {
       * coordinate plane. The difference is, that only Levey Jennings
       * Diagrams can be added to it.
       */
-    class KDE_KDCHART_EXPORT LeveyJenningsCoordinatePlane
+    class KDEKDCHART_EXPORT LeveyJenningsCoordinatePlane
         : public CartesianCoordinatePlane
     {
         Q_OBJECT

@@ -33,7 +33,7 @@ namespace KDChart {
 /**
   * @brief PolarDiagram defines a common polar diagram
   */
-class KDE_KDCHART_EXPORT PolarDiagram : public AbstractPolarDiagram
+class KDEKDCHART_EXPORT PolarDiagram : public AbstractPolarDiagram
 {
     Q_OBJECT
 

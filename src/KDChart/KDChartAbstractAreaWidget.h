@@ -38,7 +38,7 @@ namespace KDChart {
   * a set of background attributes and frame attributes, such as
   * KDChart::Chart and KDChart::Legend.
   */
-class KDE_KDCHART_EXPORT AbstractAreaWidget : public QWidget, public AbstractAreaBase
+class KDEKDCHART_EXPORT AbstractAreaWidget : public QWidget, public AbstractAreaBase
 {
     Q_OBJECT
 

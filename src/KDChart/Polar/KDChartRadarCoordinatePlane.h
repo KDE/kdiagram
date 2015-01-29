@@ -29,7 +29,7 @@ namespace KDChart {
     /**
       * @brief Radar coordinate plane
       */
-    class KDE_KDCHART_EXPORT RadarCoordinatePlane : public PolarCoordinatePlane
+    class KDEKDCHART_EXPORT RadarCoordinatePlane : public PolarCoordinatePlane
     {
         Q_OBJECT
 

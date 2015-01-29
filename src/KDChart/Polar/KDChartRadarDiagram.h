@@ -34,7 +34,7 @@ namespace KDChart {
 /**
   * @brief RadarDiagram defines a common radar diagram
   */
-class KDE_KDCHART_EXPORT RadarDiagram : public AbstractPolarDiagram
+class KDEKDCHART_EXPORT RadarDiagram : public AbstractPolarDiagram
 {
   Q_OBJECT
 

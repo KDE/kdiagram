@@ -36,7 +36,7 @@ namespace KDChart {
       *
       * \sa PolarAxis, AbstractCartesianDiagram
       */
-    class KDE_KDCHART_EXPORT CartesianAxis : public AbstractAxis
+    class KDEKDCHART_EXPORT CartesianAxis : public AbstractAxis
     {
         Q_OBJECT
 

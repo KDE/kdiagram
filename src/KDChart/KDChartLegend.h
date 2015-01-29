@@ -49,7 +49,7 @@ typedef QList<const AbstractDiagram*> ConstDiagramList;
   * legend positioned into the correct place of your chart - if you want to have
   * the legend shown inside of the chart (that's probably true for most cases).
   */
-class KDE_KDCHART_EXPORT Legend : public AbstractAreaWidget
+class KDEKDCHART_EXPORT Legend : public AbstractAreaWidget
 {
     Q_OBJECT
 

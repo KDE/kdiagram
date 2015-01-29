@@ -33,7 +33,7 @@ namespace KDChart {
 /**
   * @brief A set of attributes controlling the appearance of grids
   */
-class KDE_KDCHART_EXPORT LeveyJenningsGridAttributes
+class KDEKDCHART_EXPORT LeveyJenningsGridAttributes
 {
 public:
     LeveyJenningsGridAttributes();

@@ -30,7 +30,7 @@ namespace KDChart {
 /**
   * Set of attributes usable for background pixmaps
   */
-class KDE_KDCHART_EXPORT BackgroundAttributes
+class KDEKDCHART_EXPORT BackgroundAttributes
 {
 public:
     BackgroundAttributes();
@@ -68,7 +68,7 @@ private:
 }
 
 #if !defined(QT_NO_DEBUG_STREAM)
-KDE_KDCHART_EXPORT QDebug operator<<(QDebug, const KDChart::BackgroundAttributes& );
+KDEKDCHART_EXPORT QDebug operator<<(QDebug, const KDChart::BackgroundAttributes& );
 #endif /* QT_NO_DEBUG_STREAM */
 
 KDCHART_DECLARE_SWAP_SPECIALISATION( KDChart::BackgroundAttributes )

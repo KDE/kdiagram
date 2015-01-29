@@ -288,7 +288,7 @@ set( kdchart_LIB_FWDHEADERS
 )
 
 install(FILES
-            ${CMAKE_CURRENT_BINARY_DIR}/kde-kdchart_export.h
+            ${CMAKE_CURRENT_BINARY_DIR}/kdekdchart_export.h
             ${kdchart_LIB_HEADERS}
             ${kdchart_LIB_FWDHEADERS}
         DESTINATION ${INCLUDE_INSTALL_DIR}/KDEKDChart

@@ -34,7 +34,7 @@
   Project global class providing some enums needed both by KDChartParams
   and by KDChartCustomBox.
   */
-class KDE_KDCHART_EXPORT KDChartEnums :public QObject
+class KDEKDCHART_EXPORT KDChartEnums :public QObject
 {
     Q_OBJECT
     Q_ENUMS( TextLayoutPolicy )

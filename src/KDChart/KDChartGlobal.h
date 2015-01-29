@@ -26,7 +26,7 @@ Contains KDChart macros.  */
 
 #include <qglobal.h>
 
-#include "kde-kdchart_export.h"
+#include "kdekdchart_export.h"
 
 #ifndef KDAB_SET_OBJECT_NAME
 template <typename T>

@@ -17,7 +17,7 @@
 #include "KDChartTextArea.h"
 #include "KDChartAttributesModel.h"
 #include "KDChartEnums.h"
-#include "kde-kdchart_export.h"
+#include "kdekdchart_export.h"
 #include "KDChartAbstractCoordinatePlane.h"
 #include "KDChartLegend.h"
 #include "KDChartRelativePosition.h"

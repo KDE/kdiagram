@@ -22,7 +22,7 @@
 
 #include <QWidget>
 
-#include "kde-kdchart_export.h"
+#include "kdekdchart_export.h"
 #include "KDChartGlobal.h"
 
 /*
@@ -92,7 +92,7 @@ namespace KDChart {
      * static, KDChart::Widget provides an abstracted interface, that hides the complexity
      * of Interview to a large extent.
      */
-    class KDE_KDCHART_EXPORT Chart : public QWidget
+    class KDEKDCHART_EXPORT Chart : public QWidget
     {
         Q_OBJECT
          // KD Chart 3.0: leading is inter-line distance of text. this here is MARGIN or SPACING.

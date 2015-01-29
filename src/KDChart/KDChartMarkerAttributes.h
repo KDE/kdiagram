@@ -37,7 +37,7 @@ namespace KDChart {
     /**
       * @brief A set of attributes controlling the appearance of data set markers
       */
-    class KDE_KDCHART_EXPORT MarkerAttributes
+    class KDEKDCHART_EXPORT MarkerAttributes
     {
     public:
         MarkerAttributes();
@@ -121,7 +121,7 @@ namespace KDChart {
 }
 
 #ifndef QT_NO_DEBUG_STREAM
-KDE_KDCHART_EXPORT QDebug operator<<( QDebug, const KDChart::MarkerAttributes & );
+KDEKDCHART_EXPORT QDebug operator<<( QDebug, const KDChart::MarkerAttributes & );
 #endif
 
 KDCHART_DECLARE_SWAP_SPECIALISATION( KDChart::MarkerAttributes )

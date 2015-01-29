@@ -27,7 +27,7 @@ namespace KDChart {
 /**
   * @brief RingDiagram defines a common ring diagram
   */
-class KDE_KDCHART_EXPORT RingDiagram : public AbstractPieDiagram
+class KDEKDCHART_EXPORT RingDiagram : public AbstractPieDiagram
 {
     Q_OBJECT
 

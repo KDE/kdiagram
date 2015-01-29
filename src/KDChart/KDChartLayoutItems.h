@@ -46,7 +46,7 @@ namespace KDChart {
      * Base class for all layout items of KD Chart
      * \internal
      */
-    class KDE_KDCHART_EXPORT AbstractLayoutItem : public QLayoutItem
+    class KDEKDCHART_EXPORT AbstractLayoutItem : public QLayoutItem
     {
     public:
         AbstractLayoutItem( Qt::Alignment itemAlignment = 0 ) :
@@ -94,7 +94,7 @@ namespace KDChart {
      * Layout item showing a text
      *\internal
      */
-    class KDE_KDCHART_EXPORT TextLayoutItem : public AbstractLayoutItem
+    class KDEKDCHART_EXPORT TextLayoutItem : public AbstractLayoutItem
     {
     public:
         TextLayoutItem();
@@ -165,7 +165,7 @@ namespace KDChart {
         mutable QFont cachedFont;
     };
 
-    class KDE_KDCHART_EXPORT TextBubbleLayoutItem : public AbstractLayoutItem
+    class KDEKDCHART_EXPORT TextBubbleLayoutItem : public AbstractLayoutItem
     {
     public:
         TextBubbleLayoutItem();
@@ -214,7 +214,7 @@ namespace KDChart {
      * Layout item showing a data point marker
      * \internal
      */
-    class KDE_KDCHART_EXPORT MarkerLayoutItem : public AbstractLayoutItem
+    class KDEKDCHART_EXPORT MarkerLayoutItem : public AbstractLayoutItem
     {
         public:
             MarkerLayoutItem( AbstractDiagram* diagram,
@@ -253,7 +253,7 @@ namespace KDChart {
      * Layout item showing a coloured line
      * \internal
      */
-    class KDE_KDCHART_EXPORT LineLayoutItem : public AbstractLayoutItem
+    class KDEKDCHART_EXPORT LineLayoutItem : public AbstractLayoutItem
     {
         public:
             LineLayoutItem( AbstractDiagram* diagram,
@@ -293,7 +293,7 @@ namespace KDChart {
      * Layout item showing a coloured line and a data point marker
      * \internal
      */
-    class KDE_KDCHART_EXPORT LineWithMarkerLayoutItem : public AbstractLayoutItem
+    class KDEKDCHART_EXPORT LineWithMarkerLayoutItem : public AbstractLayoutItem
     {
         public:
             LineWithMarkerLayoutItem( AbstractDiagram* diagram,
@@ -331,7 +331,7 @@ namespace KDChart {
      * Layout item showing a horizontal line
      * \internal
      */
-    class KDE_KDCHART_EXPORT HorizontalLineLayoutItem : public AbstractLayoutItem
+    class KDEKDCHART_EXPORT HorizontalLineLayoutItem : public AbstractLayoutItem
     {
     public:
         HorizontalLineLayoutItem();
@@ -354,7 +354,7 @@ namespace KDChart {
      * Layout item showing a vertial line
      * \internal
      */
-    class KDE_KDCHART_EXPORT VerticalLineLayoutItem : public AbstractLayoutItem
+    class KDEKDCHART_EXPORT VerticalLineLayoutItem : public AbstractLayoutItem
     {
         public:
             VerticalLineLayoutItem();
@@ -443,7 +443,7 @@ namespace KDChart {
      * is an auto-spacer-item taking care for the additional
      * space needed in the lower/right corner.
      */
-    class KDE_KDCHART_EXPORT AutoSpacerLayoutItem : public AbstractLayoutItem
+    class KDEKDCHART_EXPORT AutoSpacerLayoutItem : public AbstractLayoutItem
     {
         public:
             AutoSpacerLayoutItem(

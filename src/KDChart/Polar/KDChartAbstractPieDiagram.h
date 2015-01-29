@@ -29,7 +29,7 @@ namespace KDChart {
 /**
   * @brief Base class for any diagram type
   */
-class KDE_KDCHART_EXPORT AbstractPieDiagram : public AbstractPolarDiagram
+class KDEKDCHART_EXPORT AbstractPieDiagram : public AbstractPolarDiagram
 {
     Q_OBJECT
 

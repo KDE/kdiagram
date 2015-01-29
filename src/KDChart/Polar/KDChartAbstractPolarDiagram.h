@@ -30,7 +30,7 @@ namespace KDChart {
     /**
       * @brief Base class for diagrams based on a polar coordinate system.
       */
-    class KDE_KDCHART_EXPORT AbstractPolarDiagram : public AbstractDiagram
+    class KDEKDCHART_EXPORT AbstractPolarDiagram : public AbstractDiagram
     {
         Q_OBJECT
         Q_DISABLE_COPY( AbstractPolarDiagram )

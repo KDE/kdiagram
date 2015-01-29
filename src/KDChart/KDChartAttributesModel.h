@@ -40,7 +40,7 @@ namespace KDChart {
   *        Attribute changes, that is changes to data with the attribute role, via the interface
   *        of this class (including setData()) are stored internally and not forwarded to the source model.
   */
-class KDE_KDCHART_EXPORT AttributesModel : public AbstractProxyModel
+class KDEKDCHART_EXPORT AttributesModel : public AbstractProxyModel
 {
     Q_OBJECT
     KDCHART_DECLARE_PRIVATE_BASE_POLYMORPHIC( AttributesModel )

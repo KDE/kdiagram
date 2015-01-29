@@ -43,7 +43,7 @@ namespace KDChart {
    * you want to repaint when the color selection changes.
    */
 
-class KDE_KDCHART_EXPORT Palette: public QObject
+class KDEKDCHART_EXPORT Palette: public QObject
 {
     Q_OBJECT
 public:

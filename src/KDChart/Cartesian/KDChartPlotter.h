@@ -32,7 +32,7 @@ namespace KDChart {
 /**
   * @brief Plotter defines a diagram type plotting two-dimensional data.
   */
-class KDE_KDCHART_EXPORT Plotter : public AbstractCartesianDiagram
+class KDEKDCHART_EXPORT Plotter : public AbstractCartesianDiagram
 {
     Q_OBJECT
 

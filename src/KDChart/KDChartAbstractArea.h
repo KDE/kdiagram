@@ -41,7 +41,7 @@ namespace KDChart {
   * The reason for this triple inheritance is that neither AbstractAreaBase nor
   * AbstractLayoutItem are QObject.
   */
-class KDE_KDCHART_EXPORT AbstractArea : public QObject,
+class KDEKDCHART_EXPORT AbstractArea : public QObject,
                                     public AbstractAreaBase,
                                     public AbstractLayoutItem
 {

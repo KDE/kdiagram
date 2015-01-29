@@ -1,4 +1,4 @@
-# KDGantt examples
+# KGantt examples
 add_subdirectory(Gantt)
 
 # KDChart examples

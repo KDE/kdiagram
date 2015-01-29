@@ -1,7 +1,7 @@
 /**
  * Copyright (C) 2001-2015 Klaralvdalens Datakonsult AB.  All rights reserved.
  *
- * This file is part of the KD Chart library.
+ * This file is part of the KGantt library.
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -23,10 +23,10 @@
 #include <QHeaderView>
 #include <QTreeView>
 
-#include <KDGanttView>
-#include <KDGanttDateTimeGrid>
+#include <KGanttView>
+#include <KGanttDateTimeGrid>
 
-using namespace KDGantt;
+using namespace KGantt;
 
 /* A custom formatter that displays tabs for every 10 minutes.
  */

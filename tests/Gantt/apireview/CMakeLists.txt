@@ -12,4 +12,4 @@ qt5_wrap_ui(TestApiReview_SRCS
 
 add_executable(TestApiReview  ${TestApiReview_SRCS})
 
-target_link_libraries(TestApiReview KDEKDGantt Qt5::Widgets Qt5::PrintSupport)
+target_link_libraries(TestApiReview KGantt Qt5::Widgets Qt5::PrintSupport)

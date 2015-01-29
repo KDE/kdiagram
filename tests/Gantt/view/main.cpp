@@ -1,7 +1,7 @@
 /**
  * Copyright (C) 2001-2015 Klaralvdalens Datakonsult AB.  All rights reserved.
  *
- * This file is part of the KD Chart library.
+ * This file is part of the KGantt library.
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -32,10 +32,10 @@
 #include <QPrintDialog>
 #include <QMenu>
 
-#include <KDGanttView>
-#include <KDGanttGraphicsView>
-#include <KDGanttConstraintModel>
-#include <KDGanttDateTimeGrid>
+#include <KGanttView>
+#include <KGanttGraphicsView>
+#include <KGanttConstraintModel>
+#include <KGanttDateTimeGrid>
 
 class MyStandardItem : public QStandardItem {
 public:
@@ -69,28 +69,28 @@ public:
                 for ( int j=0; j < 30; j+=3 ) {
                     item->appendRow( QList<QStandardItem*>()
                                      << new MyStandardItem( QString::fromLatin1( "Item %1" ).arg( j ) )
-                                     << new MyStandardItem( KDGantt::TypeTask )
-                                     << new MyStandardItem( QDateTime::currentDateTime().addDays( j ), KDGantt::StartTimeRole )
-                                     << new MyStandardItem( QDateTime::currentDateTime().addDays( j+1+i/7 ), KDGantt::EndTimeRole )
+                                     << new MyStandardItem( KGantt::TypeTask )
+                                     << new MyStandardItem( QDateTime::currentDateTime().addDays( j ), KGantt::StartTimeRole )
+                                     << new MyStandardItem( QDateTime::currentDateTime().addDays( j+1+i/7 ), KGantt::EndTimeRole )
                                      << new MyStandardItem( 50 ) );
                 }
                 item->appendRow( QList<QStandardItem*>()
                                  << new MyStandardItem( QString::fromLatin1( "Event" ) )
-                                 << new MyStandardItem( KDGantt::TypeEvent )
-                                 << new MyStandardItem( QDateTime::currentDateTime(), KDGantt::StartTimeRole )
-                                 << new MyStandardItem( QDateTime(), KDGantt::EndTimeRole )
+                                 << new MyStandardItem( KGantt::TypeEvent )
+                                 << new MyStandardItem( QDateTime::currentDateTime(), KGantt::StartTimeRole )
+                                 << new MyStandardItem( QDateTime(), KGantt::EndTimeRole )
                                  << new MyStandardItem( QString() ) );
 
                 topitem->appendRow( QList<QStandardItem*>()
                                     << item
-                                    << new MyStandardItem( KDGantt::TypeMulti )
+                                    << new MyStandardItem( KGantt::TypeMulti )
                                     << new MyStandardItem( QString() )
                                     << new MyStandardItem( QString() )
                                     << new MyStandardItem( QString() ) );
             }
             model.appendRow( QList<QStandardItem*>()
                              << topitem
-                             << new MyStandardItem(KDGantt::TypeMulti/*Summary*/ )
+                             << new MyStandardItem(KGantt::TypeMulti/*Summary*/ )
                              << new MyStandardItem(QString())
                              << new MyStandardItem(QString())
                              << new MyStandardItem(QString()) );
@@ -98,15 +98,15 @@ public:
         model.appendRow( QList<QStandardItem*>()
                          << new MyStandardItem( QString::fromLatin1( "No data" ) ) );
 
-        //cmodel.addConstraint( KDGantt::Constraint( proxyModel.index( 0, 3 ), proxyModel.index( 10, 3 ) ) );
-        //cmodel.addConstraint( KDGantt::Constraint( proxyModel.index( 10, 3 ), proxyModel.index( 5, 3 ) ) );
+        //cmodel.addConstraint( KGantt::Constraint( proxyModel.index( 0, 3 ), proxyModel.index( 10, 3 ) ) );
+        //cmodel.addConstraint( KGantt::Constraint( proxyModel.index( 10, 3 ), proxyModel.index( 5, 3 ) ) );
         QModelIndex pidx = model.index( 0, 0 );
         pidx = model.index( 0, 0, pidx );
-        cmodel.addConstraint( KDGantt::Constraint( model.index( 0, 0, pidx), model.index( 1, 0, pidx ) ) );
-        cmodel.addConstraint( KDGantt::Constraint( model.index( 1, 0, pidx), model.index( 0, 0, pidx ) ) );
-        cmodel.addConstraint( KDGantt::Constraint( model.index( 1, 0, pidx), model.index( 10, 0, pidx ) ) );
-        cmodel.addConstraint( KDGantt::Constraint( model.index( 3, 0, pidx), model.index( 5, 0, pidx ) ) );
-        cmodel.addConstraint( KDGantt::Constraint( model.index( 7, 0, pidx), model.index( 4, 0, pidx ) ) );
+        cmodel.addConstraint( KGantt::Constraint( model.index( 0, 0, pidx), model.index( 1, 0, pidx ) ) );
+        cmodel.addConstraint( KGantt::Constraint( model.index( 1, 0, pidx), model.index( 0, 0, pidx ) ) );
+        cmodel.addConstraint( KGantt::Constraint( model.index( 1, 0, pidx), model.index( 10, 0, pidx ) ) );
+        cmodel.addConstraint( KGantt::Constraint( model.index( 3, 0, pidx), model.index( 5, 0, pidx ) ) );
+        cmodel.addConstraint( KGantt::Constraint( model.index( 7, 0, pidx), model.index( 4, 0, pidx ) ) );
 
         qDebug() << "Creating view";
         slider.setOrientation( Qt::Horizontal );
@@ -183,11 +183,11 @@ public slots:
     }
 
 private:
-    KDGantt::View view;
-    KDGantt::DateTimeGrid grid;
+    KGantt::View view;
+    KGantt::DateTimeGrid grid;
     QSlider slider;
     QStandardItemModel model;
-    KDGantt::ConstraintModel cmodel;
+    KGantt::ConstraintModel cmodel;
 };
 
 int main( int argc, char** argv ) {

@@ -1,2 +1,2 @@
 add_subdirectory( KDChart )
-add_subdirectory( KDGantt )
+add_subdirectory( KGantt )

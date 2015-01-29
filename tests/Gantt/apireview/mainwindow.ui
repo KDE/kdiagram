@@ -18,7 +18,7 @@
   <widget class="QWidget" name="centralwidget" >
    <layout class="QVBoxLayout" >
     <item>
-     <widget class="KDGantt::View" native="1" name="ganttView" />
+     <widget class="KGantt::View" native="1" name="ganttView" />
     </item>
    </layout>
   </widget>
@@ -36,9 +36,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>KDGantt::View</class>
+   <class>KGantt::View</class>
    <extends>QWidget</extends>
-   <header location="global" >KDGanttView</header>
+   <header location="global" >KGanttView</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

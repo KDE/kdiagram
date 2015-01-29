@@ -1,7 +1,7 @@
 /**
  * Copyright (C) 2001-2015 Klaralvdalens Datakonsult AB.  All rights reserved.
  *
- * This file is part of the KD Chart library.
+ * This file is part of the KGantt library.
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -21,14 +21,14 @@
 
 #include "entrydialog.h"
 
-#include <KDGanttConstraintModel>
-#include <KDGanttGlobal>
+#include <KGanttConstraintModel>
+#include <KGanttGlobal>
 #include <QEvent>
 #include <QModelIndex>
 #include <QStandardItemModel>
 #include <QPointer>
 
-EntryDelegate::EntryDelegate( KDGantt::ConstraintModel* constraintModel, QObject* parent )
+EntryDelegate::EntryDelegate( KGantt::ConstraintModel* constraintModel, QObject* parent )
     : QItemDelegate( parent )
 {
     this->constraintModel = constraintModel;
@@ -53,9 +53,9 @@ bool EntryDelegate::editorEvent( QEvent* event, QAbstractItemModel *model, const
     const QModelIndex parent = index.parent();
     model->setData( model->index( row, 0, parent ), dialog->name() );
     model->setData( model->index( row, 1, parent ), dialog->type() );
-    if ( dialog->type() != KDGantt::TypeSummary ) {
-        model->setData( model->index( row, 2, parent ), dialog->startDate(), KDGantt::StartTimeRole );
-        model->setData( model->index( row, 3, parent ), dialog->endDate(), KDGantt::EndTimeRole );
+    if ( dialog->type() != KGantt::TypeSummary ) {
+        model->setData( model->index( row, 2, parent ), dialog->startDate(), KGantt::StartTimeRole );
+        model->setData( model->index( row, 3, parent ), dialog->endDate(), KGantt::EndTimeRole );
     }
     model->setData( model->index( row, 4, parent ), dialog->completion() );
     model->setData( model->index( row, 5, parent ), dialog->legend() );
@@ -97,6 +97,6 @@ void EntryDelegate::addConstraint(const QModelIndex & index1, const QModelIndex 
     if ( !index1.isValid() || !index2.isValid() )
         return;
 
-    KDGantt::Constraint c( index1, index2 );
+    KGantt::Constraint c( index1, index2 );
     constraintModel->addConstraint( c );
 }

@@ -1,7 +1,7 @@
 /**
  * Copyright (C) 2001-2015 Klaralvdalens Datakonsult AB.  All rights reserved.
  *
- * This file is part of the KD Chart library.
+ * This file is part of the KGantt library.
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -23,10 +23,10 @@
 #include "entrydelegate.h"
 #include "entrydialog.h"
 
-#include <KDGanttConstraintModel>
-#include <KDGanttDateTimeGrid>
-#include <KDGanttGraphicsView>
-#include <KDGanttLegend>
+#include <KGanttConstraintModel>
+#include <KGanttDateTimeGrid>
+#include <KGanttGraphicsView>
+#include <KGanttLegend>
 #include <QAbstractItemView>
 #include <QDebug>
 #include <QHeaderView>
@@ -74,12 +74,12 @@ void MainWindow::initModel()
     model->setHeaderData( 0, Qt::Horizontal, tr( "Task" ) );
     ui->ganttView->setModel( model );
 
-    KDGantt::Legend* l = new KDGantt::Legend;
+    KGantt::Legend* l = new KGantt::Legend;
     l->setWindowTitle( tr( "Legend" ) );
     l->show();
     l->setModel( model );
 
-    constraintModel = new KDGantt::ConstraintModel( this );
+    constraintModel = new KGantt::ConstraintModel( this );
     ui->ganttView->setConstraintModel( constraintModel );
 }
 
@@ -134,7 +134,7 @@ void MainWindow::initItemDelegate()
 
 void MainWindow::initGrid()
 {
-    grid = new KDGantt::DateTimeGrid();
+    grid = new KGantt::DateTimeGrid();
     grid->setDayWidth( dayWidth );
     ui->ganttView->setGrid( grid );
 }
@@ -160,8 +160,8 @@ void MainWindow::enableActions(const QItemSelection & selected)
 
     QModelIndex selectedIndex = selected.indexes()[0];
 
-    if ( model->data( model->index( selectedIndex.row(), 1 ) ) == KDGantt::TypeEvent ||
-        model->data( model->index( selectedIndex.row(), 1 ) ) == KDGantt::TypeTask ) {
+    if ( model->data( model->index( selectedIndex.row(), 1 ) ) == KGantt::TypeEvent ||
+        model->data( model->index( selectedIndex.row(), 1 ) ) == KGantt::TypeTask ) {
         newEntryAction->setEnabled( false );
         removeEntryAction->setEnabled( true );
         return;
@@ -192,9 +192,9 @@ void MainWindow::addNewEntry()
 
     model->setData( model->index( row, 0, parent ), dialog->name() );
     model->setData( model->index( row, 1, parent ), dialog->type() );
-    if ( dialog->type() != KDGantt::TypeSummary ) {
-        model->setData( model->index( row, 2, parent ), dialog->startDate(), KDGantt::StartTimeRole );
-        model->setData( model->index( row, 3, parent ), dialog->endDate(), KDGantt::EndTimeRole );
+    if ( dialog->type() != KGantt::TypeSummary ) {
+        model->setData( model->index( row, 2, parent ), dialog->startDate(), KGantt::StartTimeRole );
+        model->setData( model->index( row, 3, parent ), dialog->endDate(), KGantt::EndTimeRole );
     }
     model->setData( model->index( row, 4, parent ), dialog->completion() );
     model->setData( model->index( row, 5, parent ), dialog->legend() );
@@ -232,7 +232,7 @@ void MainWindow::addConstraint(const QModelIndex & index1, const QModelIndex & i
     if ( !index1.isValid() || !index2.isValid() )
         return;
 
-    KDGantt::Constraint c( index1, index2 );
+    KGantt::Constraint c( index1, index2 );
     ui->ganttView->constraintModel()->addConstraint( c );
 }
 
@@ -272,7 +272,7 @@ void MainWindow::addDemoEntry()
 {
     QStandardItem* softwareRelease = new MyStandardItem( tr("Software Release" ) );
     QStandardItem* codeFreeze = new MyStandardItem( tr( "Code Freeze" ) );
-    codeFreeze->setData( KDGantt::TextPositionRole, KDGantt::StyleOptionGanttItem::Right );
+    codeFreeze->setData( KGantt::TextPositionRole, KGantt::StyleOptionGanttItem::Right );
     QStandardItem* packaging = new MyStandardItem( tr( "Packaging" ) );
     QStandardItem* upload = new MyStandardItem( tr( "Upload" ) );
     QStandardItem* testing = new MyStandardItem( tr( "Testing" ) );
@@ -281,27 +281,27 @@ void MainWindow::addDemoEntry()
     QDateTime now = QDateTime::currentDateTime();
 
     softwareRelease->appendRow( QList<QStandardItem*>()
-                                << codeFreeze << new MyStandardItem( KDGantt::TypeEvent )
-                                << new MyStandardItem( now, KDGantt::StartTimeRole ) );
+                                << codeFreeze << new MyStandardItem( KGantt::TypeEvent )
+                                << new MyStandardItem( now, KGantt::StartTimeRole ) );
     softwareRelease->appendRow( QList<QStandardItem*>()
-                                << packaging << new MyStandardItem( KDGantt::TypeTask )
-                                << new MyStandardItem( now.addDays( 5 ), KDGantt::StartTimeRole )
-                                << new MyStandardItem( now.addDays( 10 ), KDGantt::EndTimeRole ) );
+                                << packaging << new MyStandardItem( KGantt::TypeTask )
+                                << new MyStandardItem( now.addDays( 5 ), KGantt::StartTimeRole )
+                                << new MyStandardItem( now.addDays( 10 ), KGantt::EndTimeRole ) );
     softwareRelease->appendRow( QList<QStandardItem*>()
-                                << upload << new MyStandardItem( KDGantt::TypeTask )
-                                << new MyStandardItem( now.addDays( 10 ).addSecs( 2*60*60 ), KDGantt::StartTimeRole )
-                                << new MyStandardItem( now.addDays( 11 ), KDGantt::EndTimeRole ) );
+                                << upload << new MyStandardItem( KGantt::TypeTask )
+                                << new MyStandardItem( now.addDays( 10 ).addSecs( 2*60*60 ), KGantt::StartTimeRole )
+                                << new MyStandardItem( now.addDays( 11 ), KGantt::EndTimeRole ) );
     softwareRelease->appendRow( QList<QStandardItem*>()
-                                << testing << new MyStandardItem( KDGantt::TypeTask )
-                                << new MyStandardItem( now.addSecs( 3*60*60 ), KDGantt::StartTimeRole )
-                                << new MyStandardItem( now.addDays( 5 ), KDGantt::EndTimeRole ) );
+                                << testing << new MyStandardItem( KGantt::TypeTask )
+                                << new MyStandardItem( now.addSecs( 3*60*60 ), KGantt::StartTimeRole )
+                                << new MyStandardItem( now.addDays( 5 ), KGantt::EndTimeRole ) );
     softwareRelease->appendRow( QList<QStandardItem*>()
-                                << updateDocumentation << new MyStandardItem( KDGantt::TypeTask )
-                                << new MyStandardItem( now.addSecs( 3*60*60 ), KDGantt::StartTimeRole )
-                                << new MyStandardItem( now.addDays( 3 ), KDGantt::EndTimeRole ) );
+                                << updateDocumentation << new MyStandardItem( KGantt::TypeTask )
+                                << new MyStandardItem( now.addSecs( 3*60*60 ), KGantt::StartTimeRole )
+                                << new MyStandardItem( now.addDays( 3 ), KGantt::EndTimeRole ) );
 
     model->appendRow( QList<QStandardItem*>()
-                      << softwareRelease << new MyStandardItem( KDGantt::TypeSummary ) );
+                      << softwareRelease << new MyStandardItem( KGantt::TypeSummary ) );
 
     addConstraint( codeFreeze, packaging );
     addConstraint( codeFreeze, testing );
@@ -315,7 +315,7 @@ void MainWindow::zoomIn()
 {
     dayWidth += 10;
     if ( dayWidth > 400 )
-        grid->setScale( KDGantt::DateTimeGrid::ScaleHour );
+        grid->setScale( KGantt::DateTimeGrid::ScaleHour );
 
     grid->setDayWidth( dayWidth );
 }
@@ -327,7 +327,7 @@ void MainWindow::zoomOut()
         dayWidth = 10;
 
     if ( dayWidth <= 400 )
-        grid->setScale( KDGantt::DateTimeGrid::ScaleDay );
+        grid->setScale( KGantt::DateTimeGrid::ScaleDay );
 
     grid->setDayWidth( dayWidth );
 }

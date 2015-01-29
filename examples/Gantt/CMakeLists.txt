@@ -1,8 +1,3 @@
-include_directories(
-    ${CMAKE_SOURCE_DIR}/src/KDGantt
-    ${CMAKE_BINARY_DIR}/src/KDGantt
-)
-
 remove_definitions(
     -DQT_NO_KEYWORDS
     -DQT_NO_SIGNALS_SLOTS_KEYWORDS

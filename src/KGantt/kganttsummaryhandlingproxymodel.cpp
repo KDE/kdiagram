@@ -1,0 +1,327 @@
+/**
+ * Copyright (C) 2001-2015 Klaralvdalens Datakonsult AB.  All rights reserved.
+ *
+ * This file is part of the KGantt library.
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation; either version 2 of
+ * the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#include "kganttsummaryhandlingproxymodel.h"
+#include "kganttsummaryhandlingproxymodel_p.h"
+
+#include <QDebug>
+
+#include <cassert>
+
+using namespace KGantt;
+
+/*!\class KGantt::SummaryHandlingProxyModel
+ * \brief Proxy model that supports summary gantt items.
+ *
+ * This proxy model provides the functionality of summary items.
+ * A summary item is an item with type KGantt::TypeSummary and
+ * zero or more children in the model that it summarizes.
+ * GraphicsView itself does not dictate any policy for summary items,
+ * instead the logic for making the summary items start and end points
+ * span it's children is provided by this proxy.
+ *
+ * The start and end times of a summary is the min/max of the
+ * start/end times of it's children.
+ *
+ * \see GraphicsView::setModel
+ */
+
+typedef ForwardingProxyModel BASE;
+
+bool SummaryHandlingProxyModel::Private::cacheLookup( const QModelIndex& idx,
+                                                      QPair<QDateTime,QDateTime>* result ) const
+{
+    //qDebug() << "cacheLookup("<<idx<<"), cache has " << cached_summary_items.count() << "items";
+    QHash<QModelIndex,QPair<QDateTime,QDateTime> >::const_iterator it =
+        cached_summary_items.constFind( idx );
+    if ( it != cached_summary_items.constEnd() ) {
+        *result = *it;
+        return true;
+    } else {
+        return false;
+    }
+}
+
+void SummaryHandlingProxyModel::Private::insertInCache( const SummaryHandlingProxyModel* model,
+                                                        const QModelIndex& sourceIdx ) const
+{
+    QAbstractItemModel* sourceModel = model->sourceModel();
+    const QModelIndex& mainIdx = sourceIdx;
+    QDateTime st;
+    QDateTime et;
+
+    for ( int r = 0; r < sourceModel->rowCount( mainIdx ); ++r ) {
+        QModelIndex pdIdx = model->mapFromSource( sourceModel->index( r, 0, mainIdx ) );
+        /* The probably results in recursive calls here */
+	QVariant tmpsv = model->data( pdIdx, StartTimeRole );
+	QVariant tmpev = model->data( pdIdx, EndTimeRole );
+	if ( !tmpsv.canConvert( QVariant::DateTime ) ||
+	    !tmpev.canConvert( QVariant::DateTime ) ) {
+            qDebug() << "Skipping item " << sourceIdx << " because it doesn't contain QDateTime";
+            continue;
+        }
+
+        // check for valid datetimes
+        if ( tmpsv.type() == QVariant::DateTime && !tmpsv.value<QDateTime>().isValid()) continue;
+        if ( tmpev.type() == QVariant::DateTime && !tmpev.value<QDateTime>().isValid()) continue;
+
+	// We need to test for empty strings to
+	// avoid a stupid Qt warning
+	if ( tmpsv.type() == QVariant::String && tmpsv.value<QString>().isEmpty()) continue;
+	if ( tmpev.type() == QVariant::String && tmpev.value<QString>().isEmpty()) continue;
+        QDateTime tmpst = tmpsv.toDateTime();
+        QDateTime tmpet = tmpev.toDateTime();
+        if ( st.isNull() || st > tmpst ) st = tmpst;
+        if ( et.isNull() || et < tmpet ) et = tmpet;
+    }
+    QVariant tmpssv = sourceModel->data( mainIdx, StartTimeRole );
+    QVariant tmpsev = sourceModel->data( mainIdx, EndTimeRole );
+    if ( tmpssv.canConvert( QVariant::DateTime )
+         && !( tmpssv.canConvert( QVariant::String ) && tmpssv.toString().isEmpty() )
+         && tmpssv.toDateTime() != st )
+        sourceModel->setData( mainIdx, st, StartTimeRole );
+    if ( tmpsev.canConvert( QVariant::DateTime )
+         && !( tmpsev.canConvert( QVariant::String ) && tmpsev.toString().isEmpty() )
+         && tmpsev.toDateTime() != et )
+        sourceModel->setData( mainIdx, et, EndTimeRole );
+    cached_summary_items[sourceIdx]=qMakePair( st, et );
+}
+
+void SummaryHandlingProxyModel::Private::removeFromCache( const QModelIndex& idx ) const
+{
+    cached_summary_items.remove( idx );
+}
+
+void SummaryHandlingProxyModel::Private::clearCache() const
+{
+    cached_summary_items.clear();
+}
+
+/*! Constructor. Creates a new SummaryHandlingProxyModel with
+ * parent \a parent
+ */
+SummaryHandlingProxyModel::SummaryHandlingProxyModel( QObject* parent )
+    : BASE( parent ), _d( new Private )
+{
+    init();
+}
+
+#define d d_func()
+SummaryHandlingProxyModel::~SummaryHandlingProxyModel()
+{
+    delete _d;
+}
+
+void SummaryHandlingProxyModel::init()
+{
+}
+
+namespace {
+
+    // Think this is ugly? Well, it's not from me, it comes from QProxyModel
+    struct KDPrivateModelIndex {
+        int r, c;
+        void *p;
+        const QAbstractItemModel *m;
+    };
+}
+
+/*! Sets the model to be used as the source model for this proxy.
+ * The proxy does not take ownership of the model.
+ * \see QAbstractProxyModel::setSourceModel
+ */
+void SummaryHandlingProxyModel::setSourceModel( QAbstractItemModel* model )
+{
+    BASE::setSourceModel( model );
+    d->clearCache();
+}
+
+void SummaryHandlingProxyModel::sourceModelReset()
+{
+    d->clearCache();
+    BASE::sourceModelReset();
+}
+
+void SummaryHandlingProxyModel::sourceLayoutChanged()
+{
+    d->clearCache();
+    BASE::sourceLayoutChanged();
+}
+
+void SummaryHandlingProxyModel::sourceDataChanged( const QModelIndex& from, const QModelIndex& to )
+{
+    QAbstractItemModel* model = sourceModel();
+    QModelIndex parentIdx = from;
+    do {
+        const QModelIndex& dataIdx = parentIdx;
+        if ( model->data( dataIdx, ItemTypeRole )==TypeSummary ) {
+            //qDebug() << "removing " << parentIdx << "from cache";
+            d->removeFromCache( dataIdx );
+            QModelIndex proxyDataIdx = mapFromSource( dataIdx );
+            emit dataChanged( proxyDataIdx, proxyDataIdx );
+        }
+    } while ( ( parentIdx=model->parent( parentIdx ) ) != QModelIndex() );
+
+    BASE::sourceDataChanged( from, to );
+}
+
+void SummaryHandlingProxyModel::sourceColumnsAboutToBeInserted( const QModelIndex& parentIdx,
+                                                                    int start,
+                                                                    int end )
+{
+    BASE::sourceColumnsAboutToBeInserted( parentIdx, start, end );
+    d->clearCache();
+}
+
+void SummaryHandlingProxyModel::sourceColumnsAboutToBeRemoved( const QModelIndex& parentIdx,
+                                                                    int start,
+                                                                    int end )
+{
+    BASE::sourceColumnsAboutToBeRemoved( parentIdx, start, end );
+    d->clearCache();
+}
+
+void SummaryHandlingProxyModel::sourceRowsAboutToBeInserted( const QModelIndex & parentIdx, int start, int end )
+{
+    BASE::sourceRowsAboutToBeInserted( parentIdx, start, end );
+    d->clearCache();
+}
+
+void SummaryHandlingProxyModel::sourceRowsAboutToBeRemoved( const QModelIndex & parentIdx, int start, int end )
+{
+    BASE::sourceRowsAboutToBeRemoved( parentIdx, start, end );
+    d->clearCache();
+}
+
+/*! \see QAbstractItemModel::flags */
+Qt::ItemFlags SummaryHandlingProxyModel::flags( const QModelIndex& idx ) const
+{
+    const QModelIndex sidx = mapToSource( idx );
+    const QAbstractItemModel* model = sourceModel();
+    Qt::ItemFlags f = model->flags( sidx );
+    if ( d->isSummary(sidx) ) {
+        f &= !Qt::ItemIsEditable;
+    }
+    return f;
+}
+
+/*! \see QAbstractItemModel::data */
+QVariant SummaryHandlingProxyModel::data( const QModelIndex& proxyIndex, int role) const
+{
+  //qDebug() << "SummaryHandlingProxyModel::data("<<proxyIndex<<role<<")";
+    const QModelIndex sidx = mapToSource( proxyIndex );
+    const QAbstractItemModel* model = sourceModel();
+    if ( d->isSummary(sidx) && ( role==StartTimeRole || role==EndTimeRole )) {
+      //qDebug() << "requested summary";
+        QPair<QDateTime,QDateTime> result;
+        if ( d->cacheLookup( sidx, &result ) ) {
+	  //qDebug() << "SummaryHandlingProxyModel::data(): Looking up summary for " << proxyIndex << role;
+            switch ( role ) {
+            case StartTimeRole: return result.first;
+            case EndTimeRole: return result.second;
+            default: /* fall thru */;
+            }
+        } else {
+            d->insertInCache( this, sidx );
+            return data( proxyIndex, role ); /* TODO: Optimise */
+        }
+    }
+    return model->data( sidx, role );
+}
+
+/*! \see QAbstractItemModel::setData */
+bool SummaryHandlingProxyModel::setData( const QModelIndex& index, const QVariant& value, int role )
+{
+    QAbstractItemModel* model = sourceModel();
+    if ( role==StartTimeRole || role==EndTimeRole ) {
+        QModelIndex parentIdx = mapToSource( index );
+        do {
+            if ( d->isSummary(parentIdx) ) {
+	      //qDebug() << "removing " << parentIdx << "from cache";
+                d->removeFromCache( parentIdx );
+                QModelIndex proxyParentIdx = mapFromSource( parentIdx );
+                emit dataChanged( proxyParentIdx, proxyParentIdx );
+            }
+        } while ( ( parentIdx=model->parent( parentIdx ) ) != QModelIndex() );
+    }
+    return BASE::setData( index, value, role );
+}
+
+#undef d
+
+#ifndef KDAB_NO_UNIT_TESTS
+
+#include "unittest/test.h"
+
+#include <QStandardItemModel>
+
+static std::ostream& operator<<( std::ostream& os, const QDateTime& dt )
+{
+#ifdef QT_NO_STL
+    os << dt.toString().toLatin1().constData();
+#else
+    os << dt.toString().toStdString();
+#endif
+    return os;
+}
+
+KDAB_SCOPED_UNITTEST_SIMPLE( KGantt, SummaryHandlingProxyModel, "test" ) {
+    SummaryHandlingProxyModel model;
+    QStandardItemModel sourceModel;
+
+    model.setSourceModel( &sourceModel );
+
+    QStandardItem* topitem = new QStandardItem( QString::fromLatin1( "Summary" ) );
+    topitem->setData( KGantt::TypeSummary,  KGantt::ItemTypeRole );
+    sourceModel.appendRow( topitem );
+
+    QStandardItem* task1 = new QStandardItem( QString::fromLatin1( "Task1" ) );
+    task1->setData( KGantt::TypeTask, KGantt::ItemTypeRole );
+    QStandardItem* task2 = new QStandardItem( QString::fromLatin1( "Task2" ) );
+    task2->setData( KGantt::TypeTask, KGantt::ItemTypeRole );
+    topitem->appendRow( task1 );
+    topitem->appendRow( task2 );
+
+
+    QDateTime startdt = QDateTime::currentDateTime();
+    QDateTime enddt = startdt.addDays( 1 );
+
+
+    task1->setData( startdt, KGantt::StartTimeRole );
+    task1->setData( enddt, KGantt::EndTimeRole );
+    task2->setData( startdt, KGantt::StartTimeRole );
+    task2->setData( enddt, KGantt::EndTimeRole );
+
+    const QModelIndex topidx = model.index( 0, 0, QModelIndex() );
+
+    assertEqual( model.data( topidx, KGantt::ItemTypeRole ).toInt(), KGantt::TypeSummary );
+    assertEqual( model.data( model.index( 0, 0, topidx ), KGantt::ItemTypeRole ).toInt(), KGantt::TypeTask );
+
+    QDateTime task1startdt = model.data( model.index( 0, 0, topidx ), KGantt::StartTimeRole ).toDateTime();
+    assertEqual( task1startdt, startdt );
+
+    QDateTime summarystartdt = model.data( topidx, KGantt::StartTimeRole ).toDateTime();
+    assertEqual( summarystartdt, startdt );
+    assertTrue( model.flags( model.index( 0, 0, topidx ) ) & Qt::ItemIsEditable );
+    assertFalse( model.flags( topidx ) & Qt::ItemIsEditable );
+}
+
+#endif /* KDAB_NO_UNIT_TESTS */
+
+#include "moc_kganttsummaryhandlingproxymodel.cpp"

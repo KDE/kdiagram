@@ -1,7 +1,7 @@
 /**
  * Copyright (C) 2001-2015 Klaralvdalens Datakonsult AB.  All rights reserved.
  *
- * This file is part of the KD Chart library.
+ * This file is part of the KGantt library.
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -24,8 +24,8 @@
 
 #include <cassert>
 
-#include <KDGanttView>
-#include <KDGanttConstraintModel>
+#include <KGanttView>
+#include <KGanttConstraintModel>
 
 /* Test model that uses beginMoveRows() */
 class MyTaskModel : public QAbstractTableModel {
@@ -71,12 +71,12 @@ public:
                     ?QVariant::fromValue( m_tasks[index.row()].title )
                     :QVariant();
             case 1: return ( role == Qt::DisplayRole )
-                    ?QVariant::fromValue( ( int )KDGantt::TypeTask )
+                    ?QVariant::fromValue( ( int )KGantt::TypeTask )
                     :QVariant();
-            case 2: return ( role == KDGantt::StartTimeRole || role == Qt::DisplayRole )
+            case 2: return ( role == KGantt::StartTimeRole || role == Qt::DisplayRole )
                     ?QVariant::fromValue( m_tasks[index.row()].start )
                     :QVariant();
-            case 3: return ( role == KDGantt::EndTimeRole || role == Qt::DisplayRole)
+            case 3: return ( role == KGantt::EndTimeRole || role == Qt::DisplayRole)
                     ?QVariant::fromValue( m_tasks[index.row()].end )
                     :QVariant();
             }
@@ -101,8 +101,8 @@ public:
 class MoveHelper : public QObject {
 public:
     MoveHelper( MyTaskModel* model,
-                KDGantt::ConstraintModel* constraints,
-                KDGantt::View* view,
+                KGantt::ConstraintModel* constraints,
+                KGantt::View* view,
                 int row1, int row2 )
         : QObject( model ),
           m_model( model ),
@@ -129,14 +129,14 @@ public:
         m_model->moveRow( m_row1, m_row2 );
         showContraints( "After:" );
 
-        // Hack until KDGantt supports this:
+        // Hack until KGantt supports this:
         //m_view->setConstraintModel( m_constraints );
     }
 
 private:
     MyTaskModel* m_model;
-    KDGantt::ConstraintModel* m_constraints;
-    KDGantt::View* m_view;
+    KGantt::ConstraintModel* m_constraints;
+    KGantt::View* m_view;
     int m_row1, m_row2;
 };
 
@@ -145,14 +145,14 @@ int main( int argc, char** argv )
     QApplication app( argc, argv );
 
 
-    KDGantt::View* view = new KDGantt::View;
+    KGantt::View* view = new KGantt::View;
 
     MyTaskModel model;
 
-    KDGantt::ConstraintModel constraints;
-    constraints.addConstraint( KDGantt::Constraint( model.index( 0, 0 ), model.index( 1, 0 ) ) );
-    constraints.addConstraint( KDGantt::Constraint( model.index( 0, 0 ), model.index( 2, 0 ) ) );
-    constraints.addConstraint( KDGantt::Constraint( model.index( 1, 0 ), model.index( 3, 0 ) ) );
+    KGantt::ConstraintModel constraints;
+    constraints.addConstraint( KGantt::Constraint( model.index( 0, 0 ), model.index( 1, 0 ) ) );
+    constraints.addConstraint( KGantt::Constraint( model.index( 0, 0 ), model.index( 2, 0 ) ) );
+    constraints.addConstraint( KGantt::Constraint( model.index( 1, 0 ), model.index( 3, 0 ) ) );
 
     view->setModel( &model );
     view->setConstraintModel( &constraints );

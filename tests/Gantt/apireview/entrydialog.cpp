@@ -1,7 +1,7 @@
 /**
  * Copyright (C) 2001-2015 Klaralvdalens Datakonsult AB.  All rights reserved.
  *
- * This file is part of the KD Chart library.
+ * This file is part of the KGantt library.
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -21,8 +21,8 @@
 
 #include "ui_entrydialog.h"
 
-#include <KDGanttConstraintModel>
-#include <KDGanttGlobal>
+#include <KGanttConstraintModel>
+#include <KGanttGlobal>
 #include <QAbstractItemModel>
 #include <QDateTime>
 #include <QPersistentModelIndex>
@@ -41,10 +41,10 @@ EntryDialog::EntryDialog( const QAbstractItemModel* model, QWidget* parent, Qt::
 
 void EntryDialog::init()
 {
-    ui->type->addItem( tr( "Event" ), KDGantt::TypeEvent );
-    ui->type->addItem( tr( "Task" ), KDGantt::TypeTask );
-    ui->type->addItem( tr( "Summary" ), KDGantt::TypeSummary );
-    ui->type->addItem( tr( "Multi" ), KDGantt::TypeMulti );
+    ui->type->addItem( tr( "Event" ), KGantt::TypeEvent );
+    ui->type->addItem( tr( "Task" ), KGantt::TypeTask );
+    ui->type->addItem( tr( "Summary" ), KGantt::TypeSummary );
+    ui->type->addItem( tr( "Multi" ), KGantt::TypeMulti );
     
     for (int row = 0; row < model->rowCount(); ++row )
         addDependItem( model, model->index( row, 0 ) );
@@ -55,7 +55,7 @@ void EntryDialog::init()
     ui->startDate->setDateTime( QDateTime::currentDateTime() );
 }
 
-void EntryDialog::initFrom( const QModelIndex & index, const KDGantt::ConstraintModel* constraintModel )
+void EntryDialog::initFrom( const QModelIndex & index, const KGantt::ConstraintModel* constraintModel )
 {
     int row = index.row();
     const QModelIndex parent = index.parent();
@@ -69,13 +69,13 @@ void EntryDialog::initFrom( const QModelIndex & index, const KDGantt::Constraint
     ui->completion->setValue( model->data( model->index( row, 4, parent ) ).toInt() );
     ui->readOnly->setChecked( !(model->flags( model->index( row, 0, parent ) ) & Qt::ItemIsEditable) );
     
-    QList<KDGantt::Constraint> constraints = constraintModel->constraintsForIndex( model->index( row, 0, parent ) );
+    QList<KGantt::Constraint> constraints = constraintModel->constraintsForIndex( model->index( row, 0, parent ) );
     if ( constraints.isEmpty() )
         return;
     
     QModelIndex constraintIndex;
     for ( int i = 0; i < constraints.size(); ++i ) {
-        KDGantt::Constraint constraint = constraints[i];
+        KGantt::Constraint constraint = constraints[i];
         if ( constraint.endIndex() == index ) {
             constraintIndex = constraint.startIndex();
             break;

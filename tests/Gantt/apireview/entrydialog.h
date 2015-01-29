@@ -1,7 +1,7 @@
 /**
  * Copyright (C) 2001-2015 Klaralvdalens Datakonsult AB.  All rights reserved.
  *
- * This file is part of the KD Chart library.
+ * This file is part of the KGantt library.
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -31,7 +31,7 @@ namespace Ui {
 }
 QT_END_NAMESPACE
 
-namespace KDGantt {
+namespace KGantt {
     class ConstraintModel;
 }
 
@@ -40,7 +40,7 @@ class EntryDialog : public QDialog {
 
 public:
     EntryDialog( const QAbstractItemModel* model, QWidget* parent = 0, Qt::WindowFlags f = 0 );
-    void initFrom( const QModelIndex& index, const KDGantt::ConstraintModel* constraintModel );
+    void initFrom( const QModelIndex& index, const KGantt::ConstraintModel* constraintModel );
     
     QString name() const;
     int type() const;

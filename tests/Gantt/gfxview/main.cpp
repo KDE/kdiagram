@@ -1,7 +1,7 @@
 /**
  * Copyright (C) 2001-2015 Klaralvdalens Datakonsult AB.  All rights reserved.
  *
- * This file is part of the KD Chart library.
+ * This file is part of the KGantt library.
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -25,11 +25,11 @@
 
 #include <stdlib.h>
 
-#include <KDGanttGraphicsView>
-#include <KDGanttAbstractRowController>
-#include <KDGanttStyleOptionGanttItem>
+#include <KGanttGraphicsView>
+#include <KGanttAbstractRowController>
+#include <KGanttStyleOptionGanttItem>
 
-class MyRowController : public KDGantt::AbstractRowController {
+class MyRowController : public KGantt::AbstractRowController {
 private:
     static const int ROW_HEIGHT;
     QPointer<QAbstractItemModel> m_model;
@@ -47,10 +47,10 @@ public:
 
     /*reimp*/ bool isRowVisible( const QModelIndex& ) const { return true;}
     /*reimp*/ bool isRowExpanded( const QModelIndex& ) const { return false; }
-    /*reimp*/ KDGantt::Span rowGeometry( const QModelIndex& idx ) const
+    /*reimp*/ KGantt::Span rowGeometry( const QModelIndex& idx ) const
     {
         qDebug() << "rowGeometry(" << idx.row()<<")";
-        return KDGantt::Span( idx.row()*ROW_HEIGHT, ROW_HEIGHT );
+        return KGantt::Span( idx.row()*ROW_HEIGHT, ROW_HEIGHT );
     }
     /*reimp*/ int maximumItemHeight() const {
         return ROW_HEIGHT/2;
@@ -96,14 +96,14 @@ static Qt::Alignment random_alignment()
     return Qt::Alignment();
 }
 
-static KDGantt::StyleOptionGanttItem::Position random_position()
+static KGantt::StyleOptionGanttItem::Position random_position()
 {
     int r = (int) (3.0*rand()/(RAND_MAX+1.0));
     switch ( r ) {
-    case 0: return KDGantt::StyleOptionGanttItem::Left;
-    case 1: return KDGantt::StyleOptionGanttItem::Right;
+    case 0: return KGantt::StyleOptionGanttItem::Left;
+    case 1: return KGantt::StyleOptionGanttItem::Right;
     case 2:
-    default: return KDGantt::StyleOptionGanttItem::Center;
+    default: return KGantt::StyleOptionGanttItem::Center;
     }
 }
 
@@ -111,7 +111,7 @@ int main( int argc, char** argv ) {
     QApplication app( argc, argv );
 
 
-    KDGantt::GraphicsView* view = new KDGantt::GraphicsView;
+    KGantt::GraphicsView* view = new KGantt::GraphicsView;
     MyRowController* rowController = new MyRowController;
     view->setReadOnly(true);
     view->setRowController( rowController );
@@ -125,11 +125,11 @@ int main( int argc, char** argv ) {
             //for ( int col = 0; col < 5; ++col ) {
             //  QStandardItem* colitem = new QStandardItem;
             item->setText( QString::fromLatin1( "Item %1" ).arg( i ) );
-            item->setData( KDGantt::TypeTask, KDGantt::ItemTypeRole );
-            item->setData( QDateTime::currentDateTime().addDays( 2*j ).addMSecs( 100000*i ), KDGantt::StartTimeRole );
-            item->setData( QDateTime::currentDateTime().addDays( 2*j+1 ).addMSecs( 100000*i ), KDGantt::EndTimeRole );
+            item->setData( KGantt::TypeTask, KGantt::ItemTypeRole );
+            item->setData( QDateTime::currentDateTime().addDays( 2*j ).addMSecs( 100000*i ), KGantt::StartTimeRole );
+            item->setData( QDateTime::currentDateTime().addDays( 2*j+1 ).addMSecs( 100000*i ), KGantt::EndTimeRole );
             item->setData( qVariantFromValue<int>( random_alignment() ), Qt::TextAlignmentRole );
-			item->setData( qVariantFromValue<int>( random_position()), KDGantt::TextPositionRole );
+			item->setData( qVariantFromValue<int>( random_position()), KGantt::TextPositionRole );
             item->setFlags( item->flags() & ~Qt::ItemIsSelectable );
             //  item->appendColumn( QList<QStandardItem*>() << colitem );
             //}

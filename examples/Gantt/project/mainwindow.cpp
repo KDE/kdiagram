@@ -1,7 +1,7 @@
 /**
  * Copyright (C) 2001-2015 Klaralvdalens Datakonsult AB.  All rights reserved.
  *
- * This file is part of the KD Chart library.
+ * This file is part of the KGantt library.
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -44,44 +44,44 @@
 #include <QPushButton>
 #include <QDialogButtonBox>
 
-#include <KDGanttGlobal>
-#include <KDGanttView>
-#include <KDGanttItemDelegate>
-#include <KDGanttDateTimeGrid>
-#include <KDGanttStyleOptionGanttItem>
-#include <KDGanttConstraintModel>
-#include <KDGanttGraphicsView>
+#include <KGanttGlobal>
+#include <KGanttView>
+#include <KGanttItemDelegate>
+#include <KGanttDateTimeGrid>
+#include <KGanttStyleOptionGanttItem>
+#include <KGanttConstraintModel>
+#include <KGanttGraphicsView>
 
 class ItemTypeComboBox : public QComboBox {
     Q_OBJECT
-    Q_PROPERTY( KDGantt::ItemType itemType READ itemType WRITE setItemType )
+    Q_PROPERTY( KGantt::ItemType itemType READ itemType WRITE setItemType )
 public:
     explicit ItemTypeComboBox( QWidget* parent=0 );
 
-    KDGantt::ItemType itemType() const;
+    KGantt::ItemType itemType() const;
 public slots:
-    void setItemType( KDGantt::ItemType typ );
+    void setItemType( KGantt::ItemType typ );
 };
 
 ItemTypeComboBox::ItemTypeComboBox( QWidget* parent )
     : QComboBox( parent )
 {
-    addItem( tr( "Task" ), QVariant( KDGantt::TypeTask ) );
-    addItem( tr( "Event" ), QVariant( KDGantt::TypeEvent ) );
-    addItem( tr( "Summary" ), QVariant( KDGantt::TypeSummary ) );
+    addItem( tr( "Task" ), QVariant( KGantt::TypeTask ) );
+    addItem( tr( "Event" ), QVariant( KGantt::TypeEvent ) );
+    addItem( tr( "Summary" ), QVariant( KGantt::TypeSummary ) );
 }
 
-KDGantt::ItemType ItemTypeComboBox::itemType() const
+KGantt::ItemType ItemTypeComboBox::itemType() const
 {
-    return static_cast<KDGantt::ItemType>( itemData( currentIndex() ).toInt() );
+    return static_cast<KGantt::ItemType>( itemData( currentIndex() ).toInt() );
 }
 
-void ItemTypeComboBox::setItemType( KDGantt::ItemType typ )
+void ItemTypeComboBox::setItemType( KGantt::ItemType typ )
 {
     setCurrentIndex( typ-1 );
 }
 
-class MyItemDelegate : public KDGantt::ItemDelegate {
+class MyItemDelegate : public KGantt::ItemDelegate {
 public:
     explicit MyItemDelegate( QObject* parent=0 );
 
@@ -99,7 +99,7 @@ private:
 };
 
 MyItemDelegate::MyItemDelegate( QObject* parent )
-    : KDGantt::ItemDelegate( parent )
+    : KGantt::ItemDelegate( parent )
 {
 }
 
@@ -117,7 +117,7 @@ void MyItemDelegate::setEditorData ( QWidget* editor, const QModelIndex& index )
 {
   ItemTypeComboBox* c;
   if ( (c = qobject_cast<ItemTypeComboBox*>(editor)) && index.isValid() ) {
-      c->setItemType(static_cast<KDGantt::ItemType>(index.data(Qt::EditRole).toInt()));
+      c->setItemType(static_cast<KGantt::ItemType>(index.data(Qt::EditRole).toInt()));
   } else {
       ItemDelegate::setEditorData(editor,index);
   }
@@ -138,12 +138,12 @@ void MyItemDelegate::drawDisplay( QPainter* painter, const QStyleOptionViewItem&
 				  const QRect& rect, const QString& text ) const
 {
   //qDebug() << "MyItemDelegate::drawDisplay(" <<painter<<rect<<text<<")";
-  KDGantt::ItemType typ = static_cast<KDGantt::ItemType>(text.toInt());
+  KGantt::ItemType typ = static_cast<KGantt::ItemType>(text.toInt());
   QString str;
   switch (typ) {
-      case KDGantt::TypeTask: str = tr("Task"); break;
-      case KDGantt::TypeEvent: str = tr("Event"); break;
-      case KDGantt::TypeSummary: str = tr("Summary"); break;
+      case KGantt::TypeTask: str = tr("Task"); break;
+      case KGantt::TypeEvent: str = tr("Event"); break;
+      case KGantt::TypeSummary: str = tr("Summary"); break;
       default: str = tr("None"); break;
   }
   ItemDelegate::drawDisplay(painter,option,rect,str);
@@ -153,7 +153,7 @@ void MyItemDelegate::drawDisplay( QPainter* painter, const QStyleOptionViewItem&
 // Provide custom background and foreground
 ///////////////////////////////////////////////////////////////////////////////
 
-class DateTimeGrid : public KDGantt::DateTimeGrid
+class DateTimeGrid : public KGantt::DateTimeGrid
 {
 public:
     DateTimeGrid(QObject* parent=0) { 
@@ -163,7 +163,7 @@ public:
     }
     ~DateTimeGrid() { }
 
-    //virtual void paintUserDefinedHeader(QPainter* painter, const QRectF& headerRect, const QRectF& exposedRect, qreal offset, const KDGantt::DateTimeScaleFormatter* formatter, QWidget* widget = 0);
+    //virtual void paintUserDefinedHeader(QPainter* painter, const QRectF& headerRect, const QRectF& exposedRect, qreal offset, const KGantt::DateTimeScaleFormatter* formatter, QWidget* widget = 0);
     virtual void drawBackground(QPainter* painter, const QRectF& rect);
     virtual void drawForeground(QPainter* painter, const QRectF& rect);
 };
@@ -217,7 +217,7 @@ void DateTimeGrid::drawForeground(QPainter* painter, const QRectF& rect)
     painter->restore();
 }
 /*
-void DateTimeGrid::paintUserDefinedHeader( QPainter* painter, const QRectF& headerRect, const QRectF& exposedRect, qreal offset, const KDGantt::DateTimeScaleFormatter* formatter, QWidget* widget)
+void DateTimeGrid::paintUserDefinedHeader( QPainter* painter, const QRectF& headerRect, const QRectF& exposedRect, qreal offset, const KGantt::DateTimeScaleFormatter* formatter, QWidget* widget)
 {
     const QStyle* const style = widget ? widget->style() : QApplication::style();
 
@@ -249,7 +249,7 @@ void DateTimeGrid::paintUserDefinedHeader( QPainter* painter, const QRectF& head
 MainWindow::MainWindow( QWidget* parent )
     : QMainWindow( parent ),
       m_model( new ProjectModel( this ) ),
-      m_view( new KDGantt::View )
+      m_view( new KGantt::View )
 {
     m_view->setModel( m_model );
     m_view->setSelectionModel( new QItemSelectionModel(m_model));
@@ -263,7 +263,7 @@ MainWindow::MainWindow( QWidget* parent )
 
     //QItemEditorCreatorBase *creator = new QItemEditorCreator<ItemTypeComboBox>("itemType");
     //QItemEditorFactory* factory = new QItemEditorFactory;
-    //factory->registerEditor( QVariant( KDGantt::TypeTask ).type(), creator );
+    //factory->registerEditor( QVariant( KGantt::TypeTask ).type(), creator );
     //m_view->itemDelegate()->setItemEditorFactory( factory );
 
     setCentralWidget( m_view );
@@ -303,12 +303,12 @@ MainWindow::MainWindow( QWidget* parent )
     slotToolsNewItem();
     slotToolsNewItem();
     for (int i = 0; i < 3; ++i) {
-        m_model->setData(m_model->index(i,2,QModelIndex()), qVariantFromValue(QDateTime::currentDateTime().addDays(i)), KDGantt::StartTimeRole);
-        m_model->setData(m_model->index(i,3,QModelIndex()), qVariantFromValue(QDateTime::currentDateTime().addDays(i+1)), KDGantt::EndTimeRole);
+        m_model->setData(m_model->index(i,2,QModelIndex()), qVariantFromValue(QDateTime::currentDateTime().addDays(i)), KGantt::StartTimeRole);
+        m_model->setData(m_model->index(i,3,QModelIndex()), qVariantFromValue(QDateTime::currentDateTime().addDays(i+1)), KGantt::EndTimeRole);
     }
-    m_view->setConstraintModel(new KDGantt::ConstraintModel(m_view));
-    m_view->constraintModel()->addConstraint(KDGantt::Constraint(m_model->index(0,0,QModelIndex()),m_model->index(1,0,QModelIndex())));
-    m_view->constraintModel()->addConstraint(KDGantt::Constraint(m_model->index(1,0,QModelIndex()),m_model->index(2,0,QModelIndex())));
+    m_view->setConstraintModel(new KGantt::ConstraintModel(m_view));
+    m_view->constraintModel()->addConstraint(KGantt::Constraint(m_model->index(0,0,QModelIndex()),m_model->index(1,0,QModelIndex())));
+    m_view->constraintModel()->addConstraint(KGantt::Constraint(m_model->index(1,0,QModelIndex()),m_model->index(2,0,QModelIndex())));
     */
 }
 
@@ -449,7 +449,7 @@ void MainWindow::slotAlignLeft()
 {
     QModelIndex idx = m_view->selectionModel()->currentIndex();
     if ( idx.isValid() ) {
-        m_model->setData( idx, KDGantt::StyleOptionGanttItem::Left, KDGantt::TextPositionRole );
+        m_model->setData( idx, KGantt::StyleOptionGanttItem::Left, KGantt::TextPositionRole );
     }
 }
 
@@ -457,7 +457,7 @@ void MainWindow::slotAlignCenter()
 {
     QModelIndex idx = m_view->selectionModel()->currentIndex();
     if ( idx.isValid() ) {
-        m_model->setData( idx, KDGantt::StyleOptionGanttItem::Center, KDGantt::TextPositionRole );
+        m_model->setData( idx, KGantt::StyleOptionGanttItem::Center, KGantt::TextPositionRole );
     }
 }
 
@@ -465,7 +465,7 @@ void MainWindow::slotAlignRight()
 {
     QModelIndex idx = m_view->selectionModel()->currentIndex();
     if ( idx.isValid() ) {
-        m_model->setData( idx, KDGantt::StyleOptionGanttItem::Right, KDGantt::TextPositionRole );
+        m_model->setData( idx, KGantt::StyleOptionGanttItem::Right, KGantt::TextPositionRole );
     }
 }
 
@@ -473,7 +473,7 @@ void MainWindow::slotAlignHidden()
 {
     QModelIndex idx = m_view->selectionModel()->currentIndex();
     if ( idx.isValid() ) {
-        m_model->setData( idx, KDGantt::StyleOptionGanttItem::Hidden, KDGantt::TextPositionRole );
+        m_model->setData( idx, KGantt::StyleOptionGanttItem::Hidden, KGantt::TextPositionRole );
     }
 }
     

@@ -1,7 +1,7 @@
 /**
  * Copyright (C) 2001-2015 Klaralvdalens Datakonsult AB.  All rights reserved.
  *
- * This file is part of the KD Chart library.
+ * This file is part of the KGantt library.
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -31,7 +31,7 @@ namespace Ui {
 }
 QT_END_NAMESPACE
 
-namespace KDGantt {
+namespace KGantt {
     class ConstraintModel;
     class DateTimeGrid;
     class Legend;
@@ -69,10 +69,10 @@ private:
     void addConstraint( const QModelIndex& index1, const QModelIndex& index2 );
 
     QStandardItemModel* model;
-    KDGantt::ConstraintModel* constraintModel;
-    KDGantt::DateTimeGrid* grid;
-    KDGantt::Legend* smallLegend;
-    KDGantt::Legend* detailedLegend;
+    KGantt::ConstraintModel* constraintModel;
+    KGantt::DateTimeGrid* grid;
+    KGantt::Legend* smallLegend;
+    KGantt::Legend* detailedLegend;
 
     QAction* newEntryAction;
     QAction* removeEntryAction;

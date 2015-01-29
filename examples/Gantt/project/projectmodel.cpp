@@ -1,7 +1,7 @@
 /**
  * Copyright (C) 2001-2015 Klaralvdalens Datakonsult AB.  All rights reserved.
  *
- * This file is part of the KD Chart library.
+ * This file is part of the KGantt library.
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -25,8 +25,8 @@
 
 #include <QDebug>
 
-#include <KDGanttGlobal>
-#include <KDGanttStyleOptionGanttItem>
+#include <KGanttGlobal>
+#include <KGanttStyleOptionGanttItem>
 
 #include <cassert>
 
@@ -64,7 +64,7 @@ public:
         m_label = str;
     }
     void setType( int t ) {
-        m_type = static_cast<KDGantt::ItemType>( t );
+        m_type = static_cast<KGantt::ItemType>( t );
         if ( !m_start.isValid() )
             m_start = m_bStart;
         if ( !m_end.isValid() )
@@ -73,7 +73,7 @@ public:
     void setCompletion( int c ) {
         m_completion = c;
     }
-    void setPosition( KDGantt::StyleOptionGanttItem::Position p ) {
+    void setPosition( KGantt::StyleOptionGanttItem::Position p ) {
         m_position = p;
     }
 
@@ -82,34 +82,34 @@ public:
 
     QString label() const { return m_label; }
 
-    KDGantt::ItemType type() const { return m_type; }
+    KGantt::ItemType type() const { return m_type; }
 
     int completion() const { return m_completion; }
     
-    KDGantt::StyleOptionGanttItem::Position position() const { return m_position; }
+    KGantt::StyleOptionGanttItem::Position position() const { return m_position; }
 
 private:
     Node* m_parent;
     QList<Node*> m_children;
 
-    KDGantt::ItemType m_type;
+    KGantt::ItemType m_type;
     QDateTime m_start, m_end;
     QDateTime m_bStart, m_bEnd;
     QString m_label;
     int m_completion;
-    KDGantt::StyleOptionGanttItem::Position m_position;
+    KGantt::StyleOptionGanttItem::Position m_position;
 };
 
 static int unnamed_count = 0;
 
 ProjectModel::Node::Node( Node* parent )
     : m_parent( parent ),
-      m_type( KDGantt::TypeTask ),
+      m_type( KGantt::TypeTask ),
       m_start( QDateTime::currentDateTime() ),
       m_end( QDateTime::currentDateTime().addDays( 1 ) ),
       m_label( tr( "Unnamed task %1" ).arg( ++unnamed_count ) ),
       m_completion( -1 ),
-      m_position( KDGantt::StyleOptionGanttItem::Right )
+      m_position( KGantt::StyleOptionGanttItem::Right )
 {
     if ( m_parent ) m_parent->addChild( this );
 }
@@ -225,7 +225,7 @@ QVariant ProjectModel::data( const QModelIndex& idx, int role ) const
         case Qt::DisplayRole:
         case Qt::EditRole:
 			return n->label();
-        case KDGantt::TextPositionRole:
+        case KGantt::TextPositionRole:
             return n->position();
         }
     } else if ( idx.column() == 1 ) {
@@ -239,7 +239,7 @@ QVariant ProjectModel::data( const QModelIndex& idx, int role ) const
         case Qt::DisplayRole:
             return n->start().date().toString("dd-MM-yyyy");
         case Qt::EditRole:
-        case KDGantt::StartTimeRole:
+        case KGantt::StartTimeRole:
             return n->start();
         }
     } else if ( idx.column() == 3 ) {
@@ -247,7 +247,7 @@ QVariant ProjectModel::data( const QModelIndex& idx, int role ) const
         case Qt::DisplayRole:
             return n->end().date().toString("dd-MM-yyyy");
         case Qt::EditRole:
-        case KDGantt::EndTimeRole:
+        case KGantt::EndTimeRole:
             return n->end();
         }
     } else if ( idx.column() == 4 && n->completion() >= 0 ) {
@@ -261,13 +261,13 @@ QVariant ProjectModel::data( const QModelIndex& idx, int role ) const
         case Qt::DisplayRole:
         case Qt::EditRole:
             return n->label();
-        case KDGantt::ItemTypeRole:
+        case KGantt::ItemTypeRole:
             return n->type();
-        case KDGantt::StartTimeRole:
+        case KGantt::StartTimeRole:
             return n->start();
-        case KDGantt::EndTimeRole:
+        case KGantt::EndTimeRole:
             return n->end();
-        case KDGantt::TaskCompletionRole:
+        case KGantt::TaskCompletionRole:
             if ( n->completion() >= 0 )
                 return n->completion();
             break;
@@ -292,8 +292,8 @@ bool ProjectModel::setData( const QModelIndex& idx,  const QVariant& value,
             n->setLabel( value.toString() );
             emit dataChanged( idx, idx );
             break;
-        case KDGantt::TextPositionRole:
-            n->setPosition( static_cast<KDGantt::StyleOptionGanttItem::Position>(value.toInt()) );
+        case KGantt::TextPositionRole:
+            n->setPosition( static_cast<KGantt::StyleOptionGanttItem::Position>(value.toInt()) );
             emit dataChanged( idx, idx );
             break;
         }
@@ -309,7 +309,7 @@ bool ProjectModel::setData( const QModelIndex& idx,  const QVariant& value,
         switch ( role ) {
         case Qt::DisplayRole:
         case Qt::EditRole:
-        case KDGantt::StartTimeRole:
+        case KGantt::StartTimeRole:
             n->setStart(value.toDateTime());
             emit dataChanged( idx, idx );
             break;
@@ -318,7 +318,7 @@ bool ProjectModel::setData( const QModelIndex& idx,  const QVariant& value,
         switch ( role ) {
         case Qt::DisplayRole:
         case Qt::EditRole:
-        case KDGantt::EndTimeRole:
+        case KGantt::EndTimeRole:
             n->setEnd(value.toDateTime());
             emit dataChanged( idx, idx );
             break;

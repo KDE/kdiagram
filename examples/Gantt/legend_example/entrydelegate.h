@@ -1,7 +1,7 @@
 /**
  * Copyright (C) 2001-2015 Klaralvdalens Datakonsult AB.  All rights reserved.
  *
- * This file is part of the KD Chart library.
+ * This file is part of the KGantt library.
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -22,13 +22,13 @@
 
 #include <QItemDelegate>
 
-namespace KDGantt {
+namespace KGantt {
     class ConstraintModel;
 }
 
 class EntryDelegate : public QItemDelegate {
 public:
-    explicit EntryDelegate( KDGantt::ConstraintModel* constraintModel, QObject* parent = 0 );
+    explicit EntryDelegate( KGantt::ConstraintModel* constraintModel, QObject* parent = 0 );
     
     bool editorEvent( QEvent* event, QAbstractItemModel* model, const QStyleOptionViewItem& option, const QModelIndex& index );
     
@@ -36,7 +36,7 @@ private:
     void addConstraint(const QModelIndex & index1, const QModelIndex & index2);
     void setReadOnly(const QModelIndex & index, bool readOnly);
     
-    KDGantt::ConstraintModel* constraintModel;
+    KGantt::ConstraintModel* constraintModel;
 };
 
 #endif /* ENTRYDELEGATE_H */

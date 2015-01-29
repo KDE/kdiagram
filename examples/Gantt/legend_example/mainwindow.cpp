@@ -1,7 +1,7 @@
 /**
  * Copyright (C) 2001-2015 Klaralvdalens Datakonsult AB.  All rights reserved.
  *
- * This file is part of the KD Chart library.
+ * This file is part of the KGantt library.
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -25,10 +25,10 @@
 
 #include <algorithm>
 
-#include <KDGanttConstraintModel>
-#include <KDGanttDateTimeGrid>
-#include <KDGanttGraphicsView>
-#include <KDGanttLegend>
+#include <KGanttConstraintModel>
+#include <KGanttDateTimeGrid>
+#include <KGanttGraphicsView>
+#include <KGanttLegend>
 #include <QAbstractItemView>
 #include <QDebug>
 #include <QHeaderView>
@@ -98,37 +98,37 @@ void MainWindow::initModel()
     QStandardItemModel* lmodel = new QStandardItemModel;
     lmodel->appendRow( QList<QStandardItem*>()
         << new MyStandardItem( QVariant() )
-        << new MyStandardItem( KDGantt::TypeEvent )
+        << new MyStandardItem( KGantt::TypeEvent )
         << new MyStandardItem( QVariant() )
         << new MyStandardItem( QVariant() )
         << new MyStandardItem( QVariant() )
         << new MyStandardItem( QString::fromLatin1("Event") ) );
     lmodel->appendRow( QList<QStandardItem*>()
         << new MyStandardItem( QVariant() )
-        << new MyStandardItem( KDGantt::TypeTask )
+        << new MyStandardItem( KGantt::TypeTask )
         << new MyStandardItem( QVariant() )
         << new MyStandardItem( QVariant() )
         << new MyStandardItem( QVariant() )
         << new MyStandardItem( QString::fromLatin1("Task") ) );
     lmodel->appendRow( QList<QStandardItem*>()
         << new MyStandardItem( QVariant() )
-        << new MyStandardItem( KDGantt::TypeSummary )
+        << new MyStandardItem( KGantt::TypeSummary )
         << new MyStandardItem( QVariant() )
         << new MyStandardItem( QVariant() )
         << new MyStandardItem( QVariant() )
         << new MyStandardItem( QString::fromLatin1("Summary") ) );
 
-    smallLegend = new KDGantt::Legend();
+    smallLegend = new KGantt::Legend();
     smallLegend->setWindowTitle( tr( "Legend" ) );
     smallLegend->show();
     smallLegend->setModel( lmodel );
 
-    detailedLegend = new KDGantt::Legend();
+    detailedLegend = new KGantt::Legend();
     detailedLegend->setWindowTitle( tr( "List" ) );
     detailedLegend->show();
     detailedLegend->setModel( model );
 
-    constraintModel = new KDGantt::ConstraintModel( this );
+    constraintModel = new KGantt::ConstraintModel( this );
     ui->ganttView->setConstraintModel( constraintModel );
 }
 
@@ -185,7 +185,7 @@ void MainWindow::initItemDelegate()
 
 void MainWindow::initGrid()
 {
-    grid = new KDGantt::DateTimeGrid();
+    grid = new KGantt::DateTimeGrid();
     grid->setDayWidth( 70 );
     ui->ganttView->setGrid( grid );
 }
@@ -211,8 +211,8 @@ void MainWindow::enableActions(const QItemSelection & selected)
 
     QModelIndex selectedIndex = selected.indexes()[0];
 
-    if ( model->data( model->index( selectedIndex.row(), 1 ) ) == KDGantt::TypeEvent ||
-        model->data( model->index( selectedIndex.row(), 1 ) ) == KDGantt::TypeTask ) {
+    if ( model->data( model->index( selectedIndex.row(), 1 ) ) == KGantt::TypeEvent ||
+        model->data( model->index( selectedIndex.row(), 1 ) ) == KGantt::TypeTask ) {
         newEntryAction->setEnabled( false );
         removeEntryAction->setEnabled( true );
         return;
@@ -243,9 +243,9 @@ void MainWindow::addNewEntry()
 
     model->setData( model->index( row, 0, parent ), dialog->name() );
     model->setData( model->index( row, 1, parent ), dialog->type() );
-    if ( dialog->type() != KDGantt::TypeSummary ) {
-        model->setData( model->index( row, 2, parent ), dialog->startDate(), KDGantt::StartTimeRole );
-        model->setData( model->index( row, 3, parent ), dialog->endDate(), KDGantt::EndTimeRole );
+    if ( dialog->type() != KGantt::TypeSummary ) {
+        model->setData( model->index( row, 2, parent ), dialog->startDate(), KGantt::StartTimeRole );
+        model->setData( model->index( row, 3, parent ), dialog->endDate(), KGantt::EndTimeRole );
     }
     model->setData( model->index( row, 4, parent ), dialog->completion() );
     const QString legend( dialog->legend() );
@@ -285,7 +285,7 @@ void MainWindow::addConstraint(const QModelIndex & index1, const QModelIndex & i
     if ( !index1.isValid() || !index2.isValid() )
         return;
 
-    KDGantt::Constraint c( index1, index2 );
+    KGantt::Constraint c( index1, index2 );
     ui->ganttView->constraintModel()->addConstraint( c );
 }
 
@@ -304,7 +304,7 @@ void MainWindow::zoomIn()
 {
     qreal dayWidth = grid->dayWidth() + 10;
     if ( dayWidth > 400 )
-        grid->setScale( KDGantt::DateTimeGrid::ScaleHour );
+        grid->setScale( KGantt::DateTimeGrid::ScaleHour );
 
     grid->setDayWidth( dayWidth );
 }
@@ -316,7 +316,7 @@ void MainWindow::zoomOut()
         dayWidth = 10;
 
     if ( dayWidth <= 400 )
-        grid->setScale( KDGantt::DateTimeGrid::ScaleDay );
+        grid->setScale( KGantt::DateTimeGrid::ScaleDay );
 
     grid->setDayWidth( dayWidth );
 }
@@ -329,9 +329,9 @@ void MainWindow::zoomFit()
         return;
     }
 
-    KDGantt::Span span;
+    KGantt::Span span;
     Q_FOREACH( QModelIndex idx, selectedIndexes ) {
-        const KDGantt::Span s = grid->mapToChart( grid->model()->index( idx.row(), 0 ) );
+        const KGantt::Span s = grid->mapToChart( grid->model()->index( idx.row(), 0 ) );
         if ( span.isValid() ) {
             span = span.expandedTo( s );
         } else {
@@ -360,31 +360,31 @@ void MainWindow::zoomFit()
 
 void MainWindow::scaleAuto()
 {
-    KDGantt::DateTimeGrid* grid = static_cast<KDGantt::DateTimeGrid*>(ui->ganttView->grid());
-    grid->setScale( KDGantt::DateTimeGrid::ScaleAuto );
+    KGantt::DateTimeGrid* grid = static_cast<KGantt::DateTimeGrid*>(ui->ganttView->grid());
+    grid->setScale( KGantt::DateTimeGrid::ScaleAuto );
 }
 
 void MainWindow::scaleHour()
 {
-    KDGantt::DateTimeGrid* grid = static_cast<KDGantt::DateTimeGrid*>(ui->ganttView->grid());
-    grid->setScale( KDGantt::DateTimeGrid::ScaleHour );
+    KGantt::DateTimeGrid* grid = static_cast<KGantt::DateTimeGrid*>(ui->ganttView->grid());
+    grid->setScale( KGantt::DateTimeGrid::ScaleHour );
 }
 
 void MainWindow::scaleDay()
 {
-    KDGantt::DateTimeGrid* grid = static_cast<KDGantt::DateTimeGrid*>(ui->ganttView->grid());
-    grid->setScale( KDGantt::DateTimeGrid::ScaleDay );
+    KGantt::DateTimeGrid* grid = static_cast<KGantt::DateTimeGrid*>(ui->ganttView->grid());
+    grid->setScale( KGantt::DateTimeGrid::ScaleDay );
 }
 
 void MainWindow::scaleWeek()
 {
-    KDGantt::DateTimeGrid* grid = static_cast<KDGantt::DateTimeGrid*>(ui->ganttView->grid());
-    grid->setScale( KDGantt::DateTimeGrid::ScaleWeek );
+    KGantt::DateTimeGrid* grid = static_cast<KGantt::DateTimeGrid*>(ui->ganttView->grid());
+    grid->setScale( KGantt::DateTimeGrid::ScaleWeek );
 }
 
 void MainWindow::scaleMonth()
 {
-    KDGantt::DateTimeGrid* grid = static_cast<KDGantt::DateTimeGrid*>(ui->ganttView->grid());
-    grid->setScale( KDGantt::DateTimeGrid::ScaleMonth );
+    KGantt::DateTimeGrid* grid = static_cast<KGantt::DateTimeGrid*>(ui->ganttView->grid());
+    grid->setScale( KGantt::DateTimeGrid::ScaleMonth );
 }
     

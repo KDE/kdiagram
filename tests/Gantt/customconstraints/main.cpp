@@ -1,7 +1,7 @@
 /**
  * Copyright (C) 2001-2015 Klaralvdalens Datakonsult AB.  All rights reserved.
  *
- * This file is part of the KD Chart library.
+ * This file is part of the KGantt library.
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -29,15 +29,15 @@
 #include <QPixmapCache>
 #include <QMenu>
 
-#include <KDGanttView>
-#include <KDGanttGraphicsView>
-#include <KDGanttConstraintModel>
-#include <KDGanttDateTimeGrid>
+#include <KGanttView>
+#include <KGanttGraphicsView>
+#include <KGanttConstraintModel>
+#include <KGanttDateTimeGrid>
 
-class MyGraphicsView : public KDGantt::GraphicsView {
+class MyGraphicsView : public KGantt::GraphicsView {
     Q_OBJECT
 public:
-    MyGraphicsView( QWidget* parent=0 ) : KDGantt::GraphicsView( parent )
+    MyGraphicsView( QWidget* parent=0 ) : KGantt::GraphicsView( parent )
     {
     }
 
@@ -47,10 +47,10 @@ public:
     {
         qDebug() << "MyGraphicsView::addConstraint()";
         if ( isReadOnly() ) return;
-        KDGantt::ConstraintModel* cmodel = constraintModel();
-        KDGantt::Constraint c( from, to, ( modifiers&Qt::ShiftModifier )?KDGantt::Constraint::TypeHard:KDGantt::Constraint::TypeSoft );
-        c.setData( KDGantt::Constraint::ValidConstraintPen, QPen( QColor( Qt::green ), 3, Qt::DashLine ) );
-        c.setData( KDGantt::Constraint::InvalidConstraintPen, QPen( QColor( Qt::blue ), 3, Qt::DashLine ) );
+        KGantt::ConstraintModel* cmodel = constraintModel();
+        KGantt::Constraint c( from, to, ( modifiers&Qt::ShiftModifier )?KGantt::Constraint::TypeHard:KGantt::Constraint::TypeSoft );
+        c.setData( KGantt::Constraint::ValidConstraintPen, QPen( QColor( Qt::green ), 3, Qt::DashLine ) );
+        c.setData( KGantt::Constraint::InvalidConstraintPen, QPen( QColor( Qt::blue ), 3, Qt::DashLine ) );
         if ( cmodel->hasConstraint( c ) ) cmodel->removeConstraint( c );
         else cmodel->addConstraint( c );
     }
@@ -86,9 +86,9 @@ public:
             QList<QStandardItem*> items;
             items
                 << new MyStandardItem( QString::fromLatin1( "Item %1" ).arg( h ) )
-                << new MyStandardItem( KDGantt::TypeTask )
-                << new MyStandardItem( QDateTime::currentDateTime().addDays( h ), KDGantt::StartTimeRole )
-                << new MyStandardItem( QDateTime::currentDateTime().addDays( h+1 ), KDGantt::EndTimeRole )
+                << new MyStandardItem( KGantt::TypeTask )
+                << new MyStandardItem( QDateTime::currentDateTime().addDays( h ), KGantt::StartTimeRole )
+                << new MyStandardItem( QDateTime::currentDateTime().addDays( h+1 ), KGantt::EndTimeRole )
                 << new MyStandardItem( 50 );
             model.appendRow( items );
         }
@@ -117,8 +117,8 @@ public slots:
     }
 
 private:
-    KDGantt::View view;
-    KDGantt::DateTimeGrid grid;
+    KGantt::View view;
+    KGantt::DateTimeGrid grid;
     QSlider slider;
     QStandardItemModel model;
 };

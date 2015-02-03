@@ -416,7 +416,7 @@ void LineDiagram::resize ( const QSizeF& size )
     QAbstractItemView::resize( size.toSize() );
 }
 
-#if QT_VERSION < 0x040400 || defined(Q_COMPILER_MANGLES_RETURN_TYPE)
+#if defined(Q_COMPILER_MANGLES_RETURN_TYPE)
 const
 #endif
 int LineDiagram::numberOfAbscissaSegments () const
@@ -424,7 +424,7 @@ int LineDiagram::numberOfAbscissaSegments () const
     return d->attributesModel->rowCount(attributesModelRootIndex());
 }
 
-#if QT_VERSION < 0x040400 || defined(Q_COMPILER_MANGLES_RETURN_TYPE)
+#if defined(Q_COMPILER_MANGLES_RETURN_TYPE)
 const
 #endif
 int LineDiagram::numberOfOrdinateSegments () const

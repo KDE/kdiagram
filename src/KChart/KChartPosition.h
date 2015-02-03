@@ -211,7 +211,7 @@ class KCHART_EXPORT PositionPoints
         mapOfDegrees[pos] = degrees;
     }
 
-#if QT_VERSION < 0x040400 || defined(Q_COMPILER_MANGLES_RETURN_TYPE)
+#if defined(Q_COMPILER_MANGLES_RETURN_TYPE)
     const qreal degrees( KChartEnums::PositionValue pos ) const
 #else
     qreal degrees( KChartEnums::PositionValue pos ) const
@@ -222,7 +222,7 @@ class KCHART_EXPORT PositionPoints
         return 0.0;
     }
 
-#if QT_VERSION < 0x040400 || defined(Q_COMPILER_MANGLES_RETURN_TYPE)
+#if defined(Q_COMPILER_MANGLES_RETURN_TYPE)
     const QPointF point( Position position ) const
 #else
     QPointF point( Position position ) const

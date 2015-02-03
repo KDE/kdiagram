@@ -101,7 +101,7 @@ public:
     qreal mergeRadiusPercentage() const;
     void setMergeRadiusPercentage( qreal value );
 
-#if QT_VERSION < 0x040400 || defined(Q_COMPILER_MANGLES_RETURN_TYPE)
+#if defined(Q_COMPILER_MANGLES_RETURN_TYPE)
     // implement AbstractCartesianDiagram
     /* reimpl */
     const int numberOfAbscissaSegments () const;

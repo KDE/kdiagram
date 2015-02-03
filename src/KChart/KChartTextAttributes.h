@@ -121,7 +121,7 @@ public:
    * font size as it is used for rendering text, taking into account
    * any measures that were set via setFontSize and/or setMinimalFontSize.
    */
-#if QT_VERSION < 0x040400 || defined(Q_COMPILER_MANGLES_RETURN_TYPE)
+#if defined(Q_COMPILER_MANGLES_RETURN_TYPE)
   const qreal calculatedFontSize(
 #else
   qreal calculatedFontSize(

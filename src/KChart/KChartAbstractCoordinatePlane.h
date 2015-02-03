@@ -292,7 +292,7 @@ namespace KChart {
          *
          * \note Before calling this function the point must have been translated into coordinate plane space.
          */
-#if QT_VERSION < 0x040400 || defined(Q_COMPILER_MANGLES_RETURN_TYPE)
+#if defined(Q_COMPILER_MANGLES_RETURN_TYPE)
         const bool isVisiblePoint( const QPointF& point ) const;
 #else
         bool isVisiblePoint( const QPointF& point ) const;

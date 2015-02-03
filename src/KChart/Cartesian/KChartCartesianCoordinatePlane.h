@@ -355,7 +355,7 @@ namespace KChart {
          *
          * \sa setAutoAdjustGridToZoom
          */
-#if QT_VERSION < 0x040400 || defined(Q_COMPILER_MANGLES_RETURN_TYPE)
+#if defined(Q_COMPILER_MANGLES_RETURN_TYPE)
         const bool autoAdjustGridToZoom() const;
 #else
         bool autoAdjustGridToZoom() const;

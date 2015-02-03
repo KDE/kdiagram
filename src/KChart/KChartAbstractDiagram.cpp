@@ -80,12 +80,10 @@ bool AbstractDiagram::compare( const AbstractDiagram* other ) const
             // compare QAbstractItemView properties
             (alternatingRowColors()  == other->alternatingRowColors()) &&
             (hasAutoScroll()         == other->hasAutoScroll()) &&
-#if QT_VERSION > 0x040199
             (dragDropMode()          == other->dragDropMode()) &&
             (dragDropOverwriteMode() == other->dragDropOverwriteMode()) &&
             (horizontalScrollMode()  == other->horizontalScrollMode ()) &&
             (verticalScrollMode()    == other->verticalScrollMode()) &&
-#endif
             (dragEnabled()           == other->dragEnabled()) &&
             (editTriggers()          == other->editTriggers()) &&
             (iconSize()              == other->iconSize()) &&
@@ -239,14 +237,9 @@ void AbstractDiagram::doItemsLayout()
     QAbstractItemView::doItemsLayout();
 }
 
-#if QT_VERSION < 0x050000
-void AbstractDiagram::dataChanged( const QModelIndex &topLeft,
-                                   const QModelIndex &bottomRight )
-#else
 void AbstractDiagram::dataChanged( const QModelIndex &topLeft,
                                    const QModelIndex &bottomRight,
                                    const QVector<int> & )
-#endif
 {
     Q_UNUSED( topLeft );
     Q_UNUSED( bottomRight );

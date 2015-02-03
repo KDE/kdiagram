@@ -86,7 +86,7 @@ public:
     ThreeDBarAttributes threeDBarAttributes( int column ) const;
     ThreeDBarAttributes threeDBarAttributes( const QModelIndex & index ) const;
 
-#if QT_VERSION < 0x040400 || defined(Q_COMPILER_MANGLES_RETURN_TYPE)
+#if defined(Q_COMPILER_MANGLES_RETURN_TYPE)
     // implement AbstractCartesianDiagram
     /** \reimpl */
     const int numberOfAbscissaSegments () const;

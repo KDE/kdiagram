@@ -2,6 +2,7 @@ set( KCHARTLIB_VERSION "2.6.0" )
 
 ecm_setup_version(${KCHARTLIB_VERSION}
     VARIABLE_PREFIX KCHART
+    VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/kchart_version.h"
     PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KChartConfigVersion.cmake"
 )
 
@@ -295,6 +296,10 @@ install(FILES
             ${kchart_LIB_FWDHEADERS}
         DESTINATION ${INCLUDE_INSTALL_DIR}/KChart
         COMPONENT Devel)
+
+install(FILES
+    ${CMAKE_CURRENT_BINARY_DIR}/kchart_version.h
+    DESTINATION ${INCLUDE_INSTALL_DIR} COMPONENT Devel)
 
 # create a Config.cmake and a ConfigVersion.cmake file and install them
 set(CMAKECONFIG_INSTALL_DIR "${CMAKECONFIG_INSTALL_PREFIX}/KChart")

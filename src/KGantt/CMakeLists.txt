@@ -2,6 +2,7 @@ set( KGANTTLIB_VERSION "2.6.0" )
 
 ecm_setup_version(${KGANTTLIB_VERSION}
     VARIABLE_PREFIX KGANTT
+    VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/kgantt_version.h"
     PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KGanttConfigVersion.cmake"
 )
 
@@ -90,6 +91,10 @@ install(FILES
             ${kgantt_LIB_HEADERS}
         DESTINATION ${INCLUDE_INSTALL_DIR}/KGantt
         COMPONENT Devel)
+
+install(FILES
+    ${CMAKE_CURRENT_BINARY_DIR}/kgantt_version.h
+    DESTINATION ${INCLUDE_INSTALL_DIR} COMPONENT Devel)
 
 # create a Config.cmake and a ConfigVersion.cmake file and install them
 set(CMAKECONFIG_INSTALL_DIR "${CMAKECONFIG_INSTALL_PREFIX}/KGantt")

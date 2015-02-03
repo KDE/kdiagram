@@ -22,15 +22,15 @@
 #include <QtGui>
 #include <QFileDialog>
 
-#include <KDChartChart>
-#include <KDChartDataValueAttributes>
-#include <KDChartLegend>
-#include <KDChartLineDiagram>
-#include <KDChartTextAttributes>
-#include <KDChartThreeDLineAttributes>
+#include <KChartChart>
+#include <KChartDataValueAttributes>
+#include <KChartLegend>
+#include <KChartLineDiagram>
+#include <KChartTextAttributes>
+#include <KChartThreeDLineAttributes>
 
 
-using namespace KDChart;
+using namespace KChart;
 
 MainWindow::MainWindow( QWidget* parent ) :
     QWidget( parent )
@@ -59,8 +59,8 @@ MainWindow::MainWindow( QWidget* parent ) :
     // Add axes to the diagram
     CartesianAxis *xAxis = new CartesianAxis( m_lines );
     CartesianAxis *yAxis = new CartesianAxis ( m_lines );
-    xAxis->setPosition ( KDChart::CartesianAxis::Bottom );
-    yAxis->setPosition ( KDChart::CartesianAxis::Left );
+    xAxis->setPosition ( KChart::CartesianAxis::Bottom );
+    yAxis->setPosition ( KChart::CartesianAxis::Left );
     m_lines->addAxis( xAxis );
     m_lines->addAxis( yAxis );
     // Make the lines thicker

@@ -23,7 +23,7 @@
 #include "ui_mainwindow.h"
 #include <TableModel.h>
 
-namespace KDChart {
+namespace KChart {
 class Chart;
 class DatasetProxyModel;
 class LineDiagram;
@@ -43,12 +43,12 @@ private slots:
     void gridLinesOnAnnotationsToggled( bool );
 
 private:
-    KDChart::Chart* m_chart;
-    KDChart::CartesianAxis* m_xAxis;
+    KChart::Chart* m_chart;
+    KChart::CartesianAxis* m_xAxis;
     TableModel m_model;
-    KDChart::DatasetProxyModel* m_datasetProxy;
-    KDChart::LineDiagram* m_lines;
-    KDChart::Legend* m_legend;
+    KChart::DatasetProxyModel* m_datasetProxy;
+    KChart::LineDiagram* m_lines;
+    KChart::Legend* m_legend;
 };
 
 

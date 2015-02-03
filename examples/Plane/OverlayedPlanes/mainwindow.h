@@ -23,7 +23,7 @@
 #include "ui_mainwindow.h"
 #include <TableModel.h>
 
-namespace KDChart {
+namespace KChart {
     class Chart;
     class DatasetProxyModel;
     class LineDiagram;
@@ -46,13 +46,13 @@ private slots:
 
 private:
     void init();
-    KDChart::Chart* m_chart;
+    KChart::Chart* m_chart;
     TableModel m_model;
     TableModel m_model2;
-    KDChart::DatasetProxyModel* m_datasetProxy;
-    KDChart::LineDiagram* m_lines;
-    KDChart::LineDiagram* m_lines2;
-    KDChart::CartesianCoordinatePlane* plane2;
+    KChart::DatasetProxyModel* m_datasetProxy;
+    KChart::LineDiagram* m_lines;
+    KChart::LineDiagram* m_lines2;
+    KChart::CartesianCoordinatePlane* plane2;
 
 
 };

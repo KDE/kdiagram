@@ -18,12 +18,12 @@
  */
 
 #include <QApplication>
-#include <KDChartWidget>
+#include <KChartWidget>
 
 int main( int argc, char** argv ) {
     QApplication app( argc, argv );
 
-    KDChart::Widget widget;
+    KChart::Widget widget;
     widget.resize( 600, 600 );
 
     QVector< qreal > vec0,  vec1,  vec2;

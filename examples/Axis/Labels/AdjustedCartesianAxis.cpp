@@ -20,7 +20,7 @@
 #include "AdjustedCartesianAxis.h"
 
 
-AdjustedCartesianAxis::AdjustedCartesianAxis ( KDChart::AbstractCartesianDiagram* diagram )
+AdjustedCartesianAxis::AdjustedCartesianAxis ( KChart::AbstractCartesianDiagram* diagram )
     : CartesianAxis ( diagram )
     , m_lowerBound(0.0)
     , m_upperBound(0.0)

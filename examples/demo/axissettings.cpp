@@ -26,15 +26,15 @@
 
 #include <QComboBox>
 
-#include <KDChartChart>
-#include <KDChartCartesianAxis>
-#include <KDChartCartesianCoordinatePlane>
-#include <KDChartAbstractCartesianDiagram>
-#include <KDChartRulerAttributes>
+#include <KChartChart>
+#include <KChartCartesianAxis>
+#include <KChartCartesianCoordinatePlane>
+#include <KChartAbstractCartesianDiagram>
+#include <KChartRulerAttributes>
 
 #include <QDebug>
 
-using namespace KDChart;
+using namespace KChart;
 
 class AxisSettings::Private : public QObject
 {

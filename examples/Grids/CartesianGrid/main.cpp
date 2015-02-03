@@ -18,21 +18,21 @@
  */
 
 #include <QtGui>
-#include <KDChartChart>
-#include <KDChartLineDiagram>
-#include <KDChartHeaderFooter>
-#include <KDChartPosition>
-#include <KDChartBackgroundAttributes>
-#include <KDChartFrameAttributes>
-#include <KDChartGridAttributes>
-#include <KDChartAbstractCoordinatePlane>
-#include <KDChartCartesianCoordinatePlane>
-#include <KDChartAbstractCartesianDiagram>
-#include <KDChartDataValueAttributes>
+#include <KChartChart>
+#include <KChartLineDiagram>
+#include <KChartHeaderFooter>
+#include <KChartPosition>
+#include <KChartBackgroundAttributes>
+#include <KChartFrameAttributes>
+#include <KChartGridAttributes>
+#include <KChartAbstractCoordinatePlane>
+#include <KChartCartesianCoordinatePlane>
+#include <KChartAbstractCartesianDiagram>
+#include <KChartDataValueAttributes>
 #include <QApplication>
 
 
-using namespace KDChart;
+using namespace KChart;
 
 class ChartWidget : public QWidget {
   Q_OBJECT
@@ -55,8 +55,8 @@ public:
 
     CartesianAxis *xAxis = new CartesianAxis( diagram );
     CartesianAxis *yAxis = new CartesianAxis ( diagram );
-    xAxis->setPosition ( KDChart::CartesianAxis::Bottom );
-    yAxis->setPosition ( KDChart::CartesianAxis::Left );
+    xAxis->setPosition ( KChart::CartesianAxis::Bottom );
+    yAxis->setPosition ( KChart::CartesianAxis::Left );
     diagram->addAxis( xAxis );
     diagram->addAxis( yAxis );
 
@@ -79,11 +79,11 @@ public:
     // so-called relative size
     Measure m( 35.0 );
     m.setRelativeMode( header->autoReferenceArea(),
-                       KDChartEnums::MeasureOrientationMinimum );
+                       KChartEnums::MeasureOrientationMinimum );
     hta.setFontSize( m );
     // min font size
     m.setValue( 3.0 );
-    m.setCalculationMode( KDChartEnums::MeasureCalculationModeAbsolute );
+    m.setCalculationMode( KChartEnums::MeasureCalculationModeAbsolute );
     hta.setMinimalFontSize( m );
     header->setTextAttributes( hta );
 

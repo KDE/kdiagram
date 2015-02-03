@@ -21,16 +21,16 @@
 
 #include <QtGui>
 
-#include <KDChartGlobal>
+#include <KChartGlobal>
 
 
-using namespace KDChart;
+using namespace KChart;
 
 
 static int	nrOfValid(0);
 static int	nrOfInvalid(0);
 static int	nrOfQt(0);
-static int	nrOfKDChart(0);
+static int	nrOfKChart(0);
 
 
 ModelParamVsParamPlot::ModelParamVsParamPlot(
@@ -87,7 +87,7 @@ QVariant ModelParamVsParamPlot::data(
 			break;
 
 			default:
-				nrOfKDChart++;
+				nrOfKChart++;
 		} // switch role
 	} // if index valid
 	else

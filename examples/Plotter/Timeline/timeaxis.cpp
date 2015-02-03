@@ -21,8 +21,8 @@
 
 #include <QtCore/QDateTime>
 
-TimeAxis::TimeAxis( KDChart::AbstractCartesianDiagram* parent )
-    : KDChart::CartesianAxis( parent )
+TimeAxis::TimeAxis( KChart::AbstractCartesianDiagram* parent )
+    : KChart::CartesianAxis( parent )
 {
     // Intentionally left blank
 }

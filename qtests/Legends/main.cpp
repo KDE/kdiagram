@@ -20,16 +20,16 @@
 #include <QtTest/QtTest>
 #include <QStandardItemModel>
 
-#include <KDChartChart>
-#include <KDChartGlobal>
-#include <KDChartBarDiagram>
-#include <KDChartLineDiagram>
-#include <KDChartCartesianCoordinatePlane>
-#include <KDChartLegend>
+#include <KChartChart>
+#include <KChartGlobal>
+#include <KChartBarDiagram>
+#include <KChartLineDiagram>
+#include <KChartCartesianCoordinatePlane>
+#include <KChartLegend>
 
 #include <TableModel.h>
 
-using namespace KDChart;
+using namespace KChart;
 
 class TestLegends: public QObject {
     Q_OBJECT
@@ -41,7 +41,7 @@ private slots:
         m_lines = new LineDiagram();
         m_bars = new BarDiagram();
         m_tableModel = new TableModel( this );
-        m_tableModel->loadFromCSV( "../../examples/tools/modeldata/KDChart-Test-Datatables.csv" );
+        m_tableModel->loadFromCSV( "../../examples/tools/modeldata/KChart-Test-Datatables.csv" );
         m_lines->setModel( m_tableModel );
         m_bars->setModel( m_tableModel );
         m_chart->coordinatePlane()->replaceDiagram( m_lines );

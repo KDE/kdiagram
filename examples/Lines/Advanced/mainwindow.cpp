@@ -19,17 +19,17 @@
 
 #include "mainwindow.h"
 
-#include <KDChartChart>
-#include <KDChartLineDiagram>
-#include <KDChartTextAttributes>
-#include <KDChartDataValueAttributes>
-#include <KDChartThreeDLineAttributes>
+#include <KChartChart>
+#include <KChartLineDiagram>
+#include <KChartTextAttributes>
+#include <KChartDataValueAttributes>
+#include <KChartThreeDLineAttributes>
 
 
 #include <QTimer>
 #include <QMouseEvent>
 
-using namespace KDChart;
+using namespace KChart;
 
 MainWindow::MainWindow( QWidget* parent ) :
     QWidget( parent )
@@ -51,8 +51,8 @@ MainWindow::MainWindow( QWidget* parent ) :
 
     CartesianAxis* xAxis = new CartesianAxis( m_lines );
     CartesianAxis* yAxis = new CartesianAxis( m_lines );
-    xAxis->setPosition( KDChart::CartesianAxis::Bottom );
-    yAxis->setPosition( KDChart::CartesianAxis::Left );
+    xAxis->setPosition( KChart::CartesianAxis::Bottom );
+    yAxis->setPosition( KChart::CartesianAxis::Left );
     m_lines->addAxis( xAxis );
     m_lines->addAxis( yAxis );
 
@@ -294,12 +294,12 @@ void MainWindow::setTrackedArea( int column, bool checked, bool doUpdate )
 
 void MainWindow::on_reverseHorizontalCB_toggled( bool checked )
 {
-    static_cast< KDChart::CartesianCoordinatePlane* >( m_chart->coordinatePlane() )
+    static_cast< KChart::CartesianCoordinatePlane* >( m_chart->coordinatePlane() )
         ->setHorizontalRangeReversed( checked );
 }
 
 void MainWindow::on_reverseVerticalCB_toggled( bool checked )
 {
-    static_cast< KDChart::CartesianCoordinatePlane* >( m_chart->coordinatePlane() )
+    static_cast< KChart::CartesianCoordinatePlane* >( m_chart->coordinatePlane() )
         ->setVerticalRangeReversed( checked );
 }

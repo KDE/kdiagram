@@ -22,7 +22,7 @@
 
 #include <QWidget>
 
-namespace KDChart {
+namespace KChart {
     class Chart;
 }
 
@@ -36,12 +36,12 @@ public:
 
     virtual void paintEvent( QPaintEvent* );
 
-    void setChart( KDChart::Chart* chart ) {
+    void setChart( KChart::Chart* chart ) {
         mChart = chart;
     }
 
 private:
-    KDChart::Chart* mChart;
+    KChart::Chart* mChart;
 };
 
 

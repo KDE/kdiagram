@@ -23,7 +23,7 @@
 #include "ui_mainwindow.h"
 #include <TableModel.h>
 
-namespace KDChart {
+namespace KChart {
     class Chart;
     class LineDiagram;
     class Legend;
@@ -48,10 +48,10 @@ private slots:
     void applyNewZoomParameters();
 
 private:
-    KDChart::Chart* m_chart;
+    KChart::Chart* m_chart;
     TableModel m_model;
-    KDChart::LineDiagram* m_lines;
-    KDChart::Legend* m_legend;
+    KChart::LineDiagram* m_lines;
+    KChart::Legend* m_legend;
 };
 
 #endif /* MAINWINDOW_H */

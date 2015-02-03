@@ -26,7 +26,7 @@ QT_BEGIN_NAMESPACE
 class QStandardItemModel;
 QT_END_NAMESPACE
 
-namespace KDChart {
+namespace KChart {
     class Chart;
     class Plotter;
 }
@@ -44,8 +44,8 @@ private slots:
 
 private:
     QStandardItemModel* m_model;
-    KDChart::Chart* m_chart;
-    KDChart::Plotter* m_plotter;
+    KChart::Chart* m_chart;
+    KChart::Plotter* m_plotter;
 };
 
 

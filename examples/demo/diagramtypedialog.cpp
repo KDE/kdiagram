@@ -20,25 +20,25 @@
 #include "diagramtypedialog.h"
 #include "ui_diagramtypedialog.h"
 
-#include <KDChartChart>
-#include <KDChartAbstractCoordinatePlane>
-#include <KDChartCartesianCoordinatePlane>
-#include <KDChartPolarCoordinatePlane>
+#include <KChartChart>
+#include <KChartAbstractCoordinatePlane>
+#include <KChartCartesianCoordinatePlane>
+#include <KChartPolarCoordinatePlane>
 
-#include <KDChartBarDiagram>
-#include <KDChartLineDiagram>
-#include <KDChartPieDiagram>
-#include <KDChartPlotter>
+#include <KChartBarDiagram>
+#include <KChartLineDiagram>
+#include <KChartPieDiagram>
+#include <KChartPlotter>
 
 #include <QDebug>
 
-using namespace KDChart;
+using namespace KChart;
 
 class DiagramTypeDialog::Private : public QObject
 {
     Q_OBJECT
 public:
-    Private( KDChart::Chart *chart, DiagramTypeDialog * q );
+    Private( KChart::Chart *chart, DiagramTypeDialog * q );
     void init();
     void createPlanes();
 
@@ -56,7 +56,7 @@ public Q_SLOTS:
     void subtypeChanged( int index );
 };
 
-DiagramTypeDialog::Private::Private( KDChart::Chart *chart, DiagramTypeDialog * q )
+DiagramTypeDialog::Private::Private( KChart::Chart *chart, DiagramTypeDialog * q )
     : lastIndex( 0 )
     , m_chart( chart )
     , type( DiagramTypeDialog::Bar )
@@ -99,7 +99,7 @@ void DiagramTypeDialog::Private::createPlanes()
     m_planes[ DiagramTypeDialog::Line ] = linePlane;
 
     CartesianCoordinatePlane *plotterPlane = new CartesianCoordinatePlane;
-    plotterPlane->addDiagram( new KDChart::Plotter );
+    plotterPlane->addDiagram( new KChart::Plotter );
     m_planes[ DiagramTypeDialog::Plotter ] = plotterPlane;
 
     PolarCoordinatePlane *piePlane = new PolarCoordinatePlane;
@@ -172,7 +172,7 @@ void DiagramTypeDialog::Private::subtypeChanged( int index )
     }
 }
 
-DiagramTypeDialog::DiagramTypeDialog( KDChart::Chart *chart, QWidget *parent )
+DiagramTypeDialog::DiagramTypeDialog( KChart::Chart *chart, QWidget *parent )
     : QDialog( parent )
     , d( new Private( chart, this ) )
 {

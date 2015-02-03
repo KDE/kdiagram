@@ -23,7 +23,7 @@
 #include <QWidget>
 #include <TableModel.h>
 
-namespace KDChart {
+namespace KChart {
     class Chart;
     class BarDiagram;
     class LineDiagram;
@@ -38,8 +38,8 @@ public:
     virtual ~MainWindow() { }
 
 private:
-    KDChart::Chart* m_chart;
-    KDChart::LineDiagram* m_bars;
+    KChart::Chart* m_chart;
+    KChart::LineDiagram* m_bars;
     QAbstractItemModel* m_model;
 };
 

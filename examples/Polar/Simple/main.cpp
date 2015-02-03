@@ -18,11 +18,11 @@
  */
 
 #include <QApplication>
-#include <KDChartWidget>
-#include <KDChartPolarDiagram>
+#include <KChartWidget>
+#include <KChartPolarDiagram>
 
 
-using namespace KDChart;
+using namespace KChart;
 
 int main( int argc, char** argv ) {
     QApplication app( argc, argv );

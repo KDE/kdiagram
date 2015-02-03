@@ -28,7 +28,7 @@
 
 
 
-namespace KDChart {
+namespace KChart {
 class Plotter;
 }
 
@@ -52,7 +52,7 @@ private:
     QVector< QRadioButton* > m_functionSelector;
     QVector< QPushButton* > m_addPointsButtons;
 
-    KDChart::Plotter* m_plotter;
+    KChart::Plotter* m_plotter;
     Model m_model;
 };
 

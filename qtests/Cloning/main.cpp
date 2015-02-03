@@ -19,18 +19,18 @@
 
 #include <QtTest/QtTest>
 
-#include <KDChartBarDiagram>
-#include <KDChartLineDiagram>
-#include <KDChartPieDiagram>
-#include <KDChartPieAttributes>
-#include <KDChartThreeDPieAttributes>
-#include <KDChartThreeDBarAttributes>
-#include <KDChartPolarDiagram>
-#include <KDChartRingDiagram>
-#include <KDChartHeaderFooter>
-#include <KDChartLegend>
+#include <KChartBarDiagram>
+#include <KChartLineDiagram>
+#include <KChartPieDiagram>
+#include <KChartPieAttributes>
+#include <KChartThreeDPieAttributes>
+#include <KChartThreeDBarAttributes>
+#include <KChartPolarDiagram>
+#include <KChartRingDiagram>
+#include <KChartHeaderFooter>
+#include <KChartLegend>
 
-using namespace KDChart;
+using namespace KChart;
 
 class TestCloning: public QObject {
     Q_OBJECT

@@ -23,7 +23,7 @@
 #include "ui_mainwindow.h"
 #include <TableModel.h>
 
-namespace KDChart {
+namespace KChart {
     class Chart;
     class BarDiagram;
 }
@@ -50,8 +50,8 @@ private slots:
     void on_fixPlaneSizeCB_toggled( bool checked );
 
 private:
-    KDChart::Chart* m_chart;
-    KDChart::BarDiagram* m_bars;
+    KChart::Chart* m_chart;
+    KChart::BarDiagram* m_bars;
     TableModel m_model;
 };
 

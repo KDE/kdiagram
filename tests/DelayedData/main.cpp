@@ -20,11 +20,11 @@
 #include <QtGui>
 #include <QPushButton>
 #include <QApplication>
-#include <KDChartChart>
-#include <KDChartBarDiagram>
-#include <KDChartCartesianAxis>
-#include <KDChartCartesianCoordinatePlane>
-#include <KDChartLegend>
+#include <KChartChart>
+#include <KChartBarDiagram>
+#include <KChartCartesianAxis>
+#include <KChartCartesianCoordinatePlane>
+#include <KChartLegend>
 
 class ChartWidget : public QWidget {
   Q_OBJECT
@@ -33,26 +33,26 @@ public:
     : QWidget(parent)
   {
     m_model.insertRows( 0, 0, QModelIndex() );
-    KDChart::BarDiagram* diagram = new KDChart::BarDiagram;
+    KChart::BarDiagram* diagram = new KChart::BarDiagram;
     diagram->setModel(&m_model);    
 
-    KDChart::Legend* legend = new KDChart::Legend(diagram,diagram);
+    KChart::Legend* legend = new KChart::Legend(diagram,diagram);
     m_chart.addLegend(legend);
 
     // The code below doesn't work, but it would 
     // be nice if it did:
 #if 0
-    KDChart::Legend* legend = new KDChart::Legend;
+    KChart::Legend* legend = new KChart::Legend;
     legend->addDiagram(diagram1);
     legend->addDiagram(diagram2);
     ...
     m_chart.addLegend(legend);
 #endif
 
-    KDChart::CartesianAxis* abcissa = new KDChart::CartesianAxis(diagram);
-    abcissa->setPosition( KDChart::CartesianAxis::Bottom );
-    KDChart::CartesianAxis* ordinate = new KDChart::CartesianAxis(diagram);
-    ordinate->setPosition( KDChart::CartesianAxis::Left );
+    KChart::CartesianAxis* abcissa = new KChart::CartesianAxis(diagram);
+    abcissa->setPosition( KChart::CartesianAxis::Bottom );
+    KChart::CartesianAxis* ordinate = new KChart::CartesianAxis(diagram);
+    ordinate->setPosition( KChart::CartesianAxis::Left );
     diagram->addAxis(abcissa);
     diagram->addAxis(ordinate);
 
@@ -93,7 +93,7 @@ private slots:
   }
 
 private:
-  KDChart::Chart m_chart;
+  KChart::Chart m_chart;
   QPushButton m_rowbutton;
   QPushButton m_colbutton;
   QStandardItemModel m_model;

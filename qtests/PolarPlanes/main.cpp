@@ -20,18 +20,18 @@
 #include <QtTest/QtTest>
 #include <QStandardItemModel>
 
-#include <KDChartChart>
-#include <KDChartGlobal>
-#include <KDChartPieDiagram>
-#include <KDChartPolarDiagram>
-#include <KDChartPolarCoordinatePlane>
-#include <KDChartAbstractCoordinatePlane>
-#include <KDChartLegend>
-#include <KDChartGridAttributes>
+#include <KChartChart>
+#include <KChartGlobal>
+#include <KChartPieDiagram>
+#include <KChartPolarDiagram>
+#include <KChartPolarCoordinatePlane>
+#include <KChartAbstractCoordinatePlane>
+#include <KChartLegend>
+#include <KChartGridAttributes>
 
 #include <TableModel.h>
 
-using namespace KDChart;
+using namespace KChart;
 
 #if QT_VERSION < 0x040200
 namespace QTest{

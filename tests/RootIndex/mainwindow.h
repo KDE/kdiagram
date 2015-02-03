@@ -23,7 +23,7 @@
 #include "ui_mainwindow.h"
 #include <QStandardItemModel>
 
-namespace KDChart {
+namespace KChart {
     class Chart;
     class DatasetProxyModel;
     class LineDiagram;
@@ -41,15 +41,15 @@ public:
     MainWindow( QWidget* parent = 0 );
 
 private:
-    KDChart::Chart* m_chart;
+    KChart::Chart* m_chart;
     QStandardItemModel m_model;
     QStandardItemModel m_model2;
-    KDChart::DatasetProxyModel* m_datasetProxy;
-    KDChart::LineDiagram* m_lines;
-    KDChart::BarDiagram* m_bars;
-    KDChart::CartesianCoordinatePlane* plane;
-    // mutable KDChart::CartesianAxis xAxis;
-    //mutable KDChart::CartesianAxis yAxis;
+    KChart::DatasetProxyModel* m_datasetProxy;
+    KChart::LineDiagram* m_lines;
+    KChart::BarDiagram* m_bars;
+    KChart::CartesianCoordinatePlane* plane;
+    // mutable KChart::CartesianAxis xAxis;
+    //mutable KChart::CartesianAxis yAxis;
     
 };
 

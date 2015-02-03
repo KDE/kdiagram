@@ -23,7 +23,7 @@
 #include "ui_mainwindow.h"
 #include <QStandardItemModel>
 
-namespace KDChart {
+namespace KChart {
     class Chart;
     class DatasetProxyModel;
     class PolarDiagram;
@@ -53,17 +53,17 @@ private slots:
     */
 
 private:
-    void initKDChartClasses();
-    void wireUpKDChartClasses();
+    void initKChartClasses();
+    void wireUpKChartClasses();
     void setItemModelData();
 
     // For a change we do not use our special TableModel here,
     // but we just use the standard model that comes with Qt.
     QStandardItemModel m_model;
 
-    KDChart::Chart* m_chart;
-    KDChart::PolarDiagram* m_diagram;
-    KDChart::PolarCoordinatePlane* m_polarPlane;
+    KChart::Chart* m_chart;
+    KChart::PolarDiagram* m_diagram;
+    KChart::PolarCoordinatePlane* m_polarPlane;
 
     int m_currentFactor;
     int m_currentDirection;

@@ -25,7 +25,7 @@
 
 #include "ui_mainwindow.h"
 
-namespace KDChart {
+namespace KChart {
 
     class Chart;
     class TernaryLineDiagram;
@@ -48,9 +48,9 @@ private slots:
 private:
     void setupModel();
 
-    KDChart::Chart* m_chart;
-    KDChart::TernaryPointDiagram* m_diagram;
-    KDChart::TernaryCoordinatePlane* m_ternaryPlane;
+    KChart::Chart* m_chart;
+    KChart::TernaryPointDiagram* m_diagram;
+    KChart::TernaryCoordinatePlane* m_ternaryPlane;
 
     QStandardItemModel m_model;
 };

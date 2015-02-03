@@ -26,7 +26,7 @@ QT_BEGIN_NAMESPACE
 class QAbstractItemModel;
 QT_END_NAMESPACE
 
-namespace KDChart {
+namespace KChart {
     class Chart;
     class LineDiagram;
 }
@@ -46,8 +46,8 @@ private slots:
     void openFile(const QString &path);
 
 private:
-    KDChart::Chart             * m_chart;
-    KDChart::LineDiagram       * m_lines;
+    KChart::Chart             * m_chart;
+    KChart::LineDiagram       * m_lines;
     QAbstractItemModel         * m_model;
 };
 

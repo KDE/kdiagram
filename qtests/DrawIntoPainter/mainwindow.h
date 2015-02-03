@@ -25,7 +25,7 @@
 
 #include <QPixmap>
 
-namespace KDChart {
+namespace KChart {
     class Chart;
     class DatasetProxyModel;
     class LineDiagram;
@@ -67,16 +67,16 @@ private slots:
     void on_savePB_clicked();
 
 private:
-    KDChart::Chart* m_chart;
+    KChart::Chart* m_chart;
     TableModel m_model;
-    KDChart::DatasetProxyModel* m_datasetProxy;
-    KDChart::LineDiagram* m_lines;
-    KDChart::Legend* m_legend;
+    KChart::DatasetProxyModel* m_datasetProxy;
+    KChart::LineDiagram* m_lines;
+    KChart::Legend* m_legend;
     QPixmap m_pix1, m_pix2;
     QLabel* m_smallChart1;
     QLabel* m_smallChart2;
-    // mutable KDChart::CartesianAxis xAxis;
-    //mutable KDChart::CartesianAxis yAxis;
+    // mutable KChart::CartesianAxis xAxis;
+    //mutable KChart::CartesianAxis yAxis;
 };
 
 

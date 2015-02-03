@@ -20,8 +20,8 @@
 #include "datasetsettings.h"
 #include "ui_datasetsettings.h"
 
-#include <KDChartAbstractCoordinatePlane>
-#include <KDChartChart>
+#include <KChartAbstractCoordinatePlane>
+#include <KChartChart>
 
 #include <QColorDialog>
 #include <QFileDialog>
@@ -40,7 +40,7 @@
 
 #include "gradientdialog.h"
 
-using namespace KDChart;
+using namespace KChart;
 
 class DatasetSettings::Private : public QObject
 {
@@ -52,7 +52,7 @@ public:
     Ui::DatasetSettings *ui;
     int m_dataset;
     int m_datasetCount;
-    KDChart::Chart *m_chart;
+    KChart::Chart *m_chart;
     DatasetSettings *qq;
 public Q_SLOTS:
     void changeColor();

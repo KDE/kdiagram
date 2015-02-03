@@ -19,8 +19,8 @@
 
 #include <QtGui/QtGui>
 #include <QApplication>
-#include <KDChartChart>
-#include <KDChartBarDiagram>
+#include <KChartChart>
+#include <KChartBarDiagram>
 
 
 //class ChartWidget : public QWidget {
@@ -39,7 +39,7 @@
 //            }
 //    }
 
-//    KDChart::BarDiagram* diagram = new KDChart::BarDiagram;
+//    KChart::BarDiagram* diagram = new KChart::BarDiagram;
 //    diagram->setModel(&m_model);
 
 //    m_chart.coordinatePlane()->replaceDiagram(diagram);
@@ -61,7 +61,7 @@
 //      }
 
 //private:
-//  KDChart::Chart m_chart;
+//  KChart::Chart m_chart;
 //  QStandardItemModel m_model;
 //  QTimer *m_timer;
 //};

@@ -21,11 +21,11 @@
 #include <QString>
 #include <QTextStream>
 
-#include <KDChartChart>
-#include <KDChartTernaryAxis>
-#include <KDChartTernaryLineDiagram>
-#include <KDChartTernaryPointDiagram>
-#include <KDChartTernaryCoordinatePlane>
+#include <KChartChart>
+#include <KChartTernaryAxis>
+#include <KChartTernaryLineDiagram>
+#include <KChartTernaryPointDiagram>
+#include <KChartTernaryCoordinatePlane>
 
 #include "mainwindow.h"
 
@@ -37,22 +37,22 @@ MainWindow::MainWindow( QWidget* parent )
 {
     setupUi( this );
     // make a chart
-    m_chart = new KDChart::Chart;
+    m_chart = new KChart::Chart;
     // replace the default (cartesian) coordinate plane with a ternary one
-    m_ternaryPlane = new KDChart::TernaryCoordinatePlane;
+    m_ternaryPlane = new KChart::TernaryCoordinatePlane;
     m_chart->replaceCoordinatePlane( m_ternaryPlane );
     // make a ternary line diagram
-    m_diagram = new KDChart::TernaryPointDiagram;
+    m_diagram = new KChart::TernaryPointDiagram;
     // and replace the default diagram with it
     m_ternaryPlane->replaceDiagram( m_diagram );
 
     // add the three ternary axes, see the positions
-    KDChart::TernaryAxis* axisA = new KDChart::TernaryAxis( m_diagram );
-    axisA->setPosition( KDChartEnums::PositionSouth );
-    KDChart::TernaryAxis* axisB = new KDChart::TernaryAxis( m_diagram );
-    axisB->setPosition( KDChartEnums::PositionWest );
-    KDChart::TernaryAxis* axisC = new KDChart::TernaryAxis( m_diagram );
-    axisC->setPosition( KDChartEnums::PositionEast );
+    KChart::TernaryAxis* axisA = new KChart::TernaryAxis( m_diagram );
+    axisA->setPosition( KChartEnums::PositionSouth );
+    KChart::TernaryAxis* axisB = new KChart::TernaryAxis( m_diagram );
+    axisB->setPosition( KChartEnums::PositionWest );
+    KChart::TernaryAxis* axisC = new KChart::TernaryAxis( m_diagram );
+    axisC->setPosition( KChartEnums::PositionEast );
 
     QHBoxLayout* chartLayout = new QHBoxLayout( frame );
     chartLayout->addWidget( m_chart );

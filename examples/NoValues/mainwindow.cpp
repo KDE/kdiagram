@@ -19,11 +19,11 @@
 
 #include "mainwindow.h"
 
-#include <KDChartChart>
-#include <KDChartAbstractCoordinatePlane>
-#include <KDChartCartesianAxis>
-#include <KDChartLineDiagram>
-#include <KDChartLegend>
+#include <KChartChart>
+#include <KChartAbstractCoordinatePlane>
+#include <KChartCartesianAxis>
+#include <KChartLineDiagram>
+#include <KChartLegend>
 
 
 #include <QDebug>
@@ -31,7 +31,7 @@
 #include <QHBoxLayout>
 #include <QStandardItemModel>
 
-using namespace KDChart;
+using namespace KChart;
 
 class EmptyModel : public QAbstractItemModel
 {
@@ -104,8 +104,8 @@ MainWindow::MainWindow( QWidget* parent ) :
     m_bars->setModel( m_model );
     CartesianAxis *xAxis = new CartesianAxis( m_bars );
     CartesianAxis *yAxis = new CartesianAxis ( m_bars );
-    xAxis->setPosition ( KDChart::CartesianAxis::Bottom );
-    yAxis->setPosition ( KDChart::CartesianAxis::Left );
+    xAxis->setPosition ( KChart::CartesianAxis::Bottom );
+    yAxis->setPosition ( KChart::CartesianAxis::Left );
     xAxis->setTitleText ( "Abscissa axis at the bottom" );
     yAxis->setTitleText ( "Ordinate axis at the left side" );
     m_bars->addAxis( xAxis );

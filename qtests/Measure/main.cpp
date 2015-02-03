@@ -18,15 +18,15 @@
  */
 
 #include <QtTest/QtTest>
-#include <KDChartChart>
-#include <KDChartGlobal>
-#include <KDChartBarDiagram>
-#include <KDChartCartesianCoordinatePlane>
-#include <KDChartMeasure>
+#include <KChartChart>
+#include <KChartGlobal>
+#include <KChartBarDiagram>
+#include <KChartCartesianCoordinatePlane>
+#include <KChartMeasure>
 
 #include <TableModel.h>
 
-using namespace KDChart;
+using namespace KChart;
 
 class TestMeasure : public QObject {
   Q_OBJECT
@@ -46,96 +46,96 @@ private slots:
 
   void testMeasureCalculationModeAbsolute()
   {
-      KDChart::Measure m( 100.0 );
-      m.setCalculationMode( KDChartEnums::MeasureCalculationModeAbsolute );
+      KChart::Measure m( 100.0 );
+      m.setCalculationMode( KChartEnums::MeasureCalculationModeAbsolute );
       QCOMPARE(
-          m.calculatedValue(0, KDChartEnums::MeasureOrientationAuto),
+          m.calculatedValue(0, KChartEnums::MeasureOrientationAuto),
           100.0 );
   }
 
   void testMeasureCalculationModeRelativeHorizontalOrientation()
   {
-      KDChart::Measure m(
+      KChart::Measure m(
           100.0,
-          KDChartEnums::MeasureCalculationModeRelative,
-          KDChartEnums::MeasureOrientationHorizontal );
+          KChartEnums::MeasureCalculationModeRelative,
+          KChartEnums::MeasureOrientationHorizontal );
       m.setReferenceArea( m_chart );
       QCOMPARE(
-          m.calculatedValue(0, KDChartEnums::MeasureOrientationAuto),
+          m.calculatedValue(0, KChartEnums::MeasureOrientationAuto),
           m_chart->size().width() / 10.0 );
   }
 
   void testMeasureCalculationModeRelativeVerticalOrientation()
   {
-      KDChart::Measure m(
+      KChart::Measure m(
           100.0,
-          KDChartEnums::MeasureCalculationModeRelative,
-          KDChartEnums::MeasureOrientationVertical );
+          KChartEnums::MeasureCalculationModeRelative,
+          KChartEnums::MeasureOrientationVertical );
       m.setReferenceArea( m_chart );
       QCOMPARE(
-          m.calculatedValue(0, KDChartEnums::MeasureOrientationAuto),
+          m.calculatedValue(0, KChartEnums::MeasureOrientationAuto),
           m_chart->size().height() / 10.0 );
   }
 
   void testMeasureCalculationModeAuto()
   {
-      KDChart::Measure m( 100.0 );
-      m.setCalculationMode( KDChartEnums::MeasureCalculationModeAuto );
+      KChart::Measure m( 100.0 );
+      m.setCalculationMode( KChartEnums::MeasureCalculationModeAuto );
       QCOMPARE(
-          m.calculatedValue(m_chart, KDChartEnums::MeasureOrientationHorizontal),
+          m.calculatedValue(m_chart, KChartEnums::MeasureOrientationHorizontal),
           m_chart->size().width() / 10.0 );
       QCOMPARE(
-          m.calculatedValue(m_chart, KDChartEnums::MeasureOrientationVertical),
+          m.calculatedValue(m_chart, KChartEnums::MeasureOrientationVertical),
           m_chart->size().height() / 10.0 );
       QCOMPARE(
-          m.calculatedValue(m_chart, KDChartEnums::MeasureOrientationMinimum),
+          m.calculatedValue(m_chart, KChartEnums::MeasureOrientationMinimum),
           qMin( m_chart->size().width(), m_chart->size().height() ) / 10.0 );
       QCOMPARE(
-          m.calculatedValue(m_chart, KDChartEnums::MeasureOrientationMaximum),
+          m.calculatedValue(m_chart, KChartEnums::MeasureOrientationMaximum),
           qMax( m_chart->size().width(), m_chart->size().height() ) / 10.0 );
   }
 
   void testMeasureCalculationModeAutoArea()
   {
-      KDChart::Measure m(
+      KChart::Measure m(
           100.0,
-          KDChartEnums::MeasureCalculationModeAutoArea,
-          KDChartEnums::MeasureOrientationHorizontal );
+          KChartEnums::MeasureCalculationModeAutoArea,
+          KChartEnums::MeasureOrientationHorizontal );
       QCOMPARE(
-          m.calculatedValue(m_chart, KDChartEnums::MeasureOrientationAuto),
+          m.calculatedValue(m_chart, KChartEnums::MeasureOrientationAuto),
           m_chart->size().width() / 10.0 );
-      m.setReferenceOrientation( KDChartEnums::MeasureOrientationVertical );
+      m.setReferenceOrientation( KChartEnums::MeasureOrientationVertical );
       QCOMPARE(
-          m.calculatedValue(m_chart, KDChartEnums::MeasureOrientationAuto),
+          m.calculatedValue(m_chart, KChartEnums::MeasureOrientationAuto),
           m_chart->size().height() / 10.0 );
-      m.setReferenceOrientation( KDChartEnums::MeasureOrientationMinimum );
+      m.setReferenceOrientation( KChartEnums::MeasureOrientationMinimum );
       QCOMPARE(
-          m.calculatedValue(m_chart, KDChartEnums::MeasureOrientationAuto),
+          m.calculatedValue(m_chart, KChartEnums::MeasureOrientationAuto),
           qMin( m_chart->size().width(), m_chart->size().height() ) / 10.0 );
-      m.setReferenceOrientation( KDChartEnums::MeasureOrientationMaximum );
+      m.setReferenceOrientation( KChartEnums::MeasureOrientationMaximum );
       QCOMPARE(
-          m.calculatedValue(m_chart, KDChartEnums::MeasureOrientationAuto),
+          m.calculatedValue(m_chart, KChartEnums::MeasureOrientationAuto),
           qMax( m_chart->size().width(), m_chart->size().height() ) / 10.0 );
   }
 
   void testMeasureAutoOrientation()
   {
-      KDChart::Measure m(
+      KChart::Measure m(
           100.0,
-          KDChartEnums::MeasureCalculationModeAutoOrientation,
-          KDChartEnums::MeasureOrientationAuto );
+          KChartEnums::MeasureCalculationModeAutoOrientation,
+          KChartEnums::MeasureOrientationAuto );
       m.setReferenceArea( m_chart );
       QCOMPARE(
-          m.calculatedValue(0, KDChartEnums::MeasureOrientationHorizontal),
+          m.calculatedValue(0, KChartEnums::MeasureOrientationHorizontal),
           m_chart->size().width() / 10.0 );
       QCOMPARE(
-          m.calculatedValue(0, KDChartEnums::MeasureOrientationVertical),
+          m.calculatedValue(0, KChartEnums::MeasureOrientationVertical),
           m_chart->size().height() / 10.0 );
       QCOMPARE(
-          m.calculatedValue(0, KDChartEnums::MeasureOrientationMinimum),
+          m.calculatedValue(0, KChartEnums::MeasureOrientationMinimum),
           qMin( m_chart->size().width(), m_chart->size().height() ) / 10.0 );
       QCOMPARE(
-          m.calculatedValue(0, KDChartEnums::MeasureOrientationMaximum),
+          m.calculatedValue(0, KChartEnums::MeasureOrientationMaximum),
           qMax( m_chart->size().width(), m_chart->size().height() ) / 10.0 );
   }
 

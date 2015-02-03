@@ -20,25 +20,25 @@
 #include "mainwindow.h"
 #include "framewidget.h"
 
-#include <KDChartChart>
-#include <KDChartAbstractCoordinatePlane>
-#include <KDChartLineDiagram>
-#include <KDChartLineAttributes>
-#include <KDChartTextAttributes>
-#include <KDChartDataValueAttributes>
-#include <KDChartThreeDLineAttributes>
-#include <KDChartMarkerAttributes>
-#include <KDChartFrameAttributes>
-#include <KDChartBackgroundAttributes>
-#include <KDChartLegend>
+#include <KChartChart>
+#include <KChartAbstractCoordinatePlane>
+#include <KChartLineDiagram>
+#include <KChartLineAttributes>
+#include <KChartTextAttributes>
+#include <KChartDataValueAttributes>
+#include <KChartThreeDLineAttributes>
+#include <KChartMarkerAttributes>
+#include <KChartFrameAttributes>
+#include <KChartBackgroundAttributes>
+#include <KChartLegend>
 
 #include <QDebug>
 #include <QPainter>
 #include <QTime>
 
-using namespace KDChart;
+using namespace KChart;
 
-static void drawIntoPixmap( QPixmap& pix, const QSize& size, KDChart::Chart* chart )
+static void drawIntoPixmap( QPixmap& pix, const QSize& size, KChart::Chart* chart )
 {
     pix = QPixmap( size );
     pix.fill( Qt::white );
@@ -76,10 +76,10 @@ MainWindow::MainWindow( QWidget* parent ) :
     CartesianAxis *yAxis = new CartesianAxis ( m_lines );
     CartesianAxis *axisTop = new CartesianAxis ( m_lines );
     CartesianAxis *axisRight = new CartesianAxis ( m_lines );
-    xAxis->setPosition ( KDChart::CartesianAxis::Bottom );
-    yAxis->setPosition ( KDChart::CartesianAxis::Left );
-    axisTop->setPosition( KDChart::CartesianAxis::Top );
-    axisRight->setPosition( KDChart::CartesianAxis::Right );
+    xAxis->setPosition ( KChart::CartesianAxis::Bottom );
+    yAxis->setPosition ( KChart::CartesianAxis::Left );
+    axisTop->setPosition( KChart::CartesianAxis::Top );
+    axisRight->setPosition( KChart::CartesianAxis::Right );
 
     m_lines->addAxis( xAxis );
     m_lines->addAxis( yAxis );
@@ -423,7 +423,7 @@ void MainWindow::on_savePB_clicked()
             &painter,
             QRect(100, 100, 400, 400) );
     painter.end();
-    qpix.save("kdchart-demo.png", "PNG");
+    qpix.save("kchart-demo.png", "PNG");
     qDebug() << "Painting into PNG - done";
 }
 

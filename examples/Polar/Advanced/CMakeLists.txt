@@ -9,4 +9,4 @@ qt5_wrap_ui(PolarAdvanced_SRCS
 
 add_executable(PolarAdvanced  ${PolarAdvanced_SRCS})
 
-target_link_libraries(PolarAdvanced KDEKDChart Qt5::Widgets)
+target_link_libraries(PolarAdvanced KChart Qt5::Widgets)

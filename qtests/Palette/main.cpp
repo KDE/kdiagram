@@ -17,16 +17,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <KDChartPalette>
+#include <KChartPalette>
 #include <QtTest/QtTest>
 
-using namespace KDChart;
+using namespace KChart;
 
-class TestKDChartPalette: public QObject {
+class TestKChartPalette: public QObject {
   Q_OBJECT
 private slots:
 
-  void testKDChartPaletteInit()
+  void testKChartPaletteInit()
   {
     Palette p;
     QCOMPARE( p.isValid(), false );
@@ -36,7 +36,7 @@ private slots:
     delete p2;
   }
 
-  void testKDChartPaletteAddBrush()
+  void testKChartPaletteAddBrush()
   {
     Palette p;
     p.addBrush( Qt::red );
@@ -48,7 +48,7 @@ private slots:
     QCOMPARE( p.size(), 2 );
   }
 
-  void testKDChartPaletteGetBrush()
+  void testKChartPaletteGetBrush()
   {
     Palette p;
     p.addBrush( Qt::red );
@@ -65,7 +65,7 @@ private slots:
     QCOMPARE( result, true );
   }
 
-  void testKDChartPaletteRemoveBrush()
+  void testKChartPaletteRemoveBrush()
   {
     Palette p;
     p.addBrush( Qt::red );
@@ -76,7 +76,7 @@ private slots:
     QCOMPARE( p.isValid(), false );
   }
 
-  void testKDChartPaletteDefaultPalette()
+  void testKChartPaletteDefaultPalette()
   {
     const Palette def = Palette::defaultPalette();
     QBrush brush = def.getBrush( 5 );
@@ -84,7 +84,7 @@ private slots:
     QCOMPARE( result, true );
   }
 
-  void testKDChartPaletteSuduedPalette()
+  void testKChartPaletteSuduedPalette()
   {
     const Palette def = Palette::subduedPalette();
     QBrush brush = def.getBrush( 5 );
@@ -92,7 +92,7 @@ private slots:
     QCOMPARE( result, true );
   }
 
-  void testKDChartPaletteRainbowPalette()
+  void testKChartPaletteRainbowPalette()
   {
     const Palette def = Palette::rainbowPalette();
     QBrush brush = def.getBrush( 5 );
@@ -100,7 +100,7 @@ private slots:
     QCOMPARE( result, true );
   }
 
-  void testKDChartPaletteCopying()
+  void testKChartPaletteCopying()
   {
     const Palette def = Palette::rainbowPalette();
     const Palette other = def;
@@ -112,6 +112,6 @@ private slots:
 
 };
 
-QTEST_MAIN(TestKDChartPalette)
+QTEST_MAIN(TestKChartPalette)
 
 #include "main.moc"

@@ -19,20 +19,20 @@
 
 #include "mainwindow.h"
 
-#include <KDChartChart>
-#include <KDChartDatasetProxyModel>
-#include <KDChartAbstractCoordinatePlane>
-#include <KDChartBarDiagram>
-#include <KDChartTextAttributes>
-#include <KDChartDataValueAttributes>
-#include <KDChartThreeDBarAttributes>
-#include <KDChartBackgroundAttributes>
+#include <KChartChart>
+#include <KChartDatasetProxyModel>
+#include <KChartAbstractCoordinatePlane>
+#include <KChartBarDiagram>
+#include <KChartTextAttributes>
+#include <KChartDataValueAttributes>
+#include <KChartThreeDBarAttributes>
+#include <KChartBackgroundAttributes>
 
 
 #include <QDebug>
 #include <QPainter>
 
-using namespace KDChart;
+using namespace KChart;
 
 MainWindow::MainWindow( QWidget* parent ) :
     QWidget( parent )

@@ -19,15 +19,15 @@
 
 #include "mainwindow.h"
 
-#include <KDChartChart>
-#include <KDChartAbstractCoordinatePlane>
-#include <KDChartLineDiagram>
-#include <KDChartLegend>
+#include <KChartChart>
+#include <KChartAbstractCoordinatePlane>
+#include <KChartLineDiagram>
+#include <KChartLegend>
 
 #include <QDebug>
 #include <QPainter>
 
-using namespace KDChart;
+using namespace KChart;
 
 MainWindow::MainWindow( QWidget* parent ) :
     QWidget( parent )
@@ -50,8 +50,8 @@ MainWindow::MainWindow( QWidget* parent ) :
 
     CartesianAxis *xAxis = new CartesianAxis( m_lines );
     CartesianAxis *yAxis = new CartesianAxis ( m_lines );
-    xAxis->setPosition ( KDChart::CartesianAxis::Bottom );
-    yAxis->setPosition ( KDChart::CartesianAxis::Left );
+    xAxis->setPosition ( KChart::CartesianAxis::Bottom );
+    yAxis->setPosition ( KChart::CartesianAxis::Left );
 
     xAxis->setTitleText ( "Abscissa axis at the bottom" );
     yAxis->setTitleText ( "Ordinate axis at the left side" );
@@ -65,7 +65,7 @@ MainWindow::MainWindow( QWidget* parent ) :
     // Set up the legend
     m_legend = new Legend( m_lines, m_chart );
     m_chart->addLegend( m_legend );
-    m_legend->setPosition( KDChartEnums::PositionEast );
+    m_legend->setPosition( KChartEnums::PositionEast );
     m_legend->setAlignment( Qt::AlignTop );
 }
 

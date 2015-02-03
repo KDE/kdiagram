@@ -13,4 +13,4 @@ qt5_add_resources(BarsAdvanced_SRCS
 
 add_executable(BarsAdvanced  ${BarsAdvanced_SRCS})
 
-target_link_libraries(BarsAdvanced testtools KDEKDChart Qt5::Widgets)
+target_link_libraries(BarsAdvanced testtools KChart Qt5::Widgets)

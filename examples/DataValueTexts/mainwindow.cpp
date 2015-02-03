@@ -19,19 +19,19 @@
 
 #include "mainwindow.h"
 
-#include <KDChartChart>
-#include <KDChartDatasetProxyModel>
-#include <KDChartAbstractCoordinatePlane>
-#include <KDChartBarDiagram>
-#include <KDChartTextAttributes>
-#include <KDChartRelativePosition>
-#include <KDChartPosition>
+#include <KChartChart>
+#include <KChartDatasetProxyModel>
+#include <KChartAbstractCoordinatePlane>
+#include <KChartBarDiagram>
+#include <KChartTextAttributes>
+#include <KChartRelativePosition>
+#include <KChartPosition>
 
 
 #include <QDebug>
 #include <QPainter>
 
-using namespace KDChart;
+using namespace KChart;
 
 MainWindow::MainWindow( QWidget* parent ) :
     QWidget( parent )
@@ -292,7 +292,7 @@ const QModelIndex MainWindow::currentIndex() const
     return m_bars->model()->index( item, dataset, QModelIndex() );
 }
 
-const KDChart::DataValueAttributes MainWindow::attributes() const
+const KChart::DataValueAttributes MainWindow::attributes() const
 {
     if ( scopeOneBarRB->isChecked() ) {
         //qDebug() << "attributes() returns settings for one single bar";
@@ -306,7 +306,7 @@ const KDChart::DataValueAttributes MainWindow::attributes() const
     return m_bars->dataValueAttributes();
 }
 
-void MainWindow::setAttributes( const KDChart::DataValueAttributes& da )
+void MainWindow::setAttributes( const KChart::DataValueAttributes& da )
 {
     if ( scopeOneBarRB->isChecked() )
         m_bars->setDataValueAttributes( currentIndex(), da );

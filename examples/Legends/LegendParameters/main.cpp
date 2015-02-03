@@ -18,15 +18,15 @@
  */
 
 #include <QtGui>
-#include <KDChartChart>
-#include <KDChartBarDiagram>
-#include <KDChartLegend>
-#include <KDChartPosition>
-#include <KDChartBackgroundAttributes>
-#include <KDChartFrameAttributes>
+#include <KChartChart>
+#include <KChartBarDiagram>
+#include <KChartLegend>
+#include <KChartPosition>
+#include <KChartBackgroundAttributes>
+#include <KChartFrameAttributes>
 #include <QApplication>
 
-using namespace KDChart;
+using namespace KChart;
 
 class ChartWidget : public QWidget {
   Q_OBJECT
@@ -77,7 +77,7 @@ public:
     lta.setPen( QPen( Qt::darkGray ) );
     Measure me( lta.fontSize() );
     me.setValue( me.value() * 1.5 );
-    lta.setFontSize( Measure( 9, KDChartEnums::MeasureCalculationModeAbsolute ) );
+    lta.setFontSize( Measure( 9, KChartEnums::MeasureCalculationModeAbsolute ) );
     legend->setTextAttributes(  lta );
 
     // adjust the legend title's font:

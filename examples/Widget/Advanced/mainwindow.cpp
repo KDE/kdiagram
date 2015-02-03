@@ -19,12 +19,12 @@
 
 #include "mainwindow.h"
 
-#include <KDChartWidget>
-#include <KDChartAbstractDiagram>
+#include <KChartWidget>
+#include <KChartAbstractDiagram>
 #include <QDebug>
 #include <QMessageBox>
 
-using namespace KDChart;
+using namespace KChart;
 
 MainWindow::MainWindow( QWidget* parent )
  : QWidget( parent ), datasetCount( 3 )

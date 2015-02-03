@@ -18,14 +18,14 @@
  */
 
 #include <QtGui>
-#include <KDChartChart>
-#include <KDChartPolarDiagram>
-#include <KDChartDataValueAttributes>
-#include <KDChartBackgroundAttributes>
+#include <KChartChart>
+#include <KChartPolarDiagram>
+#include <KChartDataValueAttributes>
+#include <KChartBackgroundAttributes>
 
 #include <QApplication>
 
-using namespace KDChart;
+using namespace KChart;
 
 class ChartWidget : public QWidget {
     Q_OBJECT
@@ -74,8 +74,8 @@ public:
         RelativePosition relativePosition( dva.positivePosition() );
         relativePosition.setReferencePosition( Position::Center );
         relativePosition.setAlignment( Qt::AlignBottom | Qt::AlignHCenter );
-        relativePosition.setHorizontalPadding( KDChart::Measure( 0.0, KDChartEnums::MeasureCalculationModeAbsolute ) );
-        relativePosition.setVerticalPadding(   KDChart::Measure( 0.0, KDChartEnums::MeasureCalculationModeAbsolute ) );
+        relativePosition.setHorizontalPadding( KChart::Measure( 0.0, KChartEnums::MeasureCalculationModeAbsolute ) );
+        relativePosition.setVerticalPadding(   KChart::Measure( 0.0, KChartEnums::MeasureCalculationModeAbsolute ) );
         dva.setPositivePosition( relativePosition );
         diagram->setDataValueAttributes( dva );
 

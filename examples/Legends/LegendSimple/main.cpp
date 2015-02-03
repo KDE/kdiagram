@@ -18,13 +18,13 @@
  */
 
 #include <QApplication>
-#include <KDChartWidget>
-#include <KDChartBarDiagram>
-#include <KDChartPosition>
-#include <KDChartLegend>
+#include <KChartWidget>
+#include <KChartBarDiagram>
+#include <KChartPosition>
+#include <KChartLegend>
 
 
-using namespace KDChart;
+using namespace KChart;
 
 int main( int argc, char** argv ) {
     QApplication app( argc, argv );

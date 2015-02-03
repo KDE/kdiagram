@@ -19,16 +19,16 @@
 
 #include <QtTest/QtTest>
 #include <TableModel.h>
-#include <KDChartGlobal>
-#include <KDChartAttributesModel>
-#include <KDChartBarDiagram>
-#include <KDChartLineDiagram>
-#include <KDChartCartesianCoordinatePlane>
-#include <KDChartDataValueAttributes>
+#include <KChartGlobal>
+#include <KChartAttributesModel>
+#include <KChartBarDiagram>
+#include <KChartLineDiagram>
+#include <KChartCartesianCoordinatePlane>
+#include <KChartDataValueAttributes>
 
-using namespace KDChart;
+using namespace KChart;
 
-class TestKDChartAttributesModel : public QObject {
+class TestKChartAttributesModel : public QObject {
   Q_OBJECT
 private slots:
 
@@ -45,7 +45,7 @@ private slots:
       m_lines->setModel( m_model );
   }
 
-  void testKDChartAttributesModelSetSimpleData()
+  void testKChartAttributesModelSetSimpleData()
   {
       QModelIndex idx = m_model->index( 0, 2, QModelIndex() );
       DataValueAttributes a = m_bars->dataValueAttributes( idx );
@@ -56,7 +56,7 @@ private slots:
       QCOMPARE( a.isVisible(), true );
   }
 
-  void testKDChartAttributesModelTestPrivateModel()
+  void testKChartAttributesModelTestPrivateModel()
   {
       // Private is now default
       //m_lines->usePrivateAttributes( true );
@@ -78,7 +78,7 @@ private slots:
       QCOMPARE( b.isVisible(), false );
   }
 
-  void testKDChartAttributesModelTestSharedModel()
+  void testKChartAttributesModelTestSharedModel()
   {
       // Note: a SHARED atributes-model must be owned by the USER
       //       but it may not be owned by any of the diagrams
@@ -104,7 +104,7 @@ private slots:
       QCOMPARE( attrBar.isVisible(), true );
   }
 
-  void testKDChartAttributesModelTestSharedFromStart()
+  void testKChartAttributesModelTestSharedFromStart()
   {
       delete m_lines;
       delete m_bars;
@@ -131,7 +131,7 @@ private slots:
       QCOMPARE( b.isVisible(), true ); // Should be true by sharing
   }
 
-  void testKDChartAttributesModelTestPrivate()
+  void testKChartAttributesModelTestPrivate()
   {
       m_lines->setAttributesModel( new AttributesModel(m_model,m_lines) );
       m_bars->setAttributesModel( new AttributesModel(m_model,m_bars) );
@@ -159,6 +159,6 @@ private:
 
 };
 
-QTEST_MAIN(TestKDChartAttributesModel)
+QTEST_MAIN(TestKChartAttributesModel)
 
 #include "main.moc"

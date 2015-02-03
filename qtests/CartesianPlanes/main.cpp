@@ -22,14 +22,14 @@
 #include <QPointF>
 #include <QPair>
 #include <QString>
-#include <KDChartChart>
-#include <KDChartCartesianCoordinatePlane>
-#include <KDChartBarDiagram>
-#include <KDChartPlotter>
-#include <KDChartGridAttributes>
+#include <KChartChart>
+#include <KChartCartesianCoordinatePlane>
+#include <KChartBarDiagram>
+#include <KChartPlotter>
+#include <KChartGridAttributes>
 
 
-using namespace KDChart;
+using namespace KChart;
 
 #if QT_VERSION < 0x040200
 namespace QTest{

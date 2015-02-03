@@ -19,11 +19,11 @@
 
 #include <QtGui>
 #include <QApplication>
-#include <KDChartChart>
-#include <KDChartBarDiagram>
-#include <KDChartDataValueAttributes>
+#include <KChartChart>
+#include <KChartBarDiagram>
+#include <KChartDataValueAttributes>
 
-using namespace KDChart;
+using namespace KChart;
 
 class ChartWidget : public QWidget {
   Q_OBJECT
@@ -41,7 +41,7 @@ public:
             }
     }
 
-    BarDiagram* diagram = new KDChart::BarDiagram;
+    BarDiagram* diagram = new KChart::BarDiagram;
     diagram->setModel(&m_model);
 
     BarAttributes ba( diagram->barAttributes() );

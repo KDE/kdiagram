@@ -21,12 +21,12 @@
 
 #include <QLabel>
 
-#include <KDChartGlobal>
-#include <KDChartPosition>
-#include <KDChartMeasure>
-#include <KDChartRelativePosition>
+#include <KChartGlobal>
+#include <KChartPosition>
+#include <KChartMeasure>
+#include <KChartRelativePosition>
 
-using namespace KDChart;
+using namespace KChart;
 
 class TestRelativePosition: public QObject {
     Q_OBJECT
@@ -42,20 +42,20 @@ private slots:
     void testRelativePositionHRelativeVAbsolute()
     {
         const qreal horizPerMille = 100.0;
-        KDChart::Measure mHoriz(
+        KChart::Measure mHoriz(
                 horizPerMille,
-                KDChartEnums::MeasureCalculationModeRelative,
-                KDChartEnums::MeasureOrientationHorizontal );
+                KChartEnums::MeasureCalculationModeRelative,
+                KChartEnums::MeasureOrientationHorizontal );
         mHoriz.setReferenceArea( m_window );
 
         const qreal vertAbsolute = -50.0;
-        KDChart::Measure mVert(
+        KChart::Measure mVert(
                 vertAbsolute,
-                KDChartEnums::MeasureCalculationModeAbsolute );
+                KChartEnums::MeasureCalculationModeAbsolute );
 
-        KDChart::RelativePosition relPos;
+        KChart::RelativePosition relPos;
         relPos.setReferenceArea( m_window );
-        relPos.setReferencePosition( KDChart::Position::NorthWest );
+        relPos.setReferencePosition( KChart::Position::NorthWest );
         relPos.setHorizontalPadding( mHoriz );
         relPos.setVerticalPadding(   mVert );
 
@@ -69,20 +69,20 @@ private slots:
     void testRelativePositionHAbsoluteVRelative()
     {
         const qreal horizAbsolute = 100.0;
-        KDChart::Measure mHoriz(
+        KChart::Measure mHoriz(
                 horizAbsolute,
-                KDChartEnums::MeasureCalculationModeAbsolute );
+                KChartEnums::MeasureCalculationModeAbsolute );
 
         const qreal vertRelative = -50.0;
-        KDChart::Measure mVert(
+        KChart::Measure mVert(
                 vertRelative,
-                KDChartEnums::MeasureCalculationModeRelative,
-                KDChartEnums::MeasureOrientationVertical );
+                KChartEnums::MeasureCalculationModeRelative,
+                KChartEnums::MeasureOrientationVertical );
         mVert.setReferenceArea( m_window );
 
-        KDChart::RelativePosition relPos;
+        KChart::RelativePosition relPos;
         relPos.setReferenceArea( m_window );
-        relPos.setReferencePosition( KDChart::Position::Center );
+        relPos.setReferencePosition( KChart::Position::Center );
         relPos.setHorizontalPadding( mHoriz );
         relPos.setVerticalPadding(   mVert );
 

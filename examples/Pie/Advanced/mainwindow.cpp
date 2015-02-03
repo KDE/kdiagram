@@ -19,15 +19,15 @@
 
 #include "mainwindow.h"
 
-#include <KDChartChart>
-#include <KDChartPieDiagram>
-#include <KDChartPieAttributes>
-#include <KDChartThreeDPieAttributes>
+#include <KChartChart>
+#include <KChartPieDiagram>
+#include <KChartPieAttributes>
+#include <KChartThreeDPieAttributes>
 
 #include <QDebug>
 #include <QTimer>
 
-using namespace KDChart;
+using namespace KChart;
 
 MainWindow::MainWindow( QWidget* parent ) :
     QWidget( parent ),

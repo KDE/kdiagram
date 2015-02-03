@@ -18,11 +18,11 @@
  */
 
 #include <QtGui>
-#include <KDChartChart>
-#include <KDChartLineDiagram>
+#include <KChartChart>
+#include <KChartLineDiagram>
 #include <QApplication>
 
-using namespace KDChart;
+using namespace KChart;
 
 class ChartWidget : public QWidget {
   Q_OBJECT

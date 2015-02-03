@@ -20,13 +20,13 @@
 #ifndef TIMEAXIS_H
 #define TIMEAXIS_H
 
-#include <KDChartCartesianAxis>
+#include <KChartCartesianAxis>
 
-class TimeAxis : public KDChart::CartesianAxis
+class TimeAxis : public KChart::CartesianAxis
 {
     Q_OBJECT
 public:
-    explicit TimeAxis( KDChart::AbstractCartesianDiagram* parent );
+    explicit TimeAxis( KChart::AbstractCartesianDiagram* parent );
     const QString customizedLabel( const QString& label ) const;
 };
 

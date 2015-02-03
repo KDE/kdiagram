@@ -1,13 +1,13 @@
-set(TestKDChartAttributesModel_SRCS
+set(TestKChartAttributesModel_SRCS
     main.cpp
 )
 
-qt5_add_resources(TestKDChartAttributesModel_SRCS
+qt5_add_resources(TestKChartAttributesModel_SRCS
     Data.qrc
 )
 
 ecm_add_test(
-    ${TestKDChartAttributesModel_SRCS}
-    TEST_NAME TestKDChartAttributesModel
-    LINK_LIBRARIES testtools KDEKDChart Qt5::Widgets Qt5::Test
+    ${TestKChartAttributesModel_SRCS}
+    TEST_NAME TestKChartAttributesModel
+    LINK_LIBRARIES testtools KChart Qt5::Widgets Qt5::Test
 )

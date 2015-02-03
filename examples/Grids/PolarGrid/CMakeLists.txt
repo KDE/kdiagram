@@ -9,4 +9,4 @@ qt5_wrap_ui(PolarGrid_SRCS
 
 add_executable(PolarGrid  ${PolarGrid_SRCS})
 
-target_link_libraries(PolarGrid KDEKDChart Qt5::Widgets)
+target_link_libraries(PolarGrid KChart Qt5::Widgets)

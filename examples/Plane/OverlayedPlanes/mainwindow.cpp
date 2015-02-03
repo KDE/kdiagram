@@ -19,15 +19,15 @@
 
 #include "mainwindow.h"
 
-#include <KDChartChart>
-#include <KDChartAbstractCoordinatePlane>
-#include <KDChartLineDiagram>
-#include <KDChartGridAttributes>
+#include <KChartChart>
+#include <KChartAbstractCoordinatePlane>
+#include <KChartLineDiagram>
+#include <KChartGridAttributes>
 
 #include <QDebug>
 #include <QPainter>
 
-using namespace KDChart;
+using namespace KChart;
 
 MainWindow::MainWindow( QWidget* parent ) :
     QWidget( parent )
@@ -58,9 +58,9 @@ MainWindow::MainWindow( QWidget* parent ) :
     CartesianAxis *yAxis = new CartesianAxis( m_lines );
     CartesianAxis *yAxis2 = new CartesianAxis( m_lines2 );
 
-    xAxis->setPosition( KDChart::CartesianAxis::Top );
-    yAxis->setPosition( KDChart::CartesianAxis::Left );
-    yAxis2->setPosition( KDChart::CartesianAxis::Left );
+    xAxis->setPosition( KChart::CartesianAxis::Top );
+    yAxis->setPosition( KChart::CartesianAxis::Left );
+    yAxis2->setPosition( KChart::CartesianAxis::Left );
 
     m_lines->addAxis( yAxis );
 

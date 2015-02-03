@@ -19,9 +19,9 @@
 
 #include "MainWidget.h"
 
-#include "KDChartAbstractDiagram_p.h"
-#include "KDChartChart.h"
-#include "KDChartPlotter.h"
+#include "KChartAbstractDiagram_p.h"
+#include "KChartChart.h"
+#include "KChartPlotter.h"
 
 #include <QHBoxLayout>
 
@@ -36,26 +36,26 @@ MainWidget::MainWidget()
     m_controls.setupUi( m_controlsContainer );
     topLayout->addWidget( m_controlsContainer );
 
-    KDChart::Chart* chart = new KDChart::Chart;
+    KChart::Chart* chart = new KChart::Chart;
     topLayout->addWidget( chart );
 
-    m_plotter = new KDChart::Plotter;
+    m_plotter = new KChart::Plotter;
     m_plotter->setModel( &m_model );
-    KDChart::AbstractDiagram::Private::get( m_plotter )->doDumpPaintTime = true;
+    KChart::AbstractDiagram::Private::get( m_plotter )->doDumpPaintTime = true;
     chart->coordinatePlane()->replaceDiagram( m_plotter );
 
-    KDChart::CartesianCoordinatePlane* cPlane
-        = qobject_cast< KDChart::CartesianCoordinatePlane* >( chart->coordinatePlane() );
+    KChart::CartesianCoordinatePlane* cPlane
+        = qobject_cast< KChart::CartesianCoordinatePlane* >( chart->coordinatePlane() );
     Q_ASSERT( cPlane );
     cPlane->setVerticalRange( QPair< qreal, qreal >( -2, 2 ) );
 
-    KDChart::CartesianAxis* xAxis = new KDChart::CartesianAxis( m_plotter );
-    xAxis->setPosition( KDChart::CartesianAxis::Bottom );
+    KChart::CartesianAxis* xAxis = new KChart::CartesianAxis( m_plotter );
+    xAxis->setPosition( KChart::CartesianAxis::Bottom );
     xAxis->setTitleText("X");
     m_plotter->addAxis( xAxis );
 
-    KDChart::CartesianAxis* yAxis = new KDChart::CartesianAxis( m_plotter );
-    yAxis->setPosition( KDChart::CartesianAxis::Left );
+    KChart::CartesianAxis* yAxis = new KChart::CartesianAxis( m_plotter );
+    yAxis->setPosition( KChart::CartesianAxis::Left );
     yAxis->setTitleText("Y");
     m_plotter->addAxis( yAxis );
 

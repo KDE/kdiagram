@@ -1,12 +1,12 @@
 cleanup:
 --------
 
-KDChartArea -> KDChart::Area
+KChartArea -> KChart::Area
 
-KDChartAxis?
+KChartAxis?
 
-KDChartCustomArea?
+KChartCustomArea?
 
-KDTextDocument ?
+KTextDocument ?
 
-KDChartMeasure ?
+KChartMeasure ?

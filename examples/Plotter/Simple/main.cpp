@@ -18,16 +18,16 @@
  */
 
 #include <QApplication>
-#include <KDChartChart>
-#include <KDChartPlotter>
-#include <KDChartLineDiagram>
-#include <KDChartCartesianAxis>
-#include <KDChartCartesianCoordinatePlane>
-#include <KDChartLegend>
+#include <KChartChart>
+#include <KChartPlotter>
+#include <KChartLineDiagram>
+#include <KChartCartesianAxis>
+#include <KChartCartesianCoordinatePlane>
+#include <KChartLegend>
 #include <QStandardItemModel>
-#include <KDChartDataValueAttributes>
-#include <KDChartTextAttributes>
-#include <KDChartMarkerAttributes>
+#include <KChartDataValueAttributes>
+#include <KChartTextAttributes>
+#include <KChartMarkerAttributes>
 
 #include <cmath>
 
@@ -75,9 +75,9 @@ int main( int argc, char** argv )
     model.setHeaderData( 2, Qt::Horizontal, QString::fromLatin1( "x" ) );
     model.setHeaderData( 4, Qt::Horizontal, QString::fromLatin1( "x^3" ) );
 
-    KDChart::Chart* chart = new KDChart::Chart();
+    KChart::Chart* chart = new KChart::Chart();
 
-    KDChart::AbstractCartesianDiagram* diagram = new KDChart::Plotter;
+    KChart::AbstractCartesianDiagram* diagram = new KChart::Plotter;
     diagram->setModel( &model );
     chart->coordinatePlane()->replaceDiagram( diagram );
 
@@ -86,11 +86,11 @@ int main( int argc, char** argv )
     const int colCount = model.columnCount( diagram->rootIndex() );
     for ( int iColumn = 0; iColumn<colCount; ++iColumn ) {
         const QPen markerPen( diagram->brush( iColumn ).color() );
-        KDChart::DataValueAttributes dva( diagram->dataValueAttributes( iColumn ) );
-        KDChart::TextAttributes ta( dva.textAttributes() );
-        KDChart::MarkerAttributes ma( dva.markerAttributes() );
+        KChart::DataValueAttributes dva( diagram->dataValueAttributes( iColumn ) );
+        KChart::TextAttributes ta( dva.textAttributes() );
+        KChart::MarkerAttributes ma( dva.markerAttributes() );
         ma.setPen( markerPen );
-        ma.setMarkerStyle( KDChart::MarkerAttributes::MarkerCircle );
+        ma.setMarkerStyle( KChart::MarkerAttributes::MarkerCircle );
         ma.setMarkerSize( QSize( 3,3 ) );
 
         dva.setVisible( true );
@@ -102,15 +102,15 @@ int main( int argc, char** argv )
     }
 #endif
 
-    KDChart::CartesianAxis* xAxis = new KDChart::CartesianAxis( diagram );
-    KDChart::CartesianAxis* yAxis = new KDChart::CartesianAxis( diagram );
-    xAxis->setPosition( KDChart::CartesianAxis::Bottom );
-    yAxis->setPosition( KDChart::CartesianAxis::Left );
+    KChart::CartesianAxis* xAxis = new KChart::CartesianAxis( diagram );
+    KChart::CartesianAxis* yAxis = new KChart::CartesianAxis( diagram );
+    xAxis->setPosition( KChart::CartesianAxis::Bottom );
+    yAxis->setPosition( KChart::CartesianAxis::Left );
     diagram->addAxis( xAxis );
     diagram->addAxis( yAxis );
 
-    KDChart::Legend* legend = new KDChart::Legend( diagram, chart );
-    legend->setPosition( KDChart::Position::East );
+    KChart::Legend* legend = new KChart::Legend( diagram, chart );
+    legend->setPosition( KChart::Position::East );
     legend->setAlignment( Qt::AlignCenter );
     legend->setTitleText( "Legend" );
     chart->addLegend( legend );

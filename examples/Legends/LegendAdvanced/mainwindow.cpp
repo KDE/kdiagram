@@ -19,24 +19,24 @@
 
 #include "mainwindow.h"
 
-#include <KDChartChart>
-#include <KDChartLegend>
-#include <KDChartPosition>
-#include <KDChartLineDiagram>
-#include <KDChartTextAttributes>
+#include <KChartChart>
+#include <KChartLegend>
+#include <KChartPosition>
+#include <KChartLineDiagram>
+#include <KChartTextAttributes>
 #include <QComboBox>
 #include <QLineEdit>
 
 class LegendItem : public QTreeWidgetItem
 {
 public:
-    LegendItem( KDChart::Legend* legend, QTreeWidget* parent ) :
+    LegendItem( KChart::Legend* legend, QTreeWidget* parent ) :
         QTreeWidgetItem( parent ), m_legend( legend ) {}
 
-    KDChart::Legend* legend() const { return m_legend; }
+    KChart::Legend* legend() const { return m_legend; }
 
 private:
-    KDChart::Legend* m_legend;
+    KChart::Legend* m_legend;
 };
 
 
@@ -46,13 +46,13 @@ MainWindow::MainWindow( QWidget* parent ) :
     setupUi( this );
 
     QHBoxLayout* chartLayout = new QHBoxLayout( chartFrame );
-    m_chart = new KDChart::Chart();
+    m_chart = new KChart::Chart();
     chartLayout->addWidget( m_chart );
 
     m_model.loadFromCSV( ":/data" );
 
     // Set up the diagram
-    m_lines = new KDChart::LineDiagram();
+    m_lines = new KChart::LineDiagram();
     m_lines->setModel( &m_model );
     m_chart->coordinatePlane()->replaceDiagram( m_lines );
 
@@ -64,8 +64,8 @@ MainWindow::MainWindow( QWidget* parent ) :
     m_lines->setPen( 2, pen );
 
     // Add at least one legend for starters
-    KDChart::Legend* legend = new KDChart::Legend( m_lines, m_chart );
-    legend->setPosition( KDChart::Position::North );
+    KChart::Legend* legend = new KChart::Legend( m_lines, m_chart );
+    legend->setPosition( KChart::Position::North );
     legend->setAlignment( Qt::AlignCenter );
     legend->setShowLines( false );
     legend->setTitleText( tr( "Legend" ) );
@@ -101,8 +101,8 @@ void MainWindow::initAddLegendDialog( DerivedAddLegendDialog& conf,
     conf.titleTextED->setFocus();
 
     // Note: Legend position can be Floating but it can not be Center
-    const QStringList labels = KDChart::Position::printableNames( KDChart::Position::IncludeFloating );
-    const QList<QByteArray> names = KDChart::Position::names( KDChart::Position::IncludeFloating );
+    const QStringList labels = KChart::Position::printableNames( KChart::Position::IncludeFloating );
+    const QList<QByteArray> names = KChart::Position::names( KChart::Position::IncludeFloating );
 
 
     for ( int i = 0, end = qMin( labels.size(), names.size() ) ; i != end ; ++i )
@@ -123,10 +123,10 @@ void MainWindow::on_addLegendPB_clicked()
     DerivedAddLegendDialog conf;
     initAddLegendDialog( conf, Qt::AlignCenter );
     if ( conf.exec() == QDialog::Accepted ) {
-        KDChart::Legend* legend = new KDChart::Legend( m_lines, m_chart );
+        KChart::Legend* legend = new KChart::Legend( m_lines, m_chart );
         m_chart->addLegend( legend );
         legend->setPosition(
-            KDChart::Position::fromName( conf.positionCO->itemData( conf.positionCO->currentIndex() ).toByteArray() ) );
+            KChart::Position::fromName( conf.positionCO->itemData( conf.positionCO->currentIndex() ).toByteArray() ) );
         // get the alignment
         Qt::Alignment alignment = Qt::AlignCenter;
         const QString selectedAlignment( conf.alignmentCO->currentText() );
@@ -146,16 +146,16 @@ void MainWindow::on_addLegendPB_clicked()
         switch ( conf.styleCO->currentIndex() )
         {
         case 0:
-            legend->setLegendStyle( KDChart::Legend::MarkersOnly );
+            legend->setLegendStyle( KChart::Legend::MarkersOnly );
             break;
         case 1:
-            legend->setLegendStyle( KDChart::Legend::LinesOnly );
+            legend->setLegendStyle( KChart::Legend::LinesOnly );
             break;
         case 2:
-            legend->setLegendStyle(KDChart::Legend::MarkersAndLines );
+            legend->setLegendStyle(KChart::Legend::MarkersAndLines );
             break;
         default:
-            legend->setLegendStyle( KDChart::Legend::MarkersOnly );
+            legend->setLegendStyle( KChart::Legend::MarkersOnly );
             break;
         }
 
@@ -175,7 +175,7 @@ void MainWindow::on_editLegendPB_clicked()
 {
     if ( legendsTV->selectedItems().size() == 0 ) return;
     LegendItem* item = static_cast<LegendItem*>( legendsTV->selectedItems().first() );
-    KDChart::Legend* legend = item->legend();
+    KChart::Legend* legend = item->legend();
     DerivedAddLegendDialog conf;
     initAddLegendDialog( conf, legend->alignment() );
     conf.showLinesCB->setChecked( legend->showLines() );
@@ -183,7 +183,7 @@ void MainWindow::on_editLegendPB_clicked()
     legend->setLegendSymbolAlignment(Qt::AlignBottom);
 
     // In this example we are using legend position names, that match
-    // exactly the names in KDChart::Legend::LegendPosition,
+    // exactly the names in KChart::Legend::LegendPosition,
     // so we can use a shortcut here, to set the respective name in
     // the dialog's list, and we need no error checking for findText():
     conf.positionCO->setCurrentIndex(
@@ -192,9 +192,9 @@ void MainWindow::on_editLegendPB_clicked()
     conf.styleCO->setCurrentIndex( legend->legendStyle() );
 
     if ( conf.exec() == QDialog::Accepted ) {
-        //legend->setPosition( (KDChart::Legend::LegendPosition)conf.positionCO->currentIndex() );
+        //legend->setPosition( (KChart::Legend::LegendPosition)conf.positionCO->currentIndex() );
         legend->setPosition(
-            KDChart::Position::fromName( conf.positionCO->itemData( conf.positionCO->currentIndex() ).toByteArray() ) );
+            KChart::Position::fromName( conf.positionCO->itemData( conf.positionCO->currentIndex() ).toByteArray() ) );
         // get the alignment
         Qt::Alignment alignment = Qt::AlignCenter;
         const QString selectedAlignment( conf.alignmentCO->currentText() );
@@ -214,16 +214,16 @@ void MainWindow::on_editLegendPB_clicked()
         switch ( conf.styleCO->currentIndex() )
         {
         case 0:
-            legend->setLegendStyle( KDChart::Legend::MarkersOnly );
+            legend->setLegendStyle( KChart::Legend::MarkersOnly );
             break;
         case 1:
-            legend->setLegendStyle( KDChart::Legend::LinesOnly );
+            legend->setLegendStyle( KChart::Legend::LinesOnly );
             break;
         case 2:
-            legend->setLegendStyle(KDChart::Legend::MarkersAndLines );
+            legend->setLegendStyle(KChart::Legend::MarkersAndLines );
             break;
         default:
-            legend->setLegendStyle( KDChart::Legend::MarkersOnly );
+            legend->setLegendStyle( KChart::Legend::MarkersOnly );
             break;
         }
 
@@ -246,7 +246,7 @@ void MainWindow::on_removeLegendPB_clicked()
     for ( QList<QTreeWidgetItem*>::iterator it = items.begin();
          it != items.end(); ++it )
     {
-        KDChart::Legend* legend = static_cast<LegendItem*>( (*it) )->legend();
+        KChart::Legend* legend = static_cast<LegendItem*>( (*it) )->legend();
 #if 0
         // Note: Despite it being owned by the Chart, you *can* just delete
         //       the legend: KD Chart will notice that and adjust its layout ...

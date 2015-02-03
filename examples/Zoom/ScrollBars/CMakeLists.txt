@@ -13,4 +13,4 @@ qt5_add_resources(ZoomScrollBars_SRCS
 
 add_executable(ZoomScrollBars  ${ZoomScrollBars_SRCS})
 
-target_link_libraries(ZoomScrollBars testtools KDEKDChart Qt5::Widgets)
+target_link_libraries(ZoomScrollBars testtools KChart Qt5::Widgets)

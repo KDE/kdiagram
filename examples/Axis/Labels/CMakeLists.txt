@@ -14,4 +14,4 @@ qt5_add_resources(AxisLabels_SRCS
 
 add_executable(AxisLabels  ${AxisLabels_SRCS})
 
-target_link_libraries(AxisLabels testtools KDEKDChart Qt5::Widgets)
+target_link_libraries(AxisLabels testtools KChart Qt5::Widgets)

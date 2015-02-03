@@ -19,7 +19,7 @@
 
 #include "framewidget.h"
 
-#include <KDChartChart>
+#include <KChartChart>
 
 #include <QDebug>
 #include <QPainter>

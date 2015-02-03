@@ -18,14 +18,14 @@
  */
 
 #include <QtTest/QtTest>
-#include <KDChartChart>
-#include <KDChartGlobal>
-#include <KDChartPolarDiagram>
-#include <KDChartPolarCoordinatePlane>
+#include <KChartChart>
+#include <KChartGlobal>
+#include <KChartPolarDiagram>
+#include <KChartPolarCoordinatePlane>
 
 #include <TableModel.h>
 
-using namespace KDChart;
+using namespace KChart;
 
 class TestPolarDiagrams: public QObject {
     Q_OBJECT

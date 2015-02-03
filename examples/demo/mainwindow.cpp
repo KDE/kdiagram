@@ -19,24 +19,24 @@
 
 #include "mainwindow.h"
 
-#include <KDChartChart>
-#include <KDChartCartesianCoordinatePlane>
-#include <KDChartAbstractCoordinatePlane>
-#include <KDChartCartesianAxis>
-#include <KDChartCartesianGrid>
-#include <KDChartAbstractDiagram>
-#include <KDChartBarDiagram>
-#include <KDChartLineDiagram>
-#include <KDChartPlotter>
-#include <KDChartPieDiagram>
-#include <KDChartPolarCoordinatePlane>
-#include <KDChartLegend>
-#include <KDChartDataValueAttributes>
-#include <KDChartMarkerAttributes>
-#include <KDChartTextAttributes>
-#include <KDChartGridAttributes>
-#include <KDChartRulerAttributes>
-#include <KDChartPieAttributes>
+#include <KChartChart>
+#include <KChartCartesianCoordinatePlane>
+#include <KChartAbstractCoordinatePlane>
+#include <KChartCartesianAxis>
+#include <KChartCartesianGrid>
+#include <KChartAbstractDiagram>
+#include <KChartBarDiagram>
+#include <KChartLineDiagram>
+#include <KChartPlotter>
+#include <KChartPieDiagram>
+#include <KChartPolarCoordinatePlane>
+#include <KChartLegend>
+#include <KChartDataValueAttributes>
+#include <KChartMarkerAttributes>
+#include <KChartTextAttributes>
+#include <KChartGridAttributes>
+#include <KChartRulerAttributes>
+#include <KChartPieAttributes>
 
 #include <TableModel.h>
 
@@ -48,7 +48,7 @@
 #include "diagramtypedialog.h"
 #include "axissettings.h"
 
-using namespace KDChart;
+using namespace KChart;
 
 class MainWindow::Private : public QObject
 {

@@ -26,16 +26,16 @@
 #include <QSqlError>
 #include <QSqlRecord>
 #include <QSqlField>
-#include <KDChartChart>
-#include <KDChartBarDiagram>
-#include <KDChartHeaderFooter>
-#include <KDChartPosition>
-#include <KDChartBackgroundAttributes>
-#include <KDChartFrameAttributes>
+#include <KChartChart>
+#include <KChartBarDiagram>
+#include <KChartHeaderFooter>
+#include <KChartPosition>
+#include <KChartBackgroundAttributes>
+#include <KChartFrameAttributes>
 
 #include <QPixmap>
 
-using namespace KDChart;
+using namespace KChart;
 
 /**
  * Proxymodel that transposes columns and rows.

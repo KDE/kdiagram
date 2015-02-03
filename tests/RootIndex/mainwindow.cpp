@@ -19,15 +19,15 @@
 
 #include "mainwindow.h"
 
-#include <KDChartChart>
-#include <KDChartAbstractCoordinatePlane>
-#include <KDChartLineDiagram>
-#include <KDChartBarDiagram>
+#include <KChartChart>
+#include <KChartAbstractCoordinatePlane>
+#include <KChartLineDiagram>
+#include <KChartBarDiagram>
 
 #include <QDebug>
 #include <QPainter>
 
-using namespace KDChart;
+using namespace KChart;
 
 #define USE_ROOTINDEX 1
 
@@ -109,12 +109,12 @@ MainWindow::MainWindow( QWidget* parent ) :
     CartesianAxis *xAxis = new CartesianAxis( m_lines );
     CartesianAxis *yAxis = new CartesianAxis ( m_lines );
     CartesianAxis *yAxis3 = new CartesianAxis ( m_lines );
-    xAxis->setPosition ( KDChart::CartesianAxis::Bottom );
-    yAxis->setPosition ( KDChart::CartesianAxis::Left );
-    yAxis3->setPosition ( KDChart::CartesianAxis::Left );
+    xAxis->setPosition ( KChart::CartesianAxis::Bottom );
+    yAxis->setPosition ( KChart::CartesianAxis::Left );
+    yAxis3->setPosition ( KChart::CartesianAxis::Left );
 
     CartesianAxis *yAxis2 = new CartesianAxis ( m_bars );
-    yAxis2->setPosition ( KDChart::CartesianAxis::Right );
+    yAxis2->setPosition ( KChart::CartesianAxis::Right );
 
     // explicitly add it to the second diagram, we want to share it
     m_bars->addAxis( xAxis );

@@ -20,26 +20,26 @@
 #include "datavaluesettings.h"
 #include "ui_datavaluesettings.h"
 
-#include <KDChartChart>
-#include <KDChartAbstractCoordinatePlane>
-#include <KDChartBarDiagram>
-#include <KDChartTextAttributes>
-#include <KDChartRelativePosition>
-#include <KDChartPosition>
-#include <KDChartDataValueAttributes>
-#include <KDChartAbstractDiagram>
+#include <KChartChart>
+#include <KChartAbstractCoordinatePlane>
+#include <KChartBarDiagram>
+#include <KChartTextAttributes>
+#include <KChartRelativePosition>
+#include <KChartPosition>
+#include <KChartDataValueAttributes>
+#include <KChartAbstractDiagram>
 
 
 #include <QDebug>
 #include <QPainter>
 
-using namespace KDChart;
+using namespace KChart;
 
 class DataValueSettings::Private : public QObject
 {
     Q_OBJECT
 public:
-    Private( KDChart::Chart *chart, DataValueSettings *q );
+    Private( KChart::Chart *chart, DataValueSettings *q );
     DataValueSettings *qq;
     void init();
 public Q_SLOTS:
@@ -71,19 +71,19 @@ public Q_SLOTS:
     void on_suffixLE_textEdited( const QString & text );
 public:
     const QModelIndex currentIndex() const;
-    const KDChart::DataValueAttributes attributes() const;
-    const char* positionToScreenName( const KDChart::Position& pos ) const;
+    const KChart::DataValueAttributes attributes() const;
+    const char* positionToScreenName( const KChart::Position& pos ) const;
     const Qt::Alignment alignmentFromScreeName( const QString& name ) const;
     const QString alignmentToScreenName( const Qt::Alignment& align ) const;
     void populateWidgets();
-    void setAttributes( const KDChart::DataValueAttributes& da );
+    void setAttributes( const KChart::DataValueAttributes& da );
     void connectWidgets();
 
-    KDChart::Chart* m_chart;
+    KChart::Chart* m_chart;
     Ui::DataValueSettings *ui;
 };
 
-DataValueSettings::Private::Private( KDChart::Chart *chart, DataValueSettings *q )
+DataValueSettings::Private::Private( KChart::Chart *chart, DataValueSettings *q )
     : qq ( q )
     , m_chart( chart )
     , ui( new Ui::DataValueSettings )
@@ -127,7 +127,7 @@ void DataValueSettings::Private::connectWidgets()
     connect( ui->suffixLE, SIGNAL( textEdited( QString ) ), this, SLOT( on_suffixLE_textEdited( QString ) ) );
 }
 
-DataValueSettings::DataValueSettings( KDChart::Chart *chart, QWidget* parent )
+DataValueSettings::DataValueSettings( KChart::Chart *chart, QWidget* parent )
     : QWidget( parent )
     , d( new Private( chart, this ) )
 {
@@ -384,7 +384,7 @@ const QModelIndex DataValueSettings::Private::currentIndex() const
     return diag->model()->index( item, dataset, QModelIndex() );
 }
 
-const KDChart::DataValueAttributes DataValueSettings::Private::attributes() const
+const KChart::DataValueAttributes DataValueSettings::Private::attributes() const
 {
     Q_ASSERT( m_chart );
     Q_ASSERT( m_chart->coordinatePlane() );
@@ -400,7 +400,7 @@ const KDChart::DataValueAttributes DataValueSettings::Private::attributes() cons
     return attr;
 }
 
-void DataValueSettings::Private::setAttributes( const KDChart::DataValueAttributes& da )
+void DataValueSettings::Private::setAttributes( const KChart::DataValueAttributes& da )
 {
     Q_ASSERT( m_chart );
     Q_ASSERT( m_chart->coordinatePlane() );

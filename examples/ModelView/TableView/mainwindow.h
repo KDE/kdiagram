@@ -24,7 +24,7 @@
 #include <QItemSelection>
 #include <TableModel.h>
 
-namespace KDChart {
+namespace KChart {
     class Chart;
     class BarDiagram;
     class DatasetProxyModel;
@@ -58,11 +58,11 @@ private:
     void setupModel();
     void setupViews();
 
-    KDChart::Chart* m_chart;
-    KDChart::DatasetProxyModel* m_datasetProxy;
+    KChart::Chart* m_chart;
+    KChart::DatasetProxyModel* m_datasetProxy;
 
     QStandardItemModel  *m_model;
-    KDChart::BarDiagram *m_diagramView;
+    KChart::BarDiagram *m_diagramView;
     QTableView          *m_tableView;
     QItemSelectionModel *m_selectionModel;
 };

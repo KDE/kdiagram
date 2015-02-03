@@ -20,18 +20,18 @@
 #ifndef ADJUSTED_CARTESIAN_AXIS_H
 #define ADJUSTED_CARTESIAN_AXIS_H
 
-#include <KDChartCartesianAxis>
-#include <KDChartGlobal>
+#include <KChartCartesianAxis>
+#include <KChartGlobal>
 
 
-class AdjustedCartesianAxis: public KDChart::CartesianAxis
+class AdjustedCartesianAxis: public KChart::CartesianAxis
 {
     Q_OBJECT
 
     Q_DISABLE_COPY( AdjustedCartesianAxis )
 
 public:
-    explicit AdjustedCartesianAxis( KDChart::AbstractCartesianDiagram* diagram = 0 );
+    explicit AdjustedCartesianAxis( KChart::AbstractCartesianDiagram* diagram = 0 );
 
     virtual const QString customizedLabel( const QString& label ) const;
 

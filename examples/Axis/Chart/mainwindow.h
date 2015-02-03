@@ -23,7 +23,7 @@
 #include "ui_mainwindow.h"
 #include <TableModel.h>
 
-namespace KDChart
+namespace KChart
 {
     class Chart;
     class BarDiagram;
@@ -38,9 +38,9 @@ public:
 
 
 private:
-    KDChart::Chart* m_chart;
+    KChart::Chart* m_chart;
     TableModel m_model;   
-    KDChart::BarDiagram* m_lines;
+    KChart::BarDiagram* m_lines;
 };
 
 

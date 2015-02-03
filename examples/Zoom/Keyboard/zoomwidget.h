@@ -20,9 +20,9 @@
 #ifndef ZOOMWIDGET_H
 #define ZOOMWIDGET_H
 
-#include <KDChartWidget>
+#include <KChartWidget>
 
-class ZoomWidget : public KDChart::Widget
+class ZoomWidget : public KChart::Widget
 {
     Q_OBJECT
 

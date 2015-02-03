@@ -19,17 +19,17 @@
 
 #include "mainwindow.h"
 
-#include <KDChartChart>
-#include <KDChartAbstractCoordinatePlane>
-#include <KDChartCartesianAxis>
-#include <KDChartBarDiagram>
+#include <KChartChart>
+#include <KChartAbstractCoordinatePlane>
+#include <KChartCartesianAxis>
+#include <KChartBarDiagram>
 
 
 #include <QDebug>
 #include <QPen>
 #include <QHBoxLayout>
 
-using namespace KDChart;
+using namespace KChart;
 
 MainWindow::MainWindow( QWidget* parent ) :
     QWidget( parent )

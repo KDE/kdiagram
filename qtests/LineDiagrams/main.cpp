@@ -18,15 +18,15 @@
  */
 
 #include <QtTest/QtTest>
-#include <KDChartChart>
-#include <KDChartGlobal>
-#include <KDChartLineDiagram>
-#include <KDChartThreeDLineAttributes>
-#include <KDChartCartesianCoordinatePlane>
+#include <KChartChart>
+#include <KChartGlobal>
+#include <KChartLineDiagram>
+#include <KChartThreeDLineAttributes>
+#include <KChartCartesianCoordinatePlane>
 
 #include <TableModel.h>
 
-using namespace KDChart;
+using namespace KChart;
 
 class TestLineDiagrams: public QObject {
     Q_OBJECT

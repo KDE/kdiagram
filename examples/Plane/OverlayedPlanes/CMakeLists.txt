@@ -13,4 +13,4 @@ qt5_add_resources(OverlayedPlanes_SRCS
 
 add_executable(OverlayedPlanes  ${OverlayedPlanes_SRCS})
 
-target_link_libraries(OverlayedPlanes testtools KDEKDChart Qt5::Widgets)
+target_link_libraries(OverlayedPlanes testtools KChart Qt5::Widgets)

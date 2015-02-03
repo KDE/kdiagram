@@ -18,16 +18,16 @@
  */
 
 #include <QtGui>
-#include <KDChartChart>
-#include <KDChartPieDiagram>
-#include <KDChartDataValueAttributes>
-#include <KDChartBackgroundAttributes>
-#include <KDChartPieAttributes>
-#include <KDChartPosition>
+#include <KChartChart>
+#include <KChartPieDiagram>
+#include <KChartDataValueAttributes>
+#include <KChartBackgroundAttributes>
+#include <KChartPieAttributes>
+#include <KChartPosition>
 
 #include <QApplication>
 
-using namespace KDChart;
+using namespace KChart;
 
 class ChartWidget : public QWidget {
     Q_OBJECT
@@ -44,7 +44,7 @@ public:
                 m_model.setData(index, QVariant(row+1 * column+1) );
 
                 // this shows the index as static comments:
-                // m_model.setData(index, QString("row: %1,  column: %2").arg(row).arg(column), KDChart::CommentRole);
+                // m_model.setData(index, QString("row: %1,  column: %2").arg(row).arg(column), KChart::CommentRole);
 
                 // this shows the index as volatile tooltips:
                 m_model.setData(index, QString("row: %1,  column: %2").arg(row).arg(column), Qt::ToolTipRole);
@@ -98,10 +98,10 @@ public:
             dva.setBackgroundAttributes( back );
 
             RelativePosition posPos( dva.positivePosition() );
-            posPos.setReferencePosition( KDChart::Position::North );
+            posPos.setReferencePosition( KChart::Position::North );
             posPos.setAlignment( Qt::AlignCenter );
-            posPos.setHorizontalPadding( KDChart::Measure(0.0) );
-            posPos.setVerticalPadding( KDChart::Measure(-1000.0) );
+            posPos.setHorizontalPadding( KChart::Measure(0.0) );
+            posPos.setVerticalPadding( KChart::Measure(-1000.0) );
             dva.setPositivePosition( posPos );
             dva.setVisible( true );
             diagram->setDataValueAttributes( iColumn, dva);

@@ -19,7 +19,7 @@
 
 #include "Model.h"
 
-#include "KDChartMath_p.h"
+#include "KChartMath_p.h"
 
 #include <QDebug>
 #include <QTime>

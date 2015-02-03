@@ -22,7 +22,7 @@
 
 #include <QWidget>
 
-namespace KDChart {
+namespace KChart {
     class Chart;
 }
 
@@ -31,7 +31,7 @@ class DataValueSettings : public QWidget
     Q_OBJECT
 
 public:
-    DataValueSettings( KDChart::Chart *chart, QWidget* parent = 0 );
+    DataValueSettings( KChart::Chart *chart, QWidget* parent = 0 );
     ~DataValueSettings();
 
 public Q_SLOTS:

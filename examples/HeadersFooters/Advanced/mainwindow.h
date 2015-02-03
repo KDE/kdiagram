@@ -27,7 +27,7 @@
 #include "ui_addheaderdialog.h"
 #include <TableModel.h>
 
-namespace KDChart {
+namespace KChart {
     class Chart;
     class DatasetProxyModel;
     class LineDiagram;
@@ -50,10 +50,10 @@ private:
     void setupAddHeaderDialog( QDialog* dlg,
                                Ui::AddHeaderDialog& conf ) const;
 
-    KDChart::Chart* m_chart;
+    KChart::Chart* m_chart;
     TableModel m_model;
-    KDChart::DatasetProxyModel* m_datasetProxy;
-    KDChart::LineDiagram* m_lines;
+    KChart::DatasetProxyModel* m_datasetProxy;
+    KChart::LineDiagram* m_lines;
 };
 
 

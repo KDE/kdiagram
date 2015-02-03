@@ -23,9 +23,9 @@
 #include <QStandardItem>
 #include <QStandardItemModel>
 
-#include <KDChartCartesianDiagramDataCompressor_p.h>
+#include <KChartCartesianDiagramDataCompressor_p.h>
 
-typedef KDChart::CartesianDiagramDataCompressor::CachePosition CachePosition;
+typedef KChart::CartesianDiagramDataCompressor::CachePosition CachePosition;
 
 struct Match {
     Match( const CachePosition& pos, const QModelIndex& index )
@@ -155,7 +155,7 @@ private slots:
    void invalidateTest()
     {
         CachePosition position( 0, 0 );
-        // KDChart::CartesianDiagramDataCompressor::DataPoint point;
+        // KChart::CartesianDiagramDataCompressor::DataPoint point;
         QVERIFY( compressor.mapsToModelIndex( position ) );
         compressor.retrieveModelData( position );
         QVERIFY2( compressor.isCached( position ),
@@ -195,7 +195,7 @@ private slots:
     }
 
 private:
-    KDChart::CartesianDiagramDataCompressor compressor;
+    KChart::CartesianDiagramDataCompressor compressor;
     QStandardItemModel model;
     static const int RowCount;
     static const int ColumnCount;

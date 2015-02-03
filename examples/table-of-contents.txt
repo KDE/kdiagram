@@ -11,7 +11,7 @@ examples/Axis/Labels/ - how to specify/configure axis labels
 
    featuring:
 
- - Use of KDChart::Chart together with a TableModel
+ - Use of KChart::Chart together with a TableModel
    (QAbstractTableModel)
  - Set up a line diagram
  - Create two axes, and add them to the diagram
@@ -23,7 +23,7 @@ examples/Axis/Parameters/ - fine-tuning the axis parameters
 
    featuring:
 
- - Use of KDChart::Chart together with a TableModel
+ - Use of KChart::Chart together with a TableModel
    (QAbstractTableModel)
  - Set up a line diagram
  - Create two axes, and add them to the diagram
@@ -46,7 +46,7 @@ examples/Bars/Advanced - sub types of the bar diagram class
 
    featuring:
 
- - Use of KDChart::Chart together with a TableModel
+ - Use of KChart::Chart together with a TableModel
    (QAbstractTableModel)
  - Set up a Bar diagram
  - Display or hide data values 
@@ -58,7 +58,7 @@ examples/Bars/Parameters - sub types of the bar diagram class
 
    featuring:
 
- - Use of KDChart::Widget together with a QStandardItemModel
+ - Use of KChart::Widget together with a QStandardItemModel
  - Configure the BarAttributes (Bar width and Gap factors)
  - Set up the DataValueAttributes
  - Set up a surrounding Pen
@@ -67,9 +67,9 @@ examples/Bars/Simple - display a simple bar widget
 
    featuring:
 
-- Use of KDChart::Widget together with a QStandardItemModel
+- Use of KChart::Widget together with a QStandardItemModel
 
-examples/DrawIntoPainter - Demonstrate KDChart::paint method
+examples/DrawIntoPainter - Demonstrate KChart::paint method
 
    featuring:
 
@@ -85,7 +85,7 @@ examples/EmptyValues/ - having zero values in all cells
 
    featuring:
 
- - Use of KDChart::Chart together with a TableModel
+ - Use of KChart::Chart together with a TableModel
    (QAbstractTableModel)
  - Set up a Bar diagram
  - Demonstrate how to handle a plane when the values in
@@ -108,7 +108,7 @@ examples/HeadersFooters/ - adding headers and/or footers
 
    featuring:
 
- - Use of KDChart::Chart together with a TableModel
+ - Use of KChart::Chart together with a TableModel
    (QAbstractTableModel)
  - Headers and footers handling:  Add, edit, and remove one
    or several headers / footers at different locations
@@ -118,7 +118,7 @@ examples/Legends/ - positioning one or several legends
 
    featuring:
 
- - Use of KDChart::Chart together with a TableModel
+ - Use of KChart::Chart together with a TableModel
    (QAbstractTableModel)
  - Legends handling - Add, edit, and remove one or several
    legends at different locations
@@ -128,7 +128,7 @@ examples/Lines/ - sub types of the lines diagram class
 
    featuring:
 
- - Use of KDChart::Chart together with a TableModel
+ - Use of KChart::Chart together with a TableModel
    (QAbstractTableModel)
  - Display or hide data values
  - Show the use of DataValueAttributes and TextAttributes 
@@ -141,7 +141,7 @@ examples/ModelView - using Qt Interview with KD Chart 2
 
    featuring:
 
- - Use of KDChart::Chart together with a QStandardItemModel,
+ - Use of KChart::Chart together with a QStandardItemModel,
    QItemSelectionModel, and a QTableView
  - Load and save your data
  - Select and change the values interactively 
@@ -152,7 +152,7 @@ examples/MultidimensionalData/ - diagrams with Y / X coordinates
 
    featuring:
 
- - Use of KDChart::Chart together with a TableModel
+ - Use of KChart::Chart together with a TableModel
    (QAbstractTableModel)
  - Demonstrate the use of several dataset in the data model
    e.g setDatasetDimension( 2 ) informs the diagram that
@@ -165,7 +165,7 @@ examples/Pie/ - sub types of the pie diagram class
 
    featuring:
 
- - Use of KDChart::Chart together with a TableModel
+ - Use of KChart::Chart together with a TableModel
    (QAbstractTableModel)
  - Set up a pie diagram
  - Demonstrate several configuration possibilities:
@@ -178,7 +178,7 @@ examples/SharedAbscissa/ - one axis used by two diagrams
 
    featuring:
 
- - Use of KDChart::Chart together with a TableModel
+ - Use of KChart::Chart together with a TableModel
    (QAbstractTableModel)
  - Show a chart with two diagrams having each its own model
  - Demonstrate how to share the abscissa axis
@@ -190,7 +190,7 @@ examples/Widget/ - the convenience widget class
 
    featuring:
 
- - Use of KDChart::Widget  
+ - Use of KChart::Widget  
  - Add values and set datasets using a QVector 
  - Headers and footers set up and configuration
  - Set up the legends
@@ -201,8 +201,8 @@ examples/Zoom/ - mouse handling and zooming
 
    featuring:
 
- - Use of KDChart::Widget
- - Use of KDChart::Widget  
+ - Use of KChart::Widget
+ - Use of KChart::Widget  
  - Add values and set datasets using a QVector 
  - Headers and footers set up and configuration
  - Set up the legends

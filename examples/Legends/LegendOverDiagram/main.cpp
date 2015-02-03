@@ -18,13 +18,13 @@
  */
 
 #include <QApplication>
-#include <KDChartWidget>
-#include <KDChartBarDiagram>
-#include <KDChartPosition>
-#include <KDChartLegend>
+#include <KChartWidget>
+#include <KChartBarDiagram>
+#include <KChartPosition>
+#include <KChartLegend>
 
 
-using namespace KDChart;
+using namespace KChart;
 
 int main( int argc, char** argv ) {
     QApplication app( argc, argv );
@@ -59,13 +59,13 @@ int main( int argc, char** argv ) {
     //
     // Note: We do NOT use Legend::setAlignment here, because when
     //       setRelativePosition is used the alignment is set at the
-    //       KDChart::RelativePosition rather than at the KDChart::Legend.
-    KDChart::RelativePosition relativePosition;
+    //       KChart::RelativePosition rather than at the KChart::Legend.
+    KChart::RelativePosition relativePosition;
     relativePosition.setReferenceArea( widget.coordinatePlane() );
     relativePosition.setReferencePosition( Position::NorthEast );
     relativePosition.setAlignment( Qt::AlignTop | Qt::AlignRight );
-    relativePosition.setHorizontalPadding( KDChart::Measure( -1.0, KDChartEnums::MeasureCalculationModeAbsolute ) );
-    relativePosition.setVerticalPadding(   KDChart::Measure(  1.0, KDChartEnums::MeasureCalculationModeAbsolute ) );
+    relativePosition.setHorizontalPadding( KChart::Measure( -1.0, KChartEnums::MeasureCalculationModeAbsolute ) );
+    relativePosition.setVerticalPadding(   KChart::Measure(  1.0, KChartEnums::MeasureCalculationModeAbsolute ) );
     legend->setFloatingPosition( relativePosition );
 
     widget.addLegend( legend );

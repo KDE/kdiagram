@@ -22,9 +22,9 @@
 
 #include "ui_mainwindow.h"
 #include <TableModel.h>
-#include <KDChartDataValueAttributes>
+#include <KChartDataValueAttributes>
 
-namespace KDChart {
+namespace KChart {
     class Chart;
     class BarDiagram;
 }
@@ -66,15 +66,15 @@ private slots:
 
 private:
     const QModelIndex currentIndex() const;
-    const KDChart::DataValueAttributes attributes() const;
-    const char* positionToScreenName( const KDChart::Position& pos ) const;
+    const KChart::DataValueAttributes attributes() const;
+    const char* positionToScreenName( const KChart::Position& pos ) const;
     const Qt::Alignment alignmentFromScreeName( const QString& name ) const;
     const QString alignmentToScreenName( const Qt::Alignment& align ) const;
     void populateWidgets();
-    void setAttributes( const KDChart::DataValueAttributes& da );
+    void setAttributes( const KChart::DataValueAttributes& da );
 
-    KDChart::Chart* m_chart;
-    KDChart::BarDiagram* m_bars;
+    KChart::Chart* m_chart;
+    KChart::BarDiagram* m_bars;
     TableModel m_model;
 };
 

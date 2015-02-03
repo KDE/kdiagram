@@ -19,17 +19,17 @@
 
 #include "mainwindow.h"
 
-#include <KDChartChart>
-#include <KDChartPlotter>
-#include <KDChartDataValueAttributes>
-#include <KDChartTextAttributes>
-#include <KDChartMarkerAttributes>
+#include <KChartChart>
+#include <KChartPlotter>
+#include <KChartDataValueAttributes>
+#include <KChartTextAttributes>
+#include <KChartMarkerAttributes>
 
 #include <QStandardItemModel>
 #include <QTimer>
 
 
-using namespace KDChart;
+using namespace KChart;
 
 
 
@@ -84,10 +84,10 @@ MainWindow::MainWindow( QWidget* parent ) :
     CartesianAxis *xAxis2 = new CartesianAxis( m_plotter );
     CartesianAxis *yAxis  = new CartesianAxis ( m_plotter );
     CartesianAxis *yAxis2 = new CartesianAxis ( m_plotter );
-    xAxis->setPosition ( KDChart::CartesianAxis::Bottom );
-    xAxis2->setPosition( KDChart::CartesianAxis::Top );
-    yAxis->setPosition ( KDChart::CartesianAxis::Left );
-    yAxis2->setPosition( KDChart::CartesianAxis::Right );
+    xAxis->setPosition ( KChart::CartesianAxis::Bottom );
+    xAxis2->setPosition( KChart::CartesianAxis::Top );
+    yAxis->setPosition ( KChart::CartesianAxis::Left );
+    yAxis2->setPosition( KChart::CartesianAxis::Right );
     m_plotter->addAxis( xAxis );
     m_plotter->addAxis( xAxis2 );
     m_plotter->addAxis( yAxis );
@@ -149,7 +149,7 @@ void MainWindow::setMarkerAttributes()
         dva.setMarkerAttributes( ma );
         dva.setTextAttributes( ta );
 
-        // note: The KDChart::Plotter looks at the X cell
+        // note: The KChart::Plotter looks at the X cell
         //       for data value attributes,
         //       any attrs set at the Y cell are ignored.
         m_plotter->setDataValueAttributes( indexX, dva );

@@ -64,7 +64,7 @@ class TestQLayout : public QObject
 
 private slots:
 
-    // This is very much like KDChart::Chart does with legends
+    // This is very much like KChart::Chart does with legends
     void testBoxLayoutHiddenWidget() {
         QBoxLayout* vLayout = new QVBoxLayout;
         MyLegendWidget* widget1 = new MyLegendWidget( 0 );
@@ -91,7 +91,7 @@ private slots:
 
     void testBoxLayoutChildWidget() {
         QWidget* topLevelWidget = new QWidget( 0 );
-        // This time the layout is associated with a widget, like d->layout in KDChart::Chart.
+        // This time the layout is associated with a widget, like d->layout in KChart::Chart.
         QBoxLayout* vLayout = new QVBoxLayout( topLevelWidget );
         MyLegendWidget* widget1 = new MyLegendWidget( topLevelWidget );
         MyWidgetItem* widgetItem = new MyWidgetItem( widget1 );

@@ -18,14 +18,14 @@
  */
 
 #include <QApplication>
-#include <KDChartWidget>
+#include <KChartWidget>
 
 #include <QDebug>
 #include <QVector>
 
 #include "mainwindow.h"
 
-using namespace KDChart;
+using namespace KChart;
 
 int main( int argc, char** argv ) {
     QApplication app( argc, argv );

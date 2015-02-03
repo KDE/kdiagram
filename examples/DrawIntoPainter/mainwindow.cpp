@@ -20,26 +20,26 @@
 #include "mainwindow.h"
 #include "framewidget.h"
 
-#include <KDChartChart>
-#include <KDChartAbstractCoordinatePlane>
-#include <KDChartLineDiagram>
-#include <KDChartLineAttributes>
-#include <KDChartTextAttributes>
-#include <KDChartDataValueAttributes>
-#include <KDChartThreeDLineAttributes>
-#include <KDChartMarkerAttributes>
-#include <KDChartFrameAttributes>
-#include <KDChartBackgroundAttributes>
-#include <KDChartLegend>
+#include <KChartChart>
+#include <KChartAbstractCoordinatePlane>
+#include <KChartLineDiagram>
+#include <KChartLineAttributes>
+#include <KChartTextAttributes>
+#include <KChartDataValueAttributes>
+#include <KChartThreeDLineAttributes>
+#include <KChartMarkerAttributes>
+#include <KChartFrameAttributes>
+#include <KChartBackgroundAttributes>
+#include <KChartLegend>
 
 #include <QDebug>
 #include <QPainter>
 #include <QFileDialog>
 #include <QPrinter>
 
-using namespace KDChart;
+using namespace KChart;
 
-static QPixmap drawIntoPixmap( const QSize& size, KDChart::Chart* chart )
+static QPixmap drawIntoPixmap( const QSize& size, KChart::Chart* chart )
 {
     QPixmap pix( size );
     pix.fill( Qt::white );
@@ -76,10 +76,10 @@ MainWindow::MainWindow( QWidget* parent ) :
     CartesianAxis *yAxis = new CartesianAxis( m_lines );
     CartesianAxis *axisTop = new CartesianAxis( m_lines );
     CartesianAxis *axisRight = new CartesianAxis( m_lines );
-    xAxis->setPosition( KDChart::CartesianAxis::Bottom );
-    yAxis->setPosition( KDChart::CartesianAxis::Left );
-    axisTop->setPosition( KDChart::CartesianAxis::Top );
-    axisRight->setPosition( KDChart::CartesianAxis::Right );
+    xAxis->setPosition( KChart::CartesianAxis::Bottom );
+    yAxis->setPosition( KChart::CartesianAxis::Left );
+    axisTop->setPosition( KChart::CartesianAxis::Top );
+    axisRight->setPosition( KChart::CartesianAxis::Right );
 
     m_lines->addAxis( xAxis );
     m_lines->addAxis( yAxis );
@@ -186,7 +186,7 @@ void MainWindow::on_lineTypeCB_currentIndexChanged( const QString & text )
 
 void MainWindow::on_paintLegendCB_toggled( bool checked )
 {
-    KDChart::Legend* legend = m_chart->legend();
+    KChart::Legend* legend = m_chart->legend();
     if ( checked != ( legend != 0 ) ) {
         if ( checked )
             m_chart->addLegend( m_legend );

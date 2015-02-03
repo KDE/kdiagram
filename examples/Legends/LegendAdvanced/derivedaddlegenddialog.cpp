@@ -19,7 +19,7 @@
 
 #include "derivedaddlegenddialog.h"
 
-#include <KDChartPosition>
+#include <KChartPosition>
 
 
 DerivedAddLegendDialog::DerivedAddLegendDialog( QWidget* parent ) :

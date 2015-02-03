@@ -18,8 +18,8 @@
  */
 
 #include <QtGui>
-#include <KDChartChart>
-#include <KDChartBarDiagram>
+#include <KChartChart>
+#include <KChartBarDiagram>
 
 #include <QApplication>
 
@@ -40,7 +40,7 @@ public:
             }
     }
 
-    KDChart::BarDiagram* diagram = new KDChart::BarDiagram;
+    KChart::BarDiagram* diagram = new KChart::BarDiagram;
     diagram->setModel(&m_model);
 
     m_chart.coordinatePlane()->replaceDiagram(diagram);
@@ -62,7 +62,7 @@ private slots:
       }
 
 private:
-  KDChart::Chart m_chart;
+  KChart::Chart m_chart;
   QStandardItemModel m_model;
   QTimer *m_timer;
 };

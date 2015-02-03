@@ -19,19 +19,19 @@
 
 #include "mainwindow.h"
 
-#include <KDChartChart>
-#include <KDChartAbstractCoordinatePlane>
-#include <KDChartPolarDiagram>
-#include <KDChartTextAttributes>
-#include <KDChartDataValueAttributes>
-#include <KDChartGridAttributes>
-#include <KDChartMarkerAttributes>
-#include <KDChartLegend>
+#include <KChartChart>
+#include <KChartAbstractCoordinatePlane>
+#include <KChartPolarDiagram>
+#include <KChartTextAttributes>
+#include <KChartDataValueAttributes>
+#include <KChartGridAttributes>
+#include <KChartMarkerAttributes>
+#include <KChartLegend>
 
 #include <QDebug>
 #include <QPainter>
 
-using namespace KDChart;
+using namespace KChart;
 
 MainWindow::MainWindow( QWidget* parent ) :
     QWidget( parent ), m_currentFactor( 0 ), m_currentDirection( 1 ), m_currentSlice( 0 )
@@ -39,15 +39,15 @@ MainWindow::MainWindow( QWidget* parent ) :
     setupUi( this );
 
     // instantiate the KD Chart classes
-    initKDChartClasses();
+    initKChartClasses();
 
-    // insert the KDChart::Chart into Qt's layout
+    // insert the KChart::Chart into Qt's layout
     QHBoxLayout* chartLayout = new QHBoxLayout( chartFrame );
     m_chart->setGlobalLeading( 2,  2,  2,  2 );
     chartLayout->addWidget( m_chart );
 
     // wire up the KD Chart classes
-    wireUpKDChartClasses();
+    wireUpKChartClasses();
 
     // initialize the ItemModel and fill in some data
     m_model.insertRows( 0, 40 );
@@ -56,14 +56,14 @@ MainWindow::MainWindow( QWidget* parent ) :
 }
 
 
-void MainWindow::initKDChartClasses()
+void MainWindow::initKChartClasses()
 {
     m_chart      = new Chart();
     m_diagram    = new PolarDiagram();
     m_polarPlane = new PolarCoordinatePlane();
 }
 
-void MainWindow::wireUpKDChartClasses()
+void MainWindow::wireUpKChartClasses()
 {
     m_chart->replaceCoordinatePlane( m_polarPlane );
     //note: We need to set a valid item model to the diagram,

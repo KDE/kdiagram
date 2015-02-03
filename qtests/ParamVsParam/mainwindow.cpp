@@ -25,13 +25,13 @@
 #include <QtWidgets>
 
 
-#include <KDChartChart>
-#include <KDChartDataValueAttributes>
-#include <KDChartGridAttributes>
-#include <KDChartLineDiagram>
+#include <KChartChart>
+#include <KChartDataValueAttributes>
+#include <KChartGridAttributes>
+#include <KChartLineDiagram>
 
 
-using namespace KDChart;
+using namespace KChart;
 
 
 MainWindow::MainWindow(
@@ -174,7 +174,7 @@ void MainWindow::removePlots()
 
 
 void MainWindow::setMarkerAttributes(
-	KDChart::LineDiagram		*p_lineDiagram)
+	KChart::LineDiagram		*p_lineDiagram)
 {
 	QColor								markerColor			= Qt::green;
 	MarkerAttributes::MarkerStyle	markerStyle			= MarkerAttributes::Marker4Pixels;

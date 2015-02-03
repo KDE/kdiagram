@@ -19,8 +19,8 @@
 
 #include <QtGui>
 #include <QtSvg/QSvgGenerator>
-#include <KDChartChart>
-#include <KDChartBarDiagram>
+#include <KChartChart>
+#include <KChartBarDiagram>
 #include <QApplication>
 
 class ChartWidget : public QWidget {
@@ -59,11 +59,11 @@ public:
                     .arg( row )
                     .arg( column )
                     .arg( m_model.data( index ).toInt() ),
-            KDChart::CommentRole );
+            KChart::CommentRole );
     }
     */
 
-    KDChart::BarDiagram* diagram = new KDChart::BarDiagram;
+    KChart::BarDiagram* diagram = new KChart::BarDiagram;
     diagram->setModel(&m_model);
     diagram->setPen( QPen( Qt::black, 0 ) );
 
@@ -89,7 +89,7 @@ public:
   }
 
 private:
-  KDChart::Chart m_chart;
+  KChart::Chart m_chart;
   QStandardItemModel m_model;
 };
 

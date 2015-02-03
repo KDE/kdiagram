@@ -19,20 +19,20 @@
 
 #include "mainwindow.h"
 
-#include <KDChartChart>
-#include <KDChartAbstractCoordinatePlane>
-#include <KDChartLineDiagram>
-#include <KDChartLineAttributes>
-#include <KDChartTextAttributes>
-#include <KDChartDataValueAttributes>
-#include <KDChartThreeDLineAttributes>
-#include <KDChartMarkerAttributes>
-#include <KDChartLegend>
+#include <KChartChart>
+#include <KChartAbstractCoordinatePlane>
+#include <KChartLineDiagram>
+#include <KChartLineAttributes>
+#include <KChartTextAttributes>
+#include <KChartDataValueAttributes>
+#include <KChartThreeDLineAttributes>
+#include <KChartMarkerAttributes>
+#include <KChartLegend>
 
 #include <QDebug>
 #include <QPainter>
 
-using namespace KDChart;
+using namespace KChart;
 
 MainWindow::MainWindow( QWidget* parent ) :
     QWidget( parent )
@@ -56,10 +56,10 @@ MainWindow::MainWindow( QWidget* parent ) :
     CartesianAxis *yAxis = new CartesianAxis( m_lines );
     CartesianAxis *axisTop = new CartesianAxis( m_lines );
     CartesianAxis *axisRight = new CartesianAxis( m_lines );
-    xAxis->setPosition( KDChart::CartesianAxis::Bottom );
-    yAxis->setPosition( KDChart::CartesianAxis::Left );
-    axisTop->setPosition( KDChart::CartesianAxis::Top );
-    axisRight->setPosition( KDChart::CartesianAxis::Right );
+    xAxis->setPosition( KChart::CartesianAxis::Bottom );
+    yAxis->setPosition( KChart::CartesianAxis::Left );
+    axisTop->setPosition( KChart::CartesianAxis::Top );
+    axisRight->setPosition( KChart::CartesianAxis::Right );
 
     xAxis->setTitleText( "Abscissa axis at the bottom" );
     yAxis->setTitleText( "Ordinate axis at the left side" );

@@ -7,7 +7,7 @@ library that is not installed when configured without -unittests.
 If you run configure without -unittests, you can still compile the examples
 by running "make" in the examples directory. For those examples that require
 the testtools library to run, you can help the linker find it by adding
-/path/to/kdchart_build_dir/lib to the library search path.
+/path/to/kchart_build_dir/lib to the library search path.
 
 The library search path is called:
 - Linux: LD_LIBRARY_PATH

@@ -22,7 +22,7 @@
 
 #include <QWidget>
 
-namespace KDChart
+namespace KChart
 {
     class Chart;
 }
@@ -32,7 +32,7 @@ class AxisSettings : public QWidget
     Q_OBJECT
 
 public:
-    explicit AxisSettings( KDChart::Chart *chart, QWidget *parent = 0 );
+    explicit AxisSettings( KChart::Chart *chart, QWidget *parent = 0 );
     ~AxisSettings();
 
 public Q_SLOTS:

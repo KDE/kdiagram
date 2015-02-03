@@ -19,7 +19,7 @@
 
 #include "framewidget.h"
 
-#include <KDChartChart>
+#include <KChartChart>
 
 #include <QDebug>
 #include <QPainter>
@@ -31,7 +31,7 @@ FrameWidget::FrameWidget( QWidget* parent, Qt::WindowFlags f )
     // this bloc left empty intentionally
 }
 
-void FrameWidget::setChart( KDChart::Chart* chart )
+void FrameWidget::setChart( KChart::Chart* chart )
 {
     mChart = chart;
     // This is necessary because Chart can't automatically schedule somebody else (this object) to

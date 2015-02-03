@@ -20,12 +20,12 @@
 #include "mainwindow.h"
 #include "AdjustedCartesianAxis.h"
 
-#include <KDChartCartesianCoordinatePlane>
-#include <KDChartChart>
-#include <KDChartGridAttributes>
-#include <KDChartLegend>
-#include <KDChartLineDiagram>
-#include <KDChartTextAttributes>
+#include <KChartCartesianCoordinatePlane>
+#include <KChartChart>
+#include <KChartGridAttributes>
+#include <KChartLegend>
+#include <KChartLineDiagram>
+#include <KChartTextAttributes>
 
 #include <QDebug>
 #include <QLinearGradient>
@@ -37,22 +37,22 @@ MainWindow::MainWindow( QWidget* parent ) :
     setupUi( this );
 
     QHBoxLayout* chartLayout = new QHBoxLayout( m_chartFrame );
-    m_chart = new KDChart::Chart;
+    m_chart = new KChart::Chart;
     chartLayout->addWidget( m_chart );
 
     m_model.loadFromCSV( ":/data" );
 
     // Set up the diagram
-    m_lines = new KDChart::LineDiagram();
+    m_lines = new KChart::LineDiagram();
     m_lines->setModel( &m_model );
 
-    m_xAxis = new KDChart::CartesianAxis( m_lines );
-    KDChart::TextAttributes ta( m_xAxis->textAttributes() );
+    m_xAxis = new KChart::CartesianAxis( m_lines );
+    KChart::TextAttributes ta( m_xAxis->textAttributes() );
 
     AdjustedCartesianAxis *yAxis = new AdjustedCartesianAxis( m_lines );
     yAxis->setBounds( 3, 6 );
-    m_xAxis->setPosition( KDChart::CartesianAxis::Bottom );
-    yAxis->setPosition( KDChart::CartesianAxis::Left );
+    m_xAxis->setPosition( KChart::CartesianAxis::Bottom );
+    yAxis->setPosition( KChart::CartesianAxis::Left );
 
 // set the following to 0, to see the default Abscissa labels (== X headers, as read from the data file)
 #if 1
@@ -92,8 +92,8 @@ MainWindow::MainWindow( QWidget* parent ) :
     // Set up the legend
     m_xAxis->setCustomTickLength( 11 );
     yAxis->setCustomTickLength( 11 );
-    m_legend = new KDChart::Legend( m_lines, m_chart );
-    m_legend->setPosition( KDChart::Position::East );
+    m_legend = new KChart::Legend( m_lines, m_chart );
+    m_legend->setPosition( KChart::Position::East );
     m_legend->setAlignment( Qt::AlignTop );
     m_chart->addLegend( m_legend );
 
@@ -118,9 +118,9 @@ void MainWindow::annotationsToggled( bool showAnnotations )
 void MainWindow::gridLinesOnAnnotationsToggled( bool onAnnotations )
 {
         // Draw grid lines where the annotations are
-    KDChart::CartesianCoordinatePlane* plane =
-        static_cast< KDChart::CartesianCoordinatePlane* >( m_chart->coordinatePlane() );
-    KDChart::GridAttributes ga = plane->gridAttributes( Qt::Horizontal );
+    KChart::CartesianCoordinatePlane* plane =
+        static_cast< KChart::CartesianCoordinatePlane* >( m_chart->coordinatePlane() );
+    KChart::GridAttributes ga = plane->gridAttributes( Qt::Horizontal );
     ga.setLinesOnAnnotations( onAnnotations );
     plane->setGridAttributes( Qt::Horizontal, ga );
     m_chart->update();

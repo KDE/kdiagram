@@ -15,4 +15,4 @@ qt5_add_resources(LegendAdvanced_SRCS
 
 add_executable(LegendAdvanced  ${LegendAdvanced_SRCS})
 
-target_link_libraries(LegendAdvanced testtools KDEKDChart Qt5::Widgets)
+target_link_libraries(LegendAdvanced testtools KChart Qt5::Widgets)

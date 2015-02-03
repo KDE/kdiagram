@@ -18,12 +18,12 @@
  */
 
 #include "mainwindow.h"
-#include <KDChartChart>
-#include <KDChartLegend>
-#include <KDChartCartesianAxis>
+#include <KChartChart>
+#include <KChartLegend>
+#include <KChartCartesianAxis>
 #include <QColorDialog>
 
-using namespace KDChart;
+using namespace KChart;
 
 MainWindow::MainWindow( QWidget *parent )
     : QWidget( parent )
@@ -38,7 +38,7 @@ MainWindow::MainWindow( QWidget *parent )
     m_diagram.setType( StockDiagram::HighLowClose );
     m_diagram.setModel( &m_HLCModel );
     m_chart->coordinatePlane()->replaceDiagram( &m_diagram );
-    KDChart::Legend* legend  = new KDChart::Legend( &m_diagram, m_chart );
+    KChart::Legend* legend  = new KChart::Legend( &m_diagram, m_chart );
     m_chart->addLegend( legend );
 
     QHBoxLayout* chartLayout = new QHBoxLayout( chartFrame );
@@ -53,7 +53,7 @@ MainWindow::MainWindow( QWidget *parent )
 
     TextAttributes attributes = bottomAxis->textAttributes();
     attributes.setRotation( 90 );
-    attributes.setFontSize( Measure( 7.0, KDChartEnums::MeasureCalculationModeAbsolute ) );
+    attributes.setFontSize( Measure( 7.0, KChartEnums::MeasureCalculationModeAbsolute ) );
     bottomAxis->setTextAttributes( attributes );
     bottomAxis->setPosition( CartesianAxis::Bottom );
     m_diagram.addAxis( leftAxis );

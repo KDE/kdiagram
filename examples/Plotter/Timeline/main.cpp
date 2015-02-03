@@ -27,8 +27,8 @@
 
 #include <math.h>
 
-#include <KDChartChart>
-#include <KDChartPlotter>
+#include <KChartChart>
+#include <KChartPlotter>
 
 #include "timeaxis.h"
 #include "timechartmodel.h"
@@ -54,7 +54,7 @@ public:
         QTreeView* tv = new QTreeView( leftWidget );
         leftLayout->addWidget( tv );
 
-        m_chart = new KDChart::Chart( splitter );
+        m_chart = new KChart::Chart( splitter );
         
         m_model = new QStandardItemModel( 365, 2, this );
         for ( int i = 0; i < 365; ++i ) {
@@ -68,7 +68,7 @@ public:
         proxy->setVisibleRange( QDateTime( QDate( 2010, 2, 1 ), QTime() ),
                                 QDateTime( QDate( 2010, 3, 31 ), QTime() ) );
 
-        KDChart::Plotter* plotter = new KDChart::Plotter;
+        KChart::Plotter* plotter = new KChart::Plotter;
         m_chart->coordinatePlane()->replaceDiagram( plotter );
 
         tv->setModel( proxy );
@@ -87,7 +87,7 @@ public:
 
         proxy->setVisibleRange( QDateTime( QDate( 2010, 3, 15 ), QTime() ),
                                 QDateTime( QDate( 2010, 5, 18 ), QTime() ) );
-        qobject_cast< KDChart::CartesianCoordinatePlane* >( m_chart->coordinatePlane() )->adjustRangesToData();
+        qobject_cast< KChart::CartesianCoordinatePlane* >( m_chart->coordinatePlane() )->adjustRangesToData();
 
         m_timer = new QTimer(this);
         connect( m_timer, SIGNAL( timeout() ), this, SLOT( slotTimeout() ) );
@@ -107,7 +107,7 @@ private slots:
             m_timer->stop();
     }
 private:
-    KDChart::Chart* m_chart;
+    KChart::Chart* m_chart;
     QStandardItemModel* m_model;
     QTimer* m_timer;
     qreal m_counter;

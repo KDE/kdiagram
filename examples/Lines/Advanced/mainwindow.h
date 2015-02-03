@@ -23,7 +23,7 @@
 #include "ui_mainwindow.h"
 #include <TableModel.h>
 
-namespace KDChart {
+namespace KChart {
     class Chart;
     class LineDiagram;
 }
@@ -58,8 +58,8 @@ private slots:
     void on_reverseVerticalCB_toggled( bool checked );
 
 private:
-    KDChart::Chart* m_chart;
-    KDChart::LineDiagram* m_lines;
+    KChart::Chart* m_chart;
+    KChart::LineDiagram* m_lines;
     TableModel m_model;
     int m_curRow;
     int m_curColumn;

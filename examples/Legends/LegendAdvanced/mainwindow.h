@@ -27,7 +27,7 @@
 #include "derivedaddlegenddialog.h"
 #include <TableModel.h>
 
-namespace KDChart {
+namespace KChart {
     class Chart;
     class LineDiagram;
 }
@@ -49,9 +49,9 @@ private:
     void initAddLegendDialog( DerivedAddLegendDialog& conf,
                               Qt::Alignment alignment ) const;
 
-    KDChart::Chart* m_chart;
+    KChart::Chart* m_chart;
     TableModel m_model;
-    KDChart::LineDiagram* m_lines;
+    KChart::LineDiagram* m_lines;
     QMap<Qt::Alignment, QString> alignmentMap;
 };
 

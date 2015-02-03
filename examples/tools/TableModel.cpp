@@ -50,13 +50,13 @@ int TableModel::columnCount( const QModelIndex& ) const
 
 QVariant TableModel::data( const QModelIndex& index, int role ) const
 {
-    // FIXME kdchart queries (-1, -1) for empty models
+    // FIXME kchart queries (-1, -1) for empty models
     if ( index.row() == -1 || index.column() == -1 ) {
         qDebug() << "TableModel::data: row:"
                  << index.row() << ", column:" << index.column()
                  << ", rowCount:" << rowCount() << ", columnCount:"
                  << columnCount() << endl
-                 << "TableModel::data: FIXME fix kdchart views to not query"
+                 << "TableModel::data: FIXME fix kchart views to not query"
                     " model data for invalid indices!";
         return QVariant();
     }

@@ -18,13 +18,13 @@
  */
 
 #include <QApplication>
-#include <KDChartWidget>
-#include <KDChartPieDiagram>
-#include <KDChartPolarCoordinatePlane>
+#include <KChartWidget>
+#include <KChartPieDiagram>
+#include <KChartPolarCoordinatePlane>
 #include <QPen>
 
 
-using namespace KDChart;
+using namespace KChart;
 
 int main( int argc, char** argv ) {
     QApplication app( argc, argv );

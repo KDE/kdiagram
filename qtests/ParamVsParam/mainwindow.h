@@ -29,7 +29,7 @@ class ModelParamVsParam;
 class QGridLayout;
 class QLineEdit;
 
-namespace KDChart
+namespace KChart
 {
 	class	LineDiagram;
 };
@@ -53,7 +53,7 @@ private:
 	void addPlots();
 	void removePlots();
 	void setMarkerAttributes(
-		KDChart::LineDiagram		*p_lineDiagram);
+		KChart::LineDiagram		*p_lineDiagram);
 
 private:
 	ModelParamVsParam		*m_sourceModel;

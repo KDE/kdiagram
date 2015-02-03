@@ -19,15 +19,15 @@
 
 #include "mainwindow.h"
 
-#include <KDChartChart>
-#include <KDChartAbstractCoordinatePlane>
-#include <KDChartLineDiagram>
-#include <KDChartGridAttributes>
+#include <KChartChart>
+#include <KChartAbstractCoordinatePlane>
+#include <KChartLineDiagram>
+#include <KChartGridAttributes>
 
 #include <QDebug>
 #include <QPainter>
 
-using namespace KDChart;
+using namespace KChart;
 
 MainWindow::MainWindow( QWidget* parent ) :
     QWidget( parent )
@@ -52,7 +52,7 @@ MainWindow::MainWindow( QWidget* parent ) :
     m_lines2->setModel( &m_model2 );
 
     // The by default built-in plane.
-    KDChart::CartesianCoordinatePlane* plane1 = static_cast< KDChart::CartesianCoordinatePlane* >( m_chart->coordinatePlane() );
+    KChart::CartesianCoordinatePlane* plane1 = static_cast< KChart::CartesianCoordinatePlane* >( m_chart->coordinatePlane() );
 
     // We call this "plane2" just for remembering, that we use it
     // in addition to the plane, that's built-in by default.
@@ -74,9 +74,9 @@ MainWindow::MainWindow( QWidget* parent ) :
     annotations[ 15 ] = "Fifteen";
     xAxis->setAnnotations( annotations );
 
-    xAxis->setPosition( KDChart::CartesianAxis::Top );
-    yAxis->setPosition( KDChart::CartesianAxis::Left );
-    yAxis2->setPosition( KDChart::CartesianAxis::Right );
+    xAxis->setPosition( KChart::CartesianAxis::Top );
+    yAxis->setPosition( KChart::CartesianAxis::Left );
+    yAxis2->setPosition( KChart::CartesianAxis::Right );
 
     m_lines->addAxis( xAxis ); // shared axis, add to m_lines
     m_lines->addAxis( yAxis );
@@ -89,10 +89,10 @@ MainWindow::MainWindow( QWidget* parent ) :
     m_chart->addCoordinatePlane( plane2 );
 
     // Enable the annotations in both planes.
-    KDChart::GridAttributes grid1 = plane1->gridAttributes( Qt::Horizontal );
+    KChart::GridAttributes grid1 = plane1->gridAttributes( Qt::Horizontal );
     grid1.setLinesOnAnnotations( true );
     plane1->setGridAttributes( Qt::Horizontal, grid1 );
-    KDChart::GridAttributes grid2 = plane2->gridAttributes( Qt::Horizontal );
+    KChart::GridAttributes grid2 = plane2->gridAttributes( Qt::Horizontal );
     grid2.setLinesOnAnnotations( true );
     plane2->setGridAttributes( Qt::Horizontal, grid2 );
     m_chart->update();

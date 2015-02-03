@@ -19,11 +19,11 @@
 
 #include <QApplication>
 
-#include <KDChartChart>
-#include <KDChartLeveyJenningsAxis>
-#include <KDChartLeveyJenningsDiagram>
-#include <KDChartLeveyJenningsCoordinatePlane>
-#include <KDChartLeveyJenningsGridAttributes>
+#include <KChartChart>
+#include <KChartLeveyJenningsAxis>
+#include <KChartLeveyJenningsDiagram>
+#include <KChartLeveyJenningsCoordinatePlane>
+#include <KChartLeveyJenningsGridAttributes>
 
 #include <QDateTime>
 #include <QStandardItemModel>
@@ -148,13 +148,13 @@ int main( int argc, char** argv )
     model.setData( model.index( 13,2 ), true );
     model.setData( model.index( 13,3 ), QDateTime::fromString( "2007-07-12T21:00:00", Qt::ISODate ) );
 
-    KDChart::Chart* chart = new KDChart::Chart();
+    KChart::Chart* chart = new KChart::Chart();
 
-    KDChart::LeveyJenningsDiagram* diagram = new KDChart::LeveyJenningsDiagram;
+    KChart::LeveyJenningsDiagram* diagram = new KChart::LeveyJenningsDiagram;
     diagram->setModel( &model );
     diagram->setExpectedMeanValue( 200 );
     diagram->setExpectedStandardDeviation( 20 );
-    KDChart::LeveyJenningsCoordinatePlane* plane = new KDChart::LeveyJenningsCoordinatePlane;
+    KChart::LeveyJenningsCoordinatePlane* plane = new KChart::LeveyJenningsCoordinatePlane;
     chart->replaceCoordinatePlane( plane );
     plane->replaceDiagram( diagram );
 
@@ -163,23 +163,23 @@ int main( int argc, char** argv )
     diagram->setFluidicsPackChangedSymbolPosition( Qt::AlignTop );*/
 
     //diagram->setScanLinePen( QPen( Qt::green ) );
-    //diagram->setSymbol( KDChart::LeveyJenningsDiagram::NotOkDataPoint, 
-    //                    diagram->symbol( KDChart::LeveyJenningsDiagram::OkDataPoint ) );
+    //diagram->setSymbol( KChart::LeveyJenningsDiagram::NotOkDataPoint, 
+    //                    diagram->symbol( KChart::LeveyJenningsDiagram::OkDataPoint ) );
 
     diagram->setFluidicsPackChanges( QVector< QDateTime >() << QDateTime::fromString( "2007-07-11T15:00:00", Qt::ISODate ) );
     diagram->setSensorChanges( QVector< QDateTime >() << QDateTime::fromString( "2007-07-10T11:00:00", Qt::ISODate ) );
 
-    KDChart::LeveyJenningsAxis* axis = new KDChart::LeveyJenningsAxis( diagram );
-    axis->setPosition( KDChart::CartesianAxis::Left );
+    KChart::LeveyJenningsAxis* axis = new KChart::LeveyJenningsAxis( diagram );
+    axis->setPosition( KChart::CartesianAxis::Left );
     diagram->addAxis( axis );
 
-    KDChart::LeveyJenningsAxis* axis2 = new KDChart::LeveyJenningsAxis( diagram );
-    axis2->setPosition( KDChart::CartesianAxis::Right );
-    axis2->setType( KDChart::LeveyJenningsGridAttributes::Calculated );
+    KChart::LeveyJenningsAxis* axis2 = new KChart::LeveyJenningsAxis( diagram );
+    axis2->setPosition( KChart::CartesianAxis::Right );
+    axis2->setType( KChart::LeveyJenningsGridAttributes::Calculated );
     diagram->addAxis( axis2 );
 
-    KDChart::CartesianAxis* axis3 = new KDChart::LeveyJenningsAxis( diagram );
-    axis3->setPosition( KDChart::CartesianAxis::Bottom );
+    KChart::CartesianAxis* axis3 = new KChart::LeveyJenningsAxis( diagram );
+    axis3->setPosition( KChart::CartesianAxis::Bottom );
     diagram->addAxis( axis3 );
 
     QTableView* tv = new QTableView;

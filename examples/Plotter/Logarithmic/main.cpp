@@ -18,20 +18,20 @@
  */
 
 #include <QtGui>
-#include <KDChartChart>
-#include <KDChartLineDiagram>
-#include <KDChartDataValueAttributes>
-#include <KDChartFrameAttributes>
+#include <KChartChart>
+#include <KChartLineDiagram>
+#include <KChartDataValueAttributes>
+#include <KChartFrameAttributes>
 
-#include <KDChartPlotter>
-#include <KDChartCartesianAxis>
-#include <KDChartCartesianCoordinatePlane>
-#include <KDChartLegend>
+#include <KChartPlotter>
+#include <KChartCartesianAxis>
+#include <KChartCartesianCoordinatePlane>
+#include <KChartLegend>
 #include <QStandardItemModel>
 
 #include <QApplication>
 
-using namespace KDChart;
+using namespace KChart;
 
 int main( int argc, char** argv )
 {
@@ -66,33 +66,33 @@ int main( int argc, char** argv )
     model.setHeaderData( 2, Qt::Horizontal, QString::fromLatin1( "x" ) );
     model.setHeaderData( 4, Qt::Horizontal, QString::fromLatin1( "x^3" ) );
 
-    KDChart::Chart* chart = new KDChart::Chart();
+    KChart::Chart* chart = new KChart::Chart();
 
-    KDChart::AbstractCartesianDiagram* diagram = new KDChart::Plotter;
+    KChart::AbstractCartesianDiagram* diagram = new KChart::Plotter;
     diagram->setModel( &model );
     chart->coordinatePlane()->replaceDiagram( diagram );
 
-    KDChart::CartesianAxis* xAxis = new KDChart::CartesianAxis( diagram );
-    KDChart::CartesianAxis* yAxis = new KDChart::CartesianAxis( diagram );
-    xAxis->setPosition( KDChart::CartesianAxis::Bottom );
-    yAxis->setPosition( KDChart::CartesianAxis::Left );
+    KChart::CartesianAxis* xAxis = new KChart::CartesianAxis( diagram );
+    KChart::CartesianAxis* yAxis = new KChart::CartesianAxis( diagram );
+    xAxis->setPosition( KChart::CartesianAxis::Bottom );
+    yAxis->setPosition( KChart::CartesianAxis::Left );
     diagram->addAxis( xAxis );
     diagram->addAxis( yAxis );
 
-    KDChart::Legend* legend = new KDChart::Legend( diagram, chart );
-    KDChart::FrameAttributes legendAtt = legend->frameAttributes();
+    KChart::Legend* legend = new KChart::Legend( diagram, chart );
+    KChart::FrameAttributes legendAtt = legend->frameAttributes();
     legendAtt.setCornerRadius( 9 );
     legend->setFrameAttributes( legendAtt );
-    legend->setPosition( KDChart::Position::East );
+    legend->setPosition( KChart::Position::East );
     legend->setAlignment( Qt::AlignCenter );
     legend->setTitleText( "Legend" );
     chart->addLegend( legend );
 
-    KDChart::CartesianCoordinatePlane* cart_plane = dynamic_cast<KDChart::CartesianCoordinatePlane*>(chart->coordinatePlane());
+    KChart::CartesianCoordinatePlane* cart_plane = dynamic_cast<KChart::CartesianCoordinatePlane*>(chart->coordinatePlane());
     Q_ASSERT(cart_plane);
 
-    cart_plane->setAxesCalcModeX(KDChart::AbstractCoordinatePlane::Logarithmic);
-    cart_plane->setAxesCalcModeY(KDChart::AbstractCoordinatePlane::Logarithmic);
+    cart_plane->setAxesCalcModeX(KChart::AbstractCoordinatePlane::Logarithmic);
+    cart_plane->setAxesCalcModeY(KChart::AbstractCoordinatePlane::Logarithmic);
 
     // Set the vertical range from 15 to 75 - with a logarithmic axis I actually get 1 to 100
     //cart_plane->setVerticalRange(QPair<qreal,qreal>( 0.005, 1000 ) );

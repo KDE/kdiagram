@@ -22,7 +22,7 @@
 
 #include "ui_mainwindow.h"
 
-namespace KDChart{
+namespace KChart{
     class Widget;
 }
 
@@ -33,7 +33,7 @@ class MainWindow : public QWidget, private Ui::MainWindow
 public:
     MainWindow( QWidget* parent = NULL );
 
-    KDChart::Widget* widget;
+    KChart::Widget* widget;
 
 public slots:
     void changeType();

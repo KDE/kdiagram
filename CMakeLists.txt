@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8.12)
 
-project( kde-kdchart )
+project( kdiagram )
 
 find_package(ECM 1.4.0 REQUIRED NO_MODULE)
 
@@ -40,7 +40,7 @@ if (NOT Qt5Sql_FOUND)
   message(STATUS "Qt5Sql not found, examples with SQL will not be built.")
 endif()
 
-# We want users of kdchart to be able to use the lib without interference with Qt-specific keywords, e.g. "signals" that collides with Boost's Signals
+# We want users of kdiagram libs to be able to use the lib without interference with Qt-specific keywords, e.g. "signals" that collides with Boost's Signals
 add_definitions(
     -DQT_NO_KEYWORDS
     -Demit=
@@ -54,8 +54,6 @@ add_definitions(
     -DQT_FATAL_ASSERT
     -DUSE_EXCEPTIONS
 )
-
-set( KDEKDCHARTLIBS_VERSION "2.6.0" )
 
 # TODO: port from .pro
 #  NOMINMAX avoids conflicting definitions of min and max

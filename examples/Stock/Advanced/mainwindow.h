@@ -22,9 +22,9 @@
 
 #include "ui_mainwindow.h"
 #include <TableModel.h>
-#include <KDChartChart>
-#include <KDChartStockDiagram>
-#include <KDChartThreeDBarAttributes>
+#include <KChartChart>
+#include <KChartStockDiagram>
+#include <KChartThreeDBarAttributes>
 
 class MainWindow : public QWidget, private Ui::MainWindow
 {
@@ -45,12 +45,12 @@ private:
     void initValues();
     void applyColor(const QColor &color);
 
-    KDChart::Chart *m_chart;
+    KChart::Chart *m_chart;
     TableModel m_HLCModel;
     TableModel m_OHLCModel;
 
-    KDChart::StockDiagram m_diagram;
-    KDChart::ThreeDBarAttributes m_threeDBarAttributes;
+    KChart::StockDiagram m_diagram;
+    KChart::ThreeDBarAttributes m_threeDBarAttributes;
 };
 
 #endif // MAINWINDOW_H

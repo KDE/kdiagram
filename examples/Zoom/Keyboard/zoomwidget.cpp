@@ -18,12 +18,12 @@
  */
 
 #include "zoomwidget.h"
-#include <KDChartAbstractCoordinatePlane>
+#include <KChartAbstractCoordinatePlane>
 #include <QWheelEvent>
 #include <QDebug>
 
 ZoomWidget::ZoomWidget( QWidget* parent ) :
-    KDChart::Widget( parent )
+    KChart::Widget( parent )
 {
     setFocusPolicy( Qt::WheelFocus );
 }

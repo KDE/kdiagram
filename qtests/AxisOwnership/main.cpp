@@ -18,16 +18,16 @@
  */
 
 #include <QtTest/QtTest>
-#include <KDChartChart>
-#include <KDChartGlobal>
-#include <KDChartBarDiagram>
-#include <KDChartLineDiagram>
-#include <KDChartCartesianCoordinatePlane>
-#include <KDChartCartesianAxis>
+#include <KChartChart>
+#include <KChartGlobal>
+#include <KChartBarDiagram>
+#include <KChartLineDiagram>
+#include <KChartCartesianCoordinatePlane>
+#include <KChartCartesianAxis>
 
 #include <TableModel.h>
 
-using namespace KDChart;
+using namespace KChart;
 
 class TestAxisOwnership: public QObject {
   Q_OBJECT

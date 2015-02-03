@@ -26,7 +26,7 @@
 QT_BEGIN_NAMESPACE
 class QTimer;
 QT_END_NAMESPACE
-namespace KDChart {
+namespace KChart {
     class Chart;
     class PieDiagram;
 }
@@ -56,9 +56,9 @@ private slots:
     void on_threeDFactorSB_valueChanged( int factor );
 
 private:
-    KDChart::Chart* m_chart;
+    KChart::Chart* m_chart;
     TableModel m_model;
-    KDChart::PieDiagram* m_pie;
+    KChart::PieDiagram* m_pie;
     QTimer* m_timer;
 
     int m_currentFactor;

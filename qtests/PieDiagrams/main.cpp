@@ -18,16 +18,16 @@
  */
 
 #include <QtTest/QtTest>
-#include <KDChartChart>
-#include <KDChartGlobal>
-#include <KDChartPieDiagram>
-#include <KDChartPieAttributes>
-#include <KDChartThreeDPieAttributes>
-#include <KDChartPolarCoordinatePlane>
+#include <KChartChart>
+#include <KChartGlobal>
+#include <KChartPieDiagram>
+#include <KChartPieAttributes>
+#include <KChartThreeDPieAttributes>
+#include <KChartPolarCoordinatePlane>
 
 #include <TableModel.h>
 
-using namespace KDChart;
+using namespace KChart;
 
 class TestPieDiagrams: public QObject {
     Q_OBJECT

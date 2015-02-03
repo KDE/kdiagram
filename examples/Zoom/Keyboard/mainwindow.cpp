@@ -19,10 +19,10 @@
 
 #include "mainwindow.h"
 #include "zoomwidget.h"
-#include <KDChartWidget>
+#include <KChartWidget>
 #include <QDebug>
 
-using namespace KDChart;
+using namespace KChart;
 
 MainWindow::MainWindow( QWidget* parent )
  : QWidget( parent )

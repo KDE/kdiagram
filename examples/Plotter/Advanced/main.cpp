@@ -19,21 +19,21 @@
 
 #include <QtGui>
 
-#include <KDChartChart>
-#include <KDChartGridAttributes>
-#include <KDChartFrameAttributes>
-#include <KDChartTextAttributes>
-#include <KDChartDataValueAttributes>
-#include <KDChartMarkerAttributes>
-#include <KDChartPlotter>
-#include <KDChartLegend>
-#include <KDChartBackgroundAttributes>
+#include <KChartChart>
+#include <KChartGridAttributes>
+#include <KChartFrameAttributes>
+#include <KChartTextAttributes>
+#include <KChartDataValueAttributes>
+#include <KChartMarkerAttributes>
+#include <KChartPlotter>
+#include <KChartLegend>
+#include <KChartBackgroundAttributes>
 
 #include <QApplication>
 
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
-    KDChart::Chart chart;
+    KChart::Chart chart;
 
     QStandardItemModel model;
 
@@ -70,31 +70,31 @@ int main(int argc, char *argv[]) {
     model.setHeaderData( 4, Qt::Horizontal, "Dataset 3" );
 
     // general chart layout
-    KDChart::FrameAttributes fm = chart.frameAttributes();
+    KChart::FrameAttributes fm = chart.frameAttributes();
     fm.setVisible(true);
     fm.setPen( QPen(Qt::black) );
     chart.setFrameAttributes(fm);
     chart.setGlobalLeading( 10, 0, 10, 10 );
 
-    KDChart::BackgroundAttributes chart_bg;
+    KChart::BackgroundAttributes chart_bg;
     chart_bg.setBrush(Qt::white);
     chart_bg.setVisible(true);
     chart.setBackgroundAttributes(chart_bg);
 
     // coordinate plane setup
-    KDChart::AbstractCoordinatePlane * plane1 = chart.coordinatePlane();
+    KChart::AbstractCoordinatePlane * plane1 = chart.coordinatePlane();
     plane1->setRubberBandZoomingEnabled(true);
 
     // create cartesian diagrams
-    KDChart::Plotter * plotter = new KDChart::Plotter;
+    KChart::Plotter * plotter = new KChart::Plotter;
     plotter->setHidden( 0, true );
     plotter->setAntiAliasing(false);
     plotter->setModel( &model );
     plane1->replaceDiagram( plotter );
 
     // customize grids
-    KDChart::CartesianCoordinatePlane * cp1 = static_cast<KDChart::CartesianCoordinatePlane *>(plane1);
-    KDChart::GridAttributes gv = cp1->gridAttributes( Qt::Vertical );
+    KChart::CartesianCoordinatePlane * cp1 = static_cast<KChart::CartesianCoordinatePlane *>(plane1);
+    KChart::GridAttributes gv = cp1->gridAttributes( Qt::Vertical );
     QPen gridPen(QColor(200,100,100));
     gridPen.setStyle(Qt::DashLine);
     gv.setGridPen(gridPen);
@@ -104,20 +104,20 @@ int main(int argc, char *argv[]) {
     cp1->setGridAttributes( Qt::Vertical,  gv );
 
     // axis
-    KDChart::CartesianAxis * xAxis = new KDChart::CartesianAxis( plotter );
-    xAxis->setPosition( KDChart::CartesianAxis::Bottom );
+    KChart::CartesianAxis * xAxis = new KChart::CartesianAxis( plotter );
+    xAxis->setPosition( KChart::CartesianAxis::Bottom );
     xAxis->setTitleText("X-Title");
 
-    KDChart::TextAttributes att = xAxis->titleTextAttributes();
+    KChart::TextAttributes att = xAxis->titleTextAttributes();
     QFont f = att.font();
     f.setBold(true);
     att.setFont(f);
     att.setAutoShrink(true);
-    att.setFontSize( KDChart::Measure(16) );
+    att.setFontSize( KChart::Measure(16) );
     xAxis->setTitleTextAttributes(att);
 
-    KDChart::CartesianAxis * y1Axis = new KDChart::CartesianAxis( plotter );
-    y1Axis->setPosition( KDChart::CartesianAxis::Left );
+    KChart::CartesianAxis * y1Axis = new KChart::CartesianAxis( plotter );
+    y1Axis->setPosition( KChart::CartesianAxis::Left );
     y1Axis->setTitleText("Y-Title");
 
     att = y1Axis->titleTextAttributes();
@@ -125,7 +125,7 @@ int main(int argc, char *argv[]) {
     f.setBold(true);
     att.setFont(f);
     att.setAutoShrink(true);
-    att.setFontSize( KDChart::Measure(16) );
+    att.setFontSize( KChart::Measure(16) );
     y1Axis->setTitleTextAttributes(att);
 
     // add the axis to the plotter
@@ -133,17 +133,17 @@ int main(int argc, char *argv[]) {
     plotter->addAxis( y1Axis );
 
     // create legend
-    KDChart::Legend * legend = new KDChart::Legend( plotter, &chart );
+    KChart::Legend * legend = new KChart::Legend( plotter, &chart );
     chart.addLegend( legend );
     att = legend->textAttributes();
     f = att.font();
     f.setBold(false);
     att.setFont(f);
     att.setAutoShrink(true);
-    att.setFontSize( KDChart::Measure(16) );
+    att.setFontSize( KChart::Measure(16) );
     legend->setTextAttributes(att);
 
-    legend->setPosition( KDChart::Position::East );
+    legend->setPosition( KChart::Position::East );
     legend->setAlignment( Qt::AlignCenter );
     legend->setTitleText( "Curves" );
     att = legend->titleTextAttributes();
@@ -151,16 +151,16 @@ int main(int argc, char *argv[]) {
     f.setBold(true);
     att.setFont(f);
     att.setAutoShrink(true);
-    att.setFontSize( KDChart::Measure(16) );
+    att.setFontSize( KChart::Measure(16) );
     legend->setTitleTextAttributes(att);
 
-    KDChart::BackgroundAttributes legend_bg;
+    KChart::BackgroundAttributes legend_bg;
     legend_bg.setBrush(Qt::white);
     legend_bg.setVisible(true);
     legend->setBackgroundAttributes(legend_bg);
 
-    KDChart::DataValueAttributes attr = plotter->dataValueAttributes();
-    KDChart::TextAttributes tattr = attr.textAttributes();
+    KChart::DataValueAttributes attr = plotter->dataValueAttributes();
+    KChart::TextAttributes tattr = attr.textAttributes();
     tattr.setRotation( 0 );
     attr.setTextAttributes( tattr );
     plotter->setDataValueAttributes( attr );
@@ -170,9 +170,9 @@ int main(int argc, char *argv[]) {
     // Dataset 1 : green, MarkerRing, no line
     QColor SERIES_1_OUTLINE = QColor(0,128,0);
     attr = plotter->dataValueAttributes(0);
-    KDChart::MarkerAttributes mattr = attr.markerAttributes();
+    KChart::MarkerAttributes mattr = attr.markerAttributes();
     mattr.setMarkerColor(SERIES_1_OUTLINE);
-    mattr.setMarkerStyle(KDChart::MarkerAttributes::MarkerRing);
+    mattr.setMarkerStyle(KChart::MarkerAttributes::MarkerRing);
     mattr.setMarkerSize(QSizeF(6.0, 6.0));
     mattr.setVisible(true);
     attr.setMarkerAttributes(mattr);
@@ -185,7 +185,7 @@ int main(int argc, char *argv[]) {
     attr = plotter->dataValueAttributes(1);
     mattr = attr.markerAttributes();
     mattr.setMarkerColor(SERIES_2_INSIDE);
-    mattr.setMarkerStyle(KDChart::MarkerAttributes::MarkerDiamond);
+    mattr.setMarkerStyle(KChart::MarkerAttributes::MarkerDiamond);
     mattr.setMarkerSize(QSizeF(8.0, 8.0));
     mattr.setVisible(true);
     attr.setMarkerAttributes(mattr);
@@ -199,7 +199,7 @@ int main(int argc, char *argv[]) {
     attr = plotter->dataValueAttributes(2);
     mattr = attr.markerAttributes();
     mattr.setMarkerColor(SERIES_3_INSIDE);
-    mattr.setMarkerStyle(KDChart::MarkerAttributes::MarkerCircle);
+    mattr.setMarkerStyle(KChart::MarkerAttributes::MarkerCircle);
     mattr.setMarkerSize(QSizeF(8.0, 8.0));
     mattr.setVisible(true);
     attr.setMarkerAttributes(mattr);

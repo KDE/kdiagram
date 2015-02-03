@@ -19,16 +19,16 @@
 
 #include <QtTest/QtTest>
 
-#include <KDChartChart>
-#include <KDChartGlobal>
-#include <KDChartBarDiagram>
-#include <KDChartLineDiagram>
-#include <KDChartCartesianCoordinatePlane>
-#include <KDChartPolarCoordinatePlane>
-#include <KDChartLegend>
-#include <KDChartHeaderFooter>
+#include <KChartChart>
+#include <KChartGlobal>
+#include <KChartBarDiagram>
+#include <KChartLineDiagram>
+#include <KChartCartesianCoordinatePlane>
+#include <KChartPolarCoordinatePlane>
+#include <KChartLegend>
+#include <KChartHeaderFooter>
 
-using namespace KDChart;
+using namespace KChart;
 
 class TestChartElementOwnership: public QObject {
     Q_OBJECT

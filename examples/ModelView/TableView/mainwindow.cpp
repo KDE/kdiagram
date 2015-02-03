@@ -21,13 +21,13 @@
 
 #include <QtGui>
 
-#include <KDChartChart>
-#include <KDChartHeaderFooter>
-#include <KDChartDatasetProxyModel>
-#include <KDChartAbstractCoordinatePlane>
-#include <KDChartBarDiagram>
-#include <KDChartTextAttributes>
-#include <KDChartDataValueAttributes>
+#include <KChartChart>
+#include <KChartHeaderFooter>
+#include <KChartDatasetProxyModel>
+#include <KChartAbstractCoordinatePlane>
+#include <KChartBarDiagram>
+#include <KChartTextAttributes>
+#include <KChartDataValueAttributes>
 #include <QMenuBar>
 #include <QMenu>
 #include <QTableView>
@@ -37,7 +37,7 @@
 #include <QApplication>
 
 
-using namespace KDChart;
+using namespace KChart;
 
 
 MainWindow::MainWindow()
@@ -108,12 +108,12 @@ void MainWindow::setupViews()
 
     qDebug() << "(" << m_model->rowCount() << "," << m_model->columnCount() << ")";
 
-    KDChart::DatasetProxyModel* dproxy = new KDChart::DatasetProxyModel( this );
+    KChart::DatasetProxyModel* dproxy = new KChart::DatasetProxyModel( this );
     dproxy->setSourceModel( m_model );
     dproxy->setDatasetColumnDescriptionVector( columnConfig );
     m_diagramView->setModel( dproxy );
 
-    KDChart::HeaderFooter* headerFooter = new KDChart::HeaderFooter( m_chart );
+    KChart::HeaderFooter* headerFooter = new KChart::HeaderFooter( m_chart );
     headerFooter->setText( tr( "You can edit the table data, or select table cells with keyboard/mouse." ) );
     headerFooter->setType( HeaderFooter::Header );
     headerFooter->setPosition( Position::North );

@@ -32,19 +32,19 @@
 
 #include <QFileDialog>
 
-#include <KDChartThreeDBarAttributes>
-#include <KDChartThreeDLineAttributes>
-#include <KDChartThreeDPieAttributes>
+#include <KChartThreeDBarAttributes>
+#include <KChartThreeDLineAttributes>
+#include <KChartThreeDPieAttributes>
 
-#include <KDChartChart>
-#include <KDChartBarDiagram>
-#include <KDChartLineDiagram>
-#include <KDChartPieDiagram>
-#include <KDChartCartesianCoordinatePlane>
+#include <KChartChart>
+#include <KChartBarDiagram>
+#include <KChartLineDiagram>
+#include <KChartPieDiagram>
+#include <KChartCartesianCoordinatePlane>
 
-#include <KDChartBackgroundAttributes>
+#include <KChartBackgroundAttributes>
 
-using namespace KDChart;
+using namespace KChart;
 
 class DiagramSettings::Private : public QObject
 {

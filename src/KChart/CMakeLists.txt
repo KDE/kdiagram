@@ -121,6 +121,8 @@ qt5_add_resources(kchart_LIB_SRCS
     KChart_LeveyJennings_resources.qrc
 )
 
+ecm_create_qm_loader(kchart_LIB_SRCS kchart_qt)
+
 qt_wrap_cpp(KChart kchart_LIB_SRCS KChartEnums.h)
 
 add_library(KChart SHARED ${kchart_LIB_SRCS})

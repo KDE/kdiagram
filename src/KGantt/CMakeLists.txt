@@ -35,6 +35,8 @@ set( kgantt_LIB_SRCS
     unittest/testregistry.cpp
 )
 
+ecm_create_qm_loader(kgantt_LIB_SRCS kgantt_qt)
+
 add_library( KGantt SHARED ${kgantt_LIB_SRCS} )
 
 generate_export_header( KGantt )

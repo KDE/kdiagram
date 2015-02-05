@@ -12,9 +12,6 @@
   <property name="windowTitle" >
    <string>KD Chart drawing into a foreign QPainter </string>
   </property>
-  <property name="windowIcon" >
-   <iconset/>
-  </property>
   <layout class="QGridLayout" >
    <property name="margin" >
     <number>9</number>

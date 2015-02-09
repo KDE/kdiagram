@@ -47,10 +47,6 @@ add_definitions(
     -Demit=
 )
 add_definitions(
-    -DQT_USE_QSTRINGBUILDER
-    -DQT_NO_CAST_TO_ASCII
-    -DQT_NO_CAST_FROM_ASCII
-    -DQT_NO_CAST_FROM_BYTEARRAY
     -DQT_NO_STL
     -DQT_FATAL_ASSERT
     -DUSE_EXCEPTIONS

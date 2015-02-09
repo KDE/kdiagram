@@ -21,11 +21,11 @@
 #define KGANTTGRAPHICSVIEW_H
 
 #include <QGraphicsView>
-#include <QPrinter>
 
 #include "kganttglobal.h"
 
 QT_BEGIN_NAMESPACE
+class QPrinter;
 class QModelIndex;
 class QAbstractItemModel;
 class QAbstractProxyModel;

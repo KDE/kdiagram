@@ -137,17 +137,17 @@ private slots:
       //set Cartesian type
       m_widget->setType( Widget::Line );
       QCOMPARE( m_widget->type(), Widget::Line );
-      QVERIFY( m_widget->barDiagram() == false );
-      QVERIFY( m_widget->pieDiagram() == false );
-      QVERIFY( m_widget->ringDiagram() == false );
-      QVERIFY( m_widget->polarDiagram() == false );
+      QCOMPARE( m_widget->barDiagram(), static_cast<BarDiagram*>(0) );
+      QCOMPARE( m_widget->pieDiagram(), static_cast<PieDiagram*>(0) );
+      QCOMPARE( m_widget->ringDiagram(), static_cast<RingDiagram*>(0) );
+      QCOMPARE( m_widget->polarDiagram(), static_cast<PolarDiagram*>(0) );
       // set Polar type
       m_widget->setType( Widget::Polar );
       QCOMPARE( m_widget->type(), Widget::Polar );
-      QVERIFY( m_widget->barDiagram() == false );
-      QVERIFY( m_widget->lineDiagram() == false );
-      QVERIFY( m_widget->ringDiagram() == false );
-      QVERIFY( m_widget->pieDiagram() == false );
+      QCOMPARE( m_widget->barDiagram(), static_cast<BarDiagram*>(0) );
+      QCOMPARE( m_widget->lineDiagram(), static_cast<LineDiagram*>(0) );
+      QCOMPARE( m_widget->ringDiagram(), static_cast<RingDiagram*>(0) );
+      QCOMPARE( m_widget->pieDiagram(), static_cast<PieDiagram*>(0) );
       // reset default
       m_widget->setType( Widget::Line );
   }

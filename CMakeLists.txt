@@ -23,22 +23,20 @@ set(REQUIRED_QT_VERSION "5.2.0")
 
 find_package(Qt5 ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE
     COMPONENTS
-    Core
-    Gui
     PrintSupport
     Svg
     Widgets
 )
 if(BUILD_TESTING)
-find_package(Qt5Test QUIET)
-if (NOT Qt5Test_FOUND)
-  message(STATUS "Qt5Test not found, unit tests will not be built.")
-endif()
+    find_package(Qt5Test QUIET)
+    if (NOT Qt5Test_FOUND)
+        message(STATUS "Qt5Test not found, unit tests will not be built.")
+    endif()
 endif()
 
 find_package(Qt5Sql QUIET)
 if (NOT Qt5Sql_FOUND)
-  message(STATUS "Qt5Sql not found, examples with SQL will not be built.")
+    message(STATUS "Qt5Sql not found, examples with SQL will not be built.")
 endif()
 
 # We want users of kdiagram libs to be able to use the lib without interference with Qt-specific keywords, e.g. "signals" that collides with Boost's Signals
@@ -72,12 +70,12 @@ endif()
 add_subdirectory( src )
 
 if(BUILD_TESTING)
-add_subdirectory( examples )
-add_subdirectory( tests )
+    add_subdirectory( examples )
+    add_subdirectory( tests )
 
-if(Qt5Test_FOUND)
-    add_subdirectory( qtests )
-endif()
+    if(Qt5Test_FOUND)
+        add_subdirectory( qtests )
+    endif()
 endif()
 
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)

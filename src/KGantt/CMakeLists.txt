@@ -37,7 +37,7 @@ set( kgantt_LIB_SRCS
 
 ecm_create_qm_loader(kgantt_LIB_SRCS kgantt_qt)
 
-add_library( KGantt SHARED ${kgantt_LIB_SRCS} )
+add_library( KGantt ${kgantt_LIB_SRCS} )
 
 generate_export_header( KGantt )
 
@@ -45,9 +45,10 @@ target_include_directories(KGantt
     INTERFACE "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}/KGantt>"
 )
 
-target_link_libraries( KGantt LINK_PRIVATE
-    Qt5::Core
+target_link_libraries( KGantt
+PUBLIC
     Qt5::Widgets
+PRIVATE
     Qt5::PrintSupport
 )
 

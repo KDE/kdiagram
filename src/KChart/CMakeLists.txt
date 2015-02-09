@@ -125,7 +125,7 @@ ecm_create_qm_loader(kchart_LIB_SRCS kchart_qt)
 
 qt_wrap_cpp(KChart kchart_LIB_SRCS KChartEnums.h)
 
-add_library(KChart SHARED ${kchart_LIB_SRCS})
+add_library(KChart ${kchart_LIB_SRCS})
 
 # TODO: check if this snippet from .pro file should be ported, otherwise remove file
 # linux-*{
@@ -141,10 +141,11 @@ target_include_directories(KChart
     INTERFACE "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}/KChart>"
 )
 
-target_link_libraries(KChart LINK_PRIVATE
-    Qt5::Svg
+target_link_libraries(KChart
+PUBLIC
     Qt5::Widgets
-    Qt5::Core
+PRIVATE
+    Qt5::Svg
 )
 set_target_properties( KChart PROPERTIES
   VERSION     ${KCHART_VERSION}

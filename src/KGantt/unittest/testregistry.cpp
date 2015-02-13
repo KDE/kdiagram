@@ -60,6 +60,7 @@ unsigned int KDAB::UnitTest::TestRegistry::run() const {
   for ( std::map< std::string, std::vector<const TestFactory*> >::const_iterator g = mTests.begin() ; g != mTests.end() ; ++g ) {
     std::cerr << "===== GROUP \"" << g->first << "\" =========" << std::endl;
     for ( std::vector<const TestFactory*>::const_iterator it = g->second.begin() ; it != g->second.end() ; ++it ) {
+      // once ported to unique_ptr, remove special flag -Wno-deprecated-declarations for this file
       std::auto_ptr<Test> t( (*it)->create() );
       assert( t.get() );
       std::cerr << "  === \"" << t->name() << "\" ===" << std::endl;

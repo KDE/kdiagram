@@ -153,7 +153,6 @@ void StackedPlotter::paint( PaintContext* ctx )
             {
                 const CartesianDiagramDataCompressor::CachePosition position( row, column2 );
                 const CartesianDiagramDataCompressor::DataPoint point = compressor().data( position );
-                const QModelIndex sourceIndex = attributesModel()->mapToSource( point.index );
                 if( !ISNAN( point.value ) )
                 {
                     stackedValues += point.value;

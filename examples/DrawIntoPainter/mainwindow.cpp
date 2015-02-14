@@ -150,14 +150,16 @@ MainWindow::MainWindow( QWidget* parent ) :
     m_smallChart1->setWindowTitle( "200x200" );
     m_smallChart1->setPixmap( m_pix1 );
     m_smallChart1->setFixedSize( m_pix1.size() );
-    m_smallChart1->move( width() - m_pix1.width() * 2,  height() / 2 - m_pix1.height() - 5 );
+    m_smallChart1->move( width() - m_pix1.width() * 2,
+                         height() / 2 - m_pix1.height() - 5 );
     m_smallChart1->show();
 
     m_smallChart2 = new QLabel( this );
     m_smallChart2->setWindowTitle( "800x800 scaled down" );
     m_smallChart2->setPixmap( m_pix2 );
     m_smallChart2->setFixedSize( m_pix2.size() );
-    m_smallChart2->move( width() - m_pix2.width() * 2, height() / 2 + 5 );
+    m_smallChart2->move( width() - m_pix2.width() * 2,
+                         height() / 2 + 5 );
     m_smallChart2->show();
 
     faChart.setPen( QPen( QColor( 0xb0, 0xb0, 0xff ), 8 ) );
@@ -262,7 +264,7 @@ void MainWindow::on_transparencySB_valueChanged( int alpha )
         on_displayAreasCB_toggled( true );
 }
 
-void MainWindow::on_zoomFactorSB_valueChanged( double factor )
+void MainWindow::on_zoomFactorSB_valueChanged( qreal factor )
 {
     const bool isZoomedIn = factor > 1.0f;
     hSBar->setVisible( isZoomedIn );
@@ -374,7 +376,8 @@ void MainWindow::on_savePB_clicked()
     QPainter painter( &qpix );
     painter.setBrush( Qt::white );
     painter.fillRect( 0, 0, 600, 600, Qt::white);
-    m_chart->paint( &painter, QRect( 100, 100, 400, 400 ) );
+    m_chart->paint( &painter,
+                    QRect( 100, 100, 400, 400 ) );
     painter.end();
     qpix.save( file, "PNG" );
     qDebug() << "Painting into PNG - done";
@@ -401,6 +404,8 @@ void MainWindow::on_savePDF_clicked()
 
 void MainWindow::resizeEvent( QResizeEvent * )
 {
-    m_smallChart1->move( width() - m_pix1.width() * 2, height() / 2 - m_pix1.height() - 5 );
-    m_smallChart2->move( width() - m_pix2.width() * 2, height() / 2 + 5 );
+    m_smallChart1->move( width() - m_pix1.width() * 2,
+                         height() / 2 - m_pix1.height() - 5 );
+    m_smallChart2->move( width() - m_pix2.width() * 2,
+                         height() / 2 + 5 );
 }

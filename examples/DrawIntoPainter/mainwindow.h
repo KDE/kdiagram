@@ -60,22 +60,21 @@ private slots:
     void on_markersHeightSB_valueChanged( int i);
     void on_displayAreasCB_toggled( bool checked );
     void on_transparencySB_valueChanged( int i );
-    void on_zoomFactorSB_valueChanged( double factor );
+    void on_zoomFactorSB_valueChanged( qreal factor );
     void on_hSBar_valueChanged( int value );
     void on_vSBar_valueChanged( int value );
     void on_savePB_clicked();
     void on_savePDF_clicked();
 
 private:
-    TableModel m_model;
-    KChart::DatasetProxyModel* m_datasetProxy;
-    KChart::Legend* m_legend;
-
     void paintMarkers( bool checked, const QSize& printSize );
 
-protected:
+private:
     KChart::Chart* m_chart;
+    TableModel m_model;
+    KChart::DatasetProxyModel* m_datasetProxy;
     KChart::LineDiagram* m_lines;
+    KChart::Legend* m_legend;
     QPixmap m_pix1, m_pix2;
     QLabel* m_smallChart1;
     QLabel* m_smallChart2;

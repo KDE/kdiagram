@@ -36,9 +36,7 @@ public:
 
     virtual void paintEvent( QPaintEvent* );
 
-    void setChart( KChart::Chart* chart ) {
-        mChart = chart;
-    }
+    void setChart( KChart::Chart* chart );
 
 private:
     KChart::Chart* mChart;

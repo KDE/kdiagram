@@ -31,6 +31,14 @@ FrameWidget::FrameWidget( QWidget* parent, Qt::WindowFlags f )
     // this bloc left empty intentionally
 }
 
+void FrameWidget::setChart( KChart::Chart* chart )
+{
+    mChart = chart;
+    // This is necessary because Chart can't automatically schedule somebody else (this object) to
+    // call its custom paint method.
+    connect( mChart, SIGNAL( propertiesChanged() ), SLOT( update() ) );
+}
+
 void FrameWidget::paintEvent( QPaintEvent* e )
 {
     if ( !mChart ) {
@@ -38,7 +46,7 @@ void FrameWidget::paintEvent( QPaintEvent* e )
     } else {
         QPainter painter( this );
 
-        const int wid=64;
+        const int wid = 64;
         const QRect  r( rect() );
         const QPen   oldPen(   painter.pen() );
         const QBrush oldBrush( painter.brush() );
@@ -52,10 +60,8 @@ void FrameWidget::paintEvent( QPaintEvent* e )
         painter.setBrush( oldBrush );
         painter.setPen(   oldPen );
         // paint the chart
-        mChart->paint(
-            &painter,
-            QRect( r.left()+wid/2, r.top()+wid/2,
-                   r.width()-wid, r.height()-wid ) );
+        mChart->paint( &painter, QRect( r.left()+wid/2, r.top()+wid/2,
+                                        r.width()-wid,  r.height()-wid ) );
         // paint over the chart
         painter.setPen( QPen(Qt::NoPen) );
         painter.setBrush( QBrush(QColor(0xd0,0xff,0xff)) );

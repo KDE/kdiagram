@@ -29,8 +29,6 @@ namespace KChart {
     class Chart;
     class DatasetProxyModel;
     class LineDiagram;
-    class LineAttributes;
-    class CartesianAxis;
     class Legend;
 }
 
@@ -67,6 +65,9 @@ private slots:
     void on_savePB_clicked();
 
 private:
+    void paintMarkers( bool checked, const QSize& printSize );
+
+private:
     KChart::Chart* m_chart;
     TableModel m_model;
     KChart::DatasetProxyModel* m_datasetProxy;
@@ -75,10 +76,6 @@ private:
     QPixmap m_pix1, m_pix2;
     QLabel* m_smallChart1;
     QLabel* m_smallChart2;
-    // mutable KChart::CartesianAxis xAxis;
-    //mutable KChart::CartesianAxis yAxis;
 };
 
-
 #endif /* MAINWINDOW_H */
-

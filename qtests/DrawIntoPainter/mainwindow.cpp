@@ -66,8 +66,7 @@ MainWindow::MainWindow( QWidget* parent ) :
     hSBar->setVisible( false );
     vSBar->setVisible( false );
 
-//    updateData(":/test");
-    m_model.loadFromCSV( QString(":/test") );
+    m_model.loadFromCSV( ":/empty" );
 
     // Set up the diagram
     m_lines = new LineDiagram();

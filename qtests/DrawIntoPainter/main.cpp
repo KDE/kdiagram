@@ -25,12 +25,6 @@ class TestDrawIntoPainter: public QObject {
     Q_OBJECT
 private slots:
 
-  void initDrawIntoPainter()
-  {
-    MainWindow mainWindow;
-    mainWindow.show();
-  }
-
   void testOriginal()
   {
     mainWindow.updateData(tr(":/original"));

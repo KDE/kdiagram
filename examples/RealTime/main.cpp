@@ -17,7 +17,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QtGui>
+#include <QStandardItemModel>
+#include <QTimer>
 #include <KChartChart>
 #include <KChartBarDiagram>
 

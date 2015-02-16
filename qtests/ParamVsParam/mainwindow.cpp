@@ -22,7 +22,9 @@
 #include "ModelParamVsParam.h"
 #include "ModelParamVsParamPlot.h"
 
-#include <QtWidgets>
+#include <QWidget>
+#include <QLabel>
+#include <QLineEdit>
 
 
 #include <KChartChart>

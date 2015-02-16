@@ -18,7 +18,8 @@
  */
 
 #include <QApplication>
-#include <QtGui>
+#include <QStandardItemModel>
+#include <QWidget>
 #include <KChartChart>
 #include <KChartBarDiagram>
 #include <KChartHeaderFooter>

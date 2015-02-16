@@ -19,7 +19,7 @@
 
 #include "mainwindow.h"
 
-#include <QtGui>
+#include <QStandardItemModel>
 
 #include <KChartChart>
 #include <KChartHeaderFooter>

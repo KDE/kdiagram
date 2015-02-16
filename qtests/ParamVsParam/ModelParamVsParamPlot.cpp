@@ -19,7 +19,7 @@
 
 #include "ModelParamVsParamPlot.h"
 
-#include <QtGui>
+#include <QAbstractItemModel>
 
 #include <KChartGlobal>
 

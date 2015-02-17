@@ -31,6 +31,7 @@
 // We mean it.
 //
 
+#include <KChartThreeDLineAttributes.h>
 #include <KChartAbstractThreeDAttributes_p.h>
 #include "KChartMath_p.h"
 

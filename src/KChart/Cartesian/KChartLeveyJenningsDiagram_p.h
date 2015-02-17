@@ -33,6 +33,7 @@
 
 #include <QDateTime>
 
+#include "KChartLeveyJenningsDiagram.h"
 #include "KChartThreeDLineAttributes.h"
 #include "KChartLineDiagram_p.h"
 #include "KChartMath_p.h"

@@ -31,6 +31,7 @@
 // We mean it.
 //
 
+#include "KChartAbstractPieDiagram.h"
 #include "KChartAbstractPolarDiagram_p.h"
 #include <KChartAbstractThreeDAttributes.h>
 #include "KChartMath_p.h"

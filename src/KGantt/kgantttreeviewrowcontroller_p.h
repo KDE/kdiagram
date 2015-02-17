@@ -20,7 +20,7 @@
 #ifndef KGANTTTREEVIEWROWCONTROLLER_P_H
 #define KGANTTTREEVIEWROWCONTROLLER_P_H
 
-#include "kganttabstractrowcontroller.h"
+#include "kgantttreeviewrowcontroller.h"
 
 #include <QTreeView>
 

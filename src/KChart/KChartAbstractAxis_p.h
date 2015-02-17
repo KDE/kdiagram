@@ -34,6 +34,7 @@
 #include <QQueue>
 #include <QTimer>
 
+#include "KChartAbstractAxis.h"
 #include "KChartAbstractArea_p.h"
 #include "KChartAbstractDiagram.h"
 #include "KChartMath_p.h"

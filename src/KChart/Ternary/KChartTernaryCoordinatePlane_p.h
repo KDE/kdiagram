@@ -31,6 +31,7 @@
 // We mean it.
 //
 
+#include "KChartTernaryCoordinatePlane.h"
 #include "KChartTernaryGrid.h"
 #include "KChartAbstractCoordinatePlane_p.h"
 #include "KChartMath_p.h"

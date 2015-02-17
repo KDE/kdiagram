@@ -33,6 +33,7 @@
 
 #include <QRectF>
 
+#include "KChartLeveyJenningsCoordinatePlane.h"
 #include "KChartLeveyJenningsGrid.h"
 #include "KChartCartesianCoordinatePlane_p.h"
 #include "KChartMath_p.h"

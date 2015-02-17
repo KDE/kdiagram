@@ -20,6 +20,10 @@
 #ifndef KGANTTPROXYMODEL_P_H
 #define KGANTTPROXYMODEL_P_H
 
+#include "kganttproxymodel.h"
+
+#include <QHash>
+
 namespace KGantt {
     class ProxyModel::Private {
     public:

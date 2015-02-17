@@ -180,7 +180,7 @@ QString ItemDelegate::toolTip( const QModelIndex &idx ) const
     if ( !model ) return QString();
     QString tip = model->data( idx, Qt::ToolTipRole ).toString();
     if ( !tip.isNull() ) return tip;
-    else return tr( "%1 -> %2: %3" )
+    else return tr( "%1 -> %2: %3", "start time -> end time: item name" )
                 .arg( model->data( idx, StartTimeRole ).toString() )
                 .arg( model->data( idx, EndTimeRole ).toString() )
                 .arg( model->data( idx, Qt::DisplayRole ).toString() );

@@ -130,7 +130,7 @@ void  TernaryLineDiagram::paint (PaintContext *paintContext)
                     start = widgetLocation;
                     // retrieve text and data value attributes
                     // FIXME use data model DisplayRole text
-                    QString text = tr( "(%1, %2, %3)" )
+                    QString text = tr( "(%1, %2, %3)", "(x, y, z) values of the data point" )
                                    .arg( x * 100, 0, 'f', 0 )
                                    .arg( y * 100, 0, 'f', 0 )
                                    .arg( z * 100, 0, 'f', 0 );

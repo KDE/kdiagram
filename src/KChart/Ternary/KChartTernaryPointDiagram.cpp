@@ -113,7 +113,7 @@ void  TernaryPointDiagram::paint (PaintContext *paintContext)
                     QPointF widgetLocation = plane->translate( diagramLocation );
 
                     paintMarker( p, model()->index( row, column, rootIndex() ), widgetLocation ); // checked
-                    QString text = tr( "(%1, %2, %3)" )
+                    QString text = tr( "(%1, %2, %3)", "(x, y, z) values of the data point" )
                                    .arg( x * 100, 0, 'f', 0 )
                                    .arg( y * 100, 0, 'f', 0 )
                                    .arg( z * 100, 0, 'f', 0 );

@@ -94,23 +94,23 @@ void HeaderWidget::contextMenuEvent( QContextMenuEvent* event )
     QAction* actionZoomOut = 0;
     if ( grid != 0 )
     {
-        QMenu* menuScale = new QMenu( tr( "Scale" ), &contextMenu );
+        QMenu* menuScale = new QMenu( tr( "Scale", "@title:menu" ), &contextMenu );
         QActionGroup* scaleGroup = new QActionGroup( &contextMenu );
         scaleGroup->setExclusive( true );
 
-        actionScaleAuto = new QAction( tr( "Auto" ), menuScale );
+        actionScaleAuto = new QAction( tr( "Auto", "@item:inmenu Automatic scale" ), menuScale );
         actionScaleAuto->setCheckable( true );
         actionScaleAuto->setChecked( grid->scale() == DateTimeGrid::ScaleAuto );
-        actionScaleMonth = new QAction( tr( "Month" ), menuScale );
+        actionScaleMonth = new QAction( tr( "Month", "@item:inmenu" ), menuScale );
         actionScaleMonth->setCheckable( true );
         actionScaleMonth->setChecked( grid->scale() == DateTimeGrid::ScaleMonth );
-        actionScaleWeek = new QAction( tr( "Week" ), menuScale );
+        actionScaleWeek = new QAction( tr( "Week", "@item:inmenu" ), menuScale );
         actionScaleWeek->setCheckable( true );
         actionScaleWeek->setChecked( grid->scale() == DateTimeGrid::ScaleWeek );
-        actionScaleDay = new QAction( tr( "Day" ), menuScale );
+        actionScaleDay = new QAction( tr( "Day", "@item:inmenu" ), menuScale );
         actionScaleDay->setCheckable( true );
         actionScaleDay->setChecked( grid->scale() == DateTimeGrid::ScaleDay );
-        actionScaleHour = new QAction( tr( "Hour" ), menuScale );
+        actionScaleHour = new QAction( tr( "Hour", "@item:inmenu" ), menuScale );
         actionScaleHour->setCheckable( true );
         actionScaleHour->setChecked( grid->scale() == DateTimeGrid::ScaleHour );
 
@@ -133,9 +133,9 @@ void HeaderWidget::contextMenuEvent( QContextMenuEvent* event )
 
         contextMenu.addSeparator();
 
-        actionZoomIn = new QAction( tr( "Zoom In" ), &contextMenu );
+        actionZoomIn = new QAction( tr( "Zoom In", "@action:inmenu" ), &contextMenu );
         contextMenu.addAction( actionZoomIn );
-        actionZoomOut = new QAction( tr( "Zoom Out" ), &contextMenu );
+        actionZoomOut = new QAction( tr( "Zoom Out", "@action:inmenu" ), &contextMenu );
         contextMenu.addAction( actionZoomOut );
     }
 

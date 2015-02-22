@@ -1,0 +1,6 @@
+/**
+ * \mainpage KGantt
+ */
+
+// DOXYGEN_SET_PROJECT_NAME = KGantt
+// DOXYGEN_SET_IGNORE_PREFIX = K

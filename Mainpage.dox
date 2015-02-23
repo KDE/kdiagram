@@ -6,10 +6,10 @@ the KDiagram Libraries.</b>
 
 The libraries available in this KDE module are:
 
-- <a href="src/KChart/html/index.html"><b>KChart</b></a>.
+- <a href="../src/KChart/html/index.html"><b>KChart</b></a>.
   <i>A library for creating business charts.</i>
 
-- <a href="src/KGantt/html/index.html"><b>KGantt</b></a>.
+- <a href="../src/KGantt/html/index.html"><b>KGantt</b></a>.
   <i>A library for creating <a href="https://en.wikipedia.org/wiki/Gantt_chart">Gantt</a> diagrams.</i>
 
 */

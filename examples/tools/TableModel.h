@@ -23,7 +23,7 @@
 #include <QVariant>
 #include <QVector>
 #include <QAbstractTableModel>
-#include "tools_export.h"
+#include "testtools_export.h"
 #include <QStringList>
 
 /** TableModel uses a simple rectangular vector of vectors to represent a data

@@ -36,12 +36,15 @@ set( kgantt_LIB_SRCS
     unittest/test.cpp
     unittest/testregistry.cpp
 )
+
+if(CMAKE_COMPILER_IS_GNUCXX)
 # remove once c++11-only
 # avoid warning about deprecated std::auto_ptr
 set_source_files_properties(unittest/testregistry.cpp
     PROPERTIES
         COMPILE_FLAGS "-Wno-deprecated-declarations"
 )
+endif(CMAKE_COMPILER_IS_GNUCXX)
 
 ecm_create_qm_loader(kgantt_LIB_SRCS kgantt_qt)
 

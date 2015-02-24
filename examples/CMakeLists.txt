@@ -4,6 +4,7 @@ add_subdirectory(Gantt)
 # KChart examples
 include_directories(
     ${CMAKE_SOURCE_DIR}/examples/tools
+    ${CMAKE_BINARY_DIR}/examples/tools
     ${CMAKE_SOURCE_DIR}/src/KChart
     ${CMAKE_SOURCE_DIR}/src/KChart/include
     ${CMAKE_SOURCE_DIR}/src/KChart/Cartesian

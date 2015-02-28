@@ -1,0 +1,9 @@
+*.kdev4
+.kdev4
+*~
+*.bak
+*.orig
+*.rej
+doxygen.log
+Doxyfile
+.*kate-swp

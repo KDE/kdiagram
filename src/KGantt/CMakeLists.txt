@@ -81,17 +81,17 @@ ecm_generate_headers(kgantt_LIB_HEADERS
     KGanttStyleOptionGanttItem
     KGanttGraphicsView
     KGanttAbstractRowController
-    KGanttTreeviewRowController
-    KGanttListviewRowController
+    KGanttTreeViewRowController
+    KGanttListViewRowController
     KGanttGraphicsScene
     KGanttGraphicsItem
     KGanttConstraint
     KGanttConstraintProxy
     KGanttConstraintGraphicsItem
     KGanttItemDelegate
-    KGanttForwardingproxyModel
+    KGanttForwardingProxyModel
     KGanttSummaryHandlingProxyModel
-    KGanttProxymodel
+    KGanttProxyModel
     KGanttConstraintModel
     KGanttAbstractGrid
     KGanttDateTimeGrid

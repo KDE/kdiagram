@@ -121,7 +121,9 @@ void MainWindow::initializeDataModel()
 void MainWindow::setMarkerAttributes()
 {
     // disable the connecting line
-    m_plotter->setPen( Qt::NoPen );
+    KChart::LineAttributes la = m_plotter->lineAttributes();
+    la.setVisible(false);
+    m_plotter->setLineAttributes(la);
 
     for ( int iRow = 0; iRow<nBubbles; ++iRow ) {
         const QModelIndex indexX = m_plotter->model()->index(iRow, 0);

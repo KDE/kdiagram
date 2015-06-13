@@ -37,6 +37,7 @@ private:
     //Areas
     MissingValuesPolicy missingValuesPolicy;
     bool displayArea;
+    bool visible;
     uint transparency;
     int areaBoundingDataset;
 };
@@ -45,6 +46,7 @@ private:
 LineAttributes::Private::Private()
     : missingValuesPolicy( MissingValuesAreBridged )
     , displayArea( false )
+    , visible( true )
     , transparency( 255 )
     , areaBoundingDataset( -1 )
 {
@@ -81,6 +83,7 @@ bool LineAttributes::operator==( const LineAttributes& r ) const
     return
         missingValuesPolicy() == r.missingValuesPolicy() &&
         displayArea() == r.displayArea() &&
+        isVisible() == r.isVisible() &&
         transparency() == r.transparency() &&
         areaBoundingDataset() == r.areaBoundingDataset();
 }
@@ -127,12 +130,23 @@ int LineAttributes::areaBoundingDataset() const
     return d->areaBoundingDataset;
 }
 
+void LineAttributes::setVisible( bool visible )
+{
+    d->visible = visible;
+}
+
+bool LineAttributes::isVisible() const
+{
+    return d->visible;
+}
+
 #if !defined(QT_NO_DEBUG_STREAM)
 QDebug operator<<(QDebug dbg, const KChart::LineAttributes& a)
 {
     dbg << "KChart::LineAttributes("
             //     MissingValuesPolicy missingValuesPolicy;
             << "bool="<<a.displayArea()
+            << "visible="<<a.isVisible()
             << "transparency="<<a.transparency()
             << "areaBoundingDataset="<<a.areaBoundingDataset()
             << ")";

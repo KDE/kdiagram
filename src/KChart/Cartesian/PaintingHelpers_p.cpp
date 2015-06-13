@@ -30,6 +30,7 @@
 #include "KChartPainterSaver_p.h"
 #include "KChartPlotter.h"
 #include "KChartPrintingParameters.h"
+#include "KChartLineAttributes.h"
 #include "KChartThreeDLineAttributes.h"
 #include "ReverseMapper.h"
 
@@ -180,6 +181,17 @@ static ThreeDLineAttributes threeDLineAttributes( AbstractDiagram* diagram, cons
     return ThreeDLineAttributes();
 }
 
+static LineAttributes lineAttributes( AbstractDiagram* diagram, const QModelIndex& index )
+{
+    if ( Plotter *plotter = qobject_cast< Plotter* >( diagram ) ) {
+        return plotter->lineAttributes( index );
+    } else if ( LineDiagram *lineDiagram = qobject_cast< LineDiagram* >( diagram ) ) {
+        return lineDiagram->lineAttributes( index );
+    }
+    Q_ASSERT( false );
+    return LineAttributes();
+}
+
 static ValueTrackerAttributes valueTrackerAttributes( AbstractDiagram* diagram, const QModelIndex& index )
 {
     if ( Plotter *plotter = qobject_cast< Plotter* >( diagram ) ) {
@@ -205,8 +217,11 @@ void paintElements( AbstractDiagram::Private *diagramPrivate, PaintContext* ctx,
     Q_FOREACH ( const LineAttributesInfo& lineInfo, lineList ) {
         const QModelIndex& index = lineInfo.index;
         const ThreeDLineAttributes td = threeDLineAttributes( diagram, index );
+        const LineAttributes la = lineAttributes( diagram, index );
 
-        if ( td.isEnabled() ) {
+        if ( !la.isVisible() ) {
+            // Do not draw lines, but do draw text and markers
+        } else if( td.isEnabled() ){
             PaintingHelpers::paintThreeDLines( ctx, diagram, index, lineInfo.value,
                                                lineInfo.nextValue, td, &diagramPrivate->reverseMapper );
         } else {

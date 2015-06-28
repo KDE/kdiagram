@@ -123,8 +123,9 @@ void PieDiagram::resizeEvent( QResizeEvent* )
 {
 }
 
-void PieDiagram::resize( const QSizeF& )
+void PieDiagram::resize( const QSizeF& size )
 {
+    AbstractPieDiagram::resize(size);
 }
 
 void PieDiagram::paint( PaintContext* ctx )

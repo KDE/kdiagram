@@ -443,7 +443,7 @@ void Plotter::resize ( const QSizeF& size )
         calcMergeRadius();
     }
     setDataBoundariesDirty();
-    QAbstractItemView::resize( size.toSize() );
+    AbstractCartesianDiagram::resize( size );
 }
 
 void Plotter::setDataBoundariesDirty()

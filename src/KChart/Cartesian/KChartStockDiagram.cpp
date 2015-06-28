@@ -340,7 +340,7 @@ void StockDiagram::resize( const QSizeF &size )
     d->compressor.setResolution( static_cast< int >( size.width() * coordinatePlane()->zoomFactorX() ),
                                  static_cast< int >( size.height() * coordinatePlane()->zoomFactorY() ) );
     setDataBoundariesDirty();
-    QAbstractItemView::resize( size.toSize() );
+    AbstractCartesianDiagram::resize( size );
 }
 
 qreal StockDiagram::threeDItemDepth( int column ) const

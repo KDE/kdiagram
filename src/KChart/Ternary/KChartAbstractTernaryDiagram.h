@@ -43,7 +43,6 @@ namespace KChart {
                                           TernaryCoordinatePlane* plane = 0 );
         virtual ~AbstractTernaryDiagram();
 
-        virtual void resize (const QSizeF &area) = 0;
         virtual void paint (PaintContext *paintContext);
 
         virtual void addAxis( TernaryAxis* axis );

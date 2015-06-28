@@ -188,6 +188,8 @@ namespace KChart {
 
         AbstractDiagram* diagram;
         ReverseMapper reverseMapper;
+        /// The size of the diagram set by AbstractDiagram::resize()
+        QSizeF diagramSize;
         bool doDumpPaintTime; // for use in performance testing code
 
     protected:

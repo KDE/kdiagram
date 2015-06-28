@@ -257,8 +257,9 @@ void RingDiagram::drawOneSlice( QPainter* painter, uint dataset, uint slice, qre
     }
 }
 
-void RingDiagram::resize( const QSizeF& )
+void RingDiagram::resize( const QSizeF& size)
 {
+    AbstractPieDiagram ::resize( size );
 }
 
 /**

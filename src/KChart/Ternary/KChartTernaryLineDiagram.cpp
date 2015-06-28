@@ -70,7 +70,7 @@ void TernaryLineDiagram::init()
 
 void  TernaryLineDiagram::resize (const QSizeF& area)
 {
-    Q_UNUSED( area );
+    AbstractTernaryDiagram::resize( area );
 }
 
 void  TernaryLineDiagram::paint (PaintContext *paintContext)

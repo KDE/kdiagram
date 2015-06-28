@@ -100,7 +100,7 @@ namespace KChart {
          *
          * @param area
          */
-        virtual void resize ( const QSizeF& area ) = 0;
+        virtual void resize ( const QSizeF& area );
 
         /** Associate a model with the diagram. */
         virtual void setModel ( QAbstractItemModel * model );

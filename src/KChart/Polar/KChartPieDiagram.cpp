@@ -945,7 +945,8 @@ qreal PieDiagram::valueTotals() const
         return 0;
     const int colCount = columnCount();
     qreal total = 0.0;
-    Q_ASSERT( model()->rowCount() >= 1 );
+    // non-empty models need a row with data
+    Q_ASSERT( colCount == 0 || model()->rowCount() >= 1 );
     for ( int j = 0; j < colCount; ++j ) {
       total += qAbs(model()->data( model()->index( 0, j, rootIndex() ) ).toReal()); // checked
     }

@@ -90,7 +90,15 @@ const QPair< QPointF, QPointF > StackedPlotter::calculateDataBoundaries() const
     }
 
     const QPointF bottomLeft( xMin, yMin );
-    const QPointF topRight( xMax, yMax );
+    QPointF topRight( xMax, yMax );
+
+    // prevent degeneration of plot by assigning some minimal size
+    if (qFuzzyCompare(bottomLeft.x(), topRight.x())) {
+        topRight.setX(topRight.x() + 10.f);
+    }
+    if (qFuzzyCompare(bottomLeft.y(), topRight.y())) {
+        topRight.setY(topRight.y() + 10.f);
+    }
 
     return QPair<QPointF, QPointF> ( bottomLeft, topRight );
 }

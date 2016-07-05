@@ -489,9 +489,13 @@ GraphicsItem* GraphicsScene::findItem( const QPersistentModelIndex& idx ) const
 
 void GraphicsScene::clearItems()
 {
-    // TODO constraints
     QHash<QPersistentModelIndex, GraphicsItem*>::const_iterator it = d->items.constBegin();
     for ( ; it != d->items.constEnd(); ++it ) {
+        // Remove any constraintitems attached
+        const QSet<ConstraintGraphicsItem*> clst = QSet<ConstraintGraphicsItem*>::fromList( (*it)->startConstraints() ) + QSet<ConstraintGraphicsItem*>::fromList( (*it)->endConstraints() );
+        Q_FOREACH( ConstraintGraphicsItem* citem, clst ) {
+            d->deleteConstraintItem( citem );
+        }
         delete *it;
     }
     d->items.clear();

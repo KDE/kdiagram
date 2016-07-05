@@ -270,7 +270,12 @@ void GraphicsView::Private::slotRowsAboutToBeRemoved( const QModelIndex& parent,
     for ( int row = start; row <= end; ++row ) {
         for ( int col = 0; col < scene.summaryHandlingModel()->columnCount( parent ); ++col ) {
             //qDebug() << "removing "<<scene.summaryHandlingModel()->index( row, col, parent );
-            scene.removeItem( scene.summaryHandlingModel()->index( row, col, parent ) );
+            const QModelIndex idx = scene.summaryHandlingModel()->index( row, col, parent );
+            QList<Constraint> clst = scene.constraintModel()->constraintsForIndex( idx );
+            Q_FOREACH( Constraint c, clst ) {
+                scene.constraintModel()->removeConstraint( c );
+            }
+            scene.removeItem( idx );
         }
     }
 }

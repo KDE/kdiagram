@@ -1205,6 +1205,8 @@ void DateTimeGrid::drawBackground(QPainter* paint, const QRectF& rect)
 {
     int offset = (int)dayWidth();
 
+    assert( offset>0 );
+
     // Figure out the date at the extreme left
     QDate date = d->chartXtoDateTime(rect.left()).date();
 

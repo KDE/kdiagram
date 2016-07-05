@@ -180,7 +180,8 @@ void HeaderWidget::contextMenuEvent( QContextMenuEvent* event )
     else if ( action == actionZoomOut )
     {
         assert( grid != 0 );
-        grid->setDayWidth( grid->dayWidth() - 10.0 );
+        // daywidth *MUST NOT* go below 1.0, it is used as an integer later on
+        grid->setDayWidth( qMax<qreal>( 1.0, grid->dayWidth() - 10.0 ) );
     }
 
     event->accept();

@@ -40,6 +40,6 @@ private:
 
 };
 
-QTEST_MAIN(TestDrawIntoPainter);
+QTEST_MAIN(TestDrawIntoPainter)
 
 #include "main.moc"

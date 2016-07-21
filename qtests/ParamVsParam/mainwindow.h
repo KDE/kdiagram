@@ -32,12 +32,12 @@ class QLineEdit;
 namespace KChart
 {
 	class	LineDiagram;
-};
+}
 
 
 class	MainWindow:	public QWidget
 {
-	 Q_OBJECT;
+	 Q_OBJECT
 
 public:
 	 MainWindow(

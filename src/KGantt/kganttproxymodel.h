@@ -32,7 +32,9 @@ namespace KGantt {
         virtual ~ProxyModel();
 
         void setColumn( int ganttrole, int col );
+        void removeColumn( int ganttrole );
         void setRole( int ganttrole, int role );
+        void removeRole(  int ganttrole );
 
         int column( int ganttrole ) const;
         int role( int ganttrole ) const;

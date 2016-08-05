@@ -82,7 +82,13 @@ QModelIndex ProxyModel::mapFromSource( const QModelIndex& sourceIdx ) const
     }
     else return QModelIndex();
 #else
-    return BASE::mapFromSource( sourceIdx.model()?sourceIdx.model()->index( sourceIdx.row(),0,sourceIdx.parent()):QModelIndex());
+    // danders:
+    // this was:
+    // return BASE::mapFromSource( sourceIdx.model()?sourceIdx.model()->index( sourceIdx.row(),0,sourceIdx.parent()):QModelIndex());
+    // with column hardcoded to 0.
+    // Please notify if this *really* needs to be hardcoded, afaics it makes it impossible to get at anything else
+    // than column 0 from e.g. an item delegate.
+    return BASE::mapFromSource( sourceIdx.model()?sourceIdx.model()->index( sourceIdx.row(),sourceIdx.column(),sourceIdx.parent()):QModelIndex());
 #endif
 }
 
@@ -106,9 +112,19 @@ void ProxyModel::setColumn( int ganttrole, int col )
     d->columnMap[ganttrole] = col;
 }
 
+void ProxyModel::removeColumn( int ganttrole )
+{
+    d->columnMap.remove( ganttrole );
+}
+
 int ProxyModel::column( int ganttrole ) const
 {
     return d->columnMap[ganttrole];
+}
+
+void ProxyModel::removeRole( int ganttrole )
+{
+    d->roleMap.remove( ganttrole );
 }
 
 void ProxyModel::setRole( int ganttrole, int role )

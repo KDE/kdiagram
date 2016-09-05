@@ -102,6 +102,11 @@ int GraphicsItem::type() const
 StyleOptionGanttItem GraphicsItem::getStyleOption() const
 {
     StyleOptionGanttItem opt;
+    if (!m_index.isValid()) {
+        // TODO: find out why we get invalid indexes
+        //qDebug()<<"GraphicsItem::getStyleOption: Invalid index";
+        return opt;
+    }
     opt.itemRect = rect();
     opt.boundingRect = boundingRect();
     QVariant tp = m_index.model()->data( m_index, TextPositionRole );
@@ -165,7 +170,7 @@ void GraphicsItem::setBoundingRect( const QRectF& r )
 
 bool GraphicsItem::isEditable() const
 {
-    return !scene()->isReadOnly() && m_index.model()->flags( m_index ) & Qt::ItemIsEditable;
+    return !scene()->isReadOnly() && m_index.isValid() && m_index.model()->flags( m_index ) & Qt::ItemIsEditable;
 }
 
 void GraphicsItem::paint( QPainter* painter, const QStyleOptionGraphicsItem* option,

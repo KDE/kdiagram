@@ -489,14 +489,20 @@ GraphicsItem* GraphicsScene::findItem( const QPersistentModelIndex& idx ) const
 
 void GraphicsScene::clearItems()
 {
+    QList<void*> citems;
     QHash<QPersistentModelIndex, GraphicsItem*>::const_iterator it = d->items.constBegin();
     for ( ; it != d->items.constEnd(); ++it ) {
         // Remove any constraintitems attached
+        // TODO: ConstraintGraphicsItems can appear multiple times, afaics with invalid modelindex as key.
+        // This should propably not happen if there is not a bug somewhere else.
+        // For now: guard against deleting twice.
         const QSet<ConstraintGraphicsItem*> clst = QSet<ConstraintGraphicsItem*>::fromList( (*it)->startConstraints() ) + QSet<ConstraintGraphicsItem*>::fromList( (*it)->endConstraints() );
         Q_FOREACH( ConstraintGraphicsItem* citem, clst ) {
-            d->deleteConstraintItem( citem );
+            if (!citems.contains(citem)) {
+                citems << (void*)citem;
+                d->deleteConstraintItem( citem );
+            } else qDebug()<<"GraphicsScene::clearItems: item already deleted:"<<(void*)citem<<it.key();
         }
-        delete *it;
     }
     d->items.clear();
 }

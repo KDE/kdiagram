@@ -77,7 +77,6 @@ ecm_generate_headers(kgantt_LIB_HEADERS
     HEADER_NAMES
     KGanttGlobal
     KGanttView
-    KGanttListViewRowController
     KGanttStyleOptionGanttItem
     KGanttGraphicsView
     KGanttAbstractRowController

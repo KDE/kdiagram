@@ -35,6 +35,7 @@ namespace KGantt {
     public:
         explicit Private(GraphicsScene*);
 
+        void clearConstraintItems();
         void resetConstraintItems();
         void createConstraintItem( const Constraint& c );
         void deleteConstraintItem( ConstraintGraphicsItem* citem );
@@ -43,10 +44,12 @@ namespace KGantt {
 
 	void recursiveUpdateMultiItem( const Span& span, const QModelIndex& idx );
 
+        void clearItems();
 
         GraphicsScene* q;
 
         QHash<QPersistentModelIndex,GraphicsItem*> items;
+        QList<ConstraintGraphicsItem*> constraintItems;
         GraphicsItem* dragSource;
 
         QPointer<ItemDelegate> itemDelegate;

@@ -85,7 +85,6 @@ namespace KGantt {
                                     const QModelIndex& to,
                                     Qt::KeyboardModifiers modifiers );
 
-        void clearItems();
         void updateRow( const QModelIndex& );
         void updateScene();
 
@@ -121,6 +120,7 @@ namespace KGantt {
         void headerContextMenuRequested( const QPoint& pt );
 
     protected:
+        void clearItems();
         /*reimp*/void resizeEvent( QResizeEvent* );
     private:
         friend class View;

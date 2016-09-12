@@ -72,9 +72,23 @@ GraphicsScene::Private::Private( GraphicsScene* _q )
     default_grid.setStartDateTime( QDateTime::currentDateTime().addDays( -1 ) );
 }
 
+void GraphicsScene::Private::clearConstraintItems()
+{
+    for(ConstraintGraphicsItem *citem : constraintItems) {
+        // remove constraint from items first
+        for(GraphicsItem *item : items) {
+            item->removeStartConstraint(citem);
+            item->removeEndConstraint(citem);
+        }
+        q->removeItem(citem);
+        delete citem;
+    }
+    constraintItems.clear();
+}
+
 void GraphicsScene::Private::resetConstraintItems()
 {
-    q->clearConstraintItems();
+    clearConstraintItems();
     if ( constraintModel.isNull() ) return;
     QList<Constraint> clst = constraintModel->constraints();
     Q_FOREACH( const Constraint& c, clst ) {
@@ -92,6 +106,7 @@ void GraphicsScene::Private::createConstraintItem( const Constraint& c )
         ConstraintGraphicsItem* citem = new ConstraintGraphicsItem( c );
         sitem->addStartConstraint( citem );
         eitem->addEndConstraint( citem );
+        constraintItems.append( citem );
         q->addItem( citem );
     }
 
@@ -114,6 +129,7 @@ void GraphicsScene::Private::deleteConstraintItem( ConstraintGraphicsItem *citem
     if ( item ) {
         item->removeEndConstraint( citem );
     }
+    constraintItems.removeAt(constraintItems.indexOf(citem));
     delete citem;
 }
 
@@ -151,6 +167,18 @@ ConstraintGraphicsItem* GraphicsScene::Private::findConstraintItem( const Constr
     return 0;
 }
 
+// NOTE: we might get here after indexes are invalidated, so cannot do any controlled cleanup
+void GraphicsScene::Private::clearItems()
+{
+    for(GraphicsItem *item : items) {
+        q->removeItem(item);
+        delete item;
+    }
+    items.clear();
+    // do last to avoid cleaning up items
+    clearConstraintItems();
+}
+
 GraphicsScene::GraphicsScene( QObject* parent )
     : QGraphicsScene( parent ), _d( new Private( this ) )
 {
@@ -159,7 +187,6 @@ GraphicsScene::GraphicsScene( QObject* parent )
 
 GraphicsScene::~GraphicsScene()
 {
-    clearConstraintItems();
     qDeleteAll( items() );
     delete _d;
 }
@@ -233,6 +260,7 @@ void GraphicsScene::setConstraintModel( ConstraintModel* cm )
 {
     if ( !d->constraintModel.isNull() ) {
         d->constraintModel->disconnect( this );
+        d->clearConstraintItems();
     }
     d->constraintModel = cm;
 
@@ -489,22 +517,7 @@ GraphicsItem* GraphicsScene::findItem( const QPersistentModelIndex& idx ) const
 
 void GraphicsScene::clearItems()
 {
-    QList<void*> citems;
-    QHash<QPersistentModelIndex, GraphicsItem*>::const_iterator it = d->items.constBegin();
-    for ( ; it != d->items.constEnd(); ++it ) {
-        // Remove any constraintitems attached
-        // TODO: ConstraintGraphicsItems can appear multiple times, afaics with invalid modelindex as key.
-        // This should propably not happen if there is not a bug somewhere else.
-        // For now: guard against deleting twice.
-        const QSet<ConstraintGraphicsItem*> clst = QSet<ConstraintGraphicsItem*>::fromList( (*it)->startConstraints() ) + QSet<ConstraintGraphicsItem*>::fromList( (*it)->endConstraints() );
-        Q_FOREACH( ConstraintGraphicsItem* citem, clst ) {
-            if (!citems.contains(citem)) {
-                citems << (void*)citem;
-                d->deleteConstraintItem( citem );
-            } else qDebug()<<"GraphicsScene::clearItems: item already deleted:"<<(void*)citem<<it.key();
-        }
-    }
-    d->items.clear();
+    d->clearItems();
 }
 
 void GraphicsScene::updateItems()
@@ -537,12 +550,6 @@ void GraphicsScene::deleteSubtree( const QModelIndex& _idx )
 ConstraintGraphicsItem* GraphicsScene::findConstraintItem( const Constraint& c ) const
 {
     return d->findConstraintItem( c );
-}
-
-void GraphicsScene::clearConstraintItems()
-{
-    // TODO
-    // d->constraintItems.clearConstraintItems();
 }
 
 void GraphicsScene::slotConstraintAdded( const KGantt::Constraint& c )

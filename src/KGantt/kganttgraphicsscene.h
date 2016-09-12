@@ -73,7 +73,6 @@ namespace KGantt {
 
         ConstraintGraphicsItem* findConstraintItem( const Constraint& ) const;
         QList<ConstraintGraphicsItem*> findConstraintItems( const QModelIndex& idx ) const;
-        void clearConstraintItems();
 
         void setItemDelegate( ItemDelegate* );
         ItemDelegate* itemDelegate() const;

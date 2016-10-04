@@ -204,7 +204,6 @@ namespace KChart
             return value;
         }
 
-    protected:
         void columnsInserted( const QModelIndex& parent, int start, int end )
         {
             Q_ASSERT( m_model != 0 );

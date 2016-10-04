@@ -297,8 +297,8 @@ void GraphicsScene::setGrid( AbstractGrid* grid )
     QAbstractItemModel* model = 0;
     if ( grid == 0 ) grid = &d->default_grid;
     if ( d->grid ) {
-	d->grid->disconnect( this );
-	model = d->grid->model();
+        d->grid->disconnect( this );
+        model = d->grid->model();
     }
     d->grid = grid;
     connect( d->grid, SIGNAL( gridChanged() ), this, SLOT( slotGridChanged() ) );
@@ -399,7 +399,9 @@ void GraphicsScene::updateRow( const QModelIndex& rowidx )
 {
     //qDebug() << "GraphicsScene::updateRow("<<rowidx<<")" << rowidx.data( Qt::DisplayRole );
     if ( !rowidx.isValid() ) return;
+#if !defined(NDEBUG)
     const QAbstractItemModel* model = rowidx.model(); // why const?
+#endif
     assert( model );
     assert( rowController() );
     assert( model == summaryHandlingModel() );
@@ -773,7 +775,7 @@ void GraphicsScene::doPrint( QPainter* painter, const QRectF& targetRect,
         headerRect.setHeight( - d->rowController->headerHeight() );
         scnRect.setTop(scnRect.top() - d->rowController->headerHeight());
     }
-    
+
     /* row labels */
     QVector<QGraphicsTextItem*> textLabels;
     if ( drawRowLabels ) {

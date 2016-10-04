@@ -72,7 +72,7 @@ namespace KGantt {
 #include <QDebug>
 
 QDebug KGANTT_EXPORT operator<<( QDebug dbg, const KGantt::ConstraintModel& model );
-inline QDebug KGANTT_EXPORT operator<<( QDebug dbg, KGantt::ConstraintModel* model )
+inline QDebug operator<<( QDebug dbg, KGantt::ConstraintModel* model )
 {
     return operator<<(dbg,*model);
 }

@@ -527,7 +527,7 @@ KChart::HorizontalLineLayoutItem::HorizontalLineLayoutItem()
 
 Qt::Orientations KChart::HorizontalLineLayoutItem::expandingDirections() const
 {
-    return Qt::Vertical|Qt::Horizontal; // Grow both vertically, and horizontally
+    return Qt::Horizontal;
 }
 
 QRect KChart::HorizontalLineLayoutItem::geometry() const
@@ -578,7 +578,7 @@ KChart::VerticalLineLayoutItem::VerticalLineLayoutItem()
 
 Qt::Orientations KChart::VerticalLineLayoutItem::expandingDirections() const
 {
-    return Qt::Vertical|Qt::Vertical; // Grow both vertically, and horizontally
+    return Qt::Vertical;
 }
 
 QRect KChart::VerticalLineLayoutItem::geometry() const

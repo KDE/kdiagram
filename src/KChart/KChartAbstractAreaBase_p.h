@@ -55,6 +55,10 @@ namespace KChart {
         virtual ~Private();
 
         Private( const Private& rhs ) :
+            amountOfLeftOverlap( 0 ),
+            amountOfRightOverlap( 0 ),
+            amountOfTopOverlap( 0 ),
+            amountOfBottomOverlap( 0 ),
             visible( rhs.visible ),
             frameAttributes( rhs.frameAttributes ),
             backgroundAttributes( rhs.backgroundAttributes )
@@ -87,4 +91,3 @@ namespace KChart {
 
 }
 #endif /* KCHARTABSTRACTAREABASE_P_H */
-

@@ -41,7 +41,8 @@
 
 using namespace KChart;
 
-LabelPaintInfo::LabelPaintInfo()
+LabelPaintInfo::LabelPaintInfo() :
+    isValuePositive( false )
 {
 }
 

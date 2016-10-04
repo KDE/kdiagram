@@ -54,7 +54,8 @@ public:
     virtual ~Private();
 
     Private( const Private& rhs ) :
-        AbstractAreaBase::Private( rhs )
+        AbstractAreaBase::Private( rhs ),
+        currentLayoutSize()
         {
             // Just for consistency
         }
@@ -84,4 +85,3 @@ inline const AbstractAreaWidget::Private * AbstractAreaWidget::d_func() const
 }
 
 #endif /* KCHARTABSTRACTAREAWIDGET_P_H */
-

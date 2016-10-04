@@ -53,7 +53,8 @@ public:
 
     Private( const Private& rhs ) :
         AbstractPolarDiagram::Private( rhs ),
-        granularity( rhs.granularity )
+        granularity( rhs.granularity ),
+        autoRotateLabels( false )
         {
         }
 
@@ -66,4 +67,3 @@ KCHART_IMPL_DERIVED_DIAGRAM( AbstractPieDiagram, AbstractPolarDiagram, PolarCoor
 
 }
 #endif /* KCHARTABSTRACTPIEDIAGRAM_P_H */
-

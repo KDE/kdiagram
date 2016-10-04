@@ -49,7 +49,12 @@ public:
     ~Private();
 
     Private( const Private& rhs ) :
-        AbstractPieDiagram::Private( rhs )
+        AbstractPieDiagram::Private( rhs ),
+        startAngles(),
+        angleLens(),
+        position(),
+        size( 0 ),
+        polygonsToRender()
         {
             relativeThickness = rhs.relativeThickness;
             expandWhenExploded = rhs.expandWhenExploded;

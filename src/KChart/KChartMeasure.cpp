@@ -180,9 +180,8 @@ bool Measure::operator==( const Measure& r ) const
             mOrientation == r.referenceOrientation() );
 }
 
-
-
-GlobalMeasureScaling::GlobalMeasureScaling()
+GlobalMeasureScaling::GlobalMeasureScaling() :
+    m_paintDevice( 0 )
 {
     mFactors.push( qMakePair(qreal(1.0), qreal(1.0)) );
 }
@@ -231,11 +230,11 @@ QPaintDevice* GlobalMeasureScaling::paintDevice()
 QDebug operator<<(QDebug dbg, const KChart::Measure& m)
 {
     dbg << "KChart::Measure("
-	<< "value="<<m.value()
-	<< "calculationmode="<<m.calculationMode()
-	<< "referencearea="<<m.referenceArea()
-	<< "referenceorientation="<<m.referenceOrientation()
-	<< ")";
+        << "value="<<m.value()
+        << "calculationmode="<<m.calculationMode()
+        << "referencearea="<<m.referenceArea()
+        << "referenceorientation="<<m.referenceOrientation()
+        << ")";
     return dbg;
 }
 #endif /* QT_NO_DEBUG_STREAM */

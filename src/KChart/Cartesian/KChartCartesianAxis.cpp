@@ -920,7 +920,7 @@ void CartesianAxis::paintCtx( PaintContext* context )
     prevTickLabel = 0;
 
     if ( ! titleText().isEmpty() ) {
-        d->drawTitleText( painter, plane, d->axis()->geometry() );
+        d->drawTitleText( painter, plane, geometry() );
     }
 }
 

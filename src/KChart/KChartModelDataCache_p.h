@@ -320,7 +320,7 @@ namespace KChart
             Q_ASSERT( m_model != 0 );
             Q_ASSERT( parent.model() == m_model || !parent.isValid() );
 
-            if ( parent != m_rootIndex || start >= m_model->rowCount(m_rootIndex) )
+            if ( parent != m_rootIndex || start >= m_data.count() )
                 return;
 
             Q_ASSERT( start <= end );

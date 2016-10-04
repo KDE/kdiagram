@@ -101,8 +101,12 @@ public:
 class MoveHelper : public QObject {
 public:
     MoveHelper( MyTaskModel* model,
+                KGantt::ConstraintModel*,
+                KGantt::View*,
+#if 0
                 KGantt::ConstraintModel* constraints,
                 KGantt::View* view,
+#endif
                 int row1, int row2 )
         : QObject( model ),
           m_model( model ),

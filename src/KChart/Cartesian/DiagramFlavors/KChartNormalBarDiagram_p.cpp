@@ -148,7 +148,7 @@ void NormalBarDiagram::paint( PaintContext* ctx )
         spaceBetweenGroups += ba.fixedValueBlockGap();
     }
 
-    calculateValueAndGapWidths( rowCount, colCount,groupWidth,
+    calculateValueAndGapWidths( rowCount, colCount, groupWidth,
                                 barWidth, spaceBetweenBars, spaceBetweenGroups );
 
     LabelPaintCache lpc;

@@ -64,6 +64,8 @@ public:
     }
     bool hasDiagram( AbstractDiagram* diagram ) const;
 
+    void updateLayouts();
+
     DiagramObserver* observer;
 
     TextAttributes textAttributes;

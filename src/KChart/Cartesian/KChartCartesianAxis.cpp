@@ -427,10 +427,10 @@ void CartesianAxis::coordinateSystemChanged()
     layoutPlanes();
 }
 
-
 void CartesianAxis::setTitleText( const QString& text )
 {
     d->titleText = text;
+    setCachedSizeDirty();
     layoutPlanes();
 }
 
@@ -443,6 +443,7 @@ void CartesianAxis::setTitleTextAttributes( const TextAttributes &a )
 {
     d->titleTextAttributes = a;
     d->useDefaultTextAttributes = false;
+    setCachedSizeDirty();
     layoutPlanes();
 }
 
@@ -461,6 +462,7 @@ TextAttributes CartesianAxis::titleTextAttributes() const
 void CartesianAxis::resetTitleTextAttributes()
 {
     d->useDefaultTextAttributes = true;
+    setCachedSizeDirty();
     layoutPlanes();
 }
 
@@ -1112,7 +1114,7 @@ void CartesianAxis::setCustomTickLength( int value )
     }
     d->customTickLength = value;
     setCachedSizeDirty();
-    update();
+    layoutPlanes();
 }
 
 int CartesianAxis::customTickLength() const
@@ -1138,7 +1140,7 @@ void CartesianAxis::setAnnotations( const QMap< qreal, QString >& annotations )
 
     d->annotations = annotations;
     setCachedSizeDirty();
-    update();
+    layoutPlanes();
 }
 
 QList< qreal > CartesianAxis::customTicks() const
@@ -1153,5 +1155,5 @@ void CartesianAxis::setCustomTicks( const QList< qreal >& customTicksPositions )
 
     d->customTicksPositions = customTicksPositions;
     setCachedSizeDirty();
-    update();
+    layoutPlanes();
 }

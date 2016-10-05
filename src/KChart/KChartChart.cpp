@@ -178,8 +178,23 @@ public:
 
     QSize maximumSize() const
     {
+        // Not just passing on w->maximumSize() fixes that the size policy of Legend is disregarded, making
+        // Legend take all available space, which makes both the Legend internal layout and the overall
+        // layout of chart + legend look bad. QWidget::maximumSize() is not a virtual method, it's a
+        // property, so "overriding" that one would be even uglier, and prevent user-set property
+        // values from doing anything.
         QWidget* w = const_cast< MyWidgetItem * >( this )->widget();
-        return w->maximumSize();
+        QSize ret = w->maximumSize();
+        const QSize hint = w->sizeHint();
+        const QSizePolicy::Policy hPolicy = w->sizePolicy().horizontalPolicy();
+        if (hPolicy == QSizePolicy::Fixed || hPolicy == QSizePolicy::Maximum) {
+            ret.rwidth() = hint.width();
+        }
+        const QSizePolicy::Policy vPolicy = w->sizePolicy().verticalPolicy();
+        if (vPolicy == QSizePolicy::Fixed || vPolicy == QSizePolicy::Maximum) {
+            ret.rheight() = hint.height();
+        }
+        return ret;
     }
 
     Qt::Orientations expandingDirections() const

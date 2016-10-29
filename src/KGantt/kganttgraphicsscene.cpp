@@ -780,6 +780,7 @@ void GraphicsScene::doPrint( QPainter* painter, const QRectF& targetRect,
     QVector<QGraphicsTextItem*> textLabels;
     if ( drawRowLabels ) {
         qreal textWidth = 0.;
+        qreal charWidth = QFontMetricsF(sceneFont).width( QString::fromLatin1( "X" ) );
         QModelIndex sidx = summaryHandlingModel()->mapToSource( summaryHandlingModel()->index( 0, 0, rootIndex()) );
         do {
             QModelIndex idx = summaryHandlingModel()->mapFromSource( sidx );
@@ -788,12 +789,10 @@ void GraphicsScene::doPrint( QPainter* painter, const QRectF& targetRect,
             QGraphicsTextItem* item = new QGraphicsTextItem( txt );
             addItem( item );
             textLabels << item;
-            item->adjustSize();
+            item->setTextWidth( QFontMetricsF(sceneFont).width( txt ) + charWidth );
             textWidth = qMax( item->textWidth(), textWidth );
             item->setPos( 0, rg.start() );
         } while ( ( sidx = rowController()->indexBelow( sidx ) ).isValid() );
-        // Add a little margin to textWidth
-        textWidth += QFontMetricsF(sceneFont).width( QString::fromLatin1( "X" ) );
         Q_FOREACH( QGraphicsTextItem* item, textLabels ) {
             item->setPos( scnRect.left()-textWidth, item->y() );
             item->show();

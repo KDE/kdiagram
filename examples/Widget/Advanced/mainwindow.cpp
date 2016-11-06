@@ -80,7 +80,7 @@ void MainWindow::addDataset()
         QMessageBox::warning( this, "Wrong number of values entered!",
                               QString( "You have entered %1 values,<br>but the data model needs %2 ones."
                                        "<br><br>Note: Use <b>;</b> to separate the values!" )
-                                      .arg( vec.count(), rows ) );
+                                      .arg(vec.count()).arg(rows));
     } else {
         widget->setDataset( datasetCount++, vec, "user data" );
     }

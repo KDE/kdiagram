@@ -4,7 +4,7 @@ project( kdiagram )
 
 find_package(ECM 1.4.0 REQUIRED NO_MODULE)
 
-set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
+set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
 
 include(KDEInstallDirs)
 include(KDEFrameworkCompilerSettings NO_POLICY_SCOPE)
@@ -18,6 +18,11 @@ include(ECMSetupVersion)
 include(ECMPackageConfigHelpers)
 include(ECMGeneratePriFile)
 include(ECMPoQmTools)
+
+include(KDiagramAddQCH)
+
+option(BUILD_QCH "Build API documentation in QCH format" OFF)
+add_feature_info(QCH ${BUILD_QCH} "API documentation in QCH format")
 
 set(REQUIRED_QT_VERSION "5.2.0")
 

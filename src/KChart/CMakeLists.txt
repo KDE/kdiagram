@@ -304,6 +304,28 @@ install(FILES
     ${CMAKE_CURRENT_BINARY_DIR}/kchart_version.h
     DESTINATION ${INCLUDE_INSTALL_DIR} COMPONENT Devel)
 
+if(BUILD_QCH)
+    kdiagram_add_qch(
+        KChart_QCH
+        OUTPUT_BASENAME KChart
+        VERSION ${KCHARTLIB_VERSION}
+        ORG_DOMAIN org.kde
+        SOURCES
+            Mainpage.dox
+            ${kchart_LIB_HEADERS}
+        LINK_QCHS
+            Qt5Core_QCH
+            Qt5Gui_QCH
+            Qt5Widgets_QCH
+        BLANK_MACROS
+            KCHART_EXPORT
+            KCHART_DEPRECATED
+        TAGFILE_INSTALL_DESTINATION ${KDIAGRAM_QTQCH_FULL_INSTALL_DIR}
+        QCH_INSTALL_DESTINATION ${KDIAGRAM_QTQCH_FULL_INSTALL_DIR}
+    )
+    set(kchart_qch_targets KChart_QCH)
+endif()
+
 # create a Config.cmake and a ConfigVersion.cmake file and install them
 set(CMAKECONFIG_INSTALL_DIR "${CMAKECONFIG_INSTALL_PREFIX}/KChart")
 
@@ -322,6 +344,13 @@ install(FILES
 install(EXPORT KChartTargets
         DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
         FILE KChartTargets.cmake)
+
+kdiagram_install_qch_export(
+    TARGETS ${kchart_qch_targets}
+    FILE KChartQCHTargets.cmake
+​    DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
+​    COMPONENT Devel
+​)
 
 ecm_generate_pri_file(
     BASE_NAME KChart

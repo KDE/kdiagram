@@ -112,7 +112,7 @@ install(FILES
 if(BUILD_QCH)
     kdiagram_add_qch(
         KGantt_QCH
-        OUTPUT_BASENAME KGantt
+        NAME KGantt
         VERSION ${KGANTTLIB_VERSION}
         ORG_DOMAIN org.kde
         SOURCES
@@ -153,7 +153,7 @@ install(EXPORT KGanttTargets
 
 kdiagram_install_qch_export(
     TARGETS ${kgantt_qch_targets}
-    FILE KGanttQCHTargets.cmake
+    FILE KGanttQchTargets.cmake
 ​    DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
 ​    COMPONENT Devel
 ​)

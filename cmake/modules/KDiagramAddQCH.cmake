@@ -10,11 +10,12 @@
 #
 # ::
 #
-#   kdiagram_add_qch(<name>
-#       OUTPUT_BASENAME <basename>
+#   kdiagram_add_qch(<target_name>
+#       NAME <name>
 #       VERSION <version>
 #       QCH_INSTALL_DESTINATION <qchfile_install_path>
 #       TAGFILE_INSTALL_DESTINATION <tagsfile_install_path>
+#       [BASE_NAME <basename>]
 #       [SOURCE_DIRS <dir> [<dir2> [...]]]
 #       [SOURCES <file> [<file2> [...]]]
 #       |MD_MAINPAGE <md_file>]
@@ -29,14 +30,13 @@
 #       [VERBOSE]
 #   )
 #
-# This macro adds a target called <name> for the creation of an API
-# documentation manual named ``<basename>.qch``in the QCH format from the
-# given sources.
+# This macro adds a target called <target_name> for the creation of an API
+# documentation manual in the QCH format from the given sources.
 # It currently uses doxygen, future versions might optionally also allow other
 # tools.
 # Next to the QCH file the target will generate a corresponding doxygen tag
-# file name ``<basename>.tags``, which enables creating links from other
-# documentation into the generated QCH file.
+# file, which enables creating links from other documentation into the
+# generated QCH file.
 #
 # If the required tools are not found, the macro will skip creation of the
 # target and only emit a warning, so the use of the macro can be introduced
@@ -51,18 +51,20 @@
 # The macro will set the target properties DOXYGEN_TAGFILE, QHP_NAMESPACE,
 # QHP_NAMESPACE_VERSIONED and QHP_VIRTUALFOLDER to the respective values, to
 # allow other code access to them, e.g. the macro kdiagram_install_qch_export().
-# To enable the use of the target <name> as item for LINK_QCHS or
+# To enable the use of the target <target_name> as item for LINK_QCHS or
 # LINK_QCHS_VERSIONED in further ``kdiagram_add_qch()`` calls in the current build,
 # additionally a target property DOXYGEN_TAGFILE_BUILD is set, with the path
 # of the created doxygen tag file in the build dir.
 # If existing, ``kdiagram_add_qch()`` will use this property instead of
 # DOXYGEN_TAGFILE for access to the tags file.
 #
-# OUTPUT_BASENAME specifies the base name for the generated documentation and
-# the files.
+# NAME specifies the name for the generated documentation.
 #
 # VERSION specifies the version of the library for which the documentation is
 # created.
+#
+# BASE_NAME specifies the base name for the generated files.
+# The default basename is ``<name>``.
 #
 # SOURCE_DIRS specifies the dirs (incl. subdirs) with the source files for
 # which the API documentation should be generated.  Dirs can be relative to
@@ -94,7 +96,7 @@
 # NAMESPACE can be used to set a custom namespace <namespace> of the generated
 # QCH file. The namepspace is used as the unique id by QHelpEngine (cmp.
 # http://doc.qt.io/qt-5/qthelpproject.html#namespace).
-# The default namespace is ``<domain>.<basename>``.
+# The default namespace is ``<domain>.<name>``.
 # Needs to be used when ORG_DOMAIN is not used.
 #
 # ORG_DOMAIN can be used to define the organization domain prefix for the
@@ -149,7 +151,7 @@
 #
 #   kdiagram_add_qch(
 #       MyLib_QCH
-#       OUTPUT_BASENAME MyLib
+#       NAME MyLib
 #       VERSION "0.42.0"
 #       ORG_DOMAIN org.myorg
 #       SOURCE_DIRS
@@ -172,7 +174,7 @@
 #
 #   kdiagram_add_qch(
 #       MyLib_QCH
-#       OUTPUT_BASENAME MyLib
+#       NAME MyLib
 #       VERSION ${MyLib_VERSION}
 #       ORG_DOMAIN org.myorg
 #       SOURCES ${MyLib_PUBLIC_HEADERS}
@@ -183,7 +185,7 @@
 #   )
 #   kdiagram_add_qch(
 #       MyOtherLib_QCH
-#       OUTPUT_BASENAME MyOtherLib
+#       NAME MyOtherLib
 #       VERSION ${MyOtherLib_VERSION}
 #       ORG_DOMAIN org.myorg
 #       SOURCES ${MyOtherLib_PUBLIC_HEADERS}
@@ -234,8 +236,6 @@
 #       DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/MyLib"
 #       COMPONENT Devel
 #   )
-#
-# Since 5.29.0.
 
 #=============================================================================
 # Copyright 2016 Friedrich W. H. Kossebau <kossebau@kde.org>
@@ -273,7 +273,7 @@ if(KDE_INSTALL_USE_QT_SYS_PATHS)
     query_qmake(qt_docs_dir QT_INSTALL_DOCS)
     set(KDIAGRAM_QTQCH_FULL_INSTALL_DIR "${qt_docs_dir}")
 else()
-    set(KDIAGRAM_QTQCH_FULL_INSTALL_DIR "${KDE_INSTALL_FULL_DATAROOTDIR}/doc")
+    set(KDIAGRAM_QTQCH_FULL_INSTALL_DIR "${KDE_INSTALL_FULL_DATAROOTDIR}/doc/qch")
 endif()
 
 include(CMakeParseArguments)
@@ -281,12 +281,12 @@ include(CMakeParseArguments)
 function(kdiagram_add_qch target_name)
     # Parse arguments
     set(options VERBOSE)
-    set(oneValueArgs OUTPUT_BASENAME QCH_INSTALL_DESTINATION TAGFILE_INSTALL_DESTINATION VERSION NAMESPACE MD_MAINPAGE ORG_DOMAIN CONFIG_TEMPLATE)
+    set(oneValueArgs NAME BASE_NAME QCH_INSTALL_DESTINATION TAGFILE_INSTALL_DESTINATION VERSION NAMESPACE MD_MAINPAGE ORG_DOMAIN CONFIG_TEMPLATE)
     set(multiValueArgs SOURCE_DIRS SOURCES IMAGE_DIRS EXAMPLE_DIRS BLANK_MACROS LINK_QCHS LINK_QCHS_VERSIONED)
     cmake_parse_arguments(ARGS "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
     # check required args
-    foreach(_arg_name OUTPUT_BASENAME QCH_INSTALL_DESTINATION TAGFILE_INSTALL_DESTINATION VERSION)
+    foreach(_arg_name NAME QCH_INSTALL_DESTINATION TAGFILE_INSTALL_DESTINATION VERSION)
         if(NOT DEFINED ARGS_${_arg_name})
             message(FATAL_ERROR "${_arg_name} needs to be defined when calling kdiagram_add_qch")
         endif()
@@ -301,209 +301,229 @@ function(kdiagram_add_qch target_name)
         message(FATAL_ERROR "ORG_DOMAIN or NAMESPACE needs to be defined when calling kdiagram_add_qch")
     endif()
 
-    # create QCH targets for Qt
-    # Ideally one day Qt CMake Config files provide these
-    if(NOT TARGET Qt5Core_QCH)
-        # get Qt version, if any
-        find_package(Qt5Core CONFIG QUIET)
-        # lookup tag files
-        query_qmake(qt_docs_dir QT_INSTALL_DOCS)
-        find_path(_qtcoreTagsPath qtcore/qtcore.tags
-            PATHS
-                ${qt_docs_dir}
-        )
-
-        if(Qt5Core_FOUND AND _qtcoreTagsPath)
-            string(REPLACE "." "" _version ${Qt5Core_VERSION})
-            # TODO: properly find each tag file
-            # TODO: complete list of Qt modules
-            foreach(_module
-                Bluetooth Concurrent Core DBus Gui Location Multimedia MultimediaWidgets
-                Network Positioning PrintSupport Qml Quick Sensors SerialPort Sql Svg
-                WebEngine WebView Widgets Xml XmlPatterns
-            )
-                string(TOLOWER ${_module} _lowermodule)
-
-                add_custom_target(Qt5${_module}_QCH)
-                set_target_properties(Qt5${_module}_QCH PROPERTIES
-                    DOXYGEN_TAGFILE         "${_qtcoreTagsPath}/qt${_lowermodule}/qt${_lowermodule}.tags"
-                    QHP_NAMESPACE           "org.qt-project.qt${_lowermodule}"
-                    QHP_NAMESPACE_VERSIONED "org.qt-project.qt${_lowermodule}.${_version}"
-                    QHP_VIRTUALFOLDER       "qt${_lowermodule}"
-                    IMPORTED TRUE
-                )
-            endforeach()
-        endif()
-    endif()
-
     # find required tools
+    # TODO: check with doxygen author if perl is really still required, PERL_PATH seems unused in doxygen
     find_package(Perl)
     set_package_properties(Perl PROPERTIES
+        PURPOSE "Needed for API dox QCH file generation"
         TYPE OPTIONAL
     )
-    find_package(Doxygen)
+    if (NOT DOXYGEN_PATCHED_JSFILESADDED)
+        set(REQUIRED_DOXYGEN_VERSION 1.8.13)
+    endif()
+    find_package(Doxygen ${REQUIRED_DOXYGEN_VERSION})
+    if (NOT DOXYGEN_FOUND AND NOT DOXYGEN_PATCHED_JSFILESADDED)
+        set(doxygen_description_addition " (Or older version patched with https://github.com/doxygen/doxygen/commit/bf9415698e53d79b, pass -DDOXYGEN_PATCHED_JSFILESADDED=ON to cmake if patched)")
+    endif()
     set_package_properties(Doxygen PROPERTIES
         TYPE OPTIONAL
-        DESCRIPTION "Tool for API Documentation generation"
-        URL "http://www.doxygen.org/"
+        PURPOSE "Needed for API dox QCH file generation${doxygen_description_addition}"
     )
-    if (DOXYGEN_FOUND AND DOXYGEN_VERSION VERSION_LESS 1.8.13 AND NOT DOXYGEN_PATCHED_JSFILESADDED)
-        message(WARNING "Make sure Doxygen is patched with https://github.com/doxygen/doxygen/commit/bf9415698e53d79b, then pass -DDOXYGEN_PATCHED_JSFILESADDED=ON to cmake")
-        set(DOXYGEN_FOUND FALSE)
+    find_package(QHelpGenerator)
+    set_package_properties(QHelpGenerator PROPERTIES
+        TYPE OPTIONAL
+        PURPOSE "Needed for API dox QCH file generation"
+        DESCRIPTION "Part of Qt5 tools"
+    )
+    set(_missing_tools)
+    if (NOT PERL_FOUND)
+        list(APPEND _missing_tools "Perl")
     endif()
-    # TODO: use Qt5::qhelpgenerator for Qt >= 5.7.1
-    find_program(ECM_DOXYGENQCH_QHELPGENERATOR_EXECUTABLE NAMES qhelpgenerator-qt5 qhelpgenerator)
-
-    # prepare base dirs, working file names and other vars
-    set(_qch_file_basename "${ARGS_OUTPUT_BASENAME}.qch")
-    set(_tags_file_basename "${ARGS_OUTPUT_BASENAME}.tags")
-    set(_qch_buildpath "${CMAKE_CURRENT_BINARY_DIR}/${_qch_file_basename}")
-    set(_tags_buildpath "${CMAKE_CURRENT_BINARY_DIR}/${_tags_file_basename}")
-    set(_apidox_builddir "${CMAKE_CURRENT_BINARY_DIR}/${ARGS_OUTPUT_BASENAME}_ECMDoxygenQCH")
-    if (DEFINED ARGS_NAMESPACE)
-        set(_namespace "${ARGS_NAMESPACE}")
-    else()
-        set(_namespace "${ARGS_ORG_DOMAIN}.${ARGS_OUTPUT_BASENAME}")
+    if (NOT DOXYGEN_FOUND)
+        list(APPEND _missing_tools "Doxygen")
     endif()
-    string(REPLACE "." "_" _dotLessVersion ${ARGS_VERSION})
-    set(_versioned_namespace "${_namespace}.${_dotLessVersion}")
-    set(_sources)
-    set(_dep_tagfiles)
-    set(_dep_qch_targets)
-
-    ### Create doxygen config file
-    set(_doxygenconfig_file "${CMAKE_CURRENT_BINARY_DIR}/${ARGS_OUTPUT_BASENAME}_ECMDoxygenQCH.config")
-    if (DEFINED ARGS_CONFIG_TEMPLATE)
-        set(_doxygenconfig_template_file "${ARGS_CONFIG_TEMPLATE}")
-    else()
-        set(_doxygenconfig_template_file "${_module_dir}/KDiagramDoxygenQCH.config.in")
-    endif()
-    # Setup variables used in config file template, ECM_DOXYGENQCH_*
-    set(ECM_DOXYGENQCH_OUTPUTDIR "\"${_apidox_builddir}\"")
-    set(ECM_DOXYGENQCH_TAGFILE "\"${_tags_buildpath}\"")
-    set(ECM_DOXYGENQCH_LAYOUTFILE "\"${_module_dir}/KDiagramDoxygenQCHLayout.xml\"")
-    set(ECM_DOXYGENQCH_IMAGEDIRS)
-    foreach(_image_DIR IN LISTS ARGS_IMAGE_DIRS)
-        if (NOT IS_ABSOLUTE ${_image_DIR})
-            set(_image_DIR "${CMAKE_CURRENT_SOURCE_DIR}/${_image_DIR}")
-        endif()
-        # concat dirs separated by a break, it is no issue that first has also a leading break
-        set(ECM_DOXYGENQCH_IMAGEDIRS "${ECM_DOXYGENQCH_IMAGEDIRS} \\\n\"${_image_DIR}\"")
-    endforeach()
-    set(ECM_DOXYGENQCH_EXAMPLEDIRS)
-    foreach(_example_DIR IN LISTS ARGS_EXAMPLE_DIRS)
-        if (NOT IS_ABSOLUTE ${_example_DIR})
-            set(_example_DIR "${CMAKE_CURRENT_SOURCE_DIR}/${_example_DIR}")
-        endif()
-        # concat dirs separated by a break, it is no issue that first has also a leading break
-        set(ECM_DOXYGENQCH_EXAMPLEDIRS "${ECM_DOXYGENQCH_EXAMPLEDIRS} \\\n\"${_example_DIR}\"")
-    endforeach()
-    if (ARGS_MD_MAINPAGE)
-        if (NOT IS_ABSOLUTE ${ARGS_MD_MAINPAGE})
-            set(ARGS_MD_MAINPAGE "${CMAKE_CURRENT_SOURCE_DIR}/${ARGS_MD_MAINPAGE}")
-        endif()
-        set(ECM_DOXYGENQCH_MAINPAGE_MDFILE "\"${ARGS_MD_MAINPAGE}\"")
-    else()
-        set(ECM_DOXYGENQCH_MAINPAGE_MDFILE)
-    endif()
-    set(ECM_DOXYGENQCH_INPUT)
-    if (ARGS_SOURCE_DIRS)
-        foreach(_source_DIR IN LISTS ARGS_SOURCE_DIRS)
-            if (NOT IS_ABSOLUTE ${_source_DIR})
-                set(_source_DIR "${CMAKE_CURRENT_SOURCE_DIR}/${_source_DIR}")
-            endif()
-            # concat dirs separated by a break, it is no issue that first has also a leading break
-            set(ECM_DOXYGENQCH_INPUT "${ECM_DOXYGENQCH_INPUT} \\\n\"${_source_DIR}\"")
-        endforeach()
-        if (ARGS_MD_MAINPAGE)
-            set(ECM_DOXYGENQCH_INPUT "${ECM_DOXYGENQCH_INPUT} \\\n\"${ARGS_MD_MAINPAGE}\"")
-        endif()
-        set(ECM_DOXYGENQCH_FILE_PATTERNS "*.h *.cpp *.hpp *.hh *.cc *.h++ *.c++ *.hxx *.cxx *.dox *.md")
-    else()
-        foreach(_source IN LISTS ARGS_SOURCES)
-            if (NOT IS_ABSOLUTE ${_source})
-                set(_source "${CMAKE_CURRENT_SOURCE_DIR}/${_source}")
-            endif()
-            list(APPEND _sources "${_source}")
-        endforeach()
-        if (ARGS_MD_MAINPAGE)
-            list(FIND _sources ${ARGS_MD_MAINPAGE} _mainpage_index)
-            if (_mainpage_index STREQUAL -1)
-                list(APPEND _sources "${ARGS_MD_MAINPAGE}")
-            endif()
-        endif()
-        foreach(_source IN LISTS _sources)
-            # concat sources separated by a break, it is no issue that first has also a leading break
-            set(ECM_DOXYGENQCH_INPUT "${ECM_DOXYGENQCH_INPUT} \\\n\"${_source}\"")
-        endforeach()
-        set(ECM_DOXYGENQCH_FILE_PATTERNS "")
+    if (NOT QHelpGenerator_FOUND)
+        list(APPEND _missing_tools "qhelpgenerator")
     endif()
 
-    set(ECM_DOXYGENQCH_PROJECTNAME ${ARGS_OUTPUT_BASENAME})
-    file(RELATIVE_PATH _builddirrelative_filepath "${_apidox_builddir}/html"  ${_qch_buildpath})
-    set(ECM_DOXYGENQCH_FILEPATH "\"${_builddirrelative_filepath}\"")
-    set(ECM_DOXYGENQCH_PROJECTVERSION ${ARGS_VERSION})
-    set(ECM_DOXYGENQCH_VIRTUALFOLDER "${ARGS_OUTPUT_BASENAME}")
-    set(ECM_DOXYGENQCH_FULLNAMESPACE ${_versioned_namespace})
-    set(ECM_DOXYGENQCH_BLANK_MACROS)
-    foreach(_macro IN LISTS ARGS_BLANK_MACROS)
-        # concat dirs separated by a break, it is no issue that first has also a leading break
-        set(ECM_DOXYGENQCH_BLANK_MACROS "${ECM_DOXYGENQCH_BLANK_MACROS} \\\n${_macro}=\"\"")
-    endforeach()
-    set(ECM_DOXYGENQCH_TAGFILES)
-    foreach(_versioned_postfix "" "_VERSIONED")
-        foreach(_link_qch IN LISTS ARGS_LINK_QCHS${_versioned_postfix})
-            set(_target_usable TRUE)
-            if (NOT TARGET ${_link_qch})
-                message(STATUS "No such target ${_link_qch} defined when calling kdiagram_add_qch().")
-                set(_target_usable FALSE)
-            elseif()
-                foreach(_propertyname
-                    DOXYGEN_TAGFILE
-                    QHP_NAMESPACE${_versioned_postfix}
-                    QHP_VIRTUALFOLDER
+    if (_missing_tools)
+        message(WARNING "API dox QCH file will not be generated, tools missing: ${_missing_tools}!")
+    else()
+        set(ECM_DOXYGENQCH_QHELPGENERATOR_EXECUTABLE ${QHelpGenerator_EXECUTABLE})
+        # create QCH targets for Qt
+        # Ideally one day Qt CMake Config files provide these
+        if(NOT TARGET Qt5Core_QCH)
+            # get Qt version, if any
+            find_package(Qt5Core CONFIG QUIET)
+            # lookup tag files
+            query_qmake(qt_docs_dir QT_INSTALL_DOCS)
+            find_path(_qtcoreTagsPath qtcore/qtcore.tags
+                PATHS
+                    ${qt_docs_dir}
+            )
+
+            if(Qt5Core_FOUND AND _qtcoreTagsPath)
+                string(REPLACE "." "" _version ${Qt5Core_VERSION})
+                # TODO: properly find each tag file
+                # TODO: complete list of Qt modules
+                foreach(_module
+                    Bluetooth Concurrent Core DBus Gui Location Multimedia MultimediaWidgets
+                    Network Positioning PrintSupport Qml Quick Sensors SerialPort Sql Svg
+                    WebEngine WebView Widgets Xml XmlPatterns
                 )
-                    if(NOT "${_property}")
-                        message(STATUS "No property ${_propertyname} set on ${_link_qch} when calling kdiagram_add_qch().")
-                        set(_target_usable FALSE)
-                    endif()
+                    string(TOLOWER ${_module} _lowermodule)
+
+                    add_custom_target(Qt5${_module}_QCH)
+                    set_target_properties(Qt5${_module}_QCH PROPERTIES
+                        DOXYGEN_TAGFILE         "${_qtcoreTagsPath}/qt${_lowermodule}/qt${_lowermodule}.tags"
+                        QHP_NAMESPACE           "org.qt-project.qt${_lowermodule}"
+                        QHP_NAMESPACE_VERSIONED "org.qt-project.qt${_lowermodule}.${_version}"
+                        QHP_VIRTUALFOLDER       "qt${_lowermodule}"
+                        IMPORTED TRUE
+                    )
                 endforeach()
             endif()
-            if(_target_usable)
-                list(APPEND _dep_qch_targets ${_link_qch})
-                get_target_property(_link_qch_tagfile ${_link_qch} DOXYGEN_TAGFILE)
-                get_target_property(_link_qch_tagfile_build ${_link_qch} DOXYGEN_TAGFILE_BUILD)
-                get_target_property(_link_qch_namespace ${_link_qch} QHP_NAMESPACE${_versioned_postfix})
-                get_target_property(_link_qch_virtualfolder ${_link_qch} QHP_VIRTUALFOLDER)
-                # if same build, then prefer build version over any installed one
-                if (${_link_qch_tagfile_build})
-                    set(_link_qch_tagfile ${_link_qch_tagfile_build})
-                    list(APPEND _dep_tagfiles "${_link_qch_tagfile}")
-                endif()
-                set(_tagfile_entry "\"${_link_qch_tagfile}=qthelp://${_link_qch_namespace}/${_link_qch_virtualfolder}/\"")
-                # concat dirs separated by a break, it is no issue that first has also a leading break
-                set(ECM_DOXYGENQCH_TAGFILES "${ECM_DOXYGENQCH_TAGFILES} \\\n${_tagfile_entry}")
-            else()
-                message(WARNING "No linking to API dox of ${_link_qch}.")
+        endif()
+
+        # prepare base dirs, working file names and other vars
+        if (DEFINED ARGS_BASE_NAME)
+            set(_basename ${ARGS_BASE_NAME})
+        else()
+            set(_basename ${ARGS_NAME})
+        endif()
+        set(_qch_file_basename "${_basename}.qch")
+        set(_tags_file_basename "${_basename}.tags")
+        set(_qch_buildpath "${CMAKE_CURRENT_BINARY_DIR}/${_qch_file_basename}")
+        set(_tags_buildpath "${CMAKE_CURRENT_BINARY_DIR}/${_tags_file_basename}")
+        set(_apidox_builddir "${CMAKE_CURRENT_BINARY_DIR}/${_basename}_ECMDoxygenQCH")
+        if (DEFINED ARGS_NAMESPACE)
+            set(_namespace "${ARGS_NAMESPACE}")
+        else()
+            set(_namespace "${ARGS_ORG_DOMAIN}.${ARGS_NAME}")
+        endif()
+        string(REPLACE "." "_" _dotLessVersion ${ARGS_VERSION})
+        set(_versioned_namespace "${_namespace}.${_dotLessVersion}")
+        set(_sources)
+        set(_dep_tagfiles)
+        set(_dep_qch_targets)
+
+        ### Create doxygen config file
+        set(_doxygenconfig_file "${CMAKE_CURRENT_BINARY_DIR}/${_basename}_ECMDoxygenQCH.config")
+        if (DEFINED ARGS_CONFIG_TEMPLATE)
+            set(_doxygenconfig_template_file "${ARGS_CONFIG_TEMPLATE}")
+        else()
+            set(_doxygenconfig_template_file "${_module_dir}/KDiagramDoxygenQCH.config.in")
+        endif()
+        # Setup variables used in config file template, ECM_DOXYGENQCH_*
+        set(ECM_DOXYGENQCH_OUTPUTDIR "\"${_apidox_builddir}\"")
+        set(ECM_DOXYGENQCH_TAGFILE "\"${_tags_buildpath}\"")
+        set(ECM_DOXYGENQCH_LAYOUTFILE "\"${_module_dir}/KDiagramDoxygenQCHLayout.xml\"")
+        set(ECM_DOXYGENQCH_IMAGEDIRS)
+        foreach(_image_DIR IN LISTS ARGS_IMAGE_DIRS)
+            if (NOT IS_ABSOLUTE ${_image_DIR})
+                set(_image_DIR "${CMAKE_CURRENT_SOURCE_DIR}/${_image_DIR}")
             endif()
+            # concat dirs separated by a break, it is no issue that first has also a leading break
+            set(ECM_DOXYGENQCH_IMAGEDIRS "${ECM_DOXYGENQCH_IMAGEDIRS} \\\n\"${_image_DIR}\"")
         endforeach()
-    endforeach()
+        set(ECM_DOXYGENQCH_EXAMPLEDIRS)
+        foreach(_example_DIR IN LISTS ARGS_EXAMPLE_DIRS)
+            if (NOT IS_ABSOLUTE ${_example_DIR})
+                set(_example_DIR "${CMAKE_CURRENT_SOURCE_DIR}/${_example_DIR}")
+            endif()
+            # concat dirs separated by a break, it is no issue that first has also a leading break
+            set(ECM_DOXYGENQCH_EXAMPLEDIRS "${ECM_DOXYGENQCH_EXAMPLEDIRS} \\\n\"${_example_DIR}\"")
+        endforeach()
+        if (ARGS_MD_MAINPAGE)
+            if (NOT IS_ABSOLUTE ${ARGS_MD_MAINPAGE})
+                set(ARGS_MD_MAINPAGE "${CMAKE_CURRENT_SOURCE_DIR}/${ARGS_MD_MAINPAGE}")
+            endif()
+            set(ECM_DOXYGENQCH_MAINPAGE_MDFILE "\"${ARGS_MD_MAINPAGE}\"")
+        else()
+            set(ECM_DOXYGENQCH_MAINPAGE_MDFILE)
+        endif()
+        set(ECM_DOXYGENQCH_INPUT)
+        if (ARGS_SOURCE_DIRS)
+            foreach(_source_DIR IN LISTS ARGS_SOURCE_DIRS)
+                if (NOT IS_ABSOLUTE ${_source_DIR})
+                    set(_source_DIR "${CMAKE_CURRENT_SOURCE_DIR}/${_source_DIR}")
+                endif()
+                # concat dirs separated by a break, it is no issue that first has also a leading break
+                set(ECM_DOXYGENQCH_INPUT "${ECM_DOXYGENQCH_INPUT} \\\n\"${_source_DIR}\"")
+            endforeach()
+            if (ARGS_MD_MAINPAGE)
+                set(ECM_DOXYGENQCH_INPUT "${ECM_DOXYGENQCH_INPUT} \\\n\"${ARGS_MD_MAINPAGE}\"")
+            endif()
+            set(ECM_DOXYGENQCH_FILE_PATTERNS "*.h *.cpp *.hpp *.hh *.cc *.h++ *.c++ *.hxx *.cxx *.dox *.md")
+        else()
+            foreach(_source IN LISTS ARGS_SOURCES)
+                if (NOT IS_ABSOLUTE ${_source})
+                    set(_source "${CMAKE_CURRENT_SOURCE_DIR}/${_source}")
+                endif()
+                list(APPEND _sources "${_source}")
+            endforeach()
+            if (ARGS_MD_MAINPAGE)
+                list(FIND _sources ${ARGS_MD_MAINPAGE} _mainpage_index)
+                if (_mainpage_index STREQUAL -1)
+                    list(APPEND _sources "${ARGS_MD_MAINPAGE}")
+                endif()
+            endif()
+            foreach(_source IN LISTS _sources)
+                # concat sources separated by a break, it is no issue that first has also a leading break
+                set(ECM_DOXYGENQCH_INPUT "${ECM_DOXYGENQCH_INPUT} \\\n\"${_source}\"")
+            endforeach()
+            set(ECM_DOXYGENQCH_FILE_PATTERNS "")
+        endif()
 
-    set(ECM_DOXYGENQCH_WARN_LOGFILE "\"${_doxygenconfig_file}.log\"")
-    if(ARGS_VERBOSE)
-        set(ECM_DOXYGENQCH_QUIET "NO")
-    else()
-        set(ECM_DOXYGENQCH_QUIET "YES")
-    endif()
-    set(ECM_DOXYGENQCH_PERL_EXECUTABLE "${PERL_EXECUTABLE}")
+        set(ECM_DOXYGENQCH_PROJECTNAME ${ARGS_NAME})
+        file(RELATIVE_PATH _builddirrelative_filepath "${_apidox_builddir}/html"  ${_qch_buildpath})
+        set(ECM_DOXYGENQCH_FILEPATH "\"${_builddirrelative_filepath}\"")
+        set(ECM_DOXYGENQCH_PROJECTVERSION ${ARGS_VERSION})
+        set(ECM_DOXYGENQCH_VIRTUALFOLDER "${ARGS_NAME}")
+        set(ECM_DOXYGENQCH_FULLNAMESPACE ${_versioned_namespace})
+        set(ECM_DOXYGENQCH_BLANK_MACROS)
+        foreach(_macro IN LISTS ARGS_BLANK_MACROS)
+            # concat dirs separated by a break, it is no issue that first has also a leading break
+            set(ECM_DOXYGENQCH_BLANK_MACROS "${ECM_DOXYGENQCH_BLANK_MACROS} \\\n${_macro}=\"\"")
+        endforeach()
+        set(ECM_DOXYGENQCH_TAGFILES)
+        foreach(_versioned_postfix "" "_VERSIONED")
+            foreach(_link_qch IN LISTS ARGS_LINK_QCHS${_versioned_postfix})
+                set(_target_usable TRUE)
+                if (NOT TARGET ${_link_qch})
+                    message(STATUS "No such target ${_link_qch} defined when calling kdiagram_add_qch().")
+                    set(_target_usable FALSE)
+                elseif()
+                    foreach(_propertyname
+                        DOXYGEN_TAGFILE
+                        QHP_NAMESPACE${_versioned_postfix}
+                        QHP_VIRTUALFOLDER
+                    )
+                        get_target_property(_property ${_target} ${_propertyname})
+                        if(NOT "${_property}")
+                            message(STATUS "No property ${_propertyname} set on ${_link_qch} when calling kdiagram_add_qch().")
+                            set(_target_usable FALSE)
+                        endif()
+                    endforeach()
+                endif()
+                if(_target_usable)
+                    list(APPEND _dep_qch_targets ${_link_qch})
+                    get_target_property(_link_qch_tagfile ${_link_qch} DOXYGEN_TAGFILE)
+                    get_target_property(_link_qch_tagfile_build ${_link_qch} DOXYGEN_TAGFILE_BUILD)
+                    get_target_property(_link_qch_namespace ${_link_qch} QHP_NAMESPACE${_versioned_postfix})
+                    get_target_property(_link_qch_virtualfolder ${_link_qch} QHP_VIRTUALFOLDER)
+                    # if same build, then prefer build version over any installed one
+                    if (_link_qch_tagfile_build)
+                        set(_link_qch_tagfile ${_link_qch_tagfile_build})
+                        list(APPEND _dep_tagfiles "${_link_qch_tagfile}")
+                    endif()
+                    set(_tagfile_entry "\"${_link_qch_tagfile}=qthelp://${_link_qch_namespace}/${_link_qch_virtualfolder}/\"")
+                    # concat dirs separated by a break, it is no issue that first has also a leading break
+                    set(ECM_DOXYGENQCH_TAGFILES "${ECM_DOXYGENQCH_TAGFILES} \\\n${_tagfile_entry}")
+                else()
+                    message(WARNING "No linking to API dox of ${_link_qch}.")
+                endif()
+            endforeach()
+        endforeach()
 
-    if (NOT DOXYGEN_FOUND)
-        message(WARNING "Unable to find the doxygen utility - API dox QCH file will not be generated!")
-    elseif(NOT ECM_DOXYGENQCH_QHELPGENERATOR_EXECUTABLE)
-        message(WARNING "Unable to find the qhelpgenerator utility - API dox QCH file will not be generated!")
-    elseif(NOT PERL_FOUND)
-        message(WARNING "Unable to find the perl utility - API dox QCH file will not be generated!")
-    else()
+        set(ECM_DOXYGENQCH_WARN_LOGFILE "\"${_doxygenconfig_file}.log\"")
+        if(ARGS_VERBOSE)
+            set(ECM_DOXYGENQCH_QUIET "NO")
+        else()
+            set(ECM_DOXYGENQCH_QUIET "YES")
+        endif()
+        set(ECM_DOXYGENQCH_PERL_EXECUTABLE "${PERL_EXECUTABLE}")
+
         configure_file(
             "${_doxygenconfig_template_file}"
             "${_doxygenconfig_file}"

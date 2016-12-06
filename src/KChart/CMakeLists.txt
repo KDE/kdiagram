@@ -307,7 +307,7 @@ install(FILES
 if(BUILD_QCH)
     kdiagram_add_qch(
         KChart_QCH
-        OUTPUT_BASENAME KChart
+        NAME KChart
         VERSION ${KCHARTLIB_VERSION}
         ORG_DOMAIN org.kde
         SOURCES
@@ -347,7 +347,7 @@ install(EXPORT KChartTargets
 
 kdiagram_install_qch_export(
     TARGETS ${kchart_qch_targets}
-    FILE KChartQCHTargets.cmake
+    FILE KChartQchTargets.cmake
 ​    DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
 ​    COMPONENT Devel
 ​)

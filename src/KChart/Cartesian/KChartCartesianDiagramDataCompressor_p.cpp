@@ -431,7 +431,7 @@ const CartesianDiagramDataCompressor::DataPoint& CartesianDiagramDataCompressor:
     if ( ! isCached( position ) ) {
         retrieveModelData( position );
     }
-    return m_data[ position.column ][ position.row ];
+    return m_data.at( position.column ).at( position.row );
 }
 
 QPair< QPointF, QPointF > CartesianDiagramDataCompressor::dataBoundaries() const
@@ -444,7 +444,7 @@ QPair< QPointF, QPointF > CartesianDiagramDataCompressor::dataBoundaries() const
 
     for ( int column = 0; column < colCount; ++column )
     {
-        const DataPointVector& data = m_data[ column ];
+        const DataPointVector& data = m_data.at( column );
         int row = 0;
         for ( DataPointVector::const_iterator it = data.begin(); it != data.end(); ++it, ++row )
         {
@@ -543,7 +543,7 @@ CartesianDiagramDataCompressor::CachePosition CartesianDiagramDataCompressor::ma
 {
     Q_ASSERT( m_datasetDimension != 0 );
 
-    if ( m_data.size() == 0 || m_data[ 0 ].size() == 0 ) {
+    if ( m_data.size() == 0 || m_data.at( 0 ).size() == 0 ) {
         return mapToCache( QModelIndex() );
     }
     // assumption: indexes per column == 1
@@ -584,17 +584,17 @@ QModelIndexList CartesianDiagramDataCompressor::mapToModel( const CachePosition&
 
 qreal CartesianDiagramDataCompressor::indexesPerPixel() const
 {
-    if ( !m_model || m_data.size() == 0 || m_data[ 0 ].size() == 0 )  {
+    if ( !m_model || m_data.size() == 0 || m_data.at( 0 ).size() == 0 )  {
         return 0;
     }
-    return qreal( m_model->rowCount( m_rootIndex ) ) / qreal( m_data[ 0 ].size() );
+    return qreal( m_model->rowCount( m_rootIndex ) ) / qreal( m_data.at( 0 ).size() );
 }
 
 bool CartesianDiagramDataCompressor::mapsToModelIndex( const CachePosition& position ) const
 {
-    return m_model && m_data.size() > 0 && m_data[ 0 ].size() > 0 &&
+    return m_model && m_data.size() > 0 && m_data.at( 0 ).size() > 0 &&
            position.column >= 0 && position.column < m_data.size() &&
-           position.row >=0 && position.row < m_data[ 0 ].size();
+           position.row >=0 && position.row < m_data.at( 0 ).size();
 }
 
 void CartesianDiagramDataCompressor::invalidate( const CachePosition& position )
@@ -611,7 +611,7 @@ void CartesianDiagramDataCompressor::invalidate( const CachePosition& position )
 bool CartesianDiagramDataCompressor::isCached( const CachePosition& position ) const
 {
     Q_ASSERT( mapsToModelIndex( position ) );
-    const DataPoint& p = m_data[ position.column ][ position.row ];
+    const DataPoint& p = m_data.at( position.column ).at( position.row );
     return p.index.isValid();
 }
 

@@ -103,10 +103,10 @@ namespace KChart {
         virtual void resize ( const QSizeF& area );
 
         /** Associate a model with the diagram. */
-        virtual void setModel ( QAbstractItemModel * model );
+        void setModel ( QAbstractItemModel * model ) Q_DECL_OVERRIDE;
 
         /** Associate a seleection model with the diagrom. */
-        virtual void setSelectionModel( QItemSelectionModel* selectionModel );
+        void setSelectionModel( QItemSelectionModel* selectionModel ) Q_DECL_OVERRIDE;
 
         /**
          * Associate an AttributesModel with this diagram. Note that
@@ -160,31 +160,31 @@ namespace KChart {
 
        /** Set the root index in the model, where the diagram starts
         * referencing data for display. */
-        virtual void setRootIndex ( const QModelIndex& idx );
+        void setRootIndex ( const QModelIndex& idx ) Q_DECL_OVERRIDE;
 
         /** \reimpl */
-        virtual QRect visualRect(const QModelIndex &index) const;
+        QRect visualRect(const QModelIndex &index) const Q_DECL_OVERRIDE;
         /** \reimpl */
-        virtual void scrollTo(const QModelIndex &index, ScrollHint hint = EnsureVisible);
+        void scrollTo(const QModelIndex &index, ScrollHint hint = EnsureVisible) Q_DECL_OVERRIDE;
         /** \reimpl */
-        virtual QModelIndex indexAt(const QPoint &point) const;
+        QModelIndex indexAt(const QPoint &point) const Q_DECL_OVERRIDE;
         /** \reimpl */
-        virtual QModelIndex moveCursor(CursorAction cursorAction, Qt::KeyboardModifiers modifiers);
+        QModelIndex moveCursor(CursorAction cursorAction, Qt::KeyboardModifiers modifiers) Q_DECL_OVERRIDE;
         /** \reimpl */
-        virtual int horizontalOffset() const;
+        int horizontalOffset() const Q_DECL_OVERRIDE;
         /** \reimpl */
-        virtual int verticalOffset() const;
+        int verticalOffset() const Q_DECL_OVERRIDE;
         /** \reimpl */
-        virtual bool isIndexHidden(const QModelIndex &index) const;
+        bool isIndexHidden(const QModelIndex &index) const Q_DECL_OVERRIDE;
         /** \reimpl */
-        virtual void setSelection(const QRect &rect, QItemSelectionModel::SelectionFlags command);
+        void setSelection(const QRect &rect, QItemSelectionModel::SelectionFlags command) Q_DECL_OVERRIDE;
         /** \reimpl */
-        virtual QRegion visualRegionForSelection(const QItemSelection &selection) const;
+        QRegion visualRegionForSelection(const QItemSelection &selection) const Q_DECL_OVERRIDE;
         virtual QRegion visualRegion(const QModelIndex &index) const;
         /** \reimpl */
-        virtual void dataChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight, const QVector<int> &roles = QVector<int>());
+        void dataChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight, const QVector<int> &roles = QVector<int>()) Q_DECL_OVERRIDE;
         /** \reimpl */
-        virtual void doItemsLayout();
+        void doItemsLayout() Q_DECL_OVERRIDE;
 
         /**
          * The coordinate plane associated with the diagram. This determines

@@ -65,12 +65,12 @@ public:
       * Call paintAll, if you want the background and the frame to be drawn
       * before the normal paint() is invoked automatically.
       */
-    void paintAll( QPainter& painter );
+    void paintAll( QPainter& painter ) Q_DECL_OVERRIDE;
 
 protected:
     TextArea();
-    virtual QRect areaGeometry() const;
-    virtual void positionHasChanged();
+    QRect areaGeometry() const Q_DECL_OVERRIDE;
+    void positionHasChanged() Q_DECL_OVERRIDE;
 
 Q_SIGNALS:
     void positionChanged( TextArea * );

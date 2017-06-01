@@ -148,7 +148,7 @@ namespace UnitTest {
     GenericFactory( const char * group=0 ) {
       TestRegistry::instance()->registerTestFactory( this, group );
     }
-    Test * create() const { return new T_Test(); }
+    Test * create() const Q_DECL_OVERRIDE { return new T_Test(); }
   };
 
 }

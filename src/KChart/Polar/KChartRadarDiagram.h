@@ -50,14 +50,14 @@ public:
                          bool calculateListAndReturnScale,
                          qreal& newZoomX, qreal& newZoomY );
     /** \reimpl */
-    virtual void resize ( const QSizeF& area );
+    void resize ( const QSizeF& area ) Q_DECL_OVERRIDE;
 
     /** \reimpl */
-    virtual qreal valueTotals () const;
+    qreal valueTotals () const Q_DECL_OVERRIDE;
     /** \reimpl */
-    virtual qreal numberOfValuesPerDataset() const;
+    qreal numberOfValuesPerDataset() const Q_DECL_OVERRIDE;
     /** \reimpl */
-    virtual qreal numberOfGridRings() const;
+    qreal numberOfGridRings() const Q_DECL_OVERRIDE;
 
     /**
      * if val is true the diagram will mirror the diagram datapoints
@@ -86,10 +86,10 @@ public:
 
 protected:
     /** \reimpl */
-    virtual const QPair<QPointF, QPointF> calculateDataBoundaries() const;
-    void paintEvent ( QPaintEvent* );
-    void resizeEvent ( QResizeEvent* );
-    virtual void paint ( PaintContext* paintContext );
+    const QPair<QPointF, QPointF> calculateDataBoundaries() const Q_DECL_OVERRIDE;
+    void paintEvent ( QPaintEvent* ) Q_DECL_OVERRIDE;
+    void resizeEvent ( QResizeEvent* ) Q_DECL_OVERRIDE;
+    void paint ( PaintContext* paintContext ) Q_DECL_OVERRIDE;
 
 }; // End of class RadarDiagram
 

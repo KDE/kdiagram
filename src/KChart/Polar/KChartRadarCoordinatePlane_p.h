@@ -47,7 +47,7 @@ public:
     virtual ~Private() { }
     TextAttributes textAttributes;
     
-    virtual void initialize()
+    void initialize() Q_DECL_OVERRIDE
     {
         grid = new RadarGrid();
     }

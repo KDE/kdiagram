@@ -50,14 +50,14 @@ namespace KChart {
         int maximalSteps() const;
         void setMaximalSteps(int maxsteps);
 
-        void drawGrid( PaintContext* context );
+        void drawGrid( PaintContext* context ) Q_DECL_OVERRIDE;
 
     private:
         int m_minsteps;
         int m_maxsteps;
         
         DataDimensionsList calculateGrid(
-            const DataDimensionsList& rawDataDimensions ) const;
+            const DataDimensionsList& rawDataDimensions ) const Q_DECL_OVERRIDE;
 
         /**
          * Helper function called by calculateGrid() to calculate the grid of one dimension.

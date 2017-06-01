@@ -36,7 +36,7 @@ public:
     MainWindow( QWidget* parent = 0 );
 
 private:
-    bool eventFilter(QObject* target, QEvent* event);
+    bool eventFilter(QObject* target, QEvent* event) Q_DECL_OVERRIDE;
 
 private slots:
 

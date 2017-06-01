@@ -43,14 +43,14 @@ namespace KChart {
                                           TernaryCoordinatePlane* plane = 0 );
         virtual ~AbstractTernaryDiagram();
 
-        virtual void paint (PaintContext *paintContext);
+        void paint (PaintContext *paintContext) Q_DECL_OVERRIDE;
 
         virtual void addAxis( TernaryAxis* axis );
         virtual void takeAxis( TernaryAxis* axis );
         virtual TernaryAxisList axes () const;
 
     protected:
-        virtual const QPair< QPointF, QPointF >  calculateDataBoundaries () const = 0;
+        const QPair< QPointF, QPointF >  calculateDataBoundaries () const Q_DECL_OVERRIDE = 0;
 
     };
 

@@ -64,9 +64,9 @@ public:
         }
 
     /** \reimpl */
-    virtual CartesianDiagramDataCompressor::AggregatedDataValueAttributes aggregatedAttrs(
+    CartesianDiagramDataCompressor::AggregatedDataValueAttributes aggregatedAttrs(
             const QModelIndex & index,
-            const CartesianDiagramDataCompressor::CachePosition * position ) const
+            const CartesianDiagramDataCompressor::CachePosition * position ) const Q_DECL_OVERRIDE
     {
         if ( position )
             return compressor.aggregatedAttrs( diagram, index, *position );

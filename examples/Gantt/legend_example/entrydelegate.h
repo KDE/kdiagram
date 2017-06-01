@@ -30,7 +30,7 @@ class EntryDelegate : public QItemDelegate {
 public:
     explicit EntryDelegate( KGantt::ConstraintModel* constraintModel, QObject* parent = 0 );
     
-    bool editorEvent( QEvent* event, QAbstractItemModel* model, const QStyleOptionViewItem& option, const QModelIndex& index );
+    bool editorEvent( QEvent* event, QAbstractItemModel* model, const QStyleOptionViewItem& option, const QModelIndex& index ) Q_DECL_OVERRIDE;
     
 private:
     void addConstraint(const QModelIndex & index1, const QModelIndex & index2);

@@ -52,7 +52,7 @@ public:
     explicit LeveyJenningsDiagram( QWidget* parent = 0, LeveyJenningsCoordinatePlane* plane = 0 );
     virtual ~LeveyJenningsDiagram();
 
-    virtual LineDiagram * clone() const;
+    LineDiagram * clone() const Q_DECL_OVERRIDE;
 
     enum Symbol
     {
@@ -99,13 +99,13 @@ public:
     QString symbol( Symbol symbol ) const;
 
     /* \reimpl */
-    void setModel( QAbstractItemModel* model );
+    void setModel( QAbstractItemModel* model ) Q_DECL_OVERRIDE;
 
     QPair< QDateTime, QDateTime > timeRange() const;
     void setTimeRange( const QPair< QDateTime, QDateTime >& timeRange );
 
 protected:
-    void paint( PaintContext* paintContext );
+    void paint( PaintContext* paintContext ) Q_DECL_OVERRIDE;
     void drawChanges( PaintContext* paintContext );
 
     virtual void drawDataPointSymbol( PaintContext* paintContext, const QPointF& pos, bool ok );
@@ -118,7 +118,7 @@ protected:
     QSvgRenderer* iconRenderer( Symbol symbol );
 
     /** \reimpl */
-    const QPair<QPointF, QPointF> calculateDataBoundaries() const;
+    const QPair<QPointF, QPointF> calculateDataBoundaries() const Q_DECL_OVERRIDE;
 
 protected Q_SLOTS:
     void calculateMeanAndStandardDeviation() const;

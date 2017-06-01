@@ -70,9 +70,9 @@ namespace KChart {
         bool compare( const CartesianAxis* other ) const;
 
         /** reimpl */
-        virtual void paint( QPainter* );
+        void paint( QPainter* ) Q_DECL_OVERRIDE;
         /** reimpl */
-        virtual void paintCtx( PaintContext* );
+        void paintCtx( PaintContext* ) Q_DECL_OVERRIDE;
 
         /**
          * Sets the optional text displayed as chart title.
@@ -158,19 +158,19 @@ namespace KChart {
         int customTickLength() const;
 
         /** pure virtual in QLayoutItem */
-        virtual bool isEmpty() const;
+        bool isEmpty() const Q_DECL_OVERRIDE;
         /** pure virtual in QLayoutItem */
-        virtual Qt::Orientations expandingDirections() const;
+        Qt::Orientations expandingDirections() const Q_DECL_OVERRIDE;
         /** pure virtual in QLayoutItem */
-        virtual QSize maximumSize() const;
+        QSize maximumSize() const Q_DECL_OVERRIDE;
         /** pure virtual in QLayoutItem */
-        virtual QSize minimumSize() const;
+        QSize minimumSize() const Q_DECL_OVERRIDE;
         /** pure virtual in QLayoutItem */
-        virtual QSize sizeHint() const;
+        QSize sizeHint() const Q_DECL_OVERRIDE;
         /** pure virtual in QLayoutItem */
-        virtual void setGeometry( const QRect& r );
+        void setGeometry( const QRect& r ) Q_DECL_OVERRIDE;
         /** pure virtual in QLayoutItem */
-        virtual QRect geometry() const;
+        QRect geometry() const Q_DECL_OVERRIDE;
 
     public Q_SLOTS:
         void setCachedSizeDirty() const;

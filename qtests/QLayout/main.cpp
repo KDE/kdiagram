@@ -44,7 +44,7 @@ public:
     }
 
 protected:
-    KDAB_REIMP void resizeEvent( QResizeEvent* ) {
+    KDAB_REIMP void resizeEvent( QResizeEvent* ) Q_DECL_OVERRIDE {
         // Note that this is never called unless the widget is shown.
         qDebug() << "resizeEvent " << size();
     }
@@ -55,7 +55,7 @@ class MyWidgetItem : public QWidgetItem
 public:
     explicit MyWidgetItem(QWidget *w) : QWidgetItem(w) { }
 
-    KDAB_REIMP bool isEmpty() const { return false; }
+    KDAB_REIMP bool isEmpty() const Q_DECL_OVERRIDE { return false; }
 };
 
 class TestQLayout : public QObject

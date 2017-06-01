@@ -71,7 +71,7 @@ namespace KChart {
         bool compare( const LeveyJenningsAxis* other ) const;
 
         /** reimpl */
-        void paintCtx( PaintContext* );
+        void paintCtx( PaintContext* ) Q_DECL_OVERRIDE;
 
     protected:
         virtual void paintAsOrdinate( PaintContext* );

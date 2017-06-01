@@ -57,7 +57,7 @@ namespace KChart {
             // grid is delete in base class dtor
         }
 
-        virtual void initialize()
+        void initialize() Q_DECL_OVERRIDE
         {
             grid = new TernaryGrid();
             xUnit = 0.0;

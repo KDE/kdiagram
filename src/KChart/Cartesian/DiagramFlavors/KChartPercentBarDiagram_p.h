@@ -30,9 +30,9 @@ namespace KChart {
     public:
         explicit PercentBarDiagram( BarDiagram* );
         virtual ~PercentBarDiagram() {}
-        virtual BarDiagram::BarType type() const;
-        virtual const QPair<QPointF,  QPointF> calculateDataBoundaries() const;
-        virtual void paint( PaintContext* ctx );
+        BarDiagram::BarType type() const Q_DECL_OVERRIDE;
+        const QPair<QPointF,  QPointF> calculateDataBoundaries() const Q_DECL_OVERRIDE;
+        void paint( PaintContext* ctx ) Q_DECL_OVERRIDE;
     };
 
 }

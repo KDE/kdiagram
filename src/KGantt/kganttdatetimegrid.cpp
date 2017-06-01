@@ -1010,10 +1010,10 @@ void DateTimeGrid::paintHourScaleHeader( QPainter* painter,
     public:
         virtual ~HourFormatter() {}
 
-        QString format( const QDateTime& dt ) {
+        QString format( const QDateTime& dt ) Q_DECL_OVERRIDE {
             return dt.time().toString( QString::fromLatin1( "hh" ) );
         }
-        QRect textRect( qreal x, qreal offset, qreal dayWidth, const QRectF& headerRect, const QDateTime& dt ) {
+        QRect textRect( qreal x, qreal offset, qreal dayWidth, const QRectF& headerRect, const QDateTime& dt ) Q_DECL_OVERRIDE {
             Q_UNUSED(dt);
 
             return QRectF( QPointF( x, headerRect.top() ) + QPointF( -offset + 1.0, headerRect.height() / 2.0 ),
@@ -1026,10 +1026,10 @@ void DateTimeGrid::paintHourScaleHeader( QPainter* painter,
     class DayFormatter : public Private::DateTextFormatter {
     public:
         virtual ~DayFormatter() {}
-        QString format( const QDateTime& dt ) {
+        QString format( const QDateTime& dt ) Q_DECL_OVERRIDE {
             return dt.date().toString();
         }
-        QRect textRect( qreal x, qreal offset, qreal dayWidth, const QRectF& headerRect, const QDateTime& dt ) {
+        QRect textRect( qreal x, qreal offset, qreal dayWidth, const QRectF& headerRect, const QDateTime& dt ) Q_DECL_OVERRIDE {
             Q_UNUSED(dt);
 
             return QRectF( QPointF( x, headerRect.top() ) + QPointF( -offset, 0.0 ),
@@ -1050,10 +1050,10 @@ void DateTimeGrid::paintDayScaleHeader( QPainter* painter,  const QRectF& header
     public:
         virtual ~DayFormatter() {}
 
-        QString format( const QDateTime& dt ) {
+        QString format( const QDateTime& dt ) Q_DECL_OVERRIDE {
             return dt.toString( QString::fromLatin1( "ddd" ) ).left( 1 );
         }
-        QRect textRect( qreal x, qreal offset, qreal dayWidth, const QRectF& headerRect, const QDateTime& dt ) {
+        QRect textRect( qreal x, qreal offset, qreal dayWidth, const QRectF& headerRect, const QDateTime& dt ) Q_DECL_OVERRIDE {
             Q_UNUSED(dt);
 
             return QRectF( QPointF( x, headerRect.top() ) + QPointF( -offset + 1.0, headerRect.height() / 2.0 ),
@@ -1066,10 +1066,10 @@ void DateTimeGrid::paintDayScaleHeader( QPainter* painter,  const QRectF& header
     class WeekFormatter : public Private::DateTextFormatter {
     public:
         virtual ~WeekFormatter() {}
-        QString format( const QDateTime& dt ) {
+        QString format( const QDateTime& dt ) Q_DECL_OVERRIDE {
             return QString::number(dt.date().weekNumber()) + QLatin1String("/") + QString::number(dt.date().year());
         }
-        QRect textRect( qreal x, qreal offset, qreal dayWidth, const QRectF& headerRect, const QDateTime& dt ) {
+        QRect textRect( qreal x, qreal offset, qreal dayWidth, const QRectF& headerRect, const QDateTime& dt ) Q_DECL_OVERRIDE {
             Q_UNUSED(dt);
 
             return QRectF( QPointF( x, headerRect.top() ) + QPointF( -offset, 0.0 ),
@@ -1090,10 +1090,10 @@ void DateTimeGrid::paintWeekScaleHeader( QPainter* painter,  const QRectF& heade
     public:
         virtual ~WeekFormatter() {}
 
-        QString format( const QDateTime& dt ) {
+        QString format( const QDateTime& dt ) Q_DECL_OVERRIDE {
             return QString::number( dt.date().weekNumber() );
         }
-        QRect textRect( qreal x, qreal offset, qreal dayWidth, const QRectF& headerRect, const QDateTime& dt ) {
+        QRect textRect( qreal x, qreal offset, qreal dayWidth, const QRectF& headerRect, const QDateTime& dt ) Q_DECL_OVERRIDE {
             Q_UNUSED(dt);
 
             return QRectF( QPointF( x, headerRect.top() ) + QPointF( -offset, headerRect.height() / 2.0 ),
@@ -1107,10 +1107,10 @@ void DateTimeGrid::paintWeekScaleHeader( QPainter* painter,  const QRectF& heade
     public:
         virtual ~MonthFormatter() {}
 
-        QString format( const QDateTime& dt ) {
+        QString format( const QDateTime& dt ) Q_DECL_OVERRIDE {
             return QLocale().monthName(dt.date().month(), QLocale::LongFormat) + QLatin1String("/") + QString::number(dt.date().year());
         }
-        QRect textRect( qreal x, qreal offset, qreal dayWidth, const QRectF& headerRect, const QDateTime& dt ) {
+        QRect textRect( qreal x, qreal offset, qreal dayWidth, const QRectF& headerRect, const QDateTime& dt ) Q_DECL_OVERRIDE {
             return QRectF( QPointF( x, headerRect.top() ) + QPointF( -offset, 0.0 ),
                            QSizeF( dayWidth * dt.date().daysInMonth(), headerRect.height() / 2.0 ) ).toRect();
         }
@@ -1129,10 +1129,10 @@ void DateTimeGrid::paintMonthScaleHeader( QPainter* painter,  const QRectF& head
     public:
         virtual ~MonthFormatter() {}
 
-        QString format( const QDateTime& dt ) {
+        QString format( const QDateTime& dt ) Q_DECL_OVERRIDE {
             return QLocale().monthName(dt.date().month(), QLocale::ShortFormat) + QLatin1String("/") + QString::number(dt.date().year());
         }
-        QRect textRect( qreal x, qreal offset, qreal dayWidth, const QRectF& headerRect, const QDateTime& dt ) {
+        QRect textRect( qreal x, qreal offset, qreal dayWidth, const QRectF& headerRect, const QDateTime& dt ) Q_DECL_OVERRIDE {
             return QRectF( QPointF( x, headerRect.top() ) + QPointF( -offset, headerRect.height() / 2.0 ),
                            QSizeF( dayWidth * dt.date().daysInMonth(), headerRect.height() / 2.0 ) ).toRect();
         }
@@ -1144,10 +1144,10 @@ void DateTimeGrid::paintMonthScaleHeader( QPainter* painter,  const QRectF& head
     public:
         virtual ~YearFormatter() {}
 
-        QString format( const QDateTime& dt ) {
+        QString format( const QDateTime& dt ) Q_DECL_OVERRIDE {
             return QString::number( dt.date().year() );
         }
-        QRect textRect( qreal x, qreal offset, qreal dayWidth, const QRectF& headerRect, const QDateTime& dt ) {
+        QRect textRect( qreal x, qreal offset, qreal dayWidth, const QRectF& headerRect, const QDateTime& dt ) Q_DECL_OVERRIDE {
             return QRectF( QPointF( x, headerRect.top() ) + QPointF( -offset, 0.0 ),
                            QSizeF( dayWidth * dt.date().daysInYear(), headerRect.height() / 2.0 ) ).toRect();
         }

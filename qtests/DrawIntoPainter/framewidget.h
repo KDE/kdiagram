@@ -34,7 +34,7 @@ class FrameWidget : public QWidget
 public:
     explicit FrameWidget( QWidget * parent = 0, Qt::WindowFlags f = 0 );
 
-    virtual void paintEvent( QPaintEvent* );
+    void paintEvent( QPaintEvent* ) Q_DECL_OVERRIDE;
 
     void setChart( KChart::Chart* chart );
 

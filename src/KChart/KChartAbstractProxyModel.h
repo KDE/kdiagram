@@ -37,14 +37,14 @@ namespace KChart
         explicit AbstractProxyModel( QObject* parent = 0 );
 
         /*! \reimpl */ 
-        QModelIndex mapFromSource( const QModelIndex & sourceIndex ) const;
+        QModelIndex mapFromSource( const QModelIndex & sourceIndex ) const Q_DECL_OVERRIDE;
         /*! \reimpl */ 
-        QModelIndex mapToSource( const QModelIndex &proxyIndex ) const;
+        QModelIndex mapToSource( const QModelIndex &proxyIndex ) const Q_DECL_OVERRIDE;
 
         /*! \reimpl */
-        QModelIndex index( int row, int col, const QModelIndex& index ) const;
+        QModelIndex index( int row, int col, const QModelIndex& index ) const Q_DECL_OVERRIDE;
         /*! \reimpl */ 
-        QModelIndex parent( const QModelIndex& index ) const;
+        QModelIndex parent( const QModelIndex& index ) const Q_DECL_OVERRIDE;
     };
 }
 

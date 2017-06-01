@@ -39,7 +39,7 @@ namespace KChart {
 
         int row() const { return m_row; }
         int column() const { return m_column; }
-        int type() const { return Type; }
+        int type() const Q_DECL_OVERRIDE { return Type; }
 
     private:
         int m_row;

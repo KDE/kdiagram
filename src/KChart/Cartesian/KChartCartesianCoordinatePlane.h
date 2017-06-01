@@ -47,7 +47,7 @@ namespace KChart {
         explicit CartesianCoordinatePlane ( Chart* parent = 0 );
         ~CartesianCoordinatePlane();
 
-        void addDiagram ( AbstractDiagram* diagram );
+        void addDiagram ( AbstractDiagram* diagram ) Q_DECL_OVERRIDE;
 
         /**
          * If @p onOff is true, enforce that X and Y distances are scaled by the same factor.
@@ -58,39 +58,39 @@ namespace KChart {
 
         bool doesIsometricScaling() const;
 
-        const QPointF translate ( const QPointF& diagramPoint ) const;
+        const QPointF translate ( const QPointF& diagramPoint ) const Q_DECL_OVERRIDE;
 
         /**
          * \sa setZoomFactorX, setZoomCenter
          */
-        virtual qreal zoomFactorX() const;
+        qreal zoomFactorX() const Q_DECL_OVERRIDE;
         /**
          * \sa setZoomFactorY, setZoomCenter
          */
-        virtual qreal zoomFactorY() const;
+        qreal zoomFactorY() const Q_DECL_OVERRIDE;
 
         /**
          * \sa setZoomFactorX,setZoomFactorY
          */
-        virtual void setZoomFactors( qreal factorX, qreal factorY );
+        void setZoomFactors( qreal factorX, qreal factorY ) Q_DECL_OVERRIDE;
         /**
          * \sa zoomFactorX, setZoomCenter
          */
-        virtual void setZoomFactorX( qreal factor );
+        void setZoomFactorX( qreal factor ) Q_DECL_OVERRIDE;
         /**
          * \sa zoomFactorY, setZoomCenter
          */
-        virtual void setZoomFactorY( qreal factor );
+        void setZoomFactorY( qreal factor ) Q_DECL_OVERRIDE;
 
         /**
          * \sa setZoomCenter, setZoomFactorX, setZoomFactorY
          */
-        virtual QPointF zoomCenter() const;
+        QPointF zoomCenter() const Q_DECL_OVERRIDE;
 
         /**
          * \sa zoomCenter, setZoomFactorX, setZoomFactorY
          */
-        virtual void setZoomCenter( const QPointF& center );
+        void setZoomCenter( const QPointF& center ) Q_DECL_OVERRIDE;
 
         /**
          * Allows to specify a fixed data-space / coordinate-space relation. If set
@@ -372,10 +372,10 @@ namespace KChart {
         void setAxesCalcModeX( AxesCalcMode mode );
 
         /** reimpl */
-        virtual void paint( QPainter* );
+        void paint( QPainter* ) Q_DECL_OVERRIDE;
 
         /** reimpl */
-        AbstractCoordinatePlane* sharedAxisMasterPlane( QPainter* p = 0 );
+        AbstractCoordinatePlane* sharedAxisMasterPlane( QPainter* p = 0 ) Q_DECL_OVERRIDE;
 
         /**
          * Returns the currently visible data range. Might be greater than the
@@ -434,10 +434,10 @@ namespace KChart {
         /**
          * reimplemented from AbstractCoordinatePlane
          */
-        void setGeometry( const QRect& r );
+        void setGeometry( const QRect& r ) Q_DECL_OVERRIDE;
 
         // reimplemented
-        Qt::Orientations expandingDirections() const;
+        Qt::Orientations expandingDirections() const Q_DECL_OVERRIDE;
 
 
     public Q_SLOTS:
@@ -468,7 +468,7 @@ namespace KChart {
         QRectF adjustedToMaxEmptyInnerPercentage(
                 const QRectF& r, unsigned int percentX, unsigned int percentY ) const;
         virtual QRectF calculateRawDataBoundingRect() const;
-        virtual DataDimensionsList getDataDimensionsList() const;
+        DataDimensionsList getDataDimensionsList() const Q_DECL_OVERRIDE;
         // the whole drawing area, includes diagrams and axes, but maybe smaller
         // than (width, height):
         virtual QRectF drawingArea() const;
@@ -476,7 +476,7 @@ namespace KChart {
         const QPointF translateBack( const QPointF& screenPoint ) const;
     protected:
         void paintEvent ( QPaintEvent* );
-        void layoutDiagrams();
+        void layoutDiagrams() Q_DECL_OVERRIDE;
         // the following three return true if the new value is different from the old
         bool doneSetZoomFactorX( qreal factor );
         bool doneSetZoomFactorY( qreal factor );
@@ -485,9 +485,9 @@ namespace KChart {
         void handleFixedDataCoordinateSpaceRelation( const QRectF& geometry );
 
         // reimplemented from QLayoutItem, via AbstractLayoutItem, AbstractArea, AbstractCoordinatePlane
-        bool hasHeightForWidth() const;
-        int heightForWidth( int w ) const;
-        QSize sizeHint() const;
+        bool hasHeightForWidth() const Q_DECL_OVERRIDE;
+        int heightForWidth( int w ) const Q_DECL_OVERRIDE;
+        QSize sizeHint() const Q_DECL_OVERRIDE;
 
     protected Q_SLOTS:
         void slotLayoutChanged( AbstractDiagram* );

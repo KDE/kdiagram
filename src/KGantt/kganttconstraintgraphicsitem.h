@@ -35,14 +35,14 @@ namespace KGantt {
                                          QGraphicsItem* parent = 0, GraphicsScene* scene = 0 );
         virtual ~ConstraintGraphicsItem();
 
-        /*reimp*/ int type() const;
+        /*reimp*/ int type() const Q_DECL_OVERRIDE;
         /*reimp (non virtual)*/GraphicsScene* scene() const;
 
         /*reimp*/ QString ganttToolTip() const;
 
-        /*reimp*/ QRectF boundingRect() const;
+        /*reimp*/ QRectF boundingRect() const Q_DECL_OVERRIDE;
         /*reimp*/ void paint( QPainter* painter, const QStyleOptionGraphicsItem* option,
-                              QWidget* widget = 0 );
+                              QWidget* widget = 0 ) Q_DECL_OVERRIDE;
 
         inline const Constraint& constraint() const { return m_constraint; }
         Constraint proxyConstraint() const;

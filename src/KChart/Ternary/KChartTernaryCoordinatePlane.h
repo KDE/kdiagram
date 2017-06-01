@@ -40,14 +40,14 @@ namespace KChart {
         explicit TernaryCoordinatePlane( Chart* parent = 0 );
         ~TernaryCoordinatePlane();
 
-        void addDiagram( AbstractDiagram* diagram );
+        void addDiagram( AbstractDiagram* diagram ) Q_DECL_OVERRIDE;
 
-        void layoutDiagrams();
+        void layoutDiagrams() Q_DECL_OVERRIDE;
 
-        const QPointF translate ( const QPointF& diagramPoint ) const;
+        const QPointF translate ( const QPointF& diagramPoint ) const Q_DECL_OVERRIDE;
 
-        void paint( QPainter* );
-        DataDimensionsList getDataDimensionsList() const;
+        void paint( QPainter* ) Q_DECL_OVERRIDE;
+        DataDimensionsList getDataDimensionsList() const Q_DECL_OVERRIDE;
 
         /** \reimpl */
         QSize minimumSizeHint() const;

@@ -204,7 +204,7 @@ namespace KChart
             return value;
         }
 
-        void columnsInserted( const QModelIndex& parent, int start, int end )
+        void columnsInserted( const QModelIndex& parent, int start, int end ) Q_DECL_OVERRIDE
         {
             Q_ASSERT( m_model != 0 );
             Q_ASSERT( parent.model() == m_model || !parent.isValid() );
@@ -225,7 +225,7 @@ namespace KChart
             }
         }
 
-        void columnsRemoved( const QModelIndex& parent, int start, int end )
+        void columnsRemoved( const QModelIndex& parent, int start, int end ) Q_DECL_OVERRIDE
         {
             Q_ASSERT( m_model != 0 );
             Q_ASSERT( parent.model() == m_model || !parent.isValid() );
@@ -245,7 +245,7 @@ namespace KChart
             }
         }
 
-        void dataChanged( const QModelIndex& topLeft, const QModelIndex& bottomRight )
+        void dataChanged( const QModelIndex& topLeft, const QModelIndex& bottomRight ) Q_DECL_OVERRIDE
         {
             if ( !m_model )
                 return;
@@ -277,12 +277,12 @@ namespace KChart
             }
         }
 
-        void layoutChanged()
+        void layoutChanged() Q_DECL_OVERRIDE
         {
             modelReset();
         }
 
-        void modelReset()
+        void modelReset() Q_DECL_OVERRIDE
         {
             m_data.clear();
             m_cacheValid.clear();
@@ -297,7 +297,7 @@ namespace KChart
             Q_ASSERT( m_cacheValid.count() == m_model->rowCount( m_rootIndex ) );
         }
 
-        void rowsInserted( const QModelIndex& parent, int start, int end )
+        void rowsInserted( const QModelIndex& parent, int start, int end ) Q_DECL_OVERRIDE
         {
             Q_ASSERT( m_model != 0 );
             Q_ASSERT( parent.model() == m_model || !parent.isValid() );
@@ -315,7 +315,7 @@ namespace KChart
             Q_ASSERT( m_cacheValid.count() == m_model->rowCount( m_rootIndex ) );
         }
 
-        void rowsRemoved( const QModelIndex& parent, int start, int end )
+        void rowsRemoved( const QModelIndex& parent, int start, int end ) Q_DECL_OVERRIDE
         {
             Q_ASSERT( m_model != 0 );
             Q_ASSERT( parent.model() == m_model || !parent.isValid() );
@@ -332,7 +332,7 @@ namespace KChart
             Q_ASSERT( m_cacheValid.count() == m_model->rowCount( m_rootIndex ) );
         }
 
-        void resetModel()
+        void resetModel() Q_DECL_OVERRIDE
         {
             // no need to disconnect, this is a response to SIGNAL( destroyed() )
             m_model = 0;

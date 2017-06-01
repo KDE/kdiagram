@@ -51,7 +51,7 @@ public:
     explicit Private();
     virtual ~Private() {  }
 
-    virtual void initialize()
+    void initialize() Q_DECL_OVERRIDE
     {
         bPaintIsRunning = false;
         coordinateTransformation.axesCalcModeX = Linear;
@@ -64,7 +64,7 @@ public:
         return static_cast< Private * >( plane->d_func() );
     }
 
-    virtual bool isVisiblePoint( const AbstractCoordinatePlane * plane, const QPointF& point ) const
+    bool isVisiblePoint( const AbstractCoordinatePlane * plane, const QPointF& point ) const Q_DECL_OVERRIDE
     {
         QPointF p = point;
         const CartesianCoordinatePlane* const ref =

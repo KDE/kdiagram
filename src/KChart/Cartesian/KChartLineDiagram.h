@@ -122,25 +122,25 @@ public:
 #else
     // implement AbstractCartesianDiagram
     /* reimpl */
-    int numberOfAbscissaSegments () const;
+    int numberOfAbscissaSegments () const Q_DECL_OVERRIDE;
     /* reimpl */
-    int numberOfOrdinateSegments () const;
+    int numberOfOrdinateSegments () const Q_DECL_OVERRIDE;
 #endif
 
 protected:
-    void paint ( PaintContext* paintContext );
+    void paint ( PaintContext* paintContext ) Q_DECL_OVERRIDE;
 
 public:
-    void resize ( const QSizeF& area );
+    void resize ( const QSizeF& area ) Q_DECL_OVERRIDE;
 
 protected:
 
-    virtual qreal threeDItemDepth( const QModelIndex & index ) const;
-    virtual qreal threeDItemDepth( int column ) const;
+    qreal threeDItemDepth( const QModelIndex & index ) const Q_DECL_OVERRIDE;
+    qreal threeDItemDepth( int column ) const Q_DECL_OVERRIDE;
     /** \reimpl */
-    virtual const QPair<QPointF, QPointF> calculateDataBoundaries() const;
-    void paintEvent ( QPaintEvent* );
-    void resizeEvent ( QResizeEvent* );
+    const QPair<QPointF, QPointF> calculateDataBoundaries() const Q_DECL_OVERRIDE;
+    void paintEvent ( QPaintEvent* ) Q_DECL_OVERRIDE;
+    void resizeEvent ( QResizeEvent* ) Q_DECL_OVERRIDE;
 }; // End of class KChartLineDiagram
 
 }

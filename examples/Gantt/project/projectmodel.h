@@ -28,20 +28,20 @@ public:
     explicit ProjectModel( QObject* parent = 0 );
     virtual ~ProjectModel();
 
-    /*reimp*/ int rowCount( const QModelIndex& idx ) const;
-    /*reimp*/ int columnCount( const QModelIndex& idx ) const;
+    /*reimp*/ int rowCount( const QModelIndex& idx ) const Q_DECL_OVERRIDE;
+    /*reimp*/ int columnCount( const QModelIndex& idx ) const Q_DECL_OVERRIDE;
 
-    /*reimp*/ QModelIndex index( int row, int col, const QModelIndex& parent = QModelIndex() ) const;
-    /*reimp*/ QModelIndex parent( const QModelIndex& idx ) const;
+    /*reimp*/ QModelIndex index( int row, int col, const QModelIndex& parent = QModelIndex() ) const Q_DECL_OVERRIDE;
+    /*reimp*/ QModelIndex parent( const QModelIndex& idx ) const Q_DECL_OVERRIDE;
 
-    /*reimp*/QVariant headerData( int section, Qt::Orientation orientation, int role = Qt::DisplayRole ) const;
-    /*reimp*/ QVariant data( const QModelIndex& idx, int role = Qt::DisplayRole ) const;
+    /*reimp*/QVariant headerData( int section, Qt::Orientation orientation, int role = Qt::DisplayRole ) const Q_DECL_OVERRIDE;
+    /*reimp*/ QVariant data( const QModelIndex& idx, int role = Qt::DisplayRole ) const Q_DECL_OVERRIDE;
     /*reimp*/ bool setData( const QModelIndex& idx,  const QVariant& value,
-                            int role = Qt::DisplayRole );
+                            int role = Qt::DisplayRole ) Q_DECL_OVERRIDE;
 
-    /*reimp*/ bool insertRows( int row, int count, const QModelIndex& parent = QModelIndex() );
+    /*reimp*/ bool insertRows( int row, int count, const QModelIndex& parent = QModelIndex() ) Q_DECL_OVERRIDE;
 
-    /*reimp*/ Qt::ItemFlags flags( const QModelIndex& ) const;
+    /*reimp*/ Qt::ItemFlags flags( const QModelIndex& ) const Q_DECL_OVERRIDE;
 
     bool load( const QString& filename );
     bool save( const QString& filename );

@@ -35,29 +35,29 @@ namespace KGantt
         explicit Legend( QWidget* parent = 0 );
         virtual ~Legend();
 
-        /*reimp*/ QModelIndex indexAt( const QPoint& point ) const;
-        /*reimp*/ QRect visualRect( const QModelIndex& index ) const;
+        /*reimp*/ QModelIndex indexAt( const QPoint& point ) const Q_DECL_OVERRIDE;
+        /*reimp*/ QRect visualRect( const QModelIndex& index ) const Q_DECL_OVERRIDE;
 
-        /*reimp*/ void scrollTo( const QModelIndex&, ScrollHint = EnsureVisible ) {}
+        /*reimp*/ void scrollTo( const QModelIndex&, ScrollHint = EnsureVisible ) Q_DECL_OVERRIDE {}
 
-        /*reimp*/ QSize sizeHint() const;
-        /*reimp*/ QSize minimumSizeHint() const;
+        /*reimp*/ QSize sizeHint() const Q_DECL_OVERRIDE;
+        /*reimp*/ QSize minimumSizeHint() const Q_DECL_OVERRIDE;
 
-        /*reimp*/ void setModel( QAbstractItemModel* model );
+        /*reimp*/ void setModel( QAbstractItemModel* model ) Q_DECL_OVERRIDE;
 
     protected:
         virtual QRect drawItem( QPainter* painter, const QModelIndex& index, const QPoint& pos = QPoint() ) const;
         virtual QSize measureItem( const QModelIndex& index, bool recursive = true ) const;
         virtual StyleOptionGanttItem getStyleOption( const QModelIndex& index ) const;
 
-        /*reimp*/ void paintEvent( QPaintEvent* event );
+        /*reimp*/ void paintEvent( QPaintEvent* event ) Q_DECL_OVERRIDE;
 
-        /*reimp*/ int horizontalOffset() const { return 0; }
-        /*reimp*/ bool isIndexHidden( const QModelIndex& ) const { return false; }
-        /*reimp*/ QModelIndex moveCursor( CursorAction, Qt::KeyboardModifiers ) { return QModelIndex(); }
-        /*reimp*/ void setSelection( const QRect&, QItemSelectionModel::SelectionFlags ) {}
-        /*reimp*/ int verticalOffset() const { return 0; }
-        /*reimp*/ QRegion visualRegionForSelection( const QItemSelection& ) const { return QRegion(); }
+        /*reimp*/ int horizontalOffset() const Q_DECL_OVERRIDE { return 0; }
+        /*reimp*/ bool isIndexHidden( const QModelIndex& ) const Q_DECL_OVERRIDE { return false; }
+        /*reimp*/ QModelIndex moveCursor( CursorAction, Qt::KeyboardModifiers ) Q_DECL_OVERRIDE { return QModelIndex(); }
+        /*reimp*/ void setSelection( const QRect&, QItemSelectionModel::SelectionFlags ) Q_DECL_OVERRIDE {}
+        /*reimp*/ int verticalOffset() const Q_DECL_OVERRIDE { return 0; }
+        /*reimp*/ QRegion visualRegionForSelection( const QItemSelection& ) const Q_DECL_OVERRIDE { return QRegion(); }
 
     protected Q_SLOTS:
         virtual void modelDataChanged();

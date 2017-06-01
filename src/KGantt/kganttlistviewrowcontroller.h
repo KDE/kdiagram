@@ -34,15 +34,15 @@ namespace KGantt {
 	ListViewRowController( QListView* lv, QAbstractProxyModel* proxy );
         ~ListViewRowController();
 
-        /*reimp*/ int headerHeight() const;
-        /*reimp*/ int maximumItemHeight() const;
-        /*reimp*/ int totalHeight() const;
-        /*reimp*/ bool isRowVisible( const QModelIndex& idx ) const;
-        /*reimp*/ bool isRowExpanded( const QModelIndex& idx ) const;
-        /*reimp*/ Span rowGeometry( const QModelIndex& idx ) const;
-        /*reimp*/ QModelIndex indexAt( int height ) const;
-        /*reimp*/ QModelIndex indexAbove( const QModelIndex& idx ) const;
-        /*reimp*/ QModelIndex indexBelow( const QModelIndex& idx ) const;
+        /*reimp*/ int headerHeight() const Q_DECL_OVERRIDE;
+        /*reimp*/ int maximumItemHeight() const Q_DECL_OVERRIDE;
+        /*reimp*/ int totalHeight() const Q_DECL_OVERRIDE;
+        /*reimp*/ bool isRowVisible( const QModelIndex& idx ) const Q_DECL_OVERRIDE;
+        /*reimp*/ bool isRowExpanded( const QModelIndex& idx ) const Q_DECL_OVERRIDE;
+        /*reimp*/ Span rowGeometry( const QModelIndex& idx ) const Q_DECL_OVERRIDE;
+        /*reimp*/ QModelIndex indexAt( int height ) const Q_DECL_OVERRIDE;
+        /*reimp*/ QModelIndex indexAbove( const QModelIndex& idx ) const Q_DECL_OVERRIDE;
+        /*reimp*/ QModelIndex indexBelow( const QModelIndex& idx ) const Q_DECL_OVERRIDE;
     };
 }
 

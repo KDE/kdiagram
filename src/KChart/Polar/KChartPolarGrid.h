@@ -44,11 +44,11 @@ namespace KChart {
         PolarGrid() : AbstractGrid() {}
         virtual ~PolarGrid() {}
 
-        virtual void drawGrid( PaintContext* context );
+        void drawGrid( PaintContext* context ) Q_DECL_OVERRIDE;
 
     private:
-        virtual DataDimensionsList calculateGrid(
-            const DataDimensionsList& rawDataDimensions ) const;
+        DataDimensionsList calculateGrid(
+            const DataDimensionsList& rawDataDimensions ) const Q_DECL_OVERRIDE;
     };
 
 }

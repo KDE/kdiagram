@@ -78,10 +78,10 @@ public:
      */
     bool compare( const Legend* other ) const;
 
-    virtual void resizeEvent( QResizeEvent * event ); // TODO: should be protected
+    void resizeEvent( QResizeEvent * event ) Q_DECL_OVERRIDE; // TODO: should be protected
 
-    virtual void paint( QPainter* painter );
-    virtual void setVisible( bool visible );
+    virtual void paint( QPainter* painter ) Q_DECL_OVERRIDE;
+    void setVisible( bool visible ) Q_DECL_OVERRIDE;
 
     /**
         Specifies the reference area for font size of title text,
@@ -380,14 +380,14 @@ m_legend->setFloatingPosition( relativePosition );
     uint spacing() const;
 
     // called internally by KChart::Chart, when painting into a custom QPainter
-    virtual void forceRebuild();
+    void forceRebuild() Q_DECL_OVERRIDE;
 
-    virtual QSize minimumSizeHint() const;
-    virtual QSize sizeHint() const;
-    virtual bool hasHeightForWidth() const;
-    virtual int heightForWidth( int width ) const;
-    virtual void needSizeHint();
-    virtual void resizeLayout( const QSize& size );
+    QSize minimumSizeHint() const Q_DECL_OVERRIDE;
+    QSize sizeHint() const Q_DECL_OVERRIDE;
+    bool hasHeightForWidth() const Q_DECL_OVERRIDE;
+    int heightForWidth( int width ) const Q_DECL_OVERRIDE;
+    void needSizeHint() Q_DECL_OVERRIDE;
+    void resizeLayout( const QSize& size ) Q_DECL_OVERRIDE;
 
 Q_SIGNALS:
     void destroyedLegend( Legend* );

@@ -45,8 +45,8 @@ namespace KChart {
 
         virtual ~TernaryGrid();
 
-        void drawGrid( PaintContext* context );
-        DataDimensionsList calculateGrid( const DataDimensionsList& rawDataDimensions ) const;
+        void drawGrid( PaintContext* context ) Q_DECL_OVERRIDE;
+        DataDimensionsList calculateGrid( const DataDimensionsList& rawDataDimensions ) const Q_DECL_OVERRIDE;
 
         /** Returns two QSizeF objects specifying the dimension of the
             margins needed between each corner of the diagram and the

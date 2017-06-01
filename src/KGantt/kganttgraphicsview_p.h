@@ -38,9 +38,9 @@ namespace KGantt {
     public Q_SLOTS:
         void scrollTo( int );
     protected:
-        /*reimp*/ bool event( QEvent* ev );
-        /*reimp*/ void paintEvent( QPaintEvent* ev );
-        /*reimp*/ void contextMenuEvent( QContextMenuEvent* ev );
+        /*reimp*/ bool event( QEvent* ev ) Q_DECL_OVERRIDE;
+        /*reimp*/ void paintEvent( QPaintEvent* ev ) Q_DECL_OVERRIDE;
+        /*reimp*/ void contextMenuEvent( QContextMenuEvent* ev ) Q_DECL_OVERRIDE;
     private:
         qreal m_offset;
     };

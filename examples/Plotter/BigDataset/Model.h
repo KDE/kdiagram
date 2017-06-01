@@ -38,13 +38,13 @@ public:
     };
     Model();
 
-    int columnCount( const QModelIndex& parent ) const;
-    int rowCount( const QModelIndex& parent ) const;
+    int columnCount( const QModelIndex& parent ) const Q_DECL_OVERRIDE;
+    int rowCount( const QModelIndex& parent ) const Q_DECL_OVERRIDE;
 
-    QModelIndex index( int row, int column, const QModelIndex& parent ) const;
-    QModelIndex parent( const QModelIndex& index ) const;
+    QModelIndex index( int row, int column, const QModelIndex& parent ) const Q_DECL_OVERRIDE;
+    QModelIndex parent( const QModelIndex& index ) const Q_DECL_OVERRIDE;
 
-    QVariant data( const QModelIndex& index, int role ) const;
+    QVariant data( const QModelIndex& index, int role ) const Q_DECL_OVERRIDE;
 
     void setFunction( Function f );
 

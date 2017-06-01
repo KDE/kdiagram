@@ -34,13 +34,13 @@ public:
     void setStartColor( const QColor &color );
     QColor endColor() const;
     void setEndColor( const QColor &color );
-    QSize sizeHint() const;
+    QSize sizeHint() const Q_DECL_OVERRIDE;
 
 protected:
-    void paintEvent( QPaintEvent *event );
-    void mousePressEvent(QMouseEvent *event );
-    void mouseReleaseEvent(QMouseEvent *event );
-    void mouseMoveEvent( QMouseEvent *event );
+    void paintEvent( QPaintEvent *event ) Q_DECL_OVERRIDE;
+    void mousePressEvent(QMouseEvent *event ) Q_DECL_OVERRIDE;
+    void mouseReleaseEvent(QMouseEvent *event ) Q_DECL_OVERRIDE;
+    void mouseMoveEvent( QMouseEvent *event ) Q_DECL_OVERRIDE;
 
 Q_SIGNALS:
     void startColorChanged();

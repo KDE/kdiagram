@@ -968,14 +968,16 @@ void Legend::buildLegend()
             const QPen pn = pen( dataset );
             const Qt::PenStyle ps = pn.style();
             if ( ps != Qt::NoPen ) {
-                maxLineLength = qMax( pn.width() * 18, maxLineLength );
+                maxLineLength = qMin( pn.width() * 18, maxLineLength );
                 if ( ps != Qt::SolidLine ) {
                     hasComplexPenStyle = true;
                 }
             }
         }
-        if ( hasComplexPenStyle && legendStyle() != LinesOnly ) {
-            maxLineLength += lineLengthLeftOfMarker + int( maxMarkerSize.width() );
+        if ( legendStyle() != LinesOnly ) {
+            if ( hasComplexPenStyle )
+              maxLineLength += lineLengthLeftOfMarker;
+            maxLineLength += int( maxMarkerSize.width() );
         }
     }
 

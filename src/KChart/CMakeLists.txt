@@ -305,7 +305,7 @@ install(FILES
     DESTINATION ${INCLUDE_INSTALL_DIR} COMPONENT Devel)
 
 if(BUILD_QCH)
-    kdiagram_add_qch(
+    ecm_add_qch(
         KChart_QCH
         NAME KChart
         VERSION ${KCHARTLIB_VERSION}
@@ -313,6 +313,7 @@ if(BUILD_QCH)
         SOURCES
             Mainpage.dox
             ${kchart_LIB_HEADERS}
+        IMAGE_DIRS "${CMAKE_SOURCE_DIR}/images"
         LINK_QCHS
             Qt5Core_QCH
             Qt5Gui_QCH
@@ -320,14 +321,24 @@ if(BUILD_QCH)
         BLANK_MACROS
             KCHART_EXPORT
             KCHART_DEPRECATED
-        TAGFILE_INSTALL_DESTINATION ${KDIAGRAM_QTQCH_FULL_INSTALL_DIR}
-        QCH_INSTALL_DESTINATION ${KDIAGRAM_QTQCH_FULL_INSTALL_DIR}
+        TAGFILE_INSTALL_DESTINATION ${KDE_INSTALL_QTQCHDIR}
+        QCH_INSTALL_DESTINATION ${KDE_INSTALL_QTQCHDIR}
+        COMPONENT Devel
     )
-    set(kchart_qch_targets KChart_QCH)
 endif()
 
 # create a Config.cmake and a ConfigVersion.cmake file and install them
 set(CMAKECONFIG_INSTALL_DIR "${CMAKECONFIG_INSTALL_PREFIX}/KChart")
+
+if (BUILD_QCH)
+    ecm_install_qch_export(
+        TARGETS KChart_QCH
+        FILE KChartQchTargets.cmake
+    ​    DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
+    ​    COMPONENT Devel
+    ​)
+    set(PACKAGE_INCLUDE_QCHTARGETS "include(\"\${CMAKE_CURRENT_LIST_DIR}/KChartQchTargets.cmake\")")
+endif()
 
 ecm_configure_package_config_file(
     "${CMAKE_CURRENT_SOURCE_DIR}/KChartConfig.cmake.in"
@@ -344,13 +355,6 @@ install(FILES
 install(EXPORT KChartTargets
         DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
         FILE KChartTargets.cmake)
-
-kdiagram_install_qch_export(
-    TARGETS ${kchart_qch_targets}
-    FILE KChartQchTargets.cmake
-​    DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
-​    COMPONENT Devel
-​)
 
 ecm_generate_pri_file(
     BASE_NAME KChart

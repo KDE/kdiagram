@@ -83,7 +83,6 @@ ecm_generate_headers(kgantt_LIB_HEADERS
     KGanttTreeViewRowController
     KGanttListViewRowController
     KGanttGraphicsScene
-    KGanttGraphicsItem
     KGanttConstraint
     KGanttConstraintProxy
     KGanttConstraintGraphicsItem

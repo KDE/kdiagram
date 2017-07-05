@@ -181,6 +181,10 @@ template class Q_DECL_IMPORT QVector<QPointF>;
 
 #include <Qt>
 
+/**
+  \namespace KChart
+  \brief Global namespace
+  */
 namespace KChart {
 
 enum DisplayRoles {

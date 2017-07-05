@@ -209,6 +209,10 @@ template class Q_DECL_IMPORT QVector<QPointF>;
 #endif
 #endif
 
+/*!\namespace KGantt
+ *\ingroup KGantt
+ *\brief Global namespace
+ */
 namespace KGantt {
     enum ItemDataRole {
         KGanttRoleBase     = Qt::UserRole + 1174,

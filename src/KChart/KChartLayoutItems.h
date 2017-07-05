@@ -43,7 +43,7 @@ namespace KChart {
     class PaintContext;
 
     /**
-     * Base class for all layout items of KD Chart
+     * Base class for all layout items of KChart
      * \internal
      */
     class KCHART_EXPORT AbstractLayoutItem : public QLayoutItem
@@ -386,7 +386,7 @@ namespace KChart {
      * in the two reference-layouts can display not only their in-bounds
      * content but also their overlapping content reaching out of their area.
      *
-     * KD Chart's layouting is applying this schema:
+     * KChart's layouting is applying this schema:
 \verbatim
     +------------------+-------------------------+-----------------+
     | +--------------+ | +---------------------+ | +-------------+ |
@@ -436,7 +436,7 @@ namespace KChart {
     Monday  Tuesday  Wednesday Thursday Friday
 \endverbatim
      * The last letters of the word "Friday" would have been
-     * cut off in previous versions of KD Chart - that is
+     * cut off in previous versions of KChart - that is
      * if you did not call KChart::Chart::setGlobalLeading().
      *
      * Now the word will be shown completely because there

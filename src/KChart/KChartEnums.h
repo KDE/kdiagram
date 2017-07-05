@@ -202,7 +202,7 @@ public:
 
 
     /**
-      Measure calculation mode: the way how the absolute value of a KChart::Measure is determined during KD Chart's internal geometry calculation time.
+      Measure calculation mode: the way how the absolute value of a KChart::Measure is determined during KChart's internal geometry calculation time.
 
       KChart::Measure values either are relative (calculated in relation to a given AbstractArea), or they are absolute (used as fixed values).
 
@@ -210,9 +210,9 @@ public:
 
       \li \c MeasureCalculationModeAbsolute Value set by setValue() is absolute, to be used unchanged.
       \li \c MeasureCalculationModeRelative Value is relative, the reference area is specified by setReferenceArea(), and orientation specified by setOrientation().
-      \li \c MeasureCalculationModeAuto Value is relative, KD Chart will automatically determine which reference area to use, and it will determine the orientation too.
-      \li \c MeasureCalculationModeAutoArea Value is relative, Orientation is specified by setOrientation(), and KD Chart will automatically determine which reference area to use.
-      \li \c MeasureCalculationModeAutoOrientation Value is relative, Area is specified by setReferenceArea(), and KD Chart will automatically determine which orientation to use.
+      \li \c MeasureCalculationModeAuto Value is relative, KChart will automatically determine which reference area to use, and it will determine the orientation too.
+      \li \c MeasureCalculationModeAutoArea Value is relative, Orientation is specified by setOrientation(), and KChart will automatically determine which reference area to use.
+      \li \c MeasureCalculationModeAutoOrientation Value is relative, Area is specified by setReferenceArea(), and KChart will automatically determine which orientation to use.
 
       \sa KChart::Measure::setCalculationMode
       */
@@ -269,14 +269,14 @@ public:
     }
 
     /**
-      Measure orientation mode: the way how the absolute value of a KChart::Measure is determined during KD Chart's internal geometry calculation time.
+      Measure orientation mode: the way how the absolute value of a KChart::Measure is determined during KChart's internal geometry calculation time.
 
       KChart::Measure values either are relative (calculated in relation to a given AbstractArea), or they are absolute (used as fixed values).
 
       Values stored in relative measure take into account the width (and/or the height, resp.) of a so-called reference area,
-      that is either specified by KChart::Measure::setReferenceArea, or determined by KD Chart automatically, respectively.
+      that is either specified by KChart::Measure::setReferenceArea, or determined by KChart automatically, respectively.
 
-      \li \c MeasureOrientationAuto Value is calculated, based upon the width (or on the height, resp.) of the reference area: KD Chart will automatically determie an appropriate way.
+      \li \c MeasureOrientationAuto Value is calculated, based upon the width (or on the height, resp.) of the reference area: KChart will automatically determie an appropriate way.
       \li \c MeasureOrientationHorizontal Value is calculated, based upon the width of the reference area.
       \li \c MeasureOrientationVertical Value is calculated, based upon the height of the reference area.
       \li \c MeasureOrientationMinimum Value is calculated, based upon the width (or on the height, resp.) of the reference area - which ever is smaller.

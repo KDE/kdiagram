@@ -27,7 +27,7 @@
 namespace KChart
 {
     /**
-      * @brief Base class for all proxy models used inside KD Chart
+      * @brief Base class for all proxy models used inside KChart
       * \internal
       */
     class KCHART_EXPORT AbstractProxyModel : public QAbstractProxyModel

@@ -49,7 +49,7 @@ namespace KChart {
   \li either you declare both, the relative and the absolute parts,
       using setReferenceArea for the latter,
   \li or you specify a set of points, using setReferencePoints,
-  \li or you don't use either, leaving it to KD Chart to find a suitable reference area.
+  \li or you don't use either, leaving it to KChart to find a suitable reference area.
   */
 class KCHART_EXPORT RelativePosition
 {
@@ -70,7 +70,7 @@ public:
      * Only one can be used, so any previously set reference points are cleared
      * when you call setReferenceArea.
      *
-     * Also note: In a few cases KD Chart will ignore your area (or points, resp.) settings!
+     * Also note: In a few cases KChart will ignore your area (or points, resp.) settings!
      * Relative positioning of data value texts is an example: For these
      * the reference area is always taken to be the data area.
      *
@@ -86,7 +86,7 @@ public:
      * Only one can be used, so any previously set reference area is cleared
      * when you call setReferencePoints.
      *
-     * Also note: In a few cases KD Chart will ignore your points (or area, resp.) settings!
+     * Also note: In a few cases KChart will ignore your points (or area, resp.) settings!
      * Relative positioning of data value texts is an example: For these
      * the reference area is always taken to be the data area.
      *
@@ -112,7 +112,7 @@ public:
      * \brief Resets the position of the anchor point to the built-in default.
      *
      * If the anchor point of a RelativePosition is reset (or never changed from the
-     * default setting) KD Chart will choose an appropriate Position at run-time.
+     * default setting) KChart will choose an appropriate Position at run-time.
      *
      * e.g. BarDiagrams will use Position::North / Position::South for positive / negative values.
      *

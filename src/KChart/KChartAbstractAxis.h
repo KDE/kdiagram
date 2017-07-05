@@ -76,11 +76,11 @@ namespace KChart {
          * \brief Reimplement this method if you want to adjust axis labels
          * before they are printed.
          *
-         * KD Chart is calling this method immediately before drawing the
+         * KChart is calling this method immediately before drawing the
          * text, this  means: What you return here will be drawn without
          * further modifications.
          *
-         * \param label The text of the label as KD Chart has calculated it
+         * \param label The text of the label as KChart has calculated it
          * automatically (or as it was taken from a QStringList provided
          * by you, resp.)
          *
@@ -183,11 +183,11 @@ namespace KChart {
           \brief Use this to specify your own set of strings, to be used as axis labels.
 
           Labels specified via setLabels take precedence:
-          If a non-empty list is passed, KD Chart will use these strings as axis labels,
+          If a non-empty list is passed, KChart will use these strings as axis labels,
           instead of calculating them.
 
           If you pass a smaller number of strings than the number of labels drawn at this
-          axis, KD Chart will repeat the strings until all labels are drawn.
+          axis, KChart will repeat the strings until all labels are drawn.
           As an example you could specify the seven days of the week as abscissa labels,
           which would be repeatedly used then.
 

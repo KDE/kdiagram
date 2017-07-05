@@ -40,7 +40,7 @@ typedef QList<const AbstractDiagram*> ConstDiagramList;
   * Legend is drawn on chart level, not per diagram, but you can have more than one
   * legend per chart, using KChart::Chart::addLegend().
   *
-  * \note Legend is different from all other classes ofd KD Chart, since it can be
+  * \note Legend is different from all other classes ofd KChart, since it can be
   * displayed outside of the Chart's area.  If you want to, you can embedd the legend
   * into your own widget, or into another part of a bigger layout, into which you might
   * have inserted the Chart.
@@ -284,7 +284,7 @@ relativePosition.setVerticalPadding(
     KChart::Measure( 4.0, KChartEnums::MeasureCalculationModeAbsolute ) );
 m_legend->setFloatingPosition( relativePosition );
 \endverbatim
-     * Actually that's exactly the code KD Chart is using as default position for any floating legends,
+     * Actually that's exactly the code KChart is using as default position for any floating legends,
      * so if you just say setPosition( KChart::Position::Floating ) without calling setFloatingPosition
      * your legend will be positioned at point 4/4.
      *

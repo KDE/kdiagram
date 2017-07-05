@@ -269,7 +269,7 @@ namespace KChart {
           *
           * \note Do not call this function directly, unless you know
           * exactly what you are doing.  Geometry management is done
-          * by KD Chart's internal layouting measures.
+          * by KChart's internal layouting measures.
           */
         void setGeometry( const QRect& r ) Q_DECL_OVERRIDE;
         /** pure virtual in QLayoutItem */

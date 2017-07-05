@@ -50,9 +50,9 @@ namespace KChart {
 
     /**
      * \class Widget KChartWidget.h
-     * \brief The KD Chart widget for usage without Model/View.
+     * \brief The KChart widget for usage without Model/View.
      *
-     * If you want to use KD Chart with Model/View, use KChart::Chart instead.
+     * If you want to use KChart with Model/View, use KChart::Chart instead.
      */
     class KCHART_EXPORT Widget : public QWidget
     {

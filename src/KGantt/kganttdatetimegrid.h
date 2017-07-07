@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2001-2015 Klaralvdalens Datakonsult AB.  All rights reserved.
  *
  * This file is part of the KGantt library.

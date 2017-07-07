@@ -84,11 +84,11 @@ namespace KChart {
          * automatically (or as it was taken from a QStringList provided
          * by you, resp.)
          *
-         * \note If you reimplement this method in a subclass of KChartCartesianAxis,
+         * \note If you reimplement this method in a subclass of KChart::CartesianAxis,
          * and your reimplementation's return value depends on data other than @p label
          * (so KChart will not know when it changes), you must manually ensure that
          * layouts are adapted to any changed sizes of the axis labels. To do that,
-         * call KChartCartesianAxis::layoutPlanes() from your reimplementation when
+         * call KChart::CartesianAxis::layoutPlanes() from your reimplementation when
          * you know that the external data changed and it will change label sizes -
          * or when you cannot exclude that.
          *

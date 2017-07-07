@@ -39,7 +39,7 @@ namespace KChart {
  * \class Position KChartPosition.h
  * \brief Defines a position, using compass terminology.
  *
- * Using KChartPosition you can specify one of nine
+ * Using KChart::Position you can specify one of nine
  * pre-defined, logical points (see the \c static \c const getter
  * methods below), in a similar way, as you would use a
  * compass to navigate on a map.

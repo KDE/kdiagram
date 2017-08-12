@@ -24,7 +24,7 @@
 using namespace KChart;
 
 
-class StockDiagram::Private::ThreeDPainter
+class Q_DECL_HIDDEN StockDiagram::Private::ThreeDPainter
 {
 public:
     struct ThreeDProperties {

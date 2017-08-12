@@ -28,7 +28,7 @@
 
 using namespace KChart;
 
-class RulerAttributes::Private
+class Q_DECL_HIDDEN RulerAttributes::Private
 {
     friend class RulerAttributes;
 public:

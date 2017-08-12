@@ -44,7 +44,7 @@ namespace KChart {
 /**
  * \internal
  */
-class CartesianCoordinatePlane::Private : public AbstractCoordinatePlane::Private
+class Q_DECL_HIDDEN CartesianCoordinatePlane::Private : public AbstractCoordinatePlane::Private
 {
     friend class CartesianCoordinatePlane;
 public:

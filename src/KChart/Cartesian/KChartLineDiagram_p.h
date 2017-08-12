@@ -48,7 +48,7 @@ namespace KChart {
 /**
  * \internal
  */
-    class LineDiagram::Private : public AbstractCartesianDiagram::Private
+    class Q_DECL_HIDDEN LineDiagram::Private : public AbstractCartesianDiagram::Private
     {
         friend class LineDiagram;
         friend class LineDiagramType;

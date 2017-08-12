@@ -47,7 +47,7 @@
 using namespace KChart;
 
 
-class AttributesModel::Private
+class Q_DECL_HIDDEN AttributesModel::Private
 {
 public:
     Private();

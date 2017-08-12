@@ -49,7 +49,7 @@ namespace KChart {
 /**
  * \internal
  */
-    class LeveyJenningsDiagram::Private : public LineDiagram::Private
+    class Q_DECL_HIDDEN LeveyJenningsDiagram::Private : public LineDiagram::Private
     {
         friend class LeveyJenningsDiagram;
     public:

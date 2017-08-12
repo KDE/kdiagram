@@ -27,7 +27,7 @@
 #include <QPersistentModelIndex>
 
 namespace KGantt {
-    class ConstraintModel::Private {
+    class Q_DECL_HIDDEN ConstraintModel::Private {
     public:
         Private();
 

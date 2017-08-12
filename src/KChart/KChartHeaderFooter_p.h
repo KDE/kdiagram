@@ -49,7 +49,7 @@ namespace KChart {
 /**
  * \internal
  */
-class KChart::HeaderFooter::Private : public KChart::TextArea::Private
+class Q_DECL_HIDDEN KChart::HeaderFooter::Private : public KChart::TextArea::Private
 {
     friend class KChart::HeaderFooter;
 public:

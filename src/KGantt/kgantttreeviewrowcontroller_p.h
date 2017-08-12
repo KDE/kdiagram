@@ -29,7 +29,7 @@ class QAbstractProxyModel;
 QT_END_NAMESPACE
 
 namespace KGantt {
-    class TreeViewRowController::Private {
+    class Q_DECL_HIDDEN TreeViewRowController::Private {
     public:
         class HackTreeView : public QTreeView {
         public:

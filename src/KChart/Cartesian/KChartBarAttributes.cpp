@@ -28,7 +28,7 @@
 
 using namespace KChart;
 
-class BarAttributes::Private
+class Q_DECL_HIDDEN BarAttributes::Private
 {
     friend class BarAttributes;
 public:

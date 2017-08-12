@@ -25,7 +25,7 @@
 #include <QListView>
 
 namespace KGantt {
-    class ListViewRowController::Private {
+    class Q_DECL_HIDDEN ListViewRowController::Private {
     public:
         class HackListView : public QListView {
         public:

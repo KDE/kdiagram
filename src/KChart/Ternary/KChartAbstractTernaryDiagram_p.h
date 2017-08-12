@@ -48,7 +48,7 @@ namespace KChart {
 /**
  * \internal
  */
-    class AbstractTernaryDiagram::Private : public AbstractDiagram::Private
+    class Q_DECL_HIDDEN AbstractTernaryDiagram::Private : public AbstractDiagram::Private
     {
         friend class AbstractTernaryDiagram;
     public:

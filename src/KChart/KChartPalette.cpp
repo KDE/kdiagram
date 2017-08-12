@@ -93,7 +93,7 @@ namespace {
 
 #define d d_func()
 
-class Palette::Private
+class Q_DECL_HIDDEN Palette::Private
 {
 public:
     explicit Private() {}

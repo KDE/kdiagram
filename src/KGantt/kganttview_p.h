@@ -66,7 +66,7 @@ namespace KGantt {
     };
 
     /*! \internal */
-    class View::Private {
+    class Q_DECL_HIDDEN View::Private {
     public:
         explicit Private(View*);
         virtual ~Private();

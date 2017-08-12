@@ -28,7 +28,7 @@
 
 using namespace KChart;
 
-class BackgroundAttributes::Private
+class Q_DECL_HIDDEN BackgroundAttributes::Private
 {
     friend class KChart::BackgroundAttributes;
 public:

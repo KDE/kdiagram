@@ -30,7 +30,7 @@ typedef QPair< QPointF, QPointF > Boundaries;
 namespace KChart
 {
 
-class PlotterDiagramCompressor::Private : public QObject
+class Q_DECL_HIDDEN PlotterDiagramCompressor::Private : public QObject
 {
     Q_OBJECT
 public:

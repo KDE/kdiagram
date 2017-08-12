@@ -27,7 +27,7 @@
 #include "kganttconstraint.h"
 
 namespace KGantt {
-    class Constraint::Private : public QSharedData {
+    class Q_DECL_HIDDEN Constraint::Private : public QSharedData {
     public:
         Private();
         Private( const Private& other );

@@ -28,7 +28,7 @@
 
 using namespace KChart;
 
-class ValueTrackerAttributes::Private
+class Q_DECL_HIDDEN ValueTrackerAttributes::Private
 {
     friend class ValueTrackerAttributes;
     public:

@@ -41,7 +41,7 @@ namespace KChart {
 /**
  * \internal
  */
-class PieDiagram::Private : public AbstractPieDiagram::Private
+class Q_DECL_HIDDEN PieDiagram::Private : public AbstractPieDiagram::Private
 {
     friend class PieDiagram;
 public:

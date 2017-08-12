@@ -41,7 +41,7 @@ namespace KChart {
 /**
  * \internal
  */
-class AbstractThreeDAttributes::Private
+class Q_DECL_HIDDEN AbstractThreeDAttributes::Private
 {
     friend class AbstractThreeDAttributes;
 public:

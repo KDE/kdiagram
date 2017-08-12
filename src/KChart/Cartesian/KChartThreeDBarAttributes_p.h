@@ -42,7 +42,7 @@ namespace KChart {
 /**
  * \internal
  */
-class ThreeDBarAttributes::Private : public AbstractThreeDAttributes::Private
+class Q_DECL_HIDDEN ThreeDBarAttributes::Private : public AbstractThreeDAttributes::Private
 {
     friend class ThreeDBarAttributes;
 public:

@@ -29,7 +29,7 @@
 
 using namespace KChart;
 
-class LeveyJenningsGridAttributes::Private
+class Q_DECL_HIDDEN LeveyJenningsGridAttributes::Private
 {
     friend class LeveyJenningsGridAttributes;
 public:

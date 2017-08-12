@@ -34,7 +34,7 @@
 
 using namespace KChart;
 
-class TextAttributes::Private
+class Q_DECL_HIDDEN TextAttributes::Private
 {
     friend class TextAttributes;
 public:

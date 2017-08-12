@@ -94,7 +94,7 @@ namespace KChart {
  */
     class AttributesModel;
 
-    class KChart::AbstractDiagram::Private
+    class Q_DECL_HIDDEN KChart::AbstractDiagram::Private
     {
         friend class AbstractDiagram;
     public:

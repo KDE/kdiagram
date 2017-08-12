@@ -45,7 +45,7 @@ namespace KGantt {
         qreal m_offset;
     };
 
-    class GraphicsView::Private {
+    class Q_DECL_HIDDEN GraphicsView::Private {
         Q_DISABLE_COPY( Private )
     public:
         explicit Private(GraphicsView* _q);

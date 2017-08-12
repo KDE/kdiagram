@@ -49,7 +49,7 @@ namespace KChart {
 /**
  * \internal
  */
-    class Plotter::Private : public QObject, public AbstractCartesianDiagram::Private
+    class Q_DECL_HIDDEN Plotter::Private : public QObject, public AbstractCartesianDiagram::Private
     {
         Q_OBJECT
         friend class Plotter;

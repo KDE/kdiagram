@@ -27,7 +27,7 @@
 #include "kganttabstractgrid.h"
 
 namespace KGantt {
-    class AbstractGrid::Private {
+    class Q_DECL_HIDDEN AbstractGrid::Private {
     public:
         QPointer<QAbstractItemModel> model;
         QPersistentModelIndex root;

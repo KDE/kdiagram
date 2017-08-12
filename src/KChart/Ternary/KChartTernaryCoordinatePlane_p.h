@@ -46,7 +46,7 @@ namespace KChart {
      * \internal
      */
 
-    class TernaryCoordinatePlane::Private : public AbstractCoordinatePlane::Private
+    class Q_DECL_HIDDEN TernaryCoordinatePlane::Private : public AbstractCoordinatePlane::Private
     {
         friend class TernaryCoordinatePlane;
 

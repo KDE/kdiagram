@@ -45,7 +45,7 @@ namespace KChart {
 /**
  * \internal
  */
-    class TextArea::Private : public AbstractAreaBase::Private
+    class Q_DECL_HIDDEN TextArea::Private : public AbstractAreaBase::Private
     {
         friend class TextArea;
     public:

@@ -72,7 +72,7 @@ class DiagramsObserversList : public QList<DiagramObserver*> {};
 /**
  * \internal
  */
-class Legend::Private : public AbstractAreaWidget::Private
+class Q_DECL_HIDDEN Legend::Private : public AbstractAreaWidget::Private
 {
     friend class Legend;
 public:

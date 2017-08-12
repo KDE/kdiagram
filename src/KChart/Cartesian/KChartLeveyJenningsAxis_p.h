@@ -42,7 +42,7 @@ namespace KChart {
 /**
   * \internal
   */
-class LeveyJenningsAxis::Private : public CartesianAxis::Private
+class Q_DECL_HIDDEN LeveyJenningsAxis::Private : public CartesianAxis::Private
 {
     friend class LeveyJenningsAxis;
 

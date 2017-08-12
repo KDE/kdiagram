@@ -25,7 +25,7 @@
 #include <QHash>
 
 namespace KGantt {
-    class ItemDelegate::Private {
+    class Q_DECL_HIDDEN ItemDelegate::Private {
     public:
         Private();
 

@@ -40,7 +40,7 @@ namespace KChart {
 /**
  * \internal
  */
-    class TernaryPointDiagram::Private : public AbstractTernaryDiagram::Private
+    class Q_DECL_HIDDEN TernaryPointDiagram::Private : public AbstractTernaryDiagram::Private
     {
         friend class TernaryPointDiagram;
     public:

@@ -44,7 +44,7 @@ class PolarCoordinatePlane;
 /**
  * \internal
  */
-class AbstractPieDiagram::Private : public AbstractPolarDiagram::Private
+class Q_DECL_HIDDEN AbstractPieDiagram::Private : public AbstractPolarDiagram::Private
 {
     friend class AbstractPieDiagram;
 public:

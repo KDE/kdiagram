@@ -47,7 +47,7 @@ class PaintContext;
 /**
  * \internal
  */
-class BarDiagram::Private : public AbstractCartesianDiagram::Private
+class Q_DECL_HIDDEN BarDiagram::Private : public AbstractCartesianDiagram::Private
 {
     friend class BarDiagram;
     friend class BarDiagramType;

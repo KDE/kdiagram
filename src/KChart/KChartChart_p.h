@@ -116,7 +116,7 @@ struct LayoutGraphNode
 /**
  * \internal
  */
-class Chart::Private : public QObject
+class Q_DECL_HIDDEN Chart::Private : public QObject
 {
     Q_OBJECT
     public:

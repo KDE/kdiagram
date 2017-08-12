@@ -31,7 +31,7 @@
 
 using namespace KChart;
 
-class MarkerAttributes::Private
+class Q_DECL_HIDDEN MarkerAttributes::Private
 {
     friend class ::KChart::MarkerAttributes;
 public:

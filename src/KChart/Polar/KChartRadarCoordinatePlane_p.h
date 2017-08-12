@@ -38,7 +38,7 @@
 
 namespace KChart {
   
-class RadarCoordinatePlane::Private : public PolarCoordinatePlane::Private
+class Q_DECL_HIDDEN RadarCoordinatePlane::Private : public PolarCoordinatePlane::Private
 {
     friend class RadarCoordinatePlane;
 public:

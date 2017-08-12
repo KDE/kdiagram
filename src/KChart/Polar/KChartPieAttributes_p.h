@@ -40,7 +40,7 @@ namespace KChart {
 /**
  * \internal
  */
-class PieAttributes::Private
+class Q_DECL_HIDDEN PieAttributes::Private
 {
     friend class PieAttributes;
 public:

@@ -25,7 +25,7 @@
 
 using namespace KChart;
 
-class FrameAttributes::Private
+class Q_DECL_HIDDEN FrameAttributes::Private
 {
     friend class FrameAttributes;
 public:

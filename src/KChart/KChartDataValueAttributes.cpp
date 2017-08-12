@@ -37,7 +37,7 @@
 
 using namespace KChart;
 
-class DataValueAttributes::Private
+class Q_DECL_HIDDEN DataValueAttributes::Private
 {
     friend class DataValueAttributes;
 public:

@@ -41,7 +41,7 @@ namespace KChart {
 /**
  * \internal
  */
-class RadarDiagram::Private : public AbstractPolarDiagram::Private
+class Q_DECL_HIDDEN RadarDiagram::Private : public AbstractPolarDiagram::Private
 {
     friend class RadarDiagram;
 public:

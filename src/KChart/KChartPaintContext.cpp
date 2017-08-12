@@ -29,7 +29,7 @@ using namespace KChart;
 
 #define d (d_func())
 
-class PaintContext::Private {
+class Q_DECL_HIDDEN PaintContext::Private {
 
 public:
     QPainter* painter;

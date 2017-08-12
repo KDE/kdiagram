@@ -30,7 +30,7 @@
 
 using namespace KChart;
 
-class RelativePosition::Private {
+class Q_DECL_HIDDEN RelativePosition::Private {
     friend class ::KChart::RelativePosition;
 public:
     Private();

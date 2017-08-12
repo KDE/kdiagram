@@ -25,7 +25,7 @@
 #include <QHash>
 
 namespace KGantt {
-    class ProxyModel::Private {
+    class Q_DECL_HIDDEN ProxyModel::Private {
     public:
         explicit Private( ProxyModel* _q );
 

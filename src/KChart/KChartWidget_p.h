@@ -43,7 +43,7 @@
 /**
  * \internal
  */
-class KChart::Widget::Private
+class Q_DECL_HIDDEN KChart::Widget::Private
 {
     friend class ::KChart::Widget;
     Widget * const q;

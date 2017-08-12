@@ -50,7 +50,7 @@ namespace KChart {
 /**
  * \internal
  */
-class AbstractCoordinatePlane::Private : public AbstractArea::Private
+class Q_DECL_HIDDEN AbstractCoordinatePlane::Private : public AbstractArea::Private
 {
     friend class AbstractCoordinatePlane;
 protected:

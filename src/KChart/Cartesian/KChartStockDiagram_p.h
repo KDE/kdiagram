@@ -27,7 +27,7 @@
 
 namespace KChart {
 
-class StockDiagram::Private : public AbstractCartesianDiagram::Private
+class Q_DECL_HIDDEN StockDiagram::Private : public AbstractCartesianDiagram::Private
 {
     friend class StockDiagram;
 

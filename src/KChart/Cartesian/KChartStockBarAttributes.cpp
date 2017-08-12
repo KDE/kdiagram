@@ -23,7 +23,7 @@
 
 using namespace KChart;
 
-class StockBarAttributes::Private {
+class Q_DECL_HIDDEN StockBarAttributes::Private {
 public:
     Private();
 

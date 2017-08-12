@@ -28,7 +28,7 @@
 #include <QPersistentModelIndex>
 
 namespace KGantt {
-    class SummaryHandlingProxyModel::Private {
+    class Q_DECL_HIDDEN SummaryHandlingProxyModel::Private {
     public:
         bool cacheLookup( const QModelIndex& idx,
                           QPair<QDateTime,QDateTime>* result ) const;

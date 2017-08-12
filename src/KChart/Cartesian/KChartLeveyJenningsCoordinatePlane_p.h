@@ -46,7 +46,7 @@ namespace KChart {
      * \internal
      */
 
-    class LeveyJenningsCoordinatePlane::Private : public CartesianCoordinatePlane::Private
+    class Q_DECL_HIDDEN LeveyJenningsCoordinatePlane::Private : public CartesianCoordinatePlane::Private
     {
         friend class LeveyJenningsCoordinatePlane;
 

@@ -48,7 +48,7 @@ namespace KChart {
 /**
  * \internal
  */
-class AbstractAxis::Private : public AbstractArea::Private
+class Q_DECL_HIDDEN AbstractAxis::Private : public AbstractArea::Private
 {
     friend class AbstractAxis;
 

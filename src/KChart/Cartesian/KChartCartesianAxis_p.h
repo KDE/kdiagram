@@ -42,7 +42,7 @@ namespace KChart {
 /**
   * \internal
   */
-class CartesianAxis::Private : public AbstractAxis::Private
+class Q_DECL_HIDDEN CartesianAxis::Private : public AbstractAxis::Private
 {
     friend class CartesianAxis;
 

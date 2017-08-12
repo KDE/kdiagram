@@ -25,7 +25,7 @@
 #include "kganttproxymodel.h"
 
 namespace KGantt {
-    class Legend::Private {
+    class Q_DECL_HIDDEN Legend::Private {
     public:
         ProxyModel proxyModel;
     };

@@ -31,7 +31,7 @@
 #include "kganttdatetimegrid.h"
 
 namespace KGantt {
-    class GraphicsScene::Private {
+    class Q_DECL_HIDDEN GraphicsScene::Private {
     public:
         explicit Private(GraphicsScene*);
 

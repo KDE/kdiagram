@@ -28,7 +28,7 @@
 
 using namespace KChart;
 
-class GridAttributes::Private
+class Q_DECL_HIDDEN GridAttributes::Private
 {
     friend class GridAttributes;
 public:

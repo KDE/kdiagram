@@ -27,7 +27,7 @@
 
 using namespace KChart;
 
-class LineAttributes::Private
+class Q_DECL_HIDDEN LineAttributes::Private
 {
     friend class LineAttributes;
 public:

@@ -27,7 +27,7 @@
 #include <QBrush>
 
 namespace KGantt {
-    class DateTimeScaleFormatter::Private
+    class Q_DECL_HIDDEN DateTimeScaleFormatter::Private
     {
     public:
         Private( DateTimeScaleFormatter::Range _range,
@@ -47,7 +47,7 @@ namespace KGantt {
         const Qt::Alignment alignment;
     };
 
-    class DateTimeGrid::Private : public AbstractGrid::Private {
+    class Q_DECL_HIDDEN DateTimeGrid::Private : public AbstractGrid::Private {
     public:
         Private()
             : startDateTime( QDateTime::currentDateTime().addDays( -3 ) ),

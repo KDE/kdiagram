@@ -87,7 +87,7 @@ struct PolarCoordinatePlane::CoordinateTransformation
     }
 };
 
-class PolarCoordinatePlane::Private : public AbstractCoordinatePlane::Private
+class Q_DECL_HIDDEN PolarCoordinatePlane::Private : public AbstractCoordinatePlane::Private
 {
     friend class PolarCoordinatePlane;
 public:

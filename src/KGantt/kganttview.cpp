@@ -439,14 +439,24 @@ void View::setGrid( AbstractGrid* grid )
 
 void View::expandAll( QModelIndex index )
 {
+    // FIXME:
+    // It is legal to call setLeftView() with any QAbstractItemView,
+    // so expandAll should be reimplemented to work with that.
     KGanttTreeView* tw = qobject_cast<KGanttTreeView*>(leftView());
-    tw->expandAll(index);
+    if (tw) {
+        tw->expandAll(index);
+    }
 }
 
 void View::collapseAll( QModelIndex index )
 {
+    // FIXME:
+    // It is legal to call setLeftView() with any QAbstractItemView,
+    // so expandAll should be reimplemented to work with that.
     KGanttTreeView* tw = qobject_cast<KGanttTreeView*>(leftView());
-    tw->collapseAll(index);
+    if (tw) {
+        tw->collapseAll(index);
+    }
 }
 
 /*! \returns the AbstractGrid used by this view.

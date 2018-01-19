@@ -216,8 +216,11 @@ void View::Private::slotVerticalScrollValueChanged( int val )
 void View::Private::slotLeftWidgetVerticalRangeChanged(int min, int max )
 {
     //qDebug() << "View::Private::slotLeftWidgetVerticalRangeChanged("<<min<<max<<")";
-    gfxview->verticalScrollBar()->setRange( min, max );
-    gfxview->updateSceneRect();
+    // In some cases the gfxview has already been deleted when this signal arrive
+    if (!gfxview.isNull()) {
+        gfxview->verticalScrollBar()->setRange( min, max );
+        gfxview->updateSceneRect();
+    }
 }
 
 void View::Private::slotGfxViewVerticalRangeChanged( int min, int max )

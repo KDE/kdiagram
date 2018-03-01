@@ -187,8 +187,9 @@ void MainWindow::addNewEntry()
         return;
 
     int row = model->rowCount( parent ) - 1;
-    if ( row == 0 && parent.isValid() )
-        model->insertColumns( model->columnCount( parent ), 5, parent );
+    if (model->columnCount( parent ) < model->columnCount()) {
+        model->insertColumns( model->columnCount( parent ), model->columnCount() - model->columnCount( parent ), parent );
+    }
 
     model->setData( model->index( row, 0, parent ), dialog->name() );
     model->setData( model->index( row, 1, parent ), dialog->type() );

@@ -460,6 +460,7 @@ void GraphicsScene::insertItem( const QPersistentModelIndex& idx, GraphicsItem* 
                 ConstraintGraphicsItem* citem = new ConstraintGraphicsItem( c );
                 item->addStartConstraint( citem );
                 other_item->addEndConstraint( citem );
+                d->constraintItems.append( citem );
                 addItem( citem );
             } else if ( c.endIndex() == sidx ) {
                 other_idx = c.startIndex();
@@ -468,6 +469,7 @@ void GraphicsScene::insertItem( const QPersistentModelIndex& idx, GraphicsItem* 
                 ConstraintGraphicsItem* citem = new ConstraintGraphicsItem( c );
                 other_item->addStartConstraint( citem );
                 item->addEndConstraint( citem );
+                d->constraintItems.append( citem );
                 addItem( citem );
             } else {
                 assert( 0 ); // Impossible

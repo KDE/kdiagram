@@ -200,7 +200,8 @@ QList<Constraint> ConstraintModel::constraints() const
 QList<Constraint> ConstraintModel::constraintsForIndex( const QModelIndex& idx ) const
 {
     // TODO: @Steffen: Please comment on this assert, it's long and not obvious (Johannes)
-    assert( !idx.isValid() || d->indexMap.isEmpty() || !d->indexMap.keys().front().model() || idx.model() == d->indexMap.keys().front().model() );
+    // TODO: Afaics indexMap is not used anymore, so remove it (danders)
+    //assert( !idx.isValid() || d->indexMap.isEmpty() || !d->indexMap.keys().front().model() || idx.model() == d->indexMap.keys().front().model() );
     if ( !idx.isValid() ) {
         // Because of a Qt bug we need to treat this as a special case
         QSet<Constraint> result;

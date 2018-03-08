@@ -42,6 +42,7 @@ Plotter::Private::~Private()
 {
     delete normalPlotter;
     delete percentPlotter;
+    delete stackedPlotter;
 }
 
 

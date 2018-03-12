@@ -265,17 +265,31 @@ void GraphicsView::Private::slotRowsInserted( const QModelIndex& parent,  int st
     q->updateScene(); // TODO: This might be optimised
 }
 
+void GraphicsView::Private::removeConstraintsRecursive( QAbstractProxyModel *summaryModel, const QModelIndex& index )
+{
+    if ( summaryModel->hasChildren( index ) ) {
+        //qDebug() << "removing constraints from children of"<<index;
+        for ( int row = 0; row < summaryModel->rowCount( index ); ++row ) {
+            const QModelIndex child = summaryModel->index( row, index.column(), index );
+            removeConstraintsRecursive( summaryModel, child );
+        }
+    }
+    //qDebug() << "removing constraints from"<<index;
+    // NOTE: Constraints are mapped to indexes in the summaryModel->sourceModel()
+    QList<Constraint> clst = scene.constraintModel()->constraintsForIndex( summaryModel->mapToSource( index ) );
+    Q_FOREACH( Constraint c, clst ) {
+        scene.constraintModel()->removeConstraint( c );
+    }
+}
+
 void GraphicsView::Private::slotRowsAboutToBeRemoved( const QModelIndex& parent,  int start, int end )
 {
     //qDebug() << "GraphicsView::Private::slotRowsAboutToBeRemoved("<<parent<<start<<end<<")";
+    QAbstractProxyModel *summaryModel = scene.summaryHandlingModel();
     for ( int row = start; row <= end; ++row ) {
-        for ( int col = 0; col < scene.summaryHandlingModel()->columnCount( parent ); ++col ) {
-            //qDebug() << "removing "<<scene.summaryHandlingModel()->index( row, col, parent );
-            const QModelIndex idx = scene.summaryHandlingModel()->index( row, col, parent );
-            QList<Constraint> clst = scene.constraintModel()->constraintsForIndex( idx );
-            Q_FOREACH( Constraint c, clst ) {
-                scene.constraintModel()->removeConstraint( c );
-            }
+        for ( int col = 0; col < summaryModel->columnCount( parent ); ++col ) {
+            const QModelIndex idx = summaryModel->index( row, col, parent );
+            removeConstraintsRecursive( summaryModel, idx );
             scene.removeItem( idx );
         }
     }

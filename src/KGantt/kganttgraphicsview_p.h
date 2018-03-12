@@ -70,6 +70,8 @@ namespace KGantt {
 
         void slotHeaderContextMenuRequested( const QPoint& pt );
 
+        void removeConstraintsRecursive( QAbstractProxyModel *summaryModel, const QModelIndex& index );
+
         GraphicsView* q;
         AbstractRowController* rowcontroller;
         HeaderWidget headerwidget;

@@ -6,6 +6,12 @@ ecm_setup_version(${KGANTTLIB_VERSION}
     PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KGanttConfigVersion.cmake"
 )
 
+if(BUILD_TESTING)
+    if(Qt5Test_FOUND)
+        add_subdirectory(test)
+    endif()
+endif()
+
 # TODO: remove this, code should be built the same with and without unit tests
 # those KGantt unit tests which are enabled in the sources should be moved into own files
 if(NOT BUILD_TESTING)

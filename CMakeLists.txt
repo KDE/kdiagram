@@ -18,6 +18,7 @@ include(ECMSetupVersion)
 include(ECMPackageConfigHelpers)
 include(ECMGeneratePriFile)
 include(ECMPoQmTools)
+include(ECMAddTests)
 
 include(CMakeDependentOption)
 

@@ -1,4 +1,3 @@
-include(ECMAddTests)
 
 include_directories(
     ${CMAKE_SOURCE_DIR}/examples/tools

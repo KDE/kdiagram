@@ -78,8 +78,8 @@ void TestKGanttConstraintModel::testModel()
     QCOMPARE(idx2, itemModel->index(41, 17, QModelIndex()));
     QVERIFY(model.hasConstraint(Constraint(idx1, idx2)));
     itemModel->removeRow(7);
-    QCOMPARE(idx1, QModelIndex());
-    QCOMPARE(idx2, itemModel->index(40, 17, QModelIndex()));
+    QVERIFY(!idx1.isValid());
+    QVERIFY(idx2 == itemModel->index(40, 17, QModelIndex()));
     QVERIFY(model.hasConstraint(Constraint(idx1, idx2)));
 }
 

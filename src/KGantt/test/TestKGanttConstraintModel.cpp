@@ -75,7 +75,7 @@ void TestKGanttConstraintModel::testModel()
     model.addConstraint(Constraint(idx1, idx2));
     QVERIFY(model.hasConstraint(Constraint(idx1, idx2)));
     itemModel->removeRow(8);
-    QCOMPARE(idx2, itemModel->index(41, 17, QModelIndex()));
+    QVERIFY(idx2 == itemModel->index(41, 17, QModelIndex()));
     QVERIFY(model.hasConstraint(Constraint(idx1, idx2)));
     itemModel->removeRow(7);
     QVERIFY(!idx1.isValid());

@@ -40,8 +40,8 @@ void TestKGanttConstraint::cleanupTestCase()
 void TestKGanttConstraint::test()
 {
     Constraint c1;
-    QCOMPARE(c1.startIndex(), QModelIndex());
-    QCOMPARE(c1.endIndex(), QModelIndex());
+    QVERIFY(!c1.startIndex().isValid());
+    QVERIFY(!c1.endIndex().isValid());
 
     QCOMPARE(c1.type(), Constraint::TypeSoft);
     QCOMPARE(c1.relationType(), Constraint::FinishStart);

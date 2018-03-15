@@ -43,6 +43,8 @@ private Q_SLOTS:
     void init();
     void cleanup();
 
+    void testApi();
+
     // default view is a treeview
     void testDefaultView();
 

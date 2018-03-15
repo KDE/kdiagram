@@ -25,12 +25,17 @@
 
 #include "kganttglobal.h"
 #include "kganttgraphicsview.h"
+#include "kganttgraphicsscene.h"
 #include "kganttgraphicsitem.h"
 #include "kganttconstraintmodel.h"
 #include "kgantttreeviewrowcontroller.h"
 #include "kganttlistviewrowcontroller.h"
+#include "kganttforwardingproxymodel.h"
+#include "kganttitemdelegate.h"
+#include "kganttdatetimegrid.h"
 
 #include <QListView>
+#include <QTreeView>
 
 
 using namespace KGantt;
@@ -52,6 +57,82 @@ void TestKGanttView::cleanup()
 {
     delete view;
     delete itemModel;
+}
+
+void TestKGanttView::testApi()
+{
+    // this sould never change
+    KGantt::GraphicsScene *scene = qobject_cast<KGantt::GraphicsScene*>(view->graphicsView()->scene());
+    QVERIFY(scene);
+
+    QTreeView *treeview = new QTreeView();
+    QVERIFY(view->leftView() != treeview);
+    view->setLeftView(treeview);
+    QVERIFY(view->leftView() == treeview);
+
+    QStandardItemModel *model = new QStandardItemModel();
+    QVERIFY(view->model() != model);
+    view->setModel(model);
+    QVERIFY(view->model() == model);
+    QVERIFY(view->leftView()->model() == model);
+    QEXPECT_FAIL("", "model() returns different model than set with setModel()! This should be changed in next major release", Continue);
+    QVERIFY(view->graphicsView()->model() == model);
+    KGantt::ForwardingProxyModel *fpm = qobject_cast<KGantt::ForwardingProxyModel*>(view->graphicsView()->model());
+    QVERIFY(fpm);
+    QVERIFY(fpm->sourceModel() == model);
+    QVERIFY(view->ganttProxyModel()->sourceModel() == model);
+    QVERIFY(view->ganttProxyModel() == fpm);
+
+    QItemSelectionModel *smodel = new QItemSelectionModel(model);
+    QVERIFY(view->selectionModel() != smodel);
+    view->setSelectionModel(smodel);
+    QVERIFY(view->selectionModel() == smodel);
+    QVERIFY(view->leftView()->selectionModel() == smodel);
+    QVERIFY(view->graphicsView()->selectionModel() != smodel); // grapgicsView() gets its own selection model
+
+    KGantt::ItemDelegate *delegate = new KGantt::ItemDelegate();
+    QVERIFY(view->itemDelegate() != delegate);
+    view->setItemDelegate(delegate);
+    QVERIFY(view->itemDelegate() == delegate);
+    QVERIFY(view->graphicsView()->itemDelegate() == delegate);
+    QVERIFY(scene->itemDelegate() == delegate);
+
+    KGantt::ConstraintModel *cmodel = new KGantt::ConstraintModel();
+    QVERIFY(view->constraintModel() != cmodel);
+    view->setConstraintModel(cmodel);
+    QVERIFY(view->constraintModel() == cmodel);
+    QVERIFY(scene->constraintModel() == cmodel);
+
+    KGantt::TreeViewRowController *tvr = new KGantt::TreeViewRowController(treeview, view->ganttProxyModel());
+    QVERIFY(view->rowController() != tvr);
+    view->setRowController(tvr);
+    QVERIFY(view->rowController() == tvr);
+    QVERIFY(view->graphicsView()->rowController() == tvr);
+
+    KGantt::DateTimeGrid *grid = new KGantt::DateTimeGrid();
+    QVERIFY(view->grid() != grid);
+    view->setGrid(grid);
+    QVERIFY(view->grid() == grid);
+    QVERIFY(view->graphicsView()->grid() != grid);
+    QVERIFY(scene->grid() == grid);
+
+//  TODO: rootIndex
+//  TODO: GraphicsView
+
+    QVERIFY(treeview->parent() == 0); // nobody takes ownership
+    treeview->deleteLater();
+    QVERIFY(model->parent() == 0); // nobody takes ownership
+    model->deleteLater();
+    QVERIFY(smodel->parent() == 0); // nobody takes ownership
+    smodel->deleteLater();
+    QVERIFY(delegate->parent() == 0); // nobody takes ownership
+    delegate->deleteLater();
+    QVERIFY(cmodel->parent() == 0); // nobody takes ownership
+    cmodel->deleteLater();
+
+    delete tvr; // does not have a parent
+    delete grid; // does not have a parent
+
 }
 
 void TestKGanttView::initTreeModel()

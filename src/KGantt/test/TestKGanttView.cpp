@@ -101,7 +101,12 @@ void TestKGanttView::testApi()
     QVERIFY(view->constraintModel() != cmodel);
     view->setConstraintModel(cmodel);
     QVERIFY(view->constraintModel() == cmodel);
-    QVERIFY(scene->constraintModel() == cmodel);
+
+    // grapgicsView and graphicsScene returns a different model
+    // (it is an internal model handled by the view)
+    QVERIFY(view->graphicsView()->constraintModel() != cmodel);
+    QVERIFY(scene->constraintModel() != cmodel);
+    QVERIFY(view->graphicsView()->constraintModel() == scene->constraintModel());
 
     KGantt::TreeViewRowController *tvr = new KGantt::TreeViewRowController(treeview, view->ganttProxyModel());
     QVERIFY(view->rowController() != tvr);
@@ -113,18 +118,19 @@ void TestKGanttView::testApi()
     QVERIFY(view->grid() != grid);
     view->setGrid(grid);
     QVERIFY(view->grid() == grid);
-    QVERIFY(view->graphicsView()->grid() != grid);
+    QVERIFY(view->graphicsView()->grid() == grid);
     QVERIFY(scene->grid() == grid);
 
 //  TODO: rootIndex
 //  TODO: GraphicsView
 
-    QVERIFY(treeview->parent() == 0); // nobody takes ownership
-    treeview->deleteLater();
+    QVERIFY(treeview->parent() != 0); // QSplitter takes ownership
+
     QVERIFY(model->parent() == 0); // nobody takes ownership
     model->deleteLater();
-    QVERIFY(smodel->parent() == 0); // nobody takes ownership
-    smodel->deleteLater();
+
+    QVERIFY(smodel->parent() != 0); // item model takes ownership
+
     QVERIFY(delegate->parent() == 0); // nobody takes ownership
     delegate->deleteLater();
     QVERIFY(cmodel->parent() == 0); // nobody takes ownership

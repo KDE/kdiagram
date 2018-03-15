@@ -403,6 +403,10 @@ GraphicsView::~GraphicsView()
  * GraphicsView operates per row in the model. The data is always
  * taken from the _last_ item in the row. The ItemRoles used are
  * Qt::DisplayRole and the roles defined in KGantt::ItemDataRole.
+ * 
+ * Note: This model is not returned by \a model()
+ * 
+ * \see GraphicsView::model
  */
 void GraphicsView::setModel( QAbstractItemModel* model )
 {
@@ -417,6 +421,10 @@ void GraphicsView::setModel( QAbstractItemModel* model )
 }
 
 /*! \returns the current model displayed by this view
+ * 
+ * Note: The returned model is not the model set with \a setModel()
+ * 
+ * \see GraphicsView::setModel
  */
 QAbstractItemModel* GraphicsView::model() const
 {

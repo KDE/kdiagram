@@ -356,6 +356,7 @@ void View::setGraphicsView( GraphicsView* gv )
     if ( gv != d->gfxview ) {
         GraphicsView* old = d->gfxview;
         d->gfxview = gv;
+        d->gfxview->setModel(old->model()); // use the old ForwardingProxyModel
         d->setupGraphicsView();
         d->gfxview->setGrid( old->grid() );
         delete old;

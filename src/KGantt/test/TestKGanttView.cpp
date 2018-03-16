@@ -122,7 +122,25 @@ void TestKGanttView::testApi()
     QVERIFY(scene->grid() == grid);
 
 //  TODO: rootIndex
-//  TODO: GraphicsView
+
+    KGantt::ConstraintModel *old_cmodel = view->graphicsView()->constraintModel();
+    KGantt::GraphicsView *gv = new KGantt::GraphicsView();
+    QVERIFY(view->graphicsView() != gv);
+    view->setGraphicsView(gv);
+    QVERIFY(view->graphicsView() == gv);
+    QVERIFY(view->graphicsView()->parent() != 0);
+
+    QVERIFY(view->graphicsView()->rowController() == tvr);
+
+    KGantt::ForwardingProxyModel *new_fpm = qobject_cast<KGantt::ForwardingProxyModel*>(view->graphicsView()->model());
+    QVERIFY(new_fpm != 0);
+    QVERIFY(view->graphicsView()->model() == new_fpm);
+    QVERIFY(new_fpm->sourceModel() == model);
+    QVERIFY(view->ganttProxyModel()->sourceModel() == model);
+    QVERIFY(view->ganttProxyModel() == new_fpm);
+
+    QVERIFY(view->graphicsView()->constraintModel() == old_cmodel);
+
 
     QVERIFY(treeview->parent() != 0); // QSplitter takes ownership
 

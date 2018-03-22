@@ -334,9 +334,9 @@ if (BUILD_QCH)
     ecm_install_qch_export(
         TARGETS KChart_QCH
         FILE KChartQchTargets.cmake
-    ​    DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
-    ​    COMPONENT Devel
-    ​)
+        DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
+        COMPONENT Devel
+    )
     set(PACKAGE_INCLUDE_QCHTARGETS "include(\"\${CMAKE_CURRENT_LIST_DIR}/KChartQchTargets.cmake\")")
 endif()
 

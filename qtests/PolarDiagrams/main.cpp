@@ -75,9 +75,15 @@ private slots:
         QVERIFY( m_polar->showLabelsAtPosition( Position::South ) == true );
     }
 
+    void testPolarDiagramDimension()
+    {
+        QCOMPARE(m_polar->datasetDimension(), 1);
+        QVERIFY(m_chart->coordinatePlane()->gridDimensionsList().isEmpty());
+    }
 
     void cleanupTestCase()
     {
+        delete m_chart;
     }
 
 private:

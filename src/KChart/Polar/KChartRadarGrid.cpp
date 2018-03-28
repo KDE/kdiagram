@@ -34,7 +34,7 @@ using namespace KChart;
 DataDimensionsList RadarGrid::calculateGrid(
     const DataDimensionsList& rawDataDimensions ) const
 {
-    qDebug("Calling PolarGrid::calculateGrid()");
+    qDebug()<<Q_FUNC_INFO;
     DataDimensionsList l;
 
     //FIXME(khz): do the real calculation

@@ -20,7 +20,10 @@
 #include <QStandardItemModel>
 #include <QCheckBox>
 #include <QSpinBox>
+#include <QDoubleSpinBox>
 #include <QLabel>
+#include <QGroupBox>
+#include <QSpacerItem>
 #include <QApplication>
 #include <KChartChart>
 #include <KChartBarDiagram>
@@ -38,21 +41,21 @@ public:
         m_model.insertRows(0, 1, QModelIndex());
         m_model.setData(m_model.index(0, 0), 3);
         m_model.setData(m_model.index(0, 1), 4);
-        
+
         KChart::BarDiagram* diagram = new KChart::BarDiagram;
         diagram->setModel(&m_model);    
-        
+
         KChart::Legend* legend = new KChart::Legend(diagram,diagram);
+        legend->setPosition(KChartEnums::PositionEast);
         m_chart.addLegend(legend);
-        
-        
+
         KChart::CartesianAxis* abcissa = new KChart::CartesianAxis(diagram);
         abcissa->setPosition( KChart::CartesianAxis::Bottom );
         KChart::CartesianAxis* ordinate = new KChart::CartesianAxis(diagram);
         ordinate->setPosition( KChart::CartesianAxis::Left );
         diagram->addAxis(abcissa);
         diagram->addAxis(ordinate);
-        
+
         // NOTE: If this is done before adding axes,
         // the axes don't show up at all
         m_chart.coordinatePlane()->replaceDiagram(diagram);
@@ -68,26 +71,54 @@ public:
         m_xAxisStartAtZero.setText("Toggle xAxisStartAtZero");
         m_label.setText("Set autoAdjustHorizontalRangeToData:");
         m_label2.setText("Set autoAdjustVerticalRangeToData:");
+        m_xRange.setText("Horizontal Axis range");
+        m_yRange.setText("Vertical Axis range");
         connect(&m_orientation, SIGNAL(stateChanged(int)),this, SLOT(toggleOrientation()));
         connect(&m_xAxisStartAtZero, SIGNAL(stateChanged(int)),this, SLOT(xAxisStartAtZero(int)));
+        connect(&m_xRange, SIGNAL(stateChanged(int)),this, SLOT(xRange(int)));
+        connect(&m_xAxisMin, SIGNAL(valueChanged(qreal)),this, SLOT(rangeChanged()));
+        connect(&m_xAxisMax, SIGNAL(valueChanged(qreal)),this, SLOT(rangeChanged()));
+        connect(&m_yRange, SIGNAL(stateChanged(int)),this, SLOT(yRange(int)));
+        connect(&m_yAxisMin, SIGNAL(valueChanged(qreal)),this, SLOT(rangeChanged()));
+        connect(&m_yAxisMax, SIGNAL(valueChanged(qreal)),this, SLOT(rangeChanged()));
         connect(&m_autoAdjustHorizontalRangeToData, SIGNAL(valueChanged(int)),this, SLOT(autoAdjustHorizontalRangeToData(int)));
         connect(&m_autoAdjustVerticalRangeToData, SIGNAL(valueChanged(int)),this, SLOT(autoAdjustVerticalRangeToData(int)));
-        
-        QVBoxLayout* l = new QVBoxLayout(this);
-        l->addWidget(&m_chart);
-        l->addWidget(&m_orientation);
-        l->addWidget(&m_xAxisStartAtZero);
+
+        QBoxLayout* l = new QHBoxLayout(this);
+        setLayout(l);
+
         QWidget *w = new QWidget(this);
         l->addWidget(w);
-        QHBoxLayout* lh = new QHBoxLayout(w);
-        lh->addWidget(&m_label);
-        lh->addWidget(&m_autoAdjustHorizontalRangeToData);
-        lh->addSpacing(10);
-        lh->addWidget(&m_label2);
-        lh->addWidget(&m_autoAdjustVerticalRangeToData);
-        lh->addStretch();
-        
-        setLayout(l);
+        l->addWidget(&m_chart);
+
+        l = new QVBoxLayout(w);
+        l->addWidget(&m_orientation);
+
+        QGroupBox *gbh = new QGroupBox("Horizontal control", w);
+        l->addWidget(gbh);
+        QGroupBox *gbv = new QGroupBox("Vertical control", w);
+        l->addWidget(gbv);
+
+        QGridLayout* gl = new QGridLayout(gbh);
+
+        gl->addWidget(&m_xAxisStartAtZero, 0, 0);
+        gl->addWidget(&m_xRange, 2, 0);
+        gl->addWidget(&m_xAxisMax, 2, 1);
+        gl->addWidget(&m_xAxisMin, 3, 1);
+
+        gl->addWidget(&m_label, 1, 0);
+        gl->addWidget(&m_autoAdjustHorizontalRangeToData, 1, 1);
+
+        gl = new QGridLayout(gbv);
+
+        gl->addWidget(&m_yRange, 1, 0);
+        gl->addWidget(&m_yAxisMax, 1, 1);
+        gl->addWidget(&m_yAxisMin, 2, 1);
+
+        gl->addWidget(&m_label2, 0, 0);
+        gl->addWidget(&m_autoAdjustVerticalRangeToData, 0, 1);
+
+        l->addStretch(0);
     }
     
 private Q_SLOTS:
@@ -106,22 +137,68 @@ private Q_SLOTS:
     void autoAdjustHorizontalRangeToData(int value)
     {
         KChart::CartesianCoordinatePlane *plane = qobject_cast<KChart::CartesianCoordinatePlane*>(m_chart.coordinatePlane());
-        qInfo()<<Q_FUNC_INFO<<value<<plane->autoAdjustHorizontalRangeToData();
+        m_xRange.setCheckState(Qt::Unchecked);
         plane->setAutoAdjustHorizontalRangeToData(value);
-        qInfo()<<Q_FUNC_INFO<<plane->autoAdjustHorizontalRangeToData();
     }
     void autoAdjustVerticalRangeToData(int value)
     {
         KChart::CartesianCoordinatePlane *plane = qobject_cast<KChart::CartesianCoordinatePlane*>(m_chart.coordinatePlane());
-        qInfo()<<Q_FUNC_INFO<<value<<plane->autoAdjustVerticalRangeToData();
+        m_yRange.setCheckState(Qt::Unchecked);
         plane->setAutoAdjustVerticalRangeToData(value);
-        qInfo()<<Q_FUNC_INFO<<plane->autoAdjustVerticalRangeToData();
     }
-    
+    void xRange(int state)
+    {
+        KChart::CartesianCoordinatePlane *plane = qobject_cast<KChart::CartesianCoordinatePlane*>(m_chart.coordinatePlane());
+        if (state) {
+            plane->setHorizontalRange(QPair<qreal, qreal>(m_xAxisMax.value(), m_xAxisMin.value()));            
+        } else {
+            plane->setHorizontalRange(QPair<qreal, qreal>());
+            plane->adjustVerticalRangeToData();
+            autoAdjustHorizontalRangeToData(m_autoAdjustHorizontalRangeToData.value());
+        }
+    }
+    void yRange(int state)
+    {
+        KChart::CartesianCoordinatePlane *plane = qobject_cast<KChart::CartesianCoordinatePlane*>(m_chart.coordinatePlane());
+        if (state) {
+            plane->setVerticalRange(QPair<qreal, qreal>(m_yAxisMax.value(), m_yAxisMin.value()));            
+        } else {
+            plane->setVerticalRange(QPair<qreal, qreal>());
+            plane->adjustVerticalRangeToData();
+            autoAdjustVerticalRangeToData(m_autoAdjustVerticalRangeToData.value());
+        }
+    }
+    void rangeChanged()
+    {
+        QDoubleSpinBox *sb = qobject_cast<QDoubleSpinBox*>(sender());
+        if (sb == &m_xAxisMax) {
+            if (m_xRange.checkState() == Qt::Checked) {
+                xRange(Qt::Checked);
+            }
+        } else if (sb == &m_xAxisMin) {
+            if (m_xRange.checkState() == Qt::Checked) {
+                xRange(Qt::Checked);
+            }
+        } else if (sb == &m_yAxisMax) {
+            if (m_yRange.checkState() == Qt::Checked) {
+                yRange(Qt::Checked);
+            }
+        } else if (sb == &m_yAxisMin) {
+            if (m_yRange.checkState() == Qt::Checked) {
+                yRange(Qt::Checked);
+            }
+        }
+    }
 private:
     KChart::Chart m_chart;
     QCheckBox m_orientation;
     QCheckBox m_xAxisStartAtZero;
+    QCheckBox m_xRange;
+    QDoubleSpinBox m_xAxisMin;
+    QDoubleSpinBox m_xAxisMax;
+    QCheckBox m_yRange;
+    QDoubleSpinBox m_yAxisMin;
+    QDoubleSpinBox m_yAxisMax;
     QLabel m_label;
     QSpinBox m_autoAdjustHorizontalRangeToData;
     QLabel m_label2;

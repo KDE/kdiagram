@@ -150,6 +150,8 @@ QVariant AbstractGrid::mapFromChart( qreal x ) const
 */
 void AbstractGrid::drawBackground(QPainter* paint, const QRectF& rect)
 {
+    qInfo()<<Q_FUNC_INFO;
+    
     Q_UNUSED(paint);
     Q_UNUSED(rect);
 }

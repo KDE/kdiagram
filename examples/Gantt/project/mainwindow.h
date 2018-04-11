@@ -62,7 +62,8 @@ private slots:
     void slotAlignCenter();
     void slotAlignRight();
     void slotAlignHidden();
-    
+
+    void updateTimeline();
 private:
     ProjectModel* m_model;
     KGantt::View* m_view;

@@ -91,6 +91,77 @@ namespace KGantt {
                                     const QRectF& headerRect, const QRectF& exposedRect,
                                     qreal offset, QWidget* widget = nullptr ) Q_DECL_OVERRIDE;
 
+        /// \enum TimelineOptions controls how the timeline is displayed
+        enum TimelineOption {
+            Foreground = 1,     /// Display the timeline in the foreground.
+            Background = 2,     /// Display the timeline in the background.
+            UseCustomPen = 4,   /// Paint the timeline using the pen set with setTimelinePen().
+            TimelineModeMax = 0xFFFF
+        };
+        Q_DECLARE_FLAGS(TimelineOptions, TimelineOption)
+        
+        /**
+         * \brief Set the timeline options to \p options
+         * 
+         * By default the timeline is not displayed.
+         * 
+         * To display the timeline you have to set the options to either
+         * Foreground or Background, e.g:
+         * \code
+         *    grid->setTimelineOptions(KGantt::DateTimeGrid::Foreground);
+         * \endcode
+         * 
+         * \sa TimelineOptions
+         * \sa DateTimeGrid::setTimelineTime
+         * \sa DateTimeGrid::setTimelinePen
+         */
+        void setTimelineOptions(TimelineOptions options);
+
+        /**
+         * Return the current timeline options
+         * 
+         * \sa DateTimeGrid::setTimelineMode()
+         */
+        TimelineOptions timelineOptions() const;
+        
+        /**
+         * Returns the current timeline time
+         * 
+         * \sa DateTimeGrid::setTimelineTime()
+         */
+        QDateTime timelineTime() const;
+
+        /**
+         * \brief Set a cutsom pen to use when drawing the timeline.
+         * 
+         * The default pen is a solid line, cosmetic pen
+         * with QApplication::palette().highlight() color.
+         * 
+         * You must enable use by setting the flag UseCustomPen \see setTimelineOptions()
+         */
+        void setTimelinePen(const QPen &pen);
+
+    public Q_SLOTS:
+        /**
+         * \brief Set the timeline time to \p dt.
+         * 
+         * If \p dt is not valid the current datetime will be used
+         * 
+         * If you want the timeline to be periodically updated with the current time,
+         * you can do something like this in your program:
+         * \code
+         *    QTimer *timelineTimer = new QTimer(this);
+         *    timelineTimer->setInterval(5000);
+         *    timelineTimer->start();
+         *    grid->setTimelineOptions(KGantt::DateTimeGrid::Foreground);
+         *    connect(timelineTimer, SIGNAL(timeout()), grid, SLOT(setTimelineTime()));
+         * \endcode
+         * 
+         * \sa DateTimeGrid::setTimelineOptions()
+         * \sa DateTimeGrid::setTimelinePen()
+         */
+        void setTimelineTime(const QDateTime &dt = QDateTime());
+
     protected:
         virtual void paintHourScaleHeader( QPainter* painter, 
                            const QRectF& headerRect, const QRectF& exposedRect,
@@ -160,6 +231,8 @@ namespace KGantt {
 #ifndef QT_NO_DEBUG_STREAM
 QDebug KGANTT_EXPORT operator<<( QDebug dbg, KGantt::DateTimeScaleFormatter::Range );
 #endif
+
+Q_DECLARE_OPERATORS_FOR_FLAGS(KGantt::DateTimeGrid::TimelineOptions)
 
 #endif /* KGANTTDATETIMEGRID_H */
 

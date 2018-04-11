@@ -43,6 +43,7 @@
 #include <QCheckBox>
 #include <QPushButton>
 #include <QDialogButtonBox>
+#include <QTimer>
 
 #include <KGanttGlobal>
 #include <KGanttView>
@@ -189,6 +190,7 @@ void DateTimeGrid::drawBackground(QPainter* painter, const QRectF& rect)
                            QDateTime::currentDateTime().addDays(2),
                            rect);
     painter->fillRect(r, brush);
+    KGantt::DateTimeGrid::drawBackground(painter, rect);
 }
 
 void DateTimeGrid::drawForeground(QPainter* painter, const QRectF& rect)
@@ -213,6 +215,8 @@ void DateTimeGrid::drawForeground(QPainter* painter, const QRectF& rect)
     painter->drawText(0, 0, text);
 
     painter->restore();
+
+    KGantt::DateTimeGrid::drawForeground(painter, rect);
 }
 /*
 void DateTimeGrid::paintUserDefinedHeader( QPainter* painter, const QRectF& headerRect, const QRectF& exposedRect, qreal offset, const KGantt::DateTimeScaleFormatter* formatter, QWidget* widget)
@@ -258,7 +262,17 @@ MainWindow::MainWindow( QWidget* parent )
     m_view->graphicsView()->setHorizontalScrollBarPolicy( Qt::ScrollBarAsNeeded );
 
     m_view->setGrid(new DateTimeGrid(this));
-
+    // Display timeline
+    KGantt::DateTimeGrid *grid = static_cast<KGantt::DateTimeGrid*>(m_view->grid());
+    grid->setTimelinePen(QPen(Qt::red, 2));
+//     grid->setTimelineTime(QDateTime::currentDateTime().addDays(-1));
+    grid->setTimelineOptions(KGantt::DateTimeGrid::Background | KGantt::DateTimeGrid::UseCustomPen);
+    // Update timeline every 5 seconds
+    QTimer *timelineTimer = new QTimer(this);
+    timelineTimer->setInterval(5000);
+    timelineTimer->start();
+    connect(timelineTimer, SIGNAL(timeout()), grid, SLOT(setTimelineTime()));
+    
     //QItemEditorCreatorBase *creator = new QItemEditorCreator<ItemTypeComboBox>("itemType");
     //QItemEditorFactory* factory = new QItemEditorFactory;
     //factory->registerEditor( QVariant( KGantt::TypeTask ).type(), creator );
@@ -473,6 +487,11 @@ void MainWindow::slotAlignHidden()
     if ( idx.isValid() ) {
         m_model->setData( idx, KGantt::StyleOptionGanttItem::Hidden, KGantt::TextPositionRole );
     }
+}
+
+void MainWindow::updateTimeline()
+{
+    qobject_cast<KGantt::DateTimeGrid*>(m_view->grid())->setTimelineTime(QDateTime::currentDateTime());
 }
 
 #include "mainwindow.moc"

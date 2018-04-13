@@ -1024,7 +1024,6 @@ void Legend::buildLegend()
         }
 
         // (actual) vertical layout here
-
         if ( dsItem.markerLine ) {
             d->layout->addItem( dsItem.markerLine, vLayoutRow, 1, 1, 1, Qt::AlignCenter );
             d->paintItems << dsItem.markerLine;
@@ -1101,11 +1100,19 @@ void Legend::Private::flowHDatasetItems( Legend *q )
     const int separatorLineWidth = 3; // hardcoded in VerticalLineLayoutItem::sizeHint()
 
     const int allowedWidth = q->areaGeometry().width();
-
     QHBoxLayout *currentLine = new QHBoxLayout;
-    int mainLayoutRow = 1;
-    layout->addItem( currentLine, mainLayoutRow++, /*column*/0,
-                     /*rowSpan*/1 , /*columnSpan*/5, Qt::AlignLeft | Qt::AlignVCenter );
+    int columnSpan = 5;
+    int mainLayoutColumn = 0;
+    int row = 0;
+    if ( !titleText.isEmpty() && titleTextAttributes.isVisible() ) {
+        ++row;
+        if (q->showLines()){
+            ++row;
+        }
+    }
+    layout->addItem( currentLine, row, mainLayoutColumn,
+                     /*rowSpan*/1 , columnSpan, Qt::AlignLeft | Qt::AlignVCenter );
+    mainLayoutColumn += columnSpan;
 
     for ( int dataset = 0; dataset < hLayoutDatasets.size(); dataset++ ) {
         HDatasetItem *hdsItem = &hLayoutDatasets[ dataset ];
@@ -1119,14 +1126,15 @@ void Legend::Private::flowHDatasetItems( Legend *q )
             if ( currentLine->sizeHint().width() + separatorWidth + payloadWidth > allowedWidth ) {
                 // too wide, "line break"
 #ifdef DEBUG_LEGEND_PAINT
-                qDebug() << Q_FUNC_INFO << "break" << mainLayoutRow
+                qDebug() << Q_FUNC_INFO << "break" << mainLayoutColumn
                          << currentLine->sizeHint().width()
                          << currentLine->sizeHint().width() + separatorWidth + payloadWidth
                          << allowedWidth;
 #endif
                 currentLine = new QHBoxLayout;
-                layout->addItem( currentLine, mainLayoutRow++, /*column*/0,
-                                 /*rowSpan*/1 , /*columnSpan*/5, Qt::AlignLeft | Qt::AlignVCenter );
+                layout->addItem( currentLine, row, mainLayoutColumn,
+                                 /*rowSpan*/1 , columnSpan, Qt::AlignLeft | Qt::AlignVCenter );
+                mainLayoutColumn += columnSpan;
             } else {
                 // > 1 dataset item in line, put spacing and maybe a separator between them
                 if ( !hdsItem->spacer ) {

@@ -158,13 +158,13 @@ void NormalLyingBarDiagram::paint( PaintContext* ctx )
             }
         }
 
-        for ( int column = 0; column < colCount; column++ ) {
+        for ( int column = colCount-1; column >= 0; --column ) {
             // paint one group
             const CartesianDiagramDataCompressor::CachePosition position( row,  column );
             const CartesianDiagramDataCompressor::DataPoint point = compressor().data( position );
             const QModelIndex sourceIndex = attributesModel()->mapToSource( point.index );
 
-            QPointF dataPoint( 0, rowCount - ( point.key + 0.5 ) );
+            QPointF dataPoint( 0, ( point.key + 0.5 ) );
             const QPointF topLeft = ctx->coordinatePlane()->translate( dataPoint );
             dataPoint.rx() += point.value;
             const QPointF bottomRight = ctx->coordinatePlane()->translate( dataPoint ) +
@@ -173,6 +173,7 @@ void NormalLyingBarDiagram::paint( PaintContext* ctx )
             const QRectF rect = QRectF( topLeft, bottomRight ).translated( 1.0, offset );
             m_private->addLabel( &lpc, sourceIndex, 0, PositionPoints( rect ), Position::North,
                                  Position::South, point.value );
+
             paintBars( ctx, sourceIndex, rect, maxDepth );
 
             offset += barWidth + spaceBetweenBars;

@@ -1157,3 +1157,17 @@ void CartesianAxis::setCustomTicks( const QList< qreal >& customTicksPositions )
     setCachedSizeDirty();
     layoutPlanes();
 }
+
+#if !defined(QT_NO_DEBUG_STREAM)
+QDebug operator<<(QDebug dbg, KChart::CartesianAxis::Position pos)
+{
+    switch (pos) {
+        case KChart::CartesianAxis::Bottom: dbg << "KChart::CartesianAxis::Bottom"; break;
+        case KChart::CartesianAxis::Top: dbg << "KChart::CartesianAxis::Top"; break;
+        case KChart::CartesianAxis::Left: dbg << "KChart::CartesianAxis::Left"; break;
+        case KChart::CartesianAxis::Right: dbg << "KChart::CartesianAxis::Right"; break;
+        default: dbg << "KChart::CartesianAxis::Invalid"; break;
+    }
+    return dbg;
+}
+#endif

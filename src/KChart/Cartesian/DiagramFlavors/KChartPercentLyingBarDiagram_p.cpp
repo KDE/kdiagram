@@ -192,11 +192,11 @@ void PercentLyingBarDiagram::paint( PaintContext* ctx )
 
             QPointF point, previousPoint;
             if ( sumValuesVector.at( curRow ) != 0 && value > 0 ) {
-                QPointF dataPoint( ( stackedValues / sumValuesVector.at( curRow ) * maxValue ), rowCount - key );
+                QPointF dataPoint( ( stackedValues / sumValuesVector.at( curRow ) * maxValue ), key + 1 );
                 point = ctx->coordinatePlane()->translate( dataPoint );
                 point.ry() += offset / 2 + threeDOffset;
 
-                previousPoint = ctx->coordinatePlane()->translate( QPointF( ( ( stackedValues - value) / sumValuesVector.at( curRow ) * maxValue ), rowCount - key ) );
+                previousPoint = ctx->coordinatePlane()->translate( QPointF( ( ( stackedValues - value) / sumValuesVector.at( curRow ) * maxValue ), key + 1 ) );
             }
             
             const qreal barHeight = point.x() - previousPoint.x();

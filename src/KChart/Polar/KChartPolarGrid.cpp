@@ -34,9 +34,8 @@ DataDimensionsList PolarGrid::calculateGrid(
     const DataDimensionsList& rawDataDimensions ) const
 {
     qDebug("Calling PolarGrid::calculateGrid()");
-    // Some diagrams have 0 dimensions, so we cannot do this:
-    //Q_ASSERT_X( rawDataDimensions.count() == 2, "PolarGrid::calculateGrid",
-    //            "calculateGrid() expects a list with exactly two entries." );
+    Q_ASSERT_X( rawDataDimensions.count() == 2, "PolarGrid::calculateGrid",
+                "calculateGrid() expects a list with exactly two entries." );
     Q_ASSERT_X( dynamic_cast< PolarCoordinatePlane* >( mPlane ), "PolarGrid::calculateGrid",
                 "PaintContext::calculatePlane() called, but no polar plane set." );
 

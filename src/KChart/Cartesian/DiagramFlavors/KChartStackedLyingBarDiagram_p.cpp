@@ -184,9 +184,9 @@ void StackedLyingBarDiagram::paint( PaintContext* ctx )
                     stackedValues += point.value;
                 key = point.key;
             }
-            QPointF point = ctx->coordinatePlane()->translate( QPointF( stackedValues, rowCount - key ) );
+            QPointF point = ctx->coordinatePlane()->translate( QPointF( stackedValues, key + 1 ) );
             point.ry() += offset / 2 + threeDOffset;
-            const QPointF previousPoint = ctx->coordinatePlane()->translate( QPointF( stackedValues - value, rowCount - key ) );
+            const QPointF previousPoint = ctx->coordinatePlane()->translate( QPointF( stackedValues - value, key + 1 ) );
             const qreal barHeight = point.x() - previousPoint.x();
             point.rx() -= barHeight;
 

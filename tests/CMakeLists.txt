@@ -22,5 +22,4 @@ remove_definitions(
 if(NOT WIN32)
     add_subdirectory( DelayedData )
     add_subdirectory( RootIndex )
-    add_subdirectory( AxisControl )
 endif()

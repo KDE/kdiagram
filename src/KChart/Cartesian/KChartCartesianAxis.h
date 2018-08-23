@@ -43,6 +43,8 @@ namespace KChart {
         Q_DISABLE_COPY( CartesianAxis )
         KCHART_DECLARE_PRIVATE_DERIVED_PARENT( CartesianAxis, AbstractDiagram* )
 
+        Q_ENUMS(Position)
+
     public:
         enum Position {
             Bottom,
@@ -182,5 +184,9 @@ namespace KChart {
 
     typedef QList<CartesianAxis*> CartesianAxisList;
 }
+
+#if !defined(QT_NO_DEBUG_STREAM)
+KCHART_EXPORT QDebug operator<<(QDebug dbg, KChart::CartesianAxis::Position pos);
+#endif
 
 #endif

@@ -142,14 +142,9 @@ private slots:
         QVERIFY( m_plane->hasOwnGridAttributes( true ) == false );
         QVERIFY( m_plane->hasOwnGridAttributes( false ) == false );
     }
-    void testDataDimension()
-    {
-        QVERIFY(m_plane->gridDimensionsList().isEmpty());
-    }
 
     void cleanupTestCase()
     {
-        delete m_chart;
     }
 
 private:

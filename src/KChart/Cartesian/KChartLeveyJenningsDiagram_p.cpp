@@ -17,10 +17,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "KChartLeveyJenningsDiagram_p.h"
+
 #include "KChartLeveyJenningsDiagram.h"
 #include "KChartDataValueAttributes.h"
-
-#include "KChartLeveyJenningsDiagram_p.h"
 
 using namespace KChart;
 

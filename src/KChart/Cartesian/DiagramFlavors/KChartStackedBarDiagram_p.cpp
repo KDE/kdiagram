@@ -17,13 +17,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "KChartStackedBarDiagram_p.h"
 #include <QModelIndex>
 
 #include "KChartBarDiagram.h"
 #include "KChartTextAttributes.h"
 #include "KChartAttributesModel.h"
 #include "KChartAbstractCartesianDiagram.h"
-#include "KChartStackedBarDiagram_p.h"
 
 using namespace KChart;
 

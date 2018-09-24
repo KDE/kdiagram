@@ -67,14 +67,14 @@ KChart::AbstractCartesianDiagram::~AbstractCartesianDiagram()
 void AbstractCartesianDiagram::init()
 {
     d->compressor.setModel( attributesModel() );
-    connect( this, SIGNAL( layoutChanged( AbstractDiagram* ) ),
-             &d->compressor, SLOT( slotDiagramLayoutChanged( AbstractDiagram* ) ) );
-    connect( this, SIGNAL( attributesModelAboutToChange( AttributesModel*, AttributesModel* ) ),
-             this, SLOT( connectAttributesModel( AttributesModel* ) ) );
+    connect( this, SIGNAL(layoutChanged(AbstractDiagram*)),
+             &d->compressor, SLOT(slotDiagramLayoutChanged(AbstractDiagram*)) );
+    connect( this, SIGNAL(attributesModelAboutToChange(AttributesModel*,AttributesModel*)),
+             this, SLOT(connectAttributesModel(AttributesModel*)) );
 
     if ( d->plane ) {
-        connect( d->plane, SIGNAL( viewportCoordinateSystemChanged() ),
-                                   this, SIGNAL( viewportCoordinateSystemChanged() ) );
+        connect( d->plane, SIGNAL(viewportCoordinateSystemChanged()),
+                                   this, SIGNAL(viewportCoordinateSystemChanged()) );
     }
 }
 
@@ -113,31 +113,31 @@ void KChart::AbstractCartesianDiagram::layoutPlanes()
 void KChart::AbstractCartesianDiagram::setCoordinatePlane( AbstractCoordinatePlane* plane )
 {
     if ( coordinatePlane() ) {
-        disconnect( attributesModel(), SIGNAL( rowsRemoved( const QModelIndex&, int, int ) ),
-                    coordinatePlane(), SLOT( relayout() ) );
-        disconnect( attributesModel(), SIGNAL( rowsInserted( const QModelIndex&, int, int ) ),
-                    coordinatePlane(), SLOT( relayout() ) );
-        disconnect( attributesModel(), SIGNAL( columnsRemoved( const QModelIndex&, int, int ) ),
-                    coordinatePlane(), SLOT( relayout() ) );
-        disconnect( attributesModel(), SIGNAL( columnsInserted( const QModelIndex&, int, int ) ),
-                    coordinatePlane(), SLOT( relayout() ) );
+        disconnect( attributesModel(), SIGNAL(rowsRemoved(QModelIndex,int,int)),
+                    coordinatePlane(), SLOT(relayout()) );
+        disconnect( attributesModel(), SIGNAL(rowsInserted(QModelIndex,int,int)),
+                    coordinatePlane(), SLOT(relayout()) );
+        disconnect( attributesModel(), SIGNAL(columnsRemoved(QModelIndex,int,int)),
+                    coordinatePlane(), SLOT(relayout()) );
+        disconnect( attributesModel(), SIGNAL(columnsInserted(QModelIndex,int,int)),
+                    coordinatePlane(), SLOT(relayout()) );
         disconnect( coordinatePlane() );
     }
 
     AbstractDiagram::setCoordinatePlane(plane);
     if ( plane ) {
         // Readjust the layout when the dataset count changes
-        connect( attributesModel(), SIGNAL( rowsRemoved( const QModelIndex&, int, int ) ),
-                 plane, SLOT( relayout() ) );
-        connect( attributesModel(), SIGNAL( rowsInserted( const QModelIndex&, int, int ) ),
-                 plane, SLOT( relayout() ) );
-        connect( attributesModel(), SIGNAL( columnsRemoved( const QModelIndex&, int, int ) ),
-                 plane, SLOT( relayout() ) );
-        connect( attributesModel(), SIGNAL( columnsInserted( const QModelIndex&, int, int ) ),
-                 plane, SLOT( relayout() ) );
-        connect( plane, SIGNAL( viewportCoordinateSystemChanged() ),
-                 this, SIGNAL( viewportCoordinateSystemChanged() ) );
-        connect( plane, SIGNAL( viewportCoordinateSystemChanged() ), this, SLOT( update() ) );
+        connect( attributesModel(), SIGNAL(rowsRemoved(QModelIndex,int,int)),
+                 plane, SLOT(relayout()) );
+        connect( attributesModel(), SIGNAL(rowsInserted(QModelIndex,int,int)),
+                 plane, SLOT(relayout()) );
+        connect( attributesModel(), SIGNAL(columnsRemoved(QModelIndex,int,int)),
+                 plane, SLOT(relayout()) );
+        connect( attributesModel(), SIGNAL(columnsInserted(QModelIndex,int,int)),
+                 plane, SLOT(relayout()) );
+        connect( plane, SIGNAL(viewportCoordinateSystemChanged()),
+                 this, SIGNAL(viewportCoordinateSystemChanged()) );
+        connect( plane, SIGNAL(viewportCoordinateSystemChanged()), this, SLOT(update()) );
     }
 }
 

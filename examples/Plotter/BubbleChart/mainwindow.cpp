@@ -92,7 +92,7 @@ MainWindow::MainWindow( QWidget* parent ) :
     m_plotter->addAxis( xAxis2 );
     m_plotter->addAxis( yAxis );
     m_plotter->addAxis( yAxis2 );
-    connect( threeDEnabled, SIGNAL( toggled(bool) ), this, SLOT( setMarkerAttributes() ) );
+    connect( threeDEnabled, SIGNAL(toggled(bool)), this, SLOT(setMarkerAttributes()) );
 
     m_chart->coordinatePlane()->replaceDiagram( m_plotter );
     m_chart->setGlobalLeading( 20, 20, 20, 20 );

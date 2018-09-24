@@ -300,30 +300,30 @@ void CartesianDiagramDataCompressor::setModel( QAbstractItemModel* model )
     }
 
     if ( m_model != 0 ) {
-        disconnect( m_model, SIGNAL( headerDataChanged( Qt::Orientation, int, int ) ),
-                 this, SLOT( slotModelHeaderDataChanged( Qt::Orientation, int, int ) ) );
-        disconnect( m_model, SIGNAL( dataChanged( QModelIndex, QModelIndex ) ),
-                 this, SLOT( slotModelDataChanged( QModelIndex, QModelIndex ) ) );
-        disconnect( m_model, SIGNAL( layoutChanged() ),
-                 this, SLOT( slotModelLayoutChanged() ) );
-        disconnect( m_model, SIGNAL( rowsAboutToBeInserted( QModelIndex, int, int ) ),
-                 this, SLOT( slotRowsAboutToBeInserted( QModelIndex, int, int ) ) );
-        disconnect( m_model, SIGNAL( rowsInserted( QModelIndex, int, int ) ),
-                 this, SLOT( slotRowsInserted( QModelIndex, int, int ) ) );
-        disconnect( m_model, SIGNAL( rowsAboutToBeRemoved( QModelIndex, int, int ) ),
-                 this, SLOT( slotRowsAboutToBeRemoved( QModelIndex, int, int ) ) );
-        disconnect( m_model, SIGNAL( rowsRemoved( QModelIndex, int, int ) ),
-                 this, SLOT( slotRowsRemoved( QModelIndex, int, int ) ) );
-        disconnect( m_model, SIGNAL( columnsAboutToBeInserted( QModelIndex, int, int ) ),
-                 this, SLOT( slotColumnsAboutToBeInserted( QModelIndex, int, int ) ) );
-        disconnect( m_model, SIGNAL( columnsInserted( QModelIndex, int, int ) ),
-                 this, SLOT( slotColumnsInserted( QModelIndex, int, int ) ) );
-        disconnect( m_model, SIGNAL( columnsRemoved( QModelIndex, int, int ) ),
-                 this, SLOT( slotColumnsRemoved( QModelIndex, int, int ) ) );
-        disconnect( m_model, SIGNAL( columnsAboutToBeRemoved( QModelIndex, int, int ) ),
-                 this, SLOT( slotColumnsAboutToBeRemoved( QModelIndex, int, int ) ) );
-        disconnect( m_model, SIGNAL( modelReset() ),
-                    this, SLOT( rebuildCache() ) );
+        disconnect( m_model, SIGNAL(headerDataChanged(Qt::Orientation,int,int)),
+                 this, SLOT(slotModelHeaderDataChanged(Qt::Orientation,int,int)) );
+        disconnect( m_model, SIGNAL(dataChanged(QModelIndex,QModelIndex)),
+                 this, SLOT(slotModelDataChanged(QModelIndex,QModelIndex)) );
+        disconnect( m_model, SIGNAL(layoutChanged()),
+                 this, SLOT(slotModelLayoutChanged()) );
+        disconnect( m_model, SIGNAL(rowsAboutToBeInserted(QModelIndex,int,int)),
+                 this, SLOT(slotRowsAboutToBeInserted(QModelIndex,int,int)) );
+        disconnect( m_model, SIGNAL(rowsInserted(QModelIndex,int,int)),
+                 this, SLOT(slotRowsInserted(QModelIndex,int,int)) );
+        disconnect( m_model, SIGNAL(rowsAboutToBeRemoved(QModelIndex,int,int)),
+                 this, SLOT(slotRowsAboutToBeRemoved(QModelIndex,int,int)) );
+        disconnect( m_model, SIGNAL(rowsRemoved(QModelIndex,int,int)),
+                 this, SLOT(slotRowsRemoved(QModelIndex,int,int)) );
+        disconnect( m_model, SIGNAL(columnsAboutToBeInserted(QModelIndex,int,int)),
+                 this, SLOT(slotColumnsAboutToBeInserted(QModelIndex,int,int)) );
+        disconnect( m_model, SIGNAL(columnsInserted(QModelIndex,int,int)),
+                 this, SLOT(slotColumnsInserted(QModelIndex,int,int)) );
+        disconnect( m_model, SIGNAL(columnsRemoved(QModelIndex,int,int)),
+                 this, SLOT(slotColumnsRemoved(QModelIndex,int,int)) );
+        disconnect( m_model, SIGNAL(columnsAboutToBeRemoved(QModelIndex,int,int)),
+                 this, SLOT(slotColumnsAboutToBeRemoved(QModelIndex,int,int)) );
+        disconnect( m_model, SIGNAL(modelReset()),
+                    this, SLOT(rebuildCache()) );
         m_model = 0;
     }
 
@@ -331,29 +331,29 @@ void CartesianDiagramDataCompressor::setModel( QAbstractItemModel* model )
 
     if ( model != 0 ) {
         m_model = model;
-        connect( m_model, SIGNAL( headerDataChanged( Qt::Orientation, int, int ) ),
-                 SLOT( slotModelHeaderDataChanged( Qt::Orientation, int, int ) ) );
-        connect( m_model, SIGNAL( dataChanged( QModelIndex, QModelIndex ) ),
-                 SLOT( slotModelDataChanged( QModelIndex, QModelIndex ) ) );
-        connect( m_model, SIGNAL( layoutChanged() ),
-                 SLOT( slotModelLayoutChanged() ) );
-        connect( m_model, SIGNAL( rowsAboutToBeInserted( QModelIndex, int, int ) ),
-                 SLOT( slotRowsAboutToBeInserted( QModelIndex, int, int ) ) );
-        connect( m_model, SIGNAL( rowsInserted( QModelIndex, int, int ) ),
-                 SLOT( slotRowsInserted( QModelIndex, int, int ) ) );
-        connect( m_model, SIGNAL( rowsAboutToBeRemoved( QModelIndex, int, int ) ),
-                 SLOT( slotRowsAboutToBeRemoved( QModelIndex, int, int ) ) );
-        connect( m_model, SIGNAL( rowsRemoved( QModelIndex, int, int ) ),
-                 SLOT( slotRowsRemoved( QModelIndex, int, int ) ) );
-        connect( m_model, SIGNAL( columnsAboutToBeInserted( QModelIndex, int, int ) ),
-                 SLOT( slotColumnsAboutToBeInserted( QModelIndex, int, int ) ) );
-        connect( m_model, SIGNAL( columnsInserted( QModelIndex, int, int ) ),
-                 SLOT( slotColumnsInserted( QModelIndex, int, int ) ) );
-        connect( m_model, SIGNAL( columnsRemoved( QModelIndex, int, int ) ),
-                 SLOT( slotColumnsRemoved( QModelIndex, int, int ) ) );
-        connect( m_model, SIGNAL( columnsAboutToBeRemoved( QModelIndex, int, int ) ),
-                 SLOT( slotColumnsAboutToBeRemoved( QModelIndex, int, int ) ) );
-        connect( m_model, SIGNAL( modelReset() ), SLOT( rebuildCache() ) );
+        connect( m_model, SIGNAL(headerDataChanged(Qt::Orientation,int,int)),
+                 SLOT(slotModelHeaderDataChanged(Qt::Orientation,int,int)) );
+        connect( m_model, SIGNAL(dataChanged(QModelIndex,QModelIndex)),
+                 SLOT(slotModelDataChanged(QModelIndex,QModelIndex)) );
+        connect( m_model, SIGNAL(layoutChanged()),
+                 SLOT(slotModelLayoutChanged()) );
+        connect( m_model, SIGNAL(rowsAboutToBeInserted(QModelIndex,int,int)),
+                 SLOT(slotRowsAboutToBeInserted(QModelIndex,int,int)) );
+        connect( m_model, SIGNAL(rowsInserted(QModelIndex,int,int)),
+                 SLOT(slotRowsInserted(QModelIndex,int,int)) );
+        connect( m_model, SIGNAL(rowsAboutToBeRemoved(QModelIndex,int,int)),
+                 SLOT(slotRowsAboutToBeRemoved(QModelIndex,int,int)) );
+        connect( m_model, SIGNAL(rowsRemoved(QModelIndex,int,int)),
+                 SLOT(slotRowsRemoved(QModelIndex,int,int)) );
+        connect( m_model, SIGNAL(columnsAboutToBeInserted(QModelIndex,int,int)),
+                 SLOT(slotColumnsAboutToBeInserted(QModelIndex,int,int)) );
+        connect( m_model, SIGNAL(columnsInserted(QModelIndex,int,int)),
+                 SLOT(slotColumnsInserted(QModelIndex,int,int)) );
+        connect( m_model, SIGNAL(columnsRemoved(QModelIndex,int,int)),
+                 SLOT(slotColumnsRemoved(QModelIndex,int,int)) );
+        connect( m_model, SIGNAL(columnsAboutToBeRemoved(QModelIndex,int,int)),
+                 SLOT(slotColumnsAboutToBeRemoved(QModelIndex,int,int)) );
+        connect( m_model, SIGNAL(modelReset()), SLOT(rebuildCache()) );
     }
     rebuildCache();
     calculateSampleStepWidth();

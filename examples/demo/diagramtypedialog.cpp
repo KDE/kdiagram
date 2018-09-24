@@ -85,8 +85,8 @@ void DiagramTypeDialog::Private::init()
     m_typemap[ DiagramTypeDialog::Line ] = DiagramTypeDialog::Normal;
     m_typemap[ DiagramTypeDialog::Plotter ] = DiagramTypeDialog::Normal;
 
-    connect( ui.typeSelector, SIGNAL( currentIndexChanged( int ) ), this, SLOT( typeChanged( int ) ) );
-    connect( ui.subtypeSelector, SIGNAL( currentIndexChanged( int ) ), this, SLOT( subtypeChanged( int ) ) );
+    connect( ui.typeSelector, SIGNAL(currentIndexChanged(int)), this, SLOT(typeChanged(int)) );
+    connect( ui.subtypeSelector, SIGNAL(currentIndexChanged(int)), this, SLOT(subtypeChanged(int)) );
 }
 
 void DiagramTypeDialog::Private::createPlanes()

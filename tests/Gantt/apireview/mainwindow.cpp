@@ -57,15 +57,15 @@ MainWindow::MainWindow( QWidget* parent, Qt::WindowFlags flags )
     leftView->setColumnHidden( 5, true );
     leftView->header()->setStretchLastSection( true );
 
-    connect( ui->ganttView->leftView(), SIGNAL( customContextMenuRequested( const QPoint& ) ),
-             this, SLOT( showContextMenu( const QPoint& ) ) );
-    connect( ui->ganttView->selectionModel(), SIGNAL( selectionChanged( const QItemSelection&, const QItemSelection& ) ),
-             this, SLOT( enableActions( const QItemSelection& ) ) );
+    connect( ui->ganttView->leftView(), SIGNAL(customContextMenuRequested(QPoint)),
+             this, SLOT(showContextMenu(QPoint)) );
+    connect( ui->ganttView->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
+             this, SLOT(enableActions(QItemSelection)) );
 
-    connect( ui->ganttView->graphicsView(), SIGNAL( clicked( const QModelIndex& ) ),
-             this, SLOT( slotClicked( const QModelIndex& ) ) );
-    connect( ui->ganttView->graphicsView(), SIGNAL( qrealClicked( const QModelIndex& ) ),
-             this, SLOT( slotDoubleClicked( const QModelIndex& ) ) );
+    connect( ui->ganttView->graphicsView(), SIGNAL(clicked(QModelIndex)),
+             this, SLOT(slotClicked(QModelIndex)) );
+    connect( ui->ganttView->graphicsView(), SIGNAL(qrealClicked(QModelIndex)),
+             this, SLOT(slotDoubleClicked(QModelIndex)) );
 }
 
 void MainWindow::initModel()
@@ -87,25 +87,25 @@ void MainWindow::initActions()
 {
     newEntryAction = new QAction( tr( "New entry" ), this );
     newEntryAction->setShortcut( QKeySequence::New );
-    connect( newEntryAction, SIGNAL( triggered() ), this, SLOT( addNewEntry() ) );
+    connect( newEntryAction, SIGNAL(triggered()), this, SLOT(addNewEntry()) );
 
     removeEntryAction = new QAction( tr( "Remove entry" ), this );
     removeEntryAction->setShortcut( QKeySequence::Delete );
-    connect( removeEntryAction, SIGNAL( triggered() ), this, SLOT( removeEntry() ) );
+    connect( removeEntryAction, SIGNAL(triggered()), this, SLOT(removeEntry()) );
 
     demoAction = new QAction( tr( "Demo entry" ), this );
-    connect( demoAction, SIGNAL( triggered() ), this, SLOT( addDemoEntry() ) );
+    connect( demoAction, SIGNAL(triggered()), this, SLOT(addDemoEntry()) );
 
     printAction = new QAction( tr( "Print Preview..." ), this );
-    connect( printAction, SIGNAL( triggered() ), this, SLOT( printPreview() ) );
+    connect( printAction, SIGNAL(triggered()), this, SLOT(printPreview()) );
 
     zoomInAction = new QAction( tr( "Zoom In" ), this );
     zoomInAction->setShortcut( QKeySequence::ZoomIn );
-    connect( zoomInAction, SIGNAL( triggered() ), this, SLOT( zoomIn() ) );
+    connect( zoomInAction, SIGNAL(triggered()), this, SLOT(zoomIn()) );
 
     zoomOutAction = new QAction( tr( "Zoom Out" ), this );
     zoomOutAction->setShortcut( QKeySequence::ZoomOut );
-    connect( zoomOutAction, SIGNAL( triggered() ), this, SLOT( zoomOut() ) );
+    connect( zoomOutAction, SIGNAL(triggered()), this, SLOT(zoomOut()) );
 
     ui->ganttView->leftView()->setContextMenuPolicy( Qt::CustomContextMenu );
     ui->ganttView->leftView()->addAction( newEntryAction );

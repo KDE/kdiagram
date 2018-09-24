@@ -59,8 +59,8 @@ MainWindow::MainWindow( QWidget* parent )
 
     setupModel();
     m_diagram->setModel( &m_model );
-    connect( m_diagram, SIGNAL( clicked( QModelIndex ) ),
-             SLOT( indexClicked( QModelIndex ) ) );
+    connect( m_diagram, SIGNAL(clicked(QModelIndex)),
+             SLOT(indexClicked(QModelIndex)) );
 }
 
 void MainWindow::setupModel()

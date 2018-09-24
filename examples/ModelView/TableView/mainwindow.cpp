@@ -59,10 +59,10 @@ MainWindow::MainWindow()
     connect( saveAction, SIGNAL(triggered()), this, SLOT(saveFile()));
     connect( quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
 
-    connect( m_selectionModel, SIGNAL( selectionChanged( const QItemSelection &, const QItemSelection & ) ),
-             this,               SLOT( selectionChanged( const QItemSelection &, const QItemSelection & ) ) );
+    connect( m_selectionModel, SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
+             this,               SLOT(selectionChanged(QItemSelection,QItemSelection)) );
 
-    connect( m_diagramView, SIGNAL( clicked( const QModelIndex& ) ), SLOT( itemClicked( const QModelIndex& ) ) );
+    connect( m_diagramView, SIGNAL(clicked(QModelIndex)), SLOT(itemClicked(QModelIndex)) );
 
     menuBar()->addMenu( fileMenu );
     statusBar();

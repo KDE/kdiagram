@@ -167,7 +167,7 @@ int main( int argc, char** argv )
     view->show();
 
     /* After 5 seconds, move row 1 to pos 0: */
-    QTimer::singleShot( 5000, new MoveHelper( &model, &constraints, view, 1, 0 ), SLOT( deleteLater() ) );
+    QTimer::singleShot( 5000, new MoveHelper( &model, &constraints, view, 1, 0 ), SLOT(deleteLater()) );
 
     return app.exec();
 }

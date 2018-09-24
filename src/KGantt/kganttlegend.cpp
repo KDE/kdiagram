@@ -81,9 +81,9 @@ void Legend::setModel( QAbstractItemModel* model )
 {
     if ( this->model() != 0 )
     {
-        disconnect( this->model(), SIGNAL( dataChanged( QModelIndex, QModelIndex ) ), this, SLOT( modelDataChanged() ) );
-        disconnect( this->model(), SIGNAL( rowsRemoved( QModelIndex, int, int ) ), this, SLOT( modelDataChanged() ) );
-        disconnect( this->model(), SIGNAL( columnsRemoved( QModelIndex, int, int ) ), this, SLOT( modelDataChanged() ) );
+        disconnect( this->model(), SIGNAL(dataChanged(QModelIndex,QModelIndex)), this, SLOT(modelDataChanged()) );
+        disconnect( this->model(), SIGNAL(rowsRemoved(QModelIndex,int,int)), this, SLOT(modelDataChanged()) );
+        disconnect( this->model(), SIGNAL(columnsRemoved(QModelIndex,int,int)), this, SLOT(modelDataChanged()) );
     }
 
     QAbstractItemView::setModel( model );
@@ -91,9 +91,9 @@ void Legend::setModel( QAbstractItemModel* model )
 
     if ( this->model() != 0 )
     {
-        connect( this->model(), SIGNAL( dataChanged( QModelIndex, QModelIndex ) ), this, SLOT( modelDataChanged() ) );
-        connect( this->model(), SIGNAL( rowsRemoved( QModelIndex, int, int ) ), this, SLOT( modelDataChanged() ) );
-        connect( this->model(), SIGNAL( columnsRemoved( QModelIndex, int, int ) ), this, SLOT( modelDataChanged() ) );
+        connect( this->model(), SIGNAL(dataChanged(QModelIndex,QModelIndex)), this, SLOT(modelDataChanged()) );
+        connect( this->model(), SIGNAL(rowsRemoved(QModelIndex,int,int)), this, SLOT(modelDataChanged()) );
+        connect( this->model(), SIGNAL(columnsRemoved(QModelIndex,int,int)), this, SLOT(modelDataChanged()) );
     }
 
 }

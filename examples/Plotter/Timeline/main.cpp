@@ -80,17 +80,17 @@ public:
 
         plotter->setModel( proxy );
 
-        connect( proxy, SIGNAL( rowsInserted( QModelIndex, int, int ) ),
-                 m_chart->coordinatePlane(), SLOT( adjustRangesToData() ) );
-        connect( proxy, SIGNAL( rowsRemoved( QModelIndex, int, int ) ),
-                 m_chart->coordinatePlane(), SLOT( adjustRangesToData() ) );
+        connect( proxy, SIGNAL(rowsInserted(QModelIndex,int,int)),
+                 m_chart->coordinatePlane(), SLOT(adjustRangesToData()) );
+        connect( proxy, SIGNAL(rowsRemoved(QModelIndex,int,int)),
+                 m_chart->coordinatePlane(), SLOT(adjustRangesToData()) );
 
         proxy->setVisibleRange( QDateTime( QDate( 2010, 3, 15 ), QTime() ),
                                 QDateTime( QDate( 2010, 5, 18 ), QTime() ) );
         qobject_cast< KChart::CartesianCoordinatePlane* >( m_chart->coordinatePlane() )->adjustRangesToData();
 
         m_timer = new QTimer(this);
-        connect( m_timer, SIGNAL( timeout() ), this, SLOT( slotTimeout() ) );
+        connect( m_timer, SIGNAL(timeout()), this, SLOT(slotTimeout()) );
     }
 private slots:
     void slotTimeout() {

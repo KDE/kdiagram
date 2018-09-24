@@ -150,14 +150,14 @@ void AbstractDiagram::setSelectionModel( QItemSelectionModel* newSelectionModel 
 {
     if ( selectionModel() )
     {
-        disconnect( selectionModel(), SIGNAL( currentChanged( QModelIndex, QModelIndex ) ), this, SIGNAL( modelsChanged() ) );
-        disconnect( selectionModel(), SIGNAL( selectionChanged( QItemSelection, QItemSelection ) ), this, SIGNAL( modelsChanged() ) );
+        disconnect( selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SIGNAL(modelsChanged()) );
+        disconnect( selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this, SIGNAL(modelsChanged()) );
     }
     QAbstractItemView::setSelectionModel( newSelectionModel );
     if ( selectionModel() )
     {
-        connect( selectionModel(), SIGNAL( currentChanged( QModelIndex, QModelIndex ) ), this, SIGNAL( modelsChanged() ) );
-        connect( selectionModel(), SIGNAL( selectionChanged( QItemSelection, QItemSelection ) ), this, SIGNAL( modelsChanged() ) );
+        connect( selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SIGNAL(modelsChanged()) );
+        connect( selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this, SIGNAL(modelsChanged()) );
     }
     emit modelsChanged();
 }

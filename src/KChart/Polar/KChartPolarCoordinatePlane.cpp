@@ -61,8 +61,8 @@ void PolarCoordinatePlane::addDiagram ( AbstractDiagram* diagram )
                  "PolarCoordinatePlane::addDiagram", "Only polar"
                  "diagrams can be added to a polar coordinate plane!" );
     AbstractCoordinatePlane::addDiagram ( diagram );
-    connect ( diagram,  SIGNAL ( layoutChanged ( AbstractDiagram* ) ),
-              SLOT ( slotLayoutChanged ( AbstractDiagram* ) ) );
+    connect ( diagram,  SIGNAL (layoutChanged(AbstractDiagram*)),
+              SLOT (slotLayoutChanged(AbstractDiagram*)) );
 
 }
 

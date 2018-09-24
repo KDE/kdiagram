@@ -21,7 +21,7 @@
 #define DIAGRAMTYPEDIALOG_H
 
 #include <QDialog>
-#include <QtCore/QHash>
+#include <QHash>
 
 class QAbstractItemModel;
 namespace KChart

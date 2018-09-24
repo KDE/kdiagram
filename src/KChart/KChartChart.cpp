@@ -1242,12 +1242,12 @@ void Chart::insertCoordinatePlane( int index, AbstractCoordinatePlane* plane )
         return;
     }
 
-    connect( plane, SIGNAL( destroyedCoordinatePlane( AbstractCoordinatePlane* ) ),
-             d,   SLOT( slotUnregisterDestroyedPlane( AbstractCoordinatePlane* ) ) );
-    connect( plane, SIGNAL( needUpdate() ),       this,   SLOT( update() ) );
-    connect( plane, SIGNAL( needRelayout() ),     d,      SLOT( slotResizePlanes() ) ) ;
-    connect( plane, SIGNAL( needLayoutPlanes() ), d,      SLOT( slotLayoutPlanes() ) ) ;
-    connect( plane, SIGNAL( propertiesChanged() ),this, SIGNAL( propertiesChanged() ) );
+    connect( plane, SIGNAL(destroyedCoordinatePlane(AbstractCoordinatePlane*)),
+             d,   SLOT(slotUnregisterDestroyedPlane(AbstractCoordinatePlane*)) );
+    connect( plane, SIGNAL(needUpdate()),       this,   SLOT(update()) );
+    connect( plane, SIGNAL(needRelayout()),     d,      SLOT(slotResizePlanes()) ) ;
+    connect( plane, SIGNAL(needLayoutPlanes()), d,      SLOT(slotLayoutPlanes()) ) ;
+    connect( plane, SIGNAL(propertiesChanged()),this, SIGNAL(propertiesChanged()) );
     d->coordinatePlanes.insert( index, plane );
     plane->setParent( this );
     d->slotLayoutPlanes();
@@ -1465,10 +1465,10 @@ void Chart::addHeaderFooter( HeaderFooter* hf )
 
     d->headerFooters.append( hf );
     d->textLayoutItems.append( hf );
-    connect( hf, SIGNAL( destroyedHeaderFooter( HeaderFooter* ) ),
-             d, SLOT( slotUnregisterDestroyedHeaderFooter( HeaderFooter* ) ) );
-    connect( hf, SIGNAL( positionChanged( HeaderFooter* ) ),
-             d, SLOT( slotHeaderFooterPositionChanged( HeaderFooter* ) ) );
+    connect( hf, SIGNAL(destroyedHeaderFooter(HeaderFooter*)),
+             d, SLOT(slotUnregisterDestroyedHeaderFooter(HeaderFooter*)) );
+    connect( hf, SIGNAL(positionChanged(HeaderFooter*)),
+             d, SLOT(slotHeaderFooterPositionChanged(HeaderFooter*)) );
 
     // set the text attributes (why?)
 
@@ -1515,8 +1515,8 @@ void Chart::takeHeaderFooter( HeaderFooter* headerFooter )
     if ( idx == -1 ) {
         return;
     }
-    disconnect( headerFooter, SIGNAL( destroyedHeaderFooter( HeaderFooter* ) ),
-                d, SLOT( slotUnregisterDestroyedHeaderFooter( HeaderFooter* ) ) );
+    disconnect( headerFooter, SIGNAL(destroyedHeaderFooter(HeaderFooter*)),
+                d, SLOT(slotUnregisterDestroyedHeaderFooter(HeaderFooter*)) );
 
     d->headerFooters.takeAt( idx );
     headerFooter->removeFromParentLayout();
@@ -1647,11 +1647,11 @@ void Chart::addLegendInternal( Legend* legend, bool setMeasures )
         sameAlignmentLayout->addItem( new MyWidgetItem( legend, legend->alignment() ) );
     }
 
-    connect( legend, SIGNAL( destroyedLegend( Legend* ) ),
-             d, SLOT( slotUnregisterDestroyedLegend( Legend* ) ) );
-    connect( legend, SIGNAL( positionChanged( AbstractAreaWidget* ) ),
-             d, SLOT( slotLegendPositionChanged( AbstractAreaWidget* ) ) );
-    connect( legend, SIGNAL( propertiesChanged() ), this, SIGNAL( propertiesChanged() ) );
+    connect( legend, SIGNAL(destroyedLegend(Legend*)),
+             d, SLOT(slotUnregisterDestroyedLegend(Legend*)) );
+    connect( legend, SIGNAL(positionChanged(AbstractAreaWidget*)),
+             d, SLOT(slotLegendPositionChanged(AbstractAreaWidget*)) );
+    connect( legend, SIGNAL(propertiesChanged()), this, SIGNAL(propertiesChanged()) );
 
     d->slotResizePlanes();
 }

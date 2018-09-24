@@ -19,9 +19,9 @@
 
 #include "colorslider.h"
 
-#include <QtGui/QPaintEvent>
-#include <QtGui/QPainter>
-#include <QtGui/QMouseEvent>
+#include <QPaintEvent>
+#include <QPainter>
+#include <QMouseEvent>
 
 #include <QDebug>
 

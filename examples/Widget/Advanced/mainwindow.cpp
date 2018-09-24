@@ -37,12 +37,12 @@ MainWindow::MainWindow( QWidget* parent )
 
     typeSelector->setCurrentIndex(1); // we start by LineDiagram
 
-    connect( typeSelector, SIGNAL( activated( int ) ), SLOT( changeType() ) );
+    connect( typeSelector, SIGNAL(activated(int)), SLOT(changeType()) );
 
-    connect( btnAddDataset, SIGNAL( clicked() ), SLOT( addDataset() ) );
+    connect( btnAddDataset, SIGNAL(clicked()), SLOT(addDataset()) );
 
-    connect( leadingSelector, SIGNAL( valueChanged( int ) ),
-             this, SLOT( changeLeading( int ) ) );
+    connect( leadingSelector, SIGNAL(valueChanged(int)),
+             this, SLOT(changeLeading(int)) );
 }
 
 void MainWindow::changeType()

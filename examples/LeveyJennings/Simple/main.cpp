@@ -40,7 +40,7 @@ public:
           view( view )
     {
         QTimer* const t = new QTimer( this );
-        connect( t, SIGNAL( timeout() ), this, SLOT( animate() ) );
+        connect( t, SIGNAL(timeout()), this, SLOT(animate()) );
         t->start( 1000 );
     }
 

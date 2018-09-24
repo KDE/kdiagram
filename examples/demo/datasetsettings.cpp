@@ -28,11 +28,11 @@
 
 #include <QStyleFactory>
 
-#include <QtGui/QImage>
+#include <QImage>
 
-#include <QtCore/QObject>
+#include <QObject>
 
-#include <QtCore/QDebug>
+#include <QDebug>
 
 #include "gradientdialog.h"
 
@@ -144,9 +144,9 @@ DatasetSettings::DatasetSettings( Chart *chart, QWidget *parent )
     d->ui->colorDisplay->setStyle( QStyleFactory::create( QStringLiteral( "cleanlooks" ) ) );
     d->ui->outlineBtn->setStyle( QStyleFactory::create( QStringLiteral( "cleanlooks" ) ) );
 #endif
-    connect( d->ui->datasetSelector, SIGNAL( currentIndexChanged( int ) ), this, SLOT( indexChanged( int ) ) );
-    connect( d->ui->colorDisplay, SIGNAL( clicked() ), d, SLOT( changeColor() ) );
-    connect( d->ui->outlineBtn, SIGNAL( clicked() ), d, SLOT( changeOutline() ) );
+    connect( d->ui->datasetSelector, SIGNAL(currentIndexChanged(int)), this, SLOT(indexChanged(int)) );
+    connect( d->ui->colorDisplay, SIGNAL(clicked()), d, SLOT(changeColor()) );
+    connect( d->ui->outlineBtn, SIGNAL(clicked()), d, SLOT(changeOutline()) );
 }
 
 DatasetSettings::~DatasetSettings()

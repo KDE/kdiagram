@@ -29,7 +29,6 @@
 #include <KChartCartesianAxis>
 #include <KChartCartesianCoordinatePlane>
 #include <KChartLegend>
-#include <QStandardItemModel>
 
 #include <QApplication>
 

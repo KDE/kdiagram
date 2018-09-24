@@ -17,8 +17,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef KCHARTTHREEDLINESATTRIBUTES_P_H
-#define KCHARTTHREEDLINESATTRIBUTES_P_H
+#ifndef KCHARTTHREEDLINEATTRIBUTES_P_H
+#define KCHARTTHREEDLINEATTRIBUTES_P_H
 
 //
 //  W A R N I N G
@@ -58,4 +58,4 @@ KCHART_DERIVED_PRIVATE_FOOTER(ThreeDLineAttributes, AbstractThreeDAttributes)
 }
 
 
-#endif // KCHARTTHREEDLINESATTRIBUTES_P_H
+#endif // KCHARTTHREEDLINEATTRIBUTES_P_H

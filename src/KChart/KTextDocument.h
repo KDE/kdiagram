@@ -17,8 +17,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef KDTEXTDOCUMENT_H
-#define KDTEXTDOCUMENT_H
+#ifndef KTEXTDOCUMENT_H
+#define KTEXTDOCUMENT_H
 
 //
 //  W A R N I N G
@@ -60,5 +60,5 @@ private:
 };
 
 
-#endif /* KDTEXTDOCUMENT_H */
+#endif /* KTEXTDOCUMENT_H */
 

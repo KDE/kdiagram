@@ -271,28 +271,28 @@ MainWindow::MainWindow( QWidget* parent )
     QMenu* fileMenu = new QMenu( tr( "&File" ) );
 
 #ifndef QT_NO_PRINTER
-    fileMenu->addAction( tr( "&Save as PDF..." ), this, SLOT( slotFileSavePdf() ) );
-    fileMenu->addAction( tr( "&Print..." ), this, SLOT( slotFilePrint() ) );
+    fileMenu->addAction( tr( "&Save as PDF..." ), this, SLOT(slotFileSavePdf()) );
+    fileMenu->addAction( tr( "&Print..." ), this, SLOT(slotFilePrint()) );
 #endif
 
     fileMenu->addSeparator();
-    fileMenu->addAction( tr( "&Quit" ), this, SLOT( slotFileQuit() ) );
+    fileMenu->addAction( tr( "&Quit" ), this, SLOT(slotFileQuit()) );
 
     mb->addMenu( fileMenu );
 
     QMenu* toolsMenu = new QMenu( tr( "&Tools" ) );
 
-    toolsMenu->addAction( tr( "&New Item" ), this, SLOT( slotToolsNewItem() ) );
-    toolsMenu->addAction( tr( "&Add Item" ), this, SLOT( slotToolsAppendItem() ) );
+    toolsMenu->addAction( tr( "&New Item" ), this, SLOT(slotToolsNewItem()) );
+    toolsMenu->addAction( tr( "&Add Item" ), this, SLOT(slotToolsAppendItem()) );
     toolsMenu->addSeparator();
     QMenu *alignMenu = toolsMenu->addMenu( tr( "Ali&gn" ) );
-    alignMenu->addAction( tr( "&Left" ), this, SLOT( slotAlignLeft() ) );
-    alignMenu->addAction( tr( "&Center" ), this, SLOT( slotAlignCenter() ) );
-    alignMenu->addAction( tr( "&Right" ), this, SLOT( slotAlignRight() ) );
-    alignMenu->addAction( tr( "&Hidden" ), this, SLOT( slotAlignHidden() ) );
+    alignMenu->addAction( tr( "&Left" ), this, SLOT(slotAlignLeft()) );
+    alignMenu->addAction( tr( "&Center" ), this, SLOT(slotAlignCenter()) );
+    alignMenu->addAction( tr( "&Right" ), this, SLOT(slotAlignRight()) );
+    alignMenu->addAction( tr( "&Hidden" ), this, SLOT(slotAlignHidden()) );
     toolsMenu->addSeparator();
-    toolsMenu->addAction( tr( "&Collapse All" ), this, SLOT( slotCollapseAll() ) );
-    toolsMenu->addAction( tr( "&Expand All" ), this, SLOT( slotExpandAll() ) );
+    toolsMenu->addAction( tr( "&Collapse All" ), this, SLOT(slotCollapseAll()) );
+    toolsMenu->addAction( tr( "&Expand All" ), this, SLOT(slotExpandAll()) );
 
     mb->addMenu( toolsMenu );
 

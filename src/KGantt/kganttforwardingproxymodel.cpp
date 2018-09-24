@@ -99,27 +99,27 @@ void ForwardingProxyModel::setSourceModel( QAbstractItemModel* model )
     connect( model, SIGNAL(layoutAboutToBeChanged()), this, SLOT(sourceLayoutAboutToBeChanged()) );
     connect( model, SIGNAL(layoutChanged()), this, SLOT(sourceLayoutChanged()) );
 
-    connect( model, SIGNAL(dataChanged(const QModelIndex&,const QModelIndex&)),
-             this, SLOT(sourceDataChanged(const QModelIndex&,const QModelIndex&)) );
+    connect( model, SIGNAL(dataChanged(QModelIndex,QModelIndex)),
+             this, SLOT(sourceDataChanged(QModelIndex,QModelIndex)) );
 
 
-    connect( model,  SIGNAL(columnsAboutToBeInserted(const QModelIndex&, int,int)),
-             this, SLOT(sourceColumnsAboutToBeInserted(const QModelIndex&,int,int)) );
-    connect( model,  SIGNAL(columnsInserted(const QModelIndex&, int,int)),
-             this, SLOT(sourceColumnsInserted(const QModelIndex&,int,int)) );
-    connect( model,  SIGNAL(columnsAboutToBeRemoved(const QModelIndex&, int,int)),
-             this, SLOT(sourceColumnsAboutToBeRemoved(const QModelIndex&,int,int)) );
-    connect( model,  SIGNAL(columnsRemoved(const QModelIndex&, int,int)),
-             this, SLOT(sourceColumnsRemoved(const QModelIndex&,int,int)) );
+    connect( model,  SIGNAL(columnsAboutToBeInserted(QModelIndex,int,int)),
+             this, SLOT(sourceColumnsAboutToBeInserted(QModelIndex,int,int)) );
+    connect( model,  SIGNAL(columnsInserted(QModelIndex,int,int)),
+             this, SLOT(sourceColumnsInserted(QModelIndex,int,int)) );
+    connect( model,  SIGNAL(columnsAboutToBeRemoved(QModelIndex,int,int)),
+             this, SLOT(sourceColumnsAboutToBeRemoved(QModelIndex,int,int)) );
+    connect( model,  SIGNAL(columnsRemoved(QModelIndex,int,int)),
+             this, SLOT(sourceColumnsRemoved(QModelIndex,int,int)) );
 
-    connect( model,  SIGNAL(rowsAboutToBeInserted(const QModelIndex&, int,int)),
-             this, SLOT(sourceRowsAboutToBeInserted(const QModelIndex&,int,int)) );
-    connect( model,  SIGNAL(rowsInserted(const QModelIndex&, int,int)),
-             this, SLOT(sourceRowsInserted(const QModelIndex&,int,int)) );
-    connect( model,  SIGNAL(rowsAboutToBeRemoved(const QModelIndex&, int,int)),
-             this, SLOT(sourceRowsAboutToBeRemoved(const QModelIndex&,int,int)) );
-    connect( model,  SIGNAL(rowsRemoved(const QModelIndex&, int,int)),
-             this, SLOT(sourceRowsRemoved(const QModelIndex&,int,int)) );
+    connect( model,  SIGNAL(rowsAboutToBeInserted(QModelIndex,int,int)),
+             this, SLOT(sourceRowsAboutToBeInserted(QModelIndex,int,int)) );
+    connect( model,  SIGNAL(rowsInserted(QModelIndex,int,int)),
+             this, SLOT(sourceRowsInserted(QModelIndex,int,int)) );
+    connect( model,  SIGNAL(rowsAboutToBeRemoved(QModelIndex,int,int)),
+             this, SLOT(sourceRowsAboutToBeRemoved(QModelIndex,int,int)) );
+    connect( model,  SIGNAL(rowsRemoved(QModelIndex,int,int)),
+             this, SLOT(sourceRowsRemoved(QModelIndex,int,int)) );
 }
 
 /*! Called when the source model is about to be reset.

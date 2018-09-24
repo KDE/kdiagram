@@ -20,11 +20,11 @@
 #ifndef PLOTTERDIAGRAMCOMPRESSOR_H
 #define PLOTTERDIAGRAMCOMPRESSOR_H
 
-#include <QtCore/QObject>
-#include <QtCore/QAbstractItemModel>
-#include <QtCore/QPointer>
-#include <QtCore/QVector>
-#include <QtCore/QDateTime>
+#include <QObject>
+#include <QAbstractItemModel>
+#include <QPointer>
+#include <QVector>
+#include <QDateTime>
 
 #include <cmath>
 #include <limits>

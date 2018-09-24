@@ -97,8 +97,8 @@ MainWindow::MainWindow( QWidget* parent ) :
     m_legend->setAlignment( Qt::AlignTop );
     m_chart->addLegend( m_legend );
 
-    connect( m_annotations, SIGNAL( toggled( bool ) ), SLOT( annotationsToggled( bool ) ) );
-    connect( m_linesOnAnnotations, SIGNAL( toggled( bool ) ), SLOT( gridLinesOnAnnotationsToggled( bool ) ) );
+    connect( m_annotations, SIGNAL(toggled(bool)), SLOT(annotationsToggled(bool)) );
+    connect( m_linesOnAnnotations, SIGNAL(toggled(bool)), SLOT(gridLinesOnAnnotationsToggled(bool)) );
 }
 
 void MainWindow::annotationsToggled( bool showAnnotations )

@@ -19,7 +19,7 @@
 
 #include "timeaxis.h"
 
-#include <QtCore/QDateTime>
+#include <QDateTime>
 
 TimeAxis::TimeAxis( KChart::AbstractCartesianDiagram* parent )
     : KChart::CartesianAxis( parent )

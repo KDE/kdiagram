@@ -18,6 +18,8 @@
  * the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
  * Boston, MA 02110-1301, USA.
  */
+#ifndef TESTGANTTCONSTRAINT_H
+#define TESTGANTTCONSTRAINT_H
 
 #include <QtTest>
 
@@ -31,3 +33,4 @@ private Q_SLOTS:
     void cleanupTestCase();
     void test();
 };
+#endif

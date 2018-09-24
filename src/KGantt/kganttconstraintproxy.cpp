@@ -44,10 +44,10 @@ void ConstraintProxy::setSourceModel( ConstraintModel* src )
 
     copyFromSource();
 
-    connect( m_source, SIGNAL( constraintAdded( const KGantt::Constraint& ) ),
-             this, SLOT( slotSourceConstraintAdded( const KGantt::Constraint& ) ) );
-    connect( m_source, SIGNAL( constraintRemoved( const KGantt::Constraint& ) ),
-             this, SLOT( slotSourceConstraintRemoved( const KGantt::Constraint& ) ) );
+    connect( m_source, SIGNAL(constraintAdded(KGantt::Constraint)),
+             this, SLOT(slotSourceConstraintAdded(KGantt::Constraint)) );
+    connect( m_source, SIGNAL(constraintRemoved(KGantt::Constraint)),
+             this, SLOT(slotSourceConstraintRemoved(KGantt::Constraint)) );
 }
 
 void ConstraintProxy::setDestinationModel( ConstraintModel* dest )
@@ -57,10 +57,10 @@ void ConstraintProxy::setDestinationModel( ConstraintModel* dest )
 
     copyFromSource();
 
-    connect( m_destination, SIGNAL( constraintAdded( const KGantt::Constraint& ) ),
-             this, SLOT( slotDestinationConstraintAdded( const KGantt::Constraint& ) ) );
-    connect( m_destination, SIGNAL( constraintRemoved( const KGantt::Constraint& ) ),
-             this, SLOT( slotDestinationConstraintRemoved( const KGantt::Constraint& ) ) );
+    connect( m_destination, SIGNAL(constraintAdded(KGantt::Constraint)),
+             this, SLOT(slotDestinationConstraintAdded(KGantt::Constraint)) );
+    connect( m_destination, SIGNAL(constraintRemoved(KGantt::Constraint)),
+             this, SLOT(slotDestinationConstraintRemoved(KGantt::Constraint)) );
 }
 
 void ConstraintProxy::setProxyModel( QAbstractProxyModel* proxy )
@@ -69,8 +69,8 @@ void ConstraintProxy::setProxyModel( QAbstractProxyModel* proxy )
     if ( m_proxy ) m_proxy->disconnect( this );
     m_proxy = proxy;
     if ( m_proxy ) {
-        connect( m_proxy, SIGNAL( layoutChanged() ), this, SLOT( slotLayoutChanged() ) );
-        connect( m_proxy, SIGNAL( modelReset() ), this, SLOT( slotLayoutChanged() ) );
+        connect( m_proxy, SIGNAL(layoutChanged()), this, SLOT(slotLayoutChanged()) );
+        connect( m_proxy, SIGNAL(modelReset()), this, SLOT(slotLayoutChanged()) );
     }
 }
 

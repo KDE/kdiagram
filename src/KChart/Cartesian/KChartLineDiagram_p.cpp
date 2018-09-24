@@ -17,10 +17,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "KChartLineDiagram_p.h"
 #include "KChartLineDiagram.h"
 #include "KChartDataValueAttributes.h"
 
-#include "KChartLineDiagram_p.h"
 #include "KChartPainterSaver_p.h"
 #include "PaintingHelpers_p.h"
 

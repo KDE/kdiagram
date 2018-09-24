@@ -17,8 +17,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef KDAB_LIB_FAKES_H
-#define KDAB_LIB_FAKES_H
+#ifndef KCHARTMATH_P_H
+#define KCHARTMATH_P_H
 
 #if defined Q_OS_DARWIN
 #include <math.h>

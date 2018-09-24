@@ -60,7 +60,7 @@ MainWindow::MainWindow( QWidget *parent )
     m_diagram.addAxis( bottomAxis );
     m_diagram.addAxis( bottomAxis );
     applyColor( QColor( "chartreuse" ) );
-    const bool connected = connect( colorChooser, SIGNAL( clicked() ), SLOT( chooseColor() ) );
+    const bool connected = connect( colorChooser, SIGNAL(clicked()), SLOT(chooseColor()) );
     Q_ASSERT( connected );
     Q_UNUSED( connected );
 

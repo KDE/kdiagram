@@ -17,6 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "KChartNormalLineDiagram_p.h"
 #include <limits>
 
 #include <QAbstractItemModel>
@@ -26,7 +27,6 @@
 #include "KChartTextAttributes.h"
 #include "KChartAttributesModel.h"
 #include "KChartAbstractCartesianDiagram.h"
-#include "KChartNormalLineDiagram_p.h"
 #include "PaintingHelpers_p.h"
 
 using namespace KChart;

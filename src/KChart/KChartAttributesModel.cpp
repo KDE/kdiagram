@@ -517,54 +517,54 @@ void AttributesModel::setSourceModel( QAbstractItemModel* sourceModel )
 {
     if ( this->sourceModel() != 0 )
     {
-        disconnect( this->sourceModel(), SIGNAL( dataChanged( const QModelIndex&, const QModelIndex&)),
-                                   this, SLOT( slotDataChanged( const QModelIndex&, const QModelIndex&)));
-        disconnect( this->sourceModel(), SIGNAL( rowsInserted( const QModelIndex&, int, int ) ),
-                                   this, SLOT( slotRowsInserted( const QModelIndex&, int, int ) ) );
-        disconnect( this->sourceModel(), SIGNAL( rowsRemoved( const QModelIndex&, int, int ) ),
-                                   this, SLOT( slotRowsRemoved( const QModelIndex&, int, int ) ) );
-        disconnect( this->sourceModel(), SIGNAL( rowsAboutToBeInserted( const QModelIndex&, int, int ) ),
-                                   this, SLOT( slotRowsAboutToBeInserted( const QModelIndex&, int, int ) ) );
-        disconnect( this->sourceModel(), SIGNAL( rowsAboutToBeRemoved( const QModelIndex&, int, int ) ),
-                                   this, SLOT( slotRowsAboutToBeRemoved( const QModelIndex&, int, int ) ) );
-        disconnect( this->sourceModel(), SIGNAL( columnsInserted( const QModelIndex&, int, int ) ),
-                                   this, SLOT( slotColumnsInserted( const QModelIndex&, int, int ) ) );
-        disconnect( this->sourceModel(), SIGNAL( columnsRemoved( const QModelIndex&, int, int ) ),
-                                   this, SLOT( slotColumnsRemoved( const QModelIndex&, int, int ) ) );
-        disconnect( this->sourceModel(), SIGNAL( columnsAboutToBeInserted( const QModelIndex&, int, int ) ),
-                                   this, SLOT( slotColumnsAboutToBeInserted( const QModelIndex&, int, int ) ) );
-        disconnect( this->sourceModel(), SIGNAL( columnsAboutToBeRemoved( const QModelIndex&, int, int ) ),
-                                   this, SLOT( slotColumnsAboutToBeRemoved( const QModelIndex&, int, int ) ) );
-        disconnect( this->sourceModel(), SIGNAL( modelReset() ),
-                                   this, SIGNAL( modelReset() ) );
-        disconnect( this->sourceModel(), SIGNAL( layoutChanged() ),
-                                   this, SIGNAL( layoutChanged() ) );
+        disconnect( this->sourceModel(), SIGNAL(dataChanged(QModelIndex,QModelIndex)),
+                                   this, SLOT(slotDataChanged(QModelIndex,QModelIndex)));
+        disconnect( this->sourceModel(), SIGNAL(rowsInserted(QModelIndex,int,int)),
+                                   this, SLOT(slotRowsInserted(QModelIndex,int,int)) );
+        disconnect( this->sourceModel(), SIGNAL(rowsRemoved(QModelIndex,int,int)),
+                                   this, SLOT(slotRowsRemoved(QModelIndex,int,int)) );
+        disconnect( this->sourceModel(), SIGNAL(rowsAboutToBeInserted(QModelIndex,int,int)),
+                                   this, SLOT(slotRowsAboutToBeInserted(QModelIndex,int,int)) );
+        disconnect( this->sourceModel(), SIGNAL(rowsAboutToBeRemoved(QModelIndex,int,int)),
+                                   this, SLOT(slotRowsAboutToBeRemoved(QModelIndex,int,int)) );
+        disconnect( this->sourceModel(), SIGNAL(columnsInserted(QModelIndex,int,int)),
+                                   this, SLOT(slotColumnsInserted(QModelIndex,int,int)) );
+        disconnect( this->sourceModel(), SIGNAL(columnsRemoved(QModelIndex,int,int)),
+                                   this, SLOT(slotColumnsRemoved(QModelIndex,int,int)) );
+        disconnect( this->sourceModel(), SIGNAL(columnsAboutToBeInserted(QModelIndex,int,int)),
+                                   this, SLOT(slotColumnsAboutToBeInserted(QModelIndex,int,int)) );
+        disconnect( this->sourceModel(), SIGNAL(columnsAboutToBeRemoved(QModelIndex,int,int)),
+                                   this, SLOT(slotColumnsAboutToBeRemoved(QModelIndex,int,int)) );
+        disconnect( this->sourceModel(), SIGNAL(modelReset()),
+                                   this, SIGNAL(modelReset()) );
+        disconnect( this->sourceModel(), SIGNAL(layoutChanged()),
+                                   this, SIGNAL(layoutChanged()) );
     }
     QAbstractProxyModel::setSourceModel( sourceModel );
     if ( this->sourceModel() != NULL )
     {
-        connect( this->sourceModel(), SIGNAL( dataChanged( const QModelIndex&, const QModelIndex&)),
-                                this, SLOT( slotDataChanged( const QModelIndex&, const QModelIndex&)));
-        connect( this->sourceModel(), SIGNAL( rowsInserted( const QModelIndex&, int, int ) ),
-                                this, SLOT( slotRowsInserted( const QModelIndex&, int, int ) ) );
-        connect( this->sourceModel(), SIGNAL( rowsRemoved( const QModelIndex&, int, int ) ),
-                                this, SLOT( slotRowsRemoved( const QModelIndex&, int, int ) ) );
-        connect( this->sourceModel(), SIGNAL( rowsAboutToBeInserted( const QModelIndex&, int, int ) ),
-                                this, SLOT( slotRowsAboutToBeInserted( const QModelIndex&, int, int ) ) );
-        connect( this->sourceModel(), SIGNAL( rowsAboutToBeRemoved( const QModelIndex&, int, int ) ),
-                                this, SLOT( slotRowsAboutToBeRemoved( const QModelIndex&, int, int ) ) );
-        connect( this->sourceModel(), SIGNAL( columnsInserted( const QModelIndex&, int, int ) ),
-                                this, SLOT( slotColumnsInserted( const QModelIndex&, int, int ) ) );
-        connect( this->sourceModel(), SIGNAL( columnsRemoved( const QModelIndex&, int, int ) ),
-                                this, SLOT( slotColumnsRemoved( const QModelIndex&, int, int ) ) );
-        connect( this->sourceModel(), SIGNAL( columnsAboutToBeInserted( const QModelIndex&, int, int ) ),
-                                this, SLOT( slotColumnsAboutToBeInserted( const QModelIndex&, int, int ) ) );
-        connect( this->sourceModel(), SIGNAL( columnsAboutToBeRemoved( const QModelIndex&, int, int ) ),
-                                this, SLOT( slotColumnsAboutToBeRemoved( const QModelIndex&, int, int ) ) );
-        connect( this->sourceModel(), SIGNAL( modelReset() ),
-                                this, SIGNAL( modelReset() ) );
-        connect( this->sourceModel(), SIGNAL( layoutChanged() ),
-                                this, SIGNAL( layoutChanged() ) );
+        connect( this->sourceModel(), SIGNAL(dataChanged(QModelIndex,QModelIndex)),
+                                this, SLOT(slotDataChanged(QModelIndex,QModelIndex)));
+        connect( this->sourceModel(), SIGNAL(rowsInserted(QModelIndex,int,int)),
+                                this, SLOT(slotRowsInserted(QModelIndex,int,int)) );
+        connect( this->sourceModel(), SIGNAL(rowsRemoved(QModelIndex,int,int)),
+                                this, SLOT(slotRowsRemoved(QModelIndex,int,int)) );
+        connect( this->sourceModel(), SIGNAL(rowsAboutToBeInserted(QModelIndex,int,int)),
+                                this, SLOT(slotRowsAboutToBeInserted(QModelIndex,int,int)) );
+        connect( this->sourceModel(), SIGNAL(rowsAboutToBeRemoved(QModelIndex,int,int)),
+                                this, SLOT(slotRowsAboutToBeRemoved(QModelIndex,int,int)) );
+        connect( this->sourceModel(), SIGNAL(columnsInserted(QModelIndex,int,int)),
+                                this, SLOT(slotColumnsInserted(QModelIndex,int,int)) );
+        connect( this->sourceModel(), SIGNAL(columnsRemoved(QModelIndex,int,int)),
+                                this, SLOT(slotColumnsRemoved(QModelIndex,int,int)) );
+        connect( this->sourceModel(), SIGNAL(columnsAboutToBeInserted(QModelIndex,int,int)),
+                                this, SLOT(slotColumnsAboutToBeInserted(QModelIndex,int,int)) );
+        connect( this->sourceModel(), SIGNAL(columnsAboutToBeRemoved(QModelIndex,int,int)),
+                                this, SLOT(slotColumnsAboutToBeRemoved(QModelIndex,int,int)) );
+        connect( this->sourceModel(), SIGNAL(modelReset()),
+                                this, SIGNAL(modelReset()) );
+        connect( this->sourceModel(), SIGNAL(layoutChanged()),
+                                this, SIGNAL(layoutChanged()) );
     }
 }
 

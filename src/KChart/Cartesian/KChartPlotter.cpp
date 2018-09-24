@@ -63,13 +63,13 @@ void Plotter::init()
     d->stackedPlotter = new StackedPlotter( this );
     d->implementor = d->normalPlotter;
     QObject* test = d->implementor->plotterPrivate();
-    connect( this, SIGNAL( boundariesChanged() ), test, SLOT( changedProperties() ) );
+    connect( this, SIGNAL(boundariesChanged()), test, SLOT(changedProperties()) );
     // The signal is connected to the superclass's slot at this point because the connection happened
     // in its constructor when "its type was not Plotter yet".
-    disconnect( this, SIGNAL( attributesModelAboutToChange( AttributesModel*, AttributesModel* ) ),
-                this, SLOT( connectAttributesModel( AttributesModel* ) ) );
-    connect( this, SIGNAL( attributesModelAboutToChange( AttributesModel*, AttributesModel* ) ),
-             this, SLOT( connectAttributesModel( AttributesModel* ) ) );
+    disconnect( this, SIGNAL(attributesModelAboutToChange(AttributesModel*,AttributesModel*)),
+                this, SLOT(connectAttributesModel(AttributesModel*)) );
+    connect( this, SIGNAL(attributesModelAboutToChange(AttributesModel*,AttributesModel*)),
+             this, SLOT(connectAttributesModel(AttributesModel*)) );
     setDatasetDimensionInternal( 2 );
 }
 
@@ -116,13 +116,13 @@ void Plotter::connectAttributesModel( AttributesModel* newModel )
         if ( attributesModel() != d->plotterCompressor.model() )
         {
             d->plotterCompressor.setModel( attributesModel() );
-            connect( &d->plotterCompressor, SIGNAL( boundariesChanged() ), this, SLOT(setDataBoundariesDirty() ) );
+            connect( &d->plotterCompressor, SIGNAL(boundariesChanged()), this, SLOT(setDataBoundariesDirty()) );
             if ( useDataCompression() != Plotter::SLOPE )
             {
-                connect( coordinatePlane(), SIGNAL( internal_geometryChanged( QRect,QRect ) ),
-                         this, SLOT( setDataBoundariesDirty() ) );
-                connect( coordinatePlane(), SIGNAL( geometryChanged( QRect,QRect ) ),
-                         this, SLOT( setDataBoundariesDirty() ) );
+                connect( coordinatePlane(), SIGNAL(internal_geometryChanged(QRect,QRect)),
+                         this, SLOT(setDataBoundariesDirty()) );
+                connect( coordinatePlane(), SIGNAL(geometryChanged(QRect,QRect)),
+                         this, SLOT(setDataBoundariesDirty()) );
                 calcMergeRadius();
             }
         }
@@ -199,8 +199,8 @@ void Plotter::setType( const PlotType type )
     default:
         Q_ASSERT_X( false, "Plotter::setType", "unknown plotter subtype" );
     }
-    bool connection = connect( this, SIGNAL( boundariesChanged() ),
-                               d->implementor->plotterPrivate(), SLOT( changedProperties() ) );
+    bool connection = connect( this, SIGNAL(boundariesChanged()),
+                               d->implementor->plotterPrivate(), SLOT(changedProperties()) );
     Q_ASSERT( connection );
     Q_UNUSED( connection );
 

@@ -21,8 +21,8 @@
 
 #include "ui_axissettings.h"
 
-#include <QtCore/QHash>
-#include <QtCore/QVector>
+#include <QHash>
+#include <QVector>
 
 #include <QComboBox>
 
@@ -69,10 +69,10 @@ void AxisSettings::Private::init()
     ui.axisSelection->addItem( QIcon(), tr( "Right Y-Axis" ), CartesianAxis::Right );
     ui.axisSelection->addItem( QIcon(), tr( "Bottom X-Axis" ), CartesianAxis::Bottom );
     ui.axisSelection->addItem( QIcon(), tr( "Top X-Axis" ), CartesianAxis::Top );
-    connect( ui.axisSelection, SIGNAL( currentIndexChanged( int ) ), this, SLOT( currentIndexChanged( int ) ) );
-    connect( ui.axisVisibility, SIGNAL( toggled( bool ) ), this, SLOT( setVisible( bool ) ) );
-    connect( ui.majorTicks, SIGNAL( toggled( bool ) ), this, SLOT( setShowMajorTickMarks( bool ) ) );
-    connect( ui.minorTicks, SIGNAL( toggled( bool ) ), this, SLOT( setShowMinorTickMarks( bool ) ) );
+    connect( ui.axisSelection, SIGNAL(currentIndexChanged(int)), this, SLOT(currentIndexChanged(int)) );
+    connect( ui.axisVisibility, SIGNAL(toggled(bool)), this, SLOT(setVisible(bool)) );
+    connect( ui.majorTicks, SIGNAL(toggled(bool)), this, SLOT(setShowMajorTickMarks(bool)) );
+    connect( ui.minorTicks, SIGNAL(toggled(bool)), this, SLOT(setShowMinorTickMarks(bool)) );
     ui.axisSelection->setCurrentIndex( 0 );
 }
 

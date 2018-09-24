@@ -405,7 +405,7 @@ void CartesianAxis::init()
     d->customTickLength = 3;
     d->position = Bottom;
     setCachedSizeDirty();
-    connect( this, SIGNAL( coordinateSystemChanged() ), SLOT( coordinateSystemChanged() ) );
+    connect( this, SIGNAL(coordinateSystemChanged()), SLOT(coordinateSystemChanged()) );
 }
 
 

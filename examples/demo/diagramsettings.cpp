@@ -192,11 +192,11 @@ void DiagramSettings::Private::init()
     ui->diagramBackground->setStyle( QStyleFactory::create( QStringLiteral( "cleanlooks" ) ) );
 #endif
 
-    connect( ui->threeDSelector, SIGNAL( toggled( bool ) ), this, SLOT( changeThreeD() ) );
-    connect( ui->diagramBackground, SIGNAL( clicked() ), this, SLOT( changeBackgroundColor() ) );
-    connect( ui->visibleBtn, SIGNAL( toggled( bool ) ), this, SLOT( changeBackgroundVisibility() ) );
-    connect( ui->barHeightInput, SIGNAL( valueChanged( int ) ), this, SLOT( changeThreeD() ) );
-    connect( ui->autoGradient, SIGNAL( toggled( bool ) ), this, SLOT( changeAutoGradient() ) );
+    connect( ui->threeDSelector, SIGNAL(toggled(bool)), this, SLOT(changeThreeD()) );
+    connect( ui->diagramBackground, SIGNAL(clicked()), this, SLOT(changeBackgroundColor()) );
+    connect( ui->visibleBtn, SIGNAL(toggled(bool)), this, SLOT(changeBackgroundVisibility()) );
+    connect( ui->barHeightInput, SIGNAL(valueChanged(int)), this, SLOT(changeThreeD()) );
+    connect( ui->autoGradient, SIGNAL(toggled(bool)), this, SLOT(changeAutoGradient()) );
 
     qq->refreshSettings();
 }

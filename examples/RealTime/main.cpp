@@ -50,8 +50,8 @@ public:
     l->addWidget(&m_chart);
     setLayout(l);
     m_timer = new QTimer(this);
-    connect( m_timer, SIGNAL( timeout() ),
-             this, SLOT( slotTimeout() ) );
+    connect( m_timer, SIGNAL(timeout()),
+             this, SLOT(slotTimeout()) );
     m_timer->start( 200 );
   }
 

@@ -31,7 +31,7 @@ Model::Model()
      m_function( SineFunction )
 {
     m_appendTimer.setInterval( 3 );
-    connect( &m_appendTimer, SIGNAL( timeout() ), SLOT( appendPoint() ) );
+    connect( &m_appendTimer, SIGNAL(timeout()), SLOT(appendPoint()) );
     // pre-fill some values
     appendPoints( 100 );
 }

@@ -22,8 +22,8 @@
 
 #include "KChartPlotterDiagramCompressor.h"
 
-#include <QtCore/QPointF>
-#include <QtCore/QDateTime>
+#include <QPointF>
+#include <QDateTime>
 
 typedef QPair< QPointF, QPointF > Boundaries;
 

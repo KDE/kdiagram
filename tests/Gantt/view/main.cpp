@@ -121,8 +121,8 @@ public:
         view.setGrid( &grid );
         view.setModel(&model);
         //view.setConstraintModel( &cmodel );
-        connect( &slider, SIGNAL( valueChanged( int ) ),
-                 this, SLOT( slotZoom( int ) ) );
+        connect( &slider, SIGNAL(valueChanged(int)),
+                 this, SLOT(slotZoom(int)) );
 
 
 	QPushButton* pb1 = new QPushButton( tr("Print Preview..."));
@@ -133,8 +133,8 @@ public:
 	connect(pb2,SIGNAL(clicked()),this,SLOT(slotPrint()));
 
         view.graphicsView()->setHeaderContextMenuPolicy( Qt::CustomContextMenu );
-        connect( view.graphicsView(), SIGNAL( headerContextMenuRequested( const QPoint& ) ),
-                 this, SLOT( slotHeaderMenu( const QPoint& ) ) );
+        connect( view.graphicsView(), SIGNAL(headerContextMenuRequested(QPoint)),
+                 this, SLOT(slotHeaderMenu(QPoint)) );
     }
 
 public slots:

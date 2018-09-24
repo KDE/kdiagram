@@ -17,8 +17,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef KCHARTAXIS_P_H
-#define KCHARTAXIS_P_H
+#ifndef KCHARTABSTRACTAXIS_P_H
+#define KCHARTABSTRACTAXIS_P_H
 
 //
 //  W A R N I N G
@@ -94,5 +94,5 @@ inline const AbstractAxis::Private * AbstractAxis::d_func() const
 { return static_cast<const Private*>( AbstractArea::d_func() ); }
 
 }
-#endif /* KCHARTAREA_P_H */
+#endif /* KCHARTABSTRACTAXIS_P_H */
 

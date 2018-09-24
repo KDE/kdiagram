@@ -66,16 +66,16 @@ MainWidget::MainWidget()
                        << m_controls.noiseRadio << m_controls.oneDivSineRadio
                        << m_controls.sineOneDivRadio;
     foreach ( QRadioButton* r, m_functionSelector ) {
-        connect( r, SIGNAL( toggled( bool ) ), SLOT( functionToggled( bool ) ) );
+        connect( r, SIGNAL(toggled(bool)), SLOT(functionToggled(bool)) );
     }
 
-    connect( m_controls.runButton, SIGNAL( toggled( bool ) ),
-             &m_model, SLOT( setRunning( bool ) ) );
+    connect( m_controls.runButton, SIGNAL(toggled(bool)),
+             &m_model, SLOT(setRunning(bool)) );
 
     // order matters again
     m_addPointsButtons << m_controls.add1kButton << m_controls.add10kButton << m_controls.add100kButton;
     foreach ( QPushButton* b, m_addPointsButtons ) {
-        connect( b, SIGNAL( clicked( bool ) ), SLOT( addPointsButtonClicked() ) );
+        connect( b, SIGNAL(clicked(bool)), SLOT(addPointsButtonClicked()) );
     }
 }
 

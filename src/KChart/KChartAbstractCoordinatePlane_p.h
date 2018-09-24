@@ -17,8 +17,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef KCHARTABSTRCOORDINATEPLANE_P_H
-#define KCHARTABSTRCOORDINATEPLANE_P_H
+#ifndef KCHARTABSTRACTCOORDINATEPLANE_P_H
+#define KCHARTABSTRACTCOORDINATEPLANE_P_H
 
 //
 //  W A R N I N G

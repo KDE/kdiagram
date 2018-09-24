@@ -112,8 +112,8 @@ public:
         view.setGrid( &grid );
         view.setModel(&model);
         //view.setConstraintModel( &cmodel );
-        connect( &slider, SIGNAL( valueChanged( int ) ),
-                 this, SLOT( slotZoom( int ) ) );
+        connect( &slider, SIGNAL(valueChanged(int)),
+                 this, SLOT(slotZoom(int)) );
     }
 
 public slots:

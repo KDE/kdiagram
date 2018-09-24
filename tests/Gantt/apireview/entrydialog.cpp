@@ -49,8 +49,8 @@ void EntryDialog::init()
     for (int row = 0; row < model->rowCount(); ++row )
         addDependItem( model, model->index( row, 0 ) );
     
-    connect( ui->startDate, SIGNAL( dateTimeChanged( const QDateTime& ) ), this, SLOT( updateEndDate( const QDateTime& ) ) );
-    connect( ui->readOnly, SIGNAL( toggled( bool ) ), this, SLOT( disableEditing( bool ) ) );
+    connect( ui->startDate, SIGNAL(dateTimeChanged(QDateTime)), this, SLOT(updateEndDate(QDateTime)) );
+    connect( ui->readOnly, SIGNAL(toggled(bool)), this, SLOT(disableEditing(bool)) );
     
     ui->startDate->setDateTime( QDateTime::currentDateTime() );
 }

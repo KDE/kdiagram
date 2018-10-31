@@ -35,6 +35,14 @@ DatasetSelectorWidget::DatasetSelectorWidget( QWidget* parent )
 
     mUi->setupUi( this );
     setMinimumSize( minimumSizeHint() );
+
+    connect( mUi->sbStartColumn, SIGNAL(valueChanged(int)), this, SLOT(calculateMapping()) );
+    connect( mUi->sbStartRow, SIGNAL(valueChanged(int)), this, SLOT(calculateMapping()) );
+    connect( mUi->sbColumnCount, SIGNAL(valueChanged(int)), this, SLOT(calculateMapping()) );
+    connect( mUi->sbRowCount, SIGNAL(valueChanged(int)), this, SLOT(calculateMapping()) );
+    connect( mUi->cbReverseRows, SIGNAL(stateChanged(int)), this, SLOT(calculateMapping()) );
+    connect( mUi->cbReverseColumns, SIGNAL(stateChanged(int)), this, SLOT(calculateMapping()) );
+    connect( mUi->groupBox, SIGNAL(toggled(bool)), this, SLOT(updateState(bool)) );
 }
 
 DatasetSelectorWidget::~DatasetSelectorWidget()
@@ -42,37 +50,7 @@ DatasetSelectorWidget::~DatasetSelectorWidget()
     delete mUi;
 }
 
-void DatasetSelectorWidget::on_sbStartColumn_valueChanged( int )
-{
-    calculateMapping();
-}
-
-void DatasetSelectorWidget::on_sbStartRow_valueChanged( int )
-{
-    calculateMapping();
-}
-
-void DatasetSelectorWidget::on_sbColumnCount_valueChanged( int )
-{
-    calculateMapping();
-}
-
-void DatasetSelectorWidget::on_sbRowCount_valueChanged( int )
-{
-    calculateMapping();
-}
-
-void DatasetSelectorWidget::on_cbReverseRows_stateChanged( int )
-{
-    calculateMapping();
-}
-
-void DatasetSelectorWidget::on_cbReverseColumns_stateChanged( int )
-{
-    calculateMapping();
-}
-
-void DatasetSelectorWidget::on_groupBox_toggled( bool state )
+void DatasetSelectorWidget::updateState( bool state )
 {
     if ( state )
     {

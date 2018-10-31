@@ -61,18 +61,11 @@ namespace KChart {
         void mappingDisabled ();
 
     private Q_SLOTS:
-        void on_sbStartColumn_valueChanged ( int );
-        void on_sbStartRow_valueChanged ( int );
-        void on_sbColumnCount_valueChanged( int );
-        void on_sbRowCount_valueChanged( int );
-        void on_cbReverseRows_stateChanged ( int );
-        void on_cbReverseColumns_stateChanged ( int );
-        void on_groupBox_toggled ( bool );
-
+        void updateState ( bool );
+        void calculateMapping();
 
     private:
         void resetDisplayValues ();
-        void calculateMapping();
 
         Ui::DatasetSelector* mUi;
         int mSourceRowCount;

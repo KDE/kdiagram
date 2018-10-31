@@ -293,7 +293,7 @@ KChart::TextAttributes KChart::TextLayoutItem::textAttributes() const
 
 Qt::Orientations KChart::TextLayoutItem::expandingDirections() const
 {
-    return 0; // Grow neither vertically nor horizontally
+    return Qt::Orientations(); // Grow neither vertically nor horizontally
 }
 
 QRect KChart::TextLayoutItem::geometry() const
@@ -637,7 +637,7 @@ KChart::MarkerLayoutItem::MarkerLayoutItem( KChart::AbstractDiagram* diagram,
 
 Qt::Orientations KChart::MarkerLayoutItem::expandingDirections() const
 {
-    return 0; // Grow neither vertically nor horizontally
+    return Qt::Orientations(); // Grow neither vertically nor horizontally
 }
 
 QRect KChart::MarkerLayoutItem::geometry() const
@@ -732,7 +732,7 @@ KChart::LineLayoutItem::LineLayoutItem( KChart::AbstractDiagram* diagram,
 
 Qt::Orientations KChart::LineLayoutItem::expandingDirections() const
 {
-    return 0; // Grow neither vertically nor horizontally
+    return Qt::Orientations(); // Grow neither vertically nor horizontally
 }
 
 QRect KChart::LineLayoutItem::geometry() const
@@ -831,7 +831,7 @@ KChart::LineWithMarkerLayoutItem::LineWithMarkerLayoutItem(
 
 Qt::Orientations KChart::LineWithMarkerLayoutItem::expandingDirections() const
 {
-    return 0; // Grow neither vertically nor horizontally
+    return Qt::Orientations(); // Grow neither vertically nor horizontally
 }
 
 QRect KChart::LineWithMarkerLayoutItem::geometry() const
@@ -891,7 +891,7 @@ KChart::AutoSpacerLayoutItem::AutoSpacerLayoutItem(
 
 Qt::Orientations KChart::AutoSpacerLayoutItem::expandingDirections() const
 {
-    return 0; // Grow neither vertically nor horizontally
+    return Qt::Orientations(); // Grow neither vertically nor horizontally
 }
 
 QRect KChart::AutoSpacerLayoutItem::geometry() const

@@ -32,7 +32,7 @@ class AxisSettings : public QWidget
     Q_OBJECT
 
 public:
-    explicit AxisSettings( KChart::Chart *chart, QWidget *parent = 0 );
+    explicit AxisSettings( KChart::Chart *chart, QWidget *parent = nullptr );
     ~AxisSettings();
 
 public Q_SLOTS:

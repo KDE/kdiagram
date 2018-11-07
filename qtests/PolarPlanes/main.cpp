@@ -39,7 +39,7 @@ private slots:
 
     void initTestCase()
     {
-        m_chart = new Chart(0);
+        m_chart = new Chart(nullptr);
         m_tableModel = new TableModel( this );
         m_tableModel->loadFromCSV( ":/data" );
         m_pie = new PieDiagram();
@@ -55,9 +55,9 @@ private slots:
     {
         AbstractCoordinatePlane *plane = m_chart->coordinatePlane();
         QCOMPARE( m_plane->referenceCoordinatePlane(), m_chart->coordinatePlane() );
-        m_chart->takeCoordinatePlane( 0 );
+        m_chart->takeCoordinatePlane( nullptr );
         delete plane;
-        QCOMPARE( m_plane->referenceCoordinatePlane(), (AbstractCoordinatePlane*)0 );
+        QCOMPARE( m_plane->referenceCoordinatePlane(), (AbstractCoordinatePlane*)nullptr );
     }
 
     void testStartPositionSettings()

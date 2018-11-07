@@ -35,7 +35,7 @@ namespace KChart {
         KCHART_DECLARE_DERIVED_DIAGRAM( TernaryPointDiagram, TernaryCoordinatePlane )
 
     public:
-        explicit TernaryPointDiagram ( QWidget* parent = 0, TernaryCoordinatePlane* plane = 0 );
+        explicit TernaryPointDiagram ( QWidget* parent = nullptr, TernaryCoordinatePlane* plane = nullptr );
         virtual ~TernaryPointDiagram();
 
         void resize (const QSizeF &area) Q_DECL_OVERRIDE;

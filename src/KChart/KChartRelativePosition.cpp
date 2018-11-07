@@ -48,7 +48,7 @@ private:
 
 
 RelativePosition::Private::Private()
-    : area( 0 ),
+    : area( nullptr ),
       alignment( Qt::AlignCenter ),
       rotation( 0 )
 {
@@ -98,7 +98,7 @@ QObject * RelativePosition::referenceArea() const {
 void RelativePosition::setReferencePoints( const PositionPoints& points ) {
     d->points = points;
     if ( !points.isNull() )
-        setReferenceArea( 0 );
+        setReferenceArea( nullptr );
 }
 const PositionPoints RelativePosition::referencePoints() const{
     return d->points;
@@ -151,7 +151,7 @@ qreal RelativePosition::rotation() const {
 
 const QPointF RelativePosition::referencePoint( qreal* polarDegrees ) const
 {
-    bool useRect = ( d->area != 0 );
+    bool useRect = ( d->area != nullptr );
     QRect rect;
     if ( useRect ) {
         if ( const QWidget* widget = qobject_cast< const QWidget* >( d->area ) ) {

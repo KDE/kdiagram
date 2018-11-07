@@ -216,7 +216,7 @@ KChart::TextLayoutItem::TextLayoutItem()
     , mText()
     , mTextAlignment( Qt::AlignLeft )
     , mAttributes()
-    , mAutoReferenceArea( 0 )
+    , mAutoReferenceArea( nullptr )
     , mAutoReferenceOrientation( KChartEnums::MeasureOrientationHorizontal )
     , cachedSizeHint() // default this to invalid to force just-in-time calculation before first use of sizeHint()
     , cachedFontSize( 0.0 )
@@ -447,7 +447,7 @@ int KChart::TextLayoutItem::marginWidth() const
 
 int KChart::TextLayoutItem::marginWidth( const QSize& textSize ) const
 {
-    return qMin ( QApplication::style()->pixelMetric( QStyle::PM_ButtonMargin, 0, 0 ),
+    return qMin ( QApplication::style()->pixelMetric( QStyle::PM_ButtonMargin, nullptr, nullptr ),
                   // decrease frame size if the text is small
                   textSize.height() * 2 / 3 );
 }
@@ -927,7 +927,7 @@ static void updateCommonBrush( QBrush& commonBrush, bool& bStart, const KChart::
             ! area.frameAttributes().isVisible() &&
             ba.isVisible() &&
             ba.pixmapMode() == KChart::BackgroundAttributes::BackgroundPixmapModeNone &&
-            ba.brush().gradient() == 0 );
+            ba.brush().gradient() == nullptr );
     if ( bStart ) {
         bStart = false;
         commonBrush = hasSimpleBrush ? ba.brush() : QBrush();

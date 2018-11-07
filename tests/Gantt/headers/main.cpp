@@ -68,7 +68,7 @@ QString MyDateTimeScaleFormatter::text( const QDateTime& dt ) const
  */
 class MyHeaderView : public QHeaderView {
 public:
-    explicit MyHeaderView( QWidget* parent=0 )
+    explicit MyHeaderView( QWidget* parent = nullptr )
         : QHeaderView( Qt::Horizontal, parent ) {
     }
 

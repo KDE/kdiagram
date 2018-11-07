@@ -32,7 +32,7 @@ namespace KGantt
         Q_OBJECT
         KGANTT_DECLARE_PRIVATE_BASE_POLYMORPHIC( Legend )
     public:
-        explicit Legend( QWidget* parent = 0 );
+        explicit Legend( QWidget* parent = nullptr );
         virtual ~Legend();
 
         /*reimp*/ QModelIndex indexAt( const QPoint& point ) const Q_DECL_OVERRIDE;

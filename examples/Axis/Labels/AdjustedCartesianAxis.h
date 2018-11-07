@@ -31,7 +31,7 @@ class AdjustedCartesianAxis: public KChart::CartesianAxis
     Q_DISABLE_COPY( AdjustedCartesianAxis )
 
 public:
-    explicit AdjustedCartesianAxis( KChart::AbstractCartesianDiagram* diagram = 0 );
+    explicit AdjustedCartesianAxis( KChart::AbstractCartesianDiagram* diagram = nullptr );
 
     const QString customizedLabel( const QString& label ) const Q_DECL_OVERRIDE;
 

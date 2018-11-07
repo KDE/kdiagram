@@ -38,7 +38,7 @@ namespace KChart {
 
     public:
         explicit AbstractPolarDiagram (
-            QWidget* parent = 0, PolarCoordinatePlane* plane = 0 );
+            QWidget* parent = nullptr, PolarCoordinatePlane* plane = nullptr );
         virtual ~AbstractPolarDiagram() {}
 
         virtual qreal valueTotals () const = 0;

@@ -58,16 +58,16 @@ using namespace KGantt;
 
 GraphicsScene::Private::Private( GraphicsScene* _q )
     : q( _q ),
-      dragSource( 0 ),
+      dragSource( nullptr ),
       itemDelegate( new ItemDelegate( _q ) ),
-      rowController( 0 ),
+      rowController( nullptr ),
       grid( &default_grid ),
       readOnly( false ),
       isPrinting( false ),
       drawColumnLabels( true ),
       labelsWidth( 0.0 ),
       summaryHandlingModel( new SummaryHandlingProxyModel( _q ) ),
-      selectionModel( 0 )
+      selectionModel( nullptr )
 {
     default_grid.setStartDateTime( QDateTime::currentDateTime().addDays( -1 ) );
 }
@@ -117,15 +117,15 @@ void GraphicsScene::Private::createConstraintItem( const Constraint& c )
 void GraphicsScene::Private::deleteConstraintItem( ConstraintGraphicsItem *citem )
 {
     //qDebug()<<"GraphicsScene::Private::deleteConstraintItem citem="<<citem;
-    if ( citem == 0 ) {
+    if ( citem == nullptr ) {
         return;
     }
     Constraint c = citem->constraint();
-    GraphicsItem* item = items.value( summaryHandlingModel->mapFromSource( c.startIndex() ), 0 );
+    GraphicsItem* item = items.value( summaryHandlingModel->mapFromSource( c.startIndex() ), nullptr );
     if ( item ) {
         item->removeStartConstraint( citem );
     }
-    item = items.value( summaryHandlingModel->mapFromSource( c.endIndex() ), 0 );
+    item = items.value( summaryHandlingModel->mapFromSource( c.endIndex() ), nullptr );
     if ( item ) {
         item->removeEndConstraint( citem );
     }
@@ -140,7 +140,7 @@ void GraphicsScene::Private::deleteConstraintItem( const Constraint& c )
 
 ConstraintGraphicsItem* GraphicsScene::Private::findConstraintItem( const Constraint& c ) const
 {
-    GraphicsItem* item = items.value( summaryHandlingModel->mapFromSource( c.startIndex() ), 0 );
+    GraphicsItem* item = items.value( summaryHandlingModel->mapFromSource( c.startIndex() ), nullptr );
     if ( item ) {
         const QList<ConstraintGraphicsItem*> clst = item->startConstraints();
         QList<ConstraintGraphicsItem*>::const_iterator it = clst.begin();
@@ -152,7 +152,7 @@ ConstraintGraphicsItem* GraphicsScene::Private::findConstraintItem( const Constr
             return *it;
         }
     }
-    item = items.value( summaryHandlingModel->mapFromSource( c.endIndex() ), 0 );
+    item = items.value( summaryHandlingModel->mapFromSource( c.endIndex() ), nullptr );
     if ( item ) {
         const QList<ConstraintGraphicsItem*> clst = item->endConstraints();
         QList<ConstraintGraphicsItem*>::const_iterator it = clst.begin();
@@ -164,7 +164,7 @@ ConstraintGraphicsItem* GraphicsScene::Private::findConstraintItem( const Constr
             return *it;
         }
     }
-    return 0;
+    return nullptr;
 }
 
 // NOTE: we might get here after indexes are invalidated, so cannot do any controlled cleanup
@@ -294,8 +294,8 @@ AbstractRowController* GraphicsScene::rowController() const
 
 void GraphicsScene::setGrid( AbstractGrid* grid )
 {
-    QAbstractItemModel* model = 0;
-    if ( grid == 0 ) grid = &d->default_grid;
+    QAbstractItemModel* model = nullptr;
+    if ( grid == nullptr ) grid = &d->default_grid;
     if ( d->grid ) {
         d->grid->disconnect( this );
         model = d->grid->model();
@@ -455,7 +455,7 @@ void GraphicsScene::insertItem( const QPersistentModelIndex& idx, GraphicsItem* 
             QModelIndex other_idx;
             if ( c.startIndex() == sidx ) {
                 other_idx = c.endIndex();
-                GraphicsItem* other_item = d->items.value(summaryHandlingModel()->mapFromSource( other_idx ),0);
+                GraphicsItem* other_item = d->items.value(summaryHandlingModel()->mapFromSource( other_idx ),nullptr);
                 if ( !other_item ) continue;
                 ConstraintGraphicsItem* citem = new ConstraintGraphicsItem( c );
                 item->addStartConstraint( citem );
@@ -464,7 +464,7 @@ void GraphicsScene::insertItem( const QPersistentModelIndex& idx, GraphicsItem* 
                 addItem( citem );
             } else if ( c.endIndex() == sidx ) {
                 other_idx = c.startIndex();
-                GraphicsItem* other_item = d->items.value(summaryHandlingModel()->mapFromSource( other_idx ),0);
+                GraphicsItem* other_item = d->items.value(summaryHandlingModel()->mapFromSource( other_idx ),nullptr);
                 if ( !other_item ) continue;
                 ConstraintGraphicsItem* citem = new ConstraintGraphicsItem( c );
                 other_item->addStartConstraint( citem );
@@ -505,18 +505,18 @@ void GraphicsScene::removeItem( const QModelIndex& idx )
 
 GraphicsItem* GraphicsScene::findItem( const QModelIndex& idx ) const
 {
-    if ( !idx.isValid() ) return 0;
+    if ( !idx.isValid() ) return nullptr;
     assert( idx.model() == summaryHandlingModel() );
     QHash<QPersistentModelIndex,GraphicsItem*>::const_iterator it = d->items.find( idx );
-    return ( it != d->items.end() )?*it:0;
+    return ( it != d->items.end() )?*it:nullptr;
 }
 
 GraphicsItem* GraphicsScene::findItem( const QPersistentModelIndex& idx ) const
 {
-    if ( !idx.isValid() ) return 0;
+    if ( !idx.isValid() ) return nullptr;
     assert( idx.model() == summaryHandlingModel() );
     QHash<QPersistentModelIndex,GraphicsItem*>::const_iterator it = d->items.find( idx );
-    return ( it != d->items.end() )?*it:0;
+    return ( it != d->items.end() )?*it:nullptr;
 }
 
 void GraphicsScene::clearItems()
@@ -595,7 +595,7 @@ void GraphicsScene::drawBackground( QPainter* painter, const QRectF& _rect )
         QRectF headerRect( scn.topLeft()+QPointF( d->labelsWidth, 0 ),
                            QSizeF( scn.width()-d->labelsWidth, d->rowController->headerHeight() ));
 
-        d->grid->paintHeader( painter, headerRect, rect, 0, 0 );
+        d->grid->paintHeader( painter, headerRect, rect, 0, nullptr );
 
 #if 0
         /* We have to blank out the part of the header that is invisible during
@@ -713,7 +713,7 @@ void GraphicsScene::print( QPainter* painter, const QRectF& _targetRect, bool dr
         targetRect = sceneRect();
     }
 
-    doPrint( painter, targetRect, sceneRect().left(), sceneRect().right(), 0, drawRowLabels, drawColumnLabels );
+    doPrint( painter, targetRect, sceneRect().left(), sceneRect().right(), nullptr, drawRowLabels, drawColumnLabels );
 }
 
 /*! Render the GanttView inside the rectangle \a target using the painter \a painter.
@@ -734,7 +734,7 @@ void GraphicsScene::print( QPainter* painter, qreal start, qreal end,
         targetRect = sceneRect();
     }
 
-    doPrint( painter, targetRect, start, end, 0, drawRowLabels, drawColumnLabels );
+    doPrint( painter, targetRect, start, end, nullptr, drawRowLabels, drawColumnLabels );
 }
 
 /*!\internal

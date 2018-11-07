@@ -34,12 +34,12 @@ using namespace KChart;
 
 AbstractCoordinatePlane::Private::Private()
     : AbstractArea::Private()
-    , parent( 0 )
-    , grid( 0 )
-    , referenceCoordinatePlane( 0 )
+    , parent( nullptr )
+    , grid( nullptr )
+    , referenceCoordinatePlane( nullptr )
     , enableCornerSpacers( true )
     , enableRubberBandZooming( false )
-    , rubberBand( 0 )
+    , rubberBand( nullptr )
 {
     // this bloc left empty intentionally
 }
@@ -111,8 +111,8 @@ void AbstractCoordinatePlane::takeDiagram ( AbstractDiagram* diagram )
     const int idx = d->diagrams.indexOf( diagram );
     if ( idx != -1 ) {
         d->diagrams.removeAt( idx );
-        diagram->setParent( 0 );
-        diagram->setCoordinatePlane( 0 );
+        diagram->setParent( nullptr );
+        diagram->setCoordinatePlane( nullptr );
         disconnect( diagram, SIGNAL(modelsChanged()), this, SLOT(layoutPlanes()) );
         disconnect( diagram, SIGNAL(modelDataChanged()), this, SLOT(update()) );
         disconnect( diagram, SIGNAL(modelDataChanged()), this, SLOT(relayout()) );
@@ -126,7 +126,7 @@ AbstractDiagram* AbstractCoordinatePlane::diagram()
 {
     if ( d->diagrams.isEmpty() )
     {
-        return 0;
+        return nullptr;
     } else {
         return d->diagrams.first();
     }
@@ -267,10 +267,10 @@ void KChart::AbstractCoordinatePlane::setRubberBandZoomingEnabled( bool enable )
 {
     d->enableRubberBandZooming = enable;
 
-    if ( !enable && d->rubberBand != 0 )
+    if ( !enable && d->rubberBand != nullptr )
     {
         delete d->rubberBand;
-        d->rubberBand = 0;
+        d->rubberBand = nullptr;
     }
 }
 
@@ -296,10 +296,10 @@ void KChart::AbstractCoordinatePlane::mousePressEvent( QMouseEvent* event )
 {
     if ( event->button() == Qt::LeftButton )
     {
-        if ( d->enableRubberBandZooming && d->rubberBand == 0 )
+        if ( d->enableRubberBandZooming && d->rubberBand == nullptr )
             d->rubberBand = new QRubberBand( QRubberBand::Rectangle, qobject_cast< QWidget* >( parent() ) );
 
-        if ( d->rubberBand != 0 )
+        if ( d->rubberBand != nullptr )
         {
             d->rubberBandOrigin = event->pos();
             d->rubberBand->setGeometry( QRect( event->pos(), QSize() ) );
@@ -319,7 +319,7 @@ void KChart::AbstractCoordinatePlane::mousePressEvent( QMouseEvent* event )
             setZoomCenter( config.center() );
 
             QWidget* const p = qobject_cast< QWidget* >( parent() );
-            if ( p != 0 )
+            if ( p != nullptr )
                 p->update();
 
             event->accept();
@@ -348,7 +348,7 @@ void KChart::AbstractCoordinatePlane::mouseDoubleClickEvent( QMouseEvent* event 
 
 void KChart::AbstractCoordinatePlane::mouseReleaseEvent( QMouseEvent* event )
 {
-    if ( d->rubberBand != 0 )
+    if ( d->rubberBand != nullptr )
     {
         // save the old config on the stack
         d->rubberBandZoomConfigHistory.push( ZoomParameters( zoomFactorX(), zoomFactorY(), zoomCenter() ) );
@@ -388,7 +388,7 @@ void KChart::AbstractCoordinatePlane::mouseReleaseEvent( QMouseEvent* event )
 
         d->rubberBand->parentWidget()->update();
         delete d->rubberBand;
-        d->rubberBand = 0;
+        d->rubberBand = nullptr;
 
         event->accept();
     }
@@ -401,7 +401,7 @@ void KChart::AbstractCoordinatePlane::mouseReleaseEvent( QMouseEvent* event )
 
 void KChart::AbstractCoordinatePlane::mouseMoveEvent( QMouseEvent* event )
 {
-    if ( d->rubberBand != 0 )
+    if ( d->rubberBand != nullptr )
     {
         const QRect normalized = QRect( d->rubberBandOrigin, event->pos() ).normalized();
         d->rubberBand->setGeometry( normalized &  geometry() );

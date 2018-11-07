@@ -39,8 +39,8 @@ namespace KChart {
                                          TernaryCoordinatePlane )
 
     public:
-        explicit AbstractTernaryDiagram ( QWidget* parent = 0,
-                                          TernaryCoordinatePlane* plane = 0 );
+        explicit AbstractTernaryDiagram ( QWidget* parent = nullptr,
+                                          TernaryCoordinatePlane* plane = nullptr );
         virtual ~AbstractTernaryDiagram();
 
         void paint (PaintContext *paintContext) Q_DECL_OVERRIDE;

@@ -33,7 +33,7 @@ private slots:
 
     void initTestCase()
     {
-        m_chart = new Chart(0);
+        m_chart = new Chart(nullptr);
         PolarCoordinatePlane* polarPlane = new PolarCoordinatePlane( m_chart );
         m_chart->replaceCoordinatePlane( polarPlane );
         m_model = new TableModel( this );

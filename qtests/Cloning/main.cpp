@@ -63,10 +63,10 @@ private slots:
             // We do not clone the axes.
             QCOMPARE( clone->axes().count(), 0 );
             // And neither the reference diagram.
-            QCOMPARE( clone->referenceDiagram(), (AbstractCartesianDiagram*)0 );
+            QCOMPARE( clone->referenceDiagram(), (AbstractCartesianDiagram*)nullptr );
             QCOMPARE( clone->referenceDiagramOffset(), QPointF() );
             // And neither the plane.
-            QCOMPARE( clone->coordinatePlane(), (AbstractCoordinatePlane*)0 );
+            QCOMPARE( clone->coordinatePlane(), (AbstractCoordinatePlane*)nullptr );
             QCOMPARE( diagram->allowOverlappingDataValueTexts(), clone->allowOverlappingDataValueTexts() );
             QCOMPARE( diagram->antiAliasing(), clone->antiAliasing() );
             QCOMPARE( diagram->percentMode(), clone->percentMode() );

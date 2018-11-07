@@ -27,7 +27,7 @@ namespace KGantt {
         Q_OBJECT
         KGANTT_DECLARE_PRIVATE_BASE_POLYMORPHIC( SummaryHandlingProxyModel )
     public:
-        explicit SummaryHandlingProxyModel( QObject* parent=0 );
+        explicit SummaryHandlingProxyModel( QObject* parent = nullptr );
         virtual ~SummaryHandlingProxyModel();
 
         /*reimp*/ void setSourceModel( QAbstractItemModel* model ) Q_DECL_OVERRIDE;

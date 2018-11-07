@@ -56,7 +56,7 @@ namespace KChart {
           *
           * \sa AbstractCartesianDiagram::addAxis
           */
-        explicit LeveyJenningsAxis ( LeveyJenningsDiagram* diagram = 0 );
+        explicit LeveyJenningsAxis ( LeveyJenningsDiagram* diagram = nullptr );
         ~LeveyJenningsAxis();
 
         LeveyJenningsGridAttributes::GridType type() const;

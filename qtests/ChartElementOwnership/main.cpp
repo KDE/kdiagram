@@ -36,7 +36,7 @@ private slots:
 
     void initTestCase()
     {
-        m_chart = new Chart(0);
+        m_chart = new Chart(nullptr);
     }
 
     void testPlaneOwnership()

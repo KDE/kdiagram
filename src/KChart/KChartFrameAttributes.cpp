@@ -67,7 +67,7 @@ FrameAttributes & FrameAttributes::operator=( const FrameAttributes& r )
 
 FrameAttributes::~FrameAttributes()
 {
-    delete _d; _d = 0;
+    delete _d; _d = nullptr;
 }
 
 

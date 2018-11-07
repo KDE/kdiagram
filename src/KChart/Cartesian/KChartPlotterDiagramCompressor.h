@@ -120,7 +120,7 @@ public:
                    second == rhs.second;
         }
     };
-    explicit PlotterDiagramCompressor(QObject *parent = 0);
+    explicit PlotterDiagramCompressor(QObject *parent = nullptr);
     ~PlotterDiagramCompressor();
     Iterator begin( int dataSet );
     Iterator end( int dataSet );    

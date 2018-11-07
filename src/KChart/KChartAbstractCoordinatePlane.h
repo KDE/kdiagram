@@ -50,7 +50,7 @@ namespace KChart {
         enum AxesCalcMode { Linear, Logarithmic };
 
     protected:
-        explicit AbstractCoordinatePlane( Chart* parent = 0 );
+        explicit AbstractCoordinatePlane( Chart* parent = nullptr );
 
     public:
         virtual ~AbstractCoordinatePlane();
@@ -80,7 +80,7 @@ namespace KChart {
          *
          * \sa addDiagram, takeDiagram
          */
-        virtual void replaceDiagram( AbstractDiagram* diagram, AbstractDiagram* oldDiagram = 0 );
+        virtual void replaceDiagram( AbstractDiagram* diagram, AbstractDiagram* oldDiagram = nullptr );
 
         /**
          * Removes the diagram from the plane, without deleting it.
@@ -252,7 +252,7 @@ namespace KChart {
          */
         void setCornerSpacersEnabled( bool enable );
 
-        virtual AbstractCoordinatePlane* sharedAxisMasterPlane( QPainter* p = 0 ); // KChart 3: const method?
+        virtual AbstractCoordinatePlane* sharedAxisMasterPlane( QPainter* p = nullptr ); // KChart 3: const method?
 
 
         /** pure virtual in QLayoutItem */

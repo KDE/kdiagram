@@ -34,7 +34,7 @@ typedef QAbstractItemModel BASE;
 
 class ProjectModel::Node {
 public:
-    explicit Node( Node* parent = 0 );
+    explicit Node( Node* parent = nullptr );
     virtual ~Node();
 
     void addChild( Node* );
@@ -134,7 +134,7 @@ void ProjectModel::Node::insertChild( int i, Node* child )
 
 void ProjectModel::Node::removeChild( Node* child )
 {
-    child->setParent( 0 );
+    child->setParent( nullptr );
     m_children.removeAll( child );
 }
 

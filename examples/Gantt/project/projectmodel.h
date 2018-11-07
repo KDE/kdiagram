@@ -25,7 +25,7 @@
 class ProjectModel : public QAbstractItemModel {
     Q_OBJECT
 public:
-    explicit ProjectModel( QObject* parent = 0 );
+    explicit ProjectModel( QObject* parent = nullptr );
     virtual ~ProjectModel();
 
     /*reimp*/ int rowCount( const QModelIndex& idx ) const Q_DECL_OVERRIDE;

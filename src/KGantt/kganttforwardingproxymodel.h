@@ -29,7 +29,7 @@ namespace KGantt {
         Q_OBJECT
         Q_DISABLE_COPY(ForwardingProxyModel)
     public:
-        explicit ForwardingProxyModel( QObject* parent=0 );
+        explicit ForwardingProxyModel( QObject* parent = nullptr );
         virtual ~ForwardingProxyModel();
 
         /*reimp*/ QModelIndex mapFromSource ( const QModelIndex & sourceIndex ) const Q_DECL_OVERRIDE;

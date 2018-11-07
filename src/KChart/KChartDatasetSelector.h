@@ -46,7 +46,7 @@ namespace KChart {
         Q_OBJECT
 
     public:
-        explicit DatasetSelectorWidget ( QWidget* parent = 0 );
+        explicit DatasetSelectorWidget ( QWidget* parent = nullptr );
         ~DatasetSelectorWidget();
 
     public Q_SLOTS:

@@ -28,7 +28,7 @@ namespace KGantt {
         Q_DISABLE_COPY(ProxyModel)
         KGANTT_DECLARE_PRIVATE_BASE_POLYMORPHIC( ProxyModel )
     public:
-        explicit ProxyModel( QObject* parent=0 );
+        explicit ProxyModel( QObject* parent = nullptr );
         virtual ~ProxyModel();
 
         void setColumn( int ganttrole, int col );

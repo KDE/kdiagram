@@ -47,7 +47,7 @@ class KCHART_EXPORT Palette: public QObject
 {
     Q_OBJECT
 public:
-    explicit Palette( QObject *parent  = 0 );
+    explicit Palette( QObject *parent  = nullptr );
     Palette( const Palette& );
     Palette &operator= ( const Palette & );
 

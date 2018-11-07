@@ -85,30 +85,30 @@ namespace KGantt {
         /*reimp*/ QVariant mapFromChart( qreal x ) const Q_DECL_OVERRIDE;
         /*reimp*/ void paintGrid( QPainter* painter, 
                                   const QRectF& sceneRect, const QRectF& exposedRect,
-                                  AbstractRowController* rowController = 0,
-                                  QWidget* widget=0 ) Q_DECL_OVERRIDE;
+                                  AbstractRowController* rowController = nullptr,
+                                  QWidget* widget = nullptr ) Q_DECL_OVERRIDE;
         /*reimp*/ void paintHeader( QPainter* painter, 
                                     const QRectF& headerRect, const QRectF& exposedRect,
-                                    qreal offset, QWidget* widget=0 ) Q_DECL_OVERRIDE;
+                                    qreal offset, QWidget* widget = nullptr ) Q_DECL_OVERRIDE;
 
     protected:
         virtual void paintHourScaleHeader( QPainter* painter, 
                            const QRectF& headerRect, const QRectF& exposedRect,
-                           qreal offset, QWidget* widget=0 );
+                           qreal offset, QWidget* widget = nullptr );
         virtual void paintDayScaleHeader( QPainter* painter, 
                           const QRectF& headerRect, const QRectF& exposedRect,
-                          qreal offset, QWidget* widget=0 );
+                          qreal offset, QWidget* widget = nullptr );
         virtual void paintWeekScaleHeader( QPainter* painter,
                                            const QRectF& headerRect, const QRectF& exposedRect,
-                                           qreal offset, QWidget* widget=0 );
+                                           qreal offset, QWidget* widget = nullptr );
         virtual void paintMonthScaleHeader( QPainter* painter,
                                             const QRectF& headerRect, const QRectF& exposedRect,
-                                            qreal offset, QWidget* widget=0 );
+                                            qreal offset, QWidget* widget = nullptr );
 
         virtual void paintUserDefinedHeader( QPainter* painter, 
                                      const QRectF& headerRect, const QRectF& exposedRect, 
                                      qreal offset, const DateTimeScaleFormatter* formatter, 
-                                     QWidget* widget = 0 );
+                                     QWidget* widget = nullptr );
 
         virtual void drawDayBackground(QPainter* painter, const QRectF& rect, const QDate& date);
         virtual void drawDayForeground(QPainter* painter, const QRectF& rect, const QDate& date);

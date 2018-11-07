@@ -233,7 +233,7 @@ void LeveyJenningsDiagram::setSymbol( Symbol symbol, const QString& filename )
         return;
 
     delete d->iconRenderer[ symbol ];
-    d->iconRenderer[ symbol ] = 0;
+    d->iconRenderer[ symbol ] = nullptr;
 
     d->icons[ symbol ] = filename;
 
@@ -308,7 +308,7 @@ float LeveyJenningsDiagram::calculatedStandardDeviation() const
 
 void LeveyJenningsDiagram::setModel( QAbstractItemModel* model )
 {
-    if ( this->model() != 0 )
+    if ( this->model() != nullptr )
     {
         disconnect( this->model(), SIGNAL(dataChanged(QModelIndex,QModelIndex)),
                                    this, SLOT(calculateMeanAndStandardDeviation()) );
@@ -326,7 +326,7 @@ void LeveyJenningsDiagram::setModel( QAbstractItemModel* model )
                                    this, SLOT(calculateMeanAndStandardDeviation()) );
     }
     LineDiagram::setModel( model );
-    if ( this->model() != 0 )
+    if ( this->model() != nullptr )
     {
         connect( this->model(), SIGNAL(dataChanged(QModelIndex,QModelIndex)),
                                 this, SLOT(calculateMeanAndStandardDeviation()) );
@@ -725,7 +725,7 @@ QRectF LeveyJenningsDiagram::iconRect() const
  */
 QSvgRenderer* LeveyJenningsDiagram::iconRenderer( Symbol symbol )
 {
-    if ( d->iconRenderer[ symbol ] == 0 )
+    if ( d->iconRenderer[ symbol ] == nullptr )
         d->iconRenderer[ symbol ] = new QSvgRenderer( d->icons[ symbol ], this );
 
     return d->iconRenderer[ symbol ];

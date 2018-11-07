@@ -24,7 +24,7 @@
 using namespace KChart::ModelDataCachePrivate;
 
 ModelSignalMapperConnector::ModelSignalMapperConnector( ModelSignalMapper& mapper )
-    : QObject( 0 ),
+    : QObject( nullptr ),
       m_mapper( mapper )
 {
 }

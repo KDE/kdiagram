@@ -63,7 +63,7 @@ namespace KChart {
           *
           * \sa AbstractCartesianDiagram::addAxis
           */
-        explicit CartesianAxis ( AbstractCartesianDiagram* diagram = 0 );
+        explicit CartesianAxis ( AbstractCartesianDiagram* diagram = nullptr );
         ~CartesianAxis();
 
         /**

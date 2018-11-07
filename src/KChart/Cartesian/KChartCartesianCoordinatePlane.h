@@ -44,7 +44,7 @@ namespace KChart {
     friend class CartesianGrid;
 
     public:
-        explicit CartesianCoordinatePlane ( Chart* parent = 0 );
+        explicit CartesianCoordinatePlane ( Chart* parent = nullptr );
         ~CartesianCoordinatePlane();
 
         void addDiagram ( AbstractDiagram* diagram ) Q_DECL_OVERRIDE;
@@ -375,7 +375,7 @@ namespace KChart {
         void paint( QPainter* ) Q_DECL_OVERRIDE;
 
         /** reimpl */
-        AbstractCoordinatePlane* sharedAxisMasterPlane( QPainter* p = 0 ) Q_DECL_OVERRIDE;
+        AbstractCoordinatePlane* sharedAxisMasterPlane( QPainter* p = nullptr ) Q_DECL_OVERRIDE;
 
         /**
          * Returns the currently visible data range. Might be greater than the

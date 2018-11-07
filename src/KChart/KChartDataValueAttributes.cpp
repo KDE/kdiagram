@@ -112,7 +112,7 @@ DataValueAttributes & DataValueAttributes::operator=( const DataValueAttributes&
 
 DataValueAttributes::~DataValueAttributes()
 {
-    delete _d; _d = 0;
+    delete _d; _d = nullptr;
 }
 
 

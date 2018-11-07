@@ -35,7 +35,7 @@ class MyTaskModel : public QAbstractTableModel {
     };
     QList<Task> m_tasks;
 public:
-    MyTaskModel( QObject* parent=0 )
+    MyTaskModel( QObject* parent = nullptr )
         : QAbstractTableModel( parent )
     {
         Task task;

@@ -32,7 +32,7 @@ namespace KGantt {
         enum { Type = UserType + 43 };
 
         explicit ConstraintGraphicsItem( const Constraint& c,
-                                         QGraphicsItem* parent = 0, GraphicsScene* scene = 0 );
+                                         QGraphicsItem* parent = nullptr, GraphicsScene* scene = nullptr );
         virtual ~ConstraintGraphicsItem();
 
         /*reimp*/ int type() const Q_DECL_OVERRIDE;
@@ -42,7 +42,7 @@ namespace KGantt {
 
         /*reimp*/ QRectF boundingRect() const Q_DECL_OVERRIDE;
         /*reimp*/ void paint( QPainter* painter, const QStyleOptionGraphicsItem* option,
-                              QWidget* widget = 0 ) Q_DECL_OVERRIDE;
+                              QWidget* widget = nullptr ) Q_DECL_OVERRIDE;
 
         inline const Constraint& constraint() const { return m_constraint; }
         Constraint proxyConstraint() const;

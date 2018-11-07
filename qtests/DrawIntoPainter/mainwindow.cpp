@@ -223,7 +223,7 @@ void MainWindow::on_lineTypeCB_currentIndexChanged( const QString & text )
 void MainWindow::on_paintLegendCB_toggled( bool checked )
 {
     KChart::Legend* legend = m_chart->legend();
-    if ( checked != ( legend != 0 ) ) {
+    if ( checked != ( legend != nullptr ) ) {
         if ( checked )
             m_chart->addLegend( m_legend );
         else

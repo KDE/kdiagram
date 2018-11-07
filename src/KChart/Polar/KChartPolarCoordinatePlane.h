@@ -41,7 +41,7 @@ namespace KChart {
         struct CoordinateTransformation;
         typedef QList<CoordinateTransformation> CoordinateTransformationList;
 
-        explicit PolarCoordinatePlane ( Chart* parent = 0 );
+        explicit PolarCoordinatePlane ( Chart* parent = nullptr );
         ~PolarCoordinatePlane();
 
         void addDiagram ( AbstractDiagram* diagram ) Q_DECL_OVERRIDE;

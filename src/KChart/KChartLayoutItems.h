@@ -51,8 +51,8 @@ namespace KChart {
     public:
         AbstractLayoutItem( Qt::Alignment itemAlignment = Qt::Alignment() ) :
             QLayoutItem( itemAlignment ),
-            mParent( 0 ),
-            mParentLayout( 0 ) {}
+            mParent( nullptr ),
+            mParentLayout( nullptr ) {}
 
         /**
          * Default impl: just call paint.

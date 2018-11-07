@@ -44,7 +44,7 @@ namespace KChart {
         friend class LeveyJenningsGrid;
 
     public:
-        explicit LeveyJenningsCoordinatePlane( Chart* parent = 0 );
+        explicit LeveyJenningsCoordinatePlane( Chart* parent = nullptr );
         ~LeveyJenningsCoordinatePlane();
 
         void addDiagram( AbstractDiagram* diagram ) Q_DECL_OVERRIDE;

@@ -31,7 +31,7 @@ class DataValueSettings : public QWidget
     Q_OBJECT
 
 public:
-    DataValueSettings( KChart::Chart *chart, QWidget* parent = 0 );
+    DataValueSettings( KChart::Chart *chart, QWidget* parent = nullptr );
     ~DataValueSettings();
 
 public Q_SLOTS:

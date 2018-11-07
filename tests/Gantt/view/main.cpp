@@ -58,7 +58,7 @@ public:
 class MyWidget : public QWidget {
     Q_OBJECT
 public:
-    MyWidget() : QWidget( 0 )
+    MyWidget() : QWidget( nullptr )
     {
         qDebug() << "Building data";
         //proxyModel.setSourceModel( &model );

@@ -52,7 +52,7 @@ namespace KGantt {
 
     public:
 
-        explicit View(QWidget* parent=0);
+        explicit View(QWidget* parent = nullptr);
         virtual ~View();
 
         QAbstractItemModel* model() const;

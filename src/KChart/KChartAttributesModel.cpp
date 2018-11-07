@@ -83,7 +83,7 @@ AttributesModel::AttributesModel( QAbstractItemModel* model, QObject * parent/* 
 AttributesModel::~AttributesModel()
 {
     delete _d;
-    _d = 0;
+    _d = nullptr;
 }
 
 void AttributesModel::initFrom( const AttributesModel* other )
@@ -515,7 +515,7 @@ int AttributesModel::columnCount( const QModelIndex& index ) const
 
 void AttributesModel::setSourceModel( QAbstractItemModel* sourceModel )
 {
-    if ( this->sourceModel() != 0 )
+    if ( this->sourceModel() != nullptr )
     {
         disconnect( this->sourceModel(), SIGNAL(dataChanged(QModelIndex,QModelIndex)),
                                    this, SLOT(slotDataChanged(QModelIndex,QModelIndex)));
@@ -541,7 +541,7 @@ void AttributesModel::setSourceModel( QAbstractItemModel* sourceModel )
                                    this, SIGNAL(layoutChanged()) );
     }
     QAbstractProxyModel::setSourceModel( sourceModel );
-    if ( this->sourceModel() != NULL )
+    if ( this->sourceModel() != nullptr )
     {
         connect( this->sourceModel(), SIGNAL(dataChanged(QModelIndex,QModelIndex)),
                                 this, SLOT(slotDataChanged(QModelIndex,QModelIndex)));

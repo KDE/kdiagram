@@ -37,7 +37,7 @@ namespace KChart {
         KCHART_DECLARE_PRIVATE_DERIVED_PARENT( TernaryCoordinatePlane, Chart* )
 
     public:
-        explicit TernaryCoordinatePlane( Chart* parent = 0 );
+        explicit TernaryCoordinatePlane( Chart* parent = nullptr );
         ~TernaryCoordinatePlane();
 
         void addDiagram( AbstractDiagram* diagram ) Q_DECL_OVERRIDE;

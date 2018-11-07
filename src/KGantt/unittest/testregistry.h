@@ -60,7 +60,7 @@ namespace UnitTest {
     class KGANTT_EXPORT Runner {
     public:
         ~Runner();
-        unsigned int run( const char * group=0 ) const;
+        unsigned int run( const char * group = nullptr ) const;
     };
 
 }

@@ -57,7 +57,7 @@ namespace KChart {
             Without further configuration, this model is invalid.
             @see setDatasetDescriptionVector
         */
-        explicit DatasetProxyModel ( QObject* parent = 0 );
+        explicit DatasetProxyModel ( QObject* parent = nullptr );
 
         QModelIndex buddy( const QModelIndex& index ) const Q_DECL_OVERRIDE;
 

@@ -36,7 +36,7 @@ private slots:
 
   void initTestCase()
   {
-      m_widget = new Widget(0);
+      m_widget = new Widget(nullptr);
       QVector< qreal > vec0;
       vec0.append( -2 );
       vec0.append( -1 );
@@ -137,17 +137,17 @@ private slots:
       //set Cartesian type
       m_widget->setType( Widget::Line );
       QCOMPARE( m_widget->type(), Widget::Line );
-      QCOMPARE( m_widget->barDiagram(), static_cast<BarDiagram*>(0) );
-      QCOMPARE( m_widget->pieDiagram(), static_cast<PieDiagram*>(0) );
-      QCOMPARE( m_widget->ringDiagram(), static_cast<RingDiagram*>(0) );
-      QCOMPARE( m_widget->polarDiagram(), static_cast<PolarDiagram*>(0) );
+      QCOMPARE( m_widget->barDiagram(), static_cast<BarDiagram*>(nullptr) );
+      QCOMPARE( m_widget->pieDiagram(), static_cast<PieDiagram*>(nullptr) );
+      QCOMPARE( m_widget->ringDiagram(), static_cast<RingDiagram*>(nullptr) );
+      QCOMPARE( m_widget->polarDiagram(), static_cast<PolarDiagram*>(nullptr) );
       // set Polar type
       m_widget->setType( Widget::Polar );
       QCOMPARE( m_widget->type(), Widget::Polar );
-      QCOMPARE( m_widget->barDiagram(), static_cast<BarDiagram*>(0) );
-      QCOMPARE( m_widget->lineDiagram(), static_cast<LineDiagram*>(0) );
-      QCOMPARE( m_widget->ringDiagram(), static_cast<RingDiagram*>(0) );
-      QCOMPARE( m_widget->pieDiagram(), static_cast<PieDiagram*>(0) );
+      QCOMPARE( m_widget->barDiagram(), static_cast<BarDiagram*>(nullptr) );
+      QCOMPARE( m_widget->lineDiagram(), static_cast<LineDiagram*>(nullptr) );
+      QCOMPARE( m_widget->ringDiagram(), static_cast<RingDiagram*>(nullptr) );
+      QCOMPARE( m_widget->pieDiagram(), static_cast<PieDiagram*>(nullptr) );
       // reset default
       m_widget->setType( Widget::Line );
   }
@@ -159,8 +159,8 @@ private slots:
       QCOMPARE( m_widget->allLegends().size(), 1 );
       m_widget->setType( Widget::Bar, Widget::Stacked );
       Legend *legend = m_widget->legend();
-      QVERIFY( legend != 0 );
-      QVERIFY( legend->diagram() != 0 );
+      QVERIFY( legend != nullptr );
+      QVERIFY( legend->diagram() != nullptr );
       QCOMPARE( legend->diagram(), m_widget->diagram() );
       QCOMPARE( m_widget->allLegends().size(), 1 );
       m_widget->setType( Widget::Line );

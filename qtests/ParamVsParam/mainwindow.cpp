@@ -79,7 +79,7 @@ MainWindow::MainWindow(
 MainWindow::~MainWindow()
 {
 	delete m_sourceModel;
-	m_sourceModel = NULL;
+	m_sourceModel = nullptr;
 } // MainWindow::~MainWindow()
 
 

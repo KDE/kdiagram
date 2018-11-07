@@ -102,7 +102,7 @@ private:
 
 void TestCartesianPlanes::init()
 {
-    m_chart = new Chart( 0 );
+    m_chart = new Chart( nullptr );
     m_model = new NumericDataModel();
     m_model->setParent( m_chart );
     m_bars = new BarDiagram( m_chart );
@@ -125,9 +125,9 @@ void TestCartesianPlanes::testIntialOwnership()
 {
     AbstractCoordinatePlane *plane = m_chart->coordinatePlane();
     QCOMPARE( m_plane->referenceCoordinatePlane(), m_chart->coordinatePlane() );
-    m_chart->takeCoordinatePlane( 0 );
+    m_chart->takeCoordinatePlane( nullptr );
     delete plane;
-    QCOMPARE( m_plane->referenceCoordinatePlane(), (AbstractCoordinatePlane*)0 );
+    QCOMPARE( m_plane->referenceCoordinatePlane(), (AbstractCoordinatePlane*)nullptr );
 }
 
 void TestCartesianPlanes::testDiagramOwnership()

@@ -57,8 +57,8 @@ class KCHART_EXPORT Legend : public AbstractAreaWidget
     KCHART_DECLARE_PRIVATE_DERIVED_QWIDGET( Legend )
 
 public:
-    explicit Legend( QWidget* parent = 0 );
-    explicit Legend( KChart::AbstractDiagram* diagram, QWidget* parent = 0 );
+    explicit Legend( QWidget* parent = nullptr );
+    explicit Legend( KChart::AbstractDiagram* diagram, QWidget* parent = nullptr );
     virtual ~Legend();
 
 
@@ -166,7 +166,7 @@ public:
       * \sa diagram, diagrams, addDiagram, removeDiagram, removeDiagrams, setDiagram
       */
     void replaceDiagram( KChart::AbstractDiagram* newDiagram,
-                         KChart::AbstractDiagram* oldDiagram = 0 );
+                         KChart::AbstractDiagram* oldDiagram = nullptr );
 
     /** 
       * Returns the offset of the first dataset of \c diagram.

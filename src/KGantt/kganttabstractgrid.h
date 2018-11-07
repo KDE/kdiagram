@@ -40,7 +40,7 @@ namespace KGantt {
 	friend class GraphicsScene;
     public:
 
-        AbstractGrid(QObject* parent = 0);
+        AbstractGrid(QObject* parent = nullptr);
         virtual ~AbstractGrid();
 
         QAbstractItemModel* model() const;
@@ -54,9 +54,9 @@ namespace KGantt {
         bool isSatisfiedConstraint( const Constraint& c ) const;
 
         virtual void paintGrid( QPainter* painter, const QRectF& sceneRect, const QRectF& exposedRect,
-                                AbstractRowController* rowController = 0, QWidget* widget=0 ) = 0;
+                                AbstractRowController* rowController = nullptr, QWidget* widget = nullptr ) = 0;
         virtual void paintHeader( QPainter* painter, const QRectF& headerRect, const QRectF& exposedRect,
-                                  qreal offset, QWidget* widget=0 ) = 0;
+                                  qreal offset, QWidget* widget = nullptr ) = 0;
 
     public Q_SLOTS:
         /*internal*/ virtual void setModel( QAbstractItemModel* model );

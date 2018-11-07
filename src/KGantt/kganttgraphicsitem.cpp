@@ -91,7 +91,7 @@ void GraphicsItem::init()
     setAcceptHoverEvents( true );
     setHandlesChildEvents( true );
     setZValue( 100. );
-    m_dragline = 0;
+    m_dragline = nullptr;
 }
 
 int GraphicsItem::type() const
@@ -449,7 +449,7 @@ void GraphicsItem::mouseReleaseEvent( QGraphicsSceneMouseEvent* event )
     if ( !m_presspos.isNull() ) {
         scene()->itemClicked( index() );
     }
-    delete m_dragline; m_dragline = 0;
+    delete m_dragline; m_dragline = nullptr;
     if ( scene()->dragSource() ) {
         // Create a new constraint
         GraphicsItem* other = qgraphicsitem_cast<GraphicsItem*>( scene()->itemAt( event->scenePos(), QTransform() ) );
@@ -481,7 +481,7 @@ void GraphicsItem::mouseReleaseEvent( QGraphicsSceneMouseEvent* event )
             }
         }
 
-        scene()->setDragSource( 0 );
+        scene()->setDragSource( nullptr );
         //scene()->update();
     } else {
         if ( isEditable() ) {

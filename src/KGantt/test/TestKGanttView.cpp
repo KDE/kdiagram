@@ -128,12 +128,12 @@ void TestKGanttView::testApi()
     QVERIFY(view->graphicsView() != gv);
     view->setGraphicsView(gv);
     QVERIFY(view->graphicsView() == gv);
-    QVERIFY(view->graphicsView()->parent() != 0);
+    QVERIFY(view->graphicsView()->parent() != nullptr);
 
     QVERIFY(view->graphicsView()->rowController() == tvr);
 
     KGantt::ForwardingProxyModel *new_fpm = qobject_cast<KGantt::ForwardingProxyModel*>(view->graphicsView()->model());
-    QVERIFY(new_fpm != 0);
+    QVERIFY(new_fpm != nullptr);
     QVERIFY(view->graphicsView()->model() == new_fpm);
     QVERIFY(new_fpm->sourceModel() == model);
     QVERIFY(view->ganttProxyModel()->sourceModel() == model);
@@ -142,16 +142,16 @@ void TestKGanttView::testApi()
     QVERIFY(view->graphicsView()->constraintModel() == old_cmodel);
 
 
-    QVERIFY(treeview->parent() != 0); // QSplitter takes ownership
+    QVERIFY(treeview->parent() != nullptr); // QSplitter takes ownership
 
-    QVERIFY(model->parent() == 0); // nobody takes ownership
+    QVERIFY(model->parent() == nullptr); // nobody takes ownership
     model->deleteLater();
 
-    QVERIFY(smodel->parent() != 0); // item model takes ownership
+    QVERIFY(smodel->parent() != nullptr); // item model takes ownership
 
-    QVERIFY(delegate->parent() == 0); // nobody takes ownership
+    QVERIFY(delegate->parent() == nullptr); // nobody takes ownership
     delegate->deleteLater();
-    QVERIFY(cmodel->parent() == 0); // nobody takes ownership
+    QVERIFY(cmodel->parent() == nullptr); // nobody takes ownership
     cmodel->deleteLater();
 
     delete tvr; // does not have a parent

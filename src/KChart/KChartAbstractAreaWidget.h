@@ -46,7 +46,7 @@ class KCHART_EXPORT AbstractAreaWidget : public QWidget, public AbstractAreaBase
     KCHART_DECLARE_PRIVATE_DERIVED_QWIDGET( AbstractAreaWidget )
 
 public:
-    explicit AbstractAreaWidget( QWidget* parent = 0 );
+    explicit AbstractAreaWidget( QWidget* parent = nullptr );
 
     /**
       * @brief Draws the background and frame, then calls paint().

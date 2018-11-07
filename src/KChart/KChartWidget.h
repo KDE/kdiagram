@@ -69,7 +69,7 @@ namespace KChart {
          *
          * \param parent the widget parent; passed on to QWidget
          */
-        explicit Widget( QWidget* parent = 0 );
+        explicit Widget( QWidget* parent = nullptr );
 
         /** Destructor. */
         ~Widget();
@@ -141,7 +141,7 @@ namespace KChart {
          * \sa addHeaderFooter, takeHeaderFooter
          */
         void replaceHeaderFooter( HeaderFooter* header,
-                                  HeaderFooter* oldHeader = 0 );
+                                  HeaderFooter* oldHeader = nullptr );
 
         /** Remove the header (or footer, resp.) from the widget,
          * without deleting it.
@@ -162,7 +162,7 @@ namespace KChart {
         /** Adds a new, already existing, legend. */
         void addLegend (Legend* legend );
 
-        void replaceLegend( Legend* legend, Legend* oldLegend = 0 );
+        void replaceLegend( Legend* legend, Legend* oldLegend = nullptr );
         void takeLegend( Legend* legend );
 
 

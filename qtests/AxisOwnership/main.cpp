@@ -35,7 +35,7 @@ private slots:
 
   void initTestCase()
   {
-      m_chart = new Chart(0);
+      m_chart = new Chart(nullptr);
       m_bars = new BarDiagram();
       m_lines = new LineDiagram();
       m_tableModel = new TableModel( this );
@@ -86,7 +86,7 @@ private slots:
       QPointer<LineDiagram> p( m_lines);
       m_chart->coordinatePlane()->replaceDiagram( m_bars, m_lines );
       QVERIFY( !p );
-      AbstractDiagram * nullDiagram = 0;
+      AbstractDiagram * nullDiagram = nullptr;
       QCOMPARE( m_axis->diagram(), static_cast<const AbstractDiagram*>( nullDiagram ) );
       QVERIFY( !m_axis->observedBy( m_bars ) );
   }

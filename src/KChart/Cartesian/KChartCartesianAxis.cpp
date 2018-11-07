@@ -164,7 +164,7 @@ static QMap< qreal, QString > allAxisAnnotations( const AbstractCoordinatePlane 
 
 TickIterator::TickIterator( bool isY, const DataDimension& dimension, bool useAnnotationsForTicks,
                             bool hasMajorTicks, bool hasMinorTicks, CartesianCoordinatePlane* plane )
-   : m_axis( 0 ),
+   : m_axis( nullptr ),
      m_dimension( dimension ),
      m_majorThinningFactor( 1 ),
      m_majorLabelCount( 0 ),
@@ -509,7 +509,7 @@ static bool referenceDiagramIsBarDiagram( const AbstractDiagram * diagram )
             qobject_cast< const AbstractCartesianDiagram * >( diagram );
     if ( dia && dia->referenceDiagram() )
         dia = dia->referenceDiagram();
-    return qobject_cast< const BarDiagram* >( dia ) != 0;
+    return qobject_cast< const BarDiagram* >( dia ) != nullptr;
 }
 
 static bool referenceDiagramNeedsCenteredAbscissaTicks( const AbstractDiagram *diagram )
@@ -917,9 +917,9 @@ void CartesianAxis::paintCtx( PaintContext* context )
         }
     }
     delete tickLabel;
-    tickLabel = 0;
+    tickLabel = nullptr;
     delete prevTickLabel;
-    prevTickLabel = 0;
+    prevTickLabel = nullptr;
 
     if ( ! titleText().isEmpty() ) {
         d->drawTitleText( painter, plane, geometry() );

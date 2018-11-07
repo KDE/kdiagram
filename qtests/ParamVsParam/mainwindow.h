@@ -41,7 +41,7 @@ class	MainWindow:	public QWidget
 
 public:
 	 MainWindow(
-		 QWidget					*p_parent =	0);
+		 QWidget					*p_parent =	nullptr);
 
 	 virtual	~MainWindow();
 

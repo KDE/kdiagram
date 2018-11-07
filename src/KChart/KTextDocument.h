@@ -43,8 +43,8 @@ class KTextDocument : public QTextDocument
     Q_OBJECT
 
 public:
-    explicit KTextDocument( QObject* parent = 0 );
-    explicit KTextDocument( const QString& text, QObject* parent = 0 );
+    explicit KTextDocument( QObject* parent = nullptr );
+    explicit KTextDocument( const QString& text, QObject* parent = nullptr );
     ~KTextDocument();
 
     QSize sizeHint();

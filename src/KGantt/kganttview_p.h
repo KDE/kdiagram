@@ -52,7 +52,7 @@ namespace KGantt {
     class KGanttTreeView : public QTreeView {
         Q_OBJECT
     public:
-        explicit KGanttTreeView( QAbstractProxyModel* proxy, QWidget* parent=0 );
+        explicit KGanttTreeView( QAbstractProxyModel* proxy, QWidget* parent = nullptr );
         virtual ~KGanttTreeView();
 
         AbstractRowController* rowController() { return &m_controller; }

@@ -128,7 +128,7 @@ Palette::Palette( QObject *parent )
 
 Palette::~Palette()
 {
-    delete _d; _d = 0;
+    delete _d; _d = nullptr;
 }
 
 

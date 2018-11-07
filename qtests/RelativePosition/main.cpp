@@ -34,7 +34,7 @@ private slots:
 
     void initTestCase()
     {
-        m_window = new QLabel(0);
+        m_window = new QLabel(nullptr);
         m_window->setGeometry(100,100, 300,200);
         m_window->show();
     }

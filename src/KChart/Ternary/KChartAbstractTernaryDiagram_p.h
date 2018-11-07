@@ -59,7 +59,7 @@ namespace KChart {
             AbstractDiagram::Private( rhs ),
             // Do not copy axes and reference diagrams.
             axesList(),
-            referenceDiagram( 0 ),
+            referenceDiagram( nullptr ),
             referenceDiagramOffset()
         {
         }

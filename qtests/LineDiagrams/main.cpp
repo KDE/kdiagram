@@ -34,7 +34,7 @@ private slots:
 
     void initTestCase()
     {
-        m_chart = new Chart(0);
+        m_chart = new Chart(nullptr);
         m_model = new TableModel( this );
         m_model->loadFromCSV( ":/data" );
         m_lines = new LineDiagram();

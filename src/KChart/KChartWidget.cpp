@@ -82,7 +82,7 @@ Widget::Widget( QWidget* parent ) :
  */
 Widget::~Widget()
 {
-    delete _d; _d = 0;
+    delete _d; _d = nullptr;
 }
 
 void Widget::init()
@@ -339,7 +339,7 @@ void Widget::takeLegend( Legend* legend )
 
 AbstractDiagram* Widget::diagram()
 {
-    if ( coordinatePlane() == 0 )
+    if ( coordinatePlane() == nullptr )
         qDebug() << "diagram(): coordinatePlane() was NULL";
 
     return coordinatePlane()->diagram();
@@ -389,7 +389,7 @@ static bool isPolar( KChart::Widget::ChartType type )
 
 void Widget::setType( ChartType chartType, SubType chartSubType )
 {
-    AbstractDiagram* diag = 0;
+    AbstractDiagram* diag = nullptr;
     const ChartType oldType = type();
 
     if ( chartType != oldType ) {
@@ -435,7 +435,7 @@ void Widget::setType( ChartType chartType, SubType chartSubType )
             case NoType:
                 break;
         }
-        if ( diag != NULL ) {
+        if ( diag != nullptr ) {
             if ( isCartesian( oldType ) && isCartesian( chartType ) ) {
                 AbstractCartesianDiagram *oldDiag =
                         qobject_cast<AbstractCartesianDiagram*>( coordinatePlane()->diagram() );

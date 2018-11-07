@@ -92,7 +92,7 @@ class Q_DECL_HIDDEN PolarCoordinatePlane::Private : public AbstractCoordinatePla
     friend class PolarCoordinatePlane;
 public:
     explicit Private()
-        : currentTransformation(0)
+        : currentTransformation(nullptr)
         , initialResizeEventReceived(false )
         , hasOwnGridAttributesCircular ( false )
         , hasOwnGridAttributesSagittal ( false )

@@ -51,7 +51,7 @@ public:
         PaletteTypeSubdued = 2
     };
 
-    explicit AttributesModel( QAbstractItemModel* model, QObject * parent = 0 );
+    explicit AttributesModel( QAbstractItemModel* model, QObject * parent = nullptr );
     ~AttributesModel();
 
     /** Copies the internal data (maps and palette) of another

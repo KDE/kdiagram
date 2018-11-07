@@ -37,7 +37,7 @@ private slots:
 
     void initTestCase()
     {
-        m_chart = new Chart(0);
+        m_chart = new Chart(nullptr);
         m_lines = new LineDiagram();
         m_bars = new BarDiagram();
         m_tableModel = new TableModel( this );
@@ -52,7 +52,7 @@ private slots:
         Legend* l = new Legend( m_chart );
         m_chart->addLegend( l );
         QCOMPARE( m_chart->legend(), l );
-        QCOMPARE( l->diagram(), (AbstractDiagram*)0);
+        QCOMPARE( l->diagram(), (AbstractDiagram*)nullptr);
         l->setDiagram( m_lines );
         QCOMPARE( dynamic_cast< LineDiagram * >(l->diagram()), m_lines );
     }
@@ -72,7 +72,7 @@ private slots:
         QCOMPARE( dynamic_cast< LineDiagram * >(oldLegend->diagram()), m_lines );
         m_chart->replaceLegend( l, oldLegend );
         QVERIFY( oldLegend.isNull() );
-        QCOMPARE( l->diagram(), (AbstractDiagram*)0 );
+        QCOMPARE( l->diagram(), (AbstractDiagram*)nullptr );
         l->setDiagram( m_lines );
         QCOMPARE( dynamic_cast< LineDiagram * >(l->diagram()), m_lines );
     }
@@ -80,7 +80,7 @@ private slots:
     void testReferenceArea()
     {
          Legend* l = new Legend( );
-         QCOMPARE( l->referenceArea(), ( const QWidget* )0 );
+         QCOMPARE( l->referenceArea(), ( const QWidget* )nullptr );
          l->setReferenceArea( m_chart );
          QCOMPARE( dynamic_cast< const Chart * >(l->referenceArea()), const_cast< const Chart * >(m_chart) );
          Legend* l1 = new Legend( m_chart );

@@ -35,7 +35,7 @@ class DiagramTypeDialog : public QDialog
 public:
     enum DiagramType{ Bar, LyingBar, Line, Plotter, Pie };
     enum Subtype{ Normal, Percent, Stacked };
-    explicit DiagramTypeDialog( KChart::Chart *chart, QWidget *parent = 0 );
+    explicit DiagramTypeDialog( KChart::Chart *chart, QWidget *parent = nullptr );
     ~DiagramTypeDialog();
 
     void setDefaultModels( QHash< DiagramType, QAbstractItemModel* > models );

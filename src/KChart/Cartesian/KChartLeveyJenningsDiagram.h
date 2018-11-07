@@ -49,7 +49,7 @@ class KCHART_EXPORT LeveyJenningsDiagram : public LineDiagram
 
 
 public:
-    explicit LeveyJenningsDiagram( QWidget* parent = 0, LeveyJenningsCoordinatePlane* plane = 0 );
+    explicit LeveyJenningsDiagram( QWidget* parent = nullptr, LeveyJenningsCoordinatePlane* plane = nullptr );
     virtual ~LeveyJenningsDiagram();
 
     LineDiagram * clone() const Q_DECL_OVERRIDE;

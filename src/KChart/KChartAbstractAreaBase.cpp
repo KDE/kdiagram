@@ -54,7 +54,7 @@ AbstractAreaBase::AbstractAreaBase() :
 
 AbstractAreaBase::~AbstractAreaBase()
 {
-    delete _d; _d = 0;
+    delete _d; _d = nullptr;
 }
 
 
@@ -185,7 +185,7 @@ void AbstractAreaBase::paintFrameAttributes( QPainter& painter, const QRect& rec
 
 void AbstractAreaBase::paintBackground( QPainter& painter, const QRect& rect )
 {
-    Q_ASSERT_X ( d != 0, "AbstractAreaBase::paintBackground()",
+    Q_ASSERT_X ( d != nullptr, "AbstractAreaBase::paintBackground()",
                 "Private class was not initialized!" );
 
     PainterSaver painterSaver( &painter );
@@ -201,7 +201,7 @@ void AbstractAreaBase::paintBackground( QPainter& painter, const QRect& rect )
 
 void AbstractAreaBase::paintFrame( QPainter& painter, const QRect& rect )
 {
-    Q_ASSERT_X ( d != 0, "AbstractAreaBase::paintFrame()",
+    Q_ASSERT_X ( d != nullptr, "AbstractAreaBase::paintFrame()",
                 "Private class was not initialized!" );
     paintFrameAttributes( painter, rect, d->frameAttributes );
 }

@@ -36,7 +36,7 @@ static qreal _trunc( qreal v )
 
 
 AbstractGrid::AbstractGrid ()
-    : mPlane( 0 )
+    : mPlane( nullptr )
 {
     //this bloc left empty intentionally
 }

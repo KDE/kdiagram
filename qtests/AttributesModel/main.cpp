@@ -38,7 +38,7 @@ private slots:
       tableModel->loadFromCSV( ":/data" );
       tableModel->setSupplyHeaderData( false );
       m_model = tableModel;
-      m_plane = new CartesianCoordinatePlane(0);
+      m_plane = new CartesianCoordinatePlane(nullptr);
       m_bars = new BarDiagram();
       m_bars->setModel( m_model );
       m_lines = new LineDiagram();
@@ -83,7 +83,7 @@ private slots:
       // Note: a SHARED atributes-model must be owned by the USER
       //       but it may not be owned by any of the diagrams
       //       see API docu of AbstractDiagram::setAttributesModel()
-      AttributesModel *attrsmodel = new AttributesModel( m_model, 0 );
+      AttributesModel *attrsmodel = new AttributesModel( m_model, nullptr );
 
       m_lines->setAttributesModel( attrsmodel );
       m_bars->setAttributesModel(  attrsmodel );
@@ -109,7 +109,7 @@ private slots:
       delete m_lines;
       delete m_bars;
       delete m_plane;
-      m_plane = new CartesianCoordinatePlane(0);
+      m_plane = new CartesianCoordinatePlane(nullptr);
       m_bars = new BarDiagram();
       m_bars->setModel( m_model );
       m_lines = new LineDiagram();

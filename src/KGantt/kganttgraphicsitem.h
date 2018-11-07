@@ -40,8 +40,8 @@ namespace KGantt {
     public:
         enum { Type = UserType + 42 };
 
-        explicit GraphicsItem( QGraphicsItem* parent = 0, GraphicsScene* scene = 0 );
-        explicit GraphicsItem( const QModelIndex& idx, QGraphicsItem* parent = 0, GraphicsScene* scene = 0 );
+        explicit GraphicsItem( QGraphicsItem* parent = nullptr, GraphicsScene* scene = nullptr );
+        explicit GraphicsItem( const QModelIndex& idx, QGraphicsItem* parent = nullptr, GraphicsScene* scene = nullptr );
         virtual ~GraphicsItem();
 
         /*reimp*/int type() const Q_DECL_OVERRIDE;
@@ -75,7 +75,7 @@ namespace KGantt {
 
         /*reimp*/ QRectF boundingRect() const Q_DECL_OVERRIDE;
         /*reimp*/ void paint( QPainter* painter, const QStyleOptionGraphicsItem* option,
-                              QWidget* widget = 0 ) Q_DECL_OVERRIDE;
+                              QWidget* widget = nullptr ) Q_DECL_OVERRIDE;
 
         /*reimp*/ QVariant itemChange( GraphicsItemChange, const QVariant& value ) Q_DECL_OVERRIDE;
     protected:

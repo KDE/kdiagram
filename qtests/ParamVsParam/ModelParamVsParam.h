@@ -31,7 +31,7 @@ class ModelParamVsParam: public QStandardItemModel
 
 public:
 	ModelParamVsParam(
-		QObject					*p_parent = 0);
+		QObject					*p_parent = nullptr);
 
 	void setTimeout(
 		int					p_timeout);

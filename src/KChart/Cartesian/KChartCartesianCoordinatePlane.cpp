@@ -266,7 +266,7 @@ QRectF CartesianCoordinatePlane::calculateRawDataBoundingRect() const
 
 DataDimensionsList CartesianCoordinatePlane::getDataDimensionsList() const
 {
-    const AbstractCartesianDiagram* dgr = diagrams().isEmpty() ? 0 :
+    const AbstractCartesianDiagram* dgr = diagrams().isEmpty() ? nullptr :
                    qobject_cast< const AbstractCartesianDiagram* >( diagrams().first() );
     if ( dgr && dgr->referenceDiagram() ) {
         dgr = dgr->referenceDiagram();
@@ -278,7 +278,7 @@ DataDimensionsList CartesianCoordinatePlane::getDataDimensionsList() const
     // It does make sense to retrieve the orientation from the first diagram. This is because
     // a coordinate plane can either be for horizontal *or* for vertical diagrams. Both at the
     // same time won't work, and thus the orientation for all diagrams is the same as for the first one.
-    const Qt::Orientation diagramOrientation = barDiagram != 0 ? barDiagram->orientation() : Qt::Vertical;
+    const Qt::Orientation diagramOrientation = barDiagram != nullptr ? barDiagram->orientation() : Qt::Vertical;
     const bool diagramIsVertical = diagramOrientation == Qt::Vertical;
 
     DataDimensionsList l;
@@ -777,15 +777,15 @@ AbstractCoordinatePlane* CartesianCoordinatePlane::sharedAxisMasterPlane( QPaint
 {
     CartesianCoordinatePlane* plane = this;
     AbstractCartesianDiagram* diag = dynamic_cast< AbstractCartesianDiagram* >( plane->diagram() );
-    const CartesianAxis* sharedAxis = 0;
-    if ( diag != 0 )
+    const CartesianAxis* sharedAxis = nullptr;
+    if ( diag != nullptr )
     {
         const CartesianAxisList axes = diag->axes();
         Q_FOREACH( const CartesianAxis* a, axes )
         {
             CartesianCoordinatePlane* p = const_cast< CartesianCoordinatePlane* >(
                                               dynamic_cast< const CartesianCoordinatePlane* >( a->coordinatePlane() ) );
-            if ( p != 0 && p != this )
+            if ( p != nullptr && p != this )
             {
                 plane = p;
                 sharedAxis = a;
@@ -793,7 +793,7 @@ AbstractCoordinatePlane* CartesianCoordinatePlane::sharedAxisMasterPlane( QPaint
         }
     }
 
-    if ( plane == this || painter == 0 )
+    if ( plane == this || painter == nullptr )
         return plane;
 
     const QPointF zero = QPointF( 0, 0 );

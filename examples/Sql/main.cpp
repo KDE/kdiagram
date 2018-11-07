@@ -42,7 +42,7 @@ using namespace KChart;
  */
 class TransposeProxyModel : public QAbstractProxyModel{
 public:
-  explicit TransposeProxyModel(QObject* parent = 0) : QAbstractProxyModel(parent) {}
+  explicit TransposeProxyModel(QObject* parent = nullptr) : QAbstractProxyModel(parent) {}
   virtual ~TransposeProxyModel() {}
   QModelIndex mapFromSource ( const QModelIndex & sourceIndex ) const Q_DECL_OVERRIDE { return index(sourceIndex.column(), sourceIndex.row()); }
   QModelIndex mapToSource ( const QModelIndex & proxyIndex ) const Q_DECL_OVERRIDE { return sourceModel()->index(proxyIndex.column(), proxyIndex.row()); }
@@ -59,9 +59,9 @@ public:
 class ChartWidget : public QWidget {
   Q_OBJECT
 public:
-  explicit ChartWidget(QWidget* parent=0)
+  explicit ChartWidget(QWidget* parent = nullptr)
     : QWidget(parent)
-    , m_model(0)
+    , m_model(nullptr)
   {
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     db.setHostName("localhost");

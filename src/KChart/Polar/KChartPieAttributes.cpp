@@ -60,7 +60,7 @@ PieAttributes& PieAttributes::operator= ( const PieAttributes& r )
 
 PieAttributes::~PieAttributes()
 {
-    delete _d; _d = 0;
+    delete _d; _d = nullptr;
 }
 
 

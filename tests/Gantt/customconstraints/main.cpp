@@ -37,7 +37,7 @@
 class MyGraphicsView : public KGantt::GraphicsView {
     Q_OBJECT
 public:
-    MyGraphicsView( QWidget* parent=0 ) : KGantt::GraphicsView( parent )
+    MyGraphicsView( QWidget* parent = nullptr ) : KGantt::GraphicsView( parent )
     {
     }
 
@@ -76,7 +76,7 @@ public:
 class MyWidget : public QWidget {
     Q_OBJECT
 public:
-    MyWidget() : QWidget( 0 )
+    MyWidget() : QWidget( nullptr )
     {
         view.setGraphicsView( new MyGraphicsView );
 

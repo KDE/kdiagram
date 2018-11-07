@@ -45,7 +45,7 @@ namespace KChart {
        /**
          * Constructs a new observer observing the given diagram.
          */
-        explicit DiagramObserver( AbstractDiagram * diagram, QObject* parent = 0 );
+        explicit DiagramObserver( AbstractDiagram * diagram, QObject* parent = nullptr );
         ~DiagramObserver();
 
         const AbstractDiagram* diagram() const;

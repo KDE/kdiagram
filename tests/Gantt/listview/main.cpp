@@ -44,7 +44,7 @@ public:
 
 class MyListView : public QListView {
 public:
-  MyListView(QWidget* parent=0) : QListView(parent)
+  MyListView(QWidget* parent = nullptr) : QListView(parent)
   {
     // Make some space for the header
     setViewportMargins(0, fontMetrics().height()*2+4*frameWidth(), 0, 0);
@@ -56,7 +56,7 @@ public:
 class MyWidget : public QWidget {
     Q_OBJECT
 public:
-    MyWidget() : QWidget( 0 )
+    MyWidget() : QWidget( nullptr )
     {
         qDebug() << "Building data";
         //proxyModel.setSourceModel( &model );

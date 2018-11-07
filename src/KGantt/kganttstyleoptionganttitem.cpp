@@ -32,7 +32,7 @@ typedef QStyleOptionViewItem BASE;
 StyleOptionGanttItem::StyleOptionGanttItem()
     : BASE(),
       displayPosition( Left ),
-      grid( 0 )
+      grid( nullptr )
 {
     type = QStyleOption::SO_CustomBase+89;
     version = 1;

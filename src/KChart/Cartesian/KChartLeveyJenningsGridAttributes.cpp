@@ -78,7 +78,7 @@ LeveyJenningsGridAttributes & LeveyJenningsGridAttributes::operator=( const Leve
 
 LeveyJenningsGridAttributes::~LeveyJenningsGridAttributes()
 {
-    delete _d; _d = 0;
+    delete _d; _d = nullptr;
 }
 
 

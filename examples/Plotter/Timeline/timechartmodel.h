@@ -28,7 +28,7 @@ class TimeChartModel : public QSortFilterProxyModel
 {
     Q_OBJECT
 public:
-    explicit TimeChartModel( QObject* parent = 0 );
+    explicit TimeChartModel( QObject* parent = nullptr );
 
     QPair< QDateTime, QDateTime > visibleRange() const;
     

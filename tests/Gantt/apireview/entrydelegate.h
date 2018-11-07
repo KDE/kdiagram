@@ -28,7 +28,7 @@ namespace KGantt {
 
 class EntryDelegate : public QItemDelegate {
 public:
-    EntryDelegate( KGantt::ConstraintModel* constraintModel, QObject* parent = 0 );
+    EntryDelegate( KGantt::ConstraintModel* constraintModel, QObject* parent = nullptr );
     
     bool editorEvent( QEvent* event, QAbstractItemModel* model, const QStyleOptionViewItem& option, const QModelIndex& index ) Q_DECL_OVERRIDE;
     

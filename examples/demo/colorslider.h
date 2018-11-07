@@ -28,7 +28,7 @@ class ColorSlider : public QAbstractSlider
     Q_PROPERTY( QColor startColor READ startColor WRITE setStartColor NOTIFY startColorChanged )
     Q_PROPERTY( QColor endColor READ endColor WRITE setStartColor NOTIFY endColorChanged )
 public:
-    explicit ColorSlider( QWidget *parent = 0 );
+    explicit ColorSlider( QWidget *parent = nullptr );
     ~ColorSlider();
     QColor startColor() const;
     void setStartColor( const QColor &color );

@@ -31,7 +31,7 @@ public:
 		QAbstractItemModel	*p_sourceModel,
 		int						p_column1,
 		int						p_column2,
-		QObject					*p_parent = 0);
+		QObject					*p_parent = nullptr);
 
 	int columnCount(
 		const QModelIndex	&p_parent = QModelIndex()) const Q_DECL_OVERRIDE;

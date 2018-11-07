@@ -59,7 +59,7 @@ namespace KChart {
         KCHART_DECLARE_PRIVATE_DERIVED_PARENT( AbstractAxis, AbstractDiagram* )
 
     public:
-        explicit AbstractAxis( AbstractDiagram* diagram = 0 );
+        explicit AbstractAxis( AbstractDiagram* diagram = nullptr );
         virtual ~AbstractAxis();
 
         // FIXME implement when code os ready for it:

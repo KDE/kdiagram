@@ -67,7 +67,7 @@ private slots:
     // This is very much like KChart::Chart does with legends
     void testBoxLayoutHiddenWidget() {
         QBoxLayout* vLayout = new QVBoxLayout;
-        MyLegendWidget* widget1 = new MyLegendWidget( 0 );
+        MyLegendWidget* widget1 = new MyLegendWidget( nullptr );
         widget1->resize( 10, 10 );
 
         // Adding a hidden widget doesn't work, the layout ignores it
@@ -90,7 +90,7 @@ private slots:
     }
 
     void testBoxLayoutChildWidget() {
-        QWidget* topLevelWidget = new QWidget( 0 );
+        QWidget* topLevelWidget = new QWidget( nullptr );
         // This time the layout is associated with a widget, like d->layout in KChart::Chart.
         QBoxLayout* vLayout = new QVBoxLayout( topLevelWidget );
         MyLegendWidget* widget1 = new MyLegendWidget( topLevelWidget );
@@ -125,7 +125,7 @@ private slots:
     }
 
     void testSubGridLayout() {
-        QWidget* topLevelWidget = new QWidget( 0 );
+        QWidget* topLevelWidget = new QWidget( nullptr );
         QBoxLayout* vLayout = new QVBoxLayout( topLevelWidget );
         QGridLayout* gridLayout = new QGridLayout();
 

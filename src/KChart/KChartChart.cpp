@@ -201,7 +201,7 @@ public:
     {
         QWidget* w = const_cast< MyWidgetItem * >( this )->widget();
         if ( isEmpty() ) {
-            return Qt::Orientations(0);
+            return Qt::Orientations();
         }
         Qt::Orientations e = w->sizePolicy().expandingDirections();
         return e;

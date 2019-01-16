@@ -58,6 +58,20 @@ MainWindow::MainWindow( QWidget* parent ) :
 
     setupUi( this );
 
+    connect( lineTypeCB, SIGNAL(currentIndexChanged(QString)), this, SLOT(setLineType(QString)) );
+    connect( paintLegendCB, SIGNAL(toggled(bool)), this, SLOT(setLegendVisible(bool)) );
+    connect( paintValuesCB, SIGNAL(toggled(bool)), this, SLOT(setValuesVisible(bool)) );
+    connect( paintMarkersCB, SIGNAL(toggled(bool)), this, SLOT(setMarkersVisible(bool)) );
+    connect( markersStyleCB, SIGNAL(currentIndexChanged(int)), this, SLOT(updateMarkers()) );
+    connect( markersWidthSB, SIGNAL(valueChanged(int)), this, SLOT(updateMarkersHeight()) );
+    connect( markersHeightSB, SIGNAL(valueChanged(int)), this, SLOT(updateMarkersWidth()) );
+    connect( displayAreasCB, SIGNAL(toggled(bool)), this, SLOT(updateAreas(bool)) );
+    connect( transparencySB, SIGNAL(valueChanged(int)), this, SLOT(updateAreasTransparency()) );
+    connect( zoomFactorSB, SIGNAL(valueChanged(double)), this, SLOT(setZoomFactor(qreal)) );
+    connect( hSBar, SIGNAL(valueChanged(int)), this, SLOT(setHPos(int)) );
+    connect( vSBar, SIGNAL(valueChanged(int)), this, SLOT(setVPos(int)) );
+    connect( savePB, SIGNAL(clicked()), this, SLOT(saveChart()) );
+
     QHBoxLayout* chartLayout = new QHBoxLayout( chartFrame );
 #ifdef USE_FRAME_WIDGET
     FrameWidget* chartFrameWidget = new FrameWidget();
@@ -170,8 +184,8 @@ MainWindow::MainWindow( QWidget* parent ) :
     // any of them (e.g. only markers) can be displayed. but if we enable data value attributs, a default
     // data value text is included, even if we only wanted to set markers. so we enable DVA and then
     // individually disable the parts we don't want.
-    on_paintValuesCB_toggled( false );
-    on_paintMarkersCB_toggled( false );
+    setValuesVisible( false );
+    setMarkersVisible( false );
 }
 
 void MainWindow::updateData(QString data)
@@ -208,7 +222,7 @@ void MainWindow::updateData(QString data)
 
 }
 
-void MainWindow::on_lineTypeCB_currentIndexChanged( const QString & text )
+void MainWindow::setLineType( const QString & text )
 {
     if ( text == "Normal" )
         m_lines->setType( LineDiagram::Normal );
@@ -220,18 +234,18 @@ void MainWindow::on_lineTypeCB_currentIndexChanged( const QString & text )
         qWarning (" Does not match any type");
 }
 
-void MainWindow::on_paintLegendCB_toggled( bool checked )
+void MainWindow::setLegendVisible(bool visible )
 {
     KChart::Legend* legend = m_chart->legend();
-    if ( checked != ( legend != nullptr ) ) {
-        if ( checked )
+    if ( visible != ( legend != nullptr ) ) {
+        if ( visible )
             m_chart->addLegend( m_legend );
         else
             m_chart->takeLegend( legend );
     }
 }
 
-void MainWindow::on_paintValuesCB_toggled( bool checked )
+void MainWindow::setValuesVisible(bool visible )
 {
     const int colCount = m_lines->model()->columnCount();
     for ( int iColumn = 0; iColumn<colCount; ++iColumn ) {
@@ -242,7 +256,7 @@ void MainWindow::on_paintValuesCB_toggled( bool checked )
         ta.setRotation( 0 );
         ta.setFont( QFont( "Comic", 10 ) );
         ta.setPen( m_lines->brush( iColumn ).color() );
-        ta.setVisible( checked );
+        ta.setVisible( visible );
 
         a.setTextAttributes( ta );
         m_lines->setDataValueAttributes( iColumn, a);
@@ -250,55 +264,49 @@ void MainWindow::on_paintValuesCB_toggled( bool checked )
 }
 
 
-void MainWindow::on_paintMarkersCB_toggled( bool checked )
+void MainWindow::setMarkersVisible( bool visible )
 {
-    paintMarkers( checked, QSize() );
+    paintMarkers( visible, QSize() );
 }
 
-void MainWindow::on_markersStyleCB_currentIndexChanged( const QString & text )
+void MainWindow::updateMarkers()
 {
-    Q_UNUSED( text );
-    on_paintMarkersCB_toggled( paintMarkersCB->isChecked() );
+    setMarkersVisible( paintMarkersCB->isChecked() );
 }
 
-
-void MainWindow::on_markersWidthSB_valueChanged( int i )
+void MainWindow::updateMarkersHeight()
 {
-    Q_UNUSED( i );
     markersHeightSB->setValue( markersWidthSB->value() );
-    on_paintMarkersCB_toggled( paintMarkersCB->isChecked() );
+    updateMarkers();
 }
 
-void MainWindow::on_markersHeightSB_valueChanged( int i )
+void MainWindow::updateMarkersWidth()
 {
-    Q_UNUSED( i );
     markersWidthSB->setValue( markersHeightSB->value() );
-    on_paintMarkersCB_toggled( paintMarkersCB->isChecked() );
+    updateMarkers();
 }
 
-
-void MainWindow::on_displayAreasCB_toggled( bool checked )
+void MainWindow::updateAreas( bool visible )
 {
     const int colCount = m_lines->model()->columnCount();
     for ( int iColumn = 0; iColumn<colCount; ++iColumn ) {
         LineAttributes la( m_lines->lineAttributes( iColumn ) );
-        la.setDisplayArea( checked );
-        if ( checked  )
+        la.setDisplayArea( visible );
+        if ( visible  )
             la.setTransparency( transparencySB->value() );
         m_lines->setLineAttributes( iColumn,  la );
     }
 }
 
-void MainWindow::on_transparencySB_valueChanged( int alpha )
+void MainWindow::updateAreasTransparency()
 {
-    Q_UNUSED( alpha );
     if ( !displayAreasCB->isChecked() )
         displayAreasCB->setChecked( true );
     else
-        on_displayAreasCB_toggled( true );
+        updateAreas( true );
 }
 
-void MainWindow::on_zoomFactorSB_valueChanged( qreal factor )
+void MainWindow::setZoomFactor( qreal factor )
 {
     const bool isZoomedIn = factor > 1.0f;
     hSBar->setVisible( isZoomedIn );
@@ -311,13 +319,13 @@ void MainWindow::on_zoomFactorSB_valueChanged( qreal factor )
     m_chart->coordinatePlane()->setZoomFactorY( factor );
 }
 
-void MainWindow::on_hSBar_valueChanged( int hPos )
+void MainWindow::setHPos( int hPos )
 {
     m_chart->coordinatePlane()->setZoomCenter( QPointF(hPos/1000.0, vSBar->value()/1000.0) );
     m_chart->update();
 }
 
-void MainWindow::on_vSBar_valueChanged( int vPos )
+void MainWindow::setVPos( int vPos )
 {
     m_chart->coordinatePlane()->setZoomCenter( QPointF( hSBar->value()/1000.0, vPos/1000.0) );
 }
@@ -399,7 +407,7 @@ void MainWindow::paintMarkers( bool checked, const QSize& printSize )
     }
 }
 
-void MainWindow::on_savePB_clicked()
+void MainWindow::saveChart()
 {
     qDebug() << "Painting into PNG";
     QPixmap qpix(600,600);

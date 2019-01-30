@@ -25,8 +25,6 @@
 
 #include <QDateTime>
 #include <QBrush>
-#include <QTimer>
-#include <QPen>
 
 namespace KGantt {
     class Q_DECL_HIDDEN DateTimeScaleFormatter::Private
@@ -73,8 +71,7 @@ namespace KGantt {
               hour_upper( DateTimeScaleFormatter::Hour, QString::fromLatin1("hh" ) ),
               hour_lower( DateTimeScaleFormatter::Minute, QString::fromLatin1("m" ) ),
               minute_upper( DateTimeScaleFormatter::Minute, QString::fromLatin1("m" ) ),
-              minute_lower( DateTimeScaleFormatter::Second, QString::fromLatin1("s" ) ),
-              timelineOptions(nullptr)
+              minute_lower( DateTimeScaleFormatter::Second, QString::fromLatin1("s" ) )
         {
         }
         ~Private()
@@ -87,9 +84,6 @@ namespace KGantt {
         QDateTime chartXtoDateTime( qreal x ) const;
 
         int tabHeight( const QString& txt, QWidget* widget = nullptr ) const;
-
-        void drawTimeline(QPainter* painter, const QRectF& rect);
-
         void getAutomaticFormatters( DateTimeScaleFormatter** lower, DateTimeScaleFormatter** upper);
 
         class DateTextFormatter {
@@ -156,10 +150,6 @@ namespace KGantt {
         DateTimeScaleFormatter hour_lower;
         DateTimeScaleFormatter minute_upper;
         DateTimeScaleFormatter minute_lower;
-
-        QDateTime timelineTime;
-        DateTimeGrid::TimelineOptions timelineOptions;
-        QPen timelinePen;
     };
 
     inline DateTimeGrid::DateTimeGrid( DateTimeGrid::Private* d ) : AbstractGrid( d ) {}

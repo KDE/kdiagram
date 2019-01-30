@@ -80,24 +80,6 @@ QDateTime DateTimeGrid::Private::chartXtoDateTime( qreal x ) const
     return result;
 }
 
-void DateTimeGrid::Private::drawTimeline(QPainter* painter, const QRectF& rect)
-{
-    QDateTime dt = timelineTime.isValid() ? timelineTime : QDateTime::currentDateTime();
-    qreal x = dateTimeToChartX(dt);
-    if (rect.contains(x, rect.top())) {
-        painter->save();
-        QPen pen;
-        if (timelineOptions & UseCustomPen) {
-            pen = timelinePen;
-        } else {
-            pen = QPen(QApplication::palette().color(QPalette::Highlight), 0);
-        }
-        painter->setPen(pen);
-        painter->drawLine(x, rect.top(), x, rect.bottom());
-        painter->restore();
-    }
-}
-
 #define d d_func()
 
 /*!\class KGantt::DateTimeScaleFormatter
@@ -1178,20 +1160,18 @@ void DateTimeGrid::paintMonthScaleHeader( QPainter* painter,  const QRectF& head
 */
 void DateTimeGrid::drawDayBackground(QPainter* painter, const QRectF& rect, const QDate& date)
 {
+    Q_UNUSED(painter);
+    Q_UNUSED(rect);
     Q_UNUSED(date);
-    if (d->timelineOptions & Background) {
-        d->drawTimeline(painter, rect);
-    }
 }
 
 /*! Draw the foreground for a day.
 */
 void DateTimeGrid::drawDayForeground(QPainter* painter, const QRectF& rect, const QDate& date)
 {
+    Q_UNUSED(painter);
+    Q_UNUSED(rect);
     Q_UNUSED(date);
-    if (d->timelineOptions & Foreground) {
-        d->drawTimeline(painter, rect);
-    }
 }
 
 /** Return the rectangle that represents the date-range.
@@ -1303,34 +1283,6 @@ void DateTimeGrid::drawForeground(QPainter* paint, const QRectF& rect)
 
     // Restore the painter state
     paint->restore();
-}
-
-void DateTimeGrid::setTimelineTime(const QDateTime &dt)
-{
-    d->timelineTime = dt;
-    emit gridChanged();
-}
-
-QDateTime DateTimeGrid::timelineTime() const
-{
-    return d->timelineTime;
-}
-
-void DateTimeGrid::setTimelinePen(const QPen &pen)
-{
-    d->timelinePen = pen;
-    emit gridChanged();
-}
-
-void DateTimeGrid::setTimelineOptions(DateTimeGrid::TimelineOptions mode)
-{
-    d->timelineOptions = mode;
-    emit gridChanged();
-}
-
-DateTimeGrid::TimelineOptions DateTimeGrid::timelineOptions() const
-{
-    return d->timelineOptions;
 }
 
 #undef d

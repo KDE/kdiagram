@@ -1160,18 +1160,20 @@ void DateTimeGrid::paintMonthScaleHeader( QPainter* painter,  const QRectF& head
 */
 void DateTimeGrid::drawDayBackground(QPainter* painter, const QRectF& rect, const QDate& date)
 {
-    Q_UNUSED(painter);
-    Q_UNUSED(rect);
     Q_UNUSED(date);
+    if (d->timeLine->options() & DateTimeTimeLine::Background) {
+        d->drawTimeLine(painter, rect);
+    }
 }
 
 /*! Draw the foreground for a day.
 */
 void DateTimeGrid::drawDayForeground(QPainter* painter, const QRectF& rect, const QDate& date)
 {
-    Q_UNUSED(painter);
-    Q_UNUSED(rect);
     Q_UNUSED(date);
+    if (d->timeLine->options() & DateTimeTimeLine::Foreground) {
+        d->drawTimeLine(painter, rect);
+    }
 }
 
 /** Return the rectangle that represents the date-range.
@@ -1283,6 +1285,25 @@ void DateTimeGrid::drawForeground(QPainter* paint, const QRectF& rect)
 
     // Restore the painter state
     paint->restore();
+}
+
+/**
+ * @return the timeline control object
+ */
+DateTimeTimeLine *DateTimeGrid::timeLine() const
+{
+    return d->timeLine;
+}
+
+void DateTimeGrid::Private::drawTimeLine(QPainter* painter, const QRectF& rect)
+{
+    qreal x = dateTimeToChartX(timeLine->dateTime());
+    if (rect.contains(x, rect.top())) {
+        painter->save();
+        painter->setPen(timeLine->pen());
+        painter->drawLine(x, rect.top(), x, rect.bottom());
+        painter->restore();
+    }
 }
 
 #undef d

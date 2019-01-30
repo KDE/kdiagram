@@ -51,6 +51,7 @@
 #include <KGanttStyleOptionGanttItem>
 #include <KGanttConstraintModel>
 #include <KGanttGraphicsView>
+#include <KGanttDateTimeTimeLine>
 
 class ItemTypeComboBox : public QComboBox {
     Q_OBJECT
@@ -189,6 +190,7 @@ void DateTimeGrid::drawBackground(QPainter* painter, const QRectF& rect)
                            QDateTime::currentDateTime().addDays(2),
                            rect);
     painter->fillRect(r, brush);
+    KGantt::DateTimeGrid::drawBackground(painter, rect);
 }
 
 void DateTimeGrid::drawForeground(QPainter* painter, const QRectF& rect)
@@ -213,6 +215,7 @@ void DateTimeGrid::drawForeground(QPainter* painter, const QRectF& rect)
     painter->drawText(0, 0, text);
 
     painter->restore();
+    KGantt::DateTimeGrid::drawForeground(painter, rect);
 }
 /*
 void DateTimeGrid::paintUserDefinedHeader( QPainter* painter, const QRectF& headerRect, const QRectF& exposedRect, qreal offset, const KGantt::DateTimeScaleFormatter* formatter, QWidget* widget)
@@ -257,7 +260,11 @@ MainWindow::MainWindow( QWidget* parent )
     m_view->leftView()->setHorizontalScrollBarPolicy( Qt::ScrollBarAsNeeded );
     m_view->graphicsView()->setHorizontalScrollBarPolicy( Qt::ScrollBarAsNeeded );
 
-    m_view->setGrid(new DateTimeGrid(this));
+    DateTimeGrid *grid = new DateTimeGrid(this);
+    grid->timeLine()->setPen(QPen(Qt::red));
+    grid->timeLine()->setOptions(KGantt::DateTimeTimeLine::UseCustomPen);
+    grid->timeLine()->setInterval(5000);
+    m_view->setGrid(grid);
 
     //QItemEditorCreatorBase *creator = new QItemEditorCreator<ItemTypeComboBox>("itemType");
     //QItemEditorFactory* factory = new QItemEditorFactory;

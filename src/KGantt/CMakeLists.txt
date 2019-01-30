@@ -39,6 +39,7 @@ set( kgantt_LIB_SRCS
     kganttabstractgrid.cpp
     kganttdatetimegrid.cpp
     kganttlegend.cpp
+    kganttdatetimetimeline.cpp
     unittest/test.cpp
     unittest/testregistry.cpp
 )
@@ -101,6 +102,7 @@ ecm_generate_headers(kgantt_LIB_HEADERS
     KGanttAbstractGrid
     KGanttDateTimeGrid
     KGanttLegend
+    KGanttDateTimeTimeLine
 
     REQUIRED_HEADERS kgantt_LIB_HEADERS
 )

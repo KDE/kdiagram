@@ -22,6 +22,7 @@
 
 #include "kganttdatetimegrid.h"
 #include "kganttabstractgrid_p.h"
+#include "kganttdatetimetimeline.h"
 
 #include <QDateTime>
 #include <QBrush>
@@ -71,13 +72,15 @@ namespace KGantt {
               hour_upper( DateTimeScaleFormatter::Hour, QString::fromLatin1("hh" ) ),
               hour_lower( DateTimeScaleFormatter::Minute, QString::fromLatin1("m" ) ),
               minute_upper( DateTimeScaleFormatter::Minute, QString::fromLatin1("m" ) ),
-              minute_lower( DateTimeScaleFormatter::Second, QString::fromLatin1("s" ) )
+              minute_lower( DateTimeScaleFormatter::Second, QString::fromLatin1("s" ) ),
+              timeLine(new DateTimeTimeLine)
         {
         }
         ~Private()
         {
             delete lower;
             delete upper;
+            delete timeLine;
         }
 
         qreal dateTimeToChartX( const QDateTime& dt ) const;
@@ -125,6 +128,8 @@ namespace KGantt {
         Qt::PenStyle gridLinePenStyle( QDateTime dt, HeaderType headerType ) const;
         QDateTime adjustDateTimeForHeader( QDateTime dt, HeaderType headerType ) const;
 
+        void drawTimeLine(QPainter* painter, const QRectF& rect);
+
         QDateTime startDateTime;
         QDateTime endDateTime;
         qreal dayWidth;
@@ -150,6 +155,7 @@ namespace KGantt {
         DateTimeScaleFormatter hour_lower;
         DateTimeScaleFormatter minute_upper;
         DateTimeScaleFormatter minute_lower;
+        DateTimeTimeLine *timeLine;
     };
 
     inline DateTimeGrid::DateTimeGrid( DateTimeGrid::Private* d ) : AbstractGrid( d ) {}

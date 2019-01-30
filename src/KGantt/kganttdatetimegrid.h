@@ -28,6 +28,7 @@
 namespace KGantt {
 
     class DateTimeScaleFormatter;
+    class DateTimeTimeLine;
 
     class KGANTT_EXPORT DateTimeGrid : public AbstractGrid
     {
@@ -90,6 +91,8 @@ namespace KGantt {
         /*reimp*/ void paintHeader( QPainter* painter, 
                                     const QRectF& headerRect, const QRectF& exposedRect,
                                     qreal offset, QWidget* widget = nullptr ) Q_DECL_OVERRIDE;
+
+        DateTimeTimeLine *timeLine() const;
 
     protected:
         virtual void paintHourScaleHeader( QPainter* painter, 

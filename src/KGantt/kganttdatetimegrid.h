@@ -24,6 +24,7 @@
 
 #include <QDateTime>
 #include <QSet>
+#include <QPair>
 
 namespace KGantt {
 

@@ -1,2 +1,3 @@
-add_subdirectory( KChart )
-add_subdirectory( KGantt )
+include(ECMOptionalAddSubdirectory)
+ecm_optional_add_subdirectory( KChart )
+ecm_optional_add_subdirectory( KGantt )

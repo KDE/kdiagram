@@ -20,8 +20,6 @@
 #include "mainwindow.h"
 
 #include <KChartChart>
-#include <KChartHeaderFooter>
-#include <KChartPosition>
 #include <KChartCartesianCoordinatePlane>
 #include <KChartLineDiagram>
 #include <KChartTextAttributes>
@@ -29,6 +27,9 @@
 #include <QComboBox>
 #include <QLineEdit>
 #include <QPen>
+#include <QPainter>
+#include <QPrinter>
+#include <QPrintDialog>
 
 class HeaderItem : public QTreeWidgetItem
 {
@@ -61,6 +62,28 @@ MainWindow::MainWindow( QWidget* parent ) :
     m_chart->update();
 }
 
+void MainWindow::on_defaultButton_clicked()
+{
+    addHeaderFooter( tr("header west"), KChart::HeaderFooter::Header, KChart::Position::West);
+    addHeaderFooter( tr("header north"), KChart::HeaderFooter::Header, KChart::Position::North);
+    addHeaderFooter( tr("header south"), KChart::HeaderFooter::Header, KChart::Position::South);
+    addHeaderFooter( tr("header east"), KChart::HeaderFooter::Header, KChart::Position::East);
+    addHeaderFooter( tr("header center"), KChart::HeaderFooter::Header, KChart::Position::Center);
+    addHeaderFooter( tr("header north west"), KChart::HeaderFooter::Header, KChart::Position::NorthWest);
+    addHeaderFooter( tr("header north east"), KChart::HeaderFooter::Header, KChart::Position::NorthEast);
+    addHeaderFooter( tr("header south west"), KChart::HeaderFooter::Header, KChart::Position::SouthWest);
+    addHeaderFooter( tr("header south east"), KChart::HeaderFooter::Header, KChart::Position::SouthEast);
+
+    addHeaderFooter( tr("footer west"), KChart::HeaderFooter::Footer, KChart::Position::West);
+    addHeaderFooter( tr("footer north"), KChart::HeaderFooter::Footer, KChart::Position::North);
+    addHeaderFooter( tr("footer south"), KChart::HeaderFooter::Footer, KChart::Position::South);
+    addHeaderFooter( tr("footer east"), KChart::HeaderFooter::Footer, KChart::Position::East);
+    addHeaderFooter( tr("footer center"), KChart::HeaderFooter::Footer, KChart::Position::Center);
+    addHeaderFooter( tr("footer north west"), KChart::HeaderFooter::Footer, KChart::Position::NorthWest);
+    addHeaderFooter( tr("footer north east"), KChart::HeaderFooter::Footer, KChart::Position::NorthEast);
+    addHeaderFooter( tr("footer south west"), KChart::HeaderFooter::Footer, KChart::Position::SouthWest);
+    addHeaderFooter( tr("footer south east"), KChart::HeaderFooter::Footer, KChart::Position::SouthEast);
+}
 
 void MainWindow::setupAddHeaderDialog( QDialog* dlg,
                                        Ui::AddHeaderDialog& conf ) const
@@ -76,6 +99,36 @@ void MainWindow::setupAddHeaderDialog( QDialog* dlg,
         conf.positionCO->addItem( labels[i], names[i] );
 }
 
+void MainWindow::addHeaderFooter( const QString &text,
+                                  KChart::HeaderFooter::HeaderFooterType type,
+                                  KChart::Position position ) const
+{
+    KChart::HeaderFooter* headerFooter = new KChart::HeaderFooter( m_chart );
+    m_chart->addHeaderFooter( headerFooter );
+    headerFooter->setText( text );
+    KChart::TextAttributes attrs( headerFooter->textAttributes() );
+    attrs.setPen( QPen( Qt::red ) );
+    headerFooter->setTextAttributes( attrs );
+    headerFooter->setType( type );
+    headerFooter->setPosition( position );
+
+    HeaderItem* newItem = new HeaderItem( headerFooter, headersTV );
+    newItem->setText( 0, headerFooter->text() );
+    newItem->setText( 1, type == KChart::HeaderFooter::Header ?
+                         tr( "Header" ) : tr( "Footer" ) );
+    newItem->setText( 2, headerFooter->position().name() );
+    m_chart->update();
+}
+
+void MainWindow::on_printButton_clicked()
+{
+    static QPrinter printer;
+    QPrintDialog dialog(&printer);
+    if (!dialog.exec())
+        return;
+    QPainter painter(&printer);
+    m_chart->paint(&painter, painter.window());
+}
 
 void MainWindow::on_addHeaderPB_clicked()
 {
@@ -85,24 +138,10 @@ void MainWindow::on_addHeaderPB_clicked()
     conf.typeCO->setCurrentIndex( 0 ); // let us start with "Header"
     conf.positionCO->setCurrentIndex( 0 );
     if ( dlg.exec() ) {
-        KChart::HeaderFooter* headerFooter = new KChart::HeaderFooter( m_chart );
-        m_chart->addHeaderFooter( headerFooter );
-        headerFooter->setText( conf.textED->text() );
-        KChart::TextAttributes attrs( headerFooter->textAttributes() );
-        attrs.setPen( QPen( Qt::red ) );
-        headerFooter->setTextAttributes( attrs );
-        headerFooter->setType( conf.typeCO->currentText() == "Header" ?
-                               KChart::HeaderFooter::Header : KChart::HeaderFooter::Footer );
-        headerFooter->setPosition(
-            KChart::Position::fromName( conf.positionCO->itemData(
-                conf.positionCO->currentIndex() ).toByteArray() ) );
-
-        HeaderItem* newItem = new HeaderItem( headerFooter, headersTV );
-        newItem->setText( 0, conf.textED->text() );
-        newItem->setText( 1, headerFooter->type() == KChart::HeaderFooter::Header ?
-                             tr( "Header" ) : tr( "Footer" ) );
-        newItem->setText( 2, conf.positionCO->currentText() );
-        m_chart->update();
+        addHeaderFooter( conf.textED->text(),
+            conf.typeCO->currentText() == "Header" ? KChart::HeaderFooter::Header : KChart::HeaderFooter::Footer,
+            KChart::Position::fromName( conf.positionCO->itemData(conf.positionCO->currentIndex() ).toByteArray() )
+        );
     }
 }
 

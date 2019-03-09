@@ -26,6 +26,8 @@
 #include "ui_mainwindow.h"
 #include "ui_addheaderdialog.h"
 #include <TableModel.h>
+#include <KChartHeaderFooter>
+#include <KChartPosition>
 
 namespace KChart {
     class Chart;
@@ -41,6 +43,8 @@ public:
     MainWindow( QWidget* parent = nullptr );
 
 private slots:
+    void on_defaultButton_clicked();
+    void on_printButton_clicked();
     void on_addHeaderPB_clicked();
     void on_editHeaderPB_clicked();
     void on_removeHeaderPB_clicked();
@@ -49,6 +53,9 @@ private slots:
 private:
     void setupAddHeaderDialog( QDialog* dlg,
                                Ui::AddHeaderDialog& conf ) const;
+    void addHeaderFooter( const QString &text,
+                          KChart::HeaderFooter::HeaderFooterType type,
+                          KChart::Position position ) const;
 
     KChart::Chart* m_chart;
     TableModel m_model;

@@ -1,10 +1,8 @@
-<ui version="4.0" >
- <author></author>
- <comment></comment>
- <exportmacro></exportmacro>
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>MainWindow</class>
- <widget class="QWidget" name="MainWindow" >
-  <property name="geometry" >
+ <widget class="QWidget" name="MainWindow">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
@@ -12,80 +10,121 @@
     <height>597</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>KD Chart 2 example: Headers and Footers</string>
   </property>
-  <layout class="QVBoxLayout" >
-   <property name="margin" >
-    <number>9</number>
-   </property>
-   <property name="spacing" >
+  <layout class="QVBoxLayout">
+   <property name="spacing">
     <number>6</number>
    </property>
+   <property name="leftMargin">
+    <number>9</number>
+   </property>
+   <property name="topMargin">
+    <number>9</number>
+   </property>
+   <property name="rightMargin">
+    <number>9</number>
+   </property>
+   <property name="bottomMargin">
+    <number>9</number>
+   </property>
    <item>
-    <widget class="QSplitter" name="splitter" >
-     <property name="orientation" >
+    <widget class="QSplitter" name="splitter">
+     <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
-     <widget class="QSplitter" name="splitter2" >
-      <property name="orientation" >
+     <widget class="QSplitter" name="splitter2">
+      <property name="orientation">
        <enum>Qt::Vertical</enum>
       </property>
-      <widget class="QGroupBox" name="groupBox" >
-       <property name="title" >
+      <widget class="QGroupBox" name="groupBox">
+       <property name="title">
         <string>Headers and Footers</string>
        </property>
-       <layout class="QVBoxLayout" >
-        <property name="margin" >
-         <number>9</number>
-        </property>
-        <property name="spacing" >
+       <layout class="QVBoxLayout">
+        <property name="spacing">
          <number>6</number>
         </property>
+        <property name="leftMargin">
+         <number>9</number>
+        </property>
+        <property name="topMargin">
+         <number>9</number>
+        </property>
+        <property name="rightMargin">
+         <number>9</number>
+        </property>
+        <property name="bottomMargin">
+         <number>9</number>
+        </property>
         <item>
-         <widget class="QTreeWidget" name="headersTV" >
+         <widget class="QTreeWidget" name="headersTV">
           <column>
-           <property name="text" >
+           <property name="text">
             <string>Text</string>
            </property>
           </column>
           <column>
-           <property name="text" >
+           <property name="text">
             <string>Type</string>
            </property>
           </column>
           <column>
-           <property name="text" >
+           <property name="text">
             <string>Position</string>
            </property>
           </column>
          </widget>
         </item>
         <item>
-         <layout class="QHBoxLayout" >
-          <property name="margin" >
-           <number>0</number>
-          </property>
-          <property name="spacing" >
+         <layout class="QHBoxLayout">
+          <property name="spacing">
            <number>6</number>
           </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
           <item>
-           <widget class="QPushButton" name="addHeaderPB" >
-            <property name="text" >
+           <widget class="QPushButton" name="printButton">
+            <property name="text">
+             <string>Print</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="defaultButton">
+            <property name="text">
+             <string>Add defaults</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="addHeaderPB">
+            <property name="text">
              <string>&amp;Add...</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="editHeaderPB" >
-            <property name="text" >
+           <widget class="QPushButton" name="editHeaderPB">
+            <property name="text">
              <string>Edit...</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="removeHeaderPB" >
-            <property name="text" >
+           <widget class="QPushButton" name="removeHeaderPB">
+            <property name="text">
              <string>&amp;Remove</string>
             </property>
            </widget>
@@ -95,11 +134,11 @@
        </layout>
       </widget>
      </widget>
-     <widget class="QFrame" name="chartFrame" >
-      <property name="frameShape" >
+     <widget class="QFrame" name="chartFrame">
+      <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
       </property>
-      <property name="frameShadow" >
+      <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
      </widget>
@@ -107,9 +146,6 @@
    </item>
   </layout>
  </widget>
- <pixmapfunction></pixmapfunction>
- <resources>
-  <include location="../HeaderFooter/BarChart" />
- </resources>
+ <resources/>
  <connections/>
 </ui>

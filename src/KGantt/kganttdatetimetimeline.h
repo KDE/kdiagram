@@ -54,8 +54,9 @@ namespace KGantt {
     Q_SIGNALS:
         void updated();
     };
-    Q_DECLARE_OPERATORS_FOR_FLAGS(DateTimeTimeLine::Options)
 }
+
+Q_DECLARE_OPERATORS_FOR_FLAGS(KGantt::DateTimeTimeLine::Options)
 
 #endif /* KGANTTDATETIMETIMELINE_H */
 

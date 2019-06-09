@@ -87,7 +87,7 @@ ItemDelegate::Private::Private()
     defaultbrush[TypeEvent]   = eventgrad;
 
     // Pens
-    QPen pen( Qt::black, 1. );
+    QPen pen( QGuiApplication::palette().windowText(), 1. );
 
     defaultpen[TypeTask]    = pen;
     defaultpen[TypeSummary] = pen;

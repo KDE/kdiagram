@@ -308,8 +308,8 @@ MainWindow::MainWindow( QWidget* parent )
     slotToolsNewItem();
     slotToolsNewItem();
     for (int i = 0; i < 3; ++i) {
-        m_model->setData(m_model->index(i,2,QModelIndex()), qVariantFromValue(QDateTime::currentDateTime().addDays(i)), KGantt::StartTimeRole);
-        m_model->setData(m_model->index(i,3,QModelIndex()), qVariantFromValue(QDateTime::currentDateTime().addDays(i+1)), KGantt::EndTimeRole);
+        m_model->setData(m_model->index(i,2,QModelIndex()), QVariant::fromValue(QDateTime::currentDateTime().addDays(i)), KGantt::StartTimeRole);
+        m_model->setData(m_model->index(i,3,QModelIndex()), QVariant::fromValue(QDateTime::currentDateTime().addDays(i+1)), KGantt::EndTimeRole);
     }
     m_view->setConstraintModel(new KGantt::ConstraintModel(m_view));
     m_view->constraintModel()->addConstraint(KGantt::Constraint(m_model->index(0,0,QModelIndex()),m_model->index(1,0,QModelIndex())));

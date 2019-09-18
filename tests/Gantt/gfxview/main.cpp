@@ -128,8 +128,8 @@ int main( int argc, char** argv ) {
             item->setData( KGantt::TypeTask, KGantt::ItemTypeRole );
             item->setData( QDateTime::currentDateTime().addDays( 2*j ).addMSecs( 100000*i ), KGantt::StartTimeRole );
             item->setData( QDateTime::currentDateTime().addDays( 2*j+1 ).addMSecs( 100000*i ), KGantt::EndTimeRole );
-            item->setData( qVariantFromValue<int>( random_alignment() ), Qt::TextAlignmentRole );
-			item->setData( qVariantFromValue<int>( random_position()), KGantt::TextPositionRole );
+            item->setData( QVariant::fromValue<int>( random_alignment() ), Qt::TextAlignmentRole );
+			item->setData( QVariant::fromValue<int>( random_position()), KGantt::TextPositionRole );
             item->setFlags( item->flags() & ~Qt::ItemIsSelectable );
             //  item->appendColumn( QList<QStandardItem*>() << colitem );
             //}

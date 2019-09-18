@@ -831,7 +831,7 @@ void Chart::Private::slotLayoutPlanes()
             planesLayout->setContentsMargins( left, top, right, bottom );
         }
 
-        planesLayout->setMargin( 0 );
+        planesLayout->setContentsMargins( 0, 0, 0, 0 );
         planesLayout->setSpacing( 0 );
         planesLayout->setObjectName( QString::fromLatin1( "planesLayout" ) );
 
@@ -1009,7 +1009,7 @@ void Chart::Private::createLayouts()
 {
     // The toplevel layout provides the left and right global margins
     layout = new QHBoxLayout( chart );
-    layout->setMargin( 0 );
+    layout->setContentsMargins( 0, 0, 0, 0 );
     layout->setObjectName( QString::fromLatin1( "Chart::Private::layout" ) );
     layout->addSpacing( globalLeadingLeft );
     leftOuterSpacer = layout->itemAt( layout->count() - 1 )->spacerItem();
@@ -1017,7 +1017,7 @@ void Chart::Private::createLayouts()
     // The vLayout provides top and bottom global margins and lays
     // out headers, footers and the diagram area.
     vLayout = new QVBoxLayout();
-    vLayout->setMargin( 0 );
+    vLayout->setContentsMargins( 0, 0, 0, 0 );
     vLayout->setObjectName( QString::fromLatin1( "vLayout" ) );
 
     layout->addLayout( vLayout, 1000 );
@@ -1029,16 +1029,16 @@ void Chart::Private::createLayouts()
     topOuterSpacer = vLayout->itemAt( vLayout->count() - 1 )->spacerItem();
     // 2. the header area
     headerLayout = new QGridLayout();
-    headerLayout->setMargin( 0 );
+    headerLayout->setContentsMargins( 0, 0, 0, 0 );
     vLayout->addLayout( headerLayout );
     // 3. the area containing coordinate planes, axes, and legends
     dataAndLegendLayout = new QGridLayout();
-    dataAndLegendLayout->setMargin( 0 );
+    dataAndLegendLayout->setContentsMargins( 0, 0, 0, 0 );
     dataAndLegendLayout->setObjectName( QString::fromLatin1( "dataAndLegendLayout" ) );
     vLayout->addLayout( dataAndLegendLayout, 1000 );
     // 4. the footer area
     footerLayout = new QGridLayout();
-    footerLayout->setMargin( 0 );
+    footerLayout->setContentsMargins( 0, 0, 0, 0 );
     footerLayout->setObjectName( QString::fromLatin1( "footerLayout" ) );
     vLayout->addLayout( footerLayout );
 
@@ -1051,7 +1051,7 @@ void Chart::Private::createLayouts()
             const Qt::Alignment align = s_gridAlignments[ row ][ column ];
             for ( int headOrFoot = 0; headOrFoot < 2; headOrFoot++ ) {
                 QVBoxLayout* innerLayout = new QVBoxLayout();
-                innerLayout->setMargin( 0 );
+                innerLayout->setContentsMargins( 0, 0, 0, 0 );
                 innerLayout->setAlignment( align );
                 innerHdFtLayouts[ headOrFoot ][ row ][ column ] = innerLayout;
 
@@ -1616,7 +1616,7 @@ void Chart::addLegendInternal( Legend* legend, bool setMeasures )
         if ( !alignmentsLayout ) {
             alignmentsLayout = new QGridLayout;
             d->dataAndLegendLayout->addLayout( alignmentsLayout, row, column );
-            alignmentsLayout->setMargin( 0 );
+            alignmentsLayout->setContentsMargins( 0, 0, 0, 0 );
         }
 
         // in case there are several legends in the same edge or corner with the same alignment, they are stacked
@@ -1641,7 +1641,7 @@ void Chart::addLegendInternal( Legend* legend, bool setMeasures )
         if ( !sameAlignmentLayout ) {
             sameAlignmentLayout = new QVBoxLayout;
             alignmentsLayout->addLayout( sameAlignmentLayout, row, column );
-            sameAlignmentLayout->setMargin( 0 );
+            sameAlignmentLayout->setContentsMargins( 0, 0, 0, 0 );
         }
 
         sameAlignmentLayout->addItem( new MyWidgetItem( legend, legend->alignment() ) );

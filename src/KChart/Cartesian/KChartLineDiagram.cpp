@@ -178,7 +178,7 @@ bool LineDiagram::reverseDatasetOrder() const
 void LineDiagram::setLineAttributes( const LineAttributes& la )
 {
     d->attributesModel->setModelData(
-        qVariantFromValue( la ),
+        QVariant::fromValue( la ),
         LineAttributesRole );
     emit propertiesChanged();
 }
@@ -190,7 +190,7 @@ void LineDiagram::setLineAttributes(
         int column,
     const LineAttributes& la )
 {
-    d->setDatasetAttrs( column, qVariantFromValue( la ), LineAttributesRole );
+    d->setDatasetAttrs( column, QVariant::fromValue( la ), LineAttributesRole );
     emit propertiesChanged();
 }
 
@@ -212,7 +212,7 @@ void LineDiagram::setLineAttributes(
 {
     d->attributesModel->setData(
             d->attributesModel->mapFromSource(index),
-    qVariantFromValue( la ),
+    QVariant::fromValue( la ),
     LineAttributesRole );
     emit propertiesChanged();
 }
@@ -265,7 +265,7 @@ void LineDiagram::setThreeDLineAttributes(
 {
     setDataBoundariesDirty();
     d->attributesModel->setModelData(
-        qVariantFromValue( la ),
+        QVariant::fromValue( la ),
         ThreeDLineAttributesRole );
    emit propertiesChanged();
 }
@@ -278,7 +278,7 @@ void LineDiagram::setThreeDLineAttributes(
     const ThreeDLineAttributes& la )
 {
     setDataBoundariesDirty();
-    d->setDatasetAttrs( column, qVariantFromValue( la ), ThreeDLineAttributesRole );
+    d->setDatasetAttrs( column, QVariant::fromValue( la ), ThreeDLineAttributesRole );
    emit propertiesChanged();
 }
 
@@ -292,7 +292,7 @@ void LineDiagram::setThreeDLineAttributes(
     setDataBoundariesDirty();
     d->attributesModel->setData(
         d->attributesModel->mapFromSource(index),
-        qVariantFromValue( la ),
+        QVariant::fromValue( la ),
         ThreeDLineAttributesRole );
    emit propertiesChanged();
 }
@@ -343,7 +343,7 @@ void LineDiagram::setValueTrackerAttributes( const QModelIndex & index,
                                              const ValueTrackerAttributes & va )
 {
     d->attributesModel->setData( d->attributesModel->mapFromSource(index),
-                                 qVariantFromValue( va ),
+                                 QVariant::fromValue( va ),
                                  KChart::ValueTrackerAttributesRole );
     emit propertiesChanged();
 }

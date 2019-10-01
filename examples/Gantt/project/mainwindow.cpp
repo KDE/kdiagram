@@ -206,7 +206,7 @@ void DateTimeGrid::drawForeground(QPainter* painter, const QRectF& rect)
     font.setPixelSize(r.width()/5);
 
     QFontMetrics fm(font);
-    int width = fm.width(text);
+    int width = fm.boundingRect(text).width();
     int height = fm.boundingRect(text).height();
 
     painter->translate(r.center());

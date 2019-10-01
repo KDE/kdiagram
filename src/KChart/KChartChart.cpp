@@ -640,7 +640,7 @@ QHash<AbstractCoordinatePlane*, PlaneInfo> Chart::Private::buildPlaneLayoutInfos
         p = planeInfos[plane];
         if ( p.referencePlane == nullptr ) {
             p.gridLayout = new QGridLayout();
-            p.gridLayout->setMargin( 0 );
+            p.gridLayout->setContentsMargins( 0, 0, 0, 0 );
             planeInfos[plane] = p;
         }
     }
@@ -892,25 +892,25 @@ void Chart::Private::slotLayoutPlanes()
                 if ( pi.topAxesLayout == nullptr )
                 {
                     pi.topAxesLayout = new QVBoxLayout;
-                    pi.topAxesLayout->setMargin( 0 );
+                    pi.topAxesLayout->setContentsMargins( 0, 0, 0, 0 );
                     pi.topAxesLayout->setObjectName( QString::fromLatin1( "topAxesLayout" ) );
                 }
                 if ( pi.bottomAxesLayout == nullptr )
                 {
                     pi.bottomAxesLayout = new QVBoxLayout;
-                    pi.bottomAxesLayout->setMargin( 0 );
+                    pi.bottomAxesLayout->setContentsMargins( 0, 0, 0, 0 );
                     pi.bottomAxesLayout->setObjectName( QString::fromLatin1( "bottomAxesLayout" ) );
                 }
                 if ( pi.leftAxesLayout == nullptr )
                 {
                     pi.leftAxesLayout = new QHBoxLayout;
-                    pi.leftAxesLayout->setMargin( 0 );
+                    pi.leftAxesLayout->setContentsMargins( 0, 0, 0, 0 );
                     pi.leftAxesLayout->setObjectName( QString::fromLatin1( "leftAxesLayout" ) );
                 }
                 if ( pi.rightAxesLayout == nullptr )
                 {
                     pi.rightAxesLayout = new QHBoxLayout;
-                    pi.rightAxesLayout->setMargin( 0 );
+                    pi.rightAxesLayout->setContentsMargins( 0, 0, 0, 0 );
                     pi.rightAxesLayout->setObjectName( QString::fromLatin1( "rightAxesLayout" ) );
                 }
 

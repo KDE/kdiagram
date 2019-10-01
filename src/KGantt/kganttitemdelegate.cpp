@@ -211,7 +211,7 @@ Span ItemDelegate::itemBoundingSpan( const StyleOptionGanttItem& opt,
                            itemRect.height() );
     }
 
-    int tw = opt.fontMetrics.width( txt );
+    int tw = opt.fontMetrics.boundingRect( txt ).width();
     tw += static_cast<int>( itemRect.height()/2. );
     Span s;
     switch ( opt.displayPosition ) {

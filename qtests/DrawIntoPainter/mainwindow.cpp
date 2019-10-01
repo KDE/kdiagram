@@ -35,6 +35,7 @@
 #include <QDebug>
 #include <QPainter>
 #include <QTime>
+#include <QElapsedTimer>
 
 using namespace KChart;
 
@@ -190,12 +191,12 @@ MainWindow::MainWindow( QWidget* parent ) :
 
 void MainWindow::updateData(QString data)
 {
-    QTime t;
+    QElapsedTimer t;
     t.start();
 
     m_model.loadFromCSV( data );
 
-    qDebug("Time for loading data %s: %d ms", data.toLatin1().constData(), t.elapsed());
+    qDebug("Time for loading data %s: %lld ms", data.toLatin1().constData(), t.elapsed());
     t.restart();
 
     QSize size1 = QSize( 200, 200 );
@@ -203,12 +204,12 @@ void MainWindow::updateData(QString data)
     m_pix1 = drawIntoPixmap( size1, m_chart );
     m_pix2 = drawIntoPixmap( size2, m_chart );
 
-    qDebug("Time for drawing pixmap %s: %d ms", data.toLatin1().constData(), t.elapsed());
+    qDebug("Time for drawing pixmap %s: %lld ms", data.toLatin1().constData(), t.elapsed());
     t.restart();
 
     m_lines->setModel( &m_model );
 
-    qDebug("Time for setting model %s: %d ms", data.toLatin1().constData(), t.elapsed());
+    qDebug("Time for setting model %s: %lld ms", data.toLatin1().constData(), t.elapsed());
     t.restart();
 
     m_smallChart1->setPixmap( m_pix1 );
@@ -217,7 +218,7 @@ void MainWindow::updateData(QString data)
     m_smallChart1->show();
     m_smallChart2->show();
 
-    qDebug("Time for setting pixmap %s: %d ms", data.toLatin1().constData(), t.elapsed());
+    qDebug("Time for setting pixmap %s: %lld ms", data.toLatin1().constData(), t.elapsed());
     t.restart();
 
 }

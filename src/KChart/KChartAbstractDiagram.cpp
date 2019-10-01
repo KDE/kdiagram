@@ -493,7 +493,7 @@ void AbstractDiagram::paintMarker( QPainter* painter,
     const bool isFourPixels = (markerAttributes.markerStyle() == MarkerAttributes::Marker4Pixels);
     if ( isFourPixels || (markerAttributes.markerStyle() == MarkerAttributes::Marker1Pixel) ) {
         // for high-performance point charts with tiny point markers:
-        painter->setPen( PrintingParameters::scalePen( QPen( brush.color().light() ) ) );
+        painter->setPen( PrintingParameters::scalePen( QPen( brush.color().lighter() ) ) );
         if ( isFourPixels ) {
             const qreal x = pos.x();
             const qreal y = pos.y();

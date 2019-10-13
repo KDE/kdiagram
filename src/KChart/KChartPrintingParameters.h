@@ -42,6 +42,7 @@ namespace KChart {
      */
     class PrintingParameters {
     public:
+        static qreal scaleFactor();
         static void setScaleFactor( const qreal scaleFactor );
         static void resetScaleFactor();
         static QPen scalePen( const QPen& pen );
@@ -50,7 +51,7 @@ namespace KChart {
         PrintingParameters();
         static PrintingParameters* instance();
 
-        qreal scaleFactor;
+        qreal m_scaleFactor;
     };
 }
 

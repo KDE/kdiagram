@@ -434,11 +434,11 @@ namespace KChart {
           * size of the target rectangle.
           *
           * \param painter The painter to be drawn into.
-          * \param target The rectangle to be filled by the Chart's drawing.
+          * \param rect The rectangle to be filled by the Chart's drawing.
           *
           * \sa setGlobalLeading
           */
-        void paint( QPainter* painter, const QRect& target );
+        void paint( QPainter* painter, const QRect& rect );
 
         void reLayoutFloatingLegends();
 

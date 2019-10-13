@@ -1354,9 +1354,7 @@ void Chart::paint( QPainter* painter, const QRect& rect )
     GlobalMeasureScaling::setPaintDevice( painter->device() );
     int prevScaleFactor = PrintingParameters::scaleFactor();
 
-        // Output onto a QPixmap
-        PrintingParameters::setScaleFactor( qreal( painter->device()->logicalDpiX() ) / qreal( logicalDpiX() ) );
-    }
+    PrintingParameters::setScaleFactor( qreal( painter->device()->logicalDpiX() ) / qreal( logicalDpiX() ) );
 
     const QRect oldGeometry( geometry() );
     if ( oldGeometry != rect )

@@ -325,7 +325,7 @@ void ItemDelegate::paintGanttItem( QPainter* painter,
             QPainterPath path;
             const qreal deltaY = r.height()/2.;
             const qreal deltaXBezierControl = .25*qMin( r.width(), r.height() );
-            const qreal deltaX = qMin( r.width()/2., r.height() );
+            const qreal deltaX = qMin( r.width()/2, r.height() );
             path.moveTo( r.topLeft() );
             path.lineTo( r.topRight() );
             path.lineTo( QPointF( r.right(), r.top() + 2.*deltaY ) );

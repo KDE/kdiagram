@@ -110,11 +110,11 @@ void  TernaryLineDiagram::paint (PaintContext *paintContext)
                 p->setBrush( brush( base ) );
 
                 // retrieve data
-                x = qMax( model()->data( model()->index( row, column, rootIndex() ) ).toReal(), // checked
+                x = qMax<qreal>( model()->data( model()->index( row, column, rootIndex() ) ).toReal(), // checked
                           0.0 );
-                y = qMax( model()->data( model()->index( row, column+1, rootIndex() ) ).toReal(), // checked
+                y = qMax<qreal>( model()->data( model()->index( row, column+1, rootIndex() ) ).toReal(), // checked
                           0.0 );
-                z = qMax( model()->data( model()->index( row, column+2, rootIndex() ) ).toReal(), // checked
+                z = qMax<qreal>( model()->data( model()->index( row, column+2, rootIndex() ) ).toReal(), // checked
                           0.0 );
 
                 qreal total = x + y + z;

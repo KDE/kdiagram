@@ -185,7 +185,7 @@ void RingDiagram::paint( PaintContext* ctx )
         if ( !d->expandWhenExploded ) {
             maxOffsetInThisRow -= qreal( i );
         }
-        totalOffset += qMax( maxOffsetInThisRow, 0.0 );
+        totalOffset += qMax<qreal>( maxOffsetInThisRow, 0.0 );
         // FIXME: What if explode factor of inner ring is > 1.0 ?
         //if ( !d->expandWhenExploded )
         //      break;

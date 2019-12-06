@@ -44,14 +44,14 @@ namespace KGantt {
         bool calendarMode() const;
 #endif
 
-        /*reimp*/ QModelIndex mapFromSource( const QModelIndex& idx) const Q_DECL_OVERRIDE;
-        /*reimp*/ QModelIndex mapToSource( const QModelIndex& proxyIdx ) const Q_DECL_OVERRIDE;
+        /*reimp*/ QModelIndex mapFromSource( const QModelIndex& idx) const override;
+        /*reimp*/ QModelIndex mapToSource( const QModelIndex& proxyIdx ) const override;
 
-        /*reimp*/ int rowCount( const QModelIndex& idx ) const Q_DECL_OVERRIDE;
-        /*reimp*/ int columnCount( const QModelIndex& idx ) const Q_DECL_OVERRIDE;
+        /*reimp*/ int rowCount( const QModelIndex& idx ) const override;
+        /*reimp*/ int columnCount( const QModelIndex& idx ) const override;
 
-        /*reimp*/ QVariant data( const QModelIndex& idx, int role = Qt::DisplayRole ) const Q_DECL_OVERRIDE;
-        /*reimp*/ bool setData( const QModelIndex& idx, const QVariant& value, int role=Qt::EditRole ) Q_DECL_OVERRIDE;
+        /*reimp*/ QVariant data( const QModelIndex& idx, int role = Qt::DisplayRole ) const override;
+        /*reimp*/ bool setData( const QModelIndex& idx, const QVariant& value, int role=Qt::EditRole ) override;
     };
 }
 

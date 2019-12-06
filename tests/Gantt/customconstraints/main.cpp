@@ -43,7 +43,7 @@ public:
 
     /*reimp*/void addConstraint( const QModelIndex& from,
                                  const QModelIndex& to,
-                                 Qt::KeyboardModifiers modifiers ) Q_DECL_OVERRIDE
+                                 Qt::KeyboardModifiers modifiers ) override
     {
         qDebug() << "MyGraphicsView::addConstraint()";
         if ( isReadOnly() ) return;

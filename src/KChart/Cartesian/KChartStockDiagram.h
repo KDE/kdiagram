@@ -95,19 +95,19 @@ public:
     virtual const int numberOfAbscissaSegments() const;
     virtual const int numberOfOrdinateSegments() const;
 #else
-    int numberOfAbscissaSegments() const Q_DECL_OVERRIDE;
-    int numberOfOrdinateSegments() const Q_DECL_OVERRIDE;
+    int numberOfAbscissaSegments() const override;
+    int numberOfOrdinateSegments() const override;
 #endif
 
-    void paint( PaintContext *paintContext ) Q_DECL_OVERRIDE;
+    void paint( PaintContext *paintContext ) override;
 
-    void resize( const QSizeF &size ) Q_DECL_OVERRIDE;
+    void resize( const QSizeF &size ) override;
 
-    qreal threeDItemDepth( int column ) const Q_DECL_OVERRIDE;
-    qreal threeDItemDepth( const QModelIndex &index ) const Q_DECL_OVERRIDE;
+    qreal threeDItemDepth( int column ) const override;
+    qreal threeDItemDepth( const QModelIndex &index ) const override;
 
 protected:
-    const QPair<QPointF, QPointF> calculateDataBoundaries() const Q_DECL_OVERRIDE;
+    const QPair<QPointF, QPointF> calculateDataBoundaries() const override;
 };
 
 } // namespace KChart

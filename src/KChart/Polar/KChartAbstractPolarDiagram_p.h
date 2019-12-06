@@ -60,7 +60,7 @@ public:
 
     /** \reimpl */
     // FIXME: Optimize when needed
-    qreal calcPercentValue( const QModelIndex & index ) const Q_DECL_OVERRIDE
+    qreal calcPercentValue( const QModelIndex & index ) const override
     {
         Q_ASSERT( index.isValid() );
         qreal sum = 0.0;

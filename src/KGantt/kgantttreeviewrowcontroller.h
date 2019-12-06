@@ -34,15 +34,15 @@ namespace KGantt {
         TreeViewRowController( QTreeView* tv, QAbstractProxyModel* proxy );
         virtual ~TreeViewRowController();
 
-        /*reimp*/ int headerHeight() const Q_DECL_OVERRIDE;
-        /*reimp*/ int maximumItemHeight() const Q_DECL_OVERRIDE;
-        /*reimp*/ int totalHeight() const Q_DECL_OVERRIDE;
-        /*reimp*/ bool isRowVisible( const QModelIndex& idx ) const Q_DECL_OVERRIDE;
-        /*reimp*/ bool isRowExpanded( const QModelIndex& idx ) const Q_DECL_OVERRIDE;
-        /*reimp*/ Span rowGeometry( const QModelIndex& idx ) const Q_DECL_OVERRIDE;
-        /*reimp*/ QModelIndex indexAt( int height ) const Q_DECL_OVERRIDE;
-        /*reimp*/ QModelIndex indexAbove( const QModelIndex& idx ) const Q_DECL_OVERRIDE;
-        /*reimp*/ QModelIndex indexBelow( const QModelIndex& idx ) const Q_DECL_OVERRIDE;
+        /*reimp*/ int headerHeight() const override;
+        /*reimp*/ int maximumItemHeight() const override;
+        /*reimp*/ int totalHeight() const override;
+        /*reimp*/ bool isRowVisible( const QModelIndex& idx ) const override;
+        /*reimp*/ bool isRowExpanded( const QModelIndex& idx ) const override;
+        /*reimp*/ Span rowGeometry( const QModelIndex& idx ) const override;
+        /*reimp*/ QModelIndex indexAt( int height ) const override;
+        /*reimp*/ QModelIndex indexAbove( const QModelIndex& idx ) const override;
+        /*reimp*/ QModelIndex indexBelow( const QModelIndex& idx ) const override;
     };
 }
 

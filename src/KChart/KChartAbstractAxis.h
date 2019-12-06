@@ -227,8 +227,8 @@ namespace KChart {
         */
         QStringList shortLabels() const;
 
-        void setGeometry( const QRect& rect ) Q_DECL_OVERRIDE = 0;
-        QRect geometry() const Q_DECL_OVERRIDE = 0;
+        void setGeometry( const QRect& rect ) override = 0;
+        QRect geometry() const override = 0;
 
         /**
             \brief Convenience function, returns the coordinate plane, in which this axis is used.

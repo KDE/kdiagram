@@ -869,30 +869,30 @@ public:
         m_model = model;
     }
 
-    /*reimp*/int headerHeight() const Q_DECL_OVERRIDE { return 40; }
+    /*reimp*/int headerHeight() const override { return 40; }
 
-    /*reimp*/ bool isRowVisible( const QModelIndex& ) const Q_DECL_OVERRIDE { return true;}
-    /*reimp*/ bool isRowExpanded( const QModelIndex& ) const Q_DECL_OVERRIDE { return false; }
-    /*reimp*/ KGantt::Span rowGeometry( const QModelIndex& idx ) const Q_DECL_OVERRIDE
+    /*reimp*/ bool isRowVisible( const QModelIndex& ) const override { return true;}
+    /*reimp*/ bool isRowExpanded( const QModelIndex& ) const override { return false; }
+    /*reimp*/ KGantt::Span rowGeometry( const QModelIndex& idx ) const override
     {
         return KGantt::Span( idx.row() * ROW_HEIGHT, ROW_HEIGHT );
     }
-    /*reimp*/ int maximumItemHeight() const Q_DECL_OVERRIDE {
+    /*reimp*/ int maximumItemHeight() const override {
         return ROW_HEIGHT/2;
     }
-    /*reimp*/int totalHeight() const Q_DECL_OVERRIDE {
+    /*reimp*/int totalHeight() const override {
         return m_model->rowCount()* ROW_HEIGHT;
     }
 
-    /*reimp*/ QModelIndex indexAt( int height ) const Q_DECL_OVERRIDE {
+    /*reimp*/ QModelIndex indexAt( int height ) const override {
         return m_model->index( height/ROW_HEIGHT, 0 );
     }
 
-    /*reimp*/ QModelIndex indexBelow( const QModelIndex& idx ) const Q_DECL_OVERRIDE {
+    /*reimp*/ QModelIndex indexBelow( const QModelIndex& idx ) const override {
         if ( !idx.isValid() )return QModelIndex();
         return idx.model()->index( idx.row()+1, idx.column(), idx.parent() );
     }
-    /*reimp*/ QModelIndex indexAbove( const QModelIndex& idx ) const Q_DECL_OVERRIDE {
+    /*reimp*/ QModelIndex indexAbove( const QModelIndex& idx ) const override {
         if ( !idx.isValid() )return QModelIndex();
         return idx.model()->index( idx.row()-1, idx.column(), idx.parent() );
     }

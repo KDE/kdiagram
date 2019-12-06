@@ -113,13 +113,13 @@ public:
     qreal angle() const;
 
     // reimpl PrerenderedElement:
-    const QPixmap& pixmap() const Q_DECL_OVERRIDE;
-    QPointF referencePointLocation( KChartEnums::PositionValue position ) const Q_DECL_OVERRIDE;
+    const QPixmap& pixmap() const override;
+    QPointF referencePointLocation( KChartEnums::PositionValue position ) const override;
     // overload: return location of referencePoint():
     QPointF referencePointLocation() const;
 
 protected:
-    void invalidate() const Q_DECL_OVERRIDE;
+    void invalidate() const override;
 
 private:
     /** Create a label with the given text and the given rotation

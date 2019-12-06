@@ -39,11 +39,11 @@ namespace KChart {
         explicit TernaryLineDiagram ( QWidget* parent = nullptr, TernaryCoordinatePlane* plane = nullptr );
         virtual ~TernaryLineDiagram();
 
-        void resize (const QSizeF &area) Q_DECL_OVERRIDE;
-        void paint (PaintContext *paintContext) Q_DECL_OVERRIDE;
+        void resize (const QSizeF &area) override;
+        void paint (PaintContext *paintContext) override;
 
     protected:
-        const QPair< QPointF, QPointF > calculateDataBoundaries () const Q_DECL_OVERRIDE;
+        const QPair< QPointF, QPointF > calculateDataBoundaries () const override;
 
     };
 }

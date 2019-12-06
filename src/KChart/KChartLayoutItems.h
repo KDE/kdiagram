@@ -117,19 +117,19 @@ namespace KChart {
         TextAttributes textAttributes() const;
 
         /** pure virtual in QLayoutItem */
-        bool isEmpty() const Q_DECL_OVERRIDE;
+        bool isEmpty() const override;
         /** pure virtual in QLayoutItem */
-        Qt::Orientations expandingDirections() const Q_DECL_OVERRIDE;
+        Qt::Orientations expandingDirections() const override;
         /** pure virtual in QLayoutItem */
-        QSize maximumSize() const Q_DECL_OVERRIDE;
+        QSize maximumSize() const override;
         /** pure virtual in QLayoutItem */
-        QSize minimumSize() const Q_DECL_OVERRIDE;
+        QSize minimumSize() const override;
         /** pure virtual in QLayoutItem */
-        QSize sizeHint() const Q_DECL_OVERRIDE;
+        QSize sizeHint() const override;
         /** pure virtual in QLayoutItem */
-        void setGeometry( const QRect& r ) Q_DECL_OVERRIDE;
+        void setGeometry( const QRect& r ) override;
         /** pure virtual in QLayoutItem */
-        QRect geometry() const Q_DECL_OVERRIDE;
+        QRect geometry() const override;
 
         virtual int marginWidth() const;
 
@@ -141,7 +141,7 @@ namespace KChart {
         virtual qreal realFontSize() const;
         virtual QFont realFont() const;
 
-        void paint( QPainter* ) Q_DECL_OVERRIDE;
+        void paint( QPainter* ) override;
 
         QPolygon boundingPolygon() const;
     private:
@@ -187,21 +187,21 @@ namespace KChart {
         TextAttributes textAttributes() const;
 
         /** pure virtual in QLayoutItem */
-        bool isEmpty() const Q_DECL_OVERRIDE;
+        bool isEmpty() const override;
         /** pure virtual in QLayoutItem */
-        Qt::Orientations expandingDirections() const Q_DECL_OVERRIDE;
+        Qt::Orientations expandingDirections() const override;
         /** pure virtual in QLayoutItem */
-        QSize maximumSize() const Q_DECL_OVERRIDE;
+        QSize maximumSize() const override;
         /** pure virtual in QLayoutItem */
-        QSize minimumSize() const Q_DECL_OVERRIDE;
+        QSize minimumSize() const override;
         /** pure virtual in QLayoutItem */
-        QSize sizeHint() const Q_DECL_OVERRIDE;
+        QSize sizeHint() const override;
         /** pure virtual in QLayoutItem */
-        void setGeometry( const QRect& r ) Q_DECL_OVERRIDE;
+        void setGeometry( const QRect& r ) override;
         /** pure virtual in QLayoutItem */
-        QRect geometry() const Q_DECL_OVERRIDE;
+        QRect geometry() const override;
 
-        void paint( QPainter* painter ) Q_DECL_OVERRIDE;
+        void paint( QPainter* painter ) override;
 
     protected:
         int borderWidth() const;
@@ -223,15 +223,15 @@ namespace KChart {
                               const QPen& pen,
                               Qt::Alignment alignment = Qt::Alignment() );
 
-            Qt::Orientations expandingDirections() const Q_DECL_OVERRIDE;
-            QRect geometry() const Q_DECL_OVERRIDE;
-            bool isEmpty() const Q_DECL_OVERRIDE;
-            QSize maximumSize() const Q_DECL_OVERRIDE;
-            QSize minimumSize() const Q_DECL_OVERRIDE;
-            void setGeometry( const QRect& r ) Q_DECL_OVERRIDE;
-            QSize sizeHint() const Q_DECL_OVERRIDE;
+            Qt::Orientations expandingDirections() const override;
+            QRect geometry() const override;
+            bool isEmpty() const override;
+            QSize maximumSize() const override;
+            QSize minimumSize() const override;
+            void setGeometry( const QRect& r ) override;
+            QSize sizeHint() const override;
 
-            void paint( QPainter* ) Q_DECL_OVERRIDE;
+            void paint( QPainter* ) override;
 
             static void paintIntoRect(
                     QPainter* painter,
@@ -262,18 +262,18 @@ namespace KChart {
                             Qt::Alignment mLegendLineSymbolAlignment,
                             Qt::Alignment alignment = Qt::Alignment() );
 
-            Qt::Orientations expandingDirections() const Q_DECL_OVERRIDE;
-            QRect geometry() const Q_DECL_OVERRIDE;
-            bool isEmpty() const Q_DECL_OVERRIDE;
-            QSize maximumSize() const Q_DECL_OVERRIDE;
-            QSize minimumSize() const Q_DECL_OVERRIDE;
-            void setGeometry( const QRect& r ) Q_DECL_OVERRIDE;
-            QSize sizeHint() const Q_DECL_OVERRIDE;
+            Qt::Orientations expandingDirections() const override;
+            QRect geometry() const override;
+            bool isEmpty() const override;
+            QSize maximumSize() const override;
+            QSize minimumSize() const override;
+            void setGeometry( const QRect& r ) override;
+            QSize sizeHint() const override;
 
             void setLegendLineSymbolAlignment(Qt::Alignment legendLineSymbolAlignment);
             virtual Qt::Alignment legendLineSymbolAlignment() const;
 
-            void paint( QPainter* ) Q_DECL_OVERRIDE;
+            void paint( QPainter* ) override;
 
             static void paintIntoRect(
                     QPainter* painter,
@@ -305,15 +305,15 @@ namespace KChart {
                                       const QPen& markerPen,
                                       Qt::Alignment alignment = Qt::Alignment() );
 
-            Qt::Orientations expandingDirections() const Q_DECL_OVERRIDE;
-            QRect geometry() const Q_DECL_OVERRIDE;
-            bool isEmpty() const Q_DECL_OVERRIDE;
-            QSize maximumSize() const Q_DECL_OVERRIDE;
-            QSize minimumSize() const Q_DECL_OVERRIDE;
-            void setGeometry( const QRect& r ) Q_DECL_OVERRIDE;
-            QSize sizeHint() const Q_DECL_OVERRIDE;
+            Qt::Orientations expandingDirections() const override;
+            QRect geometry() const override;
+            bool isEmpty() const override;
+            QSize maximumSize() const override;
+            QSize minimumSize() const override;
+            void setGeometry( const QRect& r ) override;
+            QSize sizeHint() const override;
 
-            void paint( QPainter* ) Q_DECL_OVERRIDE;
+            void paint( QPainter* ) override;
 
         private:
             AbstractDiagram* mDiagram;
@@ -336,15 +336,15 @@ namespace KChart {
     public:
         HorizontalLineLayoutItem();
 
-        Qt::Orientations expandingDirections() const Q_DECL_OVERRIDE;
-        QRect geometry() const Q_DECL_OVERRIDE;
-        bool isEmpty() const Q_DECL_OVERRIDE;
-        QSize maximumSize() const Q_DECL_OVERRIDE;
-        QSize minimumSize() const Q_DECL_OVERRIDE;
-        void setGeometry( const QRect& r ) Q_DECL_OVERRIDE;
-        QSize sizeHint() const Q_DECL_OVERRIDE;
+        Qt::Orientations expandingDirections() const override;
+        QRect geometry() const override;
+        bool isEmpty() const override;
+        QSize maximumSize() const override;
+        QSize minimumSize() const override;
+        void setGeometry( const QRect& r ) override;
+        QSize sizeHint() const override;
 
-        void paint( QPainter* ) Q_DECL_OVERRIDE;
+        void paint( QPainter* ) override;
 
     private:
         QRect mRect;
@@ -359,15 +359,15 @@ namespace KChart {
         public:
             VerticalLineLayoutItem();
 
-            Qt::Orientations expandingDirections() const Q_DECL_OVERRIDE;
-            QRect geometry() const Q_DECL_OVERRIDE;
-            bool isEmpty() const Q_DECL_OVERRIDE;
-            QSize maximumSize() const Q_DECL_OVERRIDE;
-            QSize minimumSize() const Q_DECL_OVERRIDE;
-            void setGeometry( const QRect& r ) Q_DECL_OVERRIDE;
-            QSize sizeHint() const Q_DECL_OVERRIDE;
+            Qt::Orientations expandingDirections() const override;
+            QRect geometry() const override;
+            bool isEmpty() const override;
+            QSize maximumSize() const override;
+            QSize minimumSize() const override;
+            void setGeometry( const QRect& r ) override;
+            QSize sizeHint() const override;
 
-            void paint( QPainter* ) Q_DECL_OVERRIDE;
+            void paint( QPainter* ) override;
 
         private:
             QRect mRect;
@@ -450,15 +450,15 @@ namespace KChart {
                     bool layoutIsAtTopPosition, QHBoxLayout *rightLeftLayout,
                     bool layoutIsAtLeftPosition,  QVBoxLayout *topBottomLayout );
 
-            Qt::Orientations expandingDirections() const Q_DECL_OVERRIDE;
-            QRect geometry() const Q_DECL_OVERRIDE;
-            bool isEmpty() const Q_DECL_OVERRIDE;
-            QSize maximumSize() const Q_DECL_OVERRIDE;
-            QSize minimumSize() const Q_DECL_OVERRIDE;
-            void setGeometry( const QRect& r ) Q_DECL_OVERRIDE;
-            QSize sizeHint() const Q_DECL_OVERRIDE;
+            Qt::Orientations expandingDirections() const override;
+            QRect geometry() const override;
+            bool isEmpty() const override;
+            QSize maximumSize() const override;
+            QSize minimumSize() const override;
+            void setGeometry( const QRect& r ) override;
+            QSize sizeHint() const override;
 
-            void paint( QPainter* ) Q_DECL_OVERRIDE;
+            void paint( QPainter* ) override;
 
         private:
             QRect mRect;

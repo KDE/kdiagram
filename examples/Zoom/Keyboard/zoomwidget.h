@@ -31,9 +31,9 @@ public:
 
 protected:
     QPointF findNewZoomCenter( const QPoint & pos );
-    void mousePressEvent( QMouseEvent * e ) Q_DECL_OVERRIDE;
-    void wheelEvent( QWheelEvent* e ) Q_DECL_OVERRIDE;
-    void keyPressEvent( QKeyEvent* e ) Q_DECL_OVERRIDE;
+    void mousePressEvent( QMouseEvent * e ) override;
+    void wheelEvent( QWheelEvent* e ) override;
+    void keyPressEvent( QKeyEvent* e ) override;
 };
 
 

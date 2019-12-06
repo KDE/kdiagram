@@ -256,24 +256,24 @@ namespace KChart {
 
 
         /** pure virtual in QLayoutItem */
-        bool isEmpty() const Q_DECL_OVERRIDE;
+        bool isEmpty() const override;
         /** pure virtual in QLayoutItem */
-        Qt::Orientations expandingDirections() const Q_DECL_OVERRIDE;
+        Qt::Orientations expandingDirections() const override;
         /** pure virtual in QLayoutItem */
-        QSize maximumSize() const Q_DECL_OVERRIDE;
+        QSize maximumSize() const override;
         /** pure virtual in QLayoutItem */
-        QSize minimumSize() const Q_DECL_OVERRIDE;
+        QSize minimumSize() const override;
         /** pure virtual in QLayoutItem */
-        QSize sizeHint() const Q_DECL_OVERRIDE;
+        QSize sizeHint() const override;
         /** pure virtual in QLayoutItem
           *
           * \note Do not call this function directly, unless you know
           * exactly what you are doing.  Geometry management is done
           * by KChart's internal layouting measures.
           */
-        void setGeometry( const QRect& r ) Q_DECL_OVERRIDE;
+        void setGeometry( const QRect& r ) override;
         /** pure virtual in QLayoutItem */
-        QRect geometry() const Q_DECL_OVERRIDE;
+        QRect geometry() const override;
 
         virtual void mousePressEvent( QMouseEvent* event );
         virtual void mouseDoubleClickEvent( QMouseEvent* event );

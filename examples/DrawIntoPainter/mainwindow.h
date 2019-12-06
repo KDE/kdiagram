@@ -47,7 +47,7 @@ public:
     /**
      * Adjusts the two small charts when the window is resized.
      */
-    /* reimp */ void resizeEvent ( QResizeEvent * ) Q_DECL_OVERRIDE;
+    /* reimp */ void resizeEvent ( QResizeEvent * ) override;
 
 private slots:
 

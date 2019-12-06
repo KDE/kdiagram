@@ -164,19 +164,19 @@ public:
     // the Legends/Advanced example. It will not work well in various ways - won't get enough space and look
     // very broken, will inhibit resizing the window etc.
 
-    QSize sizeHint() const Q_DECL_OVERRIDE
+    QSize sizeHint() const override
     {
         QWidget* w = const_cast< MyWidgetItem * >( this )->widget();
         return w->sizeHint();
     }
 
-    QSize minimumSize() const Q_DECL_OVERRIDE
+    QSize minimumSize() const override
     {
         QWidget* w = const_cast< MyWidgetItem * >( this )->widget();
         return w->minimumSize();
     }
 
-    QSize maximumSize() const Q_DECL_OVERRIDE
+    QSize maximumSize() const override
     {
         // Not just passing on w->maximumSize() fixes that the size policy of Legend is disregarded, making
         // Legend take all available space, which makes both the Legend internal layout and the overall
@@ -197,7 +197,7 @@ public:
         return ret;
     }
 
-    Qt::Orientations expandingDirections() const Q_DECL_OVERRIDE
+    Qt::Orientations expandingDirections() const override
     {
         QWidget* w = const_cast< MyWidgetItem * >( this )->widget();
         if ( isEmpty() ) {
@@ -207,19 +207,19 @@ public:
         return e;
     }
 
-    void setGeometry(const QRect &g) Q_DECL_OVERRIDE
+    void setGeometry(const QRect &g) override
     {
         QWidget* w = const_cast< MyWidgetItem * >( this )->widget();
         w->setGeometry(g);
     }
 
-    QRect geometry() const Q_DECL_OVERRIDE
+    QRect geometry() const override
     {
         QWidget* w = const_cast< MyWidgetItem * >( this )->widget();
         return w->geometry();
     }
 
-    bool hasHeightForWidth() const Q_DECL_OVERRIDE
+    bool hasHeightForWidth() const override
     {
         QWidget* w = const_cast< MyWidgetItem * >( this )->widget();
         bool ret = !isEmpty() &&
@@ -227,14 +227,14 @@ public:
         return ret;
     }
 
-    int heightForWidth( int width ) const Q_DECL_OVERRIDE
+    int heightForWidth( int width ) const override
     {
         QWidget* w = const_cast< MyWidgetItem * >( this )->widget();
         int ret = w->heightForWidth( width );
         return ret;
     }
 
-    bool isEmpty() const Q_DECL_OVERRIDE {
+    bool isEmpty() const override {
         QWidget* w = const_cast< MyWidgetItem * >( this )->widget();
         // legend->hide() should indeed hide the legend,
         // but a legend in a chart that hasn't been shown yet isn't hidden

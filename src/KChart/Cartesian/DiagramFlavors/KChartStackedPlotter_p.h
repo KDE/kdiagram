@@ -37,9 +37,9 @@ namespace KChart {
     public:
         explicit StackedPlotter( Plotter* );
         virtual ~StackedPlotter() {}
-        Plotter::PlotType type() const Q_DECL_OVERRIDE;
-        const QPair< QPointF,  QPointF > calculateDataBoundaries() const Q_DECL_OVERRIDE;
-        void paint( PaintContext* ctx ) Q_DECL_OVERRIDE;
+        Plotter::PlotType type() const override;
+        const QPair< QPointF,  QPointF > calculateDataBoundaries() const override;
+        void paint( PaintContext* ctx ) override;
         double interpolateMissingValue( const CartesianDiagramDataCompressor::CachePosition& pos ) const;
     };
 }

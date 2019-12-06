@@ -27,7 +27,7 @@ class TimeAxis : public KChart::CartesianAxis
     Q_OBJECT
 public:
     explicit TimeAxis( KChart::AbstractCartesianDiagram* parent );
-    const QString customizedLabel( const QString& label ) const Q_DECL_OVERRIDE;
+    const QString customizedLabel( const QString& label ) const override;
 };
 
 

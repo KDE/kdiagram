@@ -59,31 +59,31 @@ namespace KChart {
         */
         explicit DatasetProxyModel ( QObject* parent = nullptr );
 
-        QModelIndex buddy( const QModelIndex& index ) const Q_DECL_OVERRIDE;
+        QModelIndex buddy( const QModelIndex& index ) const override;
 
-        Qt::ItemFlags flags( const QModelIndex& index ) const Q_DECL_OVERRIDE;
+        Qt::ItemFlags flags( const QModelIndex& index ) const override;
 
         QModelIndex index( int row, int column,
-                           const QModelIndex &parent = QModelIndex() ) const Q_DECL_OVERRIDE;
-        QModelIndex parent(const QModelIndex &child ) const Q_DECL_OVERRIDE;
+                           const QModelIndex &parent = QModelIndex() ) const override;
+        QModelIndex parent(const QModelIndex &child ) const override;
 
         /** Implements the mapping from the source to the proxy indexes. */
-        QModelIndex mapFromSource ( const QModelIndex & sourceIndex ) const Q_DECL_OVERRIDE;
+        QModelIndex mapFromSource ( const QModelIndex & sourceIndex ) const override;
 
         /** Implements the mapping from the proxy to the source indexes. */
-        QModelIndex mapToSource ( const QModelIndex& proxyIndex ) const Q_DECL_OVERRIDE;
+        QModelIndex mapToSource ( const QModelIndex& proxyIndex ) const override;
 
         /** Overloaded from base class. */
-        QVariant data(const QModelIndex &index, int role) const Q_DECL_OVERRIDE;
+        QVariant data(const QModelIndex &index, int role) const override;
 
         /** Overloaded from base class. */
-        bool setData( const QModelIndex& index, const QVariant& value, int role ) Q_DECL_OVERRIDE;
+        bool setData( const QModelIndex& index, const QVariant& value, int role ) override;
 
         /** Overloaded from base class. */
-        QVariant headerData ( int section, Qt::Orientation orientation, int role = Qt::DisplayRole ) const Q_DECL_OVERRIDE;
+        QVariant headerData ( int section, Qt::Orientation orientation, int role = Qt::DisplayRole ) const override;
 
         /** Overloaded from base class. */
-        void setSourceModel(QAbstractItemModel *sourceModel) Q_DECL_OVERRIDE;
+        void setSourceModel(QAbstractItemModel *sourceModel) override;
 
         /** Set the root index of the table in
 	    the source model */
@@ -120,11 +120,11 @@ namespace KChart {
     protected:
         /** Decide whether the column is accepted. */
         bool filterAcceptsColumn ( int sourceColumn,
-                                   const QModelIndex & ) const Q_DECL_OVERRIDE;
+                                   const QModelIndex & ) const override;
 
 
         /** Decide whether the row is accepted. */
-        bool filterAcceptsRow ( int source_row, const QModelIndex & source_parent ) const Q_DECL_OVERRIDE;
+        bool filterAcceptsRow ( int source_row, const QModelIndex & source_parent ) const override;
 
     private:
 

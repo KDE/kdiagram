@@ -42,19 +42,19 @@ public:
 protected:
     // Implement AbstractDiagram
     /** \reimpl */
-    void paint( PaintContext* paintContext ) Q_DECL_OVERRIDE;
+    void paint( PaintContext* paintContext ) override;
 public:
     /** \reimpl */
-    void resize( const QSizeF& area ) Q_DECL_OVERRIDE;
+    void resize( const QSizeF& area ) override;
 
     // Implement AbstractPolarDiagram
     /** \reimpl */
-    qreal valueTotals() const Q_DECL_OVERRIDE;
+    qreal valueTotals() const override;
     /** \reimpl */
-    qreal numberOfValuesPerDataset() const Q_DECL_OVERRIDE;
-    qreal numberOfDatasets() const Q_DECL_OVERRIDE;
+    qreal numberOfValuesPerDataset() const override;
+    qreal numberOfDatasets() const override;
     /** \reimpl */
-    qreal numberOfGridRings() const Q_DECL_OVERRIDE;
+    qreal numberOfGridRings() const override;
 
     qreal valueTotals( int dataset ) const;
 
@@ -73,9 +73,9 @@ public:
 
 protected:
     /** \reimpl */
-    const QPair<QPointF, QPointF> calculateDataBoundaries() const Q_DECL_OVERRIDE;
-    void paintEvent( QPaintEvent* ) Q_DECL_OVERRIDE;
-    void resizeEvent( QResizeEvent* ) Q_DECL_OVERRIDE;
+    const QPair<QPointF, QPointF> calculateDataBoundaries() const override;
+    void paintEvent( QPaintEvent* ) override;
+    void resizeEvent( QResizeEvent* ) override;
 
 private:
     void drawOneSlice( QPainter* painter, uint dataset, uint slice, qreal granularity );

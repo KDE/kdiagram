@@ -57,7 +57,7 @@ namespace KChart {
             // grid is delete in base class dtor
         }
 
-        void initialize() Q_DECL_OVERRIDE
+        void initialize() override
         {
             grid = new LeveyJenningsGrid();
         }

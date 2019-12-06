@@ -48,7 +48,7 @@ namespace {
         explicit HeaderView( QWidget* parent=nullptr ) : QHeaderView( Qt::Horizontal, parent ) {
         }
 
-        QSize sizeHint() const Q_DECL_OVERRIDE { QSize s = QHeaderView::sizeHint(); s.rheight() *= 2; return s; }
+        QSize sizeHint() const override { QSize s = QHeaderView::sizeHint(); s.rheight() *= 2; return s; }
     };
 }
 

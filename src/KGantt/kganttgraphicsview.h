@@ -121,7 +121,7 @@ namespace KGantt {
 
     protected:
         void clearItems();
-        /*reimp*/void resizeEvent( QResizeEvent* ) Q_DECL_OVERRIDE;
+        /*reimp*/void resizeEvent( QResizeEvent* ) override;
     private:
         friend class View;
 

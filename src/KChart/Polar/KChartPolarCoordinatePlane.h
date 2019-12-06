@@ -44,9 +44,9 @@ namespace KChart {
         explicit PolarCoordinatePlane ( Chart* parent = nullptr );
         ~PolarCoordinatePlane();
 
-        void addDiagram ( AbstractDiagram* diagram ) Q_DECL_OVERRIDE;
+        void addDiagram ( AbstractDiagram* diagram ) override;
 
-        const QPointF translate ( const QPointF& diagramPoint ) const Q_DECL_OVERRIDE;
+        const QPointF translate ( const QPointF& diagramPoint ) const override;
         const QPointF translatePolar ( const QPointF& diagramPoint ) const;
 
         /** \brief Specify the rotation of the coordinate plane.
@@ -64,16 +64,16 @@ namespace KChart {
           */
         qreal startPosition() const;
 
-        qreal zoomFactorX() const Q_DECL_OVERRIDE;
-        qreal zoomFactorY() const Q_DECL_OVERRIDE;
+        qreal zoomFactorX() const override;
+        qreal zoomFactorY() const override;
 
-        void setZoomFactors( qreal factorX, qreal factorY ) Q_DECL_OVERRIDE;
-        void setZoomFactorX( qreal factor ) Q_DECL_OVERRIDE;
-        void setZoomFactorY( qreal factor ) Q_DECL_OVERRIDE;
+        void setZoomFactors( qreal factorX, qreal factorY ) override;
+        void setZoomFactorX( qreal factor ) override;
+        void setZoomFactorY( qreal factor ) override;
 
-        QPointF zoomCenter() const Q_DECL_OVERRIDE;
+        QPointF zoomCenter() const override;
 
-        void setZoomCenter( const QPointF& center ) Q_DECL_OVERRIDE;
+        void setZoomCenter( const QPointF& center ) override;
 
         /**
          * Set the attributes to be used for grid lines drawn in circular
@@ -143,14 +143,14 @@ namespace KChart {
         qreal radiusUnit() const;
 
         /** reimpl */
-        void paint( QPainter* ) Q_DECL_OVERRIDE;
+        void paint( QPainter* ) override;
 
     protected:
-        DataDimensionsList getDataDimensionsList() const Q_DECL_OVERRIDE;
+        DataDimensionsList getDataDimensionsList() const override;
         void paintEvent ( QPaintEvent* );
         void resizeEvent ( QResizeEvent* );
 
-        void layoutDiagrams() Q_DECL_OVERRIDE;
+        void layoutDiagrams() override;
     protected Q_SLOTS:
         void slotLayoutChanged( AbstractDiagram* diagram );
         void adjustZoomAndRepaint();

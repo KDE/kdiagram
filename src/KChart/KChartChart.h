@@ -451,7 +451,7 @@ namespace KChart {
         /**
           * Adjusts the internal layout when the chart is resized.
           */
-        /* reimp */ void resizeEvent ( QResizeEvent * event ) Q_DECL_OVERRIDE;
+        /* reimp */ void resizeEvent ( QResizeEvent * event ) override;
 
         /**
           * @brief Draws the background and frame, then calls paint().
@@ -460,18 +460,18 @@ namespace KChart {
           * class, but if you do, do not forget to call paint().
           * @sa paint
           */
-        /* reimp */ void paintEvent( QPaintEvent* event ) Q_DECL_OVERRIDE;
+        /* reimp */ void paintEvent( QPaintEvent* event ) override;
 
         /** reimp */
-        void mousePressEvent( QMouseEvent* event ) Q_DECL_OVERRIDE;
+        void mousePressEvent( QMouseEvent* event ) override;
         /** reimp */
-        void mouseDoubleClickEvent( QMouseEvent* event ) Q_DECL_OVERRIDE;
+        void mouseDoubleClickEvent( QMouseEvent* event ) override;
         /** reimp */
-        void mouseMoveEvent( QMouseEvent* event ) Q_DECL_OVERRIDE;
+        void mouseMoveEvent( QMouseEvent* event ) override;
         /** reimp */
-        void mouseReleaseEvent( QMouseEvent* event ) Q_DECL_OVERRIDE;
+        void mouseReleaseEvent( QMouseEvent* event ) override;
         /** reimp */
-        bool event( QEvent* event ) Q_DECL_OVERRIDE;
+        bool event( QEvent* event ) override;
 
     private:
         // TODO move this to the private class

@@ -48,19 +48,19 @@ public:
 protected:
     // Implement AbstractDiagram
     /** \reimpl */
-    void paint ( PaintContext* paintContext ) Q_DECL_OVERRIDE;
+    void paint ( PaintContext* paintContext ) override;
 
 public:
     /** \reimpl */
-    void resize ( const QSizeF& area ) Q_DECL_OVERRIDE;
+    void resize ( const QSizeF& area ) override;
 
     // Implement AbstractPolarDiagram
     /** \reimpl */
-    qreal valueTotals () const Q_DECL_OVERRIDE;
+    qreal valueTotals () const override;
     /** \reimpl */
-    qreal numberOfValuesPerDataset() const Q_DECL_OVERRIDE;
+    qreal numberOfValuesPerDataset() const override;
     /** \reimpl */
-    qreal numberOfGridRings() const Q_DECL_OVERRIDE;
+    qreal numberOfGridRings() const override;
 
     virtual PolarDiagram * clone() const;
 
@@ -93,9 +93,9 @@ public:
 
 protected:
     /** \reimpl */
-    const QPair<QPointF, QPointF> calculateDataBoundaries() const Q_DECL_OVERRIDE;
-    void paintEvent ( QPaintEvent* ) Q_DECL_OVERRIDE;
-    void resizeEvent ( QResizeEvent* ) Q_DECL_OVERRIDE;
+    const QPair<QPointF, QPointF> calculateDataBoundaries() const override;
+    void paintEvent ( QPaintEvent* ) override;
+    void resizeEvent ( QResizeEvent* ) override;
     virtual void paintPolarMarkers( PaintContext* ctx, const QPolygonF& polygon );
 
 }; // End of class PolarDiagram

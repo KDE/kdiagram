@@ -110,27 +110,27 @@ public:
 #else
     // implement AbstractCartesianDiagram
     /* reimpl */
-    int numberOfAbscissaSegments () const Q_DECL_OVERRIDE;
+    int numberOfAbscissaSegments () const override;
     /* reimpl */
-    int numberOfOrdinateSegments () const Q_DECL_OVERRIDE;
+    int numberOfOrdinateSegments () const override;
 #endif
 
 protected Q_SLOTS:
     void connectAttributesModel( AttributesModel* );
 
 protected:
-    void paint ( PaintContext* paintContext ) Q_DECL_OVERRIDE;
+    void paint ( PaintContext* paintContext ) override;
 
 public:
-    void resize ( const QSizeF& area ) Q_DECL_OVERRIDE;
+    void resize ( const QSizeF& area ) override;
 
 protected:
-    qreal threeDItemDepth( const QModelIndex & index ) const Q_DECL_OVERRIDE;
-    qreal threeDItemDepth( int column ) const Q_DECL_OVERRIDE;
+    qreal threeDItemDepth( const QModelIndex & index ) const override;
+    qreal threeDItemDepth( int column ) const override;
     /** \reimpl */
-    const QPair<QPointF, QPointF> calculateDataBoundaries() const Q_DECL_OVERRIDE;
-    void paintEvent ( QPaintEvent* ) Q_DECL_OVERRIDE;
-    void resizeEvent ( QResizeEvent* ) Q_DECL_OVERRIDE;
+    const QPair<QPointF, QPointF> calculateDataBoundaries() const override;
+    void paintEvent ( QPaintEvent* ) override;
+    void resizeEvent ( QResizeEvent* ) override;
 protected Q_SLOTS:
     void setDataBoundariesDirty();
     void calcMergeRadius();

@@ -42,14 +42,14 @@ namespace KChart {
         LeveyJenningsGrid() : CartesianGrid() {}
         virtual ~LeveyJenningsGrid() {}
 
-        void drawGrid( PaintContext* context ) Q_DECL_OVERRIDE;
+        void drawGrid( PaintContext* context ) override;
 
     private:
-        DataDimensionsList calculateGrid( const DataDimensionsList& rawDataDimensions ) const Q_DECL_OVERRIDE;
+        DataDimensionsList calculateGrid( const DataDimensionsList& rawDataDimensions ) const override;
         DataDimension calculateGridXY( const DataDimension& rawDataDimension, 
-                          Qt::Orientation orientation, bool adjustLower, bool adjustUpper ) const Q_DECL_OVERRIDE;
+                          Qt::Orientation orientation, bool adjustLower, bool adjustUpper ) const override;
         void calculateStepWidth( qreal start_, qreal end_, const QList<qreal>& granularities, Qt::Orientation orientation,
-                                 qreal& stepWidth, qreal& subStepWidth, bool adjustLower, bool adjustUpper ) const Q_DECL_OVERRIDE;
+                                 qreal& stepWidth, qreal& subStepWidth, bool adjustLower, bool adjustUpper ) const override;
     };
 
 }

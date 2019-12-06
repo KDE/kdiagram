@@ -89,26 +89,26 @@ public:
     QVariant data(int column, int role) const;
 
     /** \reimpl */
-    QVariant headerData ( int section, Qt::Orientation orientation, int role = Qt::DisplayRole ) const Q_DECL_OVERRIDE;
+    QVariant headerData ( int section, Qt::Orientation orientation, int role = Qt::DisplayRole ) const override;
     /** \reimpl */
-    int rowCount(const QModelIndex& ) const Q_DECL_OVERRIDE;
+    int rowCount(const QModelIndex& ) const override;
     /** \reimpl */
-    int columnCount(const QModelIndex& ) const Q_DECL_OVERRIDE;
+    int columnCount(const QModelIndex& ) const override;
     /** \reimpl */
-    QVariant data(const QModelIndex&, int role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
+    QVariant data(const QModelIndex&, int role = Qt::DisplayRole) const override;
     /** \reimpl */
-    bool setData ( const QModelIndex & index, const QVariant & value, int role = Qt::DisplayRole) Q_DECL_OVERRIDE;
+    bool setData ( const QModelIndex & index, const QVariant & value, int role = Qt::DisplayRole) override;
     /** Remove any explicit attributes settings that might have been specified before. */
     bool resetData ( const QModelIndex & index, int role = Qt::DisplayRole);
     /** \reimpl */
     bool setHeaderData ( int section, Qt::Orientation orientation, const QVariant & value,
-                         int role = Qt::DisplayRole) Q_DECL_OVERRIDE;
+                         int role = Qt::DisplayRole) override;
     /** Returns default values for the header data. */
     virtual QVariant defaultHeaderData ( int section, Qt::Orientation orientation, int role = Qt::DisplayRole ) const;
     /** Remove any explicit attributes settings that might have been specified before. */
     bool resetHeaderData ( int section, Qt::Orientation orientation, int role = Qt::DisplayRole);
     /** \reimpl */
-    void setSourceModel ( QAbstractItemModel* sourceModel ) Q_DECL_OVERRIDE;
+    void setSourceModel ( QAbstractItemModel* sourceModel ) override;
 
     /** Define the default value for a certain role.
         Passing a default-constructed QVariant is equivalent to removing the default. */

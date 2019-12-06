@@ -148,7 +148,7 @@ namespace UnitTest {
     GenericFactory( const char * group = nullptr ) {
       TestRegistry::instance()->registerTestFactory( this, group );
     }
-    Test * create() const Q_DECL_OVERRIDE { return new T_Test(); }
+    Test * create() const override { return new T_Test(); }
   };
 
 }
@@ -189,7 +189,7 @@ namespace UnitTest {
         class Class##Test : public KDAB::UnitTest::Test {  \
         public:                                                 \
             Class##Test() : Test( #Namespace "::" #Class ) {}    \
-            void run() Q_DECL_OVERRIDE;                          \
+            void run() override;                          \
         };                                                      \
     }                                                           \
     KDAB_EXPORT_SCOPED_UNITTEST( Namespace, Class##Test, Group ) \

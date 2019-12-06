@@ -111,9 +111,9 @@ namespace KGantt {
         void pressed( const QModelIndex & index );
 
     protected:
-        /*reimp*/ void helpEvent( QGraphicsSceneHelpEvent *helpEvent ) Q_DECL_OVERRIDE;
-        /*reimp*/ void drawBackground( QPainter* painter, const QRectF& rect ) Q_DECL_OVERRIDE;
-        /*reimp*/ void drawForeground( QPainter* painter, const QRectF& rect ) Q_DECL_OVERRIDE;
+        /*reimp*/ void helpEvent( QGraphicsSceneHelpEvent *helpEvent ) override;
+        /*reimp*/ void drawBackground( QPainter* painter, const QRectF& rect ) override;
+        /*reimp*/ void drawForeground( QPainter* painter, const QRectF& rect ) override;
 
     public Q_SLOTS:
         void setModel( QAbstractItemModel* );

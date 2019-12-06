@@ -43,7 +43,7 @@ class MainWindow : public QMainWindow {
 public:
     explicit MainWindow( QWidget * parent = nullptr, Qt::WindowFlags flags = Qt::WindowFlags() );
     virtual ~MainWindow();
-    void closeEvent(QCloseEvent *event) Q_DECL_OVERRIDE;
+    void closeEvent(QCloseEvent *event) override;
 
 private slots:
     void addNewEntry();

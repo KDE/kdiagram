@@ -88,13 +88,13 @@ public:
 
     /*reimp*/ QWidget* createEditor( QWidget* parent,
                                      const QStyleOptionViewItem& option,
-                                     const QModelIndex& idx ) const Q_DECL_OVERRIDE;
-    /*reimp*/ void setEditorData( QWidget* editor, const QModelIndex& index ) const Q_DECL_OVERRIDE;
+                                     const QModelIndex& idx ) const override;
+    /*reimp*/ void setEditorData( QWidget* editor, const QModelIndex& index ) const override;
     /*reimp*/ void setModelData( QWidget* editor, QAbstractItemModel* model,
-                                  const QModelIndex & index ) const Q_DECL_OVERRIDE;
+                                  const QModelIndex & index ) const override;
 protected:
     /*reimp*/void drawDisplay( QPainter* painter, const QStyleOptionViewItem & option,
-                               const QRect& rect, const QString& text ) const Q_DECL_OVERRIDE;
+                               const QRect& rect, const QString& text ) const override;
 };
 
 MyItemDelegate::MyItemDelegate( QObject* parent )
@@ -163,8 +163,8 @@ public:
     ~DateTimeGrid() { }
 
     //virtual void paintUserDefinedHeader(QPainter* painter, const QRectF& headerRect, const QRectF& exposedRect, qreal offset, const KGantt::DateTimeScaleFormatter* formatter, QWidget* widget = 0);
-    void drawBackground(QPainter* painter, const QRectF& rect) Q_DECL_OVERRIDE;
-    void drawForeground(QPainter* painter, const QRectF& rect) Q_DECL_OVERRIDE;
+    void drawBackground(QPainter* painter, const QRectF& rect) override;
+    void drawForeground(QPainter* painter, const QRectF& rect) override;
 };
 
 void DateTimeGrid::drawBackground(QPainter* painter, const QRectF& rect)

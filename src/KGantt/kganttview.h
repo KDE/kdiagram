@@ -100,7 +100,7 @@ namespace KGantt {
         void collapseAll( QModelIndex index = QModelIndex() );
 
     protected:
-        /*reimp*/ void resizeEvent(QResizeEvent*) Q_DECL_OVERRIDE;
+        /*reimp*/ void resizeEvent(QResizeEvent*) override;
     };
 }
 

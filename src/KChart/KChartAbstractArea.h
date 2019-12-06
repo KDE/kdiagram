@@ -65,7 +65,7 @@ public:
       * Call paintAll, if you want the background and the frame to be drawn
       * before the normal paint() is invoked automatically.
       */
-    void paintAll( QPainter& painter ) Q_DECL_OVERRIDE;
+    void paintAll( QPainter& painter ) override;
 
     /**
      * This is called at layout time by KChart::AutoSpacerLayoutItem::sizeHint().
@@ -122,8 +122,8 @@ public:
 
 protected:
     AbstractArea();
-    QRect areaGeometry() const Q_DECL_OVERRIDE;
-    void positionHasChanged() Q_DECL_OVERRIDE;
+    QRect areaGeometry() const override;
+    void positionHasChanged() override;
 
 Q_SIGNALS:
     void positionChanged( AbstractArea * );

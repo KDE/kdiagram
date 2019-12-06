@@ -37,10 +37,10 @@ public Q_SLOTS:
     void setVisibleStart( const QDateTime& start );
     void setVisibleEnd( const QDateTime& end );
 
-    QVariant data( const QModelIndex& index, int role = Qt::DisplayRole ) const Q_DECL_OVERRIDE;
+    QVariant data( const QModelIndex& index, int role = Qt::DisplayRole ) const override;
 
 protected:
-    bool filterAcceptsRow( int source_row, const QModelIndex& source_parent ) const Q_DECL_OVERRIDE;
+    bool filterAcceptsRow( int source_row, const QModelIndex& source_parent ) const override;
 
 private:
     QPair< QDateTime, QDateTime > range;

@@ -87,7 +87,7 @@ namespace KChart {
          */
         virtual void layoutPlanes();
         /** \reimpl */
-        void setCoordinatePlane( AbstractCoordinatePlane* plane ) Q_DECL_OVERRIDE;
+        void setCoordinatePlane( AbstractCoordinatePlane* plane ) override;
 
         /**
           * Makes this diagram use another diagram \a diagram as reference diagram with relative offset
@@ -109,11 +109,11 @@ namespace KChart {
         virtual QPointF referenceDiagramOffset() const;
 
         /* reimpl */
-        void setModel( QAbstractItemModel* model ) Q_DECL_OVERRIDE;
+        void setModel( QAbstractItemModel* model ) override;
         /* reimpl */
-        void setRootIndex( const QModelIndex& index ) Q_DECL_OVERRIDE;
+        void setRootIndex( const QModelIndex& index ) override;
         /* reimpl */
-        void setAttributesModel( AttributesModel* model ) Q_DECL_OVERRIDE;
+        void setAttributesModel( AttributesModel* model ) override;
 
     protected Q_SLOTS:
         void connectAttributesModel( AttributesModel* );

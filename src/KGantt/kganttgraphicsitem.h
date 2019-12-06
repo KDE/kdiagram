@@ -44,7 +44,7 @@ namespace KGantt {
         explicit GraphicsItem( const QModelIndex& idx, QGraphicsItem* parent = nullptr, GraphicsScene* scene = nullptr );
         virtual ~GraphicsItem();
 
-        /*reimp*/int type() const Q_DECL_OVERRIDE;
+        /*reimp*/int type() const override;
         /*reimp (non-virtual)*/ GraphicsScene* scene() const;
 
         void updateItem( const Span& rowgeometry, const QPersistentModelIndex& idx );
@@ -73,19 +73,19 @@ namespace KGantt {
         QList<ConstraintGraphicsItem*> startConstraints() const { return m_startConstraints; }
         QList<ConstraintGraphicsItem*> endConstraints() const { return m_endConstraints; }
 
-        /*reimp*/ QRectF boundingRect() const Q_DECL_OVERRIDE;
+        /*reimp*/ QRectF boundingRect() const override;
         /*reimp*/ void paint( QPainter* painter, const QStyleOptionGraphicsItem* option,
-                              QWidget* widget = nullptr ) Q_DECL_OVERRIDE;
+                              QWidget* widget = nullptr ) override;
 
-        /*reimp*/ QVariant itemChange( GraphicsItemChange, const QVariant& value ) Q_DECL_OVERRIDE;
+        /*reimp*/ QVariant itemChange( GraphicsItemChange, const QVariant& value ) override;
     protected:
-        /*reimp*/ void focusInEvent( QFocusEvent* event ) Q_DECL_OVERRIDE;
-        /*reimp*/ void hoverMoveEvent( QGraphicsSceneHoverEvent* ) Q_DECL_OVERRIDE;
-        /*reimp*/ void hoverLeaveEvent( QGraphicsSceneHoverEvent* ) Q_DECL_OVERRIDE;
-        /*reimp*/ void mousePressEvent( QGraphicsSceneMouseEvent* ) Q_DECL_OVERRIDE;
-        /*reimp*/ void mouseReleaseEvent( QGraphicsSceneMouseEvent* ) Q_DECL_OVERRIDE;
-        /*reimp*/ void mouseDoubleClickEvent( QGraphicsSceneMouseEvent* ) Q_DECL_OVERRIDE;
-        /*reimp*/ void mouseMoveEvent( QGraphicsSceneMouseEvent* ) Q_DECL_OVERRIDE;
+        /*reimp*/ void focusInEvent( QFocusEvent* event ) override;
+        /*reimp*/ void hoverMoveEvent( QGraphicsSceneHoverEvent* ) override;
+        /*reimp*/ void hoverLeaveEvent( QGraphicsSceneHoverEvent* ) override;
+        /*reimp*/ void mousePressEvent( QGraphicsSceneMouseEvent* ) override;
+        /*reimp*/ void mouseReleaseEvent( QGraphicsSceneMouseEvent* ) override;
+        /*reimp*/ void mouseDoubleClickEvent( QGraphicsSceneMouseEvent* ) override;
+        /*reimp*/ void mouseMoveEvent( QGraphicsSceneMouseEvent* ) override;
 
     private:
         void init();

@@ -45,18 +45,18 @@ namespace KChart {
         explicit TernaryAxis ( AbstractTernaryDiagram* diagram = nullptr );
         ~TernaryAxis();
 
-        void  paintAll( QPainter &) Q_DECL_OVERRIDE;
-        void  paint (QPainter *) Q_DECL_OVERRIDE;
-        void  paintCtx (PaintContext *) Q_DECL_OVERRIDE;
+        void  paintAll( QPainter &) override;
+        void  paint (QPainter *) override;
+        void  paintCtx (PaintContext *) override;
 
-        QRect  geometry () const Q_DECL_OVERRIDE;
-        void  setGeometry (const QRect &rect) Q_DECL_OVERRIDE;
+        QRect  geometry () const override;
+        void  setGeometry (const QRect &rect) override;
 
-        bool  isEmpty () const Q_DECL_OVERRIDE;
-        QSize  minimumSize () const Q_DECL_OVERRIDE;
-        QSize  maximumSize () const Q_DECL_OVERRIDE;
-        QSize  sizeHint () const Q_DECL_OVERRIDE;
-        Qt::Orientations  expandingDirections () const   Q_DECL_OVERRIDE;
+        bool  isEmpty () const override;
+        QSize  minimumSize () const override;
+        QSize  maximumSize () const override;
+        QSize  sizeHint () const override;
+        Qt::Orientations  expandingDirections () const   override;
 
         virtual const Position  position () const;
         virtual void  setPosition (Position p);

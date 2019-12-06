@@ -39,9 +39,9 @@ namespace KChart {
     public:
         explicit NormalBarDiagram( BarDiagram* );
         virtual ~NormalBarDiagram() {}
-        BarDiagram::BarType type() const Q_DECL_OVERRIDE;
-        const QPair<QPointF,  QPointF> calculateDataBoundaries() const Q_DECL_OVERRIDE;
-        void paint( PaintContext* ctx ) Q_DECL_OVERRIDE;
+        BarDiagram::BarType type() const override;
+        const QPair<QPointF,  QPointF> calculateDataBoundaries() const override;
+        void paint( PaintContext* ctx ) override;
     };
 
 }

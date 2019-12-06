@@ -100,7 +100,7 @@ public:
 
     virtual ~Private() { }
 
-    void initialize() Q_DECL_OVERRIDE
+    void initialize() override
     {
         grid = new PolarGrid();
     }

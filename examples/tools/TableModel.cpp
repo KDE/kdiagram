@@ -55,8 +55,8 @@ QVariant TableModel::data( const QModelIndex& index, int role ) const
         qDebug() << "TableModel::data: row:"
                  << index.row() << ", column:" << index.column()
                  << ", rowCount:" << rowCount() << ", columnCount:"
-                 << columnCount() << endl
-                 << "TableModel::data: FIXME fix kchart views to not query"
+                 << columnCount()
+                 << "\nTableModel::data: FIXME fix kchart views to not query"
                     " model data for invalid indices!";
         return QVariant();
     }

@@ -25,6 +25,7 @@
 #include <QApplication>
 #include <QDateTime>
 #include <QPainter>
+#include <QPainterPath>
 #include <QStyle>
 #include <QStyleOptionHeader>
 #include <QWidget>

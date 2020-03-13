@@ -28,7 +28,7 @@
 #include "KChartMath_p.h"
 
 #include <QPainter>
-
+#include <QPainterPath>
 
 using namespace KChart;
 

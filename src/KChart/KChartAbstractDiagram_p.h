@@ -49,6 +49,7 @@
 #include <QFont>
 #include <QFontMetrics>
 #include <QPaintDevice>
+#include <QPainterPath>
 #include <QModelIndex>
 
 

@@ -33,6 +33,7 @@
 #include "kganttforwardingproxymodel.h"
 #include "kganttitemdelegate.h"
 #include "kganttdatetimegrid.h"
+#include "kgantttreeviewrowcontroller.h"
 
 #include <QListView>
 #include <QTreeView>
@@ -335,6 +336,24 @@ void TestKGanttView::testConstraints()
     QCOMPARE(model->constraints().count(), 1);
     QCOMPARE(view->graphicsView()->scene()->items().count(), 4);
     
+}
+
+void TestKGanttView::testSetGraphicsView()
+{
+    GraphicsView *gv = new GraphicsView(view);
+    view->setGraphicsView(gv);
+    QVERIFY(view->graphicsView() == gv);
+
+    initTreeModel();
+}
+
+void TestKGanttView::testSetRowController()
+{
+    TreeViewRowController *rc = new TreeViewRowController(qobject_cast<QTreeView*>(view->leftView()), view->ganttProxyModel());
+    view->setRowController(rc);
+    QVERIFY(view->rowController() == rc);
+
+    initTreeModel();
 }
 
 QTEST_MAIN(TestKGanttView)

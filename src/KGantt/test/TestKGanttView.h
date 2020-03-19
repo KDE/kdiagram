@@ -55,5 +55,9 @@ private Q_SLOTS:
     void testListView();
 
     void testConstraints();
+
+    void testSetGraphicsView();
+
+    void testSetRowController();
 };
 #endif

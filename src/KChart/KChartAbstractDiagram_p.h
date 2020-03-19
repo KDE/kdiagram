@@ -50,6 +50,7 @@
 #include <QFontMetrics>
 #include <QPaintDevice>
 #include <QModelIndex>
+#include <QPainterPath>
 
 
 namespace KChart {

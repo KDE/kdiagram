@@ -25,6 +25,7 @@
 #include <QApplication>
 #include <QAbstractProxyModel>
 #include <QSizeF>
+#include <QPainterPath>
 
 #include "KChartAbstractCoordinatePlane.h"
 #include "KChartChart.h"

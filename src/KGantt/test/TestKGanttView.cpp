@@ -340,9 +340,20 @@ void TestKGanttView::testConstraints()
 
 void TestKGanttView::testSetGraphicsView()
 {
-    GraphicsView *gv = new GraphicsView(view);
+    delete view;
+    delete itemModel;
+
+    view = new KGantt::View();
+
+    itemModel = new QStandardItemModel();
+
+    GraphicsView *old = view->graphicsView();
+    GraphicsView *gv = new GraphicsView();
     view->setGraphicsView(gv);
     QVERIFY(view->graphicsView() == gv);
+
+    view->setModel(itemModel);
+    view->setConstraintModel(new KGantt::ConstraintModel());
 
     initTreeModel();
 }

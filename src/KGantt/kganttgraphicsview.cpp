@@ -722,10 +722,13 @@ void GraphicsView::updateScene()
     if ( scene() ) scene()->invalidate( QRectF(), QGraphicsScene::BackgroundLayer );
 }
 
-/*! \internal */
+/*! Creates a new GraphicsItem
+ * Re-iplement to create your own flavour of GraphicsItem
+ */
 GraphicsItem* GraphicsView::createItem( ItemType type ) const
 {
-    return d->scene.createItem( type );
+    Q_UNUSED(type)
+    return new GraphicsItem;
 }
 
 /*! \internal */

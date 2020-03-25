@@ -88,6 +88,8 @@ namespace KGantt {
         void updateRow( const QModelIndex& );
         void updateScene();
 
+        virtual GraphicsItem* createItem( ItemType type ) const;
+
     public Q_SLOTS:
         void updateSceneRect();
 
@@ -124,8 +126,6 @@ namespace KGantt {
         /*reimp*/void resizeEvent( QResizeEvent* ) override;
     private:
         friend class View;
-
-        GraphicsItem* createItem( ItemType type ) const;
     };
 }
 

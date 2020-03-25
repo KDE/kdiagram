@@ -26,6 +26,7 @@
 #include "kganttabstractrowcontroller.h"
 #include "kganttdatetimegrid.h"
 #include "kganttsummaryhandlingproxymodel.h"
+#include "kganttgraphicsview.h"
 
 #include <QApplication>
 #include <QGraphicsSceneHelpEvent>
@@ -358,22 +359,13 @@ QModelIndex GraphicsScene::dataIndex( const QModelIndex& idx )
 }
 
 /*! Creates a new item of type type.
- * TODO: If the user should be allowed to override
- * this in any way, it needs to be in View!
  */
 GraphicsItem* GraphicsScene::createItem( ItemType type ) const
 {
-#if 0
-    switch ( type ) {
-    case TypeEvent:   return 0;
-    case TypeTask:    return new TaskItem;
-    case TypeSummary: return new SummaryItem;
-    default:          return 0;
-    }
-#endif
-    //qDebug() << "GraphicsScene::createItem("<<type<<")";
-    Q_UNUSED( type );
-    return new GraphicsItem;
+    assert(views().count() == 1);
+    GraphicsView *v = qobject_cast<GraphicsView*>(views().first());
+    assert(v);
+    return v->createItem(type);
 }
 
 void GraphicsScene::Private::recursiveUpdateMultiItem( const Span& span, const QModelIndex& idx )

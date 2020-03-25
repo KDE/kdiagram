@@ -31,7 +31,7 @@ QT_BEGIN_NAMESPACE
 class QGraphicsLineItem;
 QT_END_NAMESPACE
 
-namespace KGantt {
+namespace KGANTT_EXPORT KGantt {
     class GraphicsScene;
     class ConstraintGraphicsItem;
 

@@ -110,6 +110,7 @@ ecm_generate_headers(kgantt_LIB_HEADERS
 install(FILES
             ${CMAKE_CURRENT_BINARY_DIR}/kgantt_export.h
             ${kgantt_LIB_HEADERS}
+            kganttabstractgrid_p.h
         DESTINATION ${INCLUDE_INSTALL_DIR}/KGantt
         COMPONENT Devel)
 

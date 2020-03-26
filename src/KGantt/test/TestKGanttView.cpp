@@ -347,7 +347,6 @@ void TestKGanttView::testSetGraphicsView()
 
     itemModel = new QStandardItemModel();
 
-    GraphicsView *old = view->graphicsView();
     GraphicsView *gv = new GraphicsView();
     view->setGraphicsView(gv);
     QVERIFY(view->graphicsView() == gv);

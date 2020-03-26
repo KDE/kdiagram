@@ -31,12 +31,12 @@ QT_BEGIN_NAMESPACE
 class QGraphicsLineItem;
 QT_END_NAMESPACE
 
-namespace KGANTT_EXPORT KGantt {
+namespace KGantt {
     class GraphicsScene;
     class ConstraintGraphicsItem;
 
     /* Can we fit every kind of item into one gfxitem class? */
-    class GraphicsItem : public QGraphicsItem {
+    class KGANTT_EXPORT GraphicsItem : public QGraphicsItem {
     public:
         enum { Type = UserType + 42 };
 

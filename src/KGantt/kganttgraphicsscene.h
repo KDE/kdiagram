@@ -30,7 +30,9 @@
 QT_BEGIN_NAMESPACE
 class QAbstractProxyModel;
 class QItemSelectionModel;
+class QItemSelection;
 class QPrinter;
+class QAbstractItemModel;
 QT_END_NAMESPACE
 
 namespace KGantt {
@@ -128,6 +130,9 @@ namespace KGantt {
         void slotConstraintAdded( const KGantt::Constraint& );
         void slotConstraintRemoved( const KGantt::Constraint& );
         void slotGridChanged();
+        void slotSelectionChanged(const QItemSelection &selected, const QItemSelection &deselected);
+        void selectionModelChanged(QAbstractItemModel *);
+
     private:
         void doPrint( QPainter* painter, const QRectF& targetRect,
                       qreal start, qreal end,

@@ -274,8 +274,16 @@ void GraphicsScene::setConstraintModel( ConstraintModel* cm )
 
 void GraphicsScene::setSelectionModel( QItemSelectionModel* smodel )
 {
+    if (d->selectionModel) {
+        d->selectionModel->disconnect( this );
+    }
     d->selectionModel = smodel;
-    // TODO: update selection from model and connect signals
+    if (smodel) {
+        connect(d->selectionModel, SIGNAL(modelChanged(QAbstractItemModel*)),
+                this, SLOT(selectionModelChanged(QAbstractItemModel*)));
+        connect( smodel, SIGNAL(selectionChanged(const QItemSelection&,const QItemSelection&)),
+                 this, SLOT(slotSelectionChanged(const QItemSelection&,const QItemSelection&)) );
+    }
 }
 
 QItemSelectionModel* GraphicsScene::selectionModel() const
@@ -563,6 +571,31 @@ void GraphicsScene::slotGridChanged()
     updateItems();
     update();
     emit gridChanged();
+}
+
+void GraphicsScene::selectionModelChanged(QAbstractItemModel *model)
+{
+    qInfo()<<Q_FUNC_INFO<<model;
+}
+
+void GraphicsScene::slotSelectionChanged(const QItemSelection &selected, const QItemSelection &deselected)
+{
+    qInfo()<<Q_FUNC_INFO<<sender()<<selected.indexes();
+    d->selectionModel->disconnect(this);
+    for (const QModelIndex &idx : deselected.indexes()) {
+        GraphicsItem *item = findItem(idx.model() == d->summaryHandlingModel ? idx : d->summaryHandlingModel->mapFromSource(idx));
+        if (item) {
+            item->setSelected(false);
+        }
+    }
+    for (const QModelIndex &idx : selected.indexes()) {
+        GraphicsItem *item = findItem(idx.model() == d->summaryHandlingModel ? idx : d->summaryHandlingModel->mapFromSource(idx));
+        if (item) {
+            item->setSelected(true);
+        }
+    }
+    connect(d->selectionModel, SIGNAL(selectionChanged(const QItemSelection&,const QItemSelection&)),
+             this, SLOT(slotSelectionChanged(const QItemSelection&,const QItemSelection&)) );
 }
 
 void GraphicsScene::helpEvent( QGraphicsSceneHelpEvent *helpEvent )

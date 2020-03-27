@@ -13,6 +13,11 @@ ecm_add_test(TestKGanttConstraintModel.cpp
     LINK_LIBRARIES KGantt Qt5::Test
 )
 
+ecm_add_test(TestMultiItems.cpp
+    TEST_NAME KGanttMultiItems
+    LINK_LIBRARIES KGantt Qt5::Test
+)
+
 ecm_add_test(TestKGanttView.cpp
     TEST_NAME KGanttView
     LINK_LIBRARIES PUBLIC KGantt Qt5::Test

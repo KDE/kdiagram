@@ -127,6 +127,14 @@ void DateTimeTimeLine::setDateTime(const QDateTime &dt)
 }
 
 /**
+ * @return the update interval in milliseconds
+ */
+int DateTimeTimeLine::interval() const
+{
+    return d->timer.interval();
+}
+
+/**
  * Set timer interval to @p msecs milliseconds.
  * Setting a zero time disables the timer.
  */

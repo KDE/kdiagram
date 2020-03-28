@@ -50,6 +50,7 @@ namespace KGantt {
         void setInterval(int msec);
         QPen pen() const;
         void setPen(const QPen &pen);
+        QPen customPen() const;
 
     Q_SIGNALS:
         void updated();

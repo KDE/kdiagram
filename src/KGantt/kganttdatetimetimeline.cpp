@@ -161,4 +161,13 @@ void DateTimeTimeLine::setPen(const QPen &pen)
     Q_EMIT updated();
 }
 
+/**
+ * @return the pen that has been set with setPen()
+ */
+QPen DateTimeTimeLine::customPen() const
+{
+    return d->pen;
+}
+
+
 #undef d

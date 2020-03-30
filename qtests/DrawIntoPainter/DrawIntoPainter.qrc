@@ -3,7 +3,7 @@
   <qresource>
     <file alias="original">../../examples/tools/modeldata/KChart-Test-Linear.csv</file>
     <file alias="test">data_test.csv</file>
-    <file alias="test_small">data_test_4000.csv</file>
+    <file alias="test_small">data_test_small.csv</file>
     <file alias="empty">data_empty.csv</file>
   </qresource>
 </RCC>

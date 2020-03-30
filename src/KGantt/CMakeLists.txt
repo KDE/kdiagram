@@ -40,8 +40,14 @@ set( kgantt_LIB_SRCS
     kganttdatetimegrid.cpp
     kganttlegend.cpp
     kganttdatetimetimeline.cpp
+    kganttdatetimetimelinedialog.cpp
+    kganttpenstylecombobox.cpp
     unittest/test.cpp
     unittest/testregistry.cpp
+)
+
+qt5_wrap_ui(kgantt_LIB_SRCS
+    kganttdatetimetimelinedialog.ui
 )
 
 if(CMAKE_COMPILER_IS_GNUCXX)
@@ -103,6 +109,8 @@ ecm_generate_headers(kgantt_LIB_HEADERS
     KGanttDateTimeGrid
     KGanttLegend
     KGanttDateTimeTimeLine
+    KGanttDateTimeTimeLineDialog
+    KGanttPenStyleComboBox
 
     REQUIRED_HEADERS kgantt_LIB_HEADERS
 )

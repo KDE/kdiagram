@@ -22,6 +22,7 @@
 #include "kganttabstractrowcontroller.h"
 #include "kganttgraphicsitem.h"
 #include "kganttconstraintmodel.h"
+#include "kganttdatetimetimelinedialog.h"
 
 #include <QMenu>
 #include <QPainter>
@@ -92,6 +93,7 @@ void HeaderWidget::contextMenuEvent( QContextMenuEvent* event )
     QAction* actionScaleHour = nullptr;
     QAction* actionZoomIn = nullptr;
     QAction* actionZoomOut = nullptr;
+    QAction* actionTimeline = nullptr;
     if ( grid != nullptr )
     {
         QMenu* menuScale = new QMenu( tr( "Scale", "@title:menu" ), &contextMenu );
@@ -137,6 +139,10 @@ void HeaderWidget::contextMenuEvent( QContextMenuEvent* event )
         contextMenu.addAction( actionZoomIn );
         actionZoomOut = new QAction( tr( "Zoom Out", "@action:inmenu" ), &contextMenu );
         contextMenu.addAction( actionZoomOut );
+
+        contextMenu.addSeparator();
+        actionTimeline = new QAction( tr( "Timeline...", "@action:inmenu" ), &contextMenu );
+        contextMenu.addAction( actionTimeline );
     }
 
     if ( contextMenu.isEmpty() )
@@ -183,7 +189,12 @@ void HeaderWidget::contextMenuEvent( QContextMenuEvent* event )
         // daywidth *MUST NOT* go below 1.0, it is used as an integer later on
         grid->setDayWidth( qMax<qreal>( 1.0, grid->dayWidth() * 0.8 ) );
     }
-
+    else if ( action == actionTimeline )
+    {
+        assert( grid != nullptr );
+        DateTimeTimeLineDialog dlg(grid->timeLine());
+        dlg.exec();
+    }
     event->accept();
 }
 

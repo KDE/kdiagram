@@ -138,7 +138,7 @@ MainWindow::MainWindow( QWidget* parent ) :
     m_legend->setPosition( Position::South );
     m_legend->setAlignment( Qt::AlignRight );
     m_legend->setShowLines( false );
-    m_legend->setTitleText( tr( "Legend" ) );
+    m_legend->setTitleText( QStringLiteral( "Legend" ) );
     m_legend->setOrientation( Qt::Horizontal );
 
     // setting the legend frame and background to the same color:

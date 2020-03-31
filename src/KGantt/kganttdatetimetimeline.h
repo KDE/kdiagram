@@ -47,9 +47,11 @@ namespace KGantt {
         void setOptions(DateTimeTimeLine::Options options);
         QDateTime dateTime() const;
         void setDateTime(const QDateTime &dt);
+        int interval() const;
         void setInterval(int msec);
         QPen pen() const;
         void setPen(const QPen &pen);
+        QPen customPen() const;
 
     Q_SIGNALS:
         void updated();

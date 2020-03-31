@@ -66,7 +66,7 @@ using namespace KGantt;
  * For example:
  * \code
  *  // Show a red timeline in the foreground
- *  timeLine->setOptions(UseCustomPen);
+ *  timeLine->setOptions(Foreground | UseCustomPen);
  *  timeLine->setPen(QPen(Qt:red));
  *  // Update the timeline every 5 seconds
  *  timeLine->setInterval(5000);
@@ -81,6 +81,7 @@ using namespace KGantt;
 DateTimeTimeLine::DateTimeTimeLine()
     : _d( new Private())
 {
+    _d->options = nullptr;
     _d->pen = QPen(QApplication::palette().color(QPalette::Highlight), 0);
     connect(&_d->timer, SIGNAL(timeout()), this, SIGNAL(updated()));
 }
@@ -126,6 +127,14 @@ void DateTimeTimeLine::setDateTime(const QDateTime &dt)
 }
 
 /**
+ * @return the update interval in milliseconds
+ */
+int DateTimeTimeLine::interval() const
+{
+    return d->timer.interval();
+}
+
+/**
  * Set timer interval to @p msecs milliseconds.
  * Setting a zero time disables the timer.
  */
@@ -159,5 +168,14 @@ void DateTimeTimeLine::setPen(const QPen &pen)
     d->pen = pen;
     Q_EMIT updated();
 }
+
+/**
+ * @return the pen that has been set with setPen()
+ */
+QPen DateTimeTimeLine::customPen() const
+{
+    return d->pen;
+}
+
 
 #undef d

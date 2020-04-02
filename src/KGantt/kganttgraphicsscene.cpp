@@ -509,8 +509,8 @@ void GraphicsScene::removeItem( const QModelIndex& idx )
         d->items.erase( it );
         {
             // Remove any constraintitems attached
-            const QSet<ConstraintGraphicsItem*> clst = QSet<ConstraintGraphicsItem*>::fromList( item->startConstraints() ) +
-                                                       QSet<ConstraintGraphicsItem*>::fromList( item->endConstraints() );
+            const QList<ConstraintGraphicsItem*> lst = item->startConstraints() + item->endConstraints();
+            const QSet<ConstraintGraphicsItem*> clst(lst.cbegin(), lst.cend());
             Q_FOREACH( ConstraintGraphicsItem* citem, clst ) {
                 d->deleteConstraintItem( citem );
             }

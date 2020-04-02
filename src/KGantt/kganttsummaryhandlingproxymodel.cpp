@@ -132,16 +132,6 @@ void SummaryHandlingProxyModel::init()
 {
 }
 
-namespace {
-
-    // Think this is ugly? Well, it's not from me, it comes from QProxyModel
-    struct KDPrivateModelIndex {
-        int r, c;
-        void *p;
-        const QAbstractItemModel *m;
-    };
-}
-
 /*! Sets the model to be used as the source model for this proxy.
  * The proxy does not take ownership of the model.
  * \see QAbstractProxyModel::setSourceModel

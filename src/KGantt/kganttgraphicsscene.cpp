@@ -63,7 +63,6 @@ GraphicsScene::Private::Private( GraphicsScene* _q )
       dragSource( nullptr ),
       itemDelegate( new ItemDelegate( _q ) ),
       rowController( nullptr ),
-      grid( &default_grid ),
       readOnly( false ),
       isPrinting( false ),
       drawColumnLabels( true ),
@@ -183,12 +182,18 @@ void GraphicsScene::Private::clearItems()
 
 AbstractGrid *GraphicsScene::Private::getGrid()
 {
-    return grid.isNull() ? &default_grid : grid;
+    if (grid.isNull()) {
+        return static_cast<AbstractGrid*>(&default_grid);
+    }
+    return grid.data();
 }
 
 const AbstractGrid *GraphicsScene::Private::getGrid() const
 {
-    return grid.isNull() ? &default_grid : grid;
+    if (grid.isNull()) {
+        return static_cast<const AbstractGrid*>(&default_grid);
+    }
+    return grid.data();
 }
 
 GraphicsScene::GraphicsScene( QObject* parent )

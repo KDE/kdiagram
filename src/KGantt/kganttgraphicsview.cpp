@@ -31,6 +31,8 @@
 #include <QScrollBar>
 #include <QAbstractProxyModel>
 #include <QPrinter>
+#include <QItemSelectionModel>
+#include <QGraphicsSceneMouseEvent>
 
 #include <cassert>
 

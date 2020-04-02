@@ -35,7 +35,6 @@
 #include <QPainter>
 #include <QAbstractItemModel>
 #include <QAbstractProxyModel>
-#include <QItemSelectionModel>
 #include <QGraphicsSceneMouseEvent>
 #include <QGraphicsLineItem>
 
@@ -330,12 +329,6 @@ QVariant GraphicsItem::itemChange( GraphicsItemChange change, const QVariant& va
             // Reject selection attempt
             return QVariant::fromValue( false );
         }
-
-        if ( value.toBool() ) {
-            scene()->selectionModel()->select( index(), QItemSelectionModel::Select );
-        } else {
-            scene()->selectionModel()->select( index(), QItemSelectionModel::Deselect );
-        }
     }
 
     return QGraphicsItem::itemChange( change, value );
@@ -344,7 +337,6 @@ QVariant GraphicsItem::itemChange( GraphicsItemChange change, const QVariant& va
 void GraphicsItem::focusInEvent( QFocusEvent* event )
 {
     Q_UNUSED( event );
-    scene()->selectionModel()->select( index(), QItemSelectionModel::SelectCurrent );
 }
 
 void GraphicsItem::updateModel()
@@ -429,13 +421,16 @@ void GraphicsItem::mousePressEvent( QGraphicsSceneMouseEvent* event )
         m_istate = istate;
         m_presspos = event->pos();
         m_pressscenepos = event->scenePos();
-        scene()->itemPressed( index() );
+
+        scene()->itemPressed( index(), event );
 
         switch ( m_istate ) {
         case ItemDelegate::State_ExtendLeft:
         case ItemDelegate::State_ExtendRight:
         default: /* State_Move */
-            BASE::mousePressEvent( event );
+            if (!(flags() & ItemIsMovable)) {
+                event->ignore();
+            }
             break;
         }
     } else {
@@ -500,7 +495,6 @@ void GraphicsItem::mouseReleaseEvent( QGraphicsSceneMouseEvent* event )
     }
 
     m_presspos = QPointF();
-    BASE::mouseReleaseEvent( event );
 }
 
 void GraphicsItem::mouseDoubleClickEvent( QGraphicsSceneMouseEvent* event )
@@ -566,7 +560,6 @@ void GraphicsItem::mouseMoveEvent( QGraphicsSceneMouseEvent* event )
             break;
         }
 
-        scene()->selectionModel()->setCurrentIndex( index(), QItemSelectionModel::Current );
         updateItemFromMouse(event->scenePos());
         //BASE::mouseMoveEvent(event);
         break;

@@ -575,13 +575,11 @@ void GraphicsScene::slotGridChanged()
 
 void GraphicsScene::selectionModelChanged(QAbstractItemModel *model)
 {
-    qInfo()<<Q_FUNC_INFO<<model;
+    Q_UNUSED(model)
 }
 
 void GraphicsScene::slotSelectionChanged(const QItemSelection &selected, const QItemSelection &deselected)
 {
-    qInfo()<<Q_FUNC_INFO<<sender()<<selected.indexes();
-    d->selectionModel->disconnect(this);
     for (const QModelIndex &idx : deselected.indexes()) {
         GraphicsItem *item = findItem(idx.model() == d->summaryHandlingModel ? idx : d->summaryHandlingModel->mapFromSource(idx));
         if (item) {
@@ -594,8 +592,7 @@ void GraphicsScene::slotSelectionChanged(const QItemSelection &selected, const Q
             item->setSelected(true);
         }
     }
-    connect(d->selectionModel, SIGNAL(selectionChanged(const QItemSelection&,const QItemSelection&)),
-             this, SLOT(slotSelectionChanged(const QItemSelection&,const QItemSelection&)) );
+    update();
 }
 
 void GraphicsScene::helpEvent( QGraphicsSceneHelpEvent *helpEvent )
@@ -654,8 +651,17 @@ void GraphicsScene::itemEntered( const QModelIndex& idx )
     emit entered( idx );
 }
 
-void GraphicsScene::itemPressed( const QModelIndex& idx )
+void GraphicsScene::itemPressed( const QModelIndex& idx, QGraphicsSceneMouseEvent *event )
 {
+    if (event->button() == Qt::LeftButton) {
+        QItemSelectionModel::SelectionFlags flags;
+        if (event->modifiers() & Qt::ControlModifier) {
+            flags |= QItemSelectionModel::Toggle;
+        } else {
+            flags |= QItemSelectionModel::ClearAndSelect;
+        }
+        d->selectionModel->select(idx, flags);
+    }
     emit pressed( idx );
 }
 

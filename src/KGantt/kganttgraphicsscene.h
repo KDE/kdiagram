@@ -33,6 +33,7 @@ class QItemSelectionModel;
 class QItemSelection;
 class QPrinter;
 class QAbstractItemModel;
+class QGraphicsSceneMouseEvent;
 QT_END_NAMESPACE
 
 namespace KGantt {
@@ -92,7 +93,7 @@ namespace KGantt {
 
         /* used by GraphicsItem */
         void itemEntered( const QModelIndex& );
-        void itemPressed( const QModelIndex& );
+        void itemPressed( const QModelIndex& idx, QGraphicsSceneMouseEvent *event );
         void itemClicked( const QModelIndex& );
         void itemDoubleClicked( const QModelIndex& );
         void setDragSource( GraphicsItem* item );

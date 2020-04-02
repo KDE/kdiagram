@@ -31,6 +31,8 @@
 #include "kganttdatetimegrid.h"
 
 namespace KGantt {
+    class AbstractGrid;
+
     class Q_DECL_HIDDEN GraphicsScene::Private {
     public:
         explicit Private(GraphicsScene*);
@@ -45,6 +47,8 @@ namespace KGantt {
 	void recursiveUpdateMultiItem( const Span& span, const QModelIndex& idx );
 
         void clearItems();
+        AbstractGrid *getGrid();
+        const AbstractGrid *getGrid() const;
 
         GraphicsScene* q;
 

@@ -85,6 +85,7 @@ namespace KGantt {
 
         void setGrid( AbstractGrid* grid );
         AbstractGrid* grid() const;
+        const AbstractGrid *getGrid() const;
 
         bool isReadOnly() const;
 

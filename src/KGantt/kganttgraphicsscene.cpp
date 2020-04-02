@@ -24,6 +24,7 @@
 #include "kganttconstraintgraphicsitem.h"
 #include "kganttitemdelegate.h"
 #include "kganttabstractrowcontroller.h"
+#include "kganttabstractgrid.h"
 #include "kganttdatetimegrid.h"
 #include "kganttsummaryhandlingproxymodel.h"
 #include "kganttgraphicsview.h"
@@ -180,6 +181,16 @@ void GraphicsScene::Private::clearItems()
     clearConstraintItems();
 }
 
+AbstractGrid *GraphicsScene::Private::getGrid()
+{
+    return grid.isNull() ? &default_grid : grid;
+}
+
+const AbstractGrid *GraphicsScene::Private::getGrid() const
+{
+    return grid.isNull() ? &default_grid : grid;
+}
+
 GraphicsScene::GraphicsScene( QObject* parent )
     : QGraphicsScene( parent ), _d( new Private( this ) )
 {
@@ -198,7 +209,7 @@ void GraphicsScene::init()
 {
     setItemIndexMethod( QGraphicsScene::NoIndex );
     setConstraintModel( new ConstraintModel( this ) );
-    connect( d->grid, SIGNAL(gridChanged()), this, SLOT(slotGridChanged()) );
+    connect( d->getGrid(), SIGNAL(gridChanged()), this, SLOT(slotGridChanged()) );
 }
 
 /* NOTE: The delegate should really be a property
@@ -227,7 +238,7 @@ void GraphicsScene::setModel( QAbstractItemModel* model )
 {
     assert(!d->summaryHandlingModel.isNull());
     d->summaryHandlingModel->setSourceModel(model);
-    d->grid->setModel( d->summaryHandlingModel );
+    d->getGrid()->setModel( d->summaryHandlingModel );
     setSelectionModel( new QItemSelectionModel( model, this ) );
 }
 
@@ -244,12 +255,12 @@ void GraphicsScene::setSummaryHandlingModel( QAbstractProxyModel* proxyModel )
 
 void GraphicsScene::setRootIndex( const QModelIndex& idx )
 {
-    d->grid->setRootIndex( idx );
+    d->getGrid()->setRootIndex( idx );
 }
 
 QModelIndex GraphicsScene::rootIndex() const
 {
-    return d->grid->rootIndex();
+    return d->getGrid()->rootIndex();
 }
 
 ConstraintModel* GraphicsScene::constraintModel() const
@@ -304,20 +315,26 @@ AbstractRowController* GraphicsScene::rowController() const
 void GraphicsScene::setGrid( AbstractGrid* grid )
 {
     QAbstractItemModel* model = nullptr;
-    if ( grid == nullptr ) grid = &d->default_grid;
-    if ( d->grid ) {
-        d->grid->disconnect( this );
-        model = d->grid->model();
+    if ( d->getGrid() ) {
+        d->getGrid()->disconnect( this );
+        model = d->getGrid()->model();
     }
     d->grid = grid;
-    connect( d->grid, SIGNAL(gridChanged()), this, SLOT(slotGridChanged()) );
-    d->grid->setModel( model );
+    connect( d->getGrid(), SIGNAL(gridChanged()), this, SLOT(slotGridChanged()) );
+    d->getGrid()->setModel( model );
     slotGridChanged();
 }
 
+// Returns the explicitly set grid
 AbstractGrid* GraphicsScene::grid() const
 {
     return d->grid;
+}
+
+// May also return the default_grid if a grid has not been set
+const AbstractGrid *GraphicsScene::getGrid() const
+{
+    return d->getGrid();
 }
 
 void GraphicsScene::setReadOnly( bool ro )
@@ -617,7 +634,7 @@ void GraphicsScene::drawBackground( QPainter* painter, const QRectF& _rect )
         QRectF headerRect( scn.topLeft()+QPointF( d->labelsWidth, 0 ),
                            QSizeF( scn.width()-d->labelsWidth, d->rowController->headerHeight() ));
 
-        d->grid->paintHeader( painter, headerRect, rect, 0, nullptr );
+        d->getGrid()->paintHeader( painter, headerRect, rect, 0, nullptr );
 
 #if 0
         /* We have to blank out the part of the header that is invisible during
@@ -636,14 +653,14 @@ void GraphicsScene::drawBackground( QPainter* painter, const QRectF& _rect )
         scn.setLeft( headerRect.left() );
         rect = rect.intersected( scn );
     }
-    d->grid->paintGrid( painter, scn, rect, d->rowController );
+    d->getGrid()->paintGrid( painter, scn, rect, d->rowController );
 
-    d->grid->drawBackground(painter, rect);
+    d->getGrid()->drawBackground(painter, rect);
 }
 
 void GraphicsScene::drawForeground( QPainter* painter, const QRectF& rect )
 {
-    d->grid->drawForeground(painter, rect);
+    d->getGrid()->drawForeground(painter, rect);
 }
 
 void GraphicsScene::itemEntered( const QModelIndex& idx )

@@ -579,6 +579,17 @@ AbstractGrid* GraphicsView::grid() const
     return d->scene.grid();
 }
 
+/*! \returns the AbstractGrid used by this view.
+ */
+AbstractGrid* GraphicsView::takeGrid()
+{
+    AbstractGrid *grid = d->scene.grid();
+    if ( grid ) {
+        d->scene.setGrid( nullptr) ;
+    }
+    return grid;
+}
+
 /*! Sets the view to read-only mode if \a to is true. The default is
  * read/write if the model permits it.
  */

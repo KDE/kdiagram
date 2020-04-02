@@ -72,6 +72,7 @@ namespace KGantt {
         QItemSelectionModel* selectionModel() const;
         AbstractRowController* rowController() const;
         AbstractGrid* grid() const;
+        AbstractGrid* takeGrid();
         ItemDelegate* itemDelegate() const;
 
         bool isReadOnly() const;

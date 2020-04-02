@@ -132,7 +132,7 @@ StyleOptionGanttItem GraphicsItem::getStyleOption() const
         case StyleOptionGanttItem::Center: opt.displayAlignment = Qt::AlignCenter; break;
         }
     }
-    opt.grid = scene()->grid();
+    opt.grid = const_cast<AbstractGrid*>(scene()->getGrid());
     opt.text = m_index.model()->data( m_index, Qt::DisplayRole ).toString();
     if ( isEnabled() ) opt.state  |= QStyle::State_Enabled;
     if ( isSelected() ) opt.state |= QStyle::State_Selected;
@@ -287,7 +287,7 @@ void GraphicsItem::updateItem( const Span& rowGeometry, const QPersistentModelIn
         return;
     }
 
-    const Span s = scene()->grid()->mapToChart( static_cast<const QModelIndex&>(idx) );
+    const Span s = scene()->getGrid()->mapToChart( static_cast<const QModelIndex&>(idx) );
     setPos( QPointF( s.start(), rowGeometry.start() ) );
     setRect( QRectF( 0., 0., s.length(), rowGeometry.length() ) );
     setIndex( idx );
@@ -361,7 +361,7 @@ void GraphicsItem::updateModel()
                  it2 != m_endConstraints.end() ;
                  ++it2 )
                 constraints.push_back((*it2)->proxyConstraint());
-            if ( scene()->grid()->mapFromChart( Span( scenePos().x(), rect().width() ),
+            if ( scene()->getGrid()->mapFromChart( Span( scenePos().x(), rect().width() ),
                                                 index(),
                                                 constraints ) ) {
                 scene()->updateRow( index().parent() );

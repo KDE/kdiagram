@@ -36,7 +36,7 @@ namespace KGantt {
     class DateTimeTimeLineDialog::Private
     {
     public:
-        Private() {}
+        Private() : timeLine(nullptr) {}
 
         Ui::DateTimeTimeLineDialog ui;
         DateTimeTimeLine *timeLine;
@@ -59,7 +59,7 @@ DateTimeTimeLineDialog::DateTimeTimeLineDialog(DateTimeTimeLine *timeLine, QWidg
     } else if (opt & DateTimeTimeLine::Background) {
         d->ui.background->setChecked(true);
     }
-    d->ui.useCustomPen->setCheckState(opt & DateTimeTimeLine::UseCustomPen ? Qt::Checked : Qt::Unchecked);
+    d->ui.useCustomPen->setCheckState((opt & DateTimeTimeLine::UseCustomPen) ? Qt::Checked : Qt::Unchecked);
 
     QPen pen = d->timeLine->pen(); // get standard if not set
     d->ui.penWidth->setValue(pen.width());

@@ -34,7 +34,7 @@ namespace KGantt {
     {
         Q_OBJECT
     public:
-        PenStyleComboBox(QWidget *parent = nullptr);
+        explicit PenStyleComboBox(QWidget *parent = nullptr);
 
         void setCurrentStyle(Qt::PenStyle style);
         Qt::PenStyle currentStyle() const;

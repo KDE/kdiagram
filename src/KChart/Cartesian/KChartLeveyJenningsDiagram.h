@@ -117,7 +117,7 @@ protected:
 
     QSvgRenderer* iconRenderer( Symbol symbol );
 
-    /** \reimpl */
+    /* \reimpl */
     const QPair<QPointF, QPointF> calculateDataBoundaries() const override;
 
 protected Q_SLOTS:

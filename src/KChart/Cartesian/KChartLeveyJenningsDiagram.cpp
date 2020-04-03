@@ -632,6 +632,8 @@ void LeveyJenningsDiagram::paint( PaintContext* ctx )
  * Draws a data point symbol for the data point at \a pos.
  * @param ok True, when the data point is ok, false otherwise (different symbol)
  * @param ctx The PaintContext being used
+ * @param pos Position
+ * @param ok Draw as Ok or notOK data point
  */
 void LeveyJenningsDiagram::drawDataPointSymbol( PaintContext* ctx, const QPointF& pos, bool ok )
 {
@@ -649,6 +651,7 @@ void LeveyJenningsDiagram::drawDataPointSymbol( PaintContext* ctx, const QPointF
 /**
  * Draws a lot changed symbol for the data point at \a pos.
  * @param ctx The PaintContext being used
+ * @param pos Position
  * \sa lotChangedSymbolPosition
  */
 void LeveyJenningsDiagram::drawLotChangeSymbol( PaintContext* ctx, const QPointF& pos )
@@ -670,6 +673,7 @@ void LeveyJenningsDiagram::drawLotChangeSymbol( PaintContext* ctx, const QPointF
 /**
  * Draws a sensor changed symbol for the data point at \a pos.
  * @param ctx The PaintContext being used
+ * @param pos Position
  * \sa sensorChangedSymbolPosition
  */
 void LeveyJenningsDiagram::drawSensorChangedSymbol( PaintContext* ctx, const QPointF& pos )
@@ -690,6 +694,7 @@ void LeveyJenningsDiagram::drawSensorChangedSymbol( PaintContext* ctx, const QPo
 /**
  * Draws a fluidics pack changed symbol for the data point at \a pos.
  * @param ctx The PaintContext being used
+ * @param pos Position
  * \sa fluidicsPackChangedSymbolPosition
  */
 void LeveyJenningsDiagram::drawFluidicsPackChangedSymbol( PaintContext* ctx, const QPointF& pos )

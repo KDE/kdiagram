@@ -748,6 +748,8 @@ void GraphicsView::updateScene()
     if ( scene() ) scene()->invalidate( QRectF(), QGraphicsScene::BackgroundLayer );
 }
 
+#if 0
+TODO: For 3.0
 /*! Creates a new GraphicsItem
  * Re-iplement to create your own flavour of GraphicsItem
  */
@@ -756,6 +758,7 @@ GraphicsItem* GraphicsView::createItem( ItemType type ) const
     Q_UNUSED(type)
     return new GraphicsItem;
 }
+#endif
 
 /*! \internal */
 void GraphicsView::deleteSubtree( const QModelIndex& idx )

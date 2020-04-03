@@ -392,10 +392,16 @@ QModelIndex GraphicsScene::dataIndex( const QModelIndex& idx )
  */
 GraphicsItem* GraphicsScene::createItem( ItemType type ) const
 {
+#if 0
+    TODO For 3.0
     assert(views().count() == 1);
     GraphicsView *v = qobject_cast<GraphicsView*>(views().first());
     assert(v);
     return v->createItem(type);
+#else
+    Q_UNUSED(type)
+    return new GraphicsItem;
+#endif
 }
 
 void GraphicsScene::Private::recursiveUpdateMultiItem( const Span& span, const QModelIndex& idx )

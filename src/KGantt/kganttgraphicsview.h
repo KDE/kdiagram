@@ -89,7 +89,10 @@ namespace KGantt {
         void updateRow( const QModelIndex& );
         void updateScene();
 
+#if 0
+        TODO: For 3.0
         virtual GraphicsItem* createItem( ItemType type ) const;
+#endif
 
     public Q_SLOTS:
         void updateSceneRect();

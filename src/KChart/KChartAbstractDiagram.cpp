@@ -163,7 +163,7 @@ void AbstractDiagram::setSelectionModel( QItemSelectionModel* newSelectionModel 
     emit modelsChanged();
 }
 
-/*! Sets an external AttributesModel on this diagram. By default, a diagram has it's
+/* Sets an external AttributesModel on this diagram. By default, a diagram has it's
   own internal set of attributes, but an external one can be set. This can be used to
   share attributes between several diagrams. The diagram does not take ownership of the
   attributesmodel.
@@ -206,7 +206,7 @@ QModelIndex AbstractDiagram::conditionallyMapFromSource( const QModelIndex & ind
     return index.model() == attributesModel() ? index : attributesModel()->mapFromSource( index );
 }
 
-/*! \reimpl */
+/* \reimpl */
 void AbstractDiagram::setRootIndex( const QModelIndex& idx )
 {
     QAbstractItemView::setRootIndex( idx );
@@ -908,7 +908,7 @@ QBrush AbstractDiagram::brush( const QModelIndex& index ) const
         attributesModel()->data( conditionallyMapFromSource( index ), DatasetBrushRole ).value< QBrush >();
 }
 
-/**
+/*
   * Sets the unit prefix for one value
   * @param prefix the prefix to be set
   * @param column the value using that prefix
@@ -919,7 +919,7 @@ void AbstractDiagram::setUnitPrefix( const QString& prefix, int column, Qt::Orie
     d->unitPrefixMap[ column ][ orientation ]= prefix;
 }
 
-/**
+/*
   * Sets the unit prefix for all values
   * @param prefix the prefix to be set
   * @param orientation the orientantion of the axis to set
@@ -929,7 +929,7 @@ void AbstractDiagram::setUnitPrefix( const QString& prefix, Qt::Orientation orie
     d->unitPrefix[ orientation ] = prefix;
 }
 
-/**
+/*
   * Sets the unit suffix for one value
   * @param suffix the suffix to be set
   * @param column the value using that suffix
@@ -940,7 +940,7 @@ void AbstractDiagram::setUnitSuffix( const QString& suffix, int column, Qt::Orie
     d->unitSuffixMap[ column ][ orientation ]= suffix;
 }
 
-/**
+/*
   * Sets the unit suffix for all values
   * @param suffix the suffix to be set
   * @param orientation the orientantion of the axis to set
@@ -950,7 +950,7 @@ void AbstractDiagram::setUnitSuffix( const QString& suffix, Qt::Orientation orie
     d->unitSuffix[ orientation ] = suffix;
 }
 
-/**
+/*
   * Returns the unit prefix for a special value
   * @param column the value which's prefix is requested
   * @param orientation the orientation of the axis
@@ -964,7 +964,7 @@ QString AbstractDiagram::unitPrefix( int column, Qt::Orientation orientation, bo
     return d->unitPrefix[ orientation ];
 }
 
-/** Returns the global unit prefix
+/* Returns the global unit prefix
   * @param orientation the orientation of the axis
   * @return the unit prefix
   */
@@ -973,7 +973,7 @@ QString AbstractDiagram::unitPrefix( Qt::Orientation orientation ) const
     return d->unitPrefix[ orientation ];
 }
 
-/**
+/*
   * Returns the unit suffix for a special value
   * @param column the value which's suffix is requested
   * @param orientation the orientation of the axis
@@ -987,7 +987,7 @@ QString AbstractDiagram::unitSuffix( int column, Qt::Orientation orientation, bo
     return d->unitSuffix[ orientation ];
 }
 
-/** Returns the global unit suffix
+/* Returns the global unit suffix
   * @param orientation the orientation of the axis
   * @return the unit siffix
   */

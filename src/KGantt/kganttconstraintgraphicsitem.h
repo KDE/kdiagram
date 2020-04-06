@@ -27,6 +27,11 @@
 namespace KGantt {
     class GraphicsScene;
 
+
+
+    /*!\class KGantt::ConstraintGraphicsItem
+     * \internal
+     */
     class KGANTT_EXPORT ConstraintGraphicsItem : public QGraphicsItem {
     public:
         enum { Type = UserType + 43 };

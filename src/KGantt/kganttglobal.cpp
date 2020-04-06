@@ -21,50 +21,6 @@
 
 using namespace KGantt;
 
-/*!\enum KGantt::ItemDataRole
- *\ingroup KGantt
- * The values of this enum are used for the special data roles
- * for gantt items
- */
-
-/*!\enum KGantt::ItemDataRole KGantt::KGanttRoleBase
- * The base value used for the KGantt role enum values.
- * The actual roles have values base+1, base+2, ...
- */
-
-/*!\enum KGantt::ItemDataRole KGantt::StartTimeRole
- * Start time (or other start value) for a gantt item.
- */
-
-/*!\enum KGantt::ItemDataRole KGantt::EndTimeRole
- * End time (or other end value) for a gantt item.
- */
-
-/*!\enum KGantt::ItemDataRole KGantt::TaskCompletionRole
- * Task completetion percentage used by Task items. Should be an
- * integer og a qreal between 0 and 100.
- */
-
-/*!\enum KGantt::ItemDataRole KGantt::ItemTypeRole
- * The item type. \see KGantt::ItemType.
- */
-
-/*!\enum KGantt::ItemDataRole KGantt::TextPositionRole
- * The position of the text label on the item.
- * The type of this value is KGantt::StyleOptionGanttItem::Position
- * and the default values is Right.
- */
-
-/*!\enum KGantt::ItemType
- *\ingroup KGantt
- * The values of this enum are used to represent the different
- * types of gantt items that KGantt understands. The itemtype
- * is served through the KGantt::ItemTypeRole role
- */
-
-/*!\class KGantt::Span kganttglobal.h KGanttGlobal
- *\ingroup KGantt
- * \brief A class representing a start point and a length */
 
 DateTimeSpan::DateTimeSpan()
 {

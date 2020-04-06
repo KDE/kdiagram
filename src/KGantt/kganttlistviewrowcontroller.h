@@ -28,6 +28,14 @@ class QListView;
 QT_END_NAMESPACE
 
 namespace KGantt {
+
+
+    /*!\class ListViewRowController
+     * This is an implementation of AbstractRowController that
+     * aligns a gantt view with a QListView. Provided for
+     * convenience for users who want to use View with QListView
+     * instead of QTreeView.
+     */
     class KGANTT_EXPORT ListViewRowController : public AbstractRowController {
         KGANTT_DECLARE_PRIVATE_BASE_POLYMORPHIC(ListViewRowController)
     public:

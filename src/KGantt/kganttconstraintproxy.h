@@ -32,6 +32,11 @@ namespace KGantt {
     class Constraint;
     class ConstraintModel;
 
+
+
+    /*!\class KGantt::ConstraintProxy
+     * \internal
+     */
     class KGANTT_EXPORT ConstraintProxy : public QObject {
         Q_OBJECT
     public:

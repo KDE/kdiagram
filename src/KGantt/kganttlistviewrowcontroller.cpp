@@ -27,12 +27,7 @@
 
 using namespace KGantt;
 
-/*!\class ListViewRowController
- * This is an implementation of AbstractRowController that
- * aligns a gantt view with a QListView. Provided for
- * convenience for users who want to use View with QListView
- * instead of QTreeView.
- */
+
 
 ListViewRowController::ListViewRowController( QListView* lv, QAbstractProxyModel* proxy )
   : _d( new Private(lv,proxy) )

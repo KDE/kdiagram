@@ -28,13 +28,7 @@
 
 using namespace KGantt;
 
-/*!\class KGantt::ConstraintModel
- *\ingroup KGantt
- * The ConstraintModel keeps track of the
- * interdependencies between gantt items in
- * a View.
- *
- */
+
 
 ConstraintModel::Private::Private()
 {
@@ -64,22 +58,21 @@ void ConstraintModel::Private::removeConstraintFromIndex( const QModelIndex& idx
     }
 }
 
-/*! Constructor. Creates an empty ConstraintModel with parent \a parent
- */
+
 ConstraintModel::ConstraintModel( QObject* parent )
     : QObject( parent ), _d( new Private )
 {
     init();
 }
 
-/*!\internal*/
+
 ConstraintModel::ConstraintModel( Private* d_ptr, QObject* parent )
     : QObject( parent ), _d( d_ptr )
 {
     init();
 }
 
-/*! Destroys this ConstraintModel */
+
 ConstraintModel::~ConstraintModel()
 {
     delete _d;
@@ -105,10 +98,6 @@ namespace {
     };
 }
 
-/*! Adds the constraint \a c to this ConstraintModel
- *  If the Constraint \a c is already in this ConstraintModel,
- *  nothing happens.
- */
 void ConstraintModel::addConstraint( const Constraint& c )
 {
     //qDebug() << "ConstraintModel::addConstraint("<<c<<") (this="<<this<<") items=" << d->constraints.size();
@@ -131,13 +120,6 @@ void ConstraintModel::addConstraint( const Constraint& c )
     }
 }
 
-/*! Removes the Constraint \a c from this
- * ConstraintModel. If \a c was found and removed,
- * the signal constraintRemoved(const Constraint&) is emitted.
- *
- * \returns If \a c was found and removed, it returns true,
- * otherwise it returns false.
- */
 bool ConstraintModel::removeConstraint( const Constraint& c )
 {
     bool rc = false;
@@ -160,10 +142,6 @@ bool ConstraintModel::removeConstraint( const Constraint& c )
     return rc;
 }
 
-/*! Removes all Constraints from this model
- * The signal constraintRemoved(const Constraint&) is emitted
- * for every Constraint that is removed.
- */
 void ConstraintModel::clear()
 {
     QList<Constraint> lst = constraints();
@@ -172,7 +150,6 @@ void ConstraintModel::clear()
     }
 }
 
-/*! Not used */
 void ConstraintModel::cleanup()
 {
 #if 0
@@ -185,18 +162,12 @@ void ConstraintModel::cleanup()
 #endif
 }
 
-/*! \returns A list of all Constraints in this
- * ConstraintModel.
- */
 QList<Constraint> ConstraintModel::constraints() const
 {
     //return d->constraints.toList();
     return d->constraints;
 }
 
-/*! \returns A list of all Constraints in this ConstraintModel
- * that have an endpoint at \a idx.
- */
 QList<Constraint> ConstraintModel::constraintsForIndex( const QModelIndex& idx ) const
 {
     // TODO: @Steffen: Please comment on this assert, it's long and not obvious (Johannes)
@@ -220,9 +191,6 @@ QList<Constraint> ConstraintModel::constraintsForIndex( const QModelIndex& idx )
     //return d->indexMap.values( idx );
 }
 
-/*! Returns true if a Constraint with start \a s and end \a e
- * exists, otherwise false.
- */
 bool ConstraintModel::hasConstraint( const Constraint& c ) const
 {
     /*

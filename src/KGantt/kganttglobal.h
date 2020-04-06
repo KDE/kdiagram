@@ -214,15 +214,28 @@ template class Q_DECL_IMPORT QVector<QPointF>;
  *\brief Global namespace
  */
 namespace KGantt {
+
+    /*!\enum KGantt::ItemDataRole
+     *\ingroup KGantt
+     * The values of this enum are used for the special data roles
+     * for gantt items
+     */
     enum ItemDataRole {
-        KGanttRoleBase     = Qt::UserRole + 1174,
-        StartTimeRole       = KGanttRoleBase + 1,
-        EndTimeRole         = KGanttRoleBase + 2,
-        TaskCompletionRole  = KGanttRoleBase + 3,
-        ItemTypeRole        = KGanttRoleBase + 4,
+        KGanttRoleBase     = Qt::UserRole + 1174, /// * The base value used for the KGantt role enum values. The actual roles have values base+1, base+2, ...
+        StartTimeRole       = KGanttRoleBase + 1, /// * Start time (or other start value) for a gantt item.
+        EndTimeRole         = KGanttRoleBase + 2, /// * End time (or other end value) for a gantt item.
+        TaskCompletionRole  = KGanttRoleBase + 3, /// * Task completetion percentage used by Task items. Should be an integer og a qreal between 0 and 100.
+        ItemTypeRole        = KGanttRoleBase + 4, /// * The item type. \see KGantt::ItemType.
         LegendRole          = KGanttRoleBase + 5,
-        TextPositionRole    = KGanttRoleBase + 6
+        TextPositionRole    = KGanttRoleBase + 6 /// * The position of the text label on the item. The type of this value is KGantt::StyleOptionGanttItem::Position and the default values is Right.
     };
+
+    /*!\enum KGantt::ItemType
+     *\ingroup KGantt
+     * The values of this enum are used to represent the different
+     * types of gantt items that KGantt understands. The itemtype
+     * is served through the KGantt::ItemTypeRole role
+     */
     enum ItemType {
         TypeNone    = 0,
         TypeEvent   = 1,
@@ -232,6 +245,9 @@ namespace KGantt {
         TypeUser    = 1000
     };
 
+    /*!\class KGantt::Span kganttglobal.h KGanttGlobal
+     *\ingroup KGantt
+     * \brief A class representing a start point and a length */
     class Span {
         qreal m_start;
         qreal m_length;

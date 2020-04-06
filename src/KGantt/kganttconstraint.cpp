@@ -24,23 +24,6 @@
 
 using namespace KGantt;
 
-/*!\class KGantt::Constraint
- *\ingroup KGantt
- * \brief A class used to represent a dependency.
- *
- * Instances of this class represent a dependency between the
- * data items pointed to by a start-QModelIndex and an
- * end-QModelIndex.
- */
-
-/*!\enum KGantt::Constraint::Type
- * This enum is unused for now.
- */
-
-/*!\enum KGantt::Constraint::ConstraintDataRole
- * Data roles used when specifying the pen to draw constraints with.
- * \sa setData
- */
 
 Constraint::Private::Private()
     : type( TypeSoft ),
@@ -58,19 +41,6 @@ Constraint::Private::Private( const Private& other )
 {
 }
 
-/*! Constructor. Creates a dependency for \a idx2 on \a idx1.
- * \param type controls if the constraint is a soft one that
- * is allowed to be broken (ie, go backwards in time) or a hard
- * constraint that will not allow the user to move an item so
- * that the constraint would have to go backwards. The default is
- * TypeSoft.
- *
- * Actually enforcing hard constraints is the responsibility of
- * the AbstractGrid subclass used in the view.
- *
- * \param relationType defines how the tasks depends on each other.
- * relationType can be FinishStart (default), FinishFinish, StartStart or StartFinish.
- */
 Constraint::Constraint( const QModelIndex& idx1,
                         const QModelIndex& idx2,
                         Constraint::Type type,
@@ -86,88 +56,65 @@ Constraint::Constraint( const QModelIndex& idx1,
     Q_ASSERT_X( idx1 != idx2 || !idx1.isValid(), "Constraint::Constraint", "cannot create a constraint with idx1 == idx2" );
 }
 
-/*! Default constructor, created an invalid constraint. */
 Constraint::Constraint()
     : d( new Private )
 {
 }
 
-/*! Copy-Constructor. */
 Constraint::Constraint( const Constraint& other )
     : d( other.d )
 {
 }
 
-/*! Destructor */
 Constraint::~Constraint()
 {
 }
 
-/*! Assignment operator. */
 Constraint& Constraint::operator=( const Constraint& other )
 {
     d = other.d;
     return *this;
 }
 
-/*! This is unused for now. */
 Constraint::Type Constraint::type() const
 {
     return d->type;
 }
 
-/*! This is unused for now. */
 Constraint::RelationType Constraint::relationType() const
 {
     return d->relationType;
 }
 
-/*! \returns The dependency index */
 QModelIndex Constraint::startIndex() const
 {
     return d->start;
 }
 
-/*! \returns The constrained index */
 QModelIndex Constraint::endIndex() const
 {
     return d->end;
 }
 
-/*! \returns The data associated with this index for the specified role.
- * \param role The role to fetch the data for.
- * \sa ConstraintDataRole
- */
 QVariant Constraint::data( int role ) const
 {
     return d->data.value( role );
 }
 
-/*! Set data on this index for the specified role.
- * \param role The role to set the data for.
- * \param value The data to set on the index.
- * \sa ConstraintDataRole
- */
 void Constraint::setData( int role, const QVariant& value )
 {
     d->data.insert( role, value );
 }
 
-/*! Set data on this constraint to the keys/values in \a datamap.
- * Clears any existing data from the constraint.
- */
 void Constraint::setDataMap( const QMap< int, QVariant >& datamap )
 {
     d->data = datamap;
 }
 
-/*! \returns all the data set on this constraint. \see setDataMap
- */
 QMap< int, QVariant > Constraint::dataMap() const
 {
     return d->data;
 }
-
 
 bool Constraint::compareIndexes(const Constraint& other) const
 {
@@ -175,16 +122,12 @@ bool Constraint::compareIndexes(const Constraint& other) const
         && (d->end==other.endIndex() || (!d->end.isValid() && !other.endIndex().isValid()));
 }
 
-/*! Compare two Constraint objects. Two Constraints are equal
- * if the have the same start and end indexes
- */
 bool Constraint::operator==( const Constraint& other ) const
 {
     if ( d == other.d ) return true;
     return ( *d ).equals( *( other.d ) );
 }
 
-/*!\internal*/
 uint Constraint::hash() const
 {
     return ::qHash( d->start ) ^ ::qHash( d->end ) ^ ::qHash( static_cast<uint>( d->type ) );

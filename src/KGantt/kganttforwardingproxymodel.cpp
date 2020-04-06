@@ -26,9 +26,7 @@ using namespace KGantt;
 
 typedef QAbstractProxyModel BASE;
 
-/*! Constructor. Creates a new ForwardingProxyModel with
- * parent \a parent
- */
+
 ForwardingProxyModel::ForwardingProxyModel( QObject* parent )
     : BASE( parent )
 {
@@ -38,7 +36,7 @@ ForwardingProxyModel::~ForwardingProxyModel()
 {
 }
 
-/*! Converts indexes in the source model to indexes in the proxy model */
+
 QModelIndex ForwardingProxyModel::mapFromSource( const QModelIndex & sourceIndex ) const
 {
     if ( !sourceIndex.isValid() )
@@ -65,7 +63,7 @@ namespace {
     };
 }
 
-/*! Converts indexes in the proxy model to indexes in the source model */
+
 QModelIndex ForwardingProxyModel::mapToSource( const QModelIndex & proxyIndex ) const
 {
     if ( !proxyIndex.isValid() )
@@ -83,10 +81,7 @@ QModelIndex ForwardingProxyModel::mapToSource( const QModelIndex & proxyIndex ) 
     return sourceIndex;
 }
 
-/*! Sets the model to be used as the source model for this proxy.
- * The proxy does not take ownership of the model.
- * \see QAbstractProxyModel::setSourceModel
- */
+
 void ForwardingProxyModel::setSourceModel( QAbstractItemModel* model )
 {
     if ( sourceModel() ) sourceModel()->disconnect( this );
@@ -122,17 +117,13 @@ void ForwardingProxyModel::setSourceModel( QAbstractItemModel* model )
              this, SLOT(sourceRowsRemoved(QModelIndex,int,int)) );
 }
 
-/*! Called when the source model is about to be reset.
- * \sa QAbstractItemModel::modelAboutToBeReset()
- */
+
 void ForwardingProxyModel::sourceModelAboutToBeReset()
 {
     // The matching signal is emitted be reset()
 }
 
-/*! Called when the source model is reset
- * \sa QAbstractItemModel::modelReset()
- */
+
 void ForwardingProxyModel::sourceModelReset()
 {
   //qDebug() << "ForwardingProxyModel::sourceModelReset()";
@@ -140,9 +131,7 @@ void ForwardingProxyModel::sourceModelReset()
     endResetModel();
 }
 
-/*! Called just before the layout of the source model is changed.
- * \sa QAbstractItemModel::layoutAboutToBeChanged()
- */
+
 
 void ForwardingProxyModel::sourceLayoutAboutToBeChanged()
 {
@@ -150,9 +139,7 @@ void ForwardingProxyModel::sourceLayoutAboutToBeChanged()
     emit layoutAboutToBeChanged();
 }
 
-/*! Called when the layout of the source model has changed.
- * \sa QAbstractItemModel::layoutChanged()
- */
+
 void ForwardingProxyModel::sourceLayoutChanged()
 {
   //qDebug() << "ForwardingProxyModel::sourceLayoutChanged()";
@@ -160,18 +147,14 @@ void ForwardingProxyModel::sourceLayoutChanged()
     endResetModel();
 }
 
-/*! Called when the data in an existing item in the source model changes.
- * \sa QAbstractItemModel::dataChanged()
- */
+
 void ForwardingProxyModel::sourceDataChanged( const QModelIndex& from, const QModelIndex& to )
 {
   //qDebug() << "ForwardingProxyModel::sourceDataChanged("<<from<<to<<")";
     emit dataChanged( mapFromSource( from ), mapFromSource( to ) );
 }
 
-/*! Called just before columns are inserted into the source model.
- * \sa QAbstractItemModel::columnsAboutToBeInserted()
- */
+
 void ForwardingProxyModel::sourceColumnsAboutToBeInserted( const QModelIndex& parentIdx,
                                                                     int start,
                                                                     int end )
@@ -179,9 +162,7 @@ void ForwardingProxyModel::sourceColumnsAboutToBeInserted( const QModelIndex& pa
     beginInsertColumns( mapFromSource( parentIdx ), start, end );
 }
 
-/*! Called after columns have been inserted into the source model.
- * \sa QAbstractItemModel::columnsInserted()
- */
+
 void ForwardingProxyModel::sourceColumnsInserted( const QModelIndex& parentIdx, int start, int end )
 {
     Q_UNUSED( parentIdx );
@@ -190,9 +171,7 @@ void ForwardingProxyModel::sourceColumnsInserted( const QModelIndex& parentIdx, 
     endInsertColumns();
 }
 
-/*! Called just before columns are removed from the source model.
- * \sa QAbstractItemModel::columnsAboutToBeRemoved()
- */
+
 void ForwardingProxyModel::sourceColumnsAboutToBeRemoved( const QModelIndex& parentIdx,
                                                                     int start,
                                                                     int end )
@@ -200,9 +179,7 @@ void ForwardingProxyModel::sourceColumnsAboutToBeRemoved( const QModelIndex& par
     beginRemoveColumns( mapFromSource( parentIdx ), start, end );
 }
 
-/*! Called after columns have been removed from the source model.
- * \sa QAbstractItemModel::columnsRemoved()
- */
+
 void ForwardingProxyModel::sourceColumnsRemoved( const QModelIndex& parentIdx, int start, int end )
 {
     Q_UNUSED( parentIdx );
@@ -211,17 +188,13 @@ void ForwardingProxyModel::sourceColumnsRemoved( const QModelIndex& parentIdx, i
     endRemoveColumns();
 }
 
-/*! Called just before rows are inserted into the source model.
- * \sa QAbstractItemModel::rowsAboutToBeInserted()
- */
+
 void ForwardingProxyModel::sourceRowsAboutToBeInserted( const QModelIndex & parentIdx, int start, int end )
 {
     beginInsertRows( mapFromSource( parentIdx ), start, end );
 }
 
-/*! Called after rows have been inserted into the source model.
- * \sa QAbstractItemModel::rowsInserted()
- */
+
 void ForwardingProxyModel::sourceRowsInserted( const QModelIndex& parentIdx, int start, int end )
 {
     Q_UNUSED( parentIdx );
@@ -230,17 +203,13 @@ void ForwardingProxyModel::sourceRowsInserted( const QModelIndex& parentIdx, int
     endInsertRows();
 }
 
-/*! Called just before rows are removed from the source model.
- * \sa QAbstractItemModel::rowsAboutToBeRemoved()
- */
+
 void ForwardingProxyModel::sourceRowsAboutToBeRemoved( const QModelIndex & parentIdx, int start, int end )
 {
     beginRemoveRows( mapFromSource( parentIdx ), start, end );
 }
 
-/*! Called after rows have been removed from the source model.
- * \sa QAbstractItemModel::rowsRemoved()
- */
+
 void ForwardingProxyModel::sourceRowsRemoved( const QModelIndex& parentIdx, int start, int end )
 {
     Q_UNUSED( parentIdx );
@@ -249,31 +218,31 @@ void ForwardingProxyModel::sourceRowsRemoved( const QModelIndex& parentIdx, int 
     endRemoveRows();
 }
 
-/*! \see QAbstractItemModel::rowCount */
+
 int ForwardingProxyModel::rowCount( const QModelIndex& idx ) const
 {
     return sourceModel()->rowCount( mapToSource( idx ) );
 }
 
-/*! \see QAbstractItemModel::columnCount */
+
 int ForwardingProxyModel::columnCount( const QModelIndex& idx ) const
 {
     return sourceModel()->columnCount( mapToSource( idx ) );
 }
 
-/*! \see QAbstractItemModel::index */
+
 QModelIndex ForwardingProxyModel::index( int row, int column, const QModelIndex& parent ) const
 {
     return mapFromSource( sourceModel()->index( row, column, mapToSource( parent ) ) );
 }
 
-/*! \see QAbstractItemModel::parent */
+
 QModelIndex ForwardingProxyModel::parent( const QModelIndex& idx ) const
 {
     return mapFromSource( sourceModel()->parent( mapToSource( idx ) ) );
 }
 
-/*! \see QAbstractItemModel::setData */
+
 bool ForwardingProxyModel::setData( const QModelIndex& index, const QVariant& value, int role )
 {
   //qDebug() << "ForwardingProxyModel::setData( " << index<<value<< role<<")";

@@ -45,39 +45,9 @@ namespace KGantt {
 
 using namespace KGantt;
 
-/*!\class KGantt::DateTimeTimeLine
- * \ingroup KGantt
- *
- * This class implements a timeline.
- *
- * The timeline can optionally be shown in the Background or in the Foreground.
- * Default is Foreground.
- * 
- * The pen can be set with setPen(), and must be activated by setting the option UseCustomPen.
- * 
- * The datetime can be set using setDateTime().
- * 
- * The timeline can priodically moved to the current datetime
- * by setting the interval > 0 with setInterval().
- * Setting a zero interval turns the periodically update off.
- * 
- * The timeline is off by default.
- *
- * For example:
- * \code
- *  // Show a red timeline in the foreground
- *  timeLine->setOptions(Foreground | UseCustomPen);
- *  timeLine->setPen(QPen(Qt:red));
- *  // Update the timeline every 5 seconds
- *  timeLine->setInterval(5000);
- * \endcode
- */
 
-/**
- * Create a timeline object.
- * 
- * By default, no timeline is displayed.
- */
+
+
 DateTimeTimeLine::DateTimeTimeLine()
     : _d( new Private())
 {
@@ -87,18 +57,13 @@ DateTimeTimeLine::DateTimeTimeLine()
 }
 
 #define d d_func()
-/**
- * @return options
- */
+
 DateTimeTimeLine::Options DateTimeTimeLine::options() const
 {
     return d->options;
 }
 
-/**
- * Set options to @p options.
- * If both Background and Foreground are set, Foreground is used.
- */
+
 void DateTimeTimeLine::setOptions(DateTimeTimeLine::Options options)
 {
     d->options = options;
@@ -108,36 +73,26 @@ void DateTimeTimeLine::setOptions(DateTimeTimeLine::Options options)
     Q_EMIT updated();
 }
 
-/**
- * @return the datetime
- * If the datetime is not valid, the current datetime is returned.
- */
+
 QDateTime DateTimeTimeLine::dateTime() const
 {
     return d->dateTime.isValid() ? d->dateTime : QDateTime::currentDateTime();
 }
 
-/**
- * Set datetime to @p dt.
- */
+
 void DateTimeTimeLine::setDateTime(const QDateTime &dt)
 {
     d->dateTime = dt;
     Q_EMIT updated();
 }
 
-/**
- * @return the update interval in milliseconds
- */
+
 int DateTimeTimeLine::interval() const
 {
     return d->timer.interval();
 }
 
-/**
- * Set timer interval to @p msecs milliseconds.
- * Setting a zero time disables the timer.
- */
+
 void DateTimeTimeLine::setInterval(int msecs)
 {
     d->timer.stop();
@@ -148,10 +103,7 @@ void DateTimeTimeLine::setInterval(int msecs)
     }
 }
 
-/**
- * @return the pen to be used to draw the timeline.
- * If option UseCustomPen is not set a default pen is returned.
- */
+
 QPen DateTimeTimeLine::pen() const
 {
     if (d->options & DateTimeTimeLine::UseCustomPen) {
@@ -160,18 +112,14 @@ QPen DateTimeTimeLine::pen() const
     return QPen(QApplication::palette().color(QPalette::Highlight), 0);
 }
 
-/**
- * Set the custom pen to @p pen.
- */
+
 void DateTimeTimeLine::setPen(const QPen &pen)
 {
     d->pen = pen;
     Q_EMIT updated();
 }
 
-/**
- * @return the pen that has been set with setPen()
- */
+
 QPen DateTimeTimeLine::customPen() const
 {
     return d->pen;

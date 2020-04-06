@@ -28,10 +28,7 @@
 
 using namespace KGantt;
 
-/*!\class TreeViewRowController
- * This is an implementation of AbstractRowController that
- * aligns a gantt view with a QTreeView.
- */
+
 
 TreeViewRowController::TreeViewRowController( QTreeView* tv,
 					      QAbstractProxyModel* proxy )

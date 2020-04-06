@@ -26,21 +26,7 @@
 
 using namespace KGantt;
 
-/*!\class KGantt::SummaryHandlingProxyModel
- * \brief Proxy model that supports summary gantt items.
- *
- * This proxy model provides the functionality of summary items.
- * A summary item is an item with type KGantt::TypeSummary and
- * zero or more children in the model that it summarizes.
- * GraphicsView itself does not dictate any policy for summary items,
- * instead the logic for making the summary items start and end points
- * span it's children is provided by this proxy.
- *
- * The start and end times of a summary is the min/max of the
- * start/end times of it's children.
- *
- * \see GraphicsView::setModel
- */
+
 
 typedef ForwardingProxyModel BASE;
 
@@ -113,9 +99,7 @@ void SummaryHandlingProxyModel::Private::clearCache() const
     cached_summary_items.clear();
 }
 
-/*! Constructor. Creates a new SummaryHandlingProxyModel with
- * parent \a parent
- */
+
 SummaryHandlingProxyModel::SummaryHandlingProxyModel( QObject* parent )
     : BASE( parent ), _d( new Private )
 {
@@ -132,10 +116,7 @@ void SummaryHandlingProxyModel::init()
 {
 }
 
-/*! Sets the model to be used as the source model for this proxy.
- * The proxy does not take ownership of the model.
- * \see QAbstractProxyModel::setSourceModel
- */
+
 void SummaryHandlingProxyModel::setSourceModel( QAbstractItemModel* model )
 {
     BASE::setSourceModel( model );
@@ -199,7 +180,7 @@ void SummaryHandlingProxyModel::sourceRowsAboutToBeRemoved( const QModelIndex & 
     d->clearCache();
 }
 
-/*! \see QAbstractItemModel::flags */
+
 Qt::ItemFlags SummaryHandlingProxyModel::flags( const QModelIndex& idx ) const
 {
     const QModelIndex sidx = mapToSource( idx );
@@ -211,7 +192,7 @@ Qt::ItemFlags SummaryHandlingProxyModel::flags( const QModelIndex& idx ) const
     return f;
 }
 
-/*! \see QAbstractItemModel::data */
+
 QVariant SummaryHandlingProxyModel::data( const QModelIndex& proxyIndex, int role) const
 {
   //qDebug() << "SummaryHandlingProxyModel::data("<<proxyIndex<<role<<")";
@@ -235,7 +216,7 @@ QVariant SummaryHandlingProxyModel::data( const QModelIndex& proxyIndex, int rol
     return model->data( sidx, role );
 }
 
-/*! \see QAbstractItemModel::setData */
+
 bool SummaryHandlingProxyModel::setData( const QModelIndex& index, const QVariant& value, int role )
 {
     QAbstractItemModel* model = sourceModel();

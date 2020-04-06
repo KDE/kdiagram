@@ -54,18 +54,6 @@ QDebug operator<<( QDebug dbg, KGantt::ItemDelegate::InteractionState state )
 
 using namespace KGantt;
 
-/*!\class KGantt::ItemDelegate kganttitemdelegate.h KGanttItemDelegate
- *\ingroup KGantt
- *\brief Class used to render gantt items in a KGantt::GraphicsView
- *
- */
-
-/*!\enum KGantt::ItemDelegate::InteractionState
- * This enum is used for communication between the view and
- * the delegate about user interaction with gantt items.
- *
- * \see KGantt::ItemDelegate::interactionStateFor
- */
 
 ItemDelegate::Private::Private()
 {
@@ -116,13 +104,13 @@ QPen ItemDelegate::Private::constraintPen( const QPointF& start, const QPointF& 
     return pen;
 }
 
-/*! Constructor. Creates an ItemDelegate with parent \a parent */
+
 ItemDelegate::ItemDelegate( QObject* parent )
     : QItemDelegate( parent ), _d( new Private )
 {
 }
 
-/*! Destructor */
+
 ItemDelegate::~ItemDelegate()
 {
     delete _d;
@@ -130,48 +118,31 @@ ItemDelegate::~ItemDelegate()
 
 #define d d_func()
 
-/*! Sets the default brush used for items of type \a type to
- * \a brush. The default brush is used in the case when the model
- * does not provide an explicit brush.
- *
- * \todo Move this to GraphicsView to make delegate stateless.
- */
+
 void ItemDelegate::setDefaultBrush( ItemType type, const QBrush& brush )
 {
     d->defaultbrush[type] = brush;
 }
 
-/*!\returns The default brush for item type \a type
- *
- * \todo Move this to GraphicsView to make delegate stateless.
- */
+
 QBrush ItemDelegate::defaultBrush( ItemType type ) const
 {
     return d->defaultbrush[type];
 }
 
-/*! Sets the default pen used for items of type \a type to
- * \a pen. The default pen is used in the case when the model
- * does not provide an explicit pen.
- *
- * \todo Move this to GraphicsView to make delegate stateless.
- */
+
 void ItemDelegate::setDefaultPen( ItemType type, const QPen& pen )
 {
     d->defaultpen[type]=pen;
 }
 
-/*!\returns The default pen for item type \a type
- *
- * \todo Move this to GraphicsView to make delegate stateless.
- */
+
 QPen ItemDelegate::defaultPen( ItemType type ) const
 {
     return d->defaultpen[type];
 }
 
-/*!\returns The tooltip for index \a idx
- */
+
 QString ItemDelegate::toolTip( const QModelIndex &idx ) const
 {
     if ( !idx.isValid() ) return QString();
@@ -186,14 +157,7 @@ QString ItemDelegate::toolTip( const QModelIndex &idx ) const
                 .arg( model->data( idx, Qt::DisplayRole ).toString() );
 }
 
-/*! \returns The bounding Span for the item identified by \a idx
- * when rendered with options \a opt. This is often the same as the
- * span given by the AbstractGrid for \a idx, but it might be larger
- * in case there are additional texts or decorations on the item.
- *
- * Override this to implement new itemtypes or to change the look
- * of the existing ones.
- */
+
 Span ItemDelegate::itemBoundingSpan( const StyleOptionGanttItem& opt,
                                  const QModelIndex& idx ) const
 {
@@ -226,12 +190,7 @@ Span ItemDelegate::itemBoundingSpan( const StyleOptionGanttItem& opt,
     return s;
 }
 
-/*! \returns The interaction state for position \a pos on item \a idx
- * when rendered with options \a opt. This is used to tell the view
- * about how the item should react to mouse click/drag.
- *
- * Override to implement new items or interactions.
- */
+
 ItemDelegate::InteractionState ItemDelegate::interactionStateFor( const QPointF& pos,
 								  const StyleOptionGanttItem& opt,
 								  const QModelIndex& idx ) const
@@ -265,8 +224,7 @@ ItemDelegate::InteractionState ItemDelegate::interactionStateFor( const QPointF&
     }
 }
 
-/*! Paints the gantt item \a idx using \a painter and \a opt
- */
+
 void ItemDelegate::paintGanttItem( QPainter* painter,
                                    const StyleOptionGanttItem& opt,
                                    const QModelIndex& idx )
@@ -390,10 +348,7 @@ void ItemDelegate::paintGanttItem( QPainter* painter,
 static const qreal TURN = 10.;
 static const qreal PW = 1.5;
 
-/*! \return The bounding rectangle for the graphics used to represent
- * a constraint between points \a start and \a end (typically an
- * arrow)
- */
+
 QRectF ItemDelegate::constraintBoundingRect( const QPointF& start, const QPointF& end, const Constraint &constraint ) const
 {
     QPolygonF poly;
@@ -415,11 +370,7 @@ QRectF ItemDelegate::constraintBoundingRect( const QPointF& start, const QPointF
 }
 
 
-/*! Paints the \a constraint between points \a start and \a end
- * using \a painter and \a opt.
- *
- * \todo Review \a opt's type
- */
+
 void ItemDelegate::paintConstraintItem( QPainter* painter, const QStyleOptionGraphicsItem& opt,
                                         const QPointF& start, const QPointF& end, const Constraint &constraint )
 {

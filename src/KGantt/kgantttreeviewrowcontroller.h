@@ -28,6 +28,12 @@ class QTreeView;
 QT_END_NAMESPACE
 
 namespace KGantt {
+
+
+    /*!\class TreeViewRowController
+     * This is an implementation of AbstractRowController that
+     * aligns a gantt view with a QTreeView.
+     */
     class KGANTT_EXPORT TreeViewRowController :  public AbstractRowController {
         KGANTT_DECLARE_PRIVATE_BASE_POLYMORPHIC(TreeViewRowController)
     public:

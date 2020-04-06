@@ -235,19 +235,9 @@ void View::Private::slotGfxViewVerticalRangeChanged( int min, int max )
     }
 }
 
-/*!\class KGantt::View kganttview.h KGanttView
- * \ingroup KGantt
- * \brief This widget that consists of a QTreeView and a GraphicsView
- *
- * This is the easy to use, complete gantt chart widget. It
- * consists of a QTreeView on the left and a KGantt::GraphicsView
- * on the right separated by a QSplitter. The two views share the same
- * model.
- */
 
-/*! Constructor. Creates a View with parent \a parent,
- * a DateTimeGrid as default grid implementaion and no model etc.
- */
+
+
 View::View(QWidget* parent)
     : QWidget(parent),
       _d(new Private(this))
@@ -265,11 +255,7 @@ View::~View()
 
 #define d d_func()
 
-/*! Replaces the left widget with a custom QAbstractItemView.
- *
- * \param aiv The view to be used to the left, instead of the default tree view
- * \sa setRowController()
- */
+
 void View::setLeftView( QAbstractItemView* aiv )
 {
     assert( aiv );
@@ -301,11 +287,7 @@ void View::setLeftView( QAbstractItemView* aiv )
              this, SLOT(slotGfxViewVerticalRangeChanged(int,int)) );
 }
 
-/*! Sets \a ctrl to be the rowcontroller used by this View.
- * The default rowcontroller is owned by KGantt::View and is
- * suitable for the default treeview in the left part of the view.
- * You probably only want to change this if you replace the treeview.
- */
+
 void View::setRowController( AbstractRowController* ctrl )
 {
     if ( ctrl == d->rowController && d->gfxview->rowController() == ctrl ) return;
@@ -313,44 +295,31 @@ void View::setRowController( AbstractRowController* ctrl )
     d->gfxview->setRowController( d->rowController );
 }
 
-/*! \returns a pointer to the current rowcontroller.
- * \see AbstractRowController
- */
+
 AbstractRowController* View::rowController()
 {
     return d->rowController;
 }
 
-/*! \overload AbstractRowController* KGantt::View::rowController()
- */
+
 const AbstractRowController* View::rowController() const
 {
     return d->rowController;
 }
 
-/*!
- * \returns a pointer to the QAbstractItemView in the left
- * part of the widget.
- * */
+
 const QAbstractItemView* View::leftView() const
 {
     return d->leftWidget;
 }
 
-/*!
- * \overload const QAbstractItemView* KGantt::View::leftView() const
- */
+
 QAbstractItemView* View::leftView()
 {
     return d->leftWidget;
 }
 
-/*! Set the GraphicsView to be used for this View. It only makes sense to call this
- * if you need to subclass GraphicsView.
- *
- * NOTE: _Only_ call this right after creating the View, before setting a model or any other
- * attributes.
- */
+
 void View::setGraphicsView( GraphicsView* gv )
 {
     if ( gv != d->gfxview ) {
@@ -363,51 +332,38 @@ void View::setGraphicsView( GraphicsView* gv )
     }
 }
 
-/*!
- * \returns a pointer to the GraphicsView
- */
+
 const GraphicsView* View::graphicsView() const
 {
     return d->gfxview;
 }
 
-/*!
- * \overload const GraphicsView* KGantt::View::graphicsView() const
- */
+
 GraphicsView* View::graphicsView()
 {
     return d->gfxview;
 }
 
-/*!
- * \returns a pointer to the QSplitter that manages the left view and graphicsView
- */
+
 const QSplitter* View::splitter() const
 {
     return &d->splitter;
 }
 
-/*!
- * \overload const QSplitter* KGantt::View::splitter() const
- */
+
 QSplitter* View::splitter()
 {
     return &d->splitter;
 }
 
 
-/*! \returns the current model displayed by this view
- */
+
 QAbstractItemModel* View::model() const
 {
     return leftView()->model();
 }
 
-/*! Sets the QAbstractItemModel to be displayed in this view
- * to \a model.
- *
- * \see GraphicsView::setModel
- */
+
 void View::setModel( QAbstractItemModel* model )
 {
     leftView()->setModel( model );
@@ -415,27 +371,20 @@ void View::setModel( QAbstractItemModel* model )
     d->gfxview->setModel( &d->ganttProxyModel );
 }
 
-/*! \returns the QItemSelectionModel used by this view
- */
+
 QItemSelectionModel* View::selectionModel() const
 {
     return leftView()->selectionModel();
 }
 
-/*! Sets the QItemSelectionModel used by this view to manage
- * selections. Similar to QAbstractItemView::setSelectionModel
- */
+
 void View::setSelectionModel( QItemSelectionModel* smodel )
 {
     leftView()->setSelectionModel( smodel );
     d->gfxview->setSelectionModel( new QItemSelectionModel( &( d->ganttProxyModel ),this ) );
 }
 
-/*! Sets the AbstractGrid for this view. The grid is an
- * object that controls how QModelIndexes are mapped
- * to and from the view and how the background and header
- * is rendered. \see AbstractGrid and DateTimeGrid.
- */
+
 void View::setGrid( AbstractGrid* grid )
 {
     d->gfxview->setGrid( grid );
@@ -463,56 +412,46 @@ void View::collapseAll( QModelIndex index )
     }
 }
 
-/*! \returns the AbstractGrid used by this view.
- */
+
 AbstractGrid* View::grid() const
 {
     return d->gfxview->grid();
 }
 
-/*! \returns the rootindex for this view.
- */
+
 QModelIndex View::rootIndex() const
 {
     return leftView()->rootIndex();
 }
 
-/*! Sets the root index of the model displayed by this view.
- * Similar to QAbstractItemView::setRootIndex, default is QModelIndex().
- */
+
 void View::setRootIndex( const QModelIndex& idx )
 {
     leftView()->setRootIndex( idx );
     d->gfxview->setRootIndex( idx );
 }
 
-/*! \returns the ItemDelegate used by this view to render items
-*/
+
 ItemDelegate* View::itemDelegate() const
 {
     return d->gfxview->itemDelegate();
 }
 
-/*! Sets the KGantt::ItemDelegate used for rendering items on this
- * view. \see ItemDelegate and QAbstractItemDelegate.
- */
+
 void View::setItemDelegate( ItemDelegate* delegate )
 {
     leftView()->setItemDelegate( delegate );
     d->gfxview->setItemDelegate( delegate );
 }
 
-/*! Sets the constraintmodel displayed by this view.
- * \see KGantt::ConstraintModel.
- */
+
 void View::setConstraintModel( ConstraintModel* cm )
 {
     d->constraintProxy.setSourceModel( cm );
     d->gfxview->setConstraintModel( &d->mappedConstraintModel );
 }
 
-/*! \returns the KGantt::ConstraintModel displayed by this view.
- */
+
 ConstraintModel* View::constraintModel() const
 {
     return d->constraintProxy.sourceModel();
@@ -548,53 +487,25 @@ void View::resizeEvent(QResizeEvent*ev)
     QWidget::resizeEvent(ev);
 }
 
-/*!\returns The QModelIndex for the item located at
- * position \a pos in the view or an invalid index
- * if no item was present at that position.
- *
- * \see GraphicsView::indexAt
- */
+
 QModelIndex View::indexAt( const QPoint& pos ) const
 {
     return d->gfxview->indexAt( pos );
 }
 
-/*! Print the Gantt chart using \a printer. If \a drawRowLabels
- * is true (the default), each row will have it's label printed
- * on the left side. If \a drawColumnLabels is true (the
- * default), each column will have it's label printed at the
- * top side.
- *
- * This version of print() will print multiple pages.
- */
+
 void View::print( QPrinter* printer, bool drawRowLabels, bool drawColumnLabels )
 {
     graphicsView()->print( printer, drawRowLabels, drawColumnLabels );
 }
 
-/*! Print part of the Gantt chart from \a start to \a end using \a printer.
- * If \a drawRowLabels is true (the default), each row will have it's
- * label printed on the left side. If \a drawColumnLabels is true (the
- * default), each column will have it's label printed at the
- * top side.
- *
- * This version of print() will print multiple pages.
- *
- * To print a certain range of a chart with a DateTimeGrid, use
- * qreal DateTimeGrid::mapFromDateTime( const QDateTime& dt) const
- * to figure out the values for \a start and \a end.
- */
+
 void View::print( QPrinter* printer, qreal start, qreal end, bool drawRowLabels, bool drawColumnLabels )
 {
     graphicsView()->print( printer, start, end, drawRowLabels, drawColumnLabels );
 }
 
-/*! Render the GanttView inside the rectangle \a target using the painter \a painter.
- * If \a drawRowLabels is true (the default), each row will have it's
- * label printed on the left side. If \a drawColumnLabels is true (the
- * default), each column will have it's label printed at the
- * top side.
- */
+
 void View::print( QPainter* painter, const QRectF& target, bool drawRowLabels, bool drawColumnLabels)
 {
     d->gfxview->print( painter,
@@ -603,16 +514,7 @@ void View::print( QPainter* painter, const QRectF& target, bool drawRowLabels, b
               drawColumnLabels);
 }
 
-/*! Render the GanttView inside the rectangle \a target using the painter \a painter.
- * If \a drawRowLabels is true (the default), each row will have it's
- * label printed on the left side. If \a drawColumnLabels is true (the
- * default), each column will have it's label printed at the
- * top side.
- *
- * To print a certain range of a chart with a DateTimeGrid, use
- * qreal DateTimeGrid::mapFromDateTime( const QDateTime& dt) const
- * to figure out the values for \a start and \a end.
- */
+
 void View::print( QPainter* painter, qreal start, qreal end, const QRectF& target, bool drawRowLabels, bool drawColumnLabels)
 {
     d->gfxview->print( painter,

@@ -40,9 +40,7 @@
 
 #include <QDebug>
 
-/*!\class KGantt::GraphicsItem
- * \internal
- */
+
 
 using namespace KGantt;
 

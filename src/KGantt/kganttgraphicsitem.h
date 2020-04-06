@@ -36,6 +36,10 @@ namespace KGantt {
     class ConstraintGraphicsItem;
 
     /* Can we fit every kind of item into one gfxitem class? */
+
+    /*!\class KGantt::GraphicsItem
+     * \internal
+     */
     class KGANTT_EXPORT GraphicsItem : public QGraphicsItem {
     public:
         enum { Type = UserType + 42 };

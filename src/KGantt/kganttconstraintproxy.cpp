@@ -24,9 +24,7 @@
 
 using namespace KGantt;
 
-/*!\class KGantt::ConstraintProxy
- * \internal
- */
+
 
 ConstraintProxy::ConstraintProxy( QObject* parent )
     : QObject( parent )

@@ -28,9 +28,7 @@
 
 using namespace KGantt;
 
-/*!\class KGantt::ConstraintGraphicsItem
- * \internal
- */
+
 ConstraintGraphicsItem::ConstraintGraphicsItem( const Constraint& c, QGraphicsItem* parent, GraphicsScene* scene )
     : QGraphicsItem( parent ),  m_constraint( c )
 {

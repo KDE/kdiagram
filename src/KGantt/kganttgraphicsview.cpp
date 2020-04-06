@@ -340,27 +340,6 @@ void GraphicsView::Private::slotHeaderContextMenuRequested( const QPoint& pt )
     emit q->headerContextMenuRequested( headerwidget.mapToGlobal( pt ) );
 }
 
-/*!\class KGantt::GraphicsView kganttgraphicsview.h KGanttGraphicsView
- * \ingroup KGantt
- * \brief The GraphicsView class provides a model/view implementation of a gantt chart.
- *
- *
- */
-
-/*! \fn void GraphicsView::activated( const QModelIndex & index ) */
-/*! \fn void GraphicsView::clicked( const QModelIndex & index ); */
-/*! \fn void GraphicsView::qrealClicked( const QModelIndex & index ); */
-/*! \fn void GraphicsView::entered( const QModelIndex & index ); */
-/*! \fn void GraphicsView::pressed( const QModelIndex & index ); */
-/*! \fn void GraphicsView::headerContextMenuRequested( const QPoint& pt )
- * This signal is emitted when the header has contextMenuPolicy Qt::CustomContextMenu
- * and the widget wants to show a context menu for the header. Unlike in
- * QWidget::customContextMenuRequested() signal, \a pt is here in global coordinates.
- */
-
-/*! Constructor. Creates a new KGantt::GraphicsView with parent
- * \a parent.
- */
 GraphicsView::GraphicsView( QWidget* parent )
     : QGraphicsView( parent ), _d( new Private( this ) )
 {
@@ -396,7 +375,7 @@ GraphicsView::GraphicsView( QWidget* parent )
     //setCacheMode( CacheBackground );
 }
 
-/*! Destroys this view. */
+
 GraphicsView::~GraphicsView()
 {
     delete _d;
@@ -404,23 +383,7 @@ GraphicsView::~GraphicsView()
 
 #define d d_func()
 
-/*! Sets the model to be displayed in this view to
- * \a model. The view does not take ownership of the model.
- *
- * To make a model work well with GraphicsView it must
- * have a certain layout. Whether the model is flat or has a
- * treestrucure is not important, as long as an
- * AbstractRowController is provided that can navigate the
- * model.
- *
- * GraphicsView operates per row in the model. The data is always
- * taken from the _last_ item in the row. The ItemRoles used are
- * Qt::DisplayRole and the roles defined in KGantt::ItemDataRole.
- * 
- * Note: This model is not returned by \a model()
- * 
- * \see GraphicsView::model
- */
+
 void GraphicsView::setModel( QAbstractItemModel* model )
 {
     if ( d->scene.model() ) {
@@ -435,12 +398,7 @@ void GraphicsView::setModel( QAbstractItemModel* model )
     updateScene();
 }
 
-/*! \returns the current model displayed by this view
- * 
- * Note: The returned model is not the model set with \a setModel()
- * 
- * \see GraphicsView::setModel
- */
+
 QAbstractItemModel* GraphicsView::model() const
 {
     return d->scene.model();
@@ -474,78 +432,61 @@ void GraphicsView::setSummaryHandlingModel( QAbstractProxyModel* proxyModel )
     updateScene();
 }
 
-/*! Sets the constraintmodel displayed by this view.
- * \see KGantt::ConstraintModel.
- */
+
 void GraphicsView::setConstraintModel( ConstraintModel* cmodel )
 {
     d->scene.setConstraintModel( cmodel );
 }
 
-/*! \returns the KGantt::ConstraintModel displayed by this view.
- */
+
 ConstraintModel* GraphicsView::constraintModel() const
 {
     return d->scene.constraintModel();
 }
 
-/*! \returns the KGantt::SummaryHandlingProxyModel used by this view.
- */
+
 QAbstractProxyModel* GraphicsView::summaryHandlingModel() const
 {
     return d->scene.summaryHandlingModel();
 }
 
-/*! Sets the root index of the model displayed by this view.
- * Similar to QAbstractItemView::setRootIndex, default is QModelIndex().
- */
+
 void GraphicsView::setRootIndex( const QModelIndex& idx )
 {
     d->scene.setRootIndex( idx );
 }
 
-/*! \returns the rootindex for this view.
- */
+
 QModelIndex GraphicsView::rootIndex() const
 {
     return d->scene.rootIndex();
 }
 
-/*! Sets the QItemSelectionModel used by this view to manage
- * selections. Similar to QAbstractItemView::setSelectionModel
- */
+
 void GraphicsView::setSelectionModel( QItemSelectionModel* model )
 {
     d->scene.setSelectionModel( model );
 }
 
-/*! \returns the QItemSelectionModel used by this view
- */
+
 QItemSelectionModel* GraphicsView::selectionModel() const
 {
     return d->scene.selectionModel();
 }
 
-/*! Sets the KGantt::ItemDelegate used for rendering items on this
- * view. \see ItemDelegate and QAbstractItemDelegate.
- */
+
 void GraphicsView::setItemDelegate( ItemDelegate* delegate )
 {
     d->scene.setItemDelegate( delegate );
 }
 
-/*! \returns the ItemDelegate used by this view to render items
-*/
+
 ItemDelegate* GraphicsView::itemDelegate() const
 {
     return d->scene.itemDelegate();
 }
 
-/*! Sets the AbstractRowController used by this view. The
- * AbstractRowController deals with the height and position
- * of each row and with which parts of the model are
- * displayed. \see AbstractRowController
- */
+
 void GraphicsView::setRowController( AbstractRowController* rowcontroller )
 {
     d->rowcontroller = rowcontroller;
@@ -553,34 +494,26 @@ void GraphicsView::setRowController( AbstractRowController* rowcontroller )
     updateScene();
 }
 
-/*! \returns the AbstractRowController
- * for this view. \see setRowController
- */
+
 AbstractRowController* GraphicsView::rowController() const
 {
     return d->rowcontroller;
 }
 
-/*! Sets the AbstractGrid for this view. The grid is an
- * object that controls how QModelIndexes are mapped
- * to and from the view and how the background and header
- * is rendered. \see AbstractGrid and DateTimeGrid.
- */
+
 void GraphicsView::setGrid( AbstractGrid* grid )
 {
     d->scene.setGrid( grid );
     d->slotGridChanged();
 }
 
-/*! \returns the AbstractGrid used by this view.
- */
+
 AbstractGrid* GraphicsView::grid() const
 {
     return d->scene.grid();
 }
 
-/*! \returns the AbstractGrid used by this view.
- */
+
 AbstractGrid* GraphicsView::takeGrid()
 {
     AbstractGrid *grid = d->scene.grid();
@@ -590,50 +523,31 @@ AbstractGrid* GraphicsView::takeGrid()
     return grid;
 }
 
-/*! Sets the view to read-only mode if \a to is true. The default is
- * read/write if the model permits it.
- */
+
 void GraphicsView::setReadOnly( bool ro )
 {
     d->scene.setReadOnly( ro );
 }
 
-/*!\returns true iff the view is in read-only mode
- */
+
 bool GraphicsView::isReadOnly() const
 {
     return d->scene.isReadOnly();
 }
 
-/*! Sets the context menu policy for the header. The default value
- * Qt::DefaultContextMenu results in a standard context menu on the header
- * that allows the user to set the scale and zoom.
- *
- * Setting this to Qt::CustomContextMenu will cause the signal
- * headerContextMenuRequested(const QPoint& pt) to be emitted instead.
- *
- * \see QWidget::setContextMenuPolicy( Qt::ContextMenuPolicy )
- */
+
 void GraphicsView::setHeaderContextMenuPolicy( Qt::ContextMenuPolicy p )
 {
     d->headerwidget.setContextMenuPolicy( p );
 }
 
-/*! \returns the context menu policy for the header
- */
+
 Qt::ContextMenuPolicy GraphicsView::headerContextMenuPolicy() const
 {
     return d->headerwidget.contextMenuPolicy();
 }
 
-/*! Adds a constraint from \a from to \a to. \a modifiers are the
- * keyboard modifiers pressed by the user when the action is invoked.
- *
- * Override this to control how contraints are added. The default
- * implementation adds a soft constraint unless the Shift key is pressed,
- * in that case it adds a hard constraint. If a constraint is already
- * present, it is removed and nothing is added.
- */
+
 void GraphicsView::addConstraint( const QModelIndex& from,
                                   const QModelIndex& to,
                                   Qt::KeyboardModifiers modifiers )
@@ -672,12 +586,7 @@ void GraphicsView::resizeEvent( QResizeEvent* ev )
     QGraphicsView::resizeEvent( ev );
 }
 
-/*!\returns The QModelIndex for the item located at
- * position \a pos in the view or an invalid index
- * if no item was present at that position.
- *
- * This is useful for for example contextmenus.
- */
+
 QModelIndex GraphicsView::indexAt( const QPoint& pos ) const
 {
     QGraphicsItem* item = itemAt( pos );
@@ -688,21 +597,19 @@ QModelIndex GraphicsView::indexAt( const QPoint& pos ) const
     }
 }
 
-/*! \internal */
+
 void GraphicsView::clearItems()
 {
     d->scene.clearItems();
 }
 
-/*! \internal */
+
 void GraphicsView::updateRow( const QModelIndex& idx )
 {
     d->scene.updateRow( d->scene.summaryHandlingModel()->mapFromSource( idx ) );
 }
 
-/*! \internal
- * Adjusts the bounding rectangle of the scene.
- */
+
 void GraphicsView::updateSceneRect()
 {
     /* What to do with this? We need to shrink the view to
@@ -730,9 +637,7 @@ void GraphicsView::updateSceneRect()
     d->scene.invalidate( QRectF(), QGraphicsScene::BackgroundLayer );
 }
 
-/*! \internal
- * Resets the state of the view.
- */
+
 void GraphicsView::updateScene()
 {
     clearItems();
@@ -750,9 +655,7 @@ void GraphicsView::updateScene()
 
 #if 0
 TODO: For 3.0
-/*! Creates a new GraphicsItem
- * Re-iplement to create your own flavour of GraphicsItem
- */
+
 GraphicsItem* GraphicsView::createItem( ItemType type ) const
 {
     Q_UNUSED(type)
@@ -760,63 +663,31 @@ GraphicsItem* GraphicsView::createItem( ItemType type ) const
 }
 #endif
 
-/*! \internal */
+
 void GraphicsView::deleteSubtree( const QModelIndex& idx )
 {
     d->scene.deleteSubtree( d->scene.summaryHandlingModel()->mapFromSource( idx ) );
 }
 
-/*! Print the Gantt chart using \a printer. If \a drawRowLabels
- * is true (the default), each row will have it's label printed
- * on the left side. If \a drawColumnLabels is true (the
- * default), each column will have it's label printed at the
- * top side.
- *
- * This version of print() will print multiple pages.
- */
+
 void GraphicsView::print( QPrinter* printer, bool drawRowLabels, bool drawColumnLabels )
 {
     d->scene.print( printer, drawRowLabels, drawColumnLabels );
 }
 
-/*! Print part of the Gantt chart from \a start to \a end using \a printer.
- * If \a drawRowLabels is true (the default), each row will have it's
- * label printed on the left side. If \a drawColumnLabels is true (the
- * default), each column will have it's label printed at the
- * top side.
- *
- * This version of print() will print multiple pages.
- *
- * To print a certain range of a chart with a DateTimeGrid, use
- * qreal DateTimeGrid::mapFromDateTime( const QDateTime& dt) const
- * to figure out the values for \a start and \a end.
- */
+
 void GraphicsView::print( QPrinter* printer,  qreal start, qreal end, bool drawRowLabels, bool drawColumnLabels )
 {
     d->scene.print( printer, start, end, drawRowLabels, drawColumnLabels );
 }
 
-/*! Render the GanttView inside the rectangle \a target using the painter \a painter.
- * If \a drawRowLabels is true (the default), each row will have it's
- * label printed on the left side. If \a drawColumnLabels is true (the
- * default), each column will have it's label printed at the
- * top side.
- */
+
 void GraphicsView::print( QPainter* painter, const QRectF& targetRect, bool drawRowLabels, bool drawColumnLabels )
 {
   d->scene.print(painter, targetRect, drawRowLabels, drawColumnLabels);
 }
 
-/*! Render the GanttView inside the rectangle \a target using the painter \a painter.
- * If \a drawRowLabels is true (the default), each row will have it's
- * label printed on the left side. If \a drawColumnLabels is true (the
- * default), each column will have it's label printed at the
- * top side.
- *
- * To print a certain range of a chart with a DateTimeGrid, use
- * qreal DateTimeGrid::mapFromDateTime( const QDateTime& dt) const
- * to figure out the values for \a start and \a end.
- */
+
 void GraphicsView::print( QPainter* painter, qreal start, qreal end,
                           const QRectF& targetRect, bool drawRowLabels, bool drawColumnLabels )
 {

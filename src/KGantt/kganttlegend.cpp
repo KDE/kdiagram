@@ -29,16 +29,7 @@
 
 using namespace KGantt;
 
-/*!\class KGantt::Legend kganttlegend.h KGanttLegend
- * \ingroup KGantt
- * \brief Legend showing an image and a description for Gantt items
- *
- * This is an item view class showing a small Gantt item and it's
- * text defined by LegendRole.
- */
 
-/*! Constructor. Creates a Legend with parent \a parent.
- * The QObject parent is not used for anything internally. */
 Legend::Legend( QWidget* parent )
     : QAbstractItemView( parent ),
       _d( new Private )
@@ -47,7 +38,7 @@ Legend::Legend( QWidget* parent )
     setFrameStyle( QFrame::NoFrame );
 }
 
-/*! Destructor. Does nothing */
+
 Legend::~Legend()
 {
     delete _d;
@@ -98,8 +89,7 @@ void Legend::setModel( QAbstractItemModel* model )
 
 }
 
-/*! Triggers repainting of the legend.
- */
+
 void Legend::modelDataChanged()
 {
     updateGeometry();
@@ -118,9 +108,7 @@ void Legend::paintEvent( QPaintEvent* event )
     drawItem( &p, rootIndex() );
 }
 
-/*! Creates a StyleOptionGanttItem with all style options filled in
- *  except the target rectangles.
- */
+
 StyleOptionGanttItem Legend::getStyleOption( const QModelIndex& index ) const
 {
     StyleOptionGanttItem opt;
@@ -131,11 +119,7 @@ StyleOptionGanttItem Legend::getStyleOption( const QModelIndex& index ) const
     return opt;
 }
 
-/*! Draws the legend item at \a index and all of it's children recursively 
- *  at \a pos onto \a painter.
- *  Reimplement this if you want to draw items in an user defined way.
- *  \returns the rectangle drawn.
- */
+
 QRect Legend::drawItem( QPainter* painter, const QModelIndex& index, const QPoint& pos ) const
 {
     int xPos = pos.x();
@@ -175,9 +159,7 @@ QRect Legend::drawItem( QPainter* painter, const QModelIndex& index, const QPoin
     return QRect( pos, QPoint( xPos, yPos ) );
 }
 
-/*! Calculates the needed space for the legend item at \a index and, if \a recursive is true,
- *  all child items.
- */
+
 QSize Legend::measureItem( const QModelIndex& index, bool recursive ) const
 {
     if ( model() == nullptr )

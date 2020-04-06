@@ -52,9 +52,7 @@
 #endif
 #endif
 
-/*!\class KGantt::GraphicsScene
- * \internal
- */
+
 
 using namespace KGantt;
 
@@ -370,10 +368,7 @@ QModelIndex GraphicsScene::mainIndex( const QModelIndex& idx )
 #endif
 }
 
-/*! Returns the index pointing to the last column
- * in the same row as idx. This can be thought of
- * as in "inverse" of mainIndex()
- */
+
 QModelIndex GraphicsScene::dataIndex( const QModelIndex& idx )
 {
 #if 0
@@ -388,8 +383,7 @@ QModelIndex GraphicsScene::dataIndex( const QModelIndex& idx )
 #endif
 }
 
-/*! Creates a new item of type type.
- */
+
 GraphicsItem* GraphicsScene::createItem( ItemType type ) const
 {
 #if 0
@@ -713,14 +707,7 @@ GraphicsItem* GraphicsScene::dragSource() const
     return d->dragSource;
 }
 
-/*! Print the Gantt chart using \a printer. If \a drawRowLabels
- * is true (the default), each row will have it's label printed
- * on the left side. If \a drawColumnLabels is true (the
- * default), each column will have it's label printed at the
- * top side.
- *
- * This version of print() will print multiple pages.
- */
+
 void GraphicsScene::print( QPrinter* printer, bool drawRowLabels, bool drawColumnLabels )
 {
 #ifndef HAVE_PRINTER
@@ -733,18 +720,7 @@ void GraphicsScene::print( QPrinter* printer, bool drawRowLabels, bool drawColum
 #endif
 }
 
-/*! Print part of the Gantt chart from \a start to \a end using \a printer.
- * If \a drawRowLabels is true (the default), each row will have it's
- * label printed on the left side. If \a drawColumnLabels is true (the
- * default), each column will have it's label printed at the
- * top side.
- *
- * This version of print() will print multiple pages.
- *
- * To print a certain range of a chart with a DateTimeGrid, use
- * qreal DateTimeGrid::mapFromDateTime( const QDateTime& dt) const
- * to figure out the values for \a start and \a end.
- */
+
 void GraphicsScene::print( QPrinter* printer, qreal start, qreal end, bool drawRowLabels, bool drawColumnLabels )
 {
 #ifndef HAVE_PRINTER
@@ -759,12 +735,7 @@ void GraphicsScene::print( QPrinter* printer, qreal start, qreal end, bool drawR
 #endif
 }
 
-/*! Render the GanttView inside the rectangle \a target using the painter \a painter.
- * If \a drawRowLabels is true (the default), each row will have it's
- * label printed on the left side. If \a drawColumnLabels is true (the
- * default), each column will have it's label printed at the
- * top side.
- */
+
 void GraphicsScene::print( QPainter* painter, const QRectF& _targetRect, bool drawRowLabels, bool drawColumnLabels )
 {
     QRectF targetRect( _targetRect );
@@ -775,16 +746,7 @@ void GraphicsScene::print( QPainter* painter, const QRectF& _targetRect, bool dr
     doPrint( painter, targetRect, sceneRect().left(), sceneRect().right(), nullptr, drawRowLabels, drawColumnLabels );
 }
 
-/*! Render the GanttView inside the rectangle \a target using the painter \a painter.
- * If \a drawRowLabels is true (the default), each row will have it's
- * label printed on the left side. If \a drawColumnLabels is true (the
- * default), each column will have it's label printed at the
- * top side.
- *
- * To print a certain range of a chart with a DateTimeGrid, use
- * qreal DateTimeGrid::mapFromDateTime( const QDateTime& dt) const
- * to figure out the values for \a start and \a end.
- */
+
 void GraphicsScene::print( QPainter* painter, qreal start, qreal end,
                            const QRectF& _targetRect, bool drawRowLabels, bool drawColumnLabels )
 {
@@ -796,8 +758,7 @@ void GraphicsScene::print( QPainter* painter, qreal start, qreal end,
     doPrint( painter, targetRect, start, end, nullptr, drawRowLabels, drawColumnLabels );
 }
 
-/*!\internal
- */
+
 void GraphicsScene::doPrint( QPainter* painter, const QRectF& targetRect,
                              qreal start, qreal end,
                              QPrinter* printer, bool drawRowLabels, bool drawColumnLabels )

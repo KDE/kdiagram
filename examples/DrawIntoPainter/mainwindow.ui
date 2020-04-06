@@ -386,6 +386,13 @@
       </spacer>
      </item>
      <item>
+      <widget class="QPushButton" name="printButton">
+       <property name="text">
+        <string>Print</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="savePB">
        <property name="text">
         <string>Save as PNG</string>

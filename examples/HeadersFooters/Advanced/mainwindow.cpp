@@ -29,7 +29,7 @@
 #include <QPen>
 #include <QPainter>
 #include <QPrinter>
-#include <QPrintDialog>
+#include <QPrintPreviewDialog>
 
 class HeaderItem : public QTreeWidgetItem
 {
@@ -120,14 +120,19 @@ void MainWindow::addHeaderFooter( const QString &text,
     m_chart->update();
 }
 
+
+void MainWindow::slotPaintRequested(QPrinter *printer)
+{
+    QPainter painter(printer);
+    m_chart->paint(&painter, painter.window());
+}
+
 void MainWindow::on_printButton_clicked()
 {
     static QPrinter printer;
-    QPrintDialog dialog(&printer);
-    if (!dialog.exec())
-        return;
-    QPainter painter(&printer);
-    m_chart->paint(&painter, painter.window());
+    QPrintPreviewDialog dialog(&printer);
+    connect(&dialog, SIGNAL(paintRequested(QPrinter*)), this, SLOT(slotPaintRequested(QPrinter*)));
+    dialog.exec();
 }
 
 void MainWindow::on_addHeaderPB_clicked()

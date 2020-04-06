@@ -34,6 +34,7 @@ namespace KChart {
 
 QT_BEGIN_NAMESPACE
 class QLabel;
+class QPrinter;
 QT_END_NAMESPACE
 
 class MainWindow : public QWidget, private Ui::MainWindow
@@ -65,7 +66,8 @@ private slots:
     void on_vSBar_valueChanged( int value );
     void on_savePB_clicked();
     void on_savePDF_clicked();
-
+    void slotPaintRequested(QPrinter *printer);
+    void on_printButton_clicked();
 private:
     void paintMarkers( bool checked, const QSize& printSize );
 

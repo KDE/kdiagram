@@ -36,6 +36,7 @@
 #include <QPainter>
 #include <QFileDialog>
 #include <QPrinter>
+#include <QPrintPreviewDialog>
 
 using namespace KChart;
 
@@ -171,6 +172,20 @@ MainWindow::MainWindow( QWidget* parent ) :
     // individually disable the parts we don't want.
     on_paintValuesCB_toggled( false );
     on_paintMarkersCB_toggled( false );
+}
+
+void MainWindow::slotPaintRequested(QPrinter *printer)
+{
+    QPainter painter(printer);
+    m_chart->paint(&painter, painter.window());
+}
+
+void MainWindow::on_printButton_clicked()
+{
+    static QPrinter printer;
+    QPrintPreviewDialog dialog(&printer);
+    connect(&dialog, SIGNAL(paintRequested(QPrinter*)), this, SLOT(slotPaintRequested(QPrinter*)));
+    dialog.exec();
 }
 
 void MainWindow::on_lineTypeCB_currentIndexChanged( const QString & text )

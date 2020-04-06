@@ -29,6 +29,8 @@
 #include <KChartHeaderFooter>
 #include <KChartPosition>
 
+class QPrinter;
+
 namespace KChart {
     class Chart;
     class DatasetProxyModel;
@@ -44,12 +46,12 @@ public:
 
 private slots:
     void on_defaultButton_clicked();
+    void slotPaintRequested(QPrinter *printer);
     void on_printButton_clicked();
     void on_addHeaderPB_clicked();
     void on_editHeaderPB_clicked();
     void on_removeHeaderPB_clicked();
     void on_headersTV_itemSelectionChanged();
-
 private:
     void setupAddHeaderDialog( QDialog* dlg,
                                Ui::AddHeaderDialog& conf ) const;

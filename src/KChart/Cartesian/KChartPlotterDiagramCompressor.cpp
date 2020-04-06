@@ -444,123 +444,125 @@ bool PlotterDiagramCompressor::Private::inBoundaries( Qt::Orientation orient, co
     return true;
 }
 
-//// TODO this is not threadsafe do never try to invoke the painting in a different thread than this
-//// method
-//void PlotterDiagramCompressor::Private::rowsInserted( const QModelIndex& /*parent*/, int start, int end )
-//{
+#if 0
+// TODO this is not threadsafe do never try to invoke the painting in a different thread than this
+// method
+void PlotterDiagramCompressor::Private::rowsInserted( const QModelIndex& /*parent*/, int start, int end )
+{
 
-//    if ( m_bufferlist.count() > 0 && !m_bufferlist[ 0 ].isEmpty() && start < m_bufferlist[ 0 ].count() )
-//    {
-//        calculateDataBoundaries();
-//        clearBuffer();
-//        return;
-//    }
-//    // we are handling appends only here, a prepend might be added, insert is expensive if not needed
-//    qreal minX = std::numeric_limits< qreal >::max();
-//    qreal minY = std::numeric_limits< qreal >::max();
-//    qreal maxX = std::numeric_limits< qreal >::min();
-//    qreal maxY = std::numeric_limits< qreal >::min();
-//    for ( int dataset = 0; dataset < m_bufferlist.size(); ++dataset )
-//    {
-//        PlotterDiagramCompressor::DataPoint predecessor = m_bufferlist[ dataset ].isEmpty() ? DataPoint() : m_bufferlist[ dataset ].last();
+   if ( m_bufferlist.count() > 0 && !m_bufferlist[ 0 ].isEmpty() && start < m_bufferlist[ 0 ].count() )
+   {
+       calculateDataBoundaries();
+       clearBuffer();
+       return;
+   }
+   // we are handling appends only here, a prepend might be added, insert is expensive if not needed
+   qreal minX = std::numeric_limits< qreal >::max();
+   qreal minY = std::numeric_limits< qreal >::max();
+   qreal maxX = std::numeric_limits< qreal >::min();
+   qreal maxY = std::numeric_limits< qreal >::min();
+   for ( int dataset = 0; dataset < m_bufferlist.size(); ++dataset )
+   {
+       PlotterDiagramCompressor::DataPoint predecessor = m_bufferlist[ dataset ].isEmpty() ? DataPoint() : m_bufferlist[ dataset ].last();
 
-//        qreal oldSlope = 0;
-//        qreal newSlope = 0;
-//        PlotterDiagramCompressor::DataPoint newdp = m_parent->data( CachePosition( start, dataset ) );
-//        PlotterDiagramCompressor::DataPoint olddp = PlotterDiagramCompressor::DataPoint();
-//        const int datacount = m_bufferlist[ dataset ].count();
-//        if ( m_mode != PlotterDiagramCompressor::DISTANCE && m_bufferlist[ dataset ].count() > 1 )
-//        {
-//            oldSlope = calculateSlope( m_bufferlist[ dataset ][ datacount - 2 ], m_bufferlist[ dataset ][ datacount - 1 ] );
-//            newSlope = calculateSlope( m_bufferlist[ dataset ][ datacount - 1 ], newdp );
-//        }
-//        bool first = true;
-//        for ( int row = start; row <= end; ++row )
-//        {
-//            PlotterDiagramCompressor::DataPoint curdp = m_parent->data( CachePosition( row, dataset ) );
-//            const bool checkcur = inBoundaries( Qt::Vertical, curdp ) && inBoundaries( Qt::Horizontal, curdp );
-//            const bool checkpred = inBoundaries( Qt::Vertical, predecessor ) && inBoundaries( Qt::Horizontal, predecessor );
-//            const bool check = checkcur || checkpred;
-//            switch ( m_mode )
-//            {
-//            case( PlotterDiagramCompressor::BOTH ):
-//                {
-//                    if ( predecessor.distance( curdp ) > m_mergeRadius && check )
-//                    {
-//                        if ( start > m_bufferlist[ dataset ].count() && !m_bufferlist[ dataset ].isEmpty() )
-//                        {
-//                            m_bufferlist[ dataset ].append( curdp );
-//                        }
-//                        else if ( !m_bufferlist[ dataset ].isEmpty() )
-//                        {
-//                            m_bufferlist[ dataset ].insert( row, curdp );
-//                        }
-//                        predecessor = curdp;
-//                        minX = qMin( curdp.key, m_boundary.first.x() );
-//                        minY = qMin( curdp.value, m_boundary.first.y() );
-//                        maxX = qMax( curdp.key, m_boundary.second.x() );
-//                        maxY = qMax( curdp.value, m_boundary.second.y() );
-//                    }
-//                }
-//                break;
-//            case ( PlotterDiagramCompressor::DISTANCE ):
-//                {
-//                    if ( predecessor.distance( curdp ) > m_mergeRadius && check )
-//                    {
-//                        if ( start > m_bufferlist[ dataset ].count() && !m_bufferlist[ dataset ].isEmpty() )
-//                        {
-//                            m_bufferlist[ dataset ].append( curdp );
-//                        }
-//                        else if ( !m_bufferlist[ dataset ].isEmpty() )
-//                        {
-//                            m_bufferlist[ dataset ].insert( row, curdp );
-//                        }
-//                        predecessor = curdp;
-//                        minX = qMin( curdp.key, m_boundary.first.x() );
-//                        minY = qMin( curdp.value, m_boundary.first.y() );
-//                        maxX = qMax( curdp.key, m_boundary.second.x() );
-//                        maxY = qMax( curdp.value, m_boundary.second.y() );
-//                    }
-//                }
-//                break;
-//            case( PlotterDiagramCompressor::SLOPE ):
-//                {
-//                    if ( check && qAbs( newSlope - oldSlope ) >= m_maxSlopeRadius )
-//                    {
-//                        if ( start > m_bufferlist[ dataset ].count() && !m_bufferlist[ dataset ].isEmpty() )
-//                        {
-//                            m_bufferlist[ dataset ].append( curdp );
-//                            oldSlope = newSlope;
-//                        }
-//                        else if ( !m_bufferlist[ dataset ].isEmpty() )
-//                        {
-//                            m_bufferlist[ dataset ].insert( row, curdp );
-//                            oldSlope = newSlope;
-//                        }
+       qreal oldSlope = 0;
+       qreal newSlope = 0;
+       PlotterDiagramCompressor::DataPoint newdp = m_parent->data( CachePosition( start, dataset ) );
+       PlotterDiagramCompressor::DataPoint olddp = PlotterDiagramCompressor::DataPoint();
+       const int datacount = m_bufferlist[ dataset ].count();
+       if ( m_mode != PlotterDiagramCompressor::DISTANCE && m_bufferlist[ dataset ].count() > 1 )
+       {
+           oldSlope = calculateSlope( m_bufferlist[ dataset ][ datacount - 2 ], m_bufferlist[ dataset ][ datacount - 1 ] );
+           newSlope = calculateSlope( m_bufferlist[ dataset ][ datacount - 1 ], newdp );
+       }
+       bool first = true;
+       for ( int row = start; row <= end; ++row )
+       {
+           PlotterDiagramCompressor::DataPoint curdp = m_parent->data( CachePosition( row, dataset ) );
+           const bool checkcur = inBoundaries( Qt::Vertical, curdp ) && inBoundaries( Qt::Horizontal, curdp );
+           const bool checkpred = inBoundaries( Qt::Vertical, predecessor ) && inBoundaries( Qt::Horizontal, predecessor );
+           const bool check = checkcur || checkpred;
+           switch ( m_mode )
+           {
+           case( PlotterDiagramCompressor::BOTH ):
+               {
+                   if ( predecessor.distance( curdp ) > m_mergeRadius && check )
+                   {
+                       if ( start > m_bufferlist[ dataset ].count() && !m_bufferlist[ dataset ].isEmpty() )
+                       {
+                           m_bufferlist[ dataset ].append( curdp );
+                       }
+                       else if ( !m_bufferlist[ dataset ].isEmpty() )
+                       {
+                           m_bufferlist[ dataset ].insert( row, curdp );
+                       }
+                       predecessor = curdp;
+                       minX = qMin( curdp.key, m_boundary.first.x() );
+                       minY = qMin( curdp.value, m_boundary.first.y() );
+                       maxX = qMax( curdp.key, m_boundary.second.x() );
+                       maxY = qMax( curdp.value, m_boundary.second.y() );
+                   }
+               }
+               break;
+           case ( PlotterDiagramCompressor::DISTANCE ):
+               {
+                   if ( predecessor.distance( curdp ) > m_mergeRadius && check )
+                   {
+                       if ( start > m_bufferlist[ dataset ].count() && !m_bufferlist[ dataset ].isEmpty() )
+                       {
+                           m_bufferlist[ dataset ].append( curdp );
+                       }
+                       else if ( !m_bufferlist[ dataset ].isEmpty() )
+                       {
+                           m_bufferlist[ dataset ].insert( row, curdp );
+                       }
+                       predecessor = curdp;
+                       minX = qMin( curdp.key, m_boundary.first.x() );
+                       minY = qMin( curdp.value, m_boundary.first.y() );
+                       maxX = qMax( curdp.key, m_boundary.second.x() );
+                       maxY = qMax( curdp.value, m_boundary.second.y() );
+                   }
+               }
+               break;
+           case( PlotterDiagramCompressor::SLOPE ):
+               {
+                   if ( check && qAbs( newSlope - oldSlope ) >= m_maxSlopeRadius )
+                   {
+                       if ( start > m_bufferlist[ dataset ].count() && !m_bufferlist[ dataset ].isEmpty() )
+                       {
+                           m_bufferlist[ dataset ].append( curdp );
+                           oldSlope = newSlope;
+                       }
+                       else if ( !m_bufferlist[ dataset ].isEmpty() )
+                       {
+                           m_bufferlist[ dataset ].insert( row, curdp );
+                           oldSlope = newSlope;
+                       }
 
-//                        predecessor = curdp;
-//                        minX = qMin( curdp.key, m_boundary.first.x() );
-//                        minY = qMin( curdp.value, m_boundary.first.y() );
-//                        maxX = qMax( curdp.key, m_boundary.second.x() );
-//                        maxY = qMax( curdp.value, m_boundary.second.y() );
+                       predecessor = curdp;
+                       minX = qMin( curdp.key, m_boundary.first.x() );
+                       minY = qMin( curdp.value, m_boundary.first.y() );
+                       maxX = qMax( curdp.key, m_boundary.second.x() );
+                       maxY = qMax( curdp.value, m_boundary.second.y() );
 
-//                        if ( first )
-//                        {
-//                            oldSlope = newSlope;
-//                            first = false;
-//                        }
-//                        olddp = newdp;
-//                        newdp = m_parent->data( CachePosition( row, dataset ) );
-//                        newSlope = calculateSlope( olddp, newdp );
-//                    }
-//                }
-//                break;
-//            }
-//        }
-//    }
-//    setBoundaries( qMakePair( QPointF( minX, minY ), QPointF( maxX, maxY ) ) );
-//    emit m_parent->rowCountChanged();
-//}
+                       if ( first )
+                       {
+                           oldSlope = newSlope;
+                           first = false;
+                       }
+                       olddp = newdp;
+                       newdp = m_parent->data( CachePosition( row, dataset ) );
+                       newSlope = calculateSlope( olddp, newdp );
+                   }
+               }
+               break;
+           }
+       }
+   }
+   setBoundaries( qMakePair( QPointF( minX, minY ), QPointF( maxX, maxY ) ) );
+   emit m_parent->rowCountChanged();
+}
+#endif
 #include <QDebug>
 // TODO this is not threadsafe do never try to invoke the painting in a different thread than this
 // method

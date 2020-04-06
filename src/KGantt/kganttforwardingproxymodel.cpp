@@ -39,7 +39,7 @@ ForwardingProxyModel::~ForwardingProxyModel()
 }
 
 /*! Converts indexes in the source model to indexes in the proxy model */
-QModelIndex ForwardingProxyModel::mapFromSource ( const QModelIndex & sourceIndex ) const
+QModelIndex ForwardingProxyModel::mapFromSource( const QModelIndex & sourceIndex ) const
 {
     if ( !sourceIndex.isValid() )
         return QModelIndex();
@@ -66,7 +66,7 @@ namespace {
 }
 
 /*! Converts indexes in the proxy model to indexes in the source model */
-QModelIndex ForwardingProxyModel::mapToSource ( const QModelIndex & proxyIndex ) const
+QModelIndex ForwardingProxyModel::mapToSource( const QModelIndex & proxyIndex ) const
 {
     if ( !proxyIndex.isValid() )
         return QModelIndex();

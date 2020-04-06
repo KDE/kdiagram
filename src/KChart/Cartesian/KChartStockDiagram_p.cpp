@@ -50,7 +50,7 @@ private:
     QPainter *painter;
 };
 
-/**
+/*
  * Projects a point in 3D space
  *
  * @param depth The distance from the point and the projected point
@@ -66,7 +66,7 @@ QPointF StockDiagram::Private::ThreeDPainter::projectPoint( const QPointF &point
     return QPointF( point.x() + distX, point.y() + distY );
 }
 
-/**
+/*
  * Returns the shadow color for a given color, depending on the angle of rotation
  *
  * @param color The color to calculate the shadow color for
@@ -84,7 +84,7 @@ QColor StockDiagram::Private::ThreeDPainter::calcShadowColor( const QColor &colo
                    qRound( color.blue()  * sinAngle ) );
 }
 
-/**
+/*
  * Draws a 2D line in 3D space by painting it with a z-coordinate of props.depth / 2.0
  *
  * @param line The line to draw
@@ -118,7 +118,7 @@ QPolygonF StockDiagram::Private::ThreeDPainter::drawTwoDLine( const QLineF &line
     return threeDArea;
 }
 
-/**
+/*
  * Draws an ordinary line in 3D by expanding it in the z-axis by the given depth.
  *
  * @param line The line to draw
@@ -163,7 +163,7 @@ QPolygonF StockDiagram::Private::ThreeDPainter::drawThreeDLine( const QLineF &li
     return threeDArea;
 }
 
-/**
+/*
  * Draws a 3D cuboid by extending a 2D rectangle in the z-axis
  *
  * @param rect The rectangle to draw
@@ -233,7 +233,7 @@ StockDiagram::Private::~Private()
 {
 }
 
-/**
+/*
  * Projects a point onto the coordinate plane
  *
  * @param context The context to paint the point in
@@ -245,7 +245,7 @@ QPointF StockDiagram::Private::projectPoint( PaintContext *context, const QPoint
     return context->coordinatePlane()->translate( QPointF( point.x() + 0.5, point.y() ) );
 }
 
-/**
+/*
  * Projects a candlestick onto the coordinate plane
  *
  * @param context The context to paint the candlestick in
@@ -329,7 +329,7 @@ void StockDiagram::Private::drawOHLCBar( int dataset, const CartesianDiagramData
     paintDataValueTextsAndMarkers( context, lpc, false );
 }
 
-/**
+/*
   * Draws a line connecting the low and the high value of an OHLC chart
   *
   * @param low The low data point
@@ -454,7 +454,7 @@ void StockDiagram::Private::drawCandlestick( int /*dataset*/, const CartesianDia
     paintDataValueTextsAndMarkers( context, lpc, false );
 }
 
-/**
+/*
   * Draws a line connecting two points
   *
   * @param col The column of the diagram to paint the line in
@@ -494,7 +494,7 @@ void StockDiagram::Private::drawLine( int dataset, int col, const QPointF &point
     }
 }
 
-/**
+/*
  * Returns the column of the open value in the model
  *
  * @return The column of the open value
@@ -505,7 +505,7 @@ int StockDiagram::Private::openValueColumn() const
     return type == HighLowClose ? -1 : 0;
 }
 
-/**
+/*
  * Returns the column of the high value in the model
  *
  * @return The column of the high value
@@ -515,7 +515,7 @@ int StockDiagram::Private::highValueColumn() const
     return type == HighLowClose ? 0 : 1;
 }
 
-/**
+/*
  * Returns the column of the low value in the model
  *
  * @return The column of the low value
@@ -525,7 +525,7 @@ int StockDiagram::Private::lowValueColumn() const
     return type == HighLowClose ? 1 : 2;
 }
 
-/**
+/*
  * Returns the column of the close value in the model
  *
  * @return The column of the close value

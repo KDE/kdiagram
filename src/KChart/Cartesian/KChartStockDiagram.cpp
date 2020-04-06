@@ -37,7 +37,7 @@ StockDiagram::~StockDiagram()
 {
 }
 
-/**
+/*
   * Initializes the diagram
   */
 void StockDiagram::init()

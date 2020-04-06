@@ -37,7 +37,7 @@
 namespace KChart {
 namespace PaintingHelpers {
 
-/*!
+/*
   Projects a point in a space defined by its x, y, and z coordinates
   into a point on a plane, given two rotation angles around the x
   resp. y axis.

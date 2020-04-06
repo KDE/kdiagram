@@ -253,7 +253,7 @@ void AbstractDiagram::Private::addLabel(
 
         const QRectF plainRect = doc.documentLayout()->frameBoundingRect( doc.rootFrame() );
 
-        /**
+        /*
         * A few hints on how the positioning of the text frame is done:
         *
         * Let's assume we have a bar chart, a text for a positive value

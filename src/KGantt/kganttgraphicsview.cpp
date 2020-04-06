@@ -40,7 +40,7 @@
 #include "../evaldialog/evaldialog.h"
 #endif
 
-/*!\class KGantt::HeaderWidget
+/*\class KGantt::HeaderWidget
  * \internal
  */
 

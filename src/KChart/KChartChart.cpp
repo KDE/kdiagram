@@ -465,7 +465,7 @@ static CoordinatePlaneList findSharingAxisDiagrams( AbstractCoordinatePlane* pla
     return result;
 }
 
-/**
+/*
   * this method determines the needed layout of the graph
   * taking care of the sharing problematic
   * its NOT allowed to have a diagram that shares

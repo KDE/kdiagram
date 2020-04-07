@@ -61,15 +61,9 @@ namespace KGantt {
         KGANTT_DECLARE_PRIVATE_BASE_POLYMORPHIC( DateTimeTimeLine )
     public:
         enum Option {
-            Foreground = 1,     /// Display the timeline in the foreground.
-            Background = 2,     /// Display the timeline in the background.
-
-
-            /**
-             * @return the pen to be used to draw the timeline.
-             * If option UseCustomPen is not set a default pen is returned.
-             */
-            UseCustomPen = 4,   /// Paint the timeline using the pen set with setPen().
+            Foreground = 1,     ///< Display the timeline in the foreground.
+            Background = 2,     ///< Display the timeline in the background.
+            UseCustomPen = 4,   ///< Paint the timeline using the pen set with setPen().
             MaxOptions = 0xFFFF
         };
         Q_DECLARE_FLAGS(Options, Option)
@@ -113,6 +107,11 @@ namespace KGantt {
          * Setting a zero time disables the timer.
          */
         void setInterval(int msec);
+
+        /**
+         * @return the pen that will be used for rendering the timeline
+         * If no pen has been set with setPen(), a default pen is returned.
+         */
         QPen pen() const;
 
         /**

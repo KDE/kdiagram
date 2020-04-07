@@ -33,9 +33,7 @@
 
 namespace KChart {	
 
-  /** This is basically KDAbstractProxyModel, but only the
-      bits that we really need from it */
-AbstractProxyModel::AbstractProxyModel(QObject* parent) 
+  AbstractProxyModel::AbstractProxyModel(QObject* parent) 
   : QAbstractProxyModel(parent) {}
 
 // Allows access to QModelIndex's private data via type punning and a compatible data layout.

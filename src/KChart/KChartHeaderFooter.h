@@ -41,6 +41,9 @@ public:
     HeaderFooter( Chart* parent = nullptr );
     virtual ~HeaderFooter();
 
+    /**
+      * Creates an exact copy of this header/footer.
+      */
     virtual HeaderFooter * clone() const;
 
     bool compare( const HeaderFooter& other ) const;

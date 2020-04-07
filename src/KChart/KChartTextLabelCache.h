@@ -71,10 +71,10 @@ private:
     KChartEnums::PositionValue m_referencePoint;
 };
 
-/** 
+/**
     @brief PrerenderedLabel is an internal KChart class that simplifies creation
     and caching of cached text labels.
-    
+
     It provides referenze points to anchor the text to other
     elements. Reference points use the positions defined in
     KChartEnums.
@@ -97,19 +97,51 @@ public:
     PrerenderedLabel();
     ~PrerenderedLabel();
 
+
+    /**
+      * Sets the label's font to \a font.
+      */
     void setFont( const QFont& font );
+
+    /**
+      * @return the label's font.
+      */
     const QFont& font() const;
 
+
+    /**
+      * Sets the label's text to \a text
+      */
     void setText( const QString& text );
+
+    /**
+      * @return the label's text
+      */
     const QString& text() const;
 
+
+    /**
+      * Sets the label's brush to \a brush
+      */
     void setBrush( const QBrush& brush );
+
+    /**
+      * @return the label's brush
+      */
     const QBrush& brush() const;
 
     void setPen( const QPen& );
     const QPen& pen() const;
 
+
+    /**
+      * Sets the angle of the label to \a angle degrees
+      */
     void setAngle( qreal angle );
+
+    /**
+      * @return the label's angle in degrees
+      */
     qreal angle() const;
 
     // reimpl PrerenderedElement:
@@ -119,6 +151,10 @@ public:
     QPointF referencePointLocation() const;
 
 protected:
+
+    /**
+      * Invalidates the preredendered data, forces re-rendering.
+      */
     void invalidate() const override;
 
 private:

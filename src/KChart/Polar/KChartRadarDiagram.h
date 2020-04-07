@@ -65,7 +65,10 @@ public:
     void setReverseData( bool val );
     bool reverseData();
 
-    virtual RadarDiagram * clone() const;
+    /**
+      * Creates an exact copy of this diagram.
+      */
+   virtual RadarDiagram * clone() const;
 
     /**
      * Close each of the data series by connecting the last point to its

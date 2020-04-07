@@ -44,14 +44,6 @@
 
 //#define DEBUG_ITEMS_PAINT
 
-/**
-    Inform the item about its widget: This enables the item,
-    to trigger that widget's update, whenever the size of the item's
-    contents has changed.
-
-    Thus, you need to call setParentWidget on every item, that
-    has a non-fixed size.
-  */
 void KChart::AbstractLayoutItem::setParentWidget( QWidget* widget )
 {
     mParent = widget;
@@ -62,18 +54,12 @@ void KChart::AbstractLayoutItem::paintAll( QPainter& painter )
     paint( &painter );
 }
 
-/**
-  * Default impl: Paint the complete item using its layouted position and size.
-  */
 void KChart::AbstractLayoutItem::paintCtx( PaintContext* context )
 {
     if ( context )
         paint( context->painter() );
 }
 
-/**
-    Report changed size hint: ask the parent widget to recalculate the layout.
-  */
 void KChart::AbstractLayoutItem::sizeHintChanged() const
 {
     // This is exactly like what QWidget::updateGeometry does.
@@ -265,11 +251,6 @@ Qt::Alignment KChart::TextLayoutItem::textAlignment() const
     return mTextAlignment;
 }
 
-/**
-  \brief Use this to specify the text attributes to be used for this item.
-
-  \sa textAttributes
-*/
 void KChart::TextLayoutItem::setTextAttributes( const TextAttributes &a )
 {
     mAttributes = a;
@@ -280,11 +261,6 @@ void KChart::TextLayoutItem::setTextAttributes( const TextAttributes &a )
         mParent->update();
 }
 
-/**
-  Returns the text attributes to be used for this item.
-
-  \sa setTextAttributes
-*/
 KChart::TextAttributes KChart::TextLayoutItem::textAttributes() const
 {
     return mAttributes;

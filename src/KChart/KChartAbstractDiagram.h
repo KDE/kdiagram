@@ -664,7 +664,12 @@ namespace KChart {
          * which also is taking care for showing your cell-specific comments, if any,
          */
         virtual void paintMarkers( QPainter* painter );
+
+        /*! \internal */
         void setAttributesModelRootIndex( const QModelIndex& );
+
+        /*! returns a QModelIndex pointing into the AttributesModel that corresponds to the
+          root index of the diagram. */
         QModelIndex attributesModelRootIndex() const;
 
         /**

@@ -77,9 +77,6 @@ LeveyJenningsDiagram::~LeveyJenningsDiagram()
 {
 }
 
-/**
-  * Creates an exact copy of this diagram.
-  */
 LineDiagram * LeveyJenningsDiagram::clone() const
 {
     LeveyJenningsDiagram* newDiagram = new LeveyJenningsDiagram( new Private( *d ) );
@@ -101,10 +98,6 @@ bool LeveyJenningsDiagram::compare( const LeveyJenningsDiagram* other ) const
             ( static_cast<const LineDiagram*>(this)->compare( other ) );
 }
 
-/**
- * Sets the position of the lot change symbol to \a pos.
- * Valid values are: Qt::AlignTop (default), Qt::AlignBottom.
- */
 void LeveyJenningsDiagram::setLotChangedSymbolPosition( Qt::Alignment pos )
 {
     if ( d->lotChangedPosition == pos )
@@ -114,18 +107,11 @@ void LeveyJenningsDiagram::setLotChangedSymbolPosition( Qt::Alignment pos )
     update();
 }
 
-/**
- * Returns the position of the lot change symbol.
- */
 Qt::Alignment LeveyJenningsDiagram::lotChangedSymbolPosition() const
 {
     return d->lotChangedPosition;
 }
 
-/**
- * Sets the position of the fluidics pack changed symbol to \a pos.
- * Valid values are: Qt::AlignBottom (default), Qt::AlignTop.
- */
 void LeveyJenningsDiagram::setFluidicsPackChangedSymbolPosition( Qt::Alignment pos )
 {
     if ( d->fluidicsPackChangedPosition == pos )
@@ -135,18 +121,11 @@ void LeveyJenningsDiagram::setFluidicsPackChangedSymbolPosition( Qt::Alignment p
     update();
 }
 
-/**
- * Returns the position of the fluidics pack changed symbol.
- */
 Qt::Alignment LeveyJenningsDiagram::fluidicsPackChangedSymbolPosition() const
 {
     return d->fluidicsPackChangedPosition;
 }
 
-/**
- * Sets the position of the sensor changed symbol to \a pos.
- * Valid values are: Qt::AlignBottom (default), Qt::AlignTop.
- */
 void LeveyJenningsDiagram::setSensorChangedSymbolPosition( Qt::Alignment pos )
 {
     if ( d->sensorChangedPosition == pos )
@@ -156,17 +135,11 @@ void LeveyJenningsDiagram::setSensorChangedSymbolPosition( Qt::Alignment pos )
     update();
 }
 
-/**
- * Returns the position of the sensor changed symbol.
- */
 Qt::Alignment LeveyJenningsDiagram::sensorChangedSymbolPosition() const
 {
     return d->sensorChangedPosition;
 }
 
-/**
- * Sets the date/time of all fluidics pack changes to \a changes.
- */
 void LeveyJenningsDiagram::setFluidicsPackChanges( const QVector< QDateTime >& changes )
 {
     if ( d->fluidicsPackChanges == changes )
@@ -176,17 +149,11 @@ void LeveyJenningsDiagram::setFluidicsPackChanges( const QVector< QDateTime >& c
     update();
 }
 
-/**
- * Returns the list of all fluidics pack changes.
- */
 QVector< QDateTime > LeveyJenningsDiagram::fluidicsPackChanges() const
 {
     return d->fluidicsPackChanges;
 }
 
-/**
- * Sets the date/time of all sensor changes to \a changes.
- */
 void LeveyJenningsDiagram::setSensorChanges( const QVector< QDateTime >& changes )
 {
     if ( d->sensorChanges == changes )
@@ -196,9 +163,6 @@ void LeveyJenningsDiagram::setSensorChanges( const QVector< QDateTime >& changes
     update();
 }
 
-/**
- * Sets the pen used for drawing the scan line to \a pen
- */
 void LeveyJenningsDiagram::setScanLinePen( const QPen& pen )
 {
     if ( d->scanLinePen == pen )
@@ -208,25 +172,16 @@ void LeveyJenningsDiagram::setScanLinePen( const QPen& pen )
     update();
 }
 
-/**
- * Returns the pen being used for drawing the scan line.
- */
 QPen LeveyJenningsDiagram::scanLinePen() const
 {
     return d->scanLinePen;
 }
 
-/**
- * Returns the SVG file name usef for \a symbol
- */
 QString LeveyJenningsDiagram::symbol( Symbol symbol ) const
 {
     return d->icons[ symbol ];
 }
 
-/**
- * Sets the symbol being used for \a symbol to a SVG file \a filename.
- */
 void LeveyJenningsDiagram::setSymbol( Symbol symbol, const QString& filename )
 {
     if ( d->icons[ symbol ] == filename )
@@ -240,17 +195,11 @@ void LeveyJenningsDiagram::setSymbol( Symbol symbol, const QString& filename )
     update();
 }
 
-/**
- * Returns the list of all sensor changes.
- */
 QVector< QDateTime > LeveyJenningsDiagram::sensorChanges() const
 {
     return d->sensorChanges;
 }
 
-/**
- * Sets the expected mean value over all QC values to \a meanValue.
- */
 void LeveyJenningsDiagram::setExpectedMeanValue( float meanValue )
 {
     if ( d->expectedMeanValue == meanValue )
@@ -261,17 +210,11 @@ void LeveyJenningsDiagram::setExpectedMeanValue( float meanValue )
     update();
 }
 
-/**
- * Returns the expected mean values over all QC values.
- */
 float LeveyJenningsDiagram::expectedMeanValue() const
 {
     return d->expectedMeanValue;
 }
 
-/**
- * Sets the expected standard deviaction over all QC values to \a sd.
- */
 void LeveyJenningsDiagram::setExpectedStandardDeviation( float sd )
 {
     if ( d->expectedStandardDeviation == sd )
@@ -282,25 +225,16 @@ void LeveyJenningsDiagram::setExpectedStandardDeviation( float sd )
     update();
 }
 
-/**
- * Returns the expected standard deviation over all QC values.
- */
 float LeveyJenningsDiagram::expectedStandardDeviation() const
 {
     return d->expectedStandardDeviation;
 }
 
-/**
- * Returns the calculated mean values over all QC values.
- */
 float LeveyJenningsDiagram::calculatedMeanValue() const
 {
     return d->calculatedMeanValue;
 }
 
-/**
- * Returns the calculated standard deviation over all QC values.
- */
 float LeveyJenningsDiagram::calculatedStandardDeviation() const
 {
     return d->calculatedStandardDeviation;
@@ -415,7 +349,6 @@ static QDateTime ceilHour( const QDateTime& dt )
     return result;
 }
 
-/** \reimpl */
 const QPair<QPointF, QPointF> LeveyJenningsDiagram::calculateDataBoundaries() const
 {
     const qreal yMin = d->expectedMeanValue - 4 * d->expectedStandardDeviation;
@@ -437,9 +370,6 @@ const QPair<QPointF, QPointF> LeveyJenningsDiagram::calculateDataBoundaries() co
     return QPair< QPointF, QPointF >( bottomLeft, topRight );
 }
 
-/**
- * Returns the timerange of the diagram's data.
- */
 QPair< QDateTime, QDateTime > LeveyJenningsDiagram::timeRange() const
 {
     if ( d->timeRange != QPair< QDateTime, QDateTime >() )
@@ -470,10 +400,6 @@ QPair< QDateTime, QDateTime > LeveyJenningsDiagram::timeRange() const
     return QPair< QDateTime, QDateTime >( begin, end );
 }
 
-/**
- * Sets the \a timeRange visible on the x axis. Set it to QPair< QDateTime, QDateTime >()
- * to use the default auto calculation.
- */
 void LeveyJenningsDiagram::setTimeRange( const QPair< QDateTime, QDateTime >& timeRange )
 {
     if ( d->timeRange == timeRange )
@@ -483,9 +409,6 @@ void LeveyJenningsDiagram::setTimeRange( const QPair< QDateTime, QDateTime >& ti
     update();
 }
 
-/**
- * Draws the fluidics pack and sensor changed symbols.
- */
 void LeveyJenningsDiagram::drawChanges( PaintContext* ctx )
 {
     const unsigned int minTime = timeRange().first.toSecsSinceEpoch();
@@ -505,7 +428,6 @@ void LeveyJenningsDiagram::drawChanges( PaintContext* ctx )
     }
 }
 
-/** \reimpl */
 void LeveyJenningsDiagram::paint( PaintContext* ctx )
 {
     d->reverseMapper.clear();
@@ -628,13 +550,6 @@ void LeveyJenningsDiagram::paint( PaintContext* ctx )
     ctx->setCoordinatePlane( plane );
 }
 
-/**
- * Draws a data point symbol for the data point at \a pos.
- * @param ok True, when the data point is ok, false otherwise (different symbol)
- * @param ctx The PaintContext being used
- * @param pos Position
- * @param ok Draw as Ok or notOK data point
- */
 void LeveyJenningsDiagram::drawDataPointSymbol( PaintContext* ctx, const QPointF& pos, bool ok )
 {
     const Symbol type = ok ? OkDataPoint : NotOkDataPoint;
@@ -648,12 +563,6 @@ void LeveyJenningsDiagram::drawDataPointSymbol( PaintContext* ctx, const QPointF
     iconRenderer( type )->render( painter, iconRect() );
 }
 
-/**
- * Draws a lot changed symbol for the data point at \a pos.
- * @param ctx The PaintContext being used
- * @param pos Position
- * \sa lotChangedSymbolPosition
- */
 void LeveyJenningsDiagram::drawLotChangeSymbol( PaintContext* ctx, const QPointF& pos )
 {
     const QPointF transPos = ctx->coordinatePlane()->translate(
@@ -670,12 +579,6 @@ void LeveyJenningsDiagram::drawLotChangeSymbol( PaintContext* ctx, const QPointF
     iconRenderer( LotChanged )->render( painter, iconRect() );
 }
 
-/**
- * Draws a sensor changed symbol for the data point at \a pos.
- * @param ctx The PaintContext being used
- * @param pos Position
- * \sa sensorChangedSymbolPosition
- */
 void LeveyJenningsDiagram::drawSensorChangedSymbol( PaintContext* ctx, const QPointF& pos )
 {
     const QPointF transPos = ctx->coordinatePlane()->translate(
@@ -691,12 +594,6 @@ void LeveyJenningsDiagram::drawSensorChangedSymbol( PaintContext* ctx, const QPo
     iconRenderer( SensorChanged )->render( painter, iconRect() );
 }
 
-/**
- * Draws a fluidics pack changed symbol for the data point at \a pos.
- * @param ctx The PaintContext being used
- * @param pos Position
- * \sa fluidicsPackChangedSymbolPosition
- */
 void LeveyJenningsDiagram::drawFluidicsPackChangedSymbol( PaintContext* ctx, const QPointF& pos )
 {
     const QPointF transPos = ctx->coordinatePlane()->translate(
@@ -712,9 +609,6 @@ void LeveyJenningsDiagram::drawFluidicsPackChangedSymbol( PaintContext* ctx, con
     iconRenderer( FluidicsPackChanged )->render( painter, iconRect() );
 }
 
-/**
- * Returns the rectangle being used for drawing the icons
- */
 QRectF LeveyJenningsDiagram::iconRect() const
 {
     const Measure m( 12.5, KChartEnums::MeasureCalculationModeAuto, KChartEnums::MeasureOrientationAuto );
@@ -725,9 +619,6 @@ QRectF LeveyJenningsDiagram::iconRect() const
     return QRectF( -height / 2.0, -height / 2.0, height, height );
 }
 
-/**
- * Returns the SVG icon renderer for \a symbol
- */
 QSvgRenderer* LeveyJenningsDiagram::iconRenderer( Symbol symbol )
 {
     if ( d->iconRenderer[ symbol ] == nullptr )

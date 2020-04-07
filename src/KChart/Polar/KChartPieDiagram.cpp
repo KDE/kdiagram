@@ -58,9 +58,6 @@ void PieDiagram::init()
 {
 }
 
-/**
-  * Creates an exact copy of this diagram.
-  */
 PieDiagram * PieDiagram::clone() const
 {
     return new PieDiagram( new Private( *d ) );
@@ -541,14 +538,6 @@ QRectF PieDiagram::explodedDrawPosition( const QRectF& drawPosition, uint slice 
     return adjustedDrawPosition;
 }
 
-/**
-  Internal method that draws one of the slices in a pie chart.
-
-  \param painter the QPainter to draw in
-  \param dataset the dataset to draw the pie for
-  \param slice the slice to draw
-  \param threeDPieHeight the height of the three dimensional effect
-  */
 void PieDiagram::drawSlice( QPainter* painter, const QRectF& drawPosition, uint slice)
 {
     // Is there anything to draw at all?
@@ -560,13 +549,6 @@ void PieDiagram::drawSlice( QPainter* painter, const QRectF& drawPosition, uint 
     drawSliceSurface( painter, adjustedDrawPosition, slice );
 }
 
-/**
-  Internal method that draws the surface of one of the slices in a pie chart.
-
-  \param painter the QPainter to draw in
-  \param dataset the dataset to draw the slice for
-  \param slice the slice to draw
-  */
 void PieDiagram::drawSliceSurface( QPainter* painter, const QRectF& drawPosition, uint slice )
 {
     // Is there anything to draw at all?
@@ -717,13 +699,6 @@ static bool doArcsOverlap( qreal a1Start, qreal a1End, qreal a2Start, qreal a2En
     }
 }
 
-/**
-  Internal method that draws the shadow creating the 3D effect of a pie
-
-  \param painter the QPainter to draw in
-  \param drawPosition the position to draw at
-  \param slice the slice to draw the shadow for
-  */
 void PieDiagram::draw3DEffect( QPainter* painter, const QRectF& drawPosition, uint slice )
 {
     const QModelIndex index( model()->index( 0, slice, rootIndex() ) ); // checked
@@ -778,15 +753,6 @@ void PieDiagram::draw3DEffect( QPainter* painter, const QRectF& drawPosition, ui
 }
 
 
-/**
-  Internal method that draws the cut surface of a slice (think of a real pie cut into slices)
-  in 3D mode, for surfaces that are facing the observer.
-
-  \param painter the QPainter to draw in
-  \param rect the position to draw at
-  \param threeDHeight the height of the shadow
-  \param angle the angle of the segment
-  */
 void PieDiagram::draw3dCutSurface( QPainter* painter,
         const QRectF& rect,
         qreal threeDHeight,
@@ -803,15 +769,6 @@ void PieDiagram::draw3dCutSurface( QPainter* painter,
     painter->drawPolygon( poly );
 }
 
-/**
-  Internal method that draws the outer rim of a slice when the rim is facing the observer.
-
-  \param painter the QPainter to draw in
-  \param rect the position to draw at
-  \param threeDHeight the height of the shadow
-  \param startAngle the starting angle of the segment
-  \param endAngle the ending angle of the segment
-  */
 void PieDiagram::draw3dOuterRim( QPainter* painter,
         const QRectF& rect,
         qreal threeDHeight,
@@ -862,12 +819,6 @@ void PieDiagram::draw3dOuterRim( QPainter* painter,
     painter->drawPolygon( poly );
 }
 
-/**
-  Internal method that finds the slice that is located at the position specified by \c angle.
-
-  \param angle the angle at which to search for a slice
-  \return the number of the slice found
-  */
 uint PieDiagram::findSliceAt( qreal angle, int colCount )
 {
     for ( int i = 0; i < colCount; ++i ) {
@@ -886,12 +837,6 @@ uint PieDiagram::findSliceAt( qreal angle, int colCount )
 }
 
 
-/**
-  Internal method that finds the slice that is located to the left of \c slice.
-
-  \param slice the slice to start the search from
-  \return the number of the pie to the left of \c pie
-  */
 uint PieDiagram::findLeftSlice( uint slice, int colCount )
 {
     if ( slice == 0 ) {
@@ -906,12 +851,6 @@ uint PieDiagram::findLeftSlice( uint slice, int colCount )
 }
 
 
-/**
-  Internal method that finds the slice that is located to the right of \c slice.
-
-  \param slice the slice to start the search from
-  \return the number of the slice to the right of \c slice
-  */
 uint PieDiagram::findRightSlice( uint slice, int colCount )
 {
     int rightSlice = slice + 1;
@@ -922,10 +861,6 @@ uint PieDiagram::findRightSlice( uint slice, int colCount )
 }
 
 
-/**
-  * Auxiliary method returning a point to a given boundary
-  * rectangle of the enclosed ellipse and an angle.
-  */
 QPointF PieDiagram::pointOnEllipse( const QRectF& boundingBox, qreal angle )
 {
     qreal angleRad = DEGTORAD( angle );

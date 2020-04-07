@@ -76,9 +76,6 @@ void PolarDiagram::init()
     setShowLabelsAtPosition( Position::Floating, false );
 }
 
-/**
-  * Creates an exact copy of this diagram.
-  */
 PolarDiagram * PolarDiagram::clone() const
 {
     PolarDiagram* newDiagram = new PolarDiagram( new Private( *d ) );

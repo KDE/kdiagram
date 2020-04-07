@@ -37,10 +37,29 @@ public:
 
     ~StockBarAttributes();
 
+
+    /**
+      * Sets the width of a candlestick
+      *
+      * @param width The width of a candlestick
+      */
     void setCandlestickWidth( qreal width );
+
+    /**
+      * @return the width of a candlestick
+      */
     qreal candlestickWidth() const;
 
+    /**
+      * Sets the tick length of both the open and close marker
+      *
+      * @param length the tick length
+      */
     void setTickLength( qreal length );
+
+    /**
+      * @return the tick length used for both the open and close marker
+      */
     qreal tickLength() const;
 
     bool operator==( const StockBarAttributes& ) const;

@@ -66,23 +66,11 @@ void LeveyJenningsAxis::init ()
     setLabels( labels );
 }
 
-/**
-  * @return The axis' type.
-  */
 LeveyJenningsGridAttributes::GridType LeveyJenningsAxis::type() const
 {
     return d->type;
 }
 
-/**
-  * Sets the type of the axis to \a type.
-  * This method colors the label to the default color of the
-  * respective type.
-  * Please make sure to re-set the colors after calling this,
-  * if you want them different.
-  * Setting the type is only valid for axes located right or left
-  * from the diagram. An axis on the bottom always shows the timeline.
-  */
 void LeveyJenningsAxis::setType( LeveyJenningsGridAttributes::GridType type )
 {
     if ( type != d->type )

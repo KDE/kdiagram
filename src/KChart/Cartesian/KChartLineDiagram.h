@@ -55,7 +55,11 @@ public:
     explicit LineDiagram( QWidget* parent = nullptr, CartesianCoordinatePlane* plane = nullptr );
     virtual ~LineDiagram();
 
-    virtual LineDiagram * clone() const;
+ 
+    /**
+      * Creates an exact copy of this diagram.
+      */
+   virtual LineDiagram * clone() const;
 
     /**
      * Returns true if both diagrams have the same settings.
@@ -69,7 +73,16 @@ public:
     };
 
 
+ 
+    /**
+      * Sets the line diagram's type to \a type
+      * \sa LineDiagram::LineType
+      */
     void setType( const LineType type );
+ 
+    /**
+      * @return the type of the line diagram
+      */
     LineType type() const;
 
     /** If centerDataPoints() is true, all data points are moved by an
@@ -91,27 +104,91 @@ public:
     /** \see setReverseDatasetOrder */
     bool reverseDatasetOrder() const;
 
+ 
+    /**
+      * Sets the global line attributes to \a la
+      */
     void setLineAttributes( const LineAttributes & a );
+
+    /**
+     * Sets the line attributes of data set \a column to \a la
+     */
     void setLineAttributes( int column, const LineAttributes & a );
+
+    /**
+    * Sets the line attributes for the model index \a index to \a la
+    */
     void setLineAttributes( const QModelIndex & index, const LineAttributes & a );
+ 
+    /**
+      * Resets the line attributes of data set \a column
+      */
     void resetLineAttributes( int column );
+
+    /**
+    * Remove any explicit line attributes settings that might have been specified before.
+    */
     void resetLineAttributes( const QModelIndex & index );
+ 
+    /**
+      * @return the global line attribute set
+      */
     LineAttributes lineAttributes() const;
+
+    /**
+     * @return the line attribute set of data set \a column
+     */
     LineAttributes lineAttributes( int column ) const;
+
+    /**
+    * @return the line attribute set of the model index \a index
+    */
     LineAttributes lineAttributes( const QModelIndex & index ) const;
 
+ 
+    /**
+      * Sets the global 3D line attributes to \a la
+      */
     void setThreeDLineAttributes( const ThreeDLineAttributes & a );
-    void setThreeDLineAttributes( int column, const ThreeDLineAttributes & a );
-    void setThreeDLineAttributes( const QModelIndex & index,
-                                  const ThreeDLineAttributes & a );
 
+    /**
+     * Sets the 3D line attributes of data set \a column to \a ta
+     */
+    void setThreeDLineAttributes( int column, const ThreeDLineAttributes &ta );
+
+    /**
+    * Sets the 3D line attributes of model index \a index to \a la
+    */
+    void setThreeDLineAttributes( const QModelIndex & index,
+                                  const ThreeDLineAttributes &la );
+
+ 
+    /**
+      * @return the global 3D line attributes
+      */
     ThreeDLineAttributes threeDLineAttributes() const;
+    
+    /**
+     * @return the 3D line attributes of data set \a column
+     */
     ThreeDLineAttributes threeDLineAttributes( int column ) const;
+    
+    /**
+    * @return the 3D line attributes of the model index \a index
+    */
     ThreeDLineAttributes threeDLineAttributes( const QModelIndex & index ) const;
 
-    void setValueTrackerAttributes( const QModelIndex & index,
+ 
+    /**
+      * Sets the value tracker attributes of the model index \a index to \a va
+      */
+   void setValueTrackerAttributes( const QModelIndex & index,
                                     const ValueTrackerAttributes & a );
-    ValueTrackerAttributes valueTrackerAttributes( const QModelIndex & index ) const;
+ 
+    /**
+      * Returns the value tracker attributes of the model index \a index
+      */
+   ValueTrackerAttributes valueTrackerAttributes( const QModelIndex & index ) const;
 
 #if defined(Q_COMPILER_MANGLES_RETURN_TYPE)
     // implement AbstractCartesianDiagram

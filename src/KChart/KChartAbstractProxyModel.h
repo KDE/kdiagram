@@ -34,16 +34,19 @@ namespace KChart
     {
         Q_OBJECT
     public:
+
+        /** This is basically KDAbstractProxyModel, but only the
+              bits that we really need from it */
         explicit AbstractProxyModel( QObject* parent = nullptr );
 
-        /*! \reimpl */ 
+        /*! \reimpl */
         QModelIndex mapFromSource( const QModelIndex & sourceIndex ) const override;
-        /*! \reimpl */ 
+        /*! \reimpl */
         QModelIndex mapToSource( const QModelIndex &proxyIndex ) const override;
 
         /*! \reimpl */
         QModelIndex index( int row, int col, const QModelIndex& index ) const override;
-        /*! \reimpl */ 
+        /*! \reimpl */
         QModelIndex parent( const QModelIndex& index ) const override;
     };
 }

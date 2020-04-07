@@ -80,7 +80,11 @@ public:
     /** \reimpl */
     qreal numberOfGridRings() const override;
 
-    virtual PieDiagram * clone() const;
+
+    /**
+      * Creates an exact copy of this diagram.
+      */
+   virtual PieDiagram * clone() const;
 
 protected:
     /** \reimpl */
@@ -94,14 +98,59 @@ private:
     // Solve problems with label overlap by changing label positions inside d->labelPaintCache.
     void shuffleLabels( QRectF* textBoundingRect );
     void paintInternal( PaintContext* paintContext );
+
+    /**
+      Internal method that draws one of the slices in a pie chart.
+
+      \param painter the QPainter to draw in
+      \param dataset the dataset to draw the pie for
+      \param slice the slice to draw
+      \param threeDPieHeight the height of the three dimensional effect
+      */
     void drawSlice( QPainter* painter, const QRectF& drawPosition, uint slice );
+
+    /**
+      Internal method that draws the surface of one of the slices in a pie chart.
+
+      \param painter the QPainter to draw in
+      \param dataset the dataset to draw the slice for
+      \param slice the slice to draw
+      */
     void drawSliceSurface( QPainter* painter, const QRectF& drawPosition, uint slice );
     void addSliceLabel( LabelPaintCache* lpc, const QRectF& drawPosition, uint slice );
+
+    /**
+      Internal method that draws the shadow creating the 3D effect of a pie
+
+      \param painter the QPainter to draw in
+      \param drawPosition the position to draw at
+      \param slice the slice to draw the shadow for
+      */
     void draw3DEffect( QPainter* painter, const QRectF& drawPosition, uint slice );
+
+    /**
+      Internal method that draws the cut surface of a slice (think of a real pie cut into slices)
+      in 3D mode, for surfaces that are facing the observer.
+
+      \param painter the QPainter to draw in
+      \param rect the position to draw at
+      \param threeDHeight the height of the shadow
+      \param angle the angle of the segment
+      */
     void draw3dCutSurface( QPainter* painter,
         const QRectF& rect,
         qreal threeDHeight,
         qreal angle );
+
+    /**
+      Internal method that draws the outer rim of a slice when the rim is facing the observer.
+
+      \param painter the QPainter to draw in
+      \param rect the position to draw at
+      \param threeDHeight the height of the shadow
+      \param startAngle the starting angle of the segment
+      \param endAngle the ending angle of the segment
+      */
     void draw3dOuterRim( QPainter* painter,
         const QRectF& rect,
         qreal threeDHeight,
@@ -111,9 +160,35 @@ private:
     void calcPieSize( const QRectF &contentsRect );
     QRectF twoDPieRect( const QRectF &contentsRect, const ThreeDPieAttributes& threeDAttrs ) const;
     QRectF explodedDrawPosition( const QRectF& drawPosition, uint slice ) const;
+
+    /**
+      Internal method that finds the slice that is located at the position specified by \c angle.
+
+      \param angle the angle at which to search for a slice
+      \return the number of the slice found
+      */
     uint findSliceAt( qreal angle, int columnCount );
+
+    /**
+      Internal method that finds the slice that is located to the left of \c slice.
+
+      \param slice the slice to start the search from
+      \return the number of the pie to the left of \c pie
+      */
     uint findLeftSlice( uint slice, int columnCount );
+
+    /**
+      Internal method that finds the slice that is located to the right of \c slice.
+
+      \param slice the slice to start the search from
+      \return the number of the slice to the right of \c slice
+      */
     uint findRightSlice( uint slice, int columnCount );
+
+    /**
+      * Auxiliary method returning a point to a given boundary
+      * rectangle of the enclosed ellipse and an angle.
+      */
     QPointF pointOnEllipse( const QRectF& boundingBox, qreal angle );
 }; // End of class KChartPieDiagram
 

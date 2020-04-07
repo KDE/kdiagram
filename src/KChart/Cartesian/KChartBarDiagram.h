@@ -52,7 +52,11 @@ public:
         QWidget* parent = nullptr, CartesianCoordinatePlane* plane = nullptr );
     virtual ~BarDiagram();
 
-    virtual BarDiagram * clone() const;
+
+    /**
+      * Creates an exact copy of this diagram.
+      */
+   virtual BarDiagram * clone() const;
     /**
     * Returns true if both diagrams have the same settings.
     */
@@ -64,26 +68,90 @@ public:
                    Rows ///< @deprecated Use BarDiagram::setOrientation() instead
                  };
 
+
+    /**
+      * Sets the bar diagram's type to \a type
+      * \sa BarDiagram::BarType
+      */
     void setType( const BarType type );
+
+    /**
+      * @return the type of the bar diagram
+      */
     BarType type() const;
 
+
+    /**
+      * Sets the orientation of the bar diagram
+      */
     void setOrientation( Qt::Orientation orientation );
+
+    /**
+      * @return the orientation of the bar diagram
+      */
     Qt::Orientation orientation() const;
 
+
+    /**
+      * Sets the global bar attributes to \a ba
+      */
     void setBarAttributes( const BarAttributes & a );
+
+    /**
+     * Sets the bar attributes of data set \a column to \a ba
+     */
     void setBarAttributes( int column, const BarAttributes & a );
+
+    /**
+    * Sets the line attributes for the model index \a index to \a ba
+    */
     void setBarAttributes( const QModelIndex & index, const BarAttributes & a );
 
+    /**
+      * @return the global bar attribute set
+      */
     BarAttributes barAttributes() const;
+
+    /**
+     * @return the bar attribute set of data set \a column
+     */
     BarAttributes barAttributes( int column ) const;
+
+    /**
+    * @return the bar attribute set of the model index \a index
+    */
     BarAttributes barAttributes( const QModelIndex & index ) const;
 
+
+    /**
+      * Sets the global 3D bar attributes to \a threeDAttrs
+      */
     void setThreeDBarAttributes( const ThreeDBarAttributes & a );
+
+    /**
+     * Sets the 3D bar attributes of dataset \a column to \a threeDAttrs
+     */
     void setThreeDBarAttributes( int column, const ThreeDBarAttributes & a );
+
+    /**
+    * Sets the 3D line attributes of model index \a index to \a threeDAttrs
+    */
     void setThreeDBarAttributes( const QModelIndex & index,
                                   const ThreeDBarAttributes & a );
+
+    /**
+      * @return the global 3D bar attributes
+      */
     ThreeDBarAttributes threeDBarAttributes() const;
+
+    /**
+     * @return the 3D bar attributes of data set \a column
+     */
     ThreeDBarAttributes threeDBarAttributes( int column ) const;
+
+    /**
+    * @return the 3D bar attributes of the model index \a index
+    */
     ThreeDBarAttributes threeDBarAttributes( const QModelIndex & index ) const;
 
 #if defined(Q_COMPILER_MANGLES_RETURN_TYPE)

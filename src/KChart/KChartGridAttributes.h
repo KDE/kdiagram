@@ -54,24 +54,84 @@ public:
     void setLinesOnAnnotations( bool );
     bool linesOnAnnotations() const;
 
+
+    /**
+      * Specifies the step width to be used for calculating
+      * the grid lines.
+      *
+      * \note Step with can be set for Linear axis calculation mode only,
+      * there is no way to specify a step width for Logarithmic axes.
+      *
+      * By default the GridAttributes class does not use a fixed step width,
+      * but it uses KChartEnums::GranularitySequence_10_20.
+      *
+      * \param stepWidth the step width to be used.
+      * If this parameter is omitted (or set to Zero, resp.)
+      * the automatic step width calculation will be done,
+      * using the granularity sequence specified.
+      * This is the default.
+      *
+      * \sa gridStepWidth, setGranularitySequence
+      */
     void setGridStepWidth( qreal stepWidth = 0.0 );
+
+    /**
+      * Returns the step width to be used for calculating
+      * the grid lines.
+      *
+      * \sa setGridStepWidth
+      */
     qreal gridStepWidth() const;
 
+
+    /**
+      * Specifies the sub-step width to be used for calculating
+      * the grid sub-lines.
+      *
+      *
+      * \param subStepWidth the sub-step width to be used.
+      * If this parameter is omitted (or set to Zero, resp.)
+      * the automatic calculation will be done, using the
+      * granularity sequence specified.
+      * This is the default.
+      *
+      * \sa gridSubStepWidth
+      */
     void setGridSubStepWidth( qreal subStepWidth = 0.0 );
+
+    /**
+      * Returns the sub-step width to be used for calculating
+      * the sub-grid lines.
+      *
+      * \sa setGridStepWidth
+      */
     qreal gridSubStepWidth() const;
 
     /**
-     * Specify which granularity sequence is to be used to find a matching
-     * grid granularity.
-     *
-     * See details explained at KChartEnums::GranularitySequence.
-     *
-     * You might also want to use setAdjustBoundsToGrid for fine-tuning the
-     * start/end value.
-     *
-     * \sa setAdjustBoundsToGrid, GranularitySequence
-     */
+      * Specifies the granularity sequence to be used for calculating
+      * the grid lines.
+      *
+      * By default the GridAttributes class uses KChartEnums::GranularitySequence_10_20.
+      *
+      * \note Granularity can be set for Linear axis calculation mode only,
+      * there is no way to specify a step width for Logarithmic axes.
+      *
+      * \note The sequence specified by this method is ignored, if
+      * a fixed step width was specified via setStepWidth.
+      *
+      * \param sequence one of the sequences declared in
+      * KChartEnums::GranularitySequence.
+      *
+      * \sa gridGranularitySequence, setStepWidth
+      */
     void setGridGranularitySequence( KChartEnums::GranularitySequence sequence );
+
+    /**
+      * Returns the granularity sequence to be used for calculating
+      * the grid lines.
+      *
+      * \sa setGridGranularitySequence
+      */
     KChartEnums::GranularitySequence gridGranularitySequence() const;
 
     /**

@@ -189,9 +189,6 @@ Legend::LegendStyle Legend::legendStyle() const
     return d->legendStyle;
 }
 
-/**
-  * Creates an exact copy of this legend.
-  */
 Legend* Legend::clone() const
 {
     Legend* legend = new Legend( new Private( *d ), nullptr );
@@ -570,11 +567,6 @@ bool Legend::useAutomaticMarkerSize() const
     return d->useAutomaticMarkerSize;
 }
 
-/**
-    \brief Removes all legend texts that might have been set by setText.
-
-    This resets the Legend to default behaviour: Texts are created automatically.
-*/
 void Legend::resetTexts()
 {
     if ( !d->texts.count() ) {

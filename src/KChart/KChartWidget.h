@@ -49,12 +49,12 @@ namespace KChart {
     class Position;
 
     /**
-     * \class Widget KChartWidget.h
-     * \brief The KChart widget for usage without Model/View.
-     *
-     * If you want to use KChart with Model/View, use KChart::Chart instead.
-     */
-    class KCHART_EXPORT Widget : public QWidget
+    * \class Widget KChartWidget.h
+    * \brief The KChart widget for usage without Interwiev.
+    *
+    * If you want to use KChart with Interview, use KChart::Chart instead.
+    */
+   class KCHART_EXPORT Widget : public QWidget
     {
         Q_OBJECT
 
@@ -69,10 +69,10 @@ namespace KChart {
          *
          * \param parent the widget parent; passed on to QWidget
          */
-        explicit Widget( QWidget* parent = nullptr );
+       explicit Widget( QWidget* parent = nullptr );
 
         /** Destructor. */
-        ~Widget();
+       ~Widget();
         /** Sets the data in the given column using a QVector of qreal for the Y values. */
         void setDataset( int column, const QVector< qreal > & data, const QString& title = QString() );
         /** Sets the data in the given column using a QVector of QPairs
@@ -89,13 +89,13 @@ namespace KChart {
         /** Sets all global leadings (borders). */
         void setGlobalLeading( int left, int top, int right, int bottom );
         /** Sets the left leading (border). */
-        void setGlobalLeadingLeft( int leading );
+       void setGlobalLeadingLeft( int leading );
         /** Sets the top leading (border). */
-        void setGlobalLeadingTop( int leading );
+       void setGlobalLeadingTop( int leading );
         /** Sets the right leading (border). */
-        void setGlobalLeadingRight( int leading );
+       void setGlobalLeadingRight( int leading );
         /** Sets the bottom leading (border). */
-        void setGlobalLeadingBottom( int leading );
+       void setGlobalLeadingBottom( int leading );
 
     public:
         /** Returns the left leading (border). */
@@ -232,7 +232,7 @@ namespace KChart {
         /** Justifies the model, so that the given rows and columns fit into it. */
         void justifyModelSize( int rows, int columns );
         /** Checks whether the given width matches with the one used until now. */
-        bool checkDatasetWidth( int width );
+       bool checkDatasetWidth( int width );
     };
 }
 

@@ -59,19 +59,12 @@ void StockDiagram::init()
     setPen( QPen( Qt::black ) );
 }
 
-/**
-  * Switches between the supported types of stock charts,
-  * depending on \a type
-  */
 void StockDiagram::setType( Type type )
 {
     d->type = type;
     emit propertiesChanged();
 }
 
-/**
-  * @return the type of this diagram
-  */
 StockDiagram::Type StockDiagram::type() const
 {
    return d->type;
@@ -104,11 +97,6 @@ StockBarAttributes StockDiagram::stockBarAttributes( int column ) const
     return stockBarAttributes();
 }
 
-/**
- * Sets the 3D attributes for all bars (i.e. candlesticks)
- *
- * @param attr The 3D attributes to set
- */
 void StockDiagram::setThreeDBarAttributes( const ThreeDBarAttributes &attr )
 {
     attributesModel()->setModelData(
@@ -117,40 +105,17 @@ void StockDiagram::setThreeDBarAttributes( const ThreeDBarAttributes &attr )
     emit propertiesChanged();
 }
 
-/**
- * Returns the 3D attributes for all bars (i.e. candlesticks)
- *
- * @return the 3D bar attributes
- */
 ThreeDBarAttributes StockDiagram::threeDBarAttributes() const
 {
 	return attributesModel()->modelData( ThreeDBarAttributesRole ).value<ThreeDBarAttributes>();
 }
 
-/**
- * Sets the 3D attributes for the bar (i.e. candlestick) in certain column
- * of the diagram
- *
- * Note: Every column in a StockDiagram is represented by a row in the model
- *
- * @param column The column to set the 3D bar attributes for
- * @param attr The 3D attributes to set
- */
 void StockDiagram::setThreeDBarAttributes( int column, const ThreeDBarAttributes &attr )
 {
     d->setDatasetAttrs( column, QVariant::fromValue( attr ), StockBarAttributesRole );
     emit propertiesChanged();
 }
 
-/**
- * Returns the 3D attributes for a bars (i.e. candlestick) in a certain column
- * of the diagram
- *
- * Note: Every column in a StockDiagram is represented by a row in the model
- *
- * @param column The column to get the 3D bar attributes for
- * @return The 3D attributes for the specified column
- */
 ThreeDBarAttributes StockDiagram::threeDBarAttributes( int column ) const
 {
     const QVariant attr( d->datasetAttrs( column, ThreeDBarAttributesRole ) );

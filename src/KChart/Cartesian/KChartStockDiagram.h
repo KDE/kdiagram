@@ -46,8 +46,17 @@ public:
     explicit StockDiagram( QWidget *parent = nullptr, CartesianCoordinatePlane *plane = nullptr );
     ~StockDiagram();
 
-    void setType( Type type );
-    Type type() const;
+ 
+    /**
+      * Switches between the supported types of stock charts,
+      * depending on \a type
+      */
+   void setType( Type type );
+ 
+    /**
+      * @return the type of this diagram
+      */
+   Type type() const;
 
     void setStockBarAttributes( const StockBarAttributes &attr );
     StockBarAttributes stockBarAttributes() const;
@@ -55,11 +64,43 @@ public:
     void setStockBarAttributes( int column, const StockBarAttributes &attr );
     StockBarAttributes stockBarAttributes( int column ) const;
 
-    void setThreeDBarAttributes( const ThreeDBarAttributes &attr );
+ 
+    /**
+     * Sets the 3D attributes for all bars (i.e. candlesticks)
+     *
+     * @param attr The 3D attributes to set
+     */
+ 
+   /**
+    * Sets the 3D attributes for the bar (i.e. candlestick) in certain column
+    * of the diagram
+    *
+    * Note: Every column in a StockDiagram is represented by a row in the model
+    *
+    * @param column The column to set the 3D bar attributes for
+    * @param attr The 3D attributes to set
+    */
+  void setThreeDBarAttributes( const ThreeDBarAttributes &attr );
+ 
+    /**
+     * Returns the 3D attributes for all bars (i.e. candlesticks)
+     *
+     * @return the 3D bar attributes
+     */
     ThreeDBarAttributes threeDBarAttributes() const;
 
-    void setThreeDBarAttributes( int column, const ThreeDBarAttributes &attr );
+    /**
+    * Returns the 3D attributes for a bars (i.e. candlestick) in a certain column
+    * of the diagram
+    *
+    * Note: Every column in a StockDiagram is represented by a row in the model
+    *
+    * @param column The column to get the 3D bar attributes for
+    * @return The 3D attributes for the specified column
+    */
     ThreeDBarAttributes threeDBarAttributes( int column ) const;
+
+    void setThreeDBarAttributes( int column, const ThreeDBarAttributes &attr );
 
     void setLowHighLinePen( const QPen &pen );
     QPen lowHighLinePen() const;

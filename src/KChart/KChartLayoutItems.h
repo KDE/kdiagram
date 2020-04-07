@@ -64,8 +64,25 @@ namespace KChart {
 
         virtual void paint( QPainter* ) = 0;
 
+
+        /**
+          * Default impl: Paint the complete item using its layouted position and size.
+          */
         virtual void paintCtx( PaintContext* context );
+
+        /**
+            Inform the item about its widget: This enables the item,
+            to trigger that widget's update, whenever the size of the item's
+            contents has changed.
+
+            Thus, you need to call setParentWidget on every item, that
+            has a non-fixed size.
+          */
         virtual void setParentWidget( QWidget* widget );
+
+        /**
+            Report changed size hint: ask the parent widget to recalculate the layout.
+          */
         virtual void sizeHintChanged() const;
 
         void setParentLayout( QLayout* lay )
@@ -113,7 +130,18 @@ namespace KChart {
         void setTextAlignment( Qt::Alignment );
         Qt::Alignment textAlignment() const;
 
+        /**
+          \brief Use this to specify the text attributes to be used for this item.
+
+          \sa textAttributes
+        */
         void setTextAttributes( const TextAttributes& a );
+
+        /**
+          Returns the text attributes to be used for this item.
+
+          \sa setTextAttributes
+        */
         TextAttributes textAttributes() const;
 
         /** pure virtual in QLayoutItem */

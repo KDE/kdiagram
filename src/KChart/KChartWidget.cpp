@@ -57,18 +57,7 @@ Widget::Private::Private( Widget * qq )
 Widget::Private::~Private() {}
 
 
-/**
-* \class Widget KChartWidget.h
-* \brief The KChart widget for usage without Interwiev.
-*
-* If you want to use KChart with Interview, use KChart::Chart instead.
-*/
 
-/**
- * Constructor. Creates a new widget with all data initialized empty.
- *
- * \param parent the widget parent; passed on to QWidget
- */
 Widget::Widget( QWidget* parent ) :
     QWidget(parent), _d( new Private( this ) )
 {
@@ -77,9 +66,6 @@ Widget::Widget( QWidget* parent ) :
     setType( Line );
 }
 
-/**
- * Destructor.
- */
 Widget::~Widget()
 {
     delete _d; _d = nullptr;
@@ -167,97 +153,61 @@ void Widget::resetData()
     d->usedDatasetWidth = 0;
 }
 
-/**
- * Sets all global leadings (borders).
- */
 void Widget::setGlobalLeading( int left, int top, int right, int bottom )
 {
     d->m_chart.setGlobalLeading( left, top, right, bottom );
 }
 
-/**
- * Sets the left leading (border).
- */
 void Widget::setGlobalLeadingLeft( int leading )
 {
     d->m_chart.setGlobalLeadingLeft( leading );
 }
 
-/**
- * Returns the left leading (border).
- */
 int Widget::globalLeadingLeft() const
 {
     return d->m_chart.globalLeadingLeft();
 }
 
-/**
- * Sets the top leading (border).
- */
 void Widget::setGlobalLeadingTop( int leading )
 {
     d->m_chart.setGlobalLeadingTop( leading );
 }
 
-/**
- * Returns the top leading (border).
- */
 int Widget::globalLeadingTop() const
 {
     return d->m_chart.globalLeadingTop();
 }
 
-/**
- * Sets the right leading (border).
- */
 void Widget::setGlobalLeadingRight( int leading )
 {
     d->m_chart.setGlobalLeadingRight( leading );
 }
 
-/**
- * Returns the right leading (border).
- */
 int Widget::globalLeadingRight() const
 {
     return d->m_chart.globalLeadingRight();
 }
 
-/**
- * Sets the bottom leading (border).
- */
 void Widget::setGlobalLeadingBottom( int leading )
 {
     d->m_chart.setGlobalLeadingBottom( leading );
 }
 
-/**
- * Returns the bottom leading (border).
- */
 int Widget::globalLeadingBottom() const
 {
     return d->m_chart.globalLeadingBottom();
 }
 
-/**
- * Returns the first of all headers.
- */
 KChart::HeaderFooter* Widget::firstHeaderFooter()
 {
     return d->m_chart.headerFooter();
 }
 
-/**
- * Returns a list with all headers.
- */
 QList<KChart::HeaderFooter*> Widget::allHeadersFooters()
 {
     return d->m_chart.headerFooters();
 }
 
-/**
- * Adds a new header/footer with the given text to the position.
- */
 void Widget::addHeaderFooter( const QString& text,
                               HeaderFooter::HeaderFooterType type,
                               Position position)
@@ -269,9 +219,6 @@ void Widget::addHeaderFooter( const QString& text,
     d->m_chart.addHeaderFooter( newHeader ); // we need this explicit call !
 }
 
-/**
- * Adds an existing header / footer object.
- */
 void Widget::addHeaderFooter( HeaderFooter* header )
 {
     header->setParent( &d->m_chart );
@@ -289,25 +236,16 @@ void Widget::takeHeaderFooter( HeaderFooter* header )
     d->m_chart.takeHeaderFooter( header );
 }
 
-/**
- * Returns the first of all legends.
- */
 KChart::Legend* Widget::legend()
 {
     return d->m_chart.legend();
 }
 
-/**
- * Returns a list with all legends.
- */
 QList<KChart::Legend*> Widget::allLegends()
 {
     return d->m_chart.legends();
 }
 
-/**
- * Adds an empty legend on the given position.
- */
 void Widget::addLegend( Position position )
 {
     Legend* legend = new Legend( diagram(), &d->m_chart );
@@ -315,9 +253,6 @@ void Widget::addLegend( Position position )
     d->m_chart.addLegend( legend );
 }
 
-/**
- * Adds a new, already existing, legend.
- */
 void Widget::addLegend( Legend* legend )
 {
     legend->setDiagram( diagram() );
@@ -504,9 +439,6 @@ void Widget::setSubType( SubType subType )
     }
 }
 
-/**
- * Returns the type of the chart.
- */
 Widget::ChartType Widget::type() const
 {
     // PENDING(christoph) save the type out-of-band:
@@ -583,9 +515,6 @@ Widget::SubType Widget::subType() const
 }
 
 
-/**
- * Checks whether the given width matches with the one used until now.
- */
 bool Widget::checkDatasetWidth( int width )
 {
     if ( width == diagram()->datasetDimension() )
@@ -604,9 +533,6 @@ bool Widget::checkDatasetWidth( int width )
     return false;*/
 }
 
-/**
- * Justifies the model, so that the given rows and columns fit into it.
- */
 void Widget::justifyModelSize( int rows, int columns )
 {
     QAbstractItemModel & model = d->m_model;

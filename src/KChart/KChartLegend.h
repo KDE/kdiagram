@@ -71,6 +71,10 @@ public:
     LegendStyle legendStyle() const;
 
 
+
+    /**
+      * Creates an exact copy of this legend.
+      */
     virtual Legend * clone() const;
 
     /**
@@ -168,7 +172,7 @@ public:
     void replaceDiagram( KChart::AbstractDiagram* newDiagram,
                          KChart::AbstractDiagram* oldDiagram = nullptr );
 
-    /** 
+    /**
       * Returns the offset of the first dataset of \c diagram.
       *
       */
@@ -308,6 +312,12 @@ m_legend->setFloatingPosition( relativePosition );
     void setShowLines( bool legendShowLines );
     bool showLines() const;
 
+
+    /**
+        \brief Removes all legend texts that might have been set by setText.
+
+        This resets the Legend to default behaviour: Texts are created automatically.
+    */
     void resetTexts();
     void setText( uint dataset, const QString& text );
     QString text( uint dataset ) const;

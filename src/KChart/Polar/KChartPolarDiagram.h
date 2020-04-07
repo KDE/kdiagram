@@ -62,7 +62,11 @@ public:
     /** \reimpl */
     qreal numberOfGridRings() const override;
 
-    virtual PolarDiagram * clone() const;
+
+    /**
+      * Creates an exact copy of this diagram.
+      */
+   virtual PolarDiagram * clone() const;
 
     /** \deprecated Use PolarCoordinatePlane::setStartPosition( qreal degrees ) instead. */
     void setZeroDegreePosition( int degrees );

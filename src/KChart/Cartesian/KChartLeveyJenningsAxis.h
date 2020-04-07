@@ -59,7 +59,20 @@ namespace KChart {
         explicit LeveyJenningsAxis ( LeveyJenningsDiagram* diagram = nullptr );
         ~LeveyJenningsAxis();
 
+        /**
+          * @return The axis' type.
+          */
         LeveyJenningsGridAttributes::GridType type() const;
+
+        /**
+          * Sets the type of the axis to \a type.
+          * This method colors the label to the default color of the
+          * respective type.
+          * Please make sure to re-set the colors after calling this,
+          * if you want them different.
+          * Setting the type is only valid for axes located right or left
+          * from the diagram. An axis on the bottom always shows the timeline.
+          */
         void setType( LeveyJenningsGridAttributes::GridType type );
 
         Qt::DateFormat dateFormat() const;

@@ -55,9 +55,6 @@ void RadarDiagram::init()
 }
 
 
-/**
-  * Creates an exact copy of this diagram.
-  */
 RadarDiagram * RadarDiagram::clone() const
 {
     RadarDiagram* newDiagram = new RadarDiagram( new Private( *d ) );

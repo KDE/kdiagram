@@ -213,7 +213,6 @@ void AbstractDiagram::setRootIndex( const QModelIndex& idx )
     setAttributesModelRootIndex( d->attributesModel->mapFromSource( idx ) );
 }
 
-/*! \internal */
 void AbstractDiagram::setAttributesModelRootIndex( const QModelIndex& idx )
 {
     d->attributesModelRootIndex = idx;
@@ -221,8 +220,6 @@ void AbstractDiagram::setAttributesModelRootIndex( const QModelIndex& idx )
     scheduleDelayedItemsLayout();
 }
 
-/*! returns a QModelIndex pointing into the AttributesModel that corresponds to the
-  root index of the diagram. */
 QModelIndex AbstractDiagram::attributesModelRootIndex() const
 {
     if ( !d->attributesModelRootIndex.isValid() )

@@ -198,7 +198,6 @@ namespace KChart {
          * Set the coordinate plane associated with the diagram. This determines
          * how coordinates in value space are mapped into pixel space. The chart
          * takes ownership.
-         * @return The coordinate plane associated with the diagram.
          */
         virtual void setCoordinatePlane( AbstractCoordinatePlane* plane );
 

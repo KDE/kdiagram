@@ -682,7 +682,7 @@ void GraphicsScene::itemPressed( const QModelIndex& idx, QGraphicsSceneMouseEven
         } else {
             flags |= QItemSelectionModel::ClearAndSelect;
         }
-        d->selectionModel->select(idx, flags);
+        d->selectionModel->select(d->summaryHandlingModel->mapToSource(idx), flags);
     }
     emit pressed( idx );
 }

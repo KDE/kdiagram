@@ -1358,8 +1358,11 @@ void Chart::paint( QPainter* painter, const QRect& rect )
     PrintingParameters::setScaleFactor( qreal( painter->device()->logicalDpiX() ) / qreal( logicalDpiX() ) );
 
     const QRect oldGeometry( geometry() );
-    if ( oldGeometry != rect )
+    if ( oldGeometry != rect ) {
         setGeometry( rect );
+        d->isPlanesLayoutDirty = true;
+        d->isFloatingLegendsLayoutDirty = true;
+    }
     painter->translate( rect.left(), rect.top() );
     d->paintAll( painter );
 
@@ -1368,8 +1371,11 @@ void Chart::paint( QPainter* painter, const QRect& rect )
     // painter->drawRect( rect );
 
     painter->translate( -rect.left(), -rect.top() );
-    if ( oldGeometry != rect )
+    if ( oldGeometry != rect ) {
         setGeometry( oldGeometry );
+        d->isPlanesLayoutDirty = true;
+        d->isFloatingLegendsLayoutDirty = true;
+    }
 
     PrintingParameters::setScaleFactor( prevScaleFactor );
     GlobalMeasureScaling::setPaintDevice( prevDevice );

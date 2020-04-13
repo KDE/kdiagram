@@ -21,6 +21,7 @@
 #include "KChartAbstractDiagram_p.h"
 
 #include <QPainter>
+#include <QPainterPath>
 #include <QDebug>
 #include <QApplication>
 #include <QAbstractProxyModel>

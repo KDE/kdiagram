@@ -25,6 +25,11 @@ class TestDrawIntoPainter: public QObject {
     Q_OBJECT
 private slots:
 
+  void initTestCase()
+  {
+    qputenv("QTEST_FUNCTION_TIMEOUT", QByteArray("600000"));
+  }
+
   void testOriginal()
   {
     mainWindow.updateData(QStringLiteral(":/original"));

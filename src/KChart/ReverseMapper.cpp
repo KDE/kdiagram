@@ -156,7 +156,6 @@ void ReverseMapper::addLine( int row, int column, const QPointF& from, const QPo
     // pixel wide rectangle, where the original line is excatly
     // centered in.
     // make a 3 pixel wide polygon from the line:
-    static const QPointF pixel( 1.0, 1.0 );
     QPointF left, right;
     if ( from.x() < to.x() ) {
         left = from;

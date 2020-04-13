@@ -41,8 +41,6 @@ void TestKGanttConstraintModel::testModel()
 {
     ConstraintModel model;
     
-    QModelIndex invalidIndex;
-    
     QCOMPARE(model.constraints().count(), 0);
     
     model.addConstraint(Constraint(QModelIndex(), QModelIndex()));

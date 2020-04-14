@@ -734,10 +734,11 @@ void CartesianAxis::paintCtx( PaintContext* context )
         geoXy.lvalue( transEnd.ry(), transEnd.rx() ) += transverseScreenSpaceShift;
 
         if ( rulerAttributes().showRulerLine() ) {
-            bool clipSaved = context->painter()->hasClipping();
+            painter->save();
             painter->setClipping( false );
+            painter->setPen(rulerAttributes().rulerLinePen());
             painter->drawLine( transStart, transEnd );
-            painter->setClipping( clipSaved );
+            painter->restore();
         }
     }
 

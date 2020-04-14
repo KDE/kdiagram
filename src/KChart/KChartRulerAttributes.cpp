@@ -37,6 +37,7 @@ private:
     QPen tickMarkPen;
     QPen majorTickMarkPen;
     QPen minorTickMarkPen;
+    QPen rulerLinePen;
 
     bool majorTickMarkPenIsSet : 1;
     bool minorTickMarkPenIsSet : 1;
@@ -271,6 +272,7 @@ bool RulerAttributes::operator==( const RulerAttributes& r ) const
                    minorTickMarkPenIsSet() == r.minorTickMarkPenIsSet() &&
                    showMajorTickMarks() == r.showMajorTickMarks() &&
                    showMinorTickMarks() == r.showMinorTickMarks() &&
+                   rulerLinePen() == r.rulerLinePen() &&
                    showRulerLine() == r.showRulerLine() &&
                    majorTickMarkLengthIsSet() == r.majorTickMarkLengthIsSet() &&
                    minorTickMarkLengthIsSet() == r.minorTickMarkLengthIsSet() &&
@@ -287,6 +289,16 @@ bool RulerAttributes::operator==( const RulerAttributes& r ) const
         }
     }
     return true;
+}
+
+void RulerAttributes::setRulerLinePen(const QPen &pen)
+{
+    d->rulerLinePen = pen;
+}
+
+QPen RulerAttributes::rulerLinePen() const
+{
+    return d->rulerLinePen;
 }
 
 void RulerAttributes::setShowRulerLine( bool show )

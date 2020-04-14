@@ -87,6 +87,14 @@ public:
     void setShowMinorTickMarks( bool show );
     bool showMinorTickMarks() const;
 
+    /**
+     * Set the ruler line pen to @p pen
+     */
+    void setRulerLinePen(const QPen &pen);
+    /** @return the ruler line pen
+     */
+    QPen rulerLinePen() const;
+
     void setShowRulerLine( bool show );
     bool showRulerLine() const;
 

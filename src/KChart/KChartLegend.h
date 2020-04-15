@@ -85,6 +85,7 @@ public:
     void resizeEvent( QResizeEvent * event ) override; // TODO: should be protected
 
     virtual void paint( QPainter* painter ) override;
+    void paint( QPainter* painter, const QRect &rect);
     void setVisible( bool visible ) override;
 
     /**

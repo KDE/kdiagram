@@ -26,6 +26,7 @@
 #include "KTextDocument.h"
 #include <KChartDiagramObserver.h>
 #include "KChartLayoutItems.h"
+#include "KChartPrintingParameters.h"
 
 #include <QFont>
 #include <QGridLayout>
@@ -254,6 +255,30 @@ void Legend::paint( QPainter* painter )
 #endif
 }
 
+void Legend::paint( QPainter *painter, const QRect& rect )
+{
+    if ( rect.isEmpty() ) {
+        return;
+    }
+    // set up the contents of the widget so we get a useful geometry
+    QPaintDevice* prevDevice = GlobalMeasureScaling::paintDevice();
+    GlobalMeasureScaling::setPaintDevice( painter->device() );
+
+    const QRect oldGeometry(geometry() );
+    const QRect newGeo( QPoint(0,0), rect.size() );
+    if (oldGeometry != newGeo) {
+        setGeometry(newGeo);
+        needSizeHint();
+    }
+    painter->translate( rect.left(), rect.top() );
+    paintAll( *painter );
+    painter->translate( -rect.left(), -rect.top() );
+
+    if (oldGeometry != newGeo) {
+        setGeometry(oldGeometry);
+    }
+    GlobalMeasureScaling::setPaintDevice( prevDevice );
+}
 
 uint Legend::datasetCount() const
 {

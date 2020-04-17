@@ -145,10 +145,15 @@ void PercentBarDiagram::paint( PaintContext* ctx )
         qreal offset = spaceBetweenGroups;
         if ( ba.useFixedBarWidth() )
             offset -= ba.fixedBarWidth();
-        
-        if ( offset < 0 )
-            offset = 0;
 
+        CartesianCoordinatePlane *plane = static_cast<CartesianCoordinatePlane*>(ctx->coordinatePlane());
+        if (plane->isHorizontalRangeReversed()) {
+            if (offset > 0) {
+                offset = 0;
+            }
+        } else if ( offset < 0 ) {
+            offset = 0;
+        }
         for ( int row = 0; row < rowCount ; ++row )
         {
             const CartesianDiagramDataCompressor::CachePosition position( row, col );

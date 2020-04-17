@@ -152,9 +152,14 @@ void PercentLyingBarDiagram::paint( PaintContext* ctx )
         if ( ba.useFixedBarWidth() )
             offset -= ba.fixedBarWidth();
         
-        if ( offset < 0 )
+        CartesianCoordinatePlane *plane = static_cast<CartesianCoordinatePlane*>(ctx->coordinatePlane());
+        if (plane->isVerticalRangeReversed()) {
+            if (offset > 0) {
+                offset = 0;
+            }
+        } else if ( offset < 0 ) {
             offset = 0;
-
+        }
         for ( int col = 0; col < colCount ; ++col )
         {
             qreal threeDOffset = 0.0;

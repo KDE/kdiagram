@@ -49,6 +49,8 @@ private slots:
     void on_widthSB_valueChanged( int i );
     void on_fixPlaneSizeCB_toggled( bool checked );
 
+    void setReverseDirection(bool);
+
 private:
     KChart::Chart* m_chart;
     KChart::BarDiagram* m_bars;

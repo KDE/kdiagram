@@ -73,6 +73,8 @@ MainWindow::MainWindow( QWidget* parent ) :
     m_chart->coordinatePlane()->setBackgroundAttributes(  pba );
 
     m_chart->setGlobalLeadingTop( 20 );
+
+    connect(reverse, SIGNAL(toggled(bool)), this, SLOT(setReverseDirection(bool)));
 }
 
 
@@ -228,4 +230,18 @@ void MainWindow::on_fixPlaneSizeCB_toggled( bool checked )
         m_chart->coordinatePlane()->setZoomCenter( QPointF(0.5, 0.5) );
     }
     m_chart->update();
+}
+
+void MainWindow::setReverseDirection(bool reverse)
+{
+    CartesianCoordinatePlane* plane =
+    qobject_cast<CartesianCoordinatePlane*>( m_chart->coordinatePlane() );
+    if ( plane == nullptr )
+        return;
+
+    if (axes->currentIndex() == 0) {
+        plane->setHorizontalRangeReversed(reverse);
+    } else if (axes->currentIndex() == 1) {
+        plane->setVerticalRangeReversed(reverse);
+    }
 }

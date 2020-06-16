@@ -1,0 +1,46 @@
+# kapidox info
+repo_id: kdiagram
+fancyname: KChart
+description: A library for creating business charts
+#logo: TODO
+group: kdiagram
+type: functional
+
+platforms:
+    - name: Linux
+    - name: FreeBSD
+    - name: Windows
+    - name: macOS
+#    - name: Android
+
+public_lib: true
+public_source_dirs:
+    - .
+libraries:
+    - cmake: KChart
+      qmake: KChart
+cmakename: KChart
+
+maintainer:
+    - danders
+
+# group info has to be with one of the covered projects currently
+group_info:
+    name: KDiagram
+    fancyname: The KDiagram Libraries
+    maintainer:
+        - danders
+    irc: calligra
+    mailinglist: calligra-devel
+    platforms:
+        - Linux
+        - FreeBSD
+        - Windows
+        - macOS
+#       - Android
+    description: Libraries for creating charts and Gantt diagrams
+    long_description:
+        - The KDiagram Libraries consist of KChart, a library for creating business charts,
+          and KGantt, a library for creating <a href="https://en.wikipedia.org/wiki/Gantt_chart">Gantt</a> diagrams
+        - The KDiagram Libraries can be used in CMake-based and QMake-based projects.
+#    logo: TODO

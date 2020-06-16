@@ -1,0 +1,25 @@
+# kapidox info
+repo_id: kdiagram
+fancyname: KGantt
+description: A library for creating <a href="https://en.wikipedia.org/wiki/Gantt_chart">Gantt</a> diagrams
+#logo: TODO
+group: kdiagram
+type: functional
+
+platforms:
+    - name: Linux
+    - name: FreeBSD
+    - name: Windows
+    - name: macOS
+#    - name: Android
+
+public_lib: true
+public_source_dirs:
+    - .
+libraries:
+    - cmake: KGantt
+      qmake: KGantt
+cmakename: KGantt
+
+maintainer:
+    - danders

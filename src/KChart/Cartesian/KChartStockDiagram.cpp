@@ -287,6 +287,7 @@ void StockDiagram::paint( PaintContext *context )
             switch ( d->type ) {
             case HighLowClose:
                 open.hidden = true;
+                Q_FALLTHROUGH();
                 // Fall-through intended!
             case OpenHighLowClose:
                 if ( close.index.isValid() && low.index.isValid() && high.index.isValid() )

@@ -129,7 +129,11 @@ void MainWindow::openFile(const QString &path)
 
                     m_model->insertRows(row, 1, QModelIndex());
 
+#if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
                     QStringList pieces = line.split(',', QString::SkipEmptyParts);
+#else
+                    QStringList pieces = line.split(',', Qt::SkipEmptyParts);
+#endif
                     m_model->setData(m_model->index(row, 0, QModelIndex()), pieces.value(0));
                     m_model->setData(m_model->index(row, 1, QModelIndex()), pieces.value(1));
                     m_model->setData(m_model->index(row, 2, QModelIndex()), pieces.value(2));

@@ -51,7 +51,7 @@ using namespace KGantt;
 DateTimeTimeLine::DateTimeTimeLine()
     : _d( new Private())
 {
-    _d->options = nullptr;
+    _d->options = {};
     _d->pen = QPen(QApplication::palette().color(QPalette::Highlight), 0);
     connect(&_d->timer, SIGNAL(timeout()), this, SIGNAL(updated()));
 }

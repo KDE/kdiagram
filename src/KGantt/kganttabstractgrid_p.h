@@ -29,6 +29,7 @@
 namespace KGantt {
     class Q_DECL_HIDDEN AbstractGrid::Private {
     public:
+        virtual ~Private() {}
         QPointer<QAbstractItemModel> model;
         QPersistentModelIndex root;
     };

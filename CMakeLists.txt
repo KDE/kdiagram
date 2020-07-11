@@ -2,7 +2,8 @@ cmake_minimum_required(VERSION 2.8.12)
 
 project( kdiagram )
 
-find_package(ECM 1.4.0 REQUIRED NO_MODULE)
+set(KF5_MIN_VERSION "5.60.0")
+find_package(ECM ${KF5_MIN_VERSION} REQUIRED NO_MODULE)
 
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
 
@@ -19,16 +20,12 @@ include(ECMPackageConfigHelpers)
 include(ECMGeneratePriFile)
 include(ECMPoQmTools)
 include(ECMAddTests)
+set(QT_REQUIRED_VERSION "5.12.0")
 
 include(CMakeDependentOption)
 
-if (ECM_VERSION VERSION_LESS "5.36.0")
-    message(STATUS "ECM version too old for QCH feature, does not have ECMAddQch (required >= 5.36.0)")
-    set(HAS_ECMAddQch FALSE)
-else()
-    set(HAS_ECMAddQch TRUE)
-    include(ECMAddQch)
-endif()
+set(HAS_ECMAddQch TRUE)
+include(ECMAddQch)
 
 cmake_dependent_option(BUILD_QCH
     "Build API documentation in QCH format (for e.g. Qt Assistant, Qt Creator & KDevelop)" OFF
@@ -36,9 +33,7 @@ cmake_dependent_option(BUILD_QCH
 )
 add_feature_info(QCH ${BUILD_QCH} "API documentation in QCH format (for e.g. Qt Assistant, Qt Creator & KDevelop)")
 
-set(REQUIRED_QT_VERSION "5.6.0")
-
-find_package(Qt5 ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE
+find_package(Qt5 ${QT_REQUIRED_VERSION} REQUIRED NO_MODULE
     COMPONENTS
     PrintSupport
     Svg

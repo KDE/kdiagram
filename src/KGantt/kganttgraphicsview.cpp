@@ -205,6 +205,10 @@ GraphicsView::Private::Private( GraphicsView* _q )
 {
 }
 
+GraphicsView::Private::~Private()
+{
+}
+
 void GraphicsView::Private::updateHeaderGeometry()
 {
     q->setViewportMargins(0,rowcontroller->headerHeight(),0,0);
@@ -343,7 +347,6 @@ void GraphicsView::Private::slotHeaderContextMenuRequested( const QPoint& pt )
 GraphicsView::GraphicsView( QWidget* parent )
     : QGraphicsView( parent ), _d( new Private( this ) )
 {
-
 #if defined KDAB_EVAL
   EvalDialog::checkEvalLicense( "KD Gantt" );
 #endif

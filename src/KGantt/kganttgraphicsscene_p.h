@@ -36,6 +36,7 @@ namespace KGantt {
     class Q_DECL_HIDDEN GraphicsScene::Private {
     public:
         explicit Private(GraphicsScene*);
+        ~Private();
 
         void clearConstraintItems();
         void resetConstraintItems();

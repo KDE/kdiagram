@@ -49,6 +49,7 @@ namespace KGantt {
         Q_DISABLE_COPY( Private )
     public:
         explicit Private(GraphicsView* _q);
+        ~Private();
 
         void updateHeaderGeometry();
 

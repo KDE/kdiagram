@@ -71,6 +71,11 @@ GraphicsScene::Private::Private( GraphicsScene* _q )
     default_grid.setStartDateTime( QDateTime::currentDateTime().addDays( -1 ) );
 }
 
+GraphicsScene::Private::~Private()
+{
+    delete grid;
+}
+
 void GraphicsScene::Private::clearConstraintItems()
 {
     for(ConstraintGraphicsItem *citem : constraintItems) {
@@ -322,6 +327,7 @@ void GraphicsScene::setGrid( AbstractGrid* grid )
         d->getGrid()->disconnect( this );
         model = d->getGrid()->model();
     }
+    delete d->grid;
     d->grid = grid;
     connect( d->getGrid(), SIGNAL(gridChanged()), this, SLOT(slotGridChanged()) );
     d->getGrid()->setModel( model );

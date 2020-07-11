@@ -77,7 +77,8 @@ void TernaryCoordinatePlane::layoutDiagrams()
     {
         QSizeF topleft( 0.0, 0.0 );
         QSizeF bottomRight( 0.0, 0.0 );
-        Q_FOREACH( AbstractDiagram* abstractDiagram, diagrams() ) {
+        const auto ds = diagrams();
+        for ( AbstractDiagram* abstractDiagram : ds ) {
             AbstractTernaryDiagram* diagram =
                 qobject_cast<AbstractTernaryDiagram*>( abstractDiagram );
             Q_ASSERT( diagram );

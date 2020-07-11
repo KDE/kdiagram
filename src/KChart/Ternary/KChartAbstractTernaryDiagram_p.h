@@ -88,7 +88,7 @@ namespace KChart {
                                                     antiAliasing );
             if ( !axesList.isEmpty() ) {
 
-                Q_FOREACH( TernaryAxis* axis, axesList ) {
+                for ( TernaryAxis* axis : qAsConst(axesList) ) {
                     PainterSaver s( paintContext->painter() );
                     axis->paintCtx( paintContext );
                 }

@@ -129,7 +129,7 @@ private slots:
             QModelIndexList indexes;
             CachePosition point( 0, 0 );
             indexes = compressor.mapToModel( point );
-            Q_FOREACH( const QModelIndex& index, indexes ) {
+            for ( const QModelIndex& index : qAsConst(indexes) ) {
                 QVERIFY2( compressor.mapToCache( index ) == point,
                           "index mapToModel does not map back to the original cache point" );
             }

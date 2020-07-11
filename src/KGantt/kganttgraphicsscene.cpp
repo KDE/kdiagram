@@ -94,8 +94,8 @@ void GraphicsScene::Private::resetConstraintItems()
 {
     clearConstraintItems();
     if ( constraintModel.isNull() ) return;
-    QList<Constraint> clst = constraintModel->constraints();
-    Q_FOREACH( const Constraint& c, clst ) {
+    const QList<Constraint> clst = constraintModel->constraints();
+    for ( const Constraint& c : clst ) {
         createConstraintItem( c );
     }
     q->updateItems();
@@ -522,7 +522,7 @@ void GraphicsScene::removeItem( const QModelIndex& idx )
             // Remove any constraintitems attached
             const QSet<ConstraintGraphicsItem*> clst = QSet<ConstraintGraphicsItem*>::fromList( item->startConstraints() ) +
                                                        QSet<ConstraintGraphicsItem*>::fromList( item->endConstraints() );
-            Q_FOREACH( ConstraintGraphicsItem* citem, clst ) {
+            for ( ConstraintGraphicsItem* citem : clst ) {
                 d->deleteConstraintItem( citem );
             }
         }
@@ -821,7 +821,7 @@ void GraphicsScene::doPrint( QPainter* painter, const QRectF& targetRect,
             textWidth = qMax( item->textWidth(), textWidth );
             item->setPos( 0, rg.start() );
         } while ( ( sidx = rowController()->indexBelow( sidx ) ).isValid() );
-        Q_FOREACH( QGraphicsTextItem* item, textLabels ) {
+        for( QGraphicsTextItem* item : textLabels ) {
             item->setPos( scnRect.left()-textWidth, item->y() );
             item->show();
         }

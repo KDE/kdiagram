@@ -303,7 +303,7 @@ void LeveyJenningsDiagram::calculateMeanAndStandardDeviation() const
 
     qreal sum = 0.0;
     qreal sumSquares = 0.0;
-    Q_FOREACH( qreal value, values )
+    for ( qreal value : qAsConst(values) )
     {
         sum += value;
         sumSquares += value * value;

@@ -479,7 +479,7 @@ void GraphicsScene::insertItem( const QPersistentModelIndex& idx, GraphicsItem* 
         // Create items for constraints
         const QModelIndex sidx = summaryHandlingModel()->mapToSource( idx );
         const QList<Constraint> clst = d->constraintModel->constraintsForIndex( sidx );
-        Q_FOREACH( const Constraint& c,  clst ) {
+        for ( const Constraint& c :  clst ) {
             QModelIndex other_idx;
             if ( c.startIndex() == sidx ) {
                 other_idx = c.endIndex();

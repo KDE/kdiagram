@@ -293,8 +293,8 @@ void GraphicsView::Private::removeConstraintsRecursive( QAbstractProxyModel *sum
     }
     //qDebug() << "removing constraints from"<<index;
     // NOTE: Constraints are mapped to indexes in the summaryModel->sourceModel()
-    QList<Constraint> clst = scene.constraintModel()->constraintsForIndex( summaryModel->mapToSource( index ) );
-    Q_FOREACH( Constraint c, clst ) {
+    const QList<Constraint> clst = scene.constraintModel()->constraintsForIndex( summaryModel->mapToSource( index ) );
+    for ( const Constraint &c : clst ) {
         scene.constraintModel()->removeConstraint( c );
     }
 }

@@ -1021,7 +1021,7 @@ void AbstractDiagram::setSelection(const QRect& rect , QItemSelectionModel::Sele
 {
     const QModelIndexList indexes = d->indexesIn( rect );
     QItemSelection selection;
-    Q_FOREACH( const QModelIndex& index, indexes )
+    for ( const QModelIndex& index : indexes )
     {
         selection.append( QItemSelectionRange( index ) );
     }

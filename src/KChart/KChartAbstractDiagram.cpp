@@ -1031,7 +1031,9 @@ void AbstractDiagram::setSelection(const QRect& rect , QItemSelectionModel::Sele
 QRegion AbstractDiagram::visualRegionForSelection(const QItemSelection &selection) const
 {
     QPolygonF polygon;
-    Q_FOREACH( const QModelIndex& index, selection.indexes() )
+    const auto indexes = selection.indexes();
+    polygon.reserve(indexes.count());
+    for ( const QModelIndex& index : indexes )
     {
         polygon << d->reverseMapper.polygon(index.row(), index.column());
     }

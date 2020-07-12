@@ -144,8 +144,8 @@ bool ConstraintModel::removeConstraint( const Constraint& c )
 
 void ConstraintModel::clear()
 {
-    QList<Constraint> lst = constraints();
-    Q_FOREACH( const Constraint& c, lst ) {
+    const QList<Constraint> lst = constraints();
+    for ( const Constraint& c : lst ) {
         removeConstraint( c );
     }
 }
@@ -176,13 +176,13 @@ QList<Constraint> ConstraintModel::constraintsForIndex( const QModelIndex& idx )
     if ( !idx.isValid() ) {
         // Because of a Qt bug we need to treat this as a special case
         QSet<Constraint> result;
-        Q_FOREACH( const Constraint& c, d->constraints ) {
+        for ( const Constraint& c : qAsConst(d->constraints) ) {
             if ( !c.startIndex().isValid() || !c.endIndex().isValid() ) result.insert( c );
         }
         return result.values();
     } else {
         QList<Constraint> result;
-        Q_FOREACH( const Constraint& c, d->constraints ) {
+        for ( const Constraint& c : qAsConst(d->constraints) ) {
             if ( c.startIndex() == idx || c.endIndex() == idx ) result.push_back( c );
         }
         return result;

@@ -393,7 +393,7 @@ void AbstractDiagram::Private::paintDataValueTextsAndMarkers(
     ctx->painter()->setClipping( false );
 
     if ( paintMarkers && !justCalculateRect ) {
-        Q_FOREACH ( const LabelPaintInfo& info, cache.paintReplay ) {
+        for ( const LabelPaintInfo& info : qAsConst(cache.paintReplay) ) {
             diagram->paintMarker( ctx->painter(), info.index, info.markerPos );
         }
     }
@@ -410,7 +410,7 @@ void AbstractDiagram::Private::paintDataValueTextsAndMarkers(
 
     forgetAlreadyPaintedDataValues();
 
-    Q_FOREACH ( const LabelPaintInfo& info, cache.paintReplay ) {
+    for ( const LabelPaintInfo& info : qAsConst(cache.paintReplay) ) {
         const QPointF pos = info.labelArea.elementAt( 0 );
         paintDataValueText( ctx->painter(), info.attrs, pos, info.isValuePositive,
                             info.value, justCalculateRect, cumulatedBoundingRect );

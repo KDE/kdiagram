@@ -66,7 +66,8 @@ CartesianDiagramDataCompressor::AggregatedDataValueAttributes CartesianDiagramDa
 
     // aggregate attributes from all indices in the same CachePosition as index
     CartesianDiagramDataCompressor::AggregatedDataValueAttributes aggregated;
-    Q_FOREACH( const QModelIndex& neighborIndex, mapToModel( position ) ) {
+    const auto neighborIndexes = mapToModel( position );
+    for ( const QModelIndex& neighborIndex : neighborIndexes ) {
         DataValueAttributes attrs = diagram->dataValueAttributes( neighborIndex );
         // only store visible and unique attributes
         if ( !attrs.isVisible() ) {

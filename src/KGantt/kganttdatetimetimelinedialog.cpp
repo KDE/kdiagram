@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020 Dag Andersen <danders@get2net.dk
+ * Copyright (C) 2020 Dag Andersen <danders@get2net.dk>
  *
  * This file is part of the KGantt library.
  *

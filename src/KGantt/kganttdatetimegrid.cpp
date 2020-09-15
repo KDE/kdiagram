@@ -597,35 +597,60 @@ void DateTimeGrid::Private::paintVerticalLines( QPainter* painter,
 void DateTimeGrid::Private::paintVerticalUserDefinedLines( QPainter* painter,
                                                            const QRectF& sceneRect,
                                                            const QRectF& exposedRect,
-                                                           const DateTimeScaleFormatter* formatter,
                                                            QWidget* widget )
 {
     Q_UNUSED( widget );
-    QDateTime dt = chartXtoDateTime( exposedRect.left() );
-    dt = formatter->currentRangeBegin( dt );
+    DateTimeScaleFormatter *lowerFormatter, *upperFormatter;
+    switch ( scale ) {
+        case ScaleUserDefined:
+            lowerFormatter = lower;
+            upperFormatter = upper;
+            break;
+        default:
+            getAutomaticFormatters( &lowerFormatter, &upperFormatter );
+            break;
+    }
     QPen pen = painter->pen();
     pen.setBrush( QApplication::palette().dark() );
-    pen.setStyle( Qt::DashLine );
-    painter->setPen( pen );
-    for ( qreal x = dateTimeToChartX( dt ); x < exposedRect.right();
-        dt = formatter->nextRangeBegin( dt ),x=dateTimeToChartX( dt ) ) {
-        if ( freeDays.contains( static_cast<Qt::DayOfWeek>( dt.date().dayOfWeek() ) ) ) {
-            QBrush oldBrush = painter->brush();
-            if (freeDaysBrush.style() == Qt::NoBrush)
-                painter->setBrush( widget?widget->palette().midlight()
-                                 :QApplication::palette().midlight() );
-            else
-                painter->setBrush(freeDaysBrush);
 
-          painter->fillRect( QRectF( x, exposedRect.top(), dayWidth, exposedRect.height() ), painter->brush() );
-          painter->setBrush( oldBrush );
+    // Do freeDays, we need to iterate over all dates
+    QDateTime dtLeft = chartXtoDateTime( exposedRect.left() );
+    if ( ! freeDays.isEmpty() ) {
+        QDate lastDate = chartXtoDateTime( exposedRect.right() ).date();
+        for (QDateTime date(dtLeft.date(), QTime()); date.date() <= lastDate; date = date.addDays(1)) {
+            if ( freeDays.contains( static_cast<Qt::DayOfWeek>( date.date().dayOfWeek() ) ) ) {
+                if (freeDaysBrush.style() == Qt::NoBrush) {
+                    painter->setBrush( widget?widget->palette().midlight():QApplication::palette().midlight() );
+                } else {
+                    painter->setBrush(freeDaysBrush);
+                }
+                qreal x = dateTimeToChartX( date );
+                painter->fillRect( QRectF( x, exposedRect.top(), dayWidth, exposedRect.height() ), painter->brush() );
+            }
         }
-              //TODO not the best solution as it might be one paint too much, but i don't know what
-              //causes the test to fail yet, i think it might be a rounding error
-        //if ( x >= exposedRect.left() ) {
-            // FIXME: Also fill area between this and the next vertical line to indicate free days? (Johannes)
-    painter->drawLine( QPointF( x, sceneRect.top() ), QPointF( x, sceneRect.bottom() ) );
-        //}
+    }
+    QDateTime dt = upperFormatter->currentRangeBegin( dtLeft );
+    // Get all upper scale gridline x values to avoid mixing with lower scale gridlines
+    QList<qreal> upperXList;
+    for ( qreal x = dateTimeToChartX( dt ); x < exposedRect.right(); dt = upperFormatter->nextRangeBegin( dt ), x=dateTimeToChartX( dt ) ) {
+        upperXList.append(x);
+    }
+    dt = lowerFormatter->currentRangeBegin( dtLeft );
+    for ( qreal x = dateTimeToChartX( dt ); x < exposedRect.right();
+        dt = lowerFormatter->nextRangeBegin( dt ),x=dateTimeToChartX( dt ) )
+    {
+        if (!upperXList.contains(x)) {
+            pen.setStyle( Qt::DashLine );
+            painter->setPen( pen );
+            painter->drawLine( QPointF( x, sceneRect.top() ), QPointF( x, sceneRect.bottom() ) );
+        }
+    }
+    dt = upperFormatter->currentRangeBegin( dtLeft );
+    for ( qreal x : upperXList )
+    {
+        pen.setStyle( Qt::SolidLine );
+        painter->setPen( pen );
+        painter->drawLine( QPointF( x, sceneRect.top() ), QPointF( x, sceneRect.bottom() ) );
     }
 }
 
@@ -654,7 +679,6 @@ void DateTimeGrid::paintGrid( QPainter* painter,
                               AbstractRowController* rowController,
                               QWidget* widget )
 {
-    // TODO: Support hours and weeks
     switch ( scale() ) {
     case ScaleHour:
     case ScaleDay:
@@ -662,27 +686,9 @@ void DateTimeGrid::paintGrid( QPainter* painter,
     case ScaleMonth:
         d->paintVerticalLines( painter, sceneRect, exposedRect, widget, d->headerTypeForScale( scale() ) );
         break;
-    case ScaleAuto: {
-        const qreal tabw = QApplication::fontMetrics().boundingRect( QLatin1String( "XXXXX" ) ).width();
-        const qreal dayw = dayWidth();
-        if ( dayw > 24*60*60*tabw ) {
-
-            d->paintVerticalUserDefinedLines( painter, sceneRect, exposedRect, &d->minute_lower, widget );
-        } else if ( dayw > 24*60*tabw ) {
-            d->paintVerticalLines( painter, sceneRect, exposedRect, widget, Private::HeaderHour );
-        } else if ( dayw > 24*tabw ) {
-        d->paintVerticalLines( painter, sceneRect, exposedRect, widget, Private::HeaderDay );
-        } else if ( dayw > tabw ) {
-            d->paintVerticalUserDefinedLines( painter, sceneRect, exposedRect, &d->week_lower, widget );
-        } else if ( 4*dayw > tabw ) {
-            d->paintVerticalUserDefinedLines( painter, sceneRect, exposedRect, &d->month_lower, widget );
-        } else {
-            d->paintVerticalUserDefinedLines( painter, sceneRect, exposedRect, &d->year_lower, widget );
-        }
-        break;
-    }
+    case ScaleAuto:
     case ScaleUserDefined:
-        d->paintVerticalUserDefinedLines( painter, sceneRect, exposedRect, d->lower, widget );
+        d->paintVerticalUserDefinedLines( painter, sceneRect, exposedRect, widget );
         break;
     }
     if ( rowController ) {

@@ -122,7 +122,6 @@ namespace KGantt {
         void paintVerticalUserDefinedLines( QPainter* painter,
                                             const QRectF& sceneRect,
                                             const QRectF& exposedRect,
-                                            const DateTimeScaleFormatter* formatter,
                                             QWidget* widget );
 
         Qt::PenStyle gridLinePenStyle( QDateTime dt, HeaderType headerType ) const;

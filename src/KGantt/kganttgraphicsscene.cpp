@@ -320,6 +320,18 @@ AbstractRowController* GraphicsScene::rowController() const
     return d->rowController;
 }
 
+AbstractGrid *GraphicsScene::takeGrid()
+{
+    AbstractGrid *grid = d->grid;
+    grid->disconnect( this );
+    d->grid = nullptr;
+    if (grid) {
+        // revert to the default_grid
+        connect( &d->default_grid, SIGNAL(gridChanged()), this, SLOT(slotGridChanged()) );
+    }
+    return grid;
+}
+
 void GraphicsScene::setGrid( AbstractGrid* grid )
 {
     QAbstractItemModel* model = nullptr;

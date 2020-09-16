@@ -93,9 +93,27 @@ namespace KGantt {
         void setRowController( AbstractRowController* rc );
         AbstractRowController* rowController() const;
 
+        /**
+         * Set the grid to @p grid.
+         * The current grid (if set) is deleted.
+         * If @p grid is nullptr, the scene reverts to use the default_grid
+         */
         void setGrid( AbstractGrid* grid );
+        /**
+         * @return the grid set with setGrid().
+         * Note: Returns nullptr if no grid has been set.
+         */
         AbstractGrid* grid() const;
+        /**
+         * @return the current grid.
+         */
         const AbstractGrid *getGrid() const;
+        /**
+         * @return the grid set with setGrid()
+         * Note: Returns nullptr if no grid has been set.
+         * The scene reverts to use the default_grid.
+         */
+        AbstractGrid *takeGrid();
 
         bool isReadOnly() const;
 

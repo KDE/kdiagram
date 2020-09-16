@@ -516,11 +516,7 @@ AbstractGrid* GraphicsView::grid() const
 
 AbstractGrid* GraphicsView::takeGrid()
 {
-    AbstractGrid *grid = d->scene.grid();
-    if ( grid ) {
-        d->scene.setGrid( nullptr) ;
-    }
-    return grid;
+    return d->scene.takeGrid();
 }
 
 

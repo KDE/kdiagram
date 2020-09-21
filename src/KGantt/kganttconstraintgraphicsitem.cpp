@@ -24,6 +24,7 @@
 #include "kganttsummaryhandlingproxymodel.h"
 
 #include <QPainter>
+#include <QApplication>
 #include <QDebug>
 
 using namespace KGantt;
@@ -71,7 +72,13 @@ void ConstraintGraphicsItem::paint( QPainter* painter, const QStyleOptionGraphic
 {
     Q_UNUSED( widget );
     //qDebug() << "ConstraintGraphicsItem::paint(...), c=" << m_constraint;
-    scene()->itemDelegate()->paintConstraintItem( painter, *option, m_start, m_end, m_constraint );
+    QStyleOptionGraphicsItem opt = *option;
+    if (widget) {
+        opt.palette = widget->palette();
+    }else {
+        opt.palette = QApplication::palette();
+    }
+    scene()->itemDelegate()->paintConstraintItem( painter, opt, m_start, m_end, m_constraint );
 }
 
 QString ConstraintGraphicsItem::ganttToolTip() const

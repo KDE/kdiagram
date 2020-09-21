@@ -37,6 +37,7 @@
 #include <QAbstractProxyModel>
 #include <QGraphicsSceneMouseEvent>
 #include <QGraphicsLineItem>
+#include <QApplication>
 
 #include <QDebug>
 
@@ -104,6 +105,7 @@ StyleOptionGanttItem GraphicsItem::getStyleOption() const
         //qDebug()<<"GraphicsItem::getStyleOption: Invalid index";
         return opt;
     }
+    opt.palette = QApplication::palette();
     opt.itemRect = rect();
     opt.boundingRect = boundingRect();
     QVariant tp = m_index.model()->data( m_index, TextPositionRole );
@@ -178,6 +180,11 @@ void GraphicsItem::paint( QPainter* painter, const QStyleOptionGraphicsItem* opt
         StyleOptionGanttItem opt = getStyleOption();
         *static_cast<QStyleOption*>(&opt) = *static_cast<const QStyleOption*>( option );
         //opt.fontMetrics = painter->fontMetrics();
+        if (widget) {
+            opt.palette = widget->palette();
+        } else {
+            opt.palette = QApplication::palette();
+        }
         scene()->itemDelegate()->paintGanttItem( painter, opt, index() );
     }
 }

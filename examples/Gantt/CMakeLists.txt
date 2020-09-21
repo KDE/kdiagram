@@ -6,3 +6,4 @@ remove_definitions(
 
 add_subdirectory(legend_example)
 add_subdirectory(project)
+add_subdirectory(palette)

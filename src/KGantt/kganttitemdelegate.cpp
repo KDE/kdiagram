@@ -82,14 +82,14 @@ ItemDelegate::Private::Private()
     defaultpen[TypeEvent]   = pen;
 }
 
-QPen ItemDelegate::Private::constraintPen( const QPointF& start, const QPointF& end, const Constraint& constraint )
+QPen ItemDelegate::Private::constraintPen( const QPointF& start, const QPointF& end, const Constraint& constraint, const QStyleOptionGraphicsItem& opt )
 {
     QPen pen;
     QVariant dataPen;
 
     // Use default pens...
     if ( start.x() <= end.x() ) {
-        pen = QPen( Qt::black );
+        pen = QPen( opt.palette.windowText().color() );
         dataPen = constraint.data( Constraint::ValidConstraintPen );
     } else {
         pen = QPen( Qt::red );
@@ -339,6 +339,9 @@ void ItemDelegate::paintGanttItem( QPainter* painter,
         case StyleOptionGanttItem::Hidden: drawText = false; break;
     }
     if ( drawText ) {
+        pen = painter->pen();
+        pen.setColor(opt.palette.text().color());
+        painter->setPen(pen);
         painter->drawText( boundingRect, ta | Qt::AlignVCenter, txt );
     }
 
@@ -395,7 +398,7 @@ void ItemDelegate::paintFinishStartConstraint( QPainter* painter, const QStyleOp
 {
     Q_UNUSED( opt );
 
-    const QPen pen = d->constraintPen( start, end, constraint );
+    const QPen pen = d->constraintPen( start, end, constraint, opt );
 
     painter->setPen( pen );
     painter->setBrush( pen.color() );
@@ -441,7 +444,7 @@ void ItemDelegate::paintFinishFinishConstraint( QPainter* painter, const QStyleO
 {
     Q_UNUSED( opt );
 
-    const QPen pen = d->constraintPen( start, end, constraint );
+    const QPen pen = d->constraintPen( start, end, constraint, opt );
 
     painter->setPen( pen );
     painter->setBrush( pen.color() );
@@ -487,7 +490,7 @@ void ItemDelegate::paintStartStartConstraint( QPainter* painter, const QStyleOpt
 {
     Q_UNUSED( opt );
 
-    const QPen pen = d->constraintPen( start, end, constraint );
+    const QPen pen = d->constraintPen( start, end, constraint, opt );
 
     painter->setPen( pen );
     painter->setBrush( pen.color() );
@@ -533,7 +536,7 @@ void ItemDelegate::paintStartFinishConstraint( QPainter* painter, const QStyleOp
 {
     Q_UNUSED( opt );
 
-    const QPen pen = d->constraintPen( start, end, constraint );
+    const QPen pen = d->constraintPen( start, end, constraint, opt);
 
     painter->setPen( pen );
     painter->setBrush( pen.color() );

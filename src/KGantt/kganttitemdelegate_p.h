@@ -29,7 +29,7 @@ namespace KGantt {
     public:
         Private();
 
-        QPen constraintPen( const QPointF& start, const QPointF& end, const Constraint& constraint );
+        QPen constraintPen( const QPointF& start, const QPointF& end, const Constraint& constraint, const QStyleOptionGraphicsItem& opt  );
 
         QHash<ItemType, QBrush> defaultbrush;
         QHash<ItemType, QPen> defaultpen;

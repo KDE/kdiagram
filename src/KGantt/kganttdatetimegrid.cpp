@@ -721,6 +721,7 @@ int DateTimeGrid::Private::tabHeight( const QString& txt, QWidget* widget ) cons
 {
     QStyleOptionHeader opt;
     if ( widget ) opt.initFrom( widget );
+    else opt.palette = QApplication::palette();
     opt.text = txt;
     QStyle* style;
     if ( widget ) style = widget->style();
@@ -824,6 +825,7 @@ void DateTimeGrid::paintUserDefinedHeader( QPainter* painter,
 
         QStyleOptionHeader opt;
         if ( widget ) opt.init( widget );
+        else opt.palette = QApplication::palette();
         opt.rect = QRectF( x - offset+1, headerRect.top(), qMax<qreal>( 1., nextx-x-1 ), headerRect.height() ).toAlignedRect();
         opt.textAlignment = formatter->alignment();
         opt.text = formatter->text( dt );
@@ -880,6 +882,7 @@ void DateTimeGrid::Private::paintHeader( QPainter* painter,
           x = dateTimeToChartX( dt ) ) {
         QStyleOptionHeader opt;
         if ( widget ) opt.init( widget );
+        else opt.palette = QApplication::palette();
         opt.rect = formatter->textRect( x, offset, dayWidth, headerRect, dt );
         opt.text = formatter->format( dt );
         opt.textAlignment = Qt::AlignCenter;

@@ -43,8 +43,6 @@ namespace KChart {
         Q_DISABLE_COPY( CartesianAxis )
         KCHART_DECLARE_PRIVATE_DERIVED_PARENT( CartesianAxis, AbstractDiagram* )
 
-        Q_ENUMS(Position)
-
     public:
         enum Position {
             Bottom,
@@ -52,6 +50,7 @@ namespace KChart {
             Right,
             Left
         };
+        Q_ENUM(Position)
 
         /**
           * C'tor of the class for cartesian axes.

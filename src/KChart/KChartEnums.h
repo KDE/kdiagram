@@ -37,9 +37,6 @@
 class KCHART_EXPORT KChartEnums :public QObject
 {
     Q_OBJECT
-    Q_ENUMS( TextLayoutPolicy )
-    Q_ENUMS( AreaName )
-    Q_ENUMS( PositionFlag )
 
 public:
     /**
@@ -94,7 +91,10 @@ public:
         GranularitySequence_10_50,
         GranularitySequence_25_50,
         GranularitySequence_125_25,
-        GranularitySequenceIrregular };
+        GranularitySequenceIrregular
+    };
+    Q_ENUM(GranularitySequence)
+
 
     /**
       Converts the specified granularity sequence enum to a
@@ -159,7 +159,9 @@ public:
         LayoutPolicyRotate,
         LayoutPolicyShiftVertically,
         LayoutPolicyShiftHorizontally,
-        LayoutPolicyShrinkFontSize };
+        LayoutPolicyShrinkFontSize
+    };
+    Q_ENUM( TextLayoutPolicy )
 
     /**
       Converts the specified text layout policy enum to a
@@ -199,6 +201,7 @@ public:
         PositionWest      = 9,
         PositionFloating  =10
     };
+    Q_ENUM( PositionValue )
 
 
     /**
@@ -216,11 +219,14 @@ public:
 
       \sa KChart::Measure::setCalculationMode
       */
-    enum MeasureCalculationMode { MeasureCalculationModeAbsolute,
+    enum MeasureCalculationMode {
+        MeasureCalculationModeAbsolute,
         MeasureCalculationModeRelative,
         MeasureCalculationModeAuto,
         MeasureCalculationModeAutoArea,
-        MeasureCalculationModeAutoOrientation };
+        MeasureCalculationModeAutoOrientation
+    };
+    Q_ENUM( MeasureCalculationMode )
 
     /**
       Converts the specified measure calculation mode enum to a
@@ -284,11 +290,14 @@ public:
 
       \sa KChart::Measure::setOrientationMode
       */
-    enum MeasureOrientation { MeasureOrientationAuto,
+    enum MeasureOrientation {
+        MeasureOrientationAuto,
         MeasureOrientationHorizontal,
         MeasureOrientationVertical,
         MeasureOrientationMinimum,
-        MeasureOrientationMaximum };
+        MeasureOrientationMaximum
+    };
+    Q_ENUM( MeasureOrientation )
 
     /**
       Converts the specified measure orientation enum to a

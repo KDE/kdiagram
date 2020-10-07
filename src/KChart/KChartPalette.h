@@ -81,8 +81,7 @@ public:
     void removeBrush( int position );
 
 Q_SIGNALS:
-    /**  Emitted whenever the palette changes. Views listen to this and
-     * repaing.  */
+    /**  Emitted whenever the palette changes. Views listen to this and repaints. */
     void changed();
 
 private:

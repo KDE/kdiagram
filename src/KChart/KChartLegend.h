@@ -40,7 +40,7 @@ typedef QList<const AbstractDiagram*> ConstDiagramList;
   * Legend is drawn on chart level, not per diagram, but you can have more than one
   * legend per chart, using KChart::Chart::addLegend().
   *
-  * \note Legend is different from all other classes ofd KChart, since it can be
+  * \note Legend is different from all other classes of KChart, since it can be
   * displayed outside of the Chart's area.  If you want to, you can embedd the legend
   * into your own widget, or into another part of a bigger layout, into which you might
   * have inserted the Chart.

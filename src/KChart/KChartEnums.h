@@ -38,8 +38,7 @@ class KCHART_EXPORT KChartEnums :public QObject
 {
     Q_OBJECT
     Q_ENUMS( TextLayoutPolicy )
-    Q_ENUMS( AreaName )
-    Q_ENUMS( PositionFlag )
+    Q_ENUMS( Position )
 
 public:
     /**

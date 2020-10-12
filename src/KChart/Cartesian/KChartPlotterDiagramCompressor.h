@@ -36,10 +36,11 @@ namespace KChart
 class PlotterDiagramCompressor : public QObject
 {
     Q_OBJECT
-    Q_ENUMS( CompressionMode )
 public:
 
     enum CompressionMode{ SLOPE = 0, DISTANCE, BOTH };
+    Q_ENUM( CompressionMode )
+
     class DataPoint {
     public:
         DataPoint()

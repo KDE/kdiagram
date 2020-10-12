@@ -37,8 +37,6 @@
 class KCHART_EXPORT KChartEnums :public QObject
 {
     Q_OBJECT
-    Q_ENUMS( TextLayoutPolicy )
-    Q_ENUMS( Position )
 
 public:
     /**
@@ -154,11 +152,14 @@ public:
 
       \sa KChartParams::setPrintDataValues
       */
-    enum TextLayoutPolicy { LayoutJustOverwrite,
+    enum TextLayoutPolicy {
+        LayoutJustOverwrite,
         LayoutPolicyRotate,
         LayoutPolicyShiftVertically,
         LayoutPolicyShiftHorizontally,
-        LayoutPolicyShrinkFontSize };
+        LayoutPolicyShrinkFontSize
+    };
+    Q_ENUM( TextLayoutPolicy )
 
     /**
       Converts the specified text layout policy enum to a
@@ -198,7 +199,7 @@ public:
         PositionWest      = 9,
         PositionFloating  =10
     };
-
+    Q_ENUM( PositionValue )
 
     /**
       Measure calculation mode: the way how the absolute value of a KChart::Measure is determined during KChart's internal geometry calculation time.

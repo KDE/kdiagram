@@ -37,7 +37,6 @@ class KCHART_EXPORT Plotter : public AbstractCartesianDiagram
     Q_OBJECT
 
     Q_DISABLE_COPY( Plotter )
-    Q_ENUMS( CompressionMode )
 
     KCHART_DECLARE_DERIVED_DIAGRAM( Plotter, CartesianCoordinatePlane )
     Q_PROPERTY( CompressionMode useDataCompression READ useDataCompression WRITE setUseDataCompression )
@@ -47,6 +46,8 @@ public:
     // SLOPE enables a compression based on minmal slope changes
     // DISTANCE is still buggy and can fail, same for BOTH, NONE is the default mode
     enum CompressionMode{ SLOPE, DISTANCE, BOTH, NONE };
+    Q_ENUM( CompressionMode )
+
     class PlotterType;
     friend class PlotterType;
 

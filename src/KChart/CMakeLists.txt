@@ -14,6 +14,7 @@ include_directories(
 )
 
 set( kchart_LIB_SRCS
+    KChartEnums.cpp
     KChartMeasure.cpp
     KChartAbstractCoordinatePlane.cpp
     KChartChart.cpp
@@ -123,7 +124,6 @@ qt5_add_resources(kchart_LIB_SRCS
 
 ecm_create_qm_loader(kchart_LIB_SRCS kchart_qt)
 
-qt5_wrap_cpp(kchart_LIB_SRCS KChartEnums.h)
 
 add_library(KChart ${kchart_LIB_SRCS})
 

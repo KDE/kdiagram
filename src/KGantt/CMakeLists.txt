@@ -20,6 +20,7 @@ endif()
 
 set( kgantt_LIB_SRCS
     kganttglobal.cpp
+    kganttprintingcontext.cpp
     kganttview.cpp
     kganttstyleoptionganttitem.cpp
     kganttgraphicsview.cpp
@@ -89,6 +90,7 @@ install( TARGETS KGantt
 ecm_generate_headers(kgantt_LIB_HEADERS
     HEADER_NAMES
     KGanttGlobal
+    KGanttPrintingContext
     KGanttView
     KGanttStyleOptionGanttItem
     KGanttGraphicsView

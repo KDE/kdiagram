@@ -49,6 +49,7 @@ namespace KGantt {
     class ConstraintModel;
     class ConstraintGraphicsItem;
     class ItemDelegate;
+    class PrintingContext;
 
     class KGANTT_EXPORT GraphicsScene : public QGraphicsScene {
         Q_OBJECT
@@ -177,6 +178,14 @@ namespace KGantt {
          */
         void print( QPainter* painter, qreal start, qreal end, const QRectF& target = QRectF(), bool drawRowLabels=true, bool drawColumnLabels = true );
 
+        /*! Print the Gantt chart on the \a printer in accordance with the PrintingContext \a context
+         * 
+         * \see PrintingContext
+         * 
+         * \since 2.7.1
+         */
+        void printDiagram( QPrinter *printer, const PrintingContext &context );
+
     Q_SIGNALS:
         void gridChanged();
 
@@ -212,6 +221,8 @@ namespace KGantt {
         void doPrint( QPainter* painter, const QRectF& targetRect,
                       qreal start, qreal end,
                       QPrinter* printer, bool drawRowLabels, bool drawColumnLabels );
+
+        void doPrintScene( QPrinter *printer, QPainter *painter, const QRectF& targetRect, const PrintingContext &context );
     };
 }
 

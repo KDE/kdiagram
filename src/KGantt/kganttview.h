@@ -23,6 +23,7 @@
 #include <QWidget>
 #include <QModelIndex>
 #include "kganttglobal.h"
+#include "kganttprintingcontext.h"
 
 QT_BEGIN_NAMESPACE
 class QAbstractItemModel;
@@ -212,6 +213,14 @@ namespace KGantt {
          */
         void print( QPainter* painter, qreal start, qreal end,
                     const QRectF& target = QRectF(), bool drawRowLabels=true, bool drawColumnLabels=true);
+
+        /*! Print the Gantt chart on the \a printer in accordance with the PrintingContext \a context
+         * 
+         * \see PrintingContext
+         * 
+         * \since 2.8.0
+         */
+        void printDiagram( QPrinter *printer, const PrintingContext &context = PrintingContext() );
 
     public Q_SLOTS:
         /*! Sets the QAbstractItemModel to be displayed in this view

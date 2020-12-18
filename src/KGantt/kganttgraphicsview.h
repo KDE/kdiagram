@@ -38,6 +38,7 @@ namespace KGantt {
     class GraphicsItem;
     class ConstraintModel;
     class ItemDelegate;
+    class PrintingContext;
 
     /*!\class KGantt::GraphicsView kganttgraphicsview.h KGanttGraphicsView
      * \ingroup KGantt
@@ -230,6 +231,14 @@ namespace KGantt {
          */
         void print( QPainter* painter, qreal start, qreal end,
                     const QRectF& target = QRectF(), bool drawRowLabels = true, bool drawColumnLabels = true );
+
+        /*! Print the Gantt chart on the \a printer in accordance with the PrintingContext \a context
+         * 
+         * \see PrintingContext
+         * 
+         * \since 2.7.1
+         */
+        void printDiagram( QPrinter *printer, const PrintingContext &context );
 
     public Q_SLOTS:
         /*! Sets the model to be displayed in this view to

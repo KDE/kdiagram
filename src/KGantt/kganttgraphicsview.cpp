@@ -693,5 +693,9 @@ void GraphicsView::print( QPainter* painter, qreal start, qreal end,
   d->scene.print(painter, start, end, targetRect, drawRowLabels, drawColumnLabels);
 }
 
+void GraphicsView::printDiagram( QPrinter *printer, const PrintingContext &context )
+{
+    d->scene.printDiagram( printer, context );
+}
 
 #include "moc_kganttgraphicsview.cpp"

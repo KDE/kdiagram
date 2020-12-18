@@ -525,6 +525,10 @@ void View::print( QPainter* painter, qreal start, qreal end, const QRectF& targe
               drawColumnLabels);
 }
 
+void View::printDiagram( QPrinter *printer, const PrintingContext &context )
+{
+    graphicsView()->printDiagram( printer, context );
+}
 
 #include "moc_kganttview.cpp"
 

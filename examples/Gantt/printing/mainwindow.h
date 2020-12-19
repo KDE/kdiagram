@@ -48,7 +48,7 @@ public:
     QPushButton *m_fileButton;
     QCheckBox *m_rowLabels;
     QCheckBox *m_columnLabels;
-    QRadioButton *m_noScaling;
+    QRadioButton *m_noFitting;
     QRadioButton *m_fitSingle;
     QRadioButton *m_fitVertical;
     QCheckBox *m_useStartTime;

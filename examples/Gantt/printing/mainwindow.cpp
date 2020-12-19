@@ -277,15 +277,15 @@ SavePdfDialog::SavePdfDialog(QWidget *parent)
     m_columnLabels->setChecked(true);
     l->addWidget(m_columnLabels);
 
-    m_noScaling = new QRadioButton(tr("No Scaling"), this);
-    m_noScaling->setChecked(true);
-    l->addWidget(m_noScaling);
+    m_noFitting = new QRadioButton(tr("No Fitting"), this);
+    m_noFitting->setChecked(true);
+    l->addWidget(m_noFitting);
 
     m_fitSingle = new QRadioButton(tr("Fit Single Page"), this);
     m_fitSingle->setChecked(true);
     l->addWidget(m_fitSingle);
 
-    m_fitVertical = new QRadioButton(tr("Fit Vertical"), this);
+    m_fitVertical = new QRadioButton(tr("Fit Page Height"), this);
     m_fitVertical->setChecked(true);
     l->addWidget(m_fitVertical);
 
@@ -325,11 +325,11 @@ bool MainWindow::optionsDialog(bool requireFile)
     dialog.m_fileLabel->setVisible(requireFile);
     dialog.m_fileEdit->setVisible(requireFile);
     dialog.m_fileButton->setVisible(requireFile);
-    dialog.m_noScaling->setChecked(true);
-    if (m_ctx.scaling() & KGantt::PrintingContext::FitSingle) {
+    dialog.m_noFitting->setChecked(true);
+    if (m_ctx.fitting() & KGantt::PrintingContext::FitSinglePage) {
         dialog.m_fitSingle->setChecked(true);
     }
-    if (m_ctx.scaling() & KGantt::PrintingContext::FitVertical) {
+    if (m_ctx.fitting() & KGantt::PrintingContext::FitPageHeight) {
         dialog.m_fitVertical->setChecked(true);
     }
     if (!m_startTime.isValid()) {
@@ -353,11 +353,11 @@ bool MainWindow::optionsDialog(bool requireFile)
     m_endTime = dialog.m_endTime->dateTime();
 
     if (dialog.m_fitSingle->isChecked()) {
-        m_ctx.setScaling(KGantt::PrintingContext::FitSingle);
+        m_ctx.setFitting(KGantt::PrintingContext::FitSinglePage);
     } else if (dialog.m_fitVertical->isChecked()) {
-        m_ctx.setScaling(KGantt::PrintingContext::FitVertical);
+        m_ctx.setFitting(KGantt::PrintingContext::FitPageHeight);
     } else {
-        m_ctx.setScaling(KGantt::PrintingContext::NoScaling);
+        m_ctx.setFitting(KGantt::PrintingContext::NoFitting);
     }
     m_ctx.setDrawRowLabels(dialog.m_rowLabels->isChecked());
     m_ctx.setDrawColumnLabels(dialog.m_columnLabels->isChecked());

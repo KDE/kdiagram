@@ -24,21 +24,18 @@ namespace KGantt
 
 class Q_DECL_HIDDEN PrintingContext::Private {
 public:
-    PrintingContext::Scaling scaling;
+    PrintingContext::Fitting fitting;
+    QRectF sceneRect;
     bool drawRowLabels;
     bool drawColumnLabels;
-    qreal start;
-    qreal end;
 };
 
 PrintingContext::PrintingContext()
     : d(new Private())
 {
-    d->scaling = NoScaling;
+    d->fitting = NoFitting;
     d->drawRowLabels= true;
-    d->drawColumnLabels =true;
-    d->start = 0.0;
-    d->end = 0.0;
+    d->drawColumnLabels = true;
 }
 
 PrintingContext::PrintingContext(const PrintingContext &other)
@@ -52,14 +49,24 @@ PrintingContext::~PrintingContext()
     delete d;
 }
 
-PrintingContext::Scaling PrintingContext::scaling() const
+QRectF PrintingContext::sceneRect() const
 {
-    return d->scaling;
+    return d->sceneRect;
 }
 
-void PrintingContext::setScaling(const PrintingContext::Scaling &value)
+void PrintingContext::setSceneRect(const QRectF &rect)
 {
-    d->scaling = value;
+    d->sceneRect = rect;
+}
+
+PrintingContext::Fitting PrintingContext::fitting() const
+{
+    return d->fitting;
+}
+
+void PrintingContext::setFitting(const PrintingContext::Fitting &value)
+{
+    d->fitting = value;
 }
 
 bool PrintingContext::drawRowLabels() const
@@ -84,33 +91,53 @@ void PrintingContext::setDrawColumnLabels(bool state)
 
 qreal PrintingContext::start() const
 {
-    return d->start;
+    return d->sceneRect.left();
 }
 
 void PrintingContext::setStart(qreal start)
 {
-    d->start = start;
+    d->sceneRect.setLeft(start);
+}
+
+qreal PrintingContext::top() const
+{
+    return d->sceneRect.top();
+}
+
+void PrintingContext::setTop(qreal top)
+{
+    d->sceneRect.setTop(top);
 }
 
 qreal PrintingContext::end() const
 {
-    return d->end;
+    return d->sceneRect.right();
 }
 
 void PrintingContext::setEnd(qreal end)
 {
-    d->end = end;
+    d->sceneRect.setRight(end);
+}
+
+qreal PrintingContext::bottom() const
+{
+    return d->sceneRect.bottom();
+}
+
+void PrintingContext::setBottom(qreal bottom)
+{
+    d->sceneRect.setBottom(bottom);
 }
 
 }
 
 #ifndef QT_NO_DEBUG_STREAM
-QDebug operator<<( QDebug dbg, const KGantt::PrintingContext::Scaling &s)
+QDebug operator<<( QDebug dbg, const KGantt::PrintingContext::Fitting &f)
 {
-    switch (s) {
-        case KGantt::PrintingContext::NoScaling: dbg << "Scaling::NoScaling"; break;
-        case KGantt::PrintingContext::FitSingle: dbg << "Scaling::FitSingle"; break;
-        case KGantt::PrintingContext::FitVertical: dbg << "Scaling::FitVertical"; break;
+    switch (f) {
+        case KGantt::PrintingContext::NoFitting: dbg << "Fitting::NoFitting"; break;
+        case KGantt::PrintingContext::FitSinglePage: dbg << "Fitting::FitSinglePage"; break;
+        case KGantt::PrintingContext::FitPageHeight: dbg << "Fitting::FitPageHeight"; break;
         default: break;
     }
     return dbg;
@@ -118,10 +145,10 @@ QDebug operator<<( QDebug dbg, const KGantt::PrintingContext::Scaling &s)
 QDebug operator<<( QDebug dbg, const KGantt::PrintingContext &ctx)
 {
     dbg << "KGantt::PrintingContext[";
-    dbg << ctx.scaling();
+    dbg << ctx.fitting();
     dbg << "Rows:" << ctx.drawRowLabels();
     dbg << "Cols:" << ctx.drawColumnLabels();
-    dbg << "range:" << ctx.start() << ',' << ctx.end();
+    dbg << ctx.sceneRect();
     dbg << ']';
     return dbg;
 }

@@ -42,21 +42,31 @@ namespace KGantt
         PrintingContext(const PrintingContext &other);
         ~PrintingContext();
 
-        /*! \enum KGantt::PrintingContext::Scaling
-         * Specifies how the diagram shall be printed
+        /*! \enum KGantt::PrintingContext::Fitting
+         * Specifies how the diagram shall be fitted
+         * to the printed pages.
          */
-        enum Scaling {
-            NoScaling = 1,   ///< No scaling, print as many pages as needed
-            FitSingle = 2,   ///< Scale diagram to fit on a single page
-            FitVertical = 4  ///< Scale diagram height to fit one page
+        enum Fitting {
+            NoFitting = 1,     ///< No scaling, print as many pages as needed
+            FitSinglePage = 2, ///< Scale diagram to fit on a single page
+            FitPageHeight = 4  ///< Scale diagram height to fit one page
         };
+
+        /*! \return scene rect
+         */
+        QRectF sceneRect() const;
+
+        /*! Set sceneRect to \a rect
+         * Setting a  null() rect means the whole diagram (default).
+         */
+        void setSceneRect(const QRectF &rect);
 
         /*! \return print scaling
          */
-        Scaling scaling() const;
+        Fitting fitting() const;
         /*! Set print scaling to \a value
          */
-        void setScaling(const Scaling &value);
+        void setFitting(const Fitting &value);
 
         /*! \return if the the row labels shall be printed 
          */
@@ -79,7 +89,7 @@ namespace KGantt
          */
         qreal start() const;
 
-        /*! Set where to start printing to @p start
+        /*! Set left position to start printing to @p start
          * 
          * The default is 0.0, meaning the start of the chart.
          * 
@@ -89,11 +99,19 @@ namespace KGantt
          */
         void setStart(qreal start);
 
+        /*! \return top position in the diagram to start printing
+         */
+        qreal top() const;
+
+        /*! Set the top position to start printing to @p top
+         */
+        void setTop(qreal top);
+
         /*! \return position in the diagram to end printing
          */
         qreal end() const;
 
-        /*! Set where to end printing to @p end
+        /*! Set right position to end printing to @p end
          * 
          * The default is 0.0, meaning the end of the chart.
          * 
@@ -103,6 +121,14 @@ namespace KGantt
          */
         void setEnd(qreal end);
 
+        /*! \return bottom position in the diagram to end printing
+         */
+        qreal bottom() const;
+
+        /*! Set bottom position to end printing to @p end
+         */
+        void setBottom(qreal bottom);
+
     private:
         class Private;
         Private *d;
@@ -111,7 +137,7 @@ namespace KGantt
 } // namespace KGantt
 
 #ifndef QT_NO_DEBUG_STREAM
-QDebug KGANTT_EXPORT operator<<( QDebug dbg, const KGantt::PrintingContext::Scaling &s);
+QDebug KGANTT_EXPORT operator<<( QDebug dbg, const KGantt::PrintingContext::Fitting &f);
 QDebug KGANTT_EXPORT operator<<( QDebug dbg, const KGantt::PrintingContext &ctx);
 #endif
 

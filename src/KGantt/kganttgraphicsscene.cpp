@@ -798,7 +798,7 @@ void GraphicsScene::doPrint( QPainter* painter, const QRectF& targetRect,
 {
     assert( painter );
     PrintingContext ctx;
-    ctx.setScaling(PrintingContext::FitVertical); // keep old behavior (?)
+    ctx.setFitting(PrintingContext::FitPageHeight); // keep old behavior (?)
     ctx.setDrawRowLabels( drawRowLabels );
     ctx.setDrawColumnLabels( drawColumnLabels );
     ctx.setStart( start );
@@ -877,15 +877,15 @@ void GraphicsScene::doPrintScene( QPrinter *printer, QPainter *painter, const QR
 
     int horPages = 1;
     int vertPages = 1;
-    qreal scaleFactor = targetRect.height() / scnRect.height(); // FitVertical (default)
+    qreal scaleFactor = targetRect.height() / scnRect.height(); // FitPageHeight (default)
     if (printer) {
-        if (context.scaling() & PrintingContext::NoScaling) {
+        if (context.fitting() & PrintingContext::NoFitting) {
             scaleFactor = printer->logicalDpiX() / views().at(0)->logicalDpiX(); // always have only one view
             vertPages = qRound((scnRect.height() * scaleFactor / targetRect.height()) + 0.5);
             horPages = qRound((sceneWidth * scaleFactor / targetRect.width()) + 0.5);
-        } else if (context.scaling() & PrintingContext::FitSingle) {
+        } else if (context.fitting() & PrintingContext::FitSinglePage) {
             scaleFactor = std::min(scaleFactor, targetRect.width() / scnRect.width());
-        } else /*FitVertical (default)*/ {
+        } else /*FitPageHeight (default)*/ {
             horPages = qRound((sceneWidth * scaleFactor / targetRect.width()) + 0.5);
         }
     } else {

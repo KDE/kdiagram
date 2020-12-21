@@ -899,7 +899,6 @@ void GraphicsScene::doPrintScene( QPrinter *printer, QPainter *painter, const QR
 
     // qInfo()<<Q_FUNC_INFO<<'s'<<scaleFactor<<"pages="<<((sceneWidth * scaleFactor)/targetRect.width())<<'h'<<horPages<<'v'<<vertPages<<'s'<<scnRect<<'t'<<(targetRect.size()/scaleFactor);
     qreal yoffset = scnRect.top();
-    int pagecount = 0;
     for (int vpage = 0; vpage < vertPages && yoffset < scnRect.bottom(); ++vpage) {
         // qInfo()<<Q_FUNC_INFO<<"print vertical page"<<vpage;
         // Disable painting of noInformation during labels printing

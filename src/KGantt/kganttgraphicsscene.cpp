@@ -784,8 +784,8 @@ void GraphicsScene::printDiagram( QPrinter *printer, const PrintingContext &cont
     Q_UNUSED( context );
 #else
     PrintingContext ctx( context );
-    if (ctx.end() == 0.0) {
-        ctx.setEnd(sceneRect().right());
+    if (ctx.right() == 0.0) {
+        ctx.setRight(sceneRect().right());
     }
     QPainter painter( printer );
     doPrintScene( printer, &painter, printer->pageRect(), ctx );
@@ -801,8 +801,8 @@ void GraphicsScene::doPrint( QPainter* painter, const QRectF& targetRect,
     ctx.setFitting(PrintingContext::FitPageHeight); // keep old behavior (?)
     ctx.setDrawRowLabels( drawRowLabels );
     ctx.setDrawColumnLabels( drawColumnLabels );
-    ctx.setStart( start );
-    ctx.setEnd( end );
+    ctx.setLeft( start );
+    ctx.setRight( end );
     doPrintScene( printer, painter, targetRect, ctx );
 }
 
@@ -868,13 +868,13 @@ void GraphicsScene::doPrintScene( QPrinter *printer, QPainter *painter, const QR
         d->labelsWidth = textWidth;
     }
     setSceneRect( scnRect );
-    scnRect.setRight( context.end() );
+    scnRect.setRight( context.right() );
     // The scene looks like this:
     //  Labels   Do not print    Print        Behind end
     // 1       2               3            4
     // !-------!---------------!------------!-----------
     // sceneWidth is 1 to 2 + 3 to 4
-    qreal sceneWidth = d->labelsWidth + context.end() - context.start();
+    qreal sceneWidth = d->labelsWidth + context.right() - context.left();
     // qInfo()<<Q_FUNC_INFO<<targetRect<<scnRect<<sceneWidth;
 
     int horPages = 1;
@@ -921,7 +921,7 @@ void GraphicsScene::doPrintScene( QPrinter *printer, QPainter *painter, const QR
             // qInfo()<<Q_FUNC_INFO<<"print labels before"<<"vert page:"<<vpage<<"hor page:"<<hpage<<"scene rect:"<<rect<<'x'<<labelsX<<"hs="<<(labelsX + context.start());
             if ( vpage == 0 && headerHeight > 0.0 ) {
                 QRectF sourceHeader = rect;
-                sourceHeader.translate( context.start(), 0.0 );
+                sourceHeader.translate( context.left(), 0.0 );
                 sourceHeader.setHeight( headerHeight );
                 QRectF targetHeader = target;
                 targetHeader.setHeight( headerHeight * scaleFactor );
@@ -955,20 +955,20 @@ void GraphicsScene::doPrintScene( QPrinter *printer, QPainter *painter, const QR
         if (dateTimeGrid) {
             dateTimeGrid->setNoInformationBrush(noInfoBrush);
         }
-        qreal xoffset = context.start();
+        qreal xoffset = context.left();
         // qInfo()<<Q_FUNC_INFO<<"print diagram"<<"vert page:"<<vpage<<"hor page:"<<hpage<<"xoffset"<<xoffset<<"yoffset:"<<yoffset;
         for ( ; hpage < horPages && xoffset < scnRect.right(); ++hpage ) {
             // Adjust for row labels (first time only)
             QRectF target = targetRect.adjusted(targetOffset, 0., 0., 0.);
             targetOffset = 0.0;
-            QRectF rect = QRectF( xoffset, yoffset, std::min(context.end(), target.width() / scaleFactor), target.height() / scaleFactor );
+            QRectF rect = QRectF( xoffset, yoffset, std::min(context.right(), target.width() / scaleFactor), target.height() / scaleFactor );
             target.setWidth( rect.width() * scaleFactor );
             QPainterPath p; p.addRect(target);
             painter->setClipPath(p);
             render( painter, target, rect );
             xoffset += rect.width();
             // qInfo()<<Q_FUNC_INFO<<'p'<<targetRect<<'t'<<target<<'s'<<rect<<hpage<<':'<<"next page"<<'o'<<xoffset<<'r'<<scnRect.right();
-            if ( printer && xoffset < context.end() ) {
+            if ( printer && xoffset < context.right() ) {
 #ifdef HAVE_PRINTER
                 printer->newPage();
 #endif

@@ -89,14 +89,14 @@ void PrintingContext::setDrawColumnLabels(bool state)
     d->drawColumnLabels = state;
 }
 
-qreal PrintingContext::start() const
+qreal PrintingContext::left() const
 {
     return d->sceneRect.left();
 }
 
-void PrintingContext::setStart(qreal start)
+void PrintingContext::setLeft(qreal left)
 {
-    d->sceneRect.setLeft(start);
+    d->sceneRect.setLeft(left);
 }
 
 qreal PrintingContext::top() const
@@ -109,14 +109,14 @@ void PrintingContext::setTop(qreal top)
     d->sceneRect.setTop(top);
 }
 
-qreal PrintingContext::end() const
+qreal PrintingContext::right() const
 {
     return d->sceneRect.right();
 }
 
-void PrintingContext::setEnd(qreal end)
+void PrintingContext::setRight(qreal right)
 {
-    d->sceneRect.setRight(end);
+    d->sceneRect.setRight(right);
 }
 
 qreal PrintingContext::bottom() const

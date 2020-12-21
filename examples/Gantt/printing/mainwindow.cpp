@@ -362,14 +362,12 @@ bool MainWindow::optionsDialog(bool requireFile)
     m_ctx.setDrawRowLabels(dialog.m_rowLabels->isChecked());
     m_ctx.setDrawColumnLabels(dialog.m_columnLabels->isChecked());
 
-    QRectF scnRect = m_view->graphicsView()->sceneRect();
-    m_ctx.setStart(scnRect.left());
-    m_ctx.setEnd(scnRect.right());
+    m_ctx.setSceneRect(m_view->graphicsView()->sceneRect());
     if (dialog.m_useStartTime->isChecked() && m_startTime.isValid()) {
-        m_ctx.setStart(qobject_cast<KGantt::DateTimeGrid*>(m_view->grid())->mapFromDateTime(m_startTime));
+        m_ctx.setLeft(qobject_cast<KGantt::DateTimeGrid*>(m_view->grid())->mapFromDateTime(m_startTime));
     }
     if (dialog.m_useEndTime->isChecked() && m_endTime.isValid()) {
-        m_ctx.setEnd(qobject_cast<KGantt::DateTimeGrid*>(m_view->grid())->mapFromDateTime(m_endTime));
+        m_ctx.setRight(qobject_cast<KGantt::DateTimeGrid*>(m_view->grid())->mapFromDateTime(m_endTime));
     }
     return true;
 }

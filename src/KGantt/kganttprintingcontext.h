@@ -87,17 +87,17 @@ namespace KGantt
 
         /*! \return position in the diagram to start printing
          */
-        qreal start() const;
+        qreal left() const;
 
-        /*! Set left position to start printing to @p start
+        /*! Set left position to start printing to @p left
          * 
-         * The default is 0.0, meaning the start of the chart.
+         * The default is 0.0, meaning the left of the chart.
          * 
          * To print a certain range of a chart with a DateTimeGrid, use
          * qreal DateTimeGrid::mapFromDateTime( const QDateTime& dt) const
-         * to figure out the values for @p start.
+         * to figure out the values for @p left.
          */
-        void setStart(qreal start);
+        void setLeft(qreal left);
 
         /*! \return top position in the diagram to start printing
          */
@@ -109,23 +109,23 @@ namespace KGantt
 
         /*! \return position in the diagram to end printing
          */
-        qreal end() const;
+        qreal right() const;
 
-        /*! Set right position to end printing to @p end
+        /*! Set right position to right printing to @p right
          * 
-         * The default is 0.0, meaning the end of the chart.
+         * The default is 0.0, meaning the right of the chart.
          * 
          * To print a certain range of a chart with a DateTimeGrid, use
          * qreal DateTimeGrid::mapFromDateTime( const QDateTime& dt) const
-         * to figure out the values for @p end.
+         * to figure out the values for @p right.
          */
-        void setEnd(qreal end);
+        void setRight(qreal right);
 
         /*! \return bottom position in the diagram to end printing
          */
         qreal bottom() const;
 
-        /*! Set bottom position to end printing to @p end
+        /*! Set bottom position to end printing to @p right
          */
         void setBottom(qreal bottom);
 

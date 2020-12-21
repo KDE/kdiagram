@@ -784,8 +784,15 @@ void GraphicsScene::printDiagram( QPrinter *printer, const PrintingContext &cont
     Q_UNUSED( context );
 #else
     PrintingContext ctx( context );
-    if (ctx.right() == 0.0) {
-        ctx.setRight(sceneRect().right());
+    if (ctx.sceneRect().isNull()) {
+        ctx.setSceneRect(sceneRect());
+    } else {
+        if (ctx.right() == 0.0) {
+            ctx.setRight(sceneRect().right());
+        }
+        if (ctx.bottom() == 0.0) {
+            ctx.setBottom(sceneRect().bottom());
+        }
     }
     QPainter painter( printer );
     doPrintScene( printer, &painter, printer->pageRect(), ctx );

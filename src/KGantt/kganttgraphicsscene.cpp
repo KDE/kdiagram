@@ -1084,14 +1084,14 @@ KDAB_SCOPED_UNITTEST_SIMPLE( KGantt, GraphicsView, "test" ) {
     QStandardItem* item = new QStandardItem();
     item->setData( KGantt::TypeTask, KGantt::ItemTypeRole );
     item->setData( QString::fromLatin1( "Decide on new product" ) );
-    item->setData( QDateTime( QDate( 2007, 3, 1 ) ), KGantt::StartTimeRole );
-    item->setData( QDateTime( QDate( 2007, 3, 3 ) ), KGantt::EndTimeRole );
+    item->setData( QDateTime( QDate( 2007, 3, 1 ), QTime() ), KGantt::StartTimeRole );
+    item->setData( QDateTime( QDate( 2007, 3, 3 ), QTime() ), KGantt::EndTimeRole );
 
     QStandardItem* item2 = new QStandardItem();
     item2->setData( KGantt::TypeTask, KGantt::ItemTypeRole );
     item2->setData( QString::fromLatin1( "Educate personnel" ) );
-    item2->setData( QDateTime( QDate( 2007, 3, 3 ) ), KGantt::StartTimeRole );
-    item2->setData( QDateTime( QDate( 2007, 3, 6 ) ), KGantt::EndTimeRole );
+    item2->setData( QDateTime( QDate( 2007, 3, 3 ), QTime() ), KGantt::StartTimeRole );
+    item2->setData( QDateTime( QDate( 2007, 3, 6 ), QTime() ), KGantt::EndTimeRole );
 
     model.appendRow( item );
     model.appendRow( item2 );

@@ -835,10 +835,12 @@ void GraphicsScene::doPrintScene( QPrinter *printer, QPainter *painter, const QR
     bool b = blockSignals( true );
 
     /* column labels */
+    qreal headerHeight = 0.0;
     if ( context.drawColumnLabels() ) {
+        headerHeight = d->rowController->headerHeight();
         QRectF headerRect( scnRect );
-        headerRect.setHeight( - d->rowController->headerHeight() );
-        scnRect.setTop(scnRect.top() - d->rowController->headerHeight());
+        headerRect.setHeight( - headerHeight );
+        scnRect.setTop(scnRect.top() - headerHeight);
     }
 
     /* row labels */
@@ -900,6 +902,14 @@ void GraphicsScene::doPrintScene( QPrinter *printer, QPainter *painter, const QR
     int pagecount = 0;
     for (int vpage = 0; vpage < vertPages && yoffset < scnRect.bottom(); ++vpage) {
         // qInfo()<<Q_FUNC_INFO<<"print vertical page"<<vpage;
+        // Disable painting of noInformation during labels printing
+        // as labels might be painted over
+        QBrush noInfoBrush;
+        DateTimeGrid *dateTimeGrid = qobject_cast<DateTimeGrid*>(grid());
+        if (dateTimeGrid) {
+            noInfoBrush = dateTimeGrid->noInformationBrush();
+            dateTimeGrid->setNoInformationBrush(QBrush());
+        }
         int hpage = 0;
         qreal targetOffset = 0.0;
         qreal labelsX = scnRect.left();
@@ -909,10 +919,24 @@ void GraphicsScene::doPrintScene( QPrinter *printer, QPainter *painter, const QR
             QRectF target = targetRect;
             target.setWidth(std::min(target.width(), -labelsX * scaleFactor) );
             QRectF rect = QRectF( labelsX, yoffset,  -labelsX, target.height() / scaleFactor );
-            // qInfo()<<Q_FUNC_INFO<<"print labels"<<"vert page:"<<vpage<<"hor page:"<<hpage<<"scene rect:"<<rect;
+            // qInfo()<<Q_FUNC_INFO<<"print labels before"<<"vert page:"<<vpage<<"hor page:"<<hpage<<"scene rect:"<<rect<<'x'<<labelsX<<"hs="<<(labelsX + context.start());
+            if ( vpage == 0 && headerHeight > 0.0 ) {
+                QRectF sourceHeader = rect;
+                sourceHeader.translate( context.start(), 0.0 );
+                sourceHeader.setHeight( headerHeight );
+                QRectF targetHeader = target;
+                targetHeader.setHeight( headerHeight * scaleFactor );
+                drawLabelsHeader( painter, sourceHeader, targetHeader );
+                rect.adjust( 0.0, headerHeight, 0.0, 0.0 );
+                target.adjust( 0.0, targetHeader.height(), 0.0, 0.0 );
+            }
+            // qInfo()<<Q_FUNC_INFO<<"print labels"<<"vert page:"<<vpage<<"hor page:"<<hpage<<"scene rect:"<<rect<<target;
             painter->setClipRect(target);
+            // disable header, it has been drawn above
+            bool drawColumnLabels = d->drawColumnLabels;
+            d->drawColumnLabels = false;
             render( painter, target, rect );
-            painter->setPen(QPen(Qt::red));
+            d->drawColumnLabels = drawColumnLabels;
             labelsX += rect.width();
             if ( targetRect.right() <= target.right() ) {
                 // we have used the whole page
@@ -929,6 +953,9 @@ void GraphicsScene::doPrintScene( QPrinter *printer, QPainter *painter, const QR
                 break;
             }
         }
+        if (dateTimeGrid) {
+            dateTimeGrid->setNoInformationBrush(noInfoBrush);
+        }
         qreal xoffset = context.start();
         // qInfo()<<Q_FUNC_INFO<<"print diagram"<<"vert page:"<<vpage<<"hor page:"<<hpage<<"xoffset"<<xoffset<<"yoffset:"<<yoffset;
         for ( ; hpage < horPages && xoffset < scnRect.right(); ++hpage ) {
@@ -937,7 +964,8 @@ void GraphicsScene::doPrintScene( QPrinter *printer, QPainter *painter, const QR
             targetOffset = 0.0;
             QRectF rect = QRectF( xoffset, yoffset, std::min(context.end(), target.width() / scaleFactor), target.height() / scaleFactor );
             target.setWidth( rect.width() * scaleFactor );
-            painter->setClipRect(target);
+            QPainterPath p; p.addRect(target);
+            painter->setClipPath(p);
             render( painter, target, rect );
             xoffset += rect.width();
             // qInfo()<<Q_FUNC_INFO<<'p'<<targetRect<<'t'<<target<<'s'<<rect<<hpage<<':'<<"next page"<<'o'<<xoffset<<'r'<<scnRect.right();
@@ -967,6 +995,14 @@ void GraphicsScene::doPrintScene( QPrinter *printer, QPainter *painter, const QR
     blockSignals( b );
     setSceneRect( oldScnRect );
     painter->restore();
+}
+
+void GraphicsScene::drawLabelsHeader( QPainter *painter, const QRectF &sourceRect, const QRectF &targetRect )
+{
+    // qInfo()<<Q_FUNC_INFO<<"header:"<<sourceRect<<targetRect;
+    // TODO This should paint itemview header
+    painter->setClipRect( targetRect );
+    render( painter, targetRect, sourceRect );
 }
 
 #include "moc_kganttgraphicsscene.cpp"

@@ -182,7 +182,7 @@ namespace KGantt {
          * 
          * \see PrintingContext
          * 
-         * \since 2.7.1
+         * \since 2.8.0
          */
         void printDiagram( QPrinter *printer, const PrintingContext &context );
 
@@ -223,6 +223,8 @@ namespace KGantt {
                       QPrinter* printer, bool drawRowLabels, bool drawColumnLabels );
 
         void doPrintScene( QPrinter *printer, QPainter *painter, const QRectF& targetRect, const PrintingContext &context );
+
+        void drawLabelsHeader( QPainter *painter, const QRectF &sourceRect, const QRectF &targetRect );
     };
 }
 

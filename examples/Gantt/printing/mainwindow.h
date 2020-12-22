@@ -66,6 +66,7 @@ class MainWindow : public QMainWindow {
 public:
     explicit MainWindow( QWidget* parent = nullptr );
 
+    QRectF calcSceneRect(const QDateTime &startTime, const QDateTime &endTime) const;
     bool optionsDialog(bool requireFile = false);
 
 private slots:

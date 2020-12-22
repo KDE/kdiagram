@@ -55,6 +55,7 @@
 #include <KGanttConstraintModel>
 #include <KGanttGraphicsView>
 #include <KGanttDateTimeTimeLine>
+#include <KGanttProxyModel>
 
 // Define a printer friendly palette
 #define VeryLightGray   "#f8f8f8"
@@ -302,7 +303,7 @@ SavePdfDialog::SavePdfDialog(QWidget *parent)
     rangeLayout->addWidget(m_useEndTime);
     m_endTime = new QDateTimeEdit(this);
     rangeLayout->addWidget(m_endTime);
-    
+
     QDialogButtonBox *btnBox = new QDialogButtonBox(this);
     btnBox->setStandardButtons(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
     connect(btnBox, SIGNAL(accepted()), this, SLOT(accept()));
@@ -317,6 +318,65 @@ void SavePdfDialog::fileButtonClicked()
     const QString file = QFileDialog::getSaveFileName(this, tr("Choose PDF File..."), QString(), tr("PDF files (*.pdf)"));
     if (!file.isEmpty())
         m_fileEdit->setText(file);
+}
+
+QRectF MainWindow::calcSceneRect(const QDateTime &startTime, const QDateTime &endTime) const
+{
+    QRectF rect = m_view->graphicsView()->sceneRect();
+    if (startTime.isValid()) {
+        rect.setLeft(qobject_cast<KGantt::DateTimeGrid*>(m_view->grid())->mapFromDateTime(startTime));
+    }
+    if (endTime.isValid()) {
+        rect.setRight(qobject_cast<KGantt::DateTimeGrid*>(m_view->grid())->mapFromDateTime(endTime));
+    }
+    if (startTime.isValid() || endTime.isValid()) {
+        QTreeView *tv = qobject_cast<QTreeView*>(m_view->leftView());
+        Q_ASSERT(tv);
+        QModelIndexList items;
+        for (QModelIndex idx = tv->indexAt(QPoint(0, 0)); idx.isValid(); idx = tv->indexBelow(idx)) {
+            items << idx;
+        }
+        int startRole = static_cast<KGantt::ProxyModel*>(m_view->ganttProxyModel())->role(KGantt::StartTimeRole);
+        int endRole = static_cast<KGantt::ProxyModel*>(m_view->ganttProxyModel())->role(KGantt::EndTimeRole);
+        int startCol = static_cast<KGantt::ProxyModel*>(m_view->ganttProxyModel())->column(KGantt::StartTimeRole);
+        int endCol = static_cast<KGantt::ProxyModel*>(m_view->ganttProxyModel())->column(KGantt::EndTimeRole);
+        if (startTime.isValid()) {
+            bool isSet = false;
+            QModelIndexList lst = items;
+            for (const QModelIndex &idx : qAsConst(lst)) {
+                //qInfo()<<Q_FUNC_INFO<<idx<<"start:"<<startTime<<idx.data().toString()<<idx.sibling(idx.row(), endCol).data(endRole);
+                if (idx.sibling(idx.row(), endCol).data(endRole).toDateTime() <= startTime) {
+                    items.removeAll(idx);
+                    continue;
+                }
+                if (!isSet) {
+                    rect.setTop(tv->visualRect(idx).top());
+                    isSet = true;
+                    // qInfo()<<Q_FUNC_INFO<<idx<<"start first:"<<idx.data().toString()<<rect.top();
+                }
+            }
+        }
+        if (endTime.isValid()) {
+            for (int i = items.count() - 1; i >= 0; --i) {
+                const QModelIndex idx = items.at(i);
+                // qInfo()<<Q_FUNC_INFO<<idx<<"end:"<<endTime<<idx.data().toString()<<idx.sibling(idx.row(), startCol).data(startRole);
+                if (idx.sibling(idx.row(), startCol).data(startRole).toDateTime() >= endTime) {
+                    continue;
+                }
+                rect.setBottom(tv->visualRect(idx).bottom());
+                // qInfo()<<Q_FUNC_INFO<<idx<<"end last:"<<idx.data().toString()<<rect.bottom();
+                break;
+            }
+        } else if (!items.isEmpty()){
+            // latest remaining index
+            qreal bottom = rect.top();
+            for (const QModelIndex &idx : qAsConst(items)) {
+                bottom = std::max(bottom, (qreal)tv->visualRect(idx).bottom());
+            }
+            rect.setBottom(bottom);
+        }
+    }
+    return rect;
 }
 
 bool MainWindow::optionsDialog(bool requireFile)
@@ -361,14 +421,10 @@ bool MainWindow::optionsDialog(bool requireFile)
     }
     m_ctx.setDrawRowLabels(dialog.m_rowLabels->isChecked());
     m_ctx.setDrawColumnLabels(dialog.m_columnLabels->isChecked());
-
-    m_ctx.setSceneRect(m_view->graphicsView()->sceneRect());
-    if (dialog.m_useStartTime->isChecked() && m_startTime.isValid()) {
-        m_ctx.setLeft(qobject_cast<KGantt::DateTimeGrid*>(m_view->grid())->mapFromDateTime(m_startTime));
-    }
-    if (dialog.m_useEndTime->isChecked() && m_endTime.isValid()) {
-        m_ctx.setRight(qobject_cast<KGantt::DateTimeGrid*>(m_view->grid())->mapFromDateTime(m_endTime));
-    }
+    const QDateTime startTime = dialog.m_useStartTime->isChecked() ? m_startTime : QDateTime();
+    const QDateTime endTime = dialog.m_useEndTime->isChecked() ? m_endTime : QDateTime();
+    m_ctx.setSceneRect(calcSceneRect(startTime, endTime));
+    // qInfo()<<Q_FUNC_INFO<<m_ctx;
     return true;
 }
 void MainWindow::slotFileSavePdf()

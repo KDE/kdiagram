@@ -671,8 +671,8 @@ void GraphicsScene::drawBackground( QPainter* painter, const QRectF& _rect )
         opt.text = QLatin1String("");
         opt.textAlignment = Qt::AlignCenter;
         style()->drawControl(QStyle::CE_Header, &opt, painter, 0);
-#endif   
-   
+#endif
+
         scn.setTop( headerRect.bottom() );
         scn.setLeft( headerRect.left() );
         rect = rect.intersected( scn );
@@ -816,9 +816,13 @@ void GraphicsScene::doPrint( QPainter* painter, const QRectF& targetRect,
 void GraphicsScene::doPrintScene( QPrinter *printer, QPainter *painter, const QRectF &targetRect, const PrintingContext &context )
 {
     assert( painter );
+
+    bool b = blockSignals( true );
+
     d->isPrinting = true;
     d->drawColumnLabels = context.drawColumnLabels();
     d->labelsWidth = 0.0;
+
     QFont sceneFont( font() );
 #ifdef HAVE_PRINTER
     if ( printer ) {
@@ -839,14 +843,18 @@ void GraphicsScene::doPrintScene( QPrinter *printer, QPainter *painter, const QR
 
     const QRectF oldScnRect( sceneRect() );
     QRectF scnRect( oldScnRect );
-    bool b = blockSignals( true );
+    QRectF sceneHeaderRect;
+    QRectF labelsHeaderRect;
+    QRectF labelsRect;
 
     /* column labels */
     qreal headerHeight = 0.0;
     if ( context.drawColumnLabels() ) {
         headerHeight = d->rowController->headerHeight();
-        QRectF headerRect( scnRect );
-        headerRect.setHeight( - headerHeight );
+        sceneHeaderRect = context.sceneRect();
+        sceneHeaderRect.setLeft( context.left() );
+        sceneHeaderRect.setTop( -headerHeight );
+        sceneHeaderRect.setHeight( headerHeight );
         scnRect.setTop(scnRect.top() - headerHeight);
     }
 
@@ -873,43 +881,52 @@ void GraphicsScene::doPrintScene( QPrinter *printer, QPainter *painter, const QR
         }
         scnRect.setLeft( scnRect.left()-textWidth );
         d->labelsWidth = textWidth;
+        if ( context.drawColumnLabels() ) {
+            labelsHeaderRect = sceneHeaderRect;
+            labelsHeaderRect.translate( -textWidth, 0.0 );
+            labelsHeaderRect.setWidth( textWidth );
+        }
+        labelsRect = QRectF( -textWidth, context.top(), textWidth, context.sceneRect().height() );
     }
     setSceneRect( scnRect );
     scnRect.setRight( context.right() );
+
     // The scene looks like this:
     //  Labels   Do not print    Print        Behind end
     // 1       2               3            4
     // !-------!---------------!------------!-----------
     // sceneWidth is 1 to 2 + 3 to 4
     qreal sceneWidth = d->labelsWidth + context.right() - context.left();
+    qreal sceneHeight = context.sceneRect().height() + sceneHeaderRect.height();
     // qInfo()<<Q_FUNC_INFO<<targetRect<<scnRect<<sceneWidth;
 
     int horPages = 1;
     int vertPages = 1;
     qreal scaleFactor = targetRect.height() / scnRect.height(); // FitPageHeight (default)
-    if (printer) {
-        if (context.fitting() & PrintingContext::NoFitting) {
+    if ( printer ) {
+        if ( context.fitting() & PrintingContext::NoFitting ) {
             scaleFactor = printer->logicalDpiX() / views().at(0)->logicalDpiX(); // always have only one view
-            vertPages = qRound((scnRect.height() * scaleFactor / targetRect.height()) + 0.5);
-            horPages = qRound((sceneWidth * scaleFactor / targetRect.width()) + 0.5);
-        } else if (context.fitting() & PrintingContext::FitSinglePage) {
-            scaleFactor = std::min(scaleFactor, targetRect.width() / scnRect.width());
+            vertPages = qRound( ( sceneHeight * scaleFactor / targetRect.height() ) + 0.5 );
+            horPages = qRound( ( sceneWidth * scaleFactor / targetRect.width() ) + 0.5 );
+        } else if ( context.fitting() & PrintingContext::FitSinglePage ) {
+            scaleFactor = std::min( scaleFactor, targetRect.width() / sceneWidth );
         } else /*FitPageHeight (default)*/ {
-            horPages = qRound((sceneWidth * scaleFactor / targetRect.width()) + 0.5);
+            horPages = qRound( ( sceneWidth * scaleFactor / targetRect.width() ) + 0.5 );
         }
     } else {
         // paint device has no pages so just fit inside the target
-        scaleFactor = std::min(scaleFactor, targetRect.width() / scnRect.width());
+        scaleFactor = std::min( scaleFactor, targetRect.width() / sceneWidth );
     }
+    // qInfo()<<Q_FUNC_INFO<<"labels header:"<<labelsHeaderRect<<"labels:"<<labelsRect<<"scene header:"<<sceneHeaderRect<<"scene:"<<scnRect<<"scaleFactor:"<<scaleFactor;
     painter->save();
     painter->setFont( sceneFont );
 
     // qInfo()<<Q_FUNC_INFO<<'s'<<scaleFactor<<"pages="<<((sceneWidth * scaleFactor)/targetRect.width())<<'h'<<horPages<<'v'<<vertPages<<'s'<<scnRect<<'t'<<(targetRect.size()/scaleFactor);
-    qreal yoffset = scnRect.top();
-    for (int vpage = 0; vpage < vertPages && yoffset < scnRect.bottom(); ++vpage) {
+    qreal yPos = labelsRect.top();
+    for ( int vpage = 0; vpage < vertPages && yPos < context.bottom(); ++vpage ) {
         // qInfo()<<Q_FUNC_INFO<<"print vertical page"<<vpage;
         // Disable painting of noInformation during labels printing
-        // as labels might be painted over
+        // or else labels might be painted over
         QBrush noInfoBrush;
         DateTimeGrid *dateTimeGrid = qobject_cast<DateTimeGrid*>(grid());
         if (dateTimeGrid) {
@@ -917,33 +934,33 @@ void GraphicsScene::doPrintScene( QPrinter *printer, QPainter *painter, const QR
             dateTimeGrid->setNoInformationBrush(QBrush());
         }
         int hpage = 0;
-        qreal targetOffset = 0.0;
-        qreal labelsX = scnRect.left();
-        while (labelsX < scnRect.left() + d->labelsWidth) {
-            // qInfo()<<Q_FUNC_INFO<<"print labels"<<"vert page:"<<vpage<<"hor page:"<<hpage<<"yoffset"<<yoffset<<"label x:"<<labelsX;
+        qreal targetLabelsOffset = 0.0;
+        qreal labelsOffsetX = 0.0;
+        while ( labelsOffsetX < labelsHeaderRect.width() ) {
+            // qInfo()<<Q_FUNC_INFO<<"print labels"<<"vert page:"<<vpage<<','<<hpage<<"yPos"<<yPos<<"label x:"<<labelsOffsetX;
             // print labels, they might span multiple pages
             QRectF target = targetRect;
-            target.setWidth(std::min(target.width(), -labelsX * scaleFactor) );
-            QRectF rect = QRectF( labelsX, yoffset,  -labelsX, target.height() / scaleFactor );
-            // qInfo()<<Q_FUNC_INFO<<"print labels before"<<"vert page:"<<vpage<<"hor page:"<<hpage<<"scene rect:"<<rect<<'x'<<labelsX<<"hs="<<(labelsX + context.start());
+            target.setWidth(std::min(target.width(), (labelsHeaderRect.width() - labelsOffsetX) * scaleFactor) );
             if ( vpage == 0 && headerHeight > 0.0 ) {
-                QRectF sourceHeader = rect;
-                sourceHeader.translate( context.left(), 0.0 );
-                sourceHeader.setHeight( headerHeight );
+                QRectF sourceHeader = labelsHeaderRect;
+                sourceHeader.translate( labelsOffsetX, 0.0 );
                 QRectF targetHeader = target;
-                targetHeader.setHeight( headerHeight * scaleFactor );
+                targetHeader.setSize( sourceHeader.size() * scaleFactor );
                 drawLabelsHeader( painter, sourceHeader, targetHeader );
-                rect.adjust( 0.0, headerHeight, 0.0, 0.0 );
                 target.adjust( 0.0, targetHeader.height(), 0.0, 0.0 );
             }
-            // qInfo()<<Q_FUNC_INFO<<"print labels"<<"vert page:"<<vpage<<"hor page:"<<hpage<<"scene rect:"<<rect<<target;
+            QRectF rect = labelsRect;
+            rect.setLeft( rect.left() + labelsOffsetX );
+            rect.setTop( yPos );
+            rect.setHeight( std::min(rect.height(), target.height() / scaleFactor ) );
             painter->setClipRect(target);
             // disable header, it has been drawn above
             bool drawColumnLabels = d->drawColumnLabels;
             d->drawColumnLabels = false;
+            // qInfo()<<Q_FUNC_INFO<<"print labels"<<"vert page:"<<vpage<<','<<hpage<<"scene rect:"<<rect<<"target:"<<target;
             render( painter, target, rect );
             d->drawColumnLabels = drawColumnLabels;
-            labelsX += rect.width();
+            labelsOffsetX += rect.width();
             if ( targetRect.right() <= target.right() ) {
                 // we have used the whole page
                 ++hpage;
@@ -954,44 +971,68 @@ void GraphicsScene::doPrintScene( QPrinter *printer, QPainter *painter, const QR
 #endif
             } else {
                 // labels might take part of the page
-                targetOffset = target.width();
-                // qInfo()<<Q_FUNC_INFO<<"print labels finished"<<"vert page:"<<vpage<<"hor page:"<<hpage<<"target offset:"<<targetOffset<<"scene offset:"<<targetOffset/scaleFactor<<':'<<targetRect.width()/scaleFactor<<target.width()/scaleFactor<<((targetRect.width() - target.width()) / scaleFactor);
+                targetLabelsOffset = target.width();
+                // qInfo()<<Q_FUNC_INFO<<"print labels finished"<<"vert page:"<<vpage<<"hor page:"<<hpage<<"target offset:"<<targetLabelsOffset;
                 break;
             }
         }
         if (dateTimeGrid) {
             dateTimeGrid->setNoInformationBrush(noInfoBrush);
         }
-        qreal xoffset = context.left();
-        // qInfo()<<Q_FUNC_INFO<<"print diagram"<<"vert page:"<<vpage<<"hor page:"<<hpage<<"xoffset"<<xoffset<<"yoffset:"<<yoffset;
-        for ( ; hpage < horPages && xoffset < scnRect.right(); ++hpage ) {
+        qreal xPos = context.left();
+        // qInfo()<<Q_FUNC_INFO<<"print diagram"<<"page:"<<vpage<<','<<hpage<<"xPos"<<xPos<<"yPos:"<<yPos;
+        for ( ; hpage < horPages && xPos < context.right(); ++hpage ) {
             // Adjust for row labels (first time only)
-            QRectF target = targetRect.adjusted(targetOffset, 0., 0., 0.);
-            targetOffset = 0.0;
-            QRectF rect = QRectF( xoffset, yoffset, std::min(context.right(), target.width() / scaleFactor), target.height() / scaleFactor );
+            QRectF target = targetRect.adjusted(targetLabelsOffset, 0., 0., 0.);
+            targetLabelsOffset = 0.0;
+            if (!sceneHeaderRect.isNull() && vpage == 0) {
+                // draw header
+                QRectF rect = sceneHeaderRect;
+                QRectF targetHeader = target;
+                targetHeader.setHeight( rect.height() * scaleFactor );
+                rect.setWidth( targetHeader.width() / scaleFactor );
+                rect.setLeft( xPos );
+                // qInfo()<<Q_FUNC_INFO<<"scene header:"<<"page:"<<vpage<<','<<hpage<<"source:"<<rect<<"target:"<<targetHeader;
+                render( painter, targetHeader, rect );
+                target.adjust( 0.0, targetHeader.height(), 0.0, 0.0 );
+            }
+            QRectF rect = context.sceneRect();
+            rect.setLeft( xPos );
+            rect.setTop( yPos );
+            rect.setWidth( std::min( rect.width(), target.width() / scaleFactor) );
+            rect.setHeight( std::min( rect.height(), target.height() / scaleFactor ) );
             target.setWidth( rect.width() * scaleFactor );
-            QPainterPath p; p.addRect(target);
-            painter->setClipPath(p);
+            painter->setClipRect( target );
+            // disable header, it has been drawn above
+            bool drawColumnLabels = d->drawColumnLabels;
+            d->drawColumnLabels = false;
+            // qInfo()<<Q_FUNC_INFO<<"scene:"<<"page:"<<vpage<<','<<hpage<<"source:"<<rect<<"target:"<<target;
             render( painter, target, rect );
-            xoffset += rect.width();
-            // qInfo()<<Q_FUNC_INFO<<'p'<<targetRect<<'t'<<target<<'s'<<rect<<hpage<<':'<<"next page"<<'o'<<xoffset<<'r'<<scnRect.right();
-            if ( printer && xoffset < context.right() ) {
+            d->drawColumnLabels = drawColumnLabels;
+
+            xPos += rect.width();
+            // qInfo()<<Q_FUNC_INFO<<context<<"xPos:"<<xPos;
+            if ( printer && xPos < context.right() ) {
 #ifdef HAVE_PRINTER
                 printer->newPage();
 #endif
             } else {
-                // qInfo()<<Q_FUNC_INFO<<"print horizontal finished if"<<xoffset<<">="<<scnRect.right();
+                // qInfo()<<Q_FUNC_INFO<<"print horizontal finished if"<<xPos<<">="<<scnRect.right();
                 break;
             }
         }
-        yoffset += targetRect.height() / scaleFactor;
-        if ( printer && yoffset < scnRect.bottom() ) {
+        yPos += targetRect.height() / scaleFactor;
+        if ( vpage == 0 ) {
+            yPos -= headerHeight;
+        }
+        // qInfo()<<Q_FUNC_INFO<<"yPos:"<<yPos<<"bottom:"<<context.bottom();
+        if ( printer && yPos < context.bottom() ) {
 #ifdef HAVE_PRINTER
             // next vertical page
             printer->newPage();
 #endif
         }
-        // qInfo()<<Q_FUNC_INFO<<"next vertical page if"<<yoffset<<'<'<<scnRect.bottom();
+        // qInfo()<<Q_FUNC_INFO<<"next vertical page if"<<yPos<<'<'<<scnRect.bottom();
     }
 
     d->isPrinting = false;

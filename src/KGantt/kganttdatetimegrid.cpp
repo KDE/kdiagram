@@ -755,6 +755,57 @@ void DateTimeGrid::Private::getAutomaticFormatters( DateTimeScaleFormatter** low
     }
 }
 
+void DateTimeGrid::Private::getFormatters( DateTimeScaleFormatter** lower, DateTimeScaleFormatter** upper)
+{
+    switch ( scale ) {
+        case DateTimeGrid::ScaleHour:
+            *lower = &hour_lower;
+            *upper = &hour_upper;
+            break;
+        case DateTimeGrid::ScaleDay:
+            *lower = &day_lower;
+            *upper = &day_upper;
+            break;
+        case DateTimeGrid::ScaleWeek:
+            *lower = &week_lower;
+            *upper = &week_upper;
+            break;
+        case DateTimeGrid::ScaleMonth:
+            *lower = &month_lower;
+            *upper = &month_upper;
+            break;
+        case DateTimeGrid::ScaleUserDefined:
+            *lower = this->lower;
+            *upper = this->upper;
+            break;
+        default: /*ScaleAuto:*/
+            getAutomaticFormatters( lower, upper );
+            break;
+    }
+}
+
+DateTimeGrid::HeaderType DateTimeGrid::sectionHandleAtPos(const QPoint &pos, const QRect &headerRect) const
+{
+    QDateTime dt1 = d->chartXtoDateTime( pos.x() );
+    QDateTime dt2 = d->chartXtoDateTime( pos.x() + 5 );
+
+    DateTimeScaleFormatter *lower, *upper;
+    const_cast<Private*>(d)->getFormatters( &lower, &upper );
+
+    const qreal lowerHeight = d->tabHeight( lower->text( dt1 ) );
+    const qreal upperHeight = d->tabHeight( upper->text( dt1 ) );
+    const qreal upperRatio = upperHeight/( lowerHeight+upperHeight );
+
+    const QRectF upperHeaderRect( pos.x(), headerRect.top(), 5, headerRect.height() * upperRatio );
+    const QRectF lowerHeaderRect( pos.x(), upperHeaderRect.bottom()+1, 5,  headerRect.height()-upperHeaderRect.height()-1 );
+    if ( upperHeaderRect.contains( pos ) ) {
+        return upper->currentRangeBegin(dt2) == upper->nextRangeBegin(dt1) ? UpperHeader : NoHeader;
+    }
+    if (lowerHeaderRect.contains( pos ) ) {
+        return lower->currentRangeBegin(dt2)==lower->nextRangeBegin(dt1) ? LowerHeader : NoHeader;
+    }
+    return NoHeader;
+}
 
 void DateTimeGrid::paintHeader( QPainter* painter,  const QRectF& headerRect, const QRectF& exposedRect,
                                 qreal offset, QWidget* widget )

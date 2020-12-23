@@ -88,6 +88,7 @@ namespace KGantt {
 
         int tabHeight( const QString& txt, QWidget* widget = nullptr ) const;
         void getAutomaticFormatters( DateTimeScaleFormatter** lower, DateTimeScaleFormatter** upper);
+        void getFormatters( DateTimeScaleFormatter** lower, DateTimeScaleFormatter** upper);
 
         class DateTextFormatter {
         public:

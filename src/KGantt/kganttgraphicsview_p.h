@@ -40,9 +40,15 @@ namespace KGantt {
     protected:
         /*reimp*/ bool event( QEvent* ev ) override;
         /*reimp*/ void paintEvent( QPaintEvent* ev ) override;
+        /*reimp*/ void mousePressEvent(QMouseEvent *event) override;
+        /*reimp*/ void mouseReleaseEvent(QMouseEvent *event) override;
+        /*reimp*/ void mouseMoveEvent(QMouseEvent *event) override;
+        /*reimp*/ void wheelEvent(QWheelEvent *event) override;
         /*reimp*/ void contextMenuEvent( QContextMenuEvent* ev ) override;
     private:
         qreal m_offset;
+        DateTimeGrid::HeaderType m_headerType;
+        QPoint m_mousePos;
     };
 
     class Q_DECL_HIDDEN GraphicsView::Private {

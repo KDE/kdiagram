@@ -51,7 +51,12 @@ namespace KGantt {
             ScaleMonth,
             ScaleUserDefined
         };
-	
+        enum HeaderType {
+            NoHeader,
+            UpperHeader,
+            LowerHeader
+        };
+
         DateTimeGrid();
         virtual ~DateTimeGrid();
 
@@ -230,6 +235,8 @@ namespace KGantt {
          * @return the timeline control object
          */
         DateTimeTimeLine *timeLine() const;
+
+        HeaderType sectionHandleAtPos(const QPoint &pos, const QRect &headerRect) const;
 
     protected:
         /*! Paints the hour scale header.

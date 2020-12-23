@@ -33,6 +33,7 @@
 #include <QPrinter>
 #include <QItemSelectionModel>
 #include <QGraphicsSceneMouseEvent>
+#include <QGuiApplication>
 
 #include <cassert>
 
@@ -47,9 +48,10 @@
 using namespace KGantt;
 
 HeaderWidget::HeaderWidget( GraphicsView* parent )
-    : QWidget( parent ), m_offset( 0. )
+    : QWidget( parent ), m_offset( 0. ), m_headerType( DateTimeGrid::NoHeader )
 {
     assert( parent ); // Parent must be set
+    setMouseTracking(true);
 }
 
 HeaderWidget::~HeaderWidget()
@@ -81,6 +83,93 @@ bool HeaderWidget::event( QEvent* event )
         }
     }
     return QWidget::event( event );
+}
+
+void HeaderWidget::mousePressEvent(QMouseEvent *event)
+{
+    DateTimeGrid* const grid = qobject_cast< DateTimeGrid* >( view()->grid() );
+    m_headerType = grid->sectionHandleAtPos(event->pos(), geometry());
+    if (m_headerType != DateTimeGrid::NoHeader) {
+        bool hasCursor = testAttribute(Qt::WA_SetCursor);
+        if (!hasCursor) {
+            setCursor(QCursor(Qt::SplitHCursor));
+        }
+        m_mousePos = event->pos();
+        event->accept();
+        return;
+    }
+    QWidget::mousePressEvent( event );
+}
+
+void HeaderWidget::mouseReleaseEvent(QMouseEvent *event)
+{
+    if ( m_headerType > 0 ) {
+        DateTimeGrid* const grid = qobject_cast< DateTimeGrid* >( view()->grid() );
+        if ( grid->sectionHandleAtPos(event->pos(), geometry()) == DateTimeGrid::NoHeader ) {
+            bool hasCursor = testAttribute(Qt::WA_SetCursor);
+            if (hasCursor) {
+                unsetCursor();
+            }
+        }
+        m_headerType = DateTimeGrid::NoHeader;
+        m_mousePos = event->pos();
+        QGuiApplication::restoreOverrideCursor();
+    }
+    QWidget::mouseReleaseEvent(event);
+}
+
+void HeaderWidget::mouseMoveEvent(QMouseEvent *event)
+{
+    DateTimeGrid* const grid = qobject_cast< DateTimeGrid* >( view()->grid() );
+    switch ( m_headerType ) {
+        case DateTimeGrid::UpperHeader:
+        {
+            if ( event->pos().x() > m_mousePos.x() )  {
+                grid->setDayWidth( qMax<qreal>( 1.0, grid->dayWidth() * 1.05 ) );
+            } else {
+                grid->setDayWidth( qMax<qreal>( 1.0, grid->dayWidth() / 1.05 ) );
+            }
+            m_mousePos = event->pos();
+            event->accept();
+            return;
+        }
+        case DateTimeGrid::LowerHeader:
+            if ( event->pos().x() > m_mousePos.x() )  {
+                grid->setDayWidth( qMax<qreal>( 1.0, grid->dayWidth() * 1.01 ) );
+            } else {
+                grid->setDayWidth( qMax<qreal>( 1.0, grid->dayWidth() / 1.01 ) );
+            }
+            event->accept();
+            m_mousePos = event->pos();
+            return;
+        default: {
+            bool hasCursor = testAttribute(Qt::WA_SetCursor);
+            DateTimeGrid::HeaderType type = grid->sectionHandleAtPos(event->pos(), geometry());
+            if (type != DateTimeGrid::NoHeader) {
+                if (!hasCursor) {
+                    setCursor(QCursor(Qt::SplitHCursor));
+                }
+                event->accept();
+                return;
+            }
+            if (hasCursor) {
+                unsetCursor();
+            }
+            break;
+        }
+    }
+    QWidget::mouseMoveEvent(event);
+}
+
+void HeaderWidget::wheelEvent( QWheelEvent *event )
+{
+    DateTimeGrid* const grid = qobject_cast< DateTimeGrid* >( view()->grid() );
+    if ( event->angleDelta().y() > 0 ) {
+        grid->setDayWidth( qMax<qreal>( 1.0, grid->dayWidth() * 1.1 ) );
+    } else {
+        grid->setDayWidth( qMax<qreal>( 1.0, grid->dayWidth() / 1.1 ) );
+    }
+    event->accept();
 }
 
 void HeaderWidget::contextMenuEvent( QContextMenuEvent* event )

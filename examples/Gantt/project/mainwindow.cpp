@@ -18,7 +18,7 @@
  */
 
 #include "mainwindow.h"
-#include "projectmodel.h"
+#include "../common/projectmodel.h"
 
 #include <QAction>
 #include <QApplication>

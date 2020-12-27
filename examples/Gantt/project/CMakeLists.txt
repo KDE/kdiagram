@@ -1,5 +1,5 @@
 set(project_SRCS
-    projectmodel.cpp
+    ../common/projectmodel.cpp
     mainwindow.cpp
     main.cpp
 )

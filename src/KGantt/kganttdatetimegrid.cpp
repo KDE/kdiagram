@@ -784,10 +784,10 @@ void DateTimeGrid::Private::getFormatters( DateTimeScaleFormatter** lower, DateT
     }
 }
 
-DateTimeGrid::HeaderType DateTimeGrid::sectionHandleAtPos(const QPoint &pos, const QRect &headerRect) const
+DateTimeGrid::HeaderType DateTimeGrid::sectionHandleAtPos(int x, int y, const QRect &headerRect) const
 {
-    QDateTime dt1 = d->chartXtoDateTime( pos.x() );
-    QDateTime dt2 = d->chartXtoDateTime( pos.x() + 5 );
+    QDateTime dt1 = d->chartXtoDateTime( x );
+    QDateTime dt2 = d->chartXtoDateTime( x + 5 );
 
     DateTimeScaleFormatter *lower, *upper;
     const_cast<Private*>(d)->getFormatters( &lower, &upper );
@@ -796,12 +796,12 @@ DateTimeGrid::HeaderType DateTimeGrid::sectionHandleAtPos(const QPoint &pos, con
     const qreal upperHeight = d->tabHeight( upper->text( dt1 ) );
     const qreal upperRatio = upperHeight/( lowerHeight+upperHeight );
 
-    const QRectF upperHeaderRect( pos.x(), headerRect.top(), 5, headerRect.height() * upperRatio );
-    const QRectF lowerHeaderRect( pos.x(), upperHeaderRect.bottom()+1, 5,  headerRect.height()-upperHeaderRect.height()-1 );
-    if ( upperHeaderRect.contains( pos ) ) {
+    const QRectF upperHeaderRect( x, headerRect.top(), 5, headerRect.height() * upperRatio );
+    const QRectF lowerHeaderRect( x, upperHeaderRect.bottom()+1, 5,  headerRect.height()-upperHeaderRect.height()-1 );
+    if ( upperHeaderRect.contains( QPoint( x , y ) ) ) {
         return upper->currentRangeBegin(dt2) == upper->nextRangeBegin(dt1) ? UpperHeader : NoHeader;
     }
-    if (lowerHeaderRect.contains( pos ) ) {
+    if (lowerHeaderRect.contains( QPoint( x , y ) ) ) {
         return lower->currentRangeBegin(dt2)==lower->nextRangeBegin(dt1) ? LowerHeader : NoHeader;
     }
     return NoHeader;

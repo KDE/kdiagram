@@ -48,7 +48,7 @@ namespace KGantt {
     private:
         qreal m_offset;
         DateTimeGrid::HeaderType m_headerType;
-        QPoint m_mousePos;
+        int m_mousePosX;
     };
 
     class Q_DECL_HIDDEN GraphicsView::Private {

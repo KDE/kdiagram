@@ -236,7 +236,7 @@ namespace KGantt {
          */
         DateTimeTimeLine *timeLine() const;
 
-        HeaderType sectionHandleAtPos(const QPoint &pos, const QRect &headerRect) const;
+        HeaderType sectionHandleAtPos(int x, int y, const QRect &headerRect) const;
 
     protected:
         /*! Paints the hour scale header.

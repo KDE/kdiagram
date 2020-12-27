@@ -350,6 +350,25 @@ bool ProjectModel::insertRows( int row, int count, const QModelIndex& parent )
     return true;
 }
 
+bool ProjectModel::removeRows( int row, int count, const QModelIndex& parent )
+{
+    qInfo()<<Q_FUNC_INFO<<parent<<row<<count;
+    for ( int i = row+count-1; i >= row; --i ) {
+        const QModelIndex idx = index( i, 0, parent );
+        assert( idx.isValid() );
+        if ( hasChildren( idx ) ) {
+            removeRows( 0, rowCount( idx ), idx );
+        }
+        beginRemoveRows( parent, i, i );
+        qInfo()<<Q_FUNC_INFO<<idx<<i;
+        Node* p = m_root;
+        if ( parent.isValid() ) p = static_cast<Node*>( parent.internalPointer() );
+        assert( p );
+        p->removeChild( p->child( i ) );
+        endRemoveRows();
+    }
+    return true;
+}
 
 Qt::ItemFlags ProjectModel::flags( const QModelIndex& idx ) const
 {

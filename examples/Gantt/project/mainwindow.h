@@ -55,6 +55,7 @@ private slots:
     void slotFileQuit();
     void slotToolsNewItem();
     void slotToolsAppendItem();
+    void slotToolsRemoveItem();
     void slotCollapseAll();
     void slotExpandAll();
 

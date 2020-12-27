@@ -291,6 +291,7 @@ MainWindow::MainWindow( QWidget* parent )
 
     toolsMenu->addAction( tr( "&New Item" ), this, SLOT(slotToolsNewItem()) );
     toolsMenu->addAction( tr( "&Add Item" ), this, SLOT(slotToolsAppendItem()) );
+    toolsMenu->addAction( tr( "&Remove Item" ), this, SLOT(slotToolsRemoveItem()) );
     toolsMenu->addSeparator();
     QMenu *alignMenu = toolsMenu->addMenu( tr( "Ali&gn" ) );
     alignMenu->addAction( tr( "&Left" ), this, SLOT(slotAlignLeft()) );
@@ -423,6 +424,15 @@ void MainWindow::slotToolsAppendItem()
         m_model->insertRows( m_model->rowCount( idx ), 1, m_model->index( idx.row(),0,idx.parent() ) );
     } else {
         m_model->insertRows( m_model->rowCount( m_view->rootIndex() ), 1, m_view->rootIndex() );
+    }
+}
+
+void MainWindow::slotToolsRemoveItem()
+{
+    QModelIndex idx = m_view->selectionModel()->currentIndex();
+    if ( idx.isValid() ) {
+        qDebug() << "MainWindow::slotToolsRemoveItem" << idx;
+        m_model->removeRows( idx.row(), 1, idx.parent() );
     }
 }
 

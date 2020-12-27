@@ -40,6 +40,7 @@ public:
                             int role = Qt::DisplayRole ) override;
 
     /*reimp*/ bool insertRows( int row, int count, const QModelIndex& parent = QModelIndex() ) override;
+    /*reimp*/ bool removeRows( int row, int count, const QModelIndex& parent = QModelIndex() ) override;
 
     /*reimp*/ Qt::ItemFlags flags( const QModelIndex& ) const override;
 

@@ -38,8 +38,13 @@ namespace KGantt
     class KGANTT_EXPORT PrintingContext
     {
     public:
+        /*! Create a default context */
         PrintingContext();
+        /*! Copy the \a other context into this */
         PrintingContext(const PrintingContext &other);
+        /*! Copy the \a other context into this */
+        PrintingContext &operator=(const PrintingContext &other);
+        /*! Destroy this context */
         ~PrintingContext();
 
         /*! \enum KGantt::PrintingContext::Fitting

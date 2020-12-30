@@ -39,14 +39,19 @@ PrintingContext::PrintingContext()
 }
 
 PrintingContext::PrintingContext(const PrintingContext &other)
-    : d(new Private())
+    : d(new Private(*other.d))
+{
+}
+
+PrintingContext &PrintingContext::operator=(const PrintingContext &other)
 {
     *d = *other.d;
+    return *this;
 }
 
 PrintingContext::~PrintingContext()
 {
-    delete d;
+    delete d; d = nullptr;
 }
 
 QRectF PrintingContext::sceneRect() const

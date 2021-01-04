@@ -794,13 +794,6 @@ void GraphicsScene::printDiagram( QPrinter *printer, const PrintingContext &cont
     PrintingContext ctx( context );
     if (ctx.sceneRect().isNull()) {
         ctx.setSceneRect(sceneRect());
-    } else {
-        if (ctx.right() == 0.0) {
-            ctx.setRight(sceneRect().right());
-        }
-        if (ctx.bottom() == 0.0) {
-            ctx.setBottom(sceneRect().bottom());
-        }
     }
     QPainter painter( printer );
     doPrintScene( printer, &painter, printer->pageRect(), ctx );
@@ -816,6 +809,7 @@ void GraphicsScene::doPrint( QPainter* painter, const QRectF& targetRect,
     ctx.setFitting(PrintingContext::FitPageHeight); // keep old behavior (?)
     ctx.setDrawRowLabels( drawRowLabels );
     ctx.setDrawColumnLabels( drawColumnLabels );
+    ctx.setSceneRect( sceneRect() );
     ctx.setLeft( start );
     ctx.setRight( end );
     doPrintScene( printer, painter, targetRect, ctx );
@@ -883,18 +877,18 @@ void GraphicsScene::doPrintScene( QPrinter *printer, QPainter *painter, const QR
             textWidth = qMax( item->textWidth(), textWidth );
             item->setPos( 0, rg.start() );
         } while ( ( sidx = rowController()->indexBelow( sidx ) ).isValid() );
+        d->labelsWidth = textWidth;
+        scnRect.setLeft( scnRect.left() - textWidth );
         for( QGraphicsTextItem* item : textLabels ) {
-            item->setPos( scnRect.left()-textWidth, item->y() );
+            item->setPos( scnRect.left(), item->y() );
             item->show();
         }
-        scnRect.setLeft( scnRect.left()-textWidth );
-        d->labelsWidth = textWidth;
         if ( context.drawColumnLabels() ) {
             labelsHeaderRect = sceneHeaderRect;
             labelsHeaderRect.translate( -textWidth, 0.0 );
             labelsHeaderRect.setWidth( textWidth );
         }
-        labelsRect = QRectF( -textWidth, context.top(), textWidth, context.sceneRect().height() );
+        labelsRect = QRectF( scnRect.left(), context.top(), textWidth, context.sceneRect().height() );
     }
     setSceneRect( scnRect );
     scnRect.setRight( context.right() );
@@ -996,10 +990,10 @@ void GraphicsScene::doPrintScene( QPrinter *printer, QPainter *painter, const QR
             if (!sceneHeaderRect.isNull() && vpage == 0) {
                 // draw header
                 QRectF rect = sceneHeaderRect;
+                rect.setLeft( xPos );
                 QRectF targetHeader = target;
                 targetHeader.setHeight( rect.height() * scaleFactor );
-                rect.setWidth( targetHeader.width() / scaleFactor );
-                rect.setLeft( xPos );
+                rect.setWidth( std::min( rect.width(), target.width() / scaleFactor) );
                 // qInfo()<<Q_FUNC_INFO<<"scene header:"<<"page:"<<vpage<<','<<hpage<<"source:"<<rect<<"target:"<<targetHeader;
                 render( painter, targetHeader, rect );
                 target.adjust( 0.0, targetHeader.height(), 0.0, 0.0 );

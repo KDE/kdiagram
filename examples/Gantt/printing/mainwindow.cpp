@@ -320,61 +320,66 @@ void SavePdfDialog::fileButtonClicked()
         m_fileEdit->setText(file);
 }
 
-QRectF MainWindow::calcSceneRect(const QDateTime &startTime, const QDateTime &endTime) const
+QRectF MainWindow::calcSceneRect(const QDateTime &startDateTime, const QDateTime &endDateTime) const
 {
     QRectF rect = m_view->graphicsView()->sceneRect();
-    if (startTime.isValid()) {
-        rect.setLeft(qobject_cast<KGantt::DateTimeGrid*>(m_view->grid())->mapFromDateTime(startTime));
+    if (!startDateTime.isValid() && !endDateTime.isValid()) {
+        return rect;
     }
-    if (endTime.isValid()) {
-        rect.setRight(qobject_cast<KGantt::DateTimeGrid*>(m_view->grid())->mapFromDateTime(endTime));
+    const KGantt::DateTimeGrid *grid = qobject_cast<KGantt::DateTimeGrid*>(m_view->grid());
+    Q_ASSERT(grid);
+
+    QDateTime startTime = startDateTime.isValid() ? startDateTime : grid->mapToDateTime(rect.left());
+    rect.setLeft(std::max(rect.left(), grid->mapFromDateTime(startTime)));
+
+    QDateTime endTime = endDateTime.isValid() ? endDateTime : grid->mapToDateTime(rect.right());
+    rect.setRight(std::min(rect.right(), grid->mapFromDateTime(endTime)));
+
+    QTreeView *tv = qobject_cast<QTreeView*>(m_view->leftView());
+    Q_ASSERT(tv);
+    QModelIndexList items;
+    for (QModelIndex idx = tv->indexAt(QPoint(0, 0)); idx.isValid(); idx = tv->indexBelow(idx)) {
+        items << idx;
     }
-    if (startTime.isValid() || endTime.isValid()) {
-        QTreeView *tv = qobject_cast<QTreeView*>(m_view->leftView());
-        Q_ASSERT(tv);
-        QModelIndexList items;
-        for (QModelIndex idx = tv->indexAt(QPoint(0, 0)); idx.isValid(); idx = tv->indexBelow(idx)) {
-            items << idx;
+    const int startRole = static_cast<KGantt::ProxyModel*>(m_view->ganttProxyModel())->role(KGantt::StartTimeRole);
+    const int endRole = static_cast<KGantt::ProxyModel*>(m_view->ganttProxyModel())->role(KGantt::EndTimeRole);
+    const int startCol = static_cast<KGantt::ProxyModel*>(m_view->ganttProxyModel())->column(KGantt::StartTimeRole);
+    const int endCol = static_cast<KGantt::ProxyModel*>(m_view->ganttProxyModel())->column(KGantt::EndTimeRole);
+
+    // Find the first item that end after rect.left AND start before rect.right
+    // Remove all items that is completely outside rect
+    bool startFound = false;
+    QModelIndexList lst = items;
+    for (const QModelIndex &idx : qAsConst(lst)) {
+        const QDateTime sdt = idx.sibling(idx.row(), startCol).data(startRole).toDateTime();
+        const QDateTime edt = idx.sibling(idx.row(), endCol).data(endRole).toDateTime();
+        //qInfo()<<Q_FUNC_INFO<<idx<<"start:"<<startTime<<idx.data().toString()<<idx.sibling(idx.row(), endCol).data(endRole);
+        if (edt <= startTime) {
+            items.removeAll(idx);
+            continue;
         }
-        int startRole = static_cast<KGantt::ProxyModel*>(m_view->ganttProxyModel())->role(KGantt::StartTimeRole);
-        int endRole = static_cast<KGantt::ProxyModel*>(m_view->ganttProxyModel())->role(KGantt::EndTimeRole);
-        int startCol = static_cast<KGantt::ProxyModel*>(m_view->ganttProxyModel())->column(KGantt::StartTimeRole);
-        int endCol = static_cast<KGantt::ProxyModel*>(m_view->ganttProxyModel())->column(KGantt::EndTimeRole);
-        if (startTime.isValid()) {
-            bool isSet = false;
-            QModelIndexList lst = items;
-            for (const QModelIndex &idx : qAsConst(lst)) {
-                //qInfo()<<Q_FUNC_INFO<<idx<<"start:"<<startTime<<idx.data().toString()<<idx.sibling(idx.row(), endCol).data(endRole);
-                if (idx.sibling(idx.row(), endCol).data(endRole).toDateTime() <= startTime) {
-                    items.removeAll(idx);
-                    continue;
-                }
-                if (!isSet) {
-                    rect.setTop(tv->visualRect(idx).top());
-                    isSet = true;
-                    // qInfo()<<Q_FUNC_INFO<<idx<<"start first:"<<idx.data().toString()<<rect.top();
-                }
-            }
+        if (!startFound && sdt >= endTime) {
+            items.removeAll(idx);
+            continue;
         }
-        if (endTime.isValid()) {
-            for (int i = items.count() - 1; i >= 0; --i) {
-                const QModelIndex idx = items.at(i);
-                // qInfo()<<Q_FUNC_INFO<<idx<<"end:"<<endTime<<idx.data().toString()<<idx.sibling(idx.row(), startCol).data(startRole);
-                if (idx.sibling(idx.row(), startCol).data(startRole).toDateTime() >= endTime) {
-                    continue;
-                }
-                rect.setBottom(tv->visualRect(idx).bottom());
-                // qInfo()<<Q_FUNC_INFO<<idx<<"end last:"<<idx.data().toString()<<rect.bottom();
-                break;
-            }
-        } else if (!items.isEmpty()){
-            // latest remaining index
-            qreal bottom = rect.top();
-            for (const QModelIndex &idx : qAsConst(items)) {
-                bottom = std::max(bottom, (qreal)tv->visualRect(idx).bottom());
-            }
-            rect.setBottom(bottom);
+        if (!startFound) {
+            rect.setTop(tv->visualRect(idx).top());
+            startFound = true;
+            //qInfo()<<Q_FUNC_INFO<<idx<<"start first:"<<idx.data().toString()<<rect.top();
         }
+    }
+    // All items ending before rect.left has been removed,
+    // so now find the first item (from bottom) that start before rect.right
+    for (int i = items.count() - 1; i >= 0; --i) {
+        const QModelIndex idx = items.at(i);
+        //qInfo()<<Q_FUNC_INFO<<idx<<"end:"<<endTime<<idx.data().toString()<<idx.sibling(idx.row(), startCol).data(startRole);
+        const QDateTime sdt = idx.sibling(idx.row(), startCol).data(startRole).toDateTime();
+        if (!sdt.isValid() || endTime < sdt) {
+            continue;
+        }
+        rect.setBottom(tv->visualRect(idx).bottom());
+        //qInfo()<<Q_FUNC_INFO<<idx<<"end last:"<<idx.data().toString()<<rect.bottom();
+        break;
     }
     return rect;
 }

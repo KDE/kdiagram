@@ -98,8 +98,8 @@ private slots:
         // An ugly hack to prevent the QAbstractItemModel from emitting dataChanged
         // for every single call to setData which would result in a full relayout
         // every time. That is horrible for performance and what we do is to prevent
-        // QAbstractItemModel to emit dataChanged, collect what data changed and
-        // emit the signal at the end ourself.
+        // QAbstractItemModel to Q_EMIT dataChanged, collect what data changed and
+        // Q_EMIT the signal at the end ourself.
         m_model->blockSignals(true);
         QModelIndexList indexes;
 

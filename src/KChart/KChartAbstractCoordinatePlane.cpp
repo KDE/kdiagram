@@ -54,7 +54,7 @@ AbstractCoordinatePlane::AbstractCoordinatePlane ( KChart::Chart* parent )
 
 AbstractCoordinatePlane::~AbstractCoordinatePlane()
 {
-    emit destroyedCoordinatePlane( this );
+    Q_EMIT destroyedCoordinatePlane( this );
 }
 
 void AbstractCoordinatePlane::init()
@@ -81,7 +81,7 @@ void AbstractCoordinatePlane::addDiagram ( AbstractDiagram* diagram )
     connect( this, SIGNAL(boundariesChanged()), diagram, SIGNAL(boundariesChanged()) );
 
     update();
-    emit boundariesChanged();
+    Q_EMIT boundariesChanged();
 }
 
 /*virtual*/
@@ -232,7 +232,7 @@ void KChart::AbstractCoordinatePlane::setGeometry( const QRect& r )
     if ( d->geometry != r ) {
         // inform the outside word by Signal geometryChanged()
         // via a queued connection to internal_geometryChanged()
-        emit internal_geometryChanged( d->geometry, r );
+        Q_EMIT internal_geometryChanged( d->geometry, r );
 
         d->geometry = r;
         // Note: We do *not* call update() here
@@ -248,19 +248,19 @@ QRect KChart::AbstractCoordinatePlane::geometry() const
 void KChart::AbstractCoordinatePlane::update()
 {
     //qDebug("KChart::AbstractCoordinatePlane::update() called");
-    emit needUpdate();
+    Q_EMIT needUpdate();
 }
 
 void KChart::AbstractCoordinatePlane::relayout()
 {
     //qDebug("KChart::AbstractCoordinatePlane::relayout() called");
-    emit needRelayout();
+    Q_EMIT needRelayout();
 }
 
 void KChart::AbstractCoordinatePlane::layoutPlanes()
 {
     //qDebug("KChart::AbstractCoordinatePlane::relayout() called");
-    emit needLayoutPlanes();
+    Q_EMIT needLayoutPlanes();
 }
 
 void KChart::AbstractCoordinatePlane::setRubberBandZoomingEnabled( bool enable )
@@ -284,7 +284,7 @@ void KChart::AbstractCoordinatePlane::setCornerSpacersEnabled( bool enable )
     if ( d->enableCornerSpacers == enable ) return;
 
     d->enableCornerSpacers = enable;
-    emit needRelayout();
+    Q_EMIT needRelayout();
 }
 
 bool KChart::AbstractCoordinatePlane::isCornerSpacersEnabled() const

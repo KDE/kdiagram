@@ -106,8 +106,8 @@ void BarDiagram::Private::setOrientationAndType( Qt::Orientation o, BarDiagram::
     // AbstractAxis settings - see AbstractDiagram and CartesianAxis
     barDia->setPercentMode( type == BarDiagram::Percent );
     barDia->setDataBoundariesDirty();
-    emit barDia->layoutChanged( barDia );
-    emit barDia->propertiesChanged();
+    Q_EMIT barDia->layoutChanged( barDia );
+    Q_EMIT barDia->propertiesChanged();
 }
 
 #define d d_func()
@@ -179,13 +179,13 @@ Qt::Orientation BarDiagram::orientation() const
 void BarDiagram::setBarAttributes( const BarAttributes& ba )
 {
     d->attributesModel->setModelData( QVariant::fromValue( ba ), BarAttributesRole );
-    emit propertiesChanged();
+    Q_EMIT propertiesChanged();
 }
 
 void BarDiagram::setBarAttributes( int column, const BarAttributes& ba )
 {
     d->setDatasetAttrs( column, QVariant::fromValue( ba ), BarAttributesRole );
-    emit propertiesChanged();
+    Q_EMIT propertiesChanged();
 }
 
 void BarDiagram::setBarAttributes( const QModelIndex& index, const BarAttributes& ba )
@@ -194,7 +194,7 @@ void BarDiagram::setBarAttributes( const QModelIndex& index, const BarAttributes
         d->attributesModel->mapFromSource( index ),
         QVariant::fromValue( ba ),
         BarAttributesRole );
-    emit propertiesChanged();
+    Q_EMIT propertiesChanged();
 }
 
 BarAttributes BarDiagram::barAttributes() const
@@ -221,8 +221,8 @@ void BarDiagram::setThreeDBarAttributes( const ThreeDBarAttributes& threeDAttrs 
 {
     setDataBoundariesDirty();
     d->attributesModel->setModelData( QVariant::fromValue( threeDAttrs ), ThreeDBarAttributesRole );
-    emit layoutChanged( this );
-    emit propertiesChanged();
+    Q_EMIT layoutChanged( this );
+    Q_EMIT propertiesChanged();
 }
 
 void BarDiagram::setThreeDBarAttributes( int column, const ThreeDBarAttributes& threeDAttrs )
@@ -230,7 +230,7 @@ void BarDiagram::setThreeDBarAttributes( int column, const ThreeDBarAttributes& 
     setDataBoundariesDirty();
     d->setDatasetAttrs( column,  QVariant::fromValue( threeDAttrs ), ThreeDBarAttributesRole );
     //emit layoutChanged( this );
-    emit propertiesChanged();
+    Q_EMIT propertiesChanged();
 }
 
 void BarDiagram::setThreeDBarAttributes( const QModelIndex& index, const ThreeDBarAttributes& threeDAttrs )
@@ -241,7 +241,7 @@ void BarDiagram::setThreeDBarAttributes( const QModelIndex& index, const ThreeDB
         QVariant::fromValue( threeDAttrs ),
         ThreeDBarAttributesRole );
     //emit layoutChanged( this );
-    emit propertiesChanged();
+    Q_EMIT propertiesChanged();
 }
 
 ThreeDBarAttributes BarDiagram::threeDBarAttributes() const

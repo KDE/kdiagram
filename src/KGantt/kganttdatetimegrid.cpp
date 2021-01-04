@@ -266,7 +266,7 @@ QDateTime DateTimeGrid::startDateTime() const
 void DateTimeGrid::setStartDateTime( const QDateTime& dt )
 {
     d->startDateTime = dt;
-    emit gridChanged();
+    Q_EMIT gridChanged();
 }
 
 
@@ -292,14 +292,14 @@ void DateTimeGrid::setDayWidth( qreal w )
 {
     assert( w>0 );
     d->dayWidth = w;
-    emit gridChanged();
+    Q_EMIT gridChanged();
 }
 
 
 void DateTimeGrid::setScale( Scale s )
 {
     d->scale = s;
-    emit gridChanged();
+    Q_EMIT gridChanged();
 }
 
 
@@ -313,7 +313,7 @@ void DateTimeGrid::setUserDefinedLowerScale( DateTimeScaleFormatter* lower )
 {
     delete d->lower;
     d->lower = lower;
-    emit gridChanged();
+    Q_EMIT gridChanged();
 }
 
 
@@ -321,7 +321,7 @@ void DateTimeGrid::setUserDefinedUpperScale( DateTimeScaleFormatter* upper )
 {
     delete d->upper;
     d->upper = upper;
-    emit gridChanged();
+    Q_EMIT gridChanged();
 }
 
 
@@ -340,7 +340,7 @@ DateTimeScaleFormatter* DateTimeGrid::userDefinedUpperScale() const
 void DateTimeGrid::setWeekStart( Qt::DayOfWeek ws )
 {
     d->weekStart = ws;
-    emit gridChanged();
+    Q_EMIT gridChanged();
 }
 
 
@@ -353,7 +353,7 @@ Qt::DayOfWeek DateTimeGrid::weekStart() const
 void DateTimeGrid::setFreeDays( const QSet<Qt::DayOfWeek>& fd )
 {
     d->freeDays = fd;
-    emit gridChanged();
+    Q_EMIT gridChanged();
 }
 
 
@@ -389,7 +389,7 @@ void DateTimeGrid::setRowSeparators( bool enable )
 void DateTimeGrid::setNoInformationBrush( const QBrush& brush )
 {
     d->noInformationBrush = brush;
-    emit gridChanged();
+    Q_EMIT gridChanged();
 }
 
 

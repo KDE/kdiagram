@@ -123,8 +123,8 @@ void LineDiagram::setType( const LineType type )
    // AbstractAxis settings - see AbstractDiagram and CartesianAxis
    setPercentMode( type == LineDiagram::Percent );
    setDataBoundariesDirty();
-   emit layoutChanged( this );
-   emit propertiesChanged();
+   Q_EMIT layoutChanged( this );
+   Q_EMIT propertiesChanged();
 }
 
 LineDiagram::LineType LineDiagram::type() const
@@ -143,8 +143,8 @@ void LineDiagram::setCenterDataPoints( bool center )
     //  A      B    =\        A      B
     //  1......2    =/    1......2......3
     setDataBoundariesDirty();
-    emit layoutChanged( this );
-    emit propertiesChanged();
+    Q_EMIT layoutChanged( this );
+    Q_EMIT propertiesChanged();
 }
 
 bool LineDiagram::centerDataPoints() const
@@ -167,7 +167,7 @@ void LineDiagram::setLineAttributes( const LineAttributes& la )
     d->attributesModel->setModelData(
         QVariant::fromValue( la ),
         LineAttributesRole );
-    emit propertiesChanged();
+    Q_EMIT propertiesChanged();
 }
 
 void LineDiagram::setLineAttributes(
@@ -175,13 +175,13 @@ void LineDiagram::setLineAttributes(
     const LineAttributes& la )
 {
     d->setDatasetAttrs( column, QVariant::fromValue( la ), LineAttributesRole );
-    emit propertiesChanged();
+    Q_EMIT propertiesChanged();
 }
 
 void LineDiagram::resetLineAttributes( int column )
 {
     d->resetDatasetAttrs( column, LineAttributesRole );
-    emit propertiesChanged();
+    Q_EMIT propertiesChanged();
 }
 
 void LineDiagram::setLineAttributes(
@@ -192,14 +192,14 @@ void LineDiagram::setLineAttributes(
             d->attributesModel->mapFromSource(index),
     QVariant::fromValue( la ),
     LineAttributesRole );
-    emit propertiesChanged();
+    Q_EMIT propertiesChanged();
 }
 
 void LineDiagram::resetLineAttributes( const QModelIndex & index )
 {
     d->attributesModel->resetData(
             d->attributesModel->mapFromSource(index), LineAttributesRole );
-    emit propertiesChanged();
+    Q_EMIT propertiesChanged();
 }
 
 LineAttributes LineDiagram::lineAttributes() const
@@ -230,7 +230,7 @@ void LineDiagram::setThreeDLineAttributes(
     d->attributesModel->setModelData(
         QVariant::fromValue( la ),
         ThreeDLineAttributesRole );
-   emit propertiesChanged();
+   Q_EMIT propertiesChanged();
 }
 
 void LineDiagram::setThreeDLineAttributes(
@@ -239,7 +239,7 @@ void LineDiagram::setThreeDLineAttributes(
 {
     setDataBoundariesDirty();
     d->setDatasetAttrs( column, QVariant::fromValue( la ), ThreeDLineAttributesRole );
-   emit propertiesChanged();
+   Q_EMIT propertiesChanged();
 }
 
 void LineDiagram::setThreeDLineAttributes(
@@ -251,7 +251,7 @@ void LineDiagram::setThreeDLineAttributes(
         d->attributesModel->mapFromSource(index),
         QVariant::fromValue( la ),
         ThreeDLineAttributesRole );
-   emit propertiesChanged();
+   Q_EMIT propertiesChanged();
 }
 
 ThreeDLineAttributes LineDiagram::threeDLineAttributes() const
@@ -290,7 +290,7 @@ void LineDiagram::setValueTrackerAttributes( const QModelIndex & index,
     d->attributesModel->setData( d->attributesModel->mapFromSource(index),
                                  QVariant::fromValue( va ),
                                  KChart::ValueTrackerAttributesRole );
-    emit propertiesChanged();
+    Q_EMIT propertiesChanged();
 }
 
 ValueTrackerAttributes LineDiagram::valueTrackerAttributes(

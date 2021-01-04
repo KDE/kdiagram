@@ -103,6 +103,6 @@ QRect TextArea::areaGeometry() const
 
 void TextArea::positionHasChanged()
 {
-    emit positionChanged( this );
+    Q_EMIT positionChanged( this );
 }
 

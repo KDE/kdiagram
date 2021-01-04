@@ -560,7 +560,7 @@ void PlotterDiagramCompressor::Private::rowsInserted( const QModelIndex& /*paren
        }
    }
    setBoundaries( qMakePair( QPointF( minX, minY ), QPointF( maxX, maxY ) ) );
-   emit m_parent->rowCountChanged();
+   Q_EMIT m_parent->rowCountChanged();
 }
 #endif
 #include <QDebug>
@@ -690,7 +690,7 @@ void PlotterDiagramCompressor::Private::rowsInserted( const QModelIndex& /*paren
         }
         }
     }
-    emit m_parent->rowCountChanged();
+    Q_EMIT m_parent->rowCountChanged();
 }
 
 
@@ -701,7 +701,7 @@ void PlotterDiagramCompressor::setCompressionModel( CompressionMode value )
     {
         d->m_mode = value;
         d->clearBuffer();
-        emit rowCountChanged();
+        Q_EMIT rowCountChanged();
     }
 }
 
@@ -710,7 +710,7 @@ void PlotterDiagramCompressor::Private::setBoundaries( const Boundaries & bound 
     if ( bound != m_boundary )
     {
         m_boundary = bound;
-        emit m_parent->boundariesChanged();
+        Q_EMIT m_parent->boundariesChanged();
     }
 }
 
@@ -807,7 +807,7 @@ void PlotterDiagramCompressor::setForcedDataBoundaries( const QPair< qreal, qrea
         d->m_forcedXBoundaries = bounds;
     }
     d->clearBuffer();
-    emit boundariesChanged();
+    Q_EMIT boundariesChanged();
 }
 
 QAbstractItemModel* PlotterDiagramCompressor::model() const
@@ -861,7 +861,7 @@ void PlotterDiagramCompressor::setMergeRadius( qreal radius )
     {
         d->m_mergeRadius = radius;
         if ( d->m_mode != PlotterDiagramCompressor::SLOPE )
-            emit rowCountChanged();
+            Q_EMIT rowCountChanged();
     }
 }
 
@@ -870,7 +870,7 @@ void PlotterDiagramCompressor::setMaxSlopeChange( qreal value )
     if ( d->m_maxSlopeRadius != value )
     {
         d->m_maxSlopeRadius = value;
-        emit boundariesChanged();
+        Q_EMIT boundariesChanged();
     }
 }
 

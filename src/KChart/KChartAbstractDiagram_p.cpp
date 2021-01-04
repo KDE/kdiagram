@@ -130,7 +130,7 @@ void AbstractDiagram::Private::setAttributesModel( AttributesModel* amodel )
         }
     }
 
-    emit diagram->attributesModelAboutToChange( amodel, attributesModel );
+    Q_EMIT diagram->attributesModelAboutToChange( amodel, attributesModel );
 
     connect( amodel, SIGNAL(rowsInserted(QModelIndex,int,int)),
              diagram, SLOT(setDataBoundariesDirty()) );

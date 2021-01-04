@@ -81,5 +81,5 @@ void ModelParamVsParam::timeout()
 
 	QModelIndex	topLeft(index(0, 0));
 	QModelIndex	bottomRight(index(rowCount() - 1, columnCount() - 1));
-	emit dataChanged(topLeft, bottomRight);
+	Q_EMIT dataChanged(topLeft, bottomRight);
 } // ModelParamVsParam::timeout()

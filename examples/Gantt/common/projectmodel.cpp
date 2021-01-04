@@ -290,11 +290,11 @@ bool ProjectModel::setData( const QModelIndex& idx,  const QVariant& value,
         case Qt::DisplayRole:
         case Qt::EditRole:
             n->setLabel( value.toString() );
-            emit dataChanged( idx, idx );
+            Q_EMIT dataChanged( idx, idx );
             break;
         case KGantt::TextPositionRole:
             n->setPosition( static_cast<KGantt::StyleOptionGanttItem::Position>(value.toInt()) );
-            emit dataChanged( idx, idx );
+            Q_EMIT dataChanged( idx, idx );
             break;
         }
     } else if ( idx.column() == 1 ) {
@@ -302,7 +302,7 @@ bool ProjectModel::setData( const QModelIndex& idx,  const QVariant& value,
         case Qt::DisplayRole:
         case Qt::EditRole:
             n->setType( value.toInt() );
-            emit dataChanged( idx, idx );
+            Q_EMIT dataChanged( idx, idx );
             break;
         }
     } else if ( idx.column() == 2 ) {
@@ -311,7 +311,7 @@ bool ProjectModel::setData( const QModelIndex& idx,  const QVariant& value,
         case Qt::EditRole:
         case KGantt::StartTimeRole:
             n->setStart(value.toDateTime());
-            emit dataChanged( idx, idx );
+            Q_EMIT dataChanged( idx, idx );
             break;
         }
     } else if ( idx.column() == 3 ) {
@@ -320,7 +320,7 @@ bool ProjectModel::setData( const QModelIndex& idx,  const QVariant& value,
         case Qt::EditRole:
         case KGantt::EndTimeRole:
             n->setEnd(value.toDateTime());
-            emit dataChanged( idx, idx );
+            Q_EMIT dataChanged( idx, idx );
             break;
         }
     } else if ( idx.column() == 4 ) {
@@ -328,7 +328,7 @@ bool ProjectModel::setData( const QModelIndex& idx,  const QVariant& value,
         case Qt::DisplayRole:
         case Qt::EditRole:
             n->setCompletion(value.toInt());
-            emit dataChanged( idx, idx );
+            Q_EMIT dataChanged( idx, idx );
             break;
         }
     }

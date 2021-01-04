@@ -321,7 +321,7 @@ void KChart::PolarCoordinatePlane::setGridAttributes(
         d->gridAttributesSagittal = a;
     setHasOwnGridAttributes( circular, true );
     update();
-    emit propertiesChanged();
+    Q_EMIT propertiesChanged();
 }
 
 void KChart::PolarCoordinatePlane::resetGridAttributes(
@@ -363,7 +363,7 @@ void KChart::PolarCoordinatePlane::setHasOwnGridAttributes(
         d->hasOwnGridAttributesCircular = on;
     else
         d->hasOwnGridAttributesSagittal = on;
-    emit propertiesChanged();
+    Q_EMIT propertiesChanged();
 }
 
 bool KChart::PolarCoordinatePlane::hasOwnGridAttributes(

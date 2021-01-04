@@ -143,7 +143,7 @@ Palette& Palette::operator=( const Palette& r )
     Palette copy( r );
     copy.swap( *this );
 
-    // emit changed() ?
+    // Q_EMIT changed() ?
     return *this;
 }
 
@@ -164,7 +164,7 @@ void Palette::addBrush( const QBrush& brush, int position )
   } else {
     d->brushes.insert( position, brush );
   }
-  emit changed();
+  Q_EMIT changed();
 }
 
 QBrush Palette::getBrush( int position ) const
@@ -177,6 +177,6 @@ void Palette::removeBrush( int position )
 {
   if ( position < 0 || position >= size() ) return;
   d->brushes.remove( position );
-  emit changed();
+  Q_EMIT changed();
 }
 

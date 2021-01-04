@@ -37,7 +37,7 @@ class MainWindow : public QWidget, private Ui::MainWindow
 public:
     explicit MainWindow( QWidget* parent = nullptr );
 
-private slots:
+private Q_SLOTS:
     // start position of circular grid
     void on_startPositionSB_valueChanged( double pos );
     void on_startPositionSL_valueChanged( int pos );

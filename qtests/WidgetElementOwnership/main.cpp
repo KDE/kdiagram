@@ -32,7 +32,7 @@ using namespace KChart;
 
 class TestWidgetElementOwnership: public QObject {
   Q_OBJECT
-private slots:
+private Q_SLOTS:
 
   void initTestCase()
   {

@@ -34,7 +34,7 @@ using namespace KChart;
 
 class TestCloning: public QObject {
     Q_OBJECT
-private slots:
+private Q_SLOTS:
 
     void initTestCase()
         {

@@ -41,7 +41,7 @@ public:
     QCheckBox *m_rowLabels;
     QCheckBox *m_columnLabels;
     SavePdfDialog(QWidget *parent = nullptr);
-private slots:
+private Q_SLOTS:
     void fileButtonClicked();
 };
 
@@ -50,7 +50,7 @@ class MainWindow : public QMainWindow {
 public:
     explicit MainWindow( QWidget* parent = nullptr );
 
-private slots:
+private Q_SLOTS:
     void slotFileSavePdf();
     void slotFilePrint();
     void slotFilePrintPreview();

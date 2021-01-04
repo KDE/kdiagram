@@ -57,7 +57,7 @@ public:
     QDateTimeEdit *m_endTime;
     
     SavePdfDialog(QWidget *parent = nullptr);
-private slots:
+private Q_SLOTS:
     void fileButtonClicked();
 };
 
@@ -69,7 +69,7 @@ public:
     QRectF calcSceneRect(const QDateTime &startDateTime, const QDateTime &endDateTime) const;
     bool optionsDialog(bool requireFile = false);
 
-private slots:
+private Q_SLOTS:
     void slotFileSavePdf();
     void slotFilePrint();
     void slotFilePrintPreview();

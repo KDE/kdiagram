@@ -38,7 +38,7 @@ class MainWindow : public QWidget, private Ui::MainWindow
 public:
     MainWindow( QWidget* parent = nullptr );
 
-private slots:
+private Q_SLOTS:
     void annotationsToggled( bool );
     void gridLinesOnAnnotationsToggled( bool );
 

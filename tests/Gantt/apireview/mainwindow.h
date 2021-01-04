@@ -42,7 +42,7 @@ class MainWindow : public QMainWindow {
 public:
     MainWindow( QWidget * parent = nullptr, Qt::WindowFlags flags = Qt::WindowFlags() );
 
-private slots:
+private Q_SLOTS:
     void addNewEntry();
     void removeEntry();
     void addDemoEntry();

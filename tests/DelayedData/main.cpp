@@ -75,7 +75,7 @@ public:
     setLayout(l);
   }
 
-private slots:
+private Q_SLOTS:
 
   void addRows()
   {

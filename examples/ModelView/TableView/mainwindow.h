@@ -44,10 +44,10 @@ class MainWindow : public QMainWindow
 public:
     MainWindow();
 
-protected slots:
+protected Q_SLOTS:
     void selectionChanged( const QItemSelection & selected, const QItemSelection & deselected );
 
-private slots:
+private Q_SLOTS:
     void initializeData();
     void openFile(const QString &path = QString());
     void saveFile();

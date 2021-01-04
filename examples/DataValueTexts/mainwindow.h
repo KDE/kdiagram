@@ -36,7 +36,7 @@ class MainWindow : public QWidget, private Ui::MainWindow
 public:
     MainWindow( QWidget* parent = nullptr );
 
-private slots:
+private Q_SLOTS:
     void on_scopeOneBarRB_toggled(  bool checked );
     void on_scopeBarDatasetSB_valueChanged( int i );
     void on_scopeBarItemSB_valueChanged(    int i );

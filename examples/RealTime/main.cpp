@@ -55,7 +55,7 @@ public:
     m_timer->start( 200 );
   }
 
-private slots:
+private Q_SLOTS:
       void slotTimeout() {
           QModelIndex index = m_model.index( 0, 1, QModelIndex());
           qreal value = ( m_model.data( index ).toInt() % 24 ) +1;

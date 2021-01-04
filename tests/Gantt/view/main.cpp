@@ -137,7 +137,7 @@ public:
                  this, SLOT(slotHeaderMenu(QPoint)) );
     }
 
-public slots:
+public Q_SLOTS:
     void slotZoom( int z )
     {
         grid.setDayWidth( z );

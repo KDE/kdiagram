@@ -33,7 +33,7 @@ class MainWindow : public QWidget, private Ui::MainWindow
 public:
     MainWindow( QWidget *parent = nullptr );
 
-private slots:
+private Q_SLOTS:
     void on_threeDProperties_toggled( bool checked );
     void on_perspectiveDepth_valueChanged( int value );
     void on_perspectiveAngle_valueChanged( int value );

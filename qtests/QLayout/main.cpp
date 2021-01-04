@@ -62,7 +62,7 @@ class TestQLayout : public QObject
 {
     Q_OBJECT
 
-private slots:
+private Q_SLOTS:
 
     // This is very much like KChart::Chart does with legends
     void testBoxLayoutHiddenWidget() {

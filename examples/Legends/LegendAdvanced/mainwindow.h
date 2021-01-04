@@ -39,7 +39,7 @@ class MainWindow : public QWidget, private Ui::MainWindow
 public:
     MainWindow( QWidget* parent = nullptr );
 
-private slots:
+private Q_SLOTS:
     void on_addLegendPB_clicked();
     void on_editLegendPB_clicked();
     void on_removeLegendPB_clicked();

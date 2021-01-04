@@ -45,7 +45,7 @@ public:
 
 	 virtual	~MainWindow();
 
-private slots:
+private Q_SLOTS:
 	void timeoutEditingFinished();
 	void editingFinished();
 

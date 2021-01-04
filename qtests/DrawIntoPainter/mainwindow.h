@@ -48,7 +48,7 @@ public:
          */
         /* reimp */ void resizeEvent ( QResizeEvent * ) override;
 
-private slots:
+private Q_SLOTS:
 
     void setLineType( const QString & text );
     void setLegendVisible( bool visible );

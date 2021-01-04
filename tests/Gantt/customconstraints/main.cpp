@@ -110,7 +110,7 @@ public:
                  this, SLOT(slotZoom(int)) );
     }
 
-public slots:
+public Q_SLOTS:
     void slotZoom( int z )
     {
         grid.setDayWidth( z );

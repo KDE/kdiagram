@@ -44,7 +44,7 @@ public:
 		int					p_nrOfParameters = 8,
 		int					p_nrOfSamples = 100);
 
-private slots:
+private Q_SLOTS:
 	void timeout();
 
 private:

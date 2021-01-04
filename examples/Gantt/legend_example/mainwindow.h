@@ -45,7 +45,7 @@ public:
     virtual ~MainWindow();
     void closeEvent(QCloseEvent *event) override;
 
-private slots:
+private Q_SLOTS:
     void addNewEntry();
     void removeEntry();
     void showContextMenu( const QPoint& );

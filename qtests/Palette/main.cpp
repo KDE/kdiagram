@@ -24,7 +24,7 @@ using namespace KChart;
 
 class TestKChartPalette: public QObject {
   Q_OBJECT
-private slots:
+private Q_SLOTS:
 
   void testKChartPaletteInit()
   {

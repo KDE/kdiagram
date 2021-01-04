@@ -35,7 +35,7 @@ class MainWindow : public QWidget, private Ui::MainWindow
 public:
     MainWindow( QWidget* parent = nullptr );
 
-private slots:
+private Q_SLOTS:
 
     void on_barTypeCB_currentIndexChanged( const QString & text );
     void on_barOrientationCB_currentIndexChanged( const QString & text );

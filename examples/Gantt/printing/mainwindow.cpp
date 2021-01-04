@@ -102,7 +102,7 @@ public:
     explicit ItemTypeComboBox( QWidget* parent = nullptr );
 
     KGantt::ItemType itemType() const;
-public slots:
+public Q_SLOTS:
     void setItemType( KGantt::ItemType typ );
 };
 

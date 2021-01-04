@@ -42,7 +42,7 @@ class MainWidget : public QWidget
 public:
     MainWidget();
 
-private slots:
+private Q_SLOTS:
     void functionToggled( bool checked );
     void addPointsButtonClicked();
 

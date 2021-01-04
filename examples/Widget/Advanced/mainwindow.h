@@ -35,7 +35,7 @@ public:
 
     KChart::Widget* widget;
 
-public slots:
+public Q_SLOTS:
     void changeType();
     void changeLeading( int leading );
     void addDataset();

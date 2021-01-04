@@ -38,7 +38,7 @@ class MainWindow : public QWidget, private Ui::MainWindow
 public:
     MainWindow( QWidget* parent = nullptr );
 
-private slots:
+private Q_SLOTS:
     // start position
     void on_startPositionSB_valueChanged( double pos );
     void on_startPositionSL_valueChanged( int pos );

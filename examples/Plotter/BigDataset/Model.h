@@ -50,10 +50,10 @@ public:
 
     void appendPoints( int numPoints );
 
-public slots:
+public Q_SLOTS:
     void setRunning( bool );
 
-private slots:
+private Q_SLOTS:
     void appendPoint();
 
 private:

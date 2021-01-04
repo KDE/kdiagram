@@ -42,7 +42,7 @@ class MainWindow : public QDialog,
 public:
     explicit MainWindow( QWidget* parent = nullptr );
 
-private slots:
+private Q_SLOTS:
     void indexClicked( const QModelIndex& index );
 
 private:

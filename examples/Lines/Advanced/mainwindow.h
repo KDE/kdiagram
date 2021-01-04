@@ -38,7 +38,7 @@ public:
 private:
     bool eventFilter(QObject* target, QEvent* event) override;
 
-private slots:
+private Q_SLOTS:
 
     void on_lineTypeCB_currentIndexChanged( const QString & text );
     void on_paintValuesCB_toggled( bool checked );

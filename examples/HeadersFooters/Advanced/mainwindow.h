@@ -44,7 +44,7 @@ class MainWindow : public QWidget, private Ui::MainWindow
 public:
     MainWindow( QWidget* parent = nullptr );
 
-private slots:
+private Q_SLOTS:
     void on_defaultButton_clicked();
     void slotPaintRequested(QPrinter *printer);
     void on_printButton_clicked();

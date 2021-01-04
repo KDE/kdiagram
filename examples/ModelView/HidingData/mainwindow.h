@@ -38,7 +38,7 @@ class MainWindow : public QWidget, private Ui::MainWindow
 public:
     MainWindow( QWidget* parent = nullptr );
 
-private slots:
+private Q_SLOTS:
     void on_showDataset1CB_toggled( bool checked );
     void on_showDataset2CB_toggled( bool checked );
     void on_showDataset3CB_toggled( bool checked );

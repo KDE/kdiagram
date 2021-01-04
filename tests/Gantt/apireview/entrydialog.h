@@ -51,7 +51,7 @@ public:
     QModelIndex depends() const;
     QString legend() const;
 
-private slots:
+private Q_SLOTS:
     void updateEndDate( const QDateTime& startDate );
     void disableEditing( bool disable );
     

@@ -40,7 +40,7 @@ public:
     MainWindow( QWidget* parent = nullptr );
     ~MainWindow();
 
-private slots:
+private Q_SLOTS:
 
     void on_lineTypeCB_currentIndexChanged( const QString & text );
     void on_paintValuesCB_toggled( bool checked );

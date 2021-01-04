@@ -92,7 +92,7 @@ public:
         m_timer = new QTimer(this);
         connect( m_timer, SIGNAL(timeout()), this, SLOT(slotTimeout()) );
     }
-private slots:
+private Q_SLOTS:
     void slotTimeout() {
 
         // An ugly hack to prevent the QAbstractItemModel from emitting dataChanged

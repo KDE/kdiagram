@@ -29,9 +29,7 @@ public:
     explicit MainWindow( QWidget *parent = nullptr );
     ~MainWindow();
 
-signals:
 
-public slots:
 private:
     class Private;
     Private *d;

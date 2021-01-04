@@ -387,7 +387,7 @@ QPair< QDateTime, QDateTime > LeveyJenningsDiagram::timeRange() const
         // round down/up to the prev/next midnight
         const QDate min = floorDay( begin );
         const QDate max = ceilDay( end );
-        return QPair< QDateTime, QDateTime >( QDateTime( min ), QDateTime( max ) );
+        return QPair< QDateTime, QDateTime >( QDateTime( min, QTime() ), QDateTime( max, QTime() ) );
     }
     else if ( begin.secsTo( end ) > 3600 )
     {

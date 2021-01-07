@@ -208,7 +208,7 @@ MainWindow::MainWindow( QWidget* parent )
 
     QMenu* toolsMenu = new QMenu( tr( "&Tools" ) );
 
-    toolsMenu->addAction( tr( "&New Item" ), this, SLOT(slotToolsNewItem()) );
+    toolsMenu->addAction( tr( "&Insert Item" ), this, SLOT(slotToolsNewItem()) );
     toolsMenu->addAction( tr( "&Add Item" ), this, SLOT(slotToolsAppendItem()) );
     toolsMenu->addSeparator();
     QMenu *alignMenu = toolsMenu->addMenu( tr( "Ali&gn" ) );
@@ -443,6 +443,7 @@ void MainWindow::slotFileSavePdf()
     printer.setColorMode(QPrinter::Color);
     printer.setOutputFormat(QPrinter::PdfFormat);
     printer.setOutputFileName(m_file);
+    printer.setFullPage(true); // Let ganttview handle margins
     PrintPalette p;
     m_view->printDiagram(&printer, m_ctx);
 #endif
@@ -457,6 +458,7 @@ void MainWindow::slotFilePrint()
     QPrinter printer(QPrinter::HighResolution);
     printer.setOrientation(QPrinter::Landscape);
     printer.setColorMode(QPrinter::Color);
+    printer.setFullPage(true); // Let ganttview handle margins
     QPrintDialog dialog(&printer, this);
     if (dialog.exec() != QDialog::Accepted) {
         return;
@@ -474,6 +476,7 @@ void MainWindow::slotFilePrintPreview()
     QPrinter printer(QPrinter::HighResolution);
     printer.setOrientation(QPrinter::Landscape);
     printer.setColorMode(QPrinter::Color);
+    printer.setFullPage(true); // Let ganttview handle margins
     QPrintPreviewDialog preview(&printer);
     connect(&preview, SIGNAL(paintRequested(QPrinter*)), this, SLOT(slotPrintPreviewPaintRequest(QPrinter*)));
     preview.exec();
@@ -496,7 +499,7 @@ void MainWindow::slotToolsNewItem()
     QModelIndex idx = m_view->selectionModel()->currentIndex();
     if ( idx.isValid() ) {
         qDebug() << "MainWindow::slotToolsNewItem" << idx;
-        m_model->insertRows( 0, 1, m_model->index( idx.row(),0,idx.parent() ) );
+        m_model->insertRows( idx.row(), 1, idx.parent() );
     } else {
         m_model->insertRows( 0, 1, m_view->rootIndex() );
     }

@@ -795,8 +795,14 @@ void GraphicsScene::printDiagram( QPrinter *printer, const PrintingContext &cont
     if (ctx.sceneRect().isNull()) {
         ctx.setSceneRect(sceneRect());
     }
+    QRectF targetRect = printer->pageRect( QPrinter::DevicePixel );
+    if ( printer->fullPage() ) {
+        // Handle margins
+        QPageLayout pl = printer->pageLayout();
+        targetRect = targetRect.marginsRemoved( pl.marginsPixels( printer->resolution() ) );
+    }
     QPainter painter( printer );
-    doPrintScene( printer, &painter, printer->pageRect(), ctx );
+    doPrintScene( printer, &painter, targetRect, ctx );
 #endif
 }
 

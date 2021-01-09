@@ -533,7 +533,7 @@ void GraphicsScene::removeItem( const QModelIndex& idx )
         d->items.erase( it );
         {
             // Remove any constraintitems attached
-#if QT_VERSION < QT_VERSION_CHECK(5, 1, 0)
+#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
             // TODO remove when we depend on 5.14+
             const QSet<ConstraintGraphicsItem*> clst = QSet<ConstraintGraphicsItem*>::fromList( item->startConstraints() ) +
                                                        QSet<ConstraintGraphicsItem*>::fromList( item->endConstraints() );

@@ -46,6 +46,7 @@
 #include <QPushButton>
 #include <QDialogButtonBox>
 #include <QDateTimeEdit>
+#include <QDoubleSpinBox>
 
 #include <KGanttGlobal>
 #include <KGanttView>
@@ -304,6 +305,14 @@ SavePdfDialog::SavePdfDialog(QWidget *parent)
     m_endTime = new QDateTimeEdit(this);
     rangeLayout->addWidget(m_endTime);
 
+    QHBoxLayout *marginsLayout = new QHBoxLayout(this);
+    l->addLayout(marginsLayout);
+    QLabel *label = new QLabel(tr("Margins:"), this);
+    marginsLayout->addWidget(label);
+    m_margin = new QDoubleSpinBox(this);
+    m_margin->setSuffix(tr("mm"));
+    marginsLayout->addWidget(m_margin);
+
     QDialogButtonBox *btnBox = new QDialogButtonBox(this);
     btnBox->setStandardButtons(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
     connect(btnBox, SIGNAL(accepted()), this, SLOT(accept()));
@@ -407,6 +416,7 @@ bool MainWindow::optionsDialog(bool requireFile)
     }
     dialog.m_startTime->setDateTime(m_startTime);
     dialog.m_endTime->setDateTime(m_endTime);
+    dialog.m_margin->setValue(m_margins.left());
     if (dialog.exec() != QDialog::Accepted)
         return false;
 
@@ -416,6 +426,9 @@ bool MainWindow::optionsDialog(bool requireFile)
 
     m_startTime = dialog.m_startTime->dateTime();
     m_endTime = dialog.m_endTime->dateTime();
+
+    qreal margin = dialog.m_margin->value();
+    m_margins = QMarginsF(margin, margin, margin, margin);
 
     if (dialog.m_fitSingle->isChecked()) {
         m_ctx.setFitting(KGantt::PrintingContext::FitSinglePage);
@@ -476,6 +489,7 @@ void MainWindow::slotFilePrintPreview()
     QPrinter printer(QPrinter::HighResolution);
     printer.setOrientation(QPrinter::Landscape);
     printer.setColorMode(QPrinter::Color);
+    printer.setPageMargins(m_margins, QPageLayout::Millimeter);
     printer.setFullPage(true); // Let ganttview handle margins
     QPrintPreviewDialog preview(&printer);
     connect(&preview, SIGNAL(paintRequested(QPrinter*)), this, SLOT(slotPrintPreviewPaintRequest(QPrinter*)));

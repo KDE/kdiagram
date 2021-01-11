@@ -32,6 +32,7 @@ class QRadioButton;
 class QPrinter;
 class QDateTimeEdit;
 class QLabel;
+class QDoubleSpinBox;
 
 namespace KGantt {
     class View;
@@ -55,6 +56,7 @@ public:
     QCheckBox *m_useEndTime;
     QDateTimeEdit *m_startTime;
     QDateTimeEdit *m_endTime;
+    QDoubleSpinBox *m_margin;
     
     SavePdfDialog(QWidget *parent = nullptr);
 private Q_SLOTS:
@@ -92,6 +94,7 @@ private:
     QDateTime m_startTime;
     QDateTime m_endTime;
     QString m_file;
+    QMarginsF m_margins;
 };
 #endif /* PRINTINGMAINWINDOW_H */
 

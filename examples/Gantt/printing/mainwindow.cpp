@@ -259,7 +259,7 @@ SavePdfDialog::SavePdfDialog(QWidget *parent)
     QVBoxLayout *l = new QVBoxLayout(this);
     setLayout(l);
 
-    QHBoxLayout *fileLayout = new QHBoxLayout(this);
+    QHBoxLayout *fileLayout = new QHBoxLayout();
     l->addLayout(fileLayout);
     m_fileLabel = new QLabel(tr("File:"), this);
     fileLayout->addWidget(m_fileLabel);
@@ -291,21 +291,21 @@ SavePdfDialog::SavePdfDialog(QWidget *parent)
     m_fitVertical->setChecked(true);
     l->addWidget(m_fitVertical);
 
-    QHBoxLayout *rangeLayout = new QHBoxLayout(this);
+    QHBoxLayout *rangeLayout = new QHBoxLayout();
     l->addLayout(rangeLayout);
     m_useStartTime = new QCheckBox(tr("Start:"), this);
     rangeLayout->addWidget(m_useStartTime);
     m_startTime = new QDateTimeEdit(this);
     rangeLayout->addWidget(m_startTime);
 
-    rangeLayout = new QHBoxLayout(this);
+    rangeLayout = new QHBoxLayout();
     l->addLayout(rangeLayout);
     m_useEndTime = new QCheckBox(tr("End:"), this);
     rangeLayout->addWidget(m_useEndTime);
     m_endTime = new QDateTimeEdit(this);
     rangeLayout->addWidget(m_endTime);
 
-    QHBoxLayout *marginsLayout = new QHBoxLayout(this);
+    QHBoxLayout *marginsLayout = new QHBoxLayout();
     l->addLayout(marginsLayout);
     QLabel *label = new QLabel(tr("Margins:"), this);
     marginsLayout->addWidget(label);

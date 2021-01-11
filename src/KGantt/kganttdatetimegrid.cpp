@@ -939,6 +939,8 @@ void DateTimeGrid::Private::paintHeader( QPainter* painter,
         opt.textAlignment = Qt::AlignCenter;
         style->drawControl(QStyle::CE_Header, &opt, painter, widget);
     }
+    delete formatter;
+    formatter = nullptr;
 }
 
 

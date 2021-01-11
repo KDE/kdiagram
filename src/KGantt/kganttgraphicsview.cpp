@@ -88,8 +88,8 @@ bool HeaderWidget::event( QEvent* event )
 void HeaderWidget::mousePressEvent(QMouseEvent *event)
 {
     DateTimeGrid* const grid = qobject_cast< DateTimeGrid* >( view()->grid() );
-    int mousePosX = event->pos().x() + view()->horizontalScrollBar()->value();
-    m_headerType = grid->sectionHandleAtPos( mousePosX, event->pos().y(), geometry() );
+    int mousePosX = event->x();
+    m_headerType = grid->sectionHandleAtPos( view()->mapToScene( event->x(), 0 ).x(), event->pos().y(), geometry() );
     if (m_headerType != DateTimeGrid::NoHeader) {
         bool hasCursor = testAttribute(Qt::WA_SetCursor);
         if (!hasCursor) {
@@ -106,7 +106,7 @@ void HeaderWidget::mouseReleaseEvent(QMouseEvent *event)
 {
     if ( m_headerType > 0 ) {
         DateTimeGrid* const grid = qobject_cast< DateTimeGrid* >( view()->grid() );
-        int mousePosX = event->pos().x() + view()->horizontalScrollBar()->value();
+        int mousePosX = view()->mapToScene( event->x(), 0 ).x();
         if ( grid->sectionHandleAtPos( mousePosX, event->pos().y(), geometry() ) == DateTimeGrid::NoHeader ) {
             bool hasCursor = testAttribute(Qt::WA_SetCursor);
             if (hasCursor) {
@@ -114,7 +114,7 @@ void HeaderWidget::mouseReleaseEvent(QMouseEvent *event)
             }
         }
         m_headerType = DateTimeGrid::NoHeader;
-        m_mousePosX = mousePosX;
+        m_mousePosX = event->x();
         QGuiApplication::restoreOverrideCursor();
     }
     QWidget::mouseReleaseEvent(event);
@@ -123,7 +123,8 @@ void HeaderWidget::mouseReleaseEvent(QMouseEvent *event)
 void HeaderWidget::mouseMoveEvent(QMouseEvent *event)
 {
     DateTimeGrid* const grid = qobject_cast< DateTimeGrid* >( view()->grid() );
-    int mousePosX = event->pos().x() + view()->horizontalScrollBar()->value();
+    int mousePosX = event->x();
+    qreal gridX = view()->mapToScene( event->x(), 0.0 ).x();
     switch ( m_headerType ) {
         case DateTimeGrid::UpperHeader:
         {
@@ -137,6 +138,7 @@ void HeaderWidget::mouseMoveEvent(QMouseEvent *event)
             return;
         }
         case DateTimeGrid::LowerHeader:
+        {
             if ( mousePosX > m_mousePosX )  {
                 grid->setDayWidth( qMax<qreal>( 1.0, grid->dayWidth() * 1.01 ) );
             } else {
@@ -145,9 +147,10 @@ void HeaderWidget::mouseMoveEvent(QMouseEvent *event)
             m_mousePosX = mousePosX;
             event->accept();
             return;
+        }
         default: {
             bool hasCursor = testAttribute(Qt::WA_SetCursor);
-            DateTimeGrid::HeaderType type = grid->sectionHandleAtPos( mousePosX, event->pos().y(), geometry());
+            DateTimeGrid::HeaderType type = grid->sectionHandleAtPos( gridX, event->pos().y(), geometry());
             if (type != DateTimeGrid::NoHeader) {
                 if (!hasCursor) {
                     setCursor(QCursor(Qt::SplitHCursor));

@@ -722,8 +722,12 @@ void GraphicsView::updateSceneRect()
 
     /* set scrollbar to keep the same time in view */
     range = horizontalScrollBar()->maximum()-horizontalScrollBar()->minimum();
-    if ( range>0 ) horizontalScrollBar()->setValue( qRound( hscroll*range ) );
-
+    if ( range>0 ) {
+        horizontalScrollBar()->setValue( qRound( hscroll*range ) );
+    } else {
+        // keep header in sync with scene
+        d->headerwidget.scrollTo(r.left())
+    }
     /* We have to update here to adjust for any rows with no
      * information because they are painted with a different
      * background brush

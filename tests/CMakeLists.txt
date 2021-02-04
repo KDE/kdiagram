@@ -1,12 +1,12 @@
 add_subdirectory( Gantt )
 
 include_directories(
-    ${CMAKE_SOURCE_DIR}/src/KChart
-    ${CMAKE_SOURCE_DIR}/src/KChart/include
-    ${CMAKE_SOURCE_DIR}/src/KChart/Cartesian
-    ${CMAKE_SOURCE_DIR}/src/KChart/Cartesian/DiagramFlavors
-    ${CMAKE_SOURCE_DIR}/src/KChart/Polar
-    ${CMAKE_SOURCE_DIR}/src/KChart/Ternary
+    ${CMAKE_SOURCE_DIR}/src/kchart
+    ${CMAKE_SOURCE_DIR}/src/kchart/include
+    ${CMAKE_SOURCE_DIR}/src/kchart/Cartesian
+    ${CMAKE_SOURCE_DIR}/src/kchart/Cartesian/DiagramFlavors
+    ${CMAKE_SOURCE_DIR}/src/kchart/Polar
+    ${CMAKE_SOURCE_DIR}/src/kchart/Ternary
 )
 remove_definitions(
     -DQT_NO_KEYWORDS

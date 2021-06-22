@@ -243,19 +243,19 @@ namespace KGantt {
         /*! Sets the KGantt::ItemDelegate used for rendering items on this
          * view. \see ItemDelegate and QAbstractItemDelegate.
          */
-        void setItemDelegate( ItemDelegate* );
+        void setItemDelegate( KGantt::ItemDelegate* );
 
         /*! Sets the constraintmodel displayed by this view.
          * \see KGantt::ConstraintModel.
          */
-        void setConstraintModel( ConstraintModel* );
+        void setConstraintModel( KGantt::ConstraintModel* );
 
         /*! Sets the AbstractGrid for this view. The grid is an
          * object that controls how QModelIndexes are mapped
          * to and from the view and how the background and header
          * is rendered. \see AbstractGrid and DateTimeGrid.
          */
-        void setGrid( AbstractGrid* );
+        void setGrid( KGantt::AbstractGrid* );
         void expandAll( QModelIndex index = QModelIndex() );
         void collapseAll( QModelIndex index = QModelIndex() );
 

@@ -202,7 +202,7 @@ namespace KGantt {
     public Q_SLOTS:
         void setModel( QAbstractItemModel* );
         void setSummaryHandlingModel( QAbstractProxyModel* );
-        void setConstraintModel( ConstraintModel* );
+        void setConstraintModel( KGantt::ConstraintModel* );
         void setRootIndex( const QModelIndex& idx );
         void setSelectionModel( QItemSelectionModel* selectionmodel );
         void setReadOnly( bool );

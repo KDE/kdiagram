@@ -264,7 +264,7 @@ namespace KGantt {
         /*! Sets the constraintmodel displayed by this view.
          * \see KGantt::ConstraintModel.
          */
-        void setConstraintModel( ConstraintModel* );
+        void setConstraintModel( KGantt::ConstraintModel* );
 
         /*! Sets the root index of the model displayed by this view.
          * Similar to QAbstractItemView::setRootIndex, default is QModelIndex().
@@ -281,19 +281,19 @@ namespace KGantt {
          * of each row and with which parts of the model are
          * displayed. \see AbstractRowController
          */
-        void setRowController( AbstractRowController* );
+        void setRowController( KGantt::AbstractRowController* );
 
         /*! Sets the AbstractGrid for this view. The grid is an
          * object that controls how QModelIndexes are mapped
          * to and from the view and how the background and header
          * is rendered. \see AbstractGrid and DateTimeGrid.
          */
-        void setGrid( AbstractGrid* );
+        void setGrid( KGantt::AbstractGrid* );
 
         /*! Sets the KGantt::ItemDelegate used for rendering items on this
          * view. \see ItemDelegate and QAbstractItemDelegate.
          */
-        void setItemDelegate( ItemDelegate* delegate );
+        void setItemDelegate( KGantt::ItemDelegate* delegate );
 
         /*! Sets the view to read-only mode if \a to is true. The default is
          * read/write if the model permits it.

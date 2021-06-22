@@ -41,7 +41,7 @@ public:
     void setDefaultModels( QHash< DiagramType, QAbstractItemModel* > models );
 
 Q_SIGNALS:
-    void diagramTypeChanged( DiagramType, Subtype );
+    void diagramTypeChanged( DiagramTypeDialog::DiagramType, DiagramTypeDialog::Subtype );
 
 private:
     class Private;

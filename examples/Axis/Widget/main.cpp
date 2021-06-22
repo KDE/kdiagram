@@ -31,8 +31,7 @@ int main( int argc, char** argv ) {
     Widget widget;
     widget.resize( 600, 600 );
 
-    QVector< QPair <qreal, qreal> > vec0;
-    QVector< qreal > vec1,  vec2;
+    QVector< qreal > vec1;
 
     vec1 << 25 << 16 << 9 << 4 << 1 << 0
          << 1 << 4 << 9 << 16 << 25;

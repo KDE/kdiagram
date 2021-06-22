@@ -103,7 +103,6 @@ private Q_SLOTS:
         m_model->blockSignals(true);
         QModelIndexList indexes;
 
-        QVariant v1, v2;
         for ( int i = 0; i < 365; ++i ) {
             QModelIndex idx = m_model->index( i, 1 );
             indexes.append(idx);

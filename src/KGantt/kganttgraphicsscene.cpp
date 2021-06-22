@@ -629,13 +629,15 @@ void GraphicsScene::selectionModelChanged(QAbstractItemModel *model)
 
 void GraphicsScene::slotSelectionChanged(const QItemSelection &selected, const QItemSelection &deselected)
 {
-    for (const QModelIndex &idx : deselected.indexes()) {
+    const auto desel = deselected.indexes();
+    for (const QModelIndex &idx : desel) {
         GraphicsItem *item = findItem(idx.model() == d->summaryHandlingModel ? idx : d->summaryHandlingModel->mapFromSource(idx));
         if (item) {
             item->setSelected(false);
         }
     }
-    for (const QModelIndex &idx : selected.indexes()) {
+    const auto sel = selected.indexes();
+    for (const QModelIndex &idx : sel) {
         GraphicsItem *item = findItem(idx.model() == d->summaryHandlingModel ? idx : d->summaryHandlingModel->mapFromSource(idx));
         if (item) {
             item->setSelected(true);

@@ -109,8 +109,6 @@ void StackedLineDiagram::paint( PaintContext* ctx )
     LabelPaintCache lpc;
     LineAttributesInfoList lineList;
 
-    QVector< qreal > percentSumValues;
-
     QList<QPointF> bottomPoints;
     bool bFirstDataset = true;
 

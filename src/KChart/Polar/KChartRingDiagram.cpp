@@ -201,8 +201,6 @@ void RingDiagram::paint( PaintContext* ctx )
 
     const PolarCoordinatePlane * plane = polarCoordinatePlane();
 
-    QVariant vValY;
-
     d->forgetAlreadyPaintedDataValues();
     for ( int iRow = 0; iRow < rCount; ++iRow ) {
         const qreal sum = valueTotals( iRow );

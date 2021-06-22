@@ -405,7 +405,7 @@ void CartesianAxis::init()
     d->customTickLength = 3;
     d->position = Bottom;
     setCachedSizeDirty();
-    connect( this, SIGNAL(coordinateSystemChanged()), SLOT(coordinateSystemChanged()) );
+    connect( this, SIGNAL(coordinateSystemChanged()), SLOT(slotCoordinateSystemChanged()) );
 }
 
 
@@ -422,7 +422,7 @@ bool CartesianAxis::compare( const CartesianAxis* other ) const
             ( titleTextAttributes() == other->titleTextAttributes() );
 }
 
-void CartesianAxis::coordinateSystemChanged()
+void CartesianAxis::slotCoordinateSystemChanged()
 {
     layoutPlanes();
 }

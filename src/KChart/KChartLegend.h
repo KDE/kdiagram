@@ -401,13 +401,13 @@ m_legend->setFloatingPosition( relativePosition );
     void resizeLayout( const QSize& size ) override;
 
 Q_SIGNALS:
-    void destroyedLegend( Legend* );
+    void destroyedLegend( KChart::Legend* );
     /** Emitted upon change of a property of the Legend or any of its components. */
     void propertiesChanged();
 
 private Q_SLOTS:
     void emitPositionChanged();
-    void resetDiagram( AbstractDiagram* );
+    void resetDiagram( KChart::AbstractDiagram* );
     void activateTheLayout();
     void setNeedRebuild();
     void buildLegend();

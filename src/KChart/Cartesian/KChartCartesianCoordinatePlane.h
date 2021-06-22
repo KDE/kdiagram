@@ -490,7 +490,7 @@ namespace KChart {
         QSize sizeHint() const override;
 
     protected Q_SLOTS:
-        void slotLayoutChanged( AbstractDiagram* );
+        void slotLayoutChanged( KChart::AbstractDiagram* );
 
     private:
         void setHasOwnGridAttributes(

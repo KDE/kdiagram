@@ -126,7 +126,7 @@ protected:
     void positionHasChanged() override;
 
 Q_SIGNALS:
-    void positionChanged( AbstractArea * );
+    void positionChanged( KChart::AbstractArea * );
 }; // End of class AbstractArea
 
 }

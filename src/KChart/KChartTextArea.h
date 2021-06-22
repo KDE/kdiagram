@@ -73,7 +73,7 @@ protected:
     void positionHasChanged() override;
 
 Q_SIGNALS:
-    void positionChanged( TextArea * );
+    void positionChanged( KChart::TextArea * );
 
     //KCHART_DECLARE_PRIVATE_DERIVED(TextArea)
 }; // End of class TextArea

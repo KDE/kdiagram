@@ -215,7 +215,7 @@ namespace KChart {
 
     public Q_SLOTS:
         /** Sets the type of the chart. */
-        void setType( ChartType chartType, SubType subType=Normal );
+        void setType( KChart::Widget::ChartType chartType, KChart::Widget::SubType subType=Normal );
         /** \brief Sets the type of the chart without changing the main type.
           *
           * Make sure to use a sub-type that matches the main type,
@@ -226,7 +226,7 @@ namespace KChart {
           * \sa KChart::PieDiagram::PieType, KChart::RingDiagram::RingType
           * \sa KChart::PolarDiagram::PolarType
           */
-        void setSubType( SubType subType );
+        void setSubType( KChart::Widget::SubType subType );
 
     private:
         /** Justifies the model, so that the given rows and columns fit into it. */

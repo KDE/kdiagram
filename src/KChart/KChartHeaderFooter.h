@@ -60,8 +60,8 @@ public:
     void setParent( QObject* parent );
 
 Q_SIGNALS:
-    void destroyedHeaderFooter( HeaderFooter* );
-    void positionChanged( HeaderFooter* );
+    void destroyedHeaderFooter( KChart::HeaderFooter* );
+    void positionChanged( KChart::HeaderFooter* );
 
 }; // End of class HeaderFooter
 

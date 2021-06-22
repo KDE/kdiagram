@@ -689,7 +689,7 @@ namespace KChart {
             Changes in the diagrams coordinate system also result
             in the layoutChanged() signal being emitted.
         */
-        void layoutChanged( AbstractDiagram* );
+        void layoutChanged( KChart::AbstractDiagram* );
 
         /**
          * This signal is emitted when this diagram is being destroyed, but before all the
@@ -702,7 +702,7 @@ namespace KChart {
 
         /** This signal is emitted just before the new attributes model is connected internally.
             It gives you a chance to connect to its signals first or perform other setup work. */
-        void attributesModelAboutToChange( AttributesModel* newModel, AttributesModel* oldModel );
+        void attributesModelAboutToChange( KChart::AttributesModel* newModel, KChart::AttributesModel* oldModel );
 
         /** This signal is emitted, when the model data is changed. */
         void modelDataChanged();

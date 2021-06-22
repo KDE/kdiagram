@@ -116,7 +116,7 @@ namespace KChart {
         void setAttributesModel( AttributesModel* model ) override;
 
     protected Q_SLOTS:
-        void connectAttributesModel( AttributesModel* );
+        void connectAttributesModel( KChart::AttributesModel* );
 
     protected:
         /** @return the 3D item depth of the model index \a index */

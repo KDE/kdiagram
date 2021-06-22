@@ -173,12 +173,13 @@ namespace KChart {
         /** pure virtual in QLayoutItem */
         QRect geometry() const override;
 
+        virtual int tickLength( bool subUnitTicks = false ) const;
+
     public Q_SLOTS:
         void setCachedSizeDirty() const;
 
-        virtual int tickLength( bool subUnitTicks = false ) const;
     private Q_SLOTS:
-        void coordinateSystemChanged();
+        void slotCoordinateSystemChanged();
     };
 
     typedef QList<CartesianAxis*> CartesianAxisList;

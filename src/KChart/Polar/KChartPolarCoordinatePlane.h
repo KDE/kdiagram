@@ -152,7 +152,7 @@ namespace KChart {
 
         void layoutDiagrams() override;
     protected Q_SLOTS:
-        void slotLayoutChanged( AbstractDiagram* diagram );
+        void slotLayoutChanged( KChart::AbstractDiagram* diagram );
         void adjustZoomAndRepaint();
 
     private:

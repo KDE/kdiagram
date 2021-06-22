@@ -188,7 +188,7 @@ public:
 #endif
 
 protected Q_SLOTS:
-    void connectAttributesModel( AttributesModel* );
+    void connectAttributesModel( KChart::AttributesModel* );
 
 protected:
     void paint ( PaintContext* paintContext ) override;

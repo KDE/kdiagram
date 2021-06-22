@@ -131,8 +131,6 @@ void StackedPlotter::paint( PaintContext* ctx )
 
     //FIXME(khz): add LineAttributes::MissingValuesPolicy support for LineDiagram::Stacked and ::Percent
 
-    QVector <double > percentSumValues;
-
     QList<QPointF> bottomPoints;
     bool bFirstDataset = true;
 

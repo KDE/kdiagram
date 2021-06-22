@@ -183,11 +183,11 @@ class Q_DECL_HIDDEN Chart::Private : public QObject
     public Q_SLOTS:
         void slotLayoutPlanes();
         void slotResizePlanes();
-        void slotLegendPositionChanged( AbstractAreaWidget* legend );
-        void slotHeaderFooterPositionChanged( HeaderFooter* hf );
-        void slotUnregisterDestroyedLegend( Legend * legend );
-        void slotUnregisterDestroyedHeaderFooter( HeaderFooter* headerFooter );
-        void slotUnregisterDestroyedPlane( AbstractCoordinatePlane* plane );
+        void slotLegendPositionChanged( KChart::AbstractAreaWidget* legend );
+        void slotHeaderFooterPositionChanged( KChart::HeaderFooter* hf );
+        void slotUnregisterDestroyedLegend( KChart::Legend * legend );
+        void slotUnregisterDestroyedHeaderFooter( KChart::HeaderFooter* headerFooter );
+        void slotUnregisterDestroyedPlane( KChart::AbstractCoordinatePlane* plane );
 };
 
 }

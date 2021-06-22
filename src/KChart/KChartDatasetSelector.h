@@ -55,8 +55,8 @@ namespace KChart {
 
     Q_SIGNALS:
         void configureDatasetProxyModel (
-            const DatasetDescriptionVector& rowConfig,
-            const DatasetDescriptionVector& columnConfig );
+            const KChart::DatasetDescriptionVector& rowConfig,
+            const KChart::DatasetDescriptionVector& columnConfig );
 
         void mappingDisabled ();
 

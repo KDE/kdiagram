@@ -98,7 +98,7 @@ public:
     virtual void resizeLayout( const QSize& );
 
 Q_SIGNALS:
-    void positionChanged( AbstractAreaWidget * );
+    void positionChanged( KChart::AbstractAreaWidget * );
 
 protected:
     virtual ~AbstractAreaWidget() ;

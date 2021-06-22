@@ -54,15 +54,15 @@ namespace KChart {
     Q_SIGNALS:
         /** This signal is emitted immediately before the diagram is
           * being destroyed. */
-        void diagramDestroyed( AbstractDiagram* diagram );
+        void diagramDestroyed( KChart::AbstractDiagram* diagram );
         /** Emitted when a diagram is being destroyed, but before its data is invalidated **/
-        void diagramAboutToBeDestroyed( AbstractDiagram* diagram );
+        void diagramAboutToBeDestroyed( KChart::AbstractDiagram* diagram );
         /** This signal is emitted whenever the data of the diagram changes. */
-        void diagramDataChanged( AbstractDiagram* diagram );
+        void diagramDataChanged( KChart::AbstractDiagram* diagram );
         /** This signal is emitted whenever any of the data of the diagram was set (un)hidden. */
-        void diagramDataHidden( AbstractDiagram* diagram );
+        void diagramDataHidden( KChart::AbstractDiagram* diagram );
         /** This signal is emitted whenever the attributes of the diagram change. */
-        void diagramAttributesChanged( AbstractDiagram* diagram );
+        void diagramAttributesChanged( KChart::AbstractDiagram* diagram );
 
     private Q_SLOTS:
         void slotDestroyed(QObject*);

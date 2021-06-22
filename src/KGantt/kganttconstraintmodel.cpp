@@ -154,7 +154,7 @@ void ConstraintModel::cleanup()
 {
 #if 0
     QSet<Constraint> orphans;
-    Q_FOREACH( const Constraint& c, d->constraints ) {
+    for ( const Constraint& c : qAsConst(d->constraints) ) {
         if ( !c.startIndex().isValid() || !c.endIndex().isValid() ) orphans.insert( c );
     }
     //qDebug() << "Constraint::cleanup() found" << orphans << "orphans";
@@ -195,7 +195,7 @@ bool ConstraintModel::hasConstraint( const Constraint& c ) const
 {
     /*
     // Because of a Qt bug we have to search like this
-    Q_FOREACH( Constraint c2, d->constraints ) {
+    for ( Constraint c2 : qAsConst(d->constraints) ) {
         if ( c==c2 ) return true;
     }
     return false;
@@ -214,7 +214,8 @@ bool ConstraintModel::hasConstraint( const Constraint& c ) const
 QDebug operator<<( QDebug dbg, const KGantt::ConstraintModel& model )
 {
     dbg << "KGantt::ConstraintModel[ " << static_cast<const QObject*>( &model ) << ": [\n";
-    Q_FOREACH( const Constraint& c, model.constraints() ) {
+    const auto constraints = model.constraints();
+    for ( const Constraint& c : constraints ) {
         dbg << "\t" << c << "\n";
     }
     dbg << "]\n";

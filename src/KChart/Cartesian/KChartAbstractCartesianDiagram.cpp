@@ -67,10 +67,11 @@ KChart::AbstractCartesianDiagram::~AbstractCartesianDiagram()
 void AbstractCartesianDiagram::init()
 {
     d->compressor.setModel( attributesModel() );
-    connect( this, SIGNAL(layoutChanged(AbstractDiagram*)),
-             &d->compressor, SLOT(slotDiagramLayoutChanged(AbstractDiagram*)) );
-    connect( this, SIGNAL(attributesModelAboutToChange(AttributesModel*,AttributesModel*)),
-             this, SLOT(connectAttributesModel(AttributesModel*)) );
+    // NOTE: These signals are disconnected elsewhere (e.g: Plotter) so be carefull to make any changes.
+    connect( this, SIGNAL(layoutChanged(KChart::AbstractDiagram*)),
+             &d->compressor, SLOT(slotDiagramLayoutChanged(KChart::AbstractDiagram*)) );
+    connect( this, SIGNAL(attributesModelAboutToChange(KChart::AttributesModel*,KChart::AttributesModel*)),
+             this, SLOT(connectAttributesModel(KChart::AttributesModel*)) );
 
     if ( d->plane ) {
         connect( d->plane, SIGNAL(viewportCoordinateSystemChanged()),

@@ -148,6 +148,11 @@ namespace KChart {
                 const QModelIndex & index,
                 const CachePosition& position ) const;
 
+    public Q_SLOTS:
+        // FIXME resolution changes and root index changes should all
+        // be catchable with this method:
+        void slotDiagramLayoutChanged( KChart::AbstractDiagram* );
+
     private Q_SLOTS:
         void slotRowsAboutToBeInserted( const QModelIndex&, int, int );
         void slotRowsInserted( const QModelIndex&, int, int );
@@ -162,9 +167,6 @@ namespace KChart {
         void slotModelHeaderDataChanged( Qt::Orientation, int, int );
         void slotModelDataChanged( const QModelIndex&, const QModelIndex& );
         void slotModelLayoutChanged();
-        // FIXME resolution changes and root index changes should all
-        // be catchable with this method:
-        void slotDiagramLayoutChanged( KChart::AbstractDiagram* );
 
         // geometry has changed
         void rebuildCache();

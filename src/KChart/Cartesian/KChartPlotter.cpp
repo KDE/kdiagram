@@ -66,10 +66,10 @@ void Plotter::init()
     connect( this, SIGNAL(boundariesChanged()), test, SLOT(changedProperties()) );
     // The signal is connected to the superclass's slot at this point because the connection happened
     // in its constructor when "its type was not Plotter yet".
-    disconnect( this, SIGNAL(attributesModelAboutToChange(AttributesModel*,AttributesModel*)),
-                this, SLOT(connectAttributesModel(AttributesModel*)) );
-    connect( this, SIGNAL(attributesModelAboutToChange(AttributesModel*,AttributesModel*)),
-             this, SLOT(connectAttributesModel(AttributesModel*)) );
+    disconnect( this, SIGNAL(attributesModelAboutToChange(KChart::AttributesModel*,KChart::AttributesModel*)),
+                this, SLOT(connectAttributesModel(KChart::AttributesModel*)) );
+    connect( this, SIGNAL(attributesModelAboutToChange(KChart::AttributesModel*,KChart::AttributesModel*)),
+             this, SLOT(connectAttributesModel(KChart::AttributesModel*)) );
     setDatasetDimensionInternal( 2 );
 }
 

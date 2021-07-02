@@ -345,13 +345,13 @@ void Legend::addDiagram( AbstractDiagram* newDiagram )
         } else {
             d->observers.append( observer );
         }
-        connect( observer, SIGNAL(diagramAboutToBeDestroyed(AbstractDiagram*)),
+        connect( observer, SIGNAL(diagramAboutToBeDestroyed(KChart::AbstractDiagram*)),
                  SLOT(resetDiagram(AbstractDiagram*)));
-        connect( observer, SIGNAL(diagramDataChanged(AbstractDiagram*)),
+        connect( observer, SIGNAL(diagramDataChanged(KChart::AbstractDiagram*)),
                  SLOT(setNeedRebuild()));
-        connect( observer, SIGNAL(diagramDataHidden(AbstractDiagram*)),
+        connect( observer, SIGNAL(diagramDataHidden(KChart::AbstractDiagram*)),
                  SLOT(setNeedRebuild()));
-        connect( observer, SIGNAL(diagramAttributesChanged(AbstractDiagram*)),
+        connect( observer, SIGNAL(diagramAttributesChanged(KChart::AbstractDiagram*)),
                  SLOT(setNeedRebuild()));
         setNeedRebuild();
     }

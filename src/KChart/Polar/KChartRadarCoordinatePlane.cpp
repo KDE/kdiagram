@@ -34,5 +34,5 @@ const KChart::TextAttributes RadarCoordinatePlane::textAttributes() const
 
 void RadarCoordinatePlane::init()
 {
-    // this bloc left empty intentionally
+    // this block left empty intentionally
 }

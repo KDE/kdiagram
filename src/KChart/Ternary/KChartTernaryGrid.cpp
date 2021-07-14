@@ -49,7 +49,7 @@ TernaryGrid::~TernaryGrid()
 
 void TernaryGrid::drawGrid( PaintContext* context )
 {
-    static const int GridLineDistanceTreshold = 20; // <Treshold> pixels between each grid line
+    static const int GridLineDistanceThreshold = 20; // <Threshold> pixels between each grid line
 
     QPainter& painter = *context->painter(); // recover from pointer madness
     PainterSaver s( &painter ); // can i have a reference based version of that?
@@ -62,8 +62,8 @@ void TernaryGrid::drawGrid( PaintContext* context )
     qreal xPixels = plane->translate( TriangleBottomRight ).x() -
                      plane->translate( TriangleBottomLeft ).x();
     int granularity = 20;
-    if ( xPixels > 10 * GridLineDistanceTreshold ) granularity = 10;
-    if ( xPixels > 20 * GridLineDistanceTreshold ) granularity = 5;
+    if ( xPixels > 10 * GridLineDistanceThreshold ) granularity = 10;
+    if ( xPixels > 20 * GridLineDistanceThreshold ) granularity = 5;
 
     m_tickInfo.clear();
     for ( int i = granularity; i < 100; i+=granularity )

@@ -24,13 +24,13 @@ using namespace KChart;
 AbstractArea::Private::Private() :
     AbstractAreaBase::Private()
 {
-    // this bloc left empty intentionally
+    // this block left empty intentionally
 }
 
 
 AbstractArea::Private::~Private()
 {
-    // this bloc left empty intentionally
+    // this block left empty intentionally
 }
 
 
@@ -44,7 +44,7 @@ AbstractArea::AbstractArea()
 
 AbstractArea::~AbstractArea()
 {
-    // this bloc left empty intentionally
+    // this block left empty intentionally
 }
 
 

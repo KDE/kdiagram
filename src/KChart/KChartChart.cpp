@@ -565,7 +565,7 @@ QHash<AbstractCoordinatePlane*, PlaneInfo> Chart::Private::buildPlaneLayoutInfos
      * they will be laid out in relation to each other as suggested by the position
      * of the axis. If, for example Plane1 and Plane2 share an axis at position Left,
      * that will result in the layout: Axis Plane1 Plane 2, vertically. If Plane1
-     * also happens to be Plane2's referece plane, both planes are drawn over each
+     * also happens to be Plane2's reference plane, both planes are drawn over each
      * other. The reference plane concept allows two planes to share the same space
      * even if neither has any axis, and in case there are shared axis, it is used
      * to decided, whether the planes should be painted on top of each other or

@@ -976,7 +976,7 @@ QString AbstractDiagram::unitSuffix( int column, Qt::Orientation orientation, bo
 
 /* Returns the global unit suffix
   * @param orientation the orientation of the axis
-  * @return the unit siffix
+  * @return the unit suffix
   */
 QString AbstractDiagram::unitSuffix( Qt::Orientation orientation ) const
 {

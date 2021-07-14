@@ -138,7 +138,7 @@ namespace KGantt {
         /*! Adds a constraint from \a from to \a to. \a modifiers are the
          * keyboard modifiers pressed by the user when the action is invoked.
          *
-         * Override this to control how contraints are added. The default
+         * Override this to control how constraints are added. The default
          * implementation adds a soft constraint unless the Shift key is pressed,
          * in that case it adds a hard constraint. If a constraint is already
          * present, it is removed and nothing is added.

@@ -213,7 +213,7 @@ namespace KGantt {
         KGanttRoleBase     = Qt::UserRole + 1174, ///< The base value used for the KGantt role enum values. The actual roles have values base+1, base+2, ...
         StartTimeRole       = KGanttRoleBase + 1, ///< Start time (or other start value) for a gantt item.
         EndTimeRole         = KGanttRoleBase + 2, ///< End time (or other end value) for a gantt item.
-        TaskCompletionRole  = KGanttRoleBase + 3, ///< Task completetion percentage used by Task items. Should be an integer og a qreal between 0 and 100.
+        TaskCompletionRole  = KGanttRoleBase + 3, ///< Task completion percentage used by Task items. Should be an integer og a qreal between 0 and 100.
         ItemTypeRole        = KGanttRoleBase + 4, ///< The item type. \see KGantt::ItemType.
         LegendRole          = KGanttRoleBase + 5, ///< The Legend text
         TextPositionRole    = KGanttRoleBase + 6 ///< The position of the text label on the item. The type of this value is KGantt::StyleOptionGanttItem::Position and the default values is Right.

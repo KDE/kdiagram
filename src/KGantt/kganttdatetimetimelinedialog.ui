@@ -54,7 +54,7 @@
       <item>
        <widget class="QCheckBox" name="useCustomPen">
         <property name="toolTip">
-         <string comment="@info:tooltip">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When deactivated, a cosmetic pen with &lt;span style=&quot; font-style:italic;&quot;&gt;highligt&lt;/span&gt; color will be used.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string comment="@info:tooltip">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When deactivated, a cosmetic pen with &lt;span style=&quot; font-style:italic;&quot;&gt;highlight&lt;/span&gt; color will be used.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="text">
          <string>Use Custom Pen</string>

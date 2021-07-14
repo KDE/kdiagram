@@ -26,7 +26,7 @@ Measure::Measure()
     mArea( nullptr ),
     mOrientation( KChartEnums::MeasureOrientationAuto )
 {
-    // this bloc left empty intentionally
+    // this block left empty intentionally
 }
 
 Measure::Measure( qreal value,
@@ -37,7 +37,7 @@ Measure::Measure( qreal value,
     mArea( nullptr ),
     mOrientation( orientation )
 {
-    // this bloc left empty intentionally
+    // this block left empty intentionally
 }
 
 Measure::Measure( const Measure& r )
@@ -46,7 +46,7 @@ Measure::Measure( const Measure& r )
     mArea( r.referenceArea() ),
     mOrientation( r.referenceOrientation() )
 {
-    // this bloc left empty intentionally
+    // this block left empty intentionally
 }
 
 Measure & Measure::operator=( const Measure& r )

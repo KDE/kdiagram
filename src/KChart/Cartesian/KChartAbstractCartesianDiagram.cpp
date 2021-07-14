@@ -56,7 +56,7 @@ KChart::AbstractCartesianDiagram::~AbstractCartesianDiagram()
 void AbstractCartesianDiagram::init()
 {
     d->compressor.setModel( attributesModel() );
-    // NOTE: These signals are disconnected elsewhere (e.g: Plotter) so be carefull to make any changes.
+    // NOTE: These signals are disconnected elsewhere (e.g: Plotter) so be careful to make any changes.
     connect( this, SIGNAL(layoutChanged(KChart::AbstractDiagram*)),
              &d->compressor, SLOT(slotDiagramLayoutChanged(KChart::AbstractDiagram*)) );
     connect( this, SIGNAL(attributesModelAboutToChange(KChart::AttributesModel*,KChart::AttributesModel*)),

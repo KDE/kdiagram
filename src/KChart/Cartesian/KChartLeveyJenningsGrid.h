@@ -22,7 +22,7 @@ namespace KChart {
      *
      * The LeveyJenningsGrid interface is used
      * for calculating and for drawing
-     * the horizonal grid lines, and the vertical grid lines
+     * the horizontal grid lines, and the vertical grid lines
      * of a Levey Jennings coordinate plane.
      */
     class LeveyJenningsGrid : public CartesianGrid

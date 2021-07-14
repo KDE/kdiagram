@@ -50,7 +50,7 @@ HeaderWidget::~HeaderWidget()
 void HeaderWidget::scrollTo( int v )
 {
     m_offset = v;
-    // QWidget::scroll() wont work properly for me on Mac
+    // QWidget::scroll() won't work properly for me on Mac
     //scroll( static_cast<int>( old-v ), 0 );
     update();
 }

@@ -44,7 +44,7 @@ namespace KGantt {
          *  nothing happens.
          *
          * Subclassing ConstraintModel and overriding addConstraint() and removeConstraint() can provide
-         * re-entrancy issues in the ConstraintModel<->ConstraintProxy interaction. Therefore it is recommed
+         * re-entrancy issues in the ConstraintModel<->ConstraintProxy interaction. Therefore it is recommended
          * to better subclass GraphicsView and override addConstraint() there.
          */
         virtual void addConstraint( const Constraint& c );

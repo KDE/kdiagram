@@ -49,7 +49,7 @@ void TestKGanttView::cleanup()
 
 void TestKGanttView::testApi()
 {
-    // this sould never change
+    // this should never change
     KGantt::GraphicsScene *scene = qobject_cast<KGantt::GraphicsScene*>(view->graphicsView()->scene());
     QVERIFY(scene);
 

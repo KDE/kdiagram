@@ -22,13 +22,13 @@ using namespace KChart;
 TextArea::Private::Private() :
     AbstractAreaBase::Private()
 {
-    // this bloc left empty intentionally
+    // this block left empty intentionally
 }
 
 
 TextArea::Private::~Private()
 {
-    // this bloc left empty intentionally
+    // this block left empty intentionally
 }
 
 
@@ -37,18 +37,18 @@ TextArea::TextArea()
     , KChart::AbstractAreaBase()
     , KChart::TextLayoutItem()
 {
-    // this bloc left empty intentionally
+    // this block left empty intentionally
 }
 
 TextArea::~TextArea()
 {
-    // this bloc left empty intentionally
+    // this block left empty intentionally
 }
 
 
 void TextArea::init()
 {
-    // this bloc left empty intentionally
+    // this block left empty intentionally
 }
 
 void TextArea::paintIntoRect( QPainter& painter, const QRect& rect )

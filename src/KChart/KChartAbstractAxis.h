@@ -54,7 +54,7 @@ namespace KChart {
         // FIXME implement when code os ready for it:
         // virtual Area* clone() const = 0;
 
-        // FIXME (Mirko) readd when needed
+        // FIXME (Mirko) re-add when needed
         // void copyRelevantDetailsFrom( const KChartAxis* axis );
 
         /*    virtual void paint( PaintContext* ) const = 0;

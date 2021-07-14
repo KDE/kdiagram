@@ -56,7 +56,7 @@ Legend::Private::Private() :
 
 Legend::Private::~Private()
 {
-    // this bloc left empty intentionally
+    // this block left empty intentionally
 }
 
 

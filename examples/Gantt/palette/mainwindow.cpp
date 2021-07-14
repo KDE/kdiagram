@@ -224,7 +224,7 @@ MainWindow::MainWindow( QWidget* parent )
     m_view->setConstraintModel(new KGantt::ConstraintModel(m_view));
     m_view->constraintModel()->addConstraint(KGantt::Constraint(m_model->index(0,0,QModelIndex()),m_model->index(1,0,QModelIndex())));
     m_view->constraintModel()->addConstraint(KGantt::Constraint(m_model->index(1,0,QModelIndex()),m_model->index(2,0,QModelIndex())));
-    // invalid contraint
+    // invalid constraint
     m_view->constraintModel()->addConstraint(KGantt::Constraint(m_model->index(2,0,QModelIndex()),m_model->index(3,0,QModelIndex())));
 
     // no info

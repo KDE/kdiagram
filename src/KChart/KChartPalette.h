@@ -19,7 +19,7 @@ namespace KChart {
    * \brief A Palette is a set of brushes (or colors) to be used
    * for painting data sets.
    *
-   * The palette class encapsulates a colletion of brushes, which in
+   * The palette class encapsulates a collection of brushes, which in
    * the simplest case are colors, to be used for painting a series of
    * data sets. When asked for the m-th color, a palette of size n will
    * wrap around and thus cycle through the available colors.

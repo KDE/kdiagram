@@ -88,7 +88,7 @@ bool PlotterDiagramCompressor::Iterator::isValid() const
 
 //    ++m_bufferIndex;
 //    // the version that checks dataBoundaries is separated here, this is to avoid the runtime cost
-//    // of checking every time the boundaries if thats not necessary
+//    // of checking every time the boundaries if that's not necessary
 //    if ( m_parent.data()->d->forcedBoundaries( Qt::Vertical ) || m_parent.data()->d->forcedBoundaries( Qt::Vertical ) )
 //    {
 //        if ( m_bufferIndex >= m_buffer.count()  && m_rebuffer )
@@ -305,8 +305,8 @@ PlotterDiagramCompressor::Iterator& PlotterDiagramCompressor::Iterator::operator
     //increment the indexes
     ++m_index;
     ++m_bufferIndex;
-    //if the index reached the end of the datamodel make this iterator an enditerator
-    //and make sure the buffer was not already build, if thats the case its not necessary
+    //if the index reached the end of the datamodel, make this iterator an enditerator
+    //and make sure the buffer was not already built. If that's the case it's not necessary
     //to rebuild it and it would be hard to extend it as we had to know where m_index was
     if ( m_index >= count || ( !m_rebuffer && m_bufferIndex == m_buffer.count() ) )
     {

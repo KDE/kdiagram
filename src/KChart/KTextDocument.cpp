@@ -15,7 +15,7 @@
 #include <QtDebug>
 #include <QTextBlock>
 
-// This is an internal class that mimicks some of the behavior of a
+// This is an internal class that mimics some of the behavior of a
 // QLabel with rich text assigned, this is mostly a workaround around
 // QTextDocumentLayout not being a public class.
 

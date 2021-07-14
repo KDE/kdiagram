@@ -193,7 +193,7 @@ namespace KGantt {
          * end time mapped from the span.
          *
          * \returns true if the start time and time was successfully added to the model, or false
-         * if unsucessful.
+         * if unsuccessful.
          * Also returns false if any of the constraints isn't satisfied. That is, if the start time of
          * the constrained index is before the end time of the dependency index, or the end time of the
          * constrained index is before the start time of the dependency index.

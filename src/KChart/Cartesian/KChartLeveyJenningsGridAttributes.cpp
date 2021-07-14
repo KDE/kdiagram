@@ -47,7 +47,7 @@ LeveyJenningsGridAttributes::Private::Private()
 LeveyJenningsGridAttributes::LeveyJenningsGridAttributes()
     : _d( new Private() )
 {
-    // this bloc left empty intentionally
+    // this block left empty intentionally
 }
 
 LeveyJenningsGridAttributes::LeveyJenningsGridAttributes( const LeveyJenningsGridAttributes& r )

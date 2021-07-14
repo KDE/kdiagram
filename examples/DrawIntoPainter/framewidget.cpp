@@ -17,7 +17,7 @@ FrameWidget::FrameWidget( QWidget* parent, Qt::WindowFlags f )
     : QWidget( parent, f )
     , mChart( nullptr )
 {
-    // this bloc left empty intentionally
+    // this block left empty intentionally
 }
 
 void FrameWidget::setChart( KChart::Chart* chart )

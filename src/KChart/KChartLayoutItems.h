@@ -368,7 +368,7 @@ namespace KChart {
     };
 
     /**
-     * Layout item showing a vertial line
+     * Layout item showing a vertical line
      * \internal
      */
     class KCHART_EXPORT VerticalLineLayoutItem : public AbstractLayoutItem

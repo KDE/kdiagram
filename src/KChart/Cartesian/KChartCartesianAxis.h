@@ -65,7 +65,7 @@ namespace KChart {
         void paintCtx( PaintContext* ) override;
 
         /**
-         * Sets the optional text displayed as chart title.
+         * Sets the optional text displayed as axis title.
          */
         void setTitleText( const QString& text );
         QString titleText() const;

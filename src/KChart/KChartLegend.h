@@ -48,7 +48,7 @@ class KCHART_EXPORT Legend : public AbstractAreaWidget
 public:
     explicit Legend( QWidget* parent = nullptr );
     explicit Legend( KChart::AbstractDiagram* diagram, QWidget* parent = nullptr );
-    virtual ~Legend();
+    ~Legend() override;
 
 
     enum LegendStyle { MarkersOnly     = 0,

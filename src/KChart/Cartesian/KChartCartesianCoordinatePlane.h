@@ -34,7 +34,7 @@ namespace KChart {
 
     public:
         explicit CartesianCoordinatePlane ( Chart* parent = nullptr );
-        ~CartesianCoordinatePlane();
+        ~CartesianCoordinatePlane() override;
 
         void addDiagram ( AbstractDiagram* diagram ) override;
 

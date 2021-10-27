@@ -37,7 +37,7 @@ namespace KGantt {
 
 
         /*! Destroys this ConstraintModel */
-        virtual ~ConstraintModel();
+        ~ConstraintModel() override;
 
         /*! Adds the constraint \a c to this ConstraintModel
          *  If the Constraint \a c is already in this ConstraintModel,

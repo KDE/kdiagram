@@ -939,7 +939,7 @@ void DateTimeGrid::paintHourScaleHeader( QPainter* painter,
 {
     class HourFormatter : public Private::DateTextFormatter {
     public:
-        virtual ~HourFormatter() {}
+        ~HourFormatter() override {}
 
         QString format( const QDateTime& dt ) override {
             return dt.time().toString( QString::fromLatin1( "hh" ) );
@@ -956,7 +956,7 @@ void DateTimeGrid::paintHourScaleHeader( QPainter* painter,
 
     class DayFormatter : public Private::DateTextFormatter {
     public:
-        virtual ~DayFormatter() {}
+        ~DayFormatter() override {}
         QString format( const QDateTime& dt ) override {
             return dt.date().toString();
         }
@@ -977,7 +977,7 @@ void DateTimeGrid::paintDayScaleHeader( QPainter* painter,  const QRectF& header
 {
     class DayFormatter : public Private::DateTextFormatter {
     public:
-        virtual ~DayFormatter() {}
+        ~DayFormatter() override {}
 
         QString format( const QDateTime& dt ) override {
             return dt.toString( QString::fromLatin1( "ddd" ) ).left( 1 );
@@ -994,7 +994,7 @@ void DateTimeGrid::paintDayScaleHeader( QPainter* painter,  const QRectF& header
 
     class WeekFormatter : public Private::DateTextFormatter {
     public:
-        virtual ~WeekFormatter() {}
+        ~WeekFormatter() override {}
         QString format( const QDateTime& dt ) override {
             return QString::number(dt.date().weekNumber()) + QLatin1String("/") + QString::number(dt.date().year());
         }
@@ -1015,7 +1015,7 @@ void DateTimeGrid::paintWeekScaleHeader( QPainter* painter,  const QRectF& heade
 {
     class WeekFormatter : public Private::DateTextFormatter {
     public:
-        virtual ~WeekFormatter() {}
+        ~WeekFormatter() override {}
 
         QString format( const QDateTime& dt ) override {
             return QString::number( dt.date().weekNumber() );
@@ -1032,7 +1032,7 @@ void DateTimeGrid::paintWeekScaleHeader( QPainter* painter,  const QRectF& heade
 
     class MonthFormatter : public Private::DateTextFormatter {
     public:
-        virtual ~MonthFormatter() {}
+        ~MonthFormatter() override {}
 
         QString format( const QDateTime& dt ) override {
             return QLocale().monthName(dt.date().month(), QLocale::LongFormat) + QLatin1String("/") + QString::number(dt.date().year());
@@ -1052,7 +1052,7 @@ void DateTimeGrid::paintMonthScaleHeader( QPainter* painter,  const QRectF& head
 {
     class MonthFormatter : public Private::DateTextFormatter {
     public:
-        virtual ~MonthFormatter() {}
+        ~MonthFormatter() override {}
 
         QString format( const QDateTime& dt ) override {
             return QLocale().monthName(dt.date().month(), QLocale::ShortFormat) + QLatin1String("/") + QString::number(dt.date().year());
@@ -1067,7 +1067,7 @@ void DateTimeGrid::paintMonthScaleHeader( QPainter* painter,  const QRectF& head
 
     class YearFormatter : public Private::DateTextFormatter {
     public:
-        virtual ~YearFormatter() {}
+        ~YearFormatter() override {}
 
         QString format( const QDateTime& dt ) override {
             return QString::number( dt.date().year() );

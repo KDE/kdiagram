@@ -42,7 +42,7 @@ public:
     friend class LineDiagramType;
 
     explicit LineDiagram( QWidget* parent = nullptr, CartesianCoordinatePlane* plane = nullptr );
-    virtual ~LineDiagram();
+    ~LineDiagram() override;
 
  
     /**

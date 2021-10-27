@@ -31,7 +31,7 @@ namespace KChart {
     {
     public:
         RadarGrid() : AbstractGrid() {}
-        virtual ~RadarGrid() {}
+        ~RadarGrid() override {}
 
         void drawGrid( PaintContext* context ) override;
 

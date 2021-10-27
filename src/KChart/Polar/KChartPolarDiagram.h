@@ -32,7 +32,7 @@ class KCHART_EXPORT PolarDiagram : public AbstractPolarDiagram
 public:
     explicit PolarDiagram(
         QWidget* parent = nullptr, PolarCoordinatePlane* plane = nullptr );
-    virtual ~PolarDiagram();
+    ~PolarDiagram() override;
 
 protected:
     // Implement AbstractDiagram

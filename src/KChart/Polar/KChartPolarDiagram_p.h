@@ -36,7 +36,7 @@ class Q_DECL_HIDDEN PolarDiagram::Private : public AbstractPolarDiagram::Private
     friend class PolarDiagram;
 public:
     Private();
-    ~Private();
+    ~Private() override;
 
     Private( const Private& rhs ) :
         AbstractPolarDiagram::Private( rhs ),

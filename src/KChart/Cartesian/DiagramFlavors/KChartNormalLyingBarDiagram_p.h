@@ -27,7 +27,7 @@ namespace KChart {
     {
     public:
         explicit NormalLyingBarDiagram( BarDiagram* );
-        virtual ~NormalLyingBarDiagram() {}
+        ~NormalLyingBarDiagram() override {}
         BarDiagram::BarType type() const override;
         const QPair<QPointF,  QPointF> calculateDataBoundaries() const override;
         void paint( PaintContext* ctx ) override;

@@ -34,7 +34,7 @@ namespace KGantt
         explicit Legend( QWidget* parent = nullptr );
 
         /*! Destructor. Does nothing */
-        virtual ~Legend();
+        ~Legend() override;
 
         /*reimp*/ QModelIndex indexAt( const QPoint& point ) const override;
         /*reimp*/ QRect visualRect( const QModelIndex& index ) const override;

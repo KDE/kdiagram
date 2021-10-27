@@ -30,7 +30,7 @@ namespace KGantt {
         Q_OBJECT
     public:
         explicit ConstraintProxy( QObject* parent = nullptr );
-        virtual ~ConstraintProxy();
+        ~ConstraintProxy() override;
 
         void setSourceModel( ConstraintModel* src );
         void setDestinationModel( ConstraintModel* dest );

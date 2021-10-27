@@ -118,7 +118,7 @@ public:
 #endif
     }
 
-    ~MoveHelper() {
+    ~MoveHelper() override {
         qDebug() << "Moving row" << m_row1 << "to" << m_row2;
         showContraints( "Before:" );
         m_model->moveRow( m_row1, m_row2 );

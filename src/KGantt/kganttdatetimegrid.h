@@ -47,7 +47,7 @@ namespace KGantt {
         };
 
         DateTimeGrid();
-        virtual ~DateTimeGrid();
+        ~DateTimeGrid() override;
 
         /*! \returns The QDateTime used as start date for the grid.
          *

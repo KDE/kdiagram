@@ -47,7 +47,7 @@ namespace KChart {
     public:
         Private();
         Private( const Private& rhs );
-        ~Private();
+        ~Private() override;
 
         void setCompressorResolution(
             const QSizeF& size,

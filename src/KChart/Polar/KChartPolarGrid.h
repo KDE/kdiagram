@@ -31,7 +31,7 @@ namespace KChart {
     {
     public:
         PolarGrid() : AbstractGrid() {}
-        virtual ~PolarGrid() {}
+        ~PolarGrid() override {}
 
         void drawGrid( PaintContext* context ) override;
 

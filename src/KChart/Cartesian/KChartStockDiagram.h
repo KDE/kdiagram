@@ -33,7 +33,7 @@ public:
     };
 
     explicit StockDiagram( QWidget *parent = nullptr, CartesianCoordinatePlane *plane = nullptr );
-    ~StockDiagram();
+    ~StockDiagram() override;
 
  
     /**

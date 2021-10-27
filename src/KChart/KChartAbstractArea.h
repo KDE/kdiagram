@@ -40,7 +40,7 @@ class KCHART_EXPORT AbstractArea : public QObject,
     KCHART_DECLARE_PRIVATE_DERIVED( AbstractArea )
 
 public:
-    virtual ~AbstractArea() ;
+    ~AbstractArea()  override;
 
     /**
       * @brief Draws the background and frame, then calls paint().

@@ -21,7 +21,7 @@ class DataValueSettings : public QWidget
 
 public:
     DataValueSettings( KChart::Chart *chart, QWidget* parent = nullptr );
-    ~DataValueSettings();
+    ~DataValueSettings() override;
 
 public Q_SLOTS:
     void refresh();

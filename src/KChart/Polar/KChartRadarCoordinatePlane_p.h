@@ -33,7 +33,7 @@ class Q_DECL_HIDDEN RadarCoordinatePlane::Private : public PolarCoordinatePlane:
 public:
     explicit Private() { }
 
-    virtual ~Private() { }
+    ~Private() override { }
     TextAttributes textAttributes;
     
     void initialize() override

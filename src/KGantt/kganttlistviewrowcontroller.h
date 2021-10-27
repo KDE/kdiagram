@@ -29,7 +29,7 @@ namespace KGantt {
         KGANTT_DECLARE_PRIVATE_BASE_POLYMORPHIC(ListViewRowController)
     public:
 	ListViewRowController( QListView* lv, QAbstractProxyModel* proxy );
-        ~ListViewRowController();
+        ~ListViewRowController() override;
 
         /*reimp*/ int headerHeight() const override;
         /*reimp*/ int maximumItemHeight() const override;

@@ -25,7 +25,7 @@ namespace KChart {
     ThreeDLineAttributes( const ThreeDLineAttributes& );
     ThreeDLineAttributes &operator= ( const ThreeDLineAttributes& );
 
-    ~ThreeDLineAttributes();
+    ~ThreeDLineAttributes() override;
 
     /* threeD lines specific */
     void setLineXRotation( const uint degrees );

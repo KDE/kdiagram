@@ -23,7 +23,7 @@ class Q_DECL_HIDDEN StockDiagram::Private : public AbstractCartesianDiagram::Pri
 public:
     Private();
     Private( const Private& r );
-    ~Private();
+    ~Private() override;
 
     Type type;
     StockDiagram* stockDiagram() { return static_cast< StockDiagram* >( diagram ); }

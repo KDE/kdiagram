@@ -22,7 +22,7 @@ namespace KGantt {
          * parent \a parent
          */
         explicit ForwardingProxyModel( QObject* parent = nullptr );
-        virtual ~ForwardingProxyModel();
+        ~ForwardingProxyModel() override;
 
         /*! Converts indexes in the source model to indexes in the proxy model */
         /*reimp*/ QModelIndex mapFromSource ( const QModelIndex & sourceIndex ) const override;

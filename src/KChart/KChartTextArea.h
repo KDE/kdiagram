@@ -39,7 +39,7 @@ class KCHART_EXPORT TextArea : public QObject, public AbstractAreaBase, public T
 
 
 public:
-    virtual ~TextArea() ;
+    ~TextArea()  override;
 
 //    virtual TextArea * clone() const = 0;
     /**

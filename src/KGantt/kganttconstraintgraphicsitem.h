@@ -27,7 +27,7 @@ namespace KGantt {
 
         explicit ConstraintGraphicsItem( const Constraint& c,
                                          QGraphicsItem* parent = nullptr, GraphicsScene* scene = nullptr );
-        virtual ~ConstraintGraphicsItem();
+        ~ConstraintGraphicsItem() override;
 
         /*reimp*/ int type() const override;
         /*reimp (non virtual)*/GraphicsScene* scene() const;

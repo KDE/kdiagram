@@ -36,7 +36,7 @@ class DiagramSettings::Private : public QObject
     Q_OBJECT
 public:
     Private( Chart *chart = nullptr, DiagramSettings *q = nullptr );
-    ~Private();
+    ~Private() override;
     void init();
     void setThreeDData( const AbstractThreeDAttributes &attr );
 

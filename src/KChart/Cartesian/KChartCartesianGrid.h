@@ -31,7 +31,7 @@ namespace KChart {
     {
     public:
         CartesianGrid();
-        virtual ~CartesianGrid();
+        ~CartesianGrid() override;
 
         int minimalSteps() const;
         void setMinimalSteps(int minsteps);

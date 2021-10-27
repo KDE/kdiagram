@@ -28,7 +28,7 @@ namespace KChart {
     {
     public:
         explicit NormalPlotter( Plotter* );
-        virtual ~NormalPlotter() {}
+        ~NormalPlotter() override {}
         Plotter::PlotType type() const override;
         const QPair< QPointF,  QPointF > calculateDataBoundaries() const override;
         void paint( PaintContext* ctx ) override;

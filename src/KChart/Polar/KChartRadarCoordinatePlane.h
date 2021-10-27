@@ -28,7 +28,7 @@ namespace KChart {
     public:
 
         explicit RadarCoordinatePlane ( Chart* parent = nullptr );
-        ~RadarCoordinatePlane();
+        ~RadarCoordinatePlane() override;
         
                 
         /**

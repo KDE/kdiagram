@@ -32,7 +32,7 @@ namespace KChart {
 
     public:
         explicit AbstractCartesianDiagram( QWidget* parent = nullptr, CartesianCoordinatePlane* plane = nullptr );
-        virtual ~AbstractCartesianDiagram();
+        ~AbstractCartesianDiagram() override;
 
         /**
          * Returns true if both diagrams have the same settings.

@@ -44,7 +44,7 @@ namespace KGantt {
 
 
         /*! Destructor. Does nothing */
-        virtual ~AbstractGrid();
+        ~AbstractGrid() override;
 
         /*!\returns The QAbstractItemModel used by this grid */
         QAbstractItemModel* model() const;

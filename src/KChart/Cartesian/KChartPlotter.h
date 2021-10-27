@@ -40,7 +40,7 @@ public:
     friend class PlotterType;
 
     explicit Plotter( QWidget* parent = nullptr, CartesianCoordinatePlane* plane = nullptr );
-    virtual ~Plotter();
+    ~Plotter() override;
 
 
     /**

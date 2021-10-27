@@ -47,7 +47,7 @@ namespace KChart
             Q_OBJECT
         public:
             explicit ModelSignalMapperConnector( ModelSignalMapper& mapper );
-            ~ModelSignalMapperConnector();
+            ~ModelSignalMapperConnector() override;
 
             void connectSignals( QAbstractItemModel* model );
             void disconnectSignals( QAbstractItemModel* model );
@@ -89,7 +89,7 @@ namespace KChart
         {
         }
 
-        virtual ~ModelDataCache()
+        ~ModelDataCache() override
         {
         }
 

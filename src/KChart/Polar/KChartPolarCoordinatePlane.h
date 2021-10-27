@@ -31,7 +31,7 @@ namespace KChart {
         typedef QList<CoordinateTransformation> CoordinateTransformationList;
 
         explicit PolarCoordinatePlane ( Chart* parent = nullptr );
-        ~PolarCoordinatePlane();
+        ~PolarCoordinatePlane() override;
 
         void addDiagram ( AbstractDiagram* diagram ) override;
 

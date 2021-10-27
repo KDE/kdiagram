@@ -49,7 +49,7 @@ namespace KChart {
 
     public:
         explicit AbstractAxis( AbstractDiagram* diagram = nullptr );
-        virtual ~AbstractAxis();
+        ~AbstractAxis() override;
 
         // FIXME implement when code os ready for it:
         // virtual Area* clone() const = 0;

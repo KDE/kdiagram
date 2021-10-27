@@ -17,7 +17,7 @@ namespace KChart {
     {
     public:
         explicit PercentLineDiagram( LineDiagram* );
-        virtual ~PercentLineDiagram() {}
+        ~PercentLineDiagram() override {}
         LineDiagram::LineType type() const override;
         const QPair<QPointF,  QPointF> calculateDataBoundaries() const override;
         void paint( PaintContext* ctx ) override;

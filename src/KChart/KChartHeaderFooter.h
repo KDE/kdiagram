@@ -28,7 +28,7 @@ class KCHART_EXPORT HeaderFooter : public TextArea
 
 public:
     HeaderFooter( Chart* parent = nullptr );
-    virtual ~HeaderFooter();
+    ~HeaderFooter() override;
 
     /**
       * Creates an exact copy of this header/footer.

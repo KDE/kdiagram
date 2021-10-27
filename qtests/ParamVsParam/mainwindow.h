@@ -32,7 +32,7 @@ public:
 	 MainWindow(
 		 QWidget					*p_parent =	nullptr);
 
-	 virtual	~MainWindow();
+	 ~MainWindow() override;
 
 private Q_SLOTS:
 	void timeoutEditingFinished();

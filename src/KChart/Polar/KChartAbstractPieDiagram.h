@@ -28,7 +28,7 @@ class KCHART_EXPORT AbstractPieDiagram : public AbstractPolarDiagram
 public:
     explicit AbstractPieDiagram(
         QWidget* parent = nullptr, PolarCoordinatePlane* plane = nullptr );
-    virtual ~AbstractPieDiagram();
+    ~AbstractPieDiagram() override;
 
     /**
      * Returns true if both diagrams have the same settings.

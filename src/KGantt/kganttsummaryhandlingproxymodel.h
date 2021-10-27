@@ -39,7 +39,7 @@ namespace KGantt {
          * parent \a parent
          */
         explicit SummaryHandlingProxyModel( QObject* parent = nullptr );
-        virtual ~SummaryHandlingProxyModel();
+        ~SummaryHandlingProxyModel() override;
 
 
 

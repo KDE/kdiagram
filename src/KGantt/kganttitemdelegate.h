@@ -46,7 +46,7 @@ namespace KGantt {
         explicit ItemDelegate( QObject* parent = nullptr );
 
         /*! Destructor */
-        virtual ~ItemDelegate();
+        ~ItemDelegate() override;
 
         /*! Sets the default brush used for items of type \a type to
          * \a brush. The default brush is used in the case when the model

@@ -52,7 +52,7 @@ namespace KChart {
           * \sa AbstractCartesianDiagram::addAxis
           */
         explicit CartesianAxis ( AbstractCartesianDiagram* diagram = nullptr );
-        ~CartesianAxis();
+        ~CartesianAxis() override;
 
         /**
          * Returns true if both axes have the same settings.

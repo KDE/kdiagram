@@ -65,7 +65,7 @@ namespace KGantt {
               timeLine(new DateTimeTimeLine)
         {
         }
-        ~Private()
+        ~Private() override
         {
             delete lower;
             delete upper;

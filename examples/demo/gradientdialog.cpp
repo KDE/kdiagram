@@ -23,7 +23,7 @@ class GradientDialog::Private : public QObject
     Q_OBJECT
 public:
     Private( GradientDialog *qq );
-    ~Private();
+    ~Private() override;
     void init();
     ColorSlider *redSlider;
     ColorSlider *greenSlider;

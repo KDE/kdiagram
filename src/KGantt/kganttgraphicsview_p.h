@@ -20,7 +20,7 @@ namespace KGantt {
         Q_OBJECT
     public:
         explicit HeaderWidget( GraphicsView* parent );
-        virtual ~HeaderWidget();
+        ~HeaderWidget() override;
 
         GraphicsView* view() const { return qobject_cast<GraphicsView*>( parent() );}
 

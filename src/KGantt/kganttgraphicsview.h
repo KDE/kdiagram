@@ -64,7 +64,7 @@ namespace KGantt {
 
 
         /*! Destroys this view. */
-        virtual ~GraphicsView();
+        ~GraphicsView() override;
 
         /*! \returns the current model displayed by this view
          * 

@@ -49,7 +49,7 @@ namespace KChart {
         explicit AbstractDiagram (
             QWidget* parent = nullptr, AbstractCoordinatePlane* plane = nullptr );
     public:
-        virtual ~AbstractDiagram();
+        ~AbstractDiagram() override;
 
 
         /**

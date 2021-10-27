@@ -45,7 +45,7 @@ namespace KGantt {
         KGANTT_DECLARE_PRIVATE_BASE_POLYMORPHIC( GraphicsScene )
     public:
         explicit GraphicsScene( QObject* parent = nullptr );
-        virtual ~GraphicsScene();
+        ~GraphicsScene() override;
 
         //qreal dateTimeToSceneX( const QDateTime& dt ) const;
         //QDateTime sceneXtoDateTime( qreal x ) const;

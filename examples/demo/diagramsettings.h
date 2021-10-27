@@ -21,7 +21,7 @@ class DiagramSettings : public QWidget
 
 public:
     explicit DiagramSettings( KChart::Chart* chart, QWidget *parent = nullptr );
-    ~DiagramSettings();
+    ~DiagramSettings() override;
 
 public Q_SLOTS:
     void refreshSettings();

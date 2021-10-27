@@ -55,7 +55,7 @@ namespace KGantt {
          * a DateTimeGrid as default grid implementation and no model etc.
          */
         explicit View(QWidget* parent = nullptr);
-        virtual ~View();
+        ~View() override;
 
         /*! \returns the current model displayed by this view
          */

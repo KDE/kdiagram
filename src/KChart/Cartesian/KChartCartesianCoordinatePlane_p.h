@@ -38,7 +38,7 @@ class Q_DECL_HIDDEN CartesianCoordinatePlane::Private : public AbstractCoordinat
     friend class CartesianCoordinatePlane;
 public:
     explicit Private();
-    virtual ~Private() {  }
+    ~Private() override {  }
 
     void initialize() override
     {

@@ -27,7 +27,7 @@ class MainWindow : public QWidget, private Ui::MainWindow
 
 public:
     MainWindow( QWidget* parent = nullptr );
-    ~MainWindow();
+    ~MainWindow() override;
 
 private Q_SLOTS:
 

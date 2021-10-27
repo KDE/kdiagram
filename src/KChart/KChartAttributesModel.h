@@ -41,7 +41,7 @@ public:
     };
 
     explicit AttributesModel( QAbstractItemModel* model, QObject * parent = nullptr );
-    ~AttributesModel();
+    ~AttributesModel() override;
 
     /** Copies the internal data (maps and palette) of another
      *  AttributesModel* into this one.

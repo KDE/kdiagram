@@ -111,7 +111,7 @@ public:
         }
     };
     explicit PlotterDiagramCompressor(QObject *parent = nullptr);
-    ~PlotterDiagramCompressor();
+    ~PlotterDiagramCompressor() override;
     Iterator begin( int dataSet );
     Iterator end( int dataSet );    
     void setMergeRadius( qreal radius );

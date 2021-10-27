@@ -84,7 +84,7 @@ class PrerenderedLabel : public PrerenderedElement
 {
 public:
     PrerenderedLabel();
-    ~PrerenderedLabel();
+    ~PrerenderedLabel() override;
 
 
     /**

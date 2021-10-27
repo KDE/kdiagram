@@ -28,7 +28,7 @@ class KCHART_EXPORT PieDiagram : public AbstractPieDiagram
 public:
     explicit PieDiagram(
         QWidget* parent = nullptr, PolarCoordinatePlane* plane = nullptr );
-    virtual ~PieDiagram();
+    ~PieDiagram() override;
 
 protected:
     // Implement AbstractDiagram

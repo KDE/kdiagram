@@ -32,7 +32,7 @@ namespace KChart {
 
     public:
         explicit TernaryAxis ( AbstractTernaryDiagram* diagram = nullptr );
-        ~TernaryAxis();
+        ~TernaryAxis() override;
 
         void  paintAll( QPainter &) override;
         void  paint (QPainter *) override;

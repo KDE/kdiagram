@@ -35,7 +35,7 @@ namespace KGantt {
 
         explicit GraphicsItem( QGraphicsItem* parent = nullptr, GraphicsScene* scene = nullptr );
         explicit GraphicsItem( const QModelIndex& idx, QGraphicsItem* parent = nullptr, GraphicsScene* scene = nullptr );
-        virtual ~GraphicsItem();
+        ~GraphicsItem() override;
 
         /*reimp*/int type() const override;
         /*reimp (non-virtual)*/ GraphicsScene* scene() const;

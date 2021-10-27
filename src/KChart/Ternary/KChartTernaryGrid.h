@@ -32,7 +32,7 @@ namespace KChart {
     public:
         TernaryGrid();
 
-        virtual ~TernaryGrid();
+        ~TernaryGrid() override;
 
         void drawGrid( PaintContext* context ) override;
         DataDimensionsList calculateGrid( const DataDimensionsList& rawDataDimensions ) const override;

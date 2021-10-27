@@ -35,7 +35,7 @@ class Q_DECL_HIDDEN PieDiagram::Private : public AbstractPieDiagram::Private
     friend class PieDiagram;
 public:
     Private();
-    ~Private();
+    ~Private() override;
 
     Private( const Private& rhs ) :
         AbstractPieDiagram::Private( rhs ),

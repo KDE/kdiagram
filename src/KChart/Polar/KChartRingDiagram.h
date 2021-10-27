@@ -26,7 +26,7 @@ class KCHART_EXPORT RingDiagram : public AbstractPieDiagram
 public:
     explicit RingDiagram(
         QWidget* parent = nullptr, PolarCoordinatePlane* plane = nullptr );
-    virtual ~RingDiagram();
+    ~RingDiagram() override;
 
 protected:
     // Implement AbstractDiagram

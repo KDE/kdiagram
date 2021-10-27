@@ -31,7 +31,7 @@ class TESTTOOLS_EXPORT TableModel : public QAbstractTableModel
     Q_OBJECT
 public:
     TableModel( QObject* parent = nullptr );
-    ~TableModel();
+    ~TableModel() override;
 
     /** Return header data from the model.
         The model will use the first data row and the first data column of the

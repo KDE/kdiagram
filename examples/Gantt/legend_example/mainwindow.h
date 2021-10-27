@@ -31,7 +31,7 @@ class MainWindow : public QMainWindow {
 
 public:
     explicit MainWindow( QWidget * parent = nullptr, Qt::WindowFlags flags = Qt::WindowFlags() );
-    virtual ~MainWindow();
+    ~MainWindow() override;
     void closeEvent(QCloseEvent *event) override;
 
 private Q_SLOTS:

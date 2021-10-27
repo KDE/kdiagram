@@ -44,7 +44,7 @@ class Q_DECL_HIDDEN BarDiagram::Private : public AbstractCartesianDiagram::Priva
 public:
     Private();
     Private( const Private& rhs );
-    ~Private();
+    ~Private() override;
 
     void setOrientationAndType( Qt::Orientation, BarDiagram::BarType );
 

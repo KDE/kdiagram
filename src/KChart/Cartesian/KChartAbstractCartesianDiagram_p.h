@@ -41,7 +41,7 @@ class Q_DECL_HIDDEN AbstractCartesianDiagram::Private : public AbstractDiagram::
     friend class AbstractCartesianDiagram;
 public:
     Private();
-    virtual ~Private();
+    ~Private() override;
 
     Private( const Private& rhs ) :
         AbstractDiagram::Private( rhs ),

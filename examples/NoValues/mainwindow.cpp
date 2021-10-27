@@ -31,7 +31,7 @@ public:
         //qDebug() << "EmptyModel::EmptyModel()";
     }
 
-    ~EmptyModel()
+    ~EmptyModel() override
     {
         //qDebug() << "EmptyModel::~EmptyModel()";
     }

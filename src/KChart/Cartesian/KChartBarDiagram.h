@@ -39,7 +39,7 @@ public:
 
     explicit BarDiagram(
         QWidget* parent = nullptr, CartesianCoordinatePlane* plane = nullptr );
-    virtual ~BarDiagram();
+    ~BarDiagram() override;
 
 
     /**

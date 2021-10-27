@@ -17,7 +17,7 @@ namespace KChart {
     {
     public:
         explicit StackedLineDiagram( LineDiagram* );
-        virtual ~StackedLineDiagram() {}
+        ~StackedLineDiagram() override {}
         LineDiagram::LineType type() const override;
         const QPair<QPointF,  QPointF> calculateDataBoundaries() const override;
         void paint( PaintContext* ctx ) override;

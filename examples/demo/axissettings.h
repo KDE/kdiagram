@@ -22,7 +22,7 @@ class AxisSettings : public QWidget
 
 public:
     explicit AxisSettings( KChart::Chart *chart, QWidget *parent = nullptr );
-    ~AxisSettings();
+    ~AxisSettings() override;
 
 public Q_SLOTS:
     void diagramTypeChanged();

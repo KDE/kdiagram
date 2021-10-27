@@ -27,7 +27,7 @@ namespace KChart {
 
     public:
         explicit TernaryCoordinatePlane( Chart* parent = nullptr );
-        ~TernaryCoordinatePlane();
+        ~TernaryCoordinatePlane() override;
 
         void addDiagram( AbstractDiagram* diagram ) override;
 

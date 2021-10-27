@@ -43,7 +43,7 @@ class Q_DECL_HIDDEN KChart::HeaderFooter::Private : public KChart::TextArea::Pri
     friend class KChart::HeaderFooter;
 public:
     explicit Private();
-    ~Private();
+    ~Private() override;
 
     Private( const Private& rhs ) :
         TextArea::Private( rhs ),

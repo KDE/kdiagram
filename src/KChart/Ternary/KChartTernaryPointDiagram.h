@@ -25,7 +25,7 @@ namespace KChart {
 
     public:
         explicit TernaryPointDiagram ( QWidget* parent = nullptr, TernaryCoordinatePlane* plane = nullptr );
-        virtual ~TernaryPointDiagram();
+        ~TernaryPointDiagram() override;
 
         void resize (const QSizeF &area) override;
         void paint (PaintContext *paintContext) override;

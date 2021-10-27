@@ -25,7 +25,7 @@ namespace KChart {
     ThreeDPieAttributes( const ThreeDPieAttributes& );
     ThreeDPieAttributes &operator= ( const ThreeDPieAttributes& );
 
-    ~ThreeDPieAttributes();
+    ~ThreeDPieAttributes() override;
 
     /* threeD Pies specific */
     void setUseShadowColors( bool useShadowColors );

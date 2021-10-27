@@ -42,7 +42,7 @@ namespace KChart {
     public:
         explicit Private();
 
-        virtual ~Private() {
+        ~Private() override {
             // grid is delete in base class dtor
         }
 

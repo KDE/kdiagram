@@ -44,7 +44,7 @@ namespace KChart {
     public:
         Private();
         Private( const Private& rhs );
-        ~Private();
+        ~Private() override;
 
         void setYAxisRange() const;
 

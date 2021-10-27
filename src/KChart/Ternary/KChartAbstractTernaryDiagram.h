@@ -30,7 +30,7 @@ namespace KChart {
     public:
         explicit AbstractTernaryDiagram ( QWidget* parent = nullptr,
                                           TernaryCoordinatePlane* plane = nullptr );
-        virtual ~AbstractTernaryDiagram();
+        ~AbstractTernaryDiagram() override;
 
         void paint (PaintContext *paintContext) override;
 

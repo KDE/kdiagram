@@ -192,7 +192,7 @@ namespace KChart {
                               KChartEnums::MeasureOrientation autoReferenceOrientation,
                               Qt::Alignment alignment = Qt::Alignment() );
 
-        ~TextBubbleLayoutItem();
+        ~TextBubbleLayoutItem() override;
 
         void setAutoReferenceArea( const QObject* area );
         const QObject* autoReferenceArea() const;

@@ -45,7 +45,7 @@ namespace KChart {
     public:
         Private();
         Private( const Private& rhs );
-        ~Private();
+        ~Private() override;
 
         LineDiagramType* implementor; // the current type
         LineDiagramType* normalDiagram;

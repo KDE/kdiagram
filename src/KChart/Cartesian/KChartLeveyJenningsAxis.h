@@ -46,7 +46,7 @@ namespace KChart {
           * \sa AbstractCartesianDiagram::addAxis
           */
         explicit LeveyJenningsAxis ( LeveyJenningsDiagram* diagram = nullptr );
-        ~LeveyJenningsAxis();
+        ~LeveyJenningsAxis() override;
 
         /**
           * @return The axis' type.

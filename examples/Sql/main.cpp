@@ -32,7 +32,7 @@ using namespace KChart;
 class TransposeProxyModel : public QAbstractProxyModel{
 public:
   explicit TransposeProxyModel(QObject* parent = nullptr) : QAbstractProxyModel(parent) {}
-  virtual ~TransposeProxyModel() {}
+  ~TransposeProxyModel() override {}
   QModelIndex mapFromSource ( const QModelIndex & sourceIndex ) const override { return index(sourceIndex.column(), sourceIndex.row()); }
   QModelIndex mapToSource ( const QModelIndex & proxyIndex ) const override { return sourceModel()->index(proxyIndex.column(), proxyIndex.row()); }
   QModelIndex index(int r, int c, const QModelIndex &ind=QModelIndex()) const override { Q_UNUSED(ind) return createIndex(r,c); }

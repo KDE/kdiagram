@@ -1116,7 +1116,7 @@ public:
            m_destroyedFlag( destroyedFlag )
     {}
 
-    ~TestLineItem()
+    ~TestLineItem() override
     { *m_destroyedFlag = true; }
 
 private:

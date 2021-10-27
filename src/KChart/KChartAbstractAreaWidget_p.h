@@ -40,7 +40,7 @@ class Q_DECL_HIDDEN AbstractAreaWidget::Private : public AbstractAreaBase::Priva
     friend class AbstractAreaWidget;
 public:
     explicit Private();
-    virtual ~Private();
+    ~Private() override;
 
     Private( const Private& rhs ) :
         AbstractAreaBase::Private( rhs ),

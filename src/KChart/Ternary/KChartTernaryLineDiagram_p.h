@@ -34,7 +34,7 @@ namespace KChart {
         friend class TernaryLineDiagram;
     public:
         Private();
-        ~Private() {}
+        ~Private() override {}
 
         Private( const Private& rhs )
             : AbstractTernaryDiagram::Private( rhs )

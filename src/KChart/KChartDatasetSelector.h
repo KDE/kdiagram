@@ -36,7 +36,7 @@ namespace KChart {
 
     public:
         explicit DatasetSelectorWidget ( QWidget* parent = nullptr );
-        ~DatasetSelectorWidget();
+        ~DatasetSelectorWidget() override;
 
     public Q_SLOTS:
         void setSourceRowCount ( const int& rowCount );

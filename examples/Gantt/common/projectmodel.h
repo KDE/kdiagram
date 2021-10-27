@@ -15,7 +15,7 @@ class ProjectModel : public QAbstractItemModel {
     Q_OBJECT
 public:
     explicit ProjectModel( QObject* parent = nullptr );
-    virtual ~ProjectModel();
+    ~ProjectModel() override;
 
     /*reimp*/ int rowCount( const QModelIndex& idx ) const override;
     /*reimp*/ int columnCount( const QModelIndex& idx ) const override;

@@ -29,7 +29,7 @@ namespace KChart {
     {
     public:
         LeveyJenningsGrid() : CartesianGrid() {}
-        virtual ~LeveyJenningsGrid() {}
+        ~LeveyJenningsGrid() override {}
 
         void drawGrid( PaintContext* context ) override;
 

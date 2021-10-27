@@ -27,7 +27,7 @@ namespace KChart {
     {
     public:
         explicit NormalLineDiagram( LineDiagram* );
-        virtual ~NormalLineDiagram() {}
+        ~NormalLineDiagram() override {}
         LineDiagram::LineType type() const override;
         const QPair<QPointF,  QPointF> calculateDataBoundaries() const override;
         void paint( PaintContext* ctx ) override;

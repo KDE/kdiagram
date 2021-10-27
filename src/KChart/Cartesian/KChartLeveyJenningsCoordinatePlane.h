@@ -34,7 +34,7 @@ namespace KChart {
 
     public:
         explicit LeveyJenningsCoordinatePlane( Chart* parent = nullptr );
-        ~LeveyJenningsCoordinatePlane();
+        ~LeveyJenningsCoordinatePlane() override;
 
         void addDiagram( AbstractDiagram* diagram ) override;
 

@@ -44,7 +44,7 @@ class Q_DECL_HIDDEN AbstractCoordinatePlane::Private : public AbstractArea::Priv
     friend class AbstractCoordinatePlane;
 protected:
     explicit Private();
-    virtual ~Private() {
+    ~Private() override {
         delete grid;
     };
 

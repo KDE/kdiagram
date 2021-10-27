@@ -26,7 +26,7 @@ namespace KChart {
 
     public:
         explicit TernaryLineDiagram ( QWidget* parent = nullptr, TernaryCoordinatePlane* plane = nullptr );
-        virtual ~TernaryLineDiagram();
+        ~TernaryLineDiagram() override;
 
         void resize (const QSizeF &area) override;
         void paint (PaintContext *paintContext) override;

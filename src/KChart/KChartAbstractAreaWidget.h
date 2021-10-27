@@ -90,7 +90,7 @@ Q_SIGNALS:
     void positionChanged( KChart::AbstractAreaWidget * );
 
 protected:
-    virtual ~AbstractAreaWidget() ;
+    ~AbstractAreaWidget()  override;
     QRect areaGeometry() const override;
     void positionHasChanged() override;
 };

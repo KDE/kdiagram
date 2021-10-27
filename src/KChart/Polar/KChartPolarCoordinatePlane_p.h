@@ -87,7 +87,7 @@ public:
         , hasOwnGridAttributesSagittal ( false )
     {}
 
-    virtual ~Private() { }
+    ~Private() override { }
 
     void initialize() override
     {

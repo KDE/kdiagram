@@ -23,7 +23,7 @@ class MainWindow : public QWidget
 
 public:
     MainWindow( QWidget* parent = nullptr );
-    virtual ~MainWindow() { }
+    ~MainWindow() override { }
 
 private:
     KChart::Chart* m_chart;

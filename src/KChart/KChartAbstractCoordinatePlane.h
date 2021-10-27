@@ -42,7 +42,7 @@ namespace KChart {
         explicit AbstractCoordinatePlane( Chart* parent = nullptr );
 
     public:
-        virtual ~AbstractCoordinatePlane();
+        ~AbstractCoordinatePlane() override;
 
         /**
          * Adds a diagram to this coordinate plane.

@@ -27,7 +27,7 @@ namespace KGantt {
         KGANTT_DECLARE_PRIVATE_BASE_POLYMORPHIC(TreeViewRowController)
     public:
         TreeViewRowController( QTreeView* tv, QAbstractProxyModel* proxy );
-        virtual ~TreeViewRowController();
+        ~TreeViewRowController() override;
 
         /*reimp*/ int headerHeight() const override;
         /*reimp*/ int maximumItemHeight() const override;

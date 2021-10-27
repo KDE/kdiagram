@@ -17,7 +17,7 @@ namespace KChart {
     {
     public:
         explicit PercentPlotter( Plotter* );
-        virtual ~PercentPlotter() {}
+        ~PercentPlotter() override {}
         Plotter::PlotType type() const override;
         const QPair< QPointF,  QPointF > calculateDataBoundaries() const override;
         void paint( PaintContext* ctx ) override;

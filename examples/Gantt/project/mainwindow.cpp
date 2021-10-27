@@ -149,7 +149,7 @@ public:
         setFreeDays( QSet<Qt::DayOfWeek>() );
         setFreeDaysBrush( QBrush( Qt::NoBrush ) );
     }
-    ~DateTimeGrid() { }
+    ~DateTimeGrid() override { }
 
     //virtual void paintUserDefinedHeader(QPainter* painter, const QRectF& headerRect, const QRectF& exposedRect, qreal offset, const KGantt::DateTimeScaleFormatter* formatter, QWidget* widget = 0);
     void drawBackground(QPainter* painter, const QRectF& rect) override;

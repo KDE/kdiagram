@@ -36,7 +36,7 @@ namespace KChart {
     {
     public:
         explicit StackedPlotter( Plotter* );
-        virtual ~StackedPlotter() {}
+        ~StackedPlotter() override {}
         Plotter::PlotType type() const override;
         const QPair< QPointF,  QPointF > calculateDataBoundaries() const override;
         void paint( PaintContext* ctx ) override;

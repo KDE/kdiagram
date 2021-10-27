@@ -34,7 +34,7 @@ class KTextDocument : public QTextDocument
 public:
     explicit KTextDocument( QObject* parent = nullptr );
     explicit KTextDocument( const QString& text, QObject* parent = nullptr );
-    ~KTextDocument();
+    ~KTextDocument() override;
 
     QSize sizeHint();
     QSize minimumSizeHint();

@@ -95,7 +95,7 @@ namespace KChart {
 
     public:
         explicit Chart ( QWidget* parent = nullptr );
-        ~Chart();
+        ~Chart() override;
 
         /**
          * @brief useNewLayoutSystem

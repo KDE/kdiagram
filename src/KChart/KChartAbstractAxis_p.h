@@ -43,7 +43,7 @@ class Q_DECL_HIDDEN AbstractAxis::Private : public AbstractArea::Private
 
 public:
     Private( AbstractDiagram* diagram, AbstractAxis* axis );
-    ~Private();
+    ~Private() override;
 
     bool setDiagram( AbstractDiagram* diagram, bool delayedInit = false );
     void unsetDiagram( AbstractDiagram* diagram );

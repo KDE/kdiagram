@@ -33,7 +33,7 @@ class KCHART_EXPORT RadarDiagram : public AbstractPolarDiagram
 public:
     explicit RadarDiagram(
         QWidget* parent = nullptr, RadarCoordinatePlane* plane = nullptr );
-    virtual ~RadarDiagram();
+    ~RadarDiagram() override;
 
     virtual void paint ( PaintContext* paintContext,
                          bool calculateListAndReturnScale,

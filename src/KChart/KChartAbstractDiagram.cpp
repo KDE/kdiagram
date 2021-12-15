@@ -457,7 +457,13 @@ void AbstractDiagram::paintMarker( QPainter* painter,
     // basically save a circle of radius maSize at pos in the
     // reverseMapper. This means that ^^^ this version of paintMarker
     // needs to be called to reverse-map the marker.
-    d->reverseMapper.addCircle( index.row(), index.column(), pos, 2 * maSize );
+    if ((ma.markerStyle() == MarkerAttributes::Marker4Pixels) || (ma.markerStyle() == MarkerAttributes::Marker1Pixel)) {
+        auto rect = QRectF({}, maSize);
+        rect.moveCenter(pos);
+        d->reverseMapper.addRect( index.row(), index.column(), rect );
+    } else {
+        d->reverseMapper.addCircle( index.row(), index.column(), pos, 2 * maSize );
+    }
 }
 
 void AbstractDiagram::paintMarker( QPainter* painter,

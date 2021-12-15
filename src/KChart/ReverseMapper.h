@@ -46,8 +46,6 @@ namespace KChart {
         QPolygonF polygon( int row, int column ) const;
         QRectF boundingRect( int row, int column ) const;
 
-        void addItem( ChartGraphicsItem* item );
-
         // convenience methods:
         void addPolygon( int row, int column, const QPolygonF& polygon );
         void addRect( int row, int column, const QRectF& rect );
@@ -55,9 +53,12 @@ namespace KChart {
         void addLine( int row, int column, const QPointF& from, const QPointF& to );
 
     private:
-        QGraphicsScene* m_scene;
+        void populateScene() const;
+
         AbstractDiagram* m_diagram;
-        QHash<QModelIndex, ChartGraphicsItem*> m_itemMap;
+        QHash<QModelIndex, QPolygonF> m_polygons;
+        mutable QGraphicsScene* m_scene;
+        mutable bool m_sceneDirty = true;
     };
 
 }

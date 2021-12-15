@@ -22,39 +22,41 @@
 using namespace KChart;
 
 ReverseMapper::ReverseMapper()
-    : m_scene( nullptr )
-    , m_diagram( nullptr )
+    : m_diagram( nullptr )
+    , m_scene( nullptr )
 {
 }
 
 ReverseMapper::ReverseMapper( AbstractDiagram* diagram )
-    : m_scene( nullptr )
-    , m_diagram( diagram )
+    : m_diagram( diagram )
+    , m_scene( nullptr )
 {
 }
 
 ReverseMapper::~ReverseMapper()
 {
-    delete m_scene; m_scene = nullptr;
+    delete m_scene;
+    m_scene = nullptr;
 }
 
 void ReverseMapper::setDiagram( AbstractDiagram* diagram )
 {
-
     m_diagram = diagram;
 }
 
 void ReverseMapper::clear()
 {
-    m_itemMap.clear();
-    delete m_scene;
-    m_scene = new QGraphicsScene();
+    m_polygons.clear();
+    if (m_scene)
+        m_scene->clear();
+    m_sceneDirty = true;
 }
 
 QModelIndexList ReverseMapper::indexesIn( const QRect& rect ) const
 {
-    Q_ASSERT( m_diagram );
-    if ( m_scene && m_scene->sceneRect().intersects( rect ) ) {
+    populateScene();
+
+    if ( m_scene->sceneRect().intersects( rect ) ) {
         const QList<QGraphicsItem *> items = m_scene->items( rect );
         QModelIndexList indexes;
         for ( QGraphicsItem* item : items ) {
@@ -72,8 +74,9 @@ QModelIndexList ReverseMapper::indexesIn( const QRect& rect ) const
 
 QModelIndexList ReverseMapper::indexesAt( const QPointF& point ) const
 {
-    Q_ASSERT( m_diagram );
-    if ( m_scene && m_scene->sceneRect().contains( point ) ) {
+    populateScene();
+
+    if ( m_scene->sceneRect().contains( point ) ) {
         const QList<QGraphicsItem *> items = m_scene->items( point );
         QModelIndexList indexes;
         for ( QGraphicsItem* item : items ) {
@@ -95,22 +98,12 @@ QPolygonF ReverseMapper::polygon( int row, int column ) const
     if ( !m_diagram->model()->hasIndex( row, column, m_diagram->rootIndex() ) )
         return QPolygon();
     const QModelIndex index = m_diagram->model()->index( row, column, m_diagram->rootIndex() ); // checked
-    return m_itemMap.contains( index ) ? m_itemMap[ index ]->polygon() : QPolygon();
+    return m_polygons.value(index);
 }
 
 QRectF ReverseMapper::boundingRect( int row, int column ) const
 {
-    if ( !m_diagram->model()->hasIndex( row, column, m_diagram->rootIndex() ) )
-        return QRectF();
-    const QModelIndex index = m_diagram->model()->index( row, column, m_diagram->rootIndex() ); // checked
-    return m_itemMap.contains( index ) ? m_itemMap[ index ]->polygon().boundingRect() : QRectF();
-}
-
-void ReverseMapper::addItem( ChartGraphicsItem* item )
-{
-    Q_ASSERT( m_scene );
-    m_scene->addItem( item );
-    m_itemMap.insert( m_diagram->model()->index( item->row(), item->column(), m_diagram->rootIndex() ), item ); // checked
+    return polygon(row, column).boundingRect();
 }
 
 void ReverseMapper::addRect( int row, int column, const QRectF& rect )
@@ -120,9 +113,15 @@ void ReverseMapper::addRect( int row, int column, const QRectF& rect )
 
 void ReverseMapper::addPolygon( int row, int column, const QPolygonF& polygon )
 {
-    ChartGraphicsItem* item = new ChartGraphicsItem( row, column );
-    item->setPolygon( polygon );
-    addItem( item );
+    const auto index = m_diagram->model()->index( row, column, m_diagram->rootIndex() );
+    auto &value = m_polygons[index];
+    if (value.isEmpty()) {
+        value = polygon;
+    } else {
+        value = value.united(polygon);
+    }
+
+    m_sceneDirty = true;
 }
 
 void ReverseMapper::addCircle( int row, int column, const QPointF& location, const QSizeF& diameter )
@@ -163,4 +162,30 @@ void ReverseMapper::addLine( int row, int column, const QPointF& from, const QPo
     const QPointF three( right + lineVectorUnit - normOfLineVectorUnit );
     const QPointF four( right + lineVectorUnit + normOfLineVectorUnit );
     addPolygon( row, column, QPolygonF() << one << two << three << four );
+}
+
+void ReverseMapper::populateScene() const
+{
+    // we populate the scene lazily...
+
+    Q_ASSERT( m_diagram );
+
+    if (!m_sceneDirty) {
+        return;
+    }
+
+    if (!m_scene) {
+        m_scene = new QGraphicsScene;
+    }
+
+    QRectF boundingRect;
+    for (auto it = m_polygons.constBegin(), end = m_polygons.constEnd(); it != end; ++it) {
+        auto* item = new ChartGraphicsItem( it.key().row(), it.key().column() );
+        item->setPolygon( it.value() );
+        m_scene->addItem( item );
+        boundingRect |= it.value().boundingRect();
+    }
+
+    m_scene->setSceneRect(boundingRect);
+    m_sceneDirty = false;
 }

@@ -34,24 +34,30 @@ int main(int argc, char *argv[]) {
         qreal v = qreal(i)*i;
         QModelIndex index = model.index( i, 0 );
         model.setData( index, QVariant( t ) );
+        model.setData( index, QVariant( t ), Qt::ToolTipRole );
         index = model.index( i, 1 );
         model.setData( index, QVariant( v ) );
+        model.setData( index, QVariant( v ), Qt::ToolTipRole );
 
         // dateset 2
         t = i*2;
         v = qreal(i)*i-i;
         index = model.index( i, 2 );
         model.setData( index, QVariant( t ) );
+        model.setData( index, QVariant( t ), Qt::ToolTipRole );
         index = model.index( i, 3 );
         model.setData( index, QVariant( v ) );
+        model.setData( index, QVariant( v ), Qt::ToolTipRole );
 
         // dateset 3
         t = qreal(i)/2;
         v = qreal(i)*i+i;
         index = model.index( i, 4 );
         model.setData( index, QVariant( t ) );
+        model.setData( index, QVariant( t ), Qt::ToolTipRole );
         index = model.index( i, 5 );
         model.setData( index, QVariant( v ) );
+        model.setData( index, QVariant( v ), Qt::ToolTipRole );
     }
 
     model.setHeaderData( 0, Qt::Horizontal, "Dataset 1" );

@@ -136,12 +136,14 @@ TickIterator::TickIterator( CartesianAxis* a, CartesianCoordinatePlane* plane, u
 static QMap< qreal, QString > allAxisAnnotations( const AbstractCoordinatePlane *plane, bool isY )
 {
     QMap< qreal, QString > annotations;
-    Q_FOREACH( const AbstractDiagram *diagram, plane->diagrams() ) {
+    const auto diagrams = plane->diagrams();
+    for ( const AbstractDiagram* diagram : diagrams ) {
         const AbstractCartesianDiagram *cd = qobject_cast< const AbstractCartesianDiagram* >( diagram );
         if ( !cd ) {
             continue;
         }
-        Q_FOREACH( const CartesianAxis *axis, cd->axes() ) {
+        const auto axes = cd->axes();
+        for ( const CartesianAxis* axis : axes ) {
             const CartesianAxis::Private *axisPriv = CartesianAxis::Private::get( axis );
             if ( axisPriv->isVertical() == isY ) {
                 annotations.unite( axisPriv->annotations );

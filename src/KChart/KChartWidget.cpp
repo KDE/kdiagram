@@ -365,13 +365,15 @@ void Widget::setType( ChartType chartType, SubType chartSubType )
                         qobject_cast<AbstractCartesianDiagram*>( coordinatePlane()->diagram() );
                 AbstractCartesianDiagram *newDiag =
                         qobject_cast<AbstractCartesianDiagram*>( diag );
-                Q_FOREACH( CartesianAxis* axis, oldDiag->axes() ) {
+                const auto axes = oldDiag->axes();
+                for ( CartesianAxis* axis : axes ) {
                     oldDiag->takeAxis( axis );
                     newDiag->addAxis ( axis );
                 }
             }
 
-            Q_FOREACH( Legend* l, d->m_chart.legends() ) {
+            const auto legends = d->m_chart.legends();
+            for ( Legend* l : legends ) {
                 l->setDiagram( diag );
             }
 

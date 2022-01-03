@@ -370,7 +370,8 @@ void checkExistingAxes( LayoutGraphNode* node )
         AbstractCartesianDiagram *diag = qobject_cast< AbstractCartesianDiagram* >( node->diagramPlane->diagram() );
         if ( diag )
         {
-            Q_FOREACH( const CartesianAxis* axis, diag->axes() )
+            const CartesianAxisList axes = diag->axes();
+            for ( const CartesianAxis* axis : axes )
             {
                 switch ( axis->position() )
                 {
@@ -578,14 +579,17 @@ QHash<AbstractCoordinatePlane*, PlaneInfo> Chart::Private::buildPlaneLayoutInfos
         p.referencePlane = plane->referenceCoordinatePlane();
         planeInfos.insert( plane, p );
 
-        Q_FOREACH( AbstractDiagram* abstractDiagram, plane->diagrams() ) {
+
+        const auto diagrams = plane->diagrams();
+        for ( AbstractDiagram* abstractDiagram : diagrams ) {
             AbstractCartesianDiagram* diagram =
                     qobject_cast<AbstractCartesianDiagram*> ( abstractDiagram );
             if ( !diagram ) {
                 continue;
             }
 
-            Q_FOREACH( CartesianAxis* axis, diagram->axes() ) {
+            const CartesianAxisList axes = diagram->axes();
+            for ( CartesianAxis* axis : axes ) {
                 if ( !axisInfos.contains( axis ) ) {
                     /* If this is the first time we see this axis, add it, with the
                      * current plane. The first plane added to the chart that has
@@ -719,8 +723,8 @@ void Chart::Private::slotLayoutPlanes()
                                 curColComponent->sharedSuccesor->diagramPlane->setParentLayout( gridPlaneLayout );
                                 planeLayoutItems << curColComponent->sharedSuccesor->diagramPlane;
                             }
-                            Q_FOREACH( CartesianAxis* axis, cartDiag->axes() )
-                            {
+                            const auto axes = cartDiag->axes();
+                            for ( CartesianAxis* axis : axes ) {
                                 if ( axis->isAbscissa() )
                                 {
                                     if ( curColComponent->bottomSuccesor )
@@ -862,7 +866,9 @@ void Chart::Private::slotLayoutPlanes()
             //qDebug() << "Chart slotLayoutPlanes() calls planeLayout->addItem("<< row << column << ")";
             planeLayout->setRowStretch( row, 2 );
             planeLayout->setColumnStretch( column, 2 );
-            Q_FOREACH( AbstractDiagram* abstractDiagram, plane->diagrams() )
+
+            const auto diagrams = plane->diagrams();
+            for ( AbstractDiagram* abstractDiagram : diagrams )
             {
                 AbstractCartesianDiagram* diagram =
                     qobject_cast< AbstractCartesianDiagram* >( abstractDiagram );
@@ -913,7 +919,8 @@ void Chart::Private::slotLayoutPlanes()
                 }
 
                 //pi.leftAxesLayout->setSizeConstraint( QLayout::SetFixedSize );
-                Q_FOREACH( CartesianAxis* axis, diagram->axes() ) {
+                const CartesianAxisList axes = diagram->axes();
+                for ( CartesianAxis* axis : axes ) {
                     if ( axisInfos.contains( axis ) ) {
                         continue; // already laid out this one
                     }

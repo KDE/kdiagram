@@ -71,7 +71,8 @@ void TernaryCoordinatePlane::layoutDiagrams()
             AbstractTernaryDiagram* diagram =
                 qobject_cast<AbstractTernaryDiagram*>( abstractDiagram );
             Q_ASSERT( diagram );
-            Q_FOREACH( TernaryAxis* axis, diagram->axes() ) {
+            const auto axes = diagram->axes();
+            for ( TernaryAxis* axis : axes ) {
                 QPair<QSizeF, QSizeF> margin = axis->requiredMargins();
                 topleft = topleft.expandedTo( margin.first );
                 bottomRight = bottomRight.expandedTo( margin.second );

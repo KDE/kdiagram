@@ -132,7 +132,7 @@ ConstAbstractDiagramList AbstractCoordinatePlane::diagrams() const
 #ifndef QT_NO_STL
     qCopy( d->diagrams.begin(), d->diagrams.end(), std::back_inserter( list ) );
 #else
-    Q_FOREACH( AbstractDiagram * a, d->diagrams )
+    for ( AbstractDiagram * a : d->diagrams )
         list.push_back( a );
 #endif
     return list;
@@ -315,7 +315,7 @@ void KChart::AbstractCoordinatePlane::mousePressEvent( QMouseEvent* event )
         }
     }
 
-    Q_FOREACH( AbstractDiagram * a, d->diagrams )
+    for ( AbstractDiagram * a : qAsConst(d->diagrams) )
     {
         a->mousePressEvent( event );
     }
@@ -329,7 +329,7 @@ void KChart::AbstractCoordinatePlane::mouseDoubleClickEvent( QMouseEvent* event 
         // which is pretty annoying when zooming out fast
         mousePressEvent( event );
     }
-    Q_FOREACH( AbstractDiagram * a, d->diagrams )
+    for ( AbstractDiagram * a : qAsConst(d->diagrams) )
     {
         a->mouseDoubleClickEvent( event );
     }
@@ -382,7 +382,7 @@ void KChart::AbstractCoordinatePlane::mouseReleaseEvent( QMouseEvent* event )
         event->accept();
     }
 
-    Q_FOREACH( AbstractDiagram * a, d->diagrams )
+    for ( AbstractDiagram * a : qAsConst(d->diagrams) )
     {
         a->mouseReleaseEvent( event );
     }
@@ -398,7 +398,7 @@ void KChart::AbstractCoordinatePlane::mouseMoveEvent( QMouseEvent* event )
         event->accept();
     }
 
-    Q_FOREACH( AbstractDiagram * a, d->diagrams )
+    for ( AbstractDiagram * a : qAsConst(d->diagrams) )
     {
         a->mouseMoveEvent( event );
     }

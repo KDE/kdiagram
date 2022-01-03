@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8.12)
 
 project( kdiagram )
 
-set(KF5_MIN_VERSION "5.60.0")
+set(KF5_MIN_VERSION "5.82.0")
 find_package(ECM ${KF5_MIN_VERSION} REQUIRED NO_MODULE)
 
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
@@ -20,7 +20,7 @@ include(ECMPackageConfigHelpers)
 include(ECMGeneratePriFile)
 include(ECMPoQmTools)
 include(ECMAddTests)
-set(QT_REQUIRED_VERSION "5.12.0")
+set(QT_REQUIRED_VERSION "5.15.0")
 
 include(CMakeDependentOption)
 

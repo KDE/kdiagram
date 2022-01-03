@@ -62,6 +62,14 @@ add_definitions(
     -DUSE_EXCEPTIONS
 )
 
+add_definitions(
+    -DQT_DISABLE_DEPRECATED_BEFORE=0x050c00
+    -DQT_DEPRECATED_WARNINGS_SINCE=0x060000
+    -DKF_DISABLE_DEPRECATED_BEFORE_AND_AT=0x055800
+    -DKF_DEPRECATED_WARNINGS_SINCE=0x060000
+)
+
+
 # TODO: port from .pro
 #  NOMINMAX avoids conflicting definitions of min and max
 #  _USE_MATH_DEFINES makes M_PI defined

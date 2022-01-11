@@ -67,7 +67,7 @@ add_library( KGantt ${kgantt_LIB_SRCS} )
 generate_export_header( KGantt )
 
 target_include_directories(KGantt
-    INTERFACE "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}/KGantt>"
+    INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF5}/KGantt>"
 )
 
 target_link_libraries( KGantt
@@ -121,12 +121,12 @@ install(FILES
             ${CMAKE_CURRENT_BINARY_DIR}/kgantt_export.h
             ${kgantt_LIB_HEADERS}
             kganttabstractgrid_p.h
-        DESTINATION ${INCLUDE_INSTALL_DIR}/KGantt
+        DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF5}/KGantt
         COMPONENT Devel)
 
 install(FILES
     ${CMAKE_CURRENT_BINARY_DIR}/kgantt_version.h
-    DESTINATION ${INCLUDE_INSTALL_DIR} COMPONENT Devel)
+    DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF5} COMPONENT Devel)
 
 if(BUILD_QCH)
     ecm_add_qch(
@@ -185,7 +185,7 @@ ecm_generate_pri_file(
     LIB_NAME KGantt
     DEPS "widgets printsupport"
     FILENAME_VAR PRI_FILENAME
-    INCLUDE_INSTALL_DIR ${INCLUDE_INSTALL_DIR}/KGantt
+    INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR_KF5}/KGantt
 )
 
 install(FILES ${PRI_FILENAME}

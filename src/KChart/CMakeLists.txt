@@ -138,7 +138,7 @@ add_library(KChart ${kchart_LIB_SRCS})
 generate_export_header( KChart )
 
 target_include_directories(KChart
-    INTERFACE "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}/KChart>"
+    INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF5}/KChart>"
 )
 
 target_link_libraries(KChart
@@ -297,12 +297,12 @@ install(FILES
             ${CMAKE_CURRENT_BINARY_DIR}/kchart_export.h
             ${kchart_LIB_HEADERS}
             ${kchart_LIB_FWDHEADERS}
-        DESTINATION ${INCLUDE_INSTALL_DIR}/KChart
+        DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF5}/KChart
         COMPONENT Devel)
 
 install(FILES
     ${CMAKE_CURRENT_BINARY_DIR}/kchart_version.h
-    DESTINATION ${INCLUDE_INSTALL_DIR} COMPONENT Devel)
+    DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF5} COMPONENT Devel)
 
 if(BUILD_QCH)
     ecm_add_qch(
@@ -361,7 +361,7 @@ ecm_generate_pri_file(
     LIB_NAME KChart
     DEPS "widgets svg"
     FILENAME_VAR PRI_FILENAME
-    INCLUDE_INSTALL_DIR ${INCLUDE_INSTALL_DIR}/KChart
+    INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR_KF5}/KChart
 )
 
 install(FILES ${PRI_FILENAME}

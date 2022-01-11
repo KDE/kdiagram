@@ -4,7 +4,7 @@ set(BigDataset_SRCS
     main.cpp
 )
 
-qt5_wrap_ui(BigDataset_SRCS
+qt_wrap_ui(BigDataset_SRCS
     Controls.ui
 )
 

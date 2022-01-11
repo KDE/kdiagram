@@ -3,7 +3,7 @@ set(AxisChart_SRCS
     main.cpp
 )
 
-qt5_wrap_ui(AxisChart_SRCS
+qt_wrap_ui(AxisChart_SRCS
     mainwindow.ui
 )
 

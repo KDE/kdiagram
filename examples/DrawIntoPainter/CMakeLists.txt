@@ -4,7 +4,7 @@ set(DrawIntoPainter_SRCS
     main.cpp
 )
 
-qt5_wrap_ui(DrawIntoPainter_SRCS
+qt_wrap_ui(DrawIntoPainter_SRCS
     mainwindow.ui
 )
 

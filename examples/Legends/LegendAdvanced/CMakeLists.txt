@@ -4,7 +4,7 @@ set(LegendAdvanced_SRCS
     main.cpp
 )
 
-qt5_wrap_ui(LegendAdvanced_SRCS
+qt_wrap_ui(LegendAdvanced_SRCS
     addlegenddialog.ui
     mainwindow.ui
 )

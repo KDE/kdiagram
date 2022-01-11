@@ -3,7 +3,7 @@ set(PolarAdvanced_SRCS
     main.cpp
 )
 
-qt5_wrap_ui(PolarAdvanced_SRCS
+qt_wrap_ui(PolarAdvanced_SRCS
     mainwindow.ui
 )
 

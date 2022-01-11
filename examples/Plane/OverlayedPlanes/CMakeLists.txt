@@ -3,7 +3,7 @@ set(OverlayedPlanes_SRCS
     main.cpp
 )
 
-qt5_wrap_ui(OverlayedPlanes_SRCS
+qt_wrap_ui(OverlayedPlanes_SRCS
     mainwindow.ui
 )
 

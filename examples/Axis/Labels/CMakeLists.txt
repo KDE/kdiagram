@@ -4,7 +4,7 @@ set(AxisLabels_SRCS
     main.cpp
 )
 
-qt5_wrap_ui(AxisLabels_SRCS
+qt_wrap_ui(AxisLabels_SRCS
     mainwindow.ui
 )
 

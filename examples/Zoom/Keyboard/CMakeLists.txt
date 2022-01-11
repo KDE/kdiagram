@@ -4,7 +4,7 @@ set(ZoomKeyboard_SRCS
     main.cpp
 )
 
-qt5_wrap_ui(ZoomKeyboard_SRCS
+qt_wrap_ui(ZoomKeyboard_SRCS
     mainwindow.ui
 )
 

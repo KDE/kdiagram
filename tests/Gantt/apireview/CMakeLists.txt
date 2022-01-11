@@ -5,7 +5,7 @@ set(TestApiReview_SRCS
     main.cpp
 )
 
-qt5_wrap_ui(TestApiReview_SRCS
+qt_wrap_ui(TestApiReview_SRCS
     entrydialog.ui
     mainwindow.ui
 )

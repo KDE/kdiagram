@@ -3,7 +3,7 @@ set(PointChart_SRCS
     main.cpp
 )
 
-qt5_wrap_ui(PointChart_SRCS
+qt_wrap_ui(PointChart_SRCS
     mainwindow.ui
 )
 

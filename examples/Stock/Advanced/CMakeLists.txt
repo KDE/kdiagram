@@ -3,7 +3,7 @@ set(StockDiagram_SRCS
     main.cpp
 )
 
-qt5_wrap_ui(StockDiagram_SRCS
+qt_wrap_ui(StockDiagram_SRCS
     mainwindow.ui
 )
 

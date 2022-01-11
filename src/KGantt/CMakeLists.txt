@@ -47,7 +47,7 @@ set( kgantt_LIB_SRCS
     unittest/testregistry.cpp
 )
 
-qt5_wrap_ui(kgantt_LIB_SRCS
+qt_wrap_ui(kgantt_LIB_SRCS
     kganttdatetimetimelinedialog.ui
 )
 

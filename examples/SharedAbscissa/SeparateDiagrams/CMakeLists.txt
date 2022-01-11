@@ -3,7 +3,7 @@ set(SeparateDiagrams_SRCS
     main.cpp
 )
 
-qt5_wrap_ui(SeparateDiagrams_SRCS
+qt_wrap_ui(SeparateDiagrams_SRCS
     mainwindow.ui
 )
 

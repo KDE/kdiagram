@@ -3,7 +3,7 @@ set(PieAdvanced_SRCS
     main.cpp
 )
 
-qt5_wrap_ui(PieAdvanced_SRCS
+qt_wrap_ui(PieAdvanced_SRCS
     mainwindow.ui
 )
 

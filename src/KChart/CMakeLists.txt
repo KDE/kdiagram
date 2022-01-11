@@ -113,7 +113,7 @@ set( kchart_LIB_SRCS
     Ternary/KChartTernaryLineDiagram.cpp
 )
 
-qt5_wrap_ui(kchart_LIB_SRCS
+qt_wrap_ui(kchart_LIB_SRCS
     KChartDatasetSelector.ui
 )
 

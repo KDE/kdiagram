@@ -3,7 +3,7 @@ set(WidgetAdvanced_SRCS
     main.cpp
 )
 
-qt5_wrap_ui(WidgetAdvanced_SRCS
+qt_wrap_ui(WidgetAdvanced_SRCS
     mainwindow.ui
 )
 

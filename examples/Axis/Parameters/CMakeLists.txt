@@ -3,7 +3,7 @@ set(AxisParameters_SRCS
     main.cpp
 )
 
-qt5_wrap_ui(AxisParameters_SRCS
+qt_wrap_ui(AxisParameters_SRCS
     mainwindow.ui
 )
 

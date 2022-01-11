@@ -3,7 +3,7 @@ set(PolarGrid_SRCS
     main.cpp
 )
 
-qt5_wrap_ui(PolarGrid_SRCS
+qt_wrap_ui(PolarGrid_SRCS
     mainwindow.ui
 )
 

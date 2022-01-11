@@ -3,7 +3,7 @@ set(ZoomScrollBars_SRCS
     main.cpp
 )
 
-qt5_wrap_ui(ZoomScrollBars_SRCS
+qt_wrap_ui(ZoomScrollBars_SRCS
     mainwindow.ui
 )
 

@@ -3,7 +3,7 @@ set(RootIndex_SRCS
     main.cpp
 )
 
-qt5_wrap_ui(RootIndex_SRCS
+qt_wrap_ui(RootIndex_SRCS
     mainwindow.ui
 )
 

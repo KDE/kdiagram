@@ -3,7 +3,7 @@ set(BubbleChart_SRCS
     main.cpp
 )
 
-qt5_wrap_ui(BubbleChart_SRCS
+qt_wrap_ui(BubbleChart_SRCS
     mainwindow.ui
 )
 

@@ -10,7 +10,7 @@ set(demo_SRCS
     main.cpp
 )
 
-qt5_wrap_ui(demo_SRCS
+qt_wrap_ui(demo_SRCS
     datasetsettings.ui
     gradientdialog.ui
     diagramsettings.ui

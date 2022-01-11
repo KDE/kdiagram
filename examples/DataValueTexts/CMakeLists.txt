@@ -3,7 +3,7 @@ set(DataValueTexts_SRCS
     main.cpp
 )
 
-qt5_wrap_ui(DataValueTexts_SRCS
+qt_wrap_ui(DataValueTexts_SRCS
     mainwindow.ui
 )
 

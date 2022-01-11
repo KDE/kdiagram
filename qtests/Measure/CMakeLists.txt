@@ -2,7 +2,7 @@ set(TestMeasure_SRCS
     main.cpp
 )
 
-qt5_add_resources(TestMeasure_SRCS
+qt_add_resources(TestMeasure_SRCS
     Data.qrc
 )
 

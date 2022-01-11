@@ -8,7 +8,7 @@ qt_wrap_ui(AxisLabels_SRCS
     mainwindow.ui
 )
 
-qt5_add_resources(AxisLabels_SRCS
+qt_add_resources(AxisLabels_SRCS
     BarChart.qrc
 )
 

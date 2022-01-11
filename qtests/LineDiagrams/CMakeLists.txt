@@ -2,7 +2,7 @@ set(TestLineDiagrams_SRCS
     main.cpp
 )
 
-qt5_add_resources(TestLineDiagrams_SRCS
+qt_add_resources(TestLineDiagrams_SRCS
     Data.qrc
 )
 

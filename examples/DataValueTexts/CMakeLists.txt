@@ -7,7 +7,7 @@ qt_wrap_ui(DataValueTexts_SRCS
     mainwindow.ui
 )
 
-qt5_add_resources(DataValueTexts_SRCS
+qt_add_resources(DataValueTexts_SRCS
     DataValueTexts.qrc
 )
 

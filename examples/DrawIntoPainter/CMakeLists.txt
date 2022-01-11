@@ -8,7 +8,7 @@ qt_wrap_ui(DrawIntoPainter_SRCS
     mainwindow.ui
 )
 
-qt5_add_resources(DrawIntoPainter_SRCS
+qt_add_resources(DrawIntoPainter_SRCS
     DrawIntoPainter.qrc
 )
 

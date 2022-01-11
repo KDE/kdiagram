@@ -8,7 +8,7 @@ qt_wrap_ui(HeadersFootersAdvanced_SRCS
     mainwindow.ui
 )
 
-qt5_add_resources(HeadersFootersAdvanced_SRCS
+qt_add_resources(HeadersFootersAdvanced_SRCS
     HeadersFooters.qrc
 )
 

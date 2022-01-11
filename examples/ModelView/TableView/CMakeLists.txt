@@ -3,7 +3,7 @@ set(TableView_SRCS
     main.cpp
 )
 
-qt5_add_resources(TableView_SRCS
+qt_add_resources(TableView_SRCS
     ModelView.qrc
 )
 

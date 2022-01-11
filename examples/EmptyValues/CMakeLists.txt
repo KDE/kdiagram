@@ -3,7 +3,7 @@ set(EmptyValues_SRCS
     main.cpp
 )
 
-qt5_add_resources(EmptyValues_SRCS
+qt_add_resources(EmptyValues_SRCS
     BarChart.qrc
 )
 

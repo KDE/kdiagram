@@ -2,7 +2,7 @@ set(TestPolarDiagrams_SRCS
     main.cpp
 )
 
-qt5_add_resources(TestPolarDiagrams_SRCS
+qt_add_resources(TestPolarDiagrams_SRCS
     Data.qrc
 )
 

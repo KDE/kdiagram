@@ -7,7 +7,7 @@ qt_wrap_ui(SeparateDiagrams_SRCS
     mainwindow.ui
 )
 
-qt5_add_resources(SeparateDiagrams_SRCS
+qt_add_resources(SeparateDiagrams_SRCS
     SharedAbscissa.qrc
 )
 

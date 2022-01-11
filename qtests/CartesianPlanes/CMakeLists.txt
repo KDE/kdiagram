@@ -2,7 +2,7 @@ set(TestCartesianPlanes_SRCS
     main.cpp
 )
 
-qt5_add_resources(TestCartesianPlanes_SRCS
+qt_add_resources(TestCartesianPlanes_SRCS
     Data.qrc
 )
 

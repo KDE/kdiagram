@@ -117,13 +117,13 @@ qt_wrap_ui(kchart_LIB_SRCS
     KChartDatasetSelector.ui
 )
 
-qt5_add_resources(kchart_LIB_SRCS
+qt_add_resources(kchart_LIB_SRCS
     KChart_LeveyJennings_resources.qrc
 )
 
 ecm_create_qm_loader(kchart_LIB_SRCS kchart_qt)
 
-qt5_wrap_cpp(kchart_LIB_SRCS KChartEnums.h)
+qt_wrap_cpp(kchart_LIB_SRCS KChartEnums.h)
 
 add_library(KChart ${kchart_LIB_SRCS})
 

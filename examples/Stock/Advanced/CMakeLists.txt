@@ -7,7 +7,7 @@ qt_wrap_ui(StockDiagram_SRCS
     mainwindow.ui
 )
 
-qt5_add_resources(StockDiagram_SRCS
+qt_add_resources(StockDiagram_SRCS
     Resources.qrc
 )
 

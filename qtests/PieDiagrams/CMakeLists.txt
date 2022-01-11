@@ -2,7 +2,7 @@ set(TestPieDiagrams_SRCS
     main.cpp
 )
 
-qt5_add_resources(TestPieDiagrams_SRCS
+qt_add_resources(TestPieDiagrams_SRCS
     Data.qrc
 )
 

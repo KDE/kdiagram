@@ -2,7 +2,7 @@ set(TestKChartBarDiagrams_SRCS
     main.cpp
 )
 
-qt5_add_resources(TestKChartBarDiagrams_SRCS
+qt_add_resources(TestKChartBarDiagrams_SRCS
     Data.qrc
 )
 

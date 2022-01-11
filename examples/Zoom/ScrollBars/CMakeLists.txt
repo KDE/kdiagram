@@ -7,7 +7,7 @@ qt_wrap_ui(ZoomScrollBars_SRCS
     mainwindow.ui
 )
 
-qt5_add_resources(ZoomScrollBars_SRCS
+qt_add_resources(ZoomScrollBars_SRCS
     ZoomScrollBars.qrc
 )
 

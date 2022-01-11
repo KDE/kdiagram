@@ -7,7 +7,7 @@ qt_wrap_ui(LinesAdvanced_SRCS
     mainwindow.ui
 )
 
-qt5_add_resources(LinesAdvanced_SRCS
+qt_add_resources(LinesAdvanced_SRCS
     LineChart.qrc
 )
 

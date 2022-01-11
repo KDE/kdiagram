@@ -7,7 +7,7 @@ qt_wrap_ui(BarsAdvanced_SRCS
     mainwindow.ui
 )
 
-qt5_add_resources(BarsAdvanced_SRCS
+qt_add_resources(BarsAdvanced_SRCS
     BarChart.qrc
 )
 

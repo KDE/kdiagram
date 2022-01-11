@@ -1,5 +1,5 @@
 
-# qt5_add_resources(TestKChartAttributesModel_SRCS
+# qt_add_resources(TestKChartAttributesModel_SRCS
 #     Data.qrc
 # )
 

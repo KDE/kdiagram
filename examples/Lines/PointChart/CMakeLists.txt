@@ -7,7 +7,7 @@ qt_wrap_ui(PointChart_SRCS
     mainwindow.ui
 )
 
-qt5_add_resources(PointChart_SRCS
+qt_add_resources(PointChart_SRCS
     LineChart.qrc
 )
 

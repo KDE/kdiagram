@@ -19,7 +19,7 @@ qt_wrap_ui(demo_SRCS
     axissettings.ui
 )
 
-qt5_add_resources(demo_SRCS
+qt_add_resources(demo_SRCS
     demo.qrc
 )
 

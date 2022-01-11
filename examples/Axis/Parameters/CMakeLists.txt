@@ -7,7 +7,7 @@ qt_wrap_ui(AxisParameters_SRCS
     mainwindow.ui
 )
 
-qt5_add_resources(AxisParameters_SRCS
+qt_add_resources(AxisParameters_SRCS
     Axes.qrc
 )
 

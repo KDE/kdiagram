@@ -2,7 +2,7 @@ set(TestPolarPlanes_SRCS
     main.cpp
 )
 
-qt5_add_resources(TestPolarPlanes_SRCS
+qt_add_resources(TestPolarPlanes_SRCS
     Data.qrc
 )
 

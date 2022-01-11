@@ -7,7 +7,7 @@ qt_wrap_ui(OverlayedPlanes_SRCS
     mainwindow.ui
 )
 
-qt5_add_resources(OverlayedPlanes_SRCS
+qt_add_resources(OverlayedPlanes_SRCS
     OverlayedPlanes.qrc
 )
 

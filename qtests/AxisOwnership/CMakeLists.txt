@@ -2,7 +2,7 @@ set(TestKChartAxisOwnership_SRCS
     main.cpp
 )
 
-qt5_add_resources(TestKChartAxisOwnership_SRCS
+qt_add_resources(TestKChartAxisOwnership_SRCS
     Data.qrc
 )
 

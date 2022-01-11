@@ -9,7 +9,7 @@ qt_wrap_ui(LegendAdvanced_SRCS
     mainwindow.ui
 )
 
-qt5_add_resources(LegendAdvanced_SRCS
+qt_add_resources(LegendAdvanced_SRCS
     Legends.qrc
 )
 

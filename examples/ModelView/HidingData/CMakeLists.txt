@@ -13,4 +13,4 @@ qt_add_resources(HidingData_SRCS
 
 add_executable(HidingData  ${HidingData_SRCS})
 
-target_link_libraries(HidingData testtools KChart Qt5::Widgets)
+target_link_libraries(HidingData testtools KChart Qt::Widgets)

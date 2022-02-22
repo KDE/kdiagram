@@ -10,4 +10,4 @@ qt_wrap_ui(BigDataset_SRCS
 
 add_executable(BigDataset  ${BigDataset_SRCS})
 
-target_link_libraries(BigDataset KChart Qt5::Widgets)
+target_link_libraries(BigDataset KChart Qt::Widgets)

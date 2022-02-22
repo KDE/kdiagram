@@ -13,4 +13,4 @@ qt_add_resources(LinesAdvanced_SRCS
 
 add_executable(LinesAdvanced  ${LinesAdvanced_SRCS})
 
-target_link_libraries(LinesAdvanced testtools KChart Qt5::Widgets)
+target_link_libraries(LinesAdvanced testtools KChart Qt::Widgets)

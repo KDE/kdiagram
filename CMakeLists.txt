@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8.12)
 
 project( kdiagram )
 
-set(KF5_MIN_VERSION "5.82.0")
+set(KF5_MIN_VERSION "5.90.0")
 find_package(ECM ${KF5_MIN_VERSION} REQUIRED NO_MODULE)
 
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
@@ -33,20 +33,20 @@ cmake_dependent_option(BUILD_QCH
 )
 add_feature_info(QCH ${BUILD_QCH} "API documentation in QCH format (for e.g. Qt Assistant, Qt Creator & KDevelop)")
 
-find_package(Qt5 ${QT_REQUIRED_VERSION} REQUIRED NO_MODULE
+find_package(Qt${QT_MAJOR_VERSION} ${QT_REQUIRED_VERSION} REQUIRED NO_MODULE
     COMPONENTS
     PrintSupport
     Svg
     Widgets
 )
 if(BUILD_TESTING)
-    find_package(Qt5Test QUIET)
+    find_package(Qt${QT_MAJOR_VERSION}Test QUIET)
     if (NOT Qt5Test_FOUND)
         message(STATUS "Qt5Test not found, unit tests will not be built.")
     endif()
 endif()
 
-find_package(Qt5Sql QUIET)
+find_package(Qt${QT_MAJOR_VERSION}Sql QUIET)
 if (NOT Qt5Sql_FOUND)
     message(STATUS "Qt5Sql not found, examples with SQL will not be built.")
 endif()

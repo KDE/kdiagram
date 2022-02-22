@@ -25,4 +25,4 @@ qt_add_resources(demo_SRCS
 
 add_executable(demo  ${demo_SRCS})
 
-target_link_libraries(demo testtools KChart Qt5::Widgets)
+target_link_libraries(demo testtools KChart Qt::Widgets)

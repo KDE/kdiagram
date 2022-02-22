@@ -9,4 +9,4 @@ qt_wrap_ui(TernaryChartsAdvanced_SRCS
 
 add_executable(TernaryChartsAdvanced  ${TernaryChartsAdvanced_SRCS})
 
-target_link_libraries(TernaryChartsAdvanced KChart Qt5::Widgets)
+target_link_libraries(TernaryChartsAdvanced KChart Qt::Widgets)

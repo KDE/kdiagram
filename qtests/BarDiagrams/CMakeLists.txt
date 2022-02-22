@@ -9,5 +9,5 @@ qt_add_resources(TestKChartBarDiagrams_SRCS
 ecm_add_test(
     ${TestKChartBarDiagrams_SRCS}
     TEST_NAME TestKChartBarDiagrams
-    LINK_LIBRARIES testtools KChart Qt5::Widgets Qt5::Test
+    LINK_LIBRARIES testtools KChart Qt::Widgets Qt::Test
 )

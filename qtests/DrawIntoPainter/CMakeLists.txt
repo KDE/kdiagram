@@ -15,7 +15,7 @@ qt_add_resources(TestDrawIntoPainter_SRCS
 ecm_add_test(
     ${TestDrawIntoPainter_SRCS}
     TEST_NAME TestDrawIntoPainter
-    LINK_LIBRARIES testtools KChart Qt5::Widgets Qt5::Test
+    LINK_LIBRARIES testtools KChart Qt::Widgets Qt::Test
 )
 
 set_property(TEST TestDrawIntoPainter PROPERTY TIMEOUT 600)

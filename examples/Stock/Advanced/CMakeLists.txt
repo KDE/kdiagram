@@ -13,4 +13,4 @@ qt_add_resources(StockDiagram_SRCS
 
 add_executable(StockDiagram  ${StockDiagram_SRCS})
 
-target_link_libraries(StockDiagram testtools KChart Qt5::Widgets)
+target_link_libraries(StockDiagram testtools KChart Qt::Widgets)

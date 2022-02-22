@@ -14,4 +14,4 @@ qt_add_resources(HeadersFootersAdvanced_SRCS
 
 add_executable(HeadersFootersAdvanced  ${HeadersFootersAdvanced_SRCS})
 
-target_link_libraries(HeadersFootersAdvanced testtools KChart Qt5::Widgets Qt5::PrintSupport)
+target_link_libraries(HeadersFootersAdvanced testtools KChart Qt::Widgets Qt::PrintSupport)

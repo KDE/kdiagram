@@ -6,4 +6,4 @@ set(GanttPrinting_SRCS
 
 add_executable(GanttPrinting  ${GanttPrinting_SRCS})
 
-target_link_libraries(GanttPrinting KGantt Qt5::Widgets Qt5::PrintSupport)
+target_link_libraries(GanttPrinting KGantt Qt::Widgets Qt::PrintSupport)

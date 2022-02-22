@@ -13,4 +13,4 @@ qt_add_resources(AxisChart_SRCS
 
 add_executable(AxisChart  ${AxisChart_SRCS})
 
-target_link_libraries(AxisChart testtools KChart Qt5::Widgets)
+target_link_libraries(AxisChart testtools KChart Qt::Widgets)

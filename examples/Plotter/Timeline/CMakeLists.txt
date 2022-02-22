@@ -6,4 +6,4 @@ set(PlotterTimeline_SRCS
 
 add_executable(PlotterTimeline  ${PlotterTimeline_SRCS})
 
-target_link_libraries(PlotterTimeline KChart Qt5::Widgets)
+target_link_libraries(PlotterTimeline KChart Qt::Widgets)

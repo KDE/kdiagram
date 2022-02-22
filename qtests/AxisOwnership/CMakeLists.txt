@@ -9,5 +9,5 @@ qt_add_resources(TestKChartAxisOwnership_SRCS
 ecm_add_test(
     ${TestKChartAxisOwnership_SRCS}
     TEST_NAME TestKChartAxisOwnership
-    LINK_LIBRARIES testtools KChart Qt5::Widgets Qt5::Test
+    LINK_LIBRARIES testtools KChart Qt::Widgets Qt::Test
 )

@@ -5,4 +5,4 @@ set(NoValues_SRCS
 
 add_executable(NoValues  ${NoValues_SRCS})
 
-target_link_libraries(NoValues KChart Qt5::Widgets)
+target_link_libraries(NoValues KChart Qt::Widgets)

@@ -13,4 +13,4 @@ qt_add_resources(DataValueTexts_SRCS
 
 add_executable(DataValueTexts  ${DataValueTexts_SRCS})
 
-target_link_libraries(DataValueTexts testtools KChart Qt5::Widgets)
+target_link_libraries(DataValueTexts testtools KChart Qt::Widgets)

@@ -12,4 +12,4 @@ qt_wrap_ui(legend_example_SRCS
 
 add_executable(legend_example  ${legend_example_SRCS})
 
-target_link_libraries(legend_example KGantt Qt5::Widgets Qt5::PrintSupport)
+target_link_libraries(legend_example KGantt Qt::Widgets Qt::PrintSupport)

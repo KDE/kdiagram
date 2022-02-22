@@ -23,6 +23,7 @@
 #include <QItemSelectionModel>
 #include <QGraphicsSceneMouseEvent>
 #include <QGuiApplication>
+#include <QActionGroup>
 
 #include <cassert>
 

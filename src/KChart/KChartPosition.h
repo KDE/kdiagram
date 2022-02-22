@@ -15,9 +15,9 @@
 #include <QCoreApplication>
 #include "KChartGlobal.h"
 #include "KChartEnums.h"
-
+#include <QStringList>
 QT_BEGIN_NAMESPACE
-class QStringList;
+
 class QByteArray;
 template <typename T> class QList;
 QT_END_NAMESPACE

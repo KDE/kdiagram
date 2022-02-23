@@ -340,7 +340,7 @@ if (BUILD_QCH)
     set(PACKAGE_INCLUDE_QCHTARGETS "include(\"\${CMAKE_CURRENT_LIST_DIR}/KChartQchTargets.cmake\")")
 endif()
 
-ecm_configure_package_config_file(
+configure_package_config_file(
     "${CMAKE_CURRENT_SOURCE_DIR}/KChartConfig.cmake.in"
     "${CMAKE_CURRENT_BINARY_DIR}/KChartConfig.cmake"
     INSTALL_DESTINATION ${CMAKECONFIG_INSTALL_DIR}
@@ -357,6 +357,7 @@ install(EXPORT KChartTargets
         FILE KChartTargets.cmake)
 
 ecm_generate_pri_file(
+    VERSION ${KCHARTLIB_VERSION}
     BASE_NAME KChart
     LIB_NAME KChart
     DEPS "widgets svg"

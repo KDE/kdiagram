@@ -1,28 +1,29 @@
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.16)
 
 project( kdiagram )
 
 set(KF5_MIN_VERSION "5.90.0")
+set(QT_REQUIRED_VERSION "5.15.0")
+
 find_package(ECM ${KF5_MIN_VERSION} REQUIRED NO_MODULE)
 
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
 
+set(KDE_COMPILERSETTINGS_LEVEL 5.84)
 include(KDEInstallDirs)
-include(KDEFrameworkCompilerSettings NO_POLICY_SCOPE)
 include(KDECMakeSettings)
-
-include(FeatureSummary)
-include(GenerateExportHeader)
+include(KDECompilerSettings NO_POLICY_SCOPE)
 
 include(ECMGenerateHeaders)
 include(ECMSetupVersion)
-include(ECMPackageConfigHelpers)
 include(ECMGeneratePriFile)
 include(ECMPoQmTools)
 include(ECMAddTests)
-set(QT_REQUIRED_VERSION "5.15.0")
 
+include(CMakePackageConfigHelpers)
 include(CMakeDependentOption)
+include(FeatureSummary)
+include(GenerateExportHeader)
 
 set(HAS_ECMAddQch TRUE)
 include(ECMAddQch)

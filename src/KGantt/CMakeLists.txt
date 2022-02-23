@@ -164,7 +164,7 @@ if (BUILD_QCH)
     set(PACKAGE_INCLUDE_QCHTARGETS "include(\"\${CMAKE_CURRENT_LIST_DIR}/KGanttQchTargets.cmake\")")
 endif()
 
-ecm_configure_package_config_file(
+configure_package_config_file(
     "${CMAKE_CURRENT_SOURCE_DIR}/KGanttConfig.cmake.in"
     "${CMAKE_CURRENT_BINARY_DIR}/KGanttConfig.cmake"
     INSTALL_DESTINATION ${CMAKECONFIG_INSTALL_DIR}
@@ -181,6 +181,7 @@ install(EXPORT KGanttTargets
         FILE KGanttTargets.cmake)
 
 ecm_generate_pri_file(
+    VERSION ${KGANTTLIB_VERSION}
     BASE_NAME KGantt
     LIB_NAME KGantt
     DEPS "widgets printsupport"

@@ -441,7 +441,7 @@ void MainWindow::slotFileSavePdf()
         return;
     }
     QPrinter printer(QPrinter::HighResolution);
-    printer.setOrientation(QPrinter::Landscape);
+    printer.setPageOrientation(QPageLayout::Landscape);
     printer.setColorMode(QPrinter::Color);
     printer.setOutputFormat(QPrinter::PdfFormat);
     printer.setOutputFileName(m_file);
@@ -458,7 +458,7 @@ void MainWindow::slotFilePrint()
         return;
     }
     QPrinter printer(QPrinter::HighResolution);
-    printer.setOrientation(QPrinter::Landscape);
+    printer.setPageOrientation(QPageLayout::Landscape);
     printer.setColorMode(QPrinter::Color);
     printer.setFullPage(true); // Let ganttview handle margins
     QPrintDialog dialog(&printer, this);
@@ -476,7 +476,7 @@ void MainWindow::slotFilePrintPreview()
         return;
     }
     QPrinter printer(QPrinter::HighResolution);
-    printer.setOrientation(QPrinter::Landscape);
+    printer.setPageOrientation(QPageLayout::Landscape);
     printer.setColorMode(QPrinter::Color);
     printer.setPageMargins(m_margins, QPageLayout::Millimeter);
     printer.setFullPage(true); // Let ganttview handle margins

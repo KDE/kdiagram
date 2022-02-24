@@ -366,7 +366,7 @@ void MainWindow::slotFileSavePdf()
     const bool drawColumnLabels = dialog.m_columnLabels->isChecked();
 
     QPrinter printer(QPrinter::HighResolution);
-    printer.setOrientation(QPrinter::Landscape);
+    printer.setPageOrientation(QPageLayout::Landscape);
     printer.setColorMode(QPrinter::Color);
     printer.setPageMargins(0.2, 0.2, 0.2, 0.2, QPrinter::Point);
     printer.setOutputFormat(QPrinter::PdfFormat);
@@ -379,7 +379,7 @@ void MainWindow::slotFilePrint()
 {
 #ifndef QT_NO_PRINTER
     QPrinter printer(QPrinter::HighResolution);
-    printer.setOrientation(QPrinter::Landscape);
+    printer.setPageOrientation(QPageLayout::Landscape);
     printer.setColorMode(QPrinter::Color);
     QPrintDialog dialog(&printer, this);
     if (dialog.exec() != QDialog::Accepted)

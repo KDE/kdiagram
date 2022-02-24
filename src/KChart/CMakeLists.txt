@@ -113,50 +113,6 @@ set( kchart_LIB_SRCS
     Ternary/KChartTernaryLineDiagram.cpp
 )
 
-qt_wrap_ui(kchart_LIB_SRCS
-    KChartDatasetSelector.ui
-)
-
-qt_add_resources(kchart_LIB_SRCS
-    KChart_LeveyJennings_resources.qrc
-)
-
-ecm_create_qm_loader(kchart_LIB_SRCS kchart_qt)
-
-qt_wrap_cpp(kchart_LIB_SRCS KChartEnums.h)
-
-add_library(KChart ${kchart_LIB_SRCS})
-
-# TODO: check if this snippet from .pro file should be ported, otherwise remove file
-# linux-*{
-#   version_script{
-#     QMAKE_LFLAGS += -Wl,--version-script=libkdchart.map
-#     TARGETDEPS += libkdchart.map
-#   }
-# }
-
-generate_export_header( KChart )
-
-target_include_directories(KChart
-    INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KChart>"
-)
-
-target_link_libraries(KChart
-PUBLIC
-    Qt::Widgets
-PRIVATE
-    Qt::Svg
-)
-set_target_properties( KChart PROPERTIES
-  VERSION     ${KCHART_VERSION}
-  SOVERSION   ${KCHART_SOVERSION}
-  EXPORT_NAME "KChart"
-)
-
-install( TARGETS KChart
-    EXPORT KChartTargets
-    ${INSTALL_TARGETS_DEFAULT_ARGS})
-
 set( kchart_LIB_HEADERS
     KChartGlobal.h
     KChartRelativePosition.h
@@ -223,6 +179,51 @@ set( kchart_LIB_HEADERS
     KChartTextAttributes.h
     KChartDataValueAttributes.h
 )
+
+qt_wrap_ui(kchart_LIB_SRCS
+    KChartDatasetSelector.ui
+)
+
+qt_add_resources(kchart_LIB_SRCS
+    KChart_LeveyJennings_resources.qrc
+)
+
+ecm_create_qm_loader(kchart_LIB_SRCS kchart_qt)
+
+qt_wrap_cpp(kchart_LIB_SRCS KChartEnums.h)
+
+add_library(KChart ${kchart_LIB_SRCS} ${kchart_LIB_HEADERS})
+
+# TODO: check if this snippet from .pro file should be ported, otherwise remove file
+# linux-*{
+#   version_script{
+#     QMAKE_LFLAGS += -Wl,--version-script=libkdchart.map
+#     TARGETDEPS += libkdchart.map
+#   }
+# }
+
+generate_export_header( KChart )
+
+target_include_directories(KChart
+    INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KChart>"
+)
+
+target_link_libraries(KChart
+PUBLIC
+    Qt::Widgets
+PRIVATE
+    Qt::Svg
+)
+set_target_properties( KChart PROPERTIES
+  VERSION     ${KCHART_VERSION}
+  SOVERSION   ${KCHART_SOVERSION}
+  EXPORT_NAME "KChart"
+)
+
+install( TARGETS KChart
+    EXPORT KChartTargets
+    ${INSTALL_TARGETS_DEFAULT_ARGS})
+
 
 # TODO: fix ecm_generate_headers to support camelcase .h files
 set( kchart_LIB_FWDHEADERS

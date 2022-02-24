@@ -368,7 +368,7 @@ void MainWindow::slotFileSavePdf()
     QPrinter printer(QPrinter::HighResolution);
     printer.setPageOrientation(QPageLayout::Landscape);
     printer.setColorMode(QPrinter::Color);
-    printer.setPageMargins(0.2, 0.2, 0.2, 0.2, QPrinter::Point);
+    printer.setPageMargins(QMarginsF(0.2, 0.2, 0.2, 0.2), QPageLayout::Point);
     printer.setOutputFormat(QPrinter::PdfFormat);
     printer.setOutputFileName(file);
     m_view->print(&printer, drawRowLabels, drawColumnLabels);

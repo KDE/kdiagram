@@ -394,7 +394,7 @@ void MainWindow::on_savePDF_clicked()
         return;
     qDebug() << "Painting into PDF";
     QPrinter printer( QPrinter::HighResolution );
-    printer.setOrientation( QPrinter::Landscape );
+    printer.setPageOrientation( QPageLayout::Landscape );
     printer.setOutputFormat( QPrinter::PdfFormat );
     printer.setOutputFileName( file );
     paintMarkers( paintMarkersCB->isChecked(), printer.pageRect().size() );

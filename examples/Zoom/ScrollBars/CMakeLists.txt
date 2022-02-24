@@ -1,5 +1,6 @@
 set(ZoomScrollBars_SRCS
     mainwindow.cpp
+    mainwindow.h
     main.cpp
 )
 

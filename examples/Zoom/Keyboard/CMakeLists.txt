@@ -1,6 +1,8 @@
 set(ZoomKeyboard_SRCS
     zoomwidget.cpp
     mainwindow.cpp
+    zoomwidget.h
+    mainwindow.h
     main.cpp
 )
 

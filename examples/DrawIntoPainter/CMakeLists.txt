@@ -1,6 +1,8 @@
 set(DrawIntoPainter_SRCS
     framewidget.cpp
     mainwindow.cpp
+    framewidget.h
+    mainwindow.h
     main.cpp
 )
 

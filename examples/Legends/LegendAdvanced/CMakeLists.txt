@@ -1,6 +1,8 @@
 set(LegendAdvanced_SRCS
     derivedaddlegenddialog.cpp
     mainwindow.cpp
+    derivedaddlegenddialog.h
+    mainwindow.h
     main.cpp
 )
 

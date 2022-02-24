@@ -1,6 +1,8 @@
 set(BigDataset_SRCS
     MainWidget.cpp
     Model.cpp
+    MainWidget.h
+    Model.h
     main.cpp
 )
 

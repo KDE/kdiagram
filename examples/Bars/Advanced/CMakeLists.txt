@@ -1,4 +1,5 @@
 set(BarsAdvanced_SRCS
+    mainwindow.h
     mainwindow.cpp
     main.cpp
 )

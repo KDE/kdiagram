@@ -1,5 +1,6 @@
 set( testtools_LIB_SRCS
     TableModel.cpp
+    TableModel.h
 )
 
 add_library(testtools SHARED ${testtools_LIB_SRCS})

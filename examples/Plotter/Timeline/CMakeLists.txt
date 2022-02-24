@@ -1,6 +1,8 @@
 set(PlotterTimeline_SRCS
     timeaxis.cpp
     timechartmodel.cpp
+    timeaxis.h
+    timechartmodel.h
     main.cpp
 )
 

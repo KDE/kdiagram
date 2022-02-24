@@ -1,6 +1,8 @@
 set(AxisLabels_SRCS
     AdjustedCartesianAxis.cpp
     mainwindow.cpp
+    AdjustedCartesianAxis.h
+    mainwindow.h
     main.cpp
 )
 

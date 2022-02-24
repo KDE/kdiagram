@@ -1,5 +1,6 @@
 set(PieAdvanced_SRCS
     mainwindow.cpp
+    mainwindow.h
     main.cpp
 )
 

@@ -1,6 +1,8 @@
 set(project_SRCS
     ../common/projectmodel.cpp
     mainwindow.cpp
+    ../common/projectmodel.h
+    mainwindow.h
     main.cpp
 )
 

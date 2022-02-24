@@ -7,6 +7,14 @@ set(demo_SRCS
     diagramtypedialog.cpp
     axissettings.cpp
     mainwindow.cpp
+    datasetsettings.h
+    gradientdialog.h
+    colorslider.h
+    diagramsettings.h
+    datavaluesettings.h
+    diagramtypedialog.h
+    axissettings.h
+    mainwindow.h
     main.cpp
 )
 

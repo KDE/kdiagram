@@ -1,5 +1,6 @@
 set(PolarGrid_SRCS
     mainwindow.cpp
+    mainwindow.h
     main.cpp
 )
 

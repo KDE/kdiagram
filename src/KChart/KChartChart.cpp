@@ -1700,7 +1700,7 @@ void Chart::mouseDoubleClickEvent( QMouseEvent* event )
 
 void Chart::mouseMoveEvent( QMouseEvent* event )
 {
-    QSet< AbstractCoordinatePlane* > eventReceivers = QSet< AbstractCoordinatePlane* >::fromList( d->mouseClickedPlanes );
+    auto eventReceivers = QSet<AbstractCoordinatePlane*>(d->mouseClickedPlanes.cbegin(), d->mouseClickedPlanes.cend());
 
     for( AbstractCoordinatePlane* plane : qAsConst(d->coordinatePlanes) ) {
         if ( plane->geometry().contains( event->pos() ) && plane->diagrams().size() > 0 ) {
@@ -1719,7 +1719,7 @@ void Chart::mouseMoveEvent( QMouseEvent* event )
 
 void Chart::mouseReleaseEvent( QMouseEvent* event )
 {
-    QSet< AbstractCoordinatePlane* > eventReceivers = QSet< AbstractCoordinatePlane* >::fromList( d->mouseClickedPlanes );
+    auto eventReceivers = QSet<AbstractCoordinatePlane*>(d->mouseClickedPlanes.cbegin(), d->mouseClickedPlanes.cend());
 
     for ( AbstractCoordinatePlane* plane :  qAsConst(d->coordinatePlanes) ) {
         if ( plane->geometry().contains( event->pos() ) && plane->diagrams().size() > 0 ) {

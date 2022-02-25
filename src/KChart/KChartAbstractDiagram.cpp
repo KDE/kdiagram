@@ -523,7 +523,7 @@ void AbstractDiagram::paintMarker( QPainter* painter,
                     grad.setColorAt( 0.95, drawColor.darker( 250 ) );
                     grad.setColorAt( 1.00, drawColor.darker( 200 ) );
                     QBrush newBrush( grad );
-                    newBrush.setMatrix( brush.matrix() );
+                    newBrush.setTransform( brush.transform() );
                     painter->setBrush( newBrush );
                 }
                 painter->drawEllipse( QRectF( 0 - maSize.height()/2, 0 - maSize.width()/2,

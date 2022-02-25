@@ -2,6 +2,9 @@ set(TestApiReview_SRCS
     entrydialog.cpp
     entrydelegate.cpp
     mainwindow.cpp
+    entrydialog.h
+    entrydelegate.h
+    mainwindow.h
     main.cpp
 )
 

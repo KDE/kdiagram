@@ -158,7 +158,7 @@ void KChart::TextBubbleLayoutItem::paint( QPainter* painter )
     const QBrush oldBrush = painter->brush();
     painter->setPen( Qt::black );
     painter->setBrush( QColor( 255, 255, 220 ) );
-    painter->drawRoundRect( geometry(), 10 );
+    painter->drawRoundedRect( geometry(), 10, Qt::RelativeSize );
     painter->setPen( oldPen );
     painter->setBrush( oldBrush );
     m_text->paint( painter );

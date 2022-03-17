@@ -168,10 +168,10 @@ void PrerenderedLabel::paint() const
         painter.drawRect( 0, 0, Width, Height );
         painter.setCompositionMode( mode );
 
-        QMatrix matrix;
+        QTransform matrix;
         matrix.translate( 0.5 * Width,  0.5 * Height );
         matrix.rotate( m_angle );
-        painter.setWorldMatrix( matrix );
+        painter.setWorldTransform( matrix );
 
         painter.setPen( m_pen );
         painter.setBrush( m_brush );

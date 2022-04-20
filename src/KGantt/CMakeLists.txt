@@ -85,7 +85,7 @@ set_target_properties( KGantt PROPERTIES
 
 install( TARGETS KGantt
     EXPORT KGanttTargets
-    ${INSTALL_TARGETS_DEFAULT_ARGS})
+    ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
 ecm_generate_headers(kgantt_LIB_HEADERS
     HEADER_NAMES
@@ -152,7 +152,7 @@ if(BUILD_QCH)
 endif()
 
 # create a Config.cmake and a ConfigVersion.cmake file and install them
-set(CMAKECONFIG_INSTALL_DIR "${CMAKECONFIG_INSTALL_PREFIX}/KGantt")
+set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KGantt")
 
 if (BUILD_QCH)
     ecm_install_qch_export(

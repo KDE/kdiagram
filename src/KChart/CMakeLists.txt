@@ -222,7 +222,7 @@ set_target_properties( KChart PROPERTIES
 
 install( TARGETS KChart
     EXPORT KChartTargets
-    ${INSTALL_TARGETS_DEFAULT_ARGS})
+    ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
 
 # TODO: fix ecm_generate_headers to support camelcase .h files
@@ -329,7 +329,7 @@ if(BUILD_QCH)
 endif()
 
 # create a Config.cmake and a ConfigVersion.cmake file and install them
-set(CMAKECONFIG_INSTALL_DIR "${CMAKECONFIG_INSTALL_PREFIX}/KChart")
+set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KChart")
 
 if (BUILD_QCH)
     ecm_install_qch_export(

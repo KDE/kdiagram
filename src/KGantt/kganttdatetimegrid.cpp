@@ -13,6 +13,7 @@
 
 #include <QApplication>
 #include <QDateTime>
+#include <QLocale>
 #include <QPainter>
 #include <QPainterPath>
 #include <QStyle>
@@ -118,7 +119,7 @@ QString DateTimeScaleFormatter::format( const QDateTime& datetime ) const
     const QString longWeekNumber = ( shortWeekNumber.length() == 1 ? QString::fromLatin1( "0" ) : QString() ) + shortWeekNumber;
     result.replace( QString::fromLatin1( "ww" ), longWeekNumber );
     result.replace( QString::fromLatin1( "w" ), shortWeekNumber );
-    result = datetime.toLocalTime().toString( result );
+    result = QLocale().toString(datetime.toLocalTime(), result);
     return result;
 }
 
@@ -942,7 +943,7 @@ void DateTimeGrid::paintHourScaleHeader( QPainter* painter,
         ~HourFormatter() override {}
 
         QString format( const QDateTime& dt ) override {
-            return dt.time().toString( QString::fromLatin1( "hh" ) );
+            return QLocale().toString(dt.time(), QString::fromLatin1( "hh" ) );
         }
         QRect textRect( qreal x, qreal offset, qreal dayWidth, const QRectF& headerRect, const QDateTime& dt ) override {
             Q_UNUSED(dt);
@@ -958,7 +959,7 @@ void DateTimeGrid::paintHourScaleHeader( QPainter* painter,
     public:
         ~DayFormatter() override {}
         QString format( const QDateTime& dt ) override {
-            return dt.date().toString();
+            return QLocale().toString(dt.date());
         }
         QRect textRect( qreal x, qreal offset, qreal dayWidth, const QRectF& headerRect, const QDateTime& dt ) override {
             Q_UNUSED(dt);
@@ -980,7 +981,7 @@ void DateTimeGrid::paintDayScaleHeader( QPainter* painter,  const QRectF& header
         ~DayFormatter() override {}
 
         QString format( const QDateTime& dt ) override {
-            return dt.toString( QString::fromLatin1( "ddd" ) ).left( 1 );
+            return QLocale().toString(dt, QStringLiteral("ddd")).left(1);
         }
         QRect textRect( qreal x, qreal offset, qreal dayWidth, const QRectF& headerRect, const QDateTime& dt ) override {
             Q_UNUSED(dt);

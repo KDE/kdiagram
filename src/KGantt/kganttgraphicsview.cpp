@@ -13,6 +13,7 @@
 #include "kganttconstraintmodel.h"
 #include "kganttdatetimetimelinedialog.h"
 
+#include <QLocale>
 #include <QMenu>
 #include <QPainter>
 #include <QPaintEvent>
@@ -69,7 +70,7 @@ bool HeaderWidget::event( QEvent* event )
         if ( grid ) {
             QHelpEvent *e = static_cast<QHelpEvent*>( event );
             QDateTime dt = grid->mapFromChart( view()->mapToScene( e->x(), 0 ).x() ).toDateTime();
-            setToolTip( dt.toString() );
+            setToolTip(QLocale().toString(dt));
         }
     }
     return QWidget::event( event );

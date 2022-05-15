@@ -728,7 +728,9 @@ void GraphicsScene::print( QPrinter* printer, bool drawRowLabels, bool drawColum
     Q_UNUSED( drawColumnLabels );
 #else
     QPainter painter( printer );
-    doPrint( &painter, printer->pageRect(), sceneRect().left(), sceneRect().right(), printer, drawRowLabels, drawColumnLabels );
+    const auto resolution = printer->resolution();
+    const auto pageRect = printer->pageLayout().paintRectPixels(resolution);
+    doPrint( &painter, pageRect, sceneRect().left(), sceneRect().right(), printer, drawRowLabels, drawColumnLabels );
 #endif
 }
 
@@ -743,7 +745,9 @@ void GraphicsScene::print( QPrinter* printer, qreal start, qreal end, bool drawR
     Q_UNUSED( drawColumnLabels );
 #else
     QPainter painter( printer );
-    doPrint( &painter, printer->pageRect(), start, end, printer, drawRowLabels, drawColumnLabels );
+    const auto resolution = printer->resolution();
+    const auto pageRect = printer->pageLayout().paintRectPixels(resolution);
+    doPrint( &painter, pageRect, start, end, printer, drawRowLabels, drawColumnLabels );
 #endif
 }
 

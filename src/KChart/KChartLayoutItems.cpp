@@ -969,7 +969,7 @@ void KChart::AutoSpacerLayoutItem::paint( QPainter* painter )
         const QPoint oldBrushOrigin( painter->brushOrigin() );
         const QBrush oldBrush( painter->brush() );
         const QPen   oldPen( painter->pen() );
-        const QPointF newTopLeft( painter->deviceMatrix().map( p1 ) );
+        const QPointF newTopLeft( painter->deviceTransform().map( p1 ) );
         painter->setBrushOrigin( newTopLeft );
         painter->setBrush( mCommonBrush );
         painter->setPen( Qt::NoPen );

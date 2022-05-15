@@ -864,7 +864,7 @@ void DateTimeGrid::paintUserDefinedHeader( QPainter* painter,
         const qreal nextx = d->dateTimeToChartX( next );
 
         QStyleOptionHeader opt;
-        if ( widget ) opt.init( widget );
+        if ( widget ) opt.initFrom( widget );
         else opt.palette = QApplication::palette();
         opt.rect = QRectF( x - offset+1, headerRect.top(), qMax<qreal>( 1., nextx-x-1 ), headerRect.height() ).toAlignedRect();
         opt.textAlignment = formatter->alignment();
@@ -921,7 +921,7 @@ void DateTimeGrid::Private::paintHeader( QPainter* painter,
           dt = dt.addSecs( offsetSeconds ), dt = dt.addDays( offsetDays ), dt = dt.addMonths( offsetMonths ),
           x = dateTimeToChartX( dt ) ) {
         QStyleOptionHeader opt;
-        if ( widget ) opt.init( widget );
+        if ( widget ) opt.initFrom( widget );
         else opt.palette = QApplication::palette();
         opt.rect = formatter->textRect( x, offset, dayWidth, headerRect, dt );
         opt.text = formatter->format( dt );

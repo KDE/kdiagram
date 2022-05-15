@@ -433,8 +433,8 @@ void AbstractDiagram::paintMarker( QPainter* painter,
     switch( ma.markerSizeMode() ) {
     case MarkerAttributes::AbsoluteSize:
         // Unscaled, i.e. without the painter's "zoom"
-        maSize.rwidth()  /= painter->matrix().m11();
-        maSize.rheight() /= painter->matrix().m22();
+        maSize.rwidth()  /= painter->transform().m11();
+        maSize.rheight() /= painter->transform().m22();
         break;
     case MarkerAttributes::AbsoluteSizeScaled:
         // Keep maSize as is. It is specified directly in pixels and desired

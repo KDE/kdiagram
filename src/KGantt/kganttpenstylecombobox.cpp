@@ -46,7 +46,6 @@ void PenStyleComboBoxListView::paintEvent(QPaintEvent *e)
             menuOpt.checkType = QStyleOptionMenuItem::NotCheckable;
             menuOpt.menuRect = e->rect();
             menuOpt.maxIconWidth = 0;
-            menuOpt.tabWidth = 0;
             QPainter p(viewport());
             combo->style()->drawControl(QStyle::CE_MenuEmptyArea, &menuOpt, &p, this);
         }

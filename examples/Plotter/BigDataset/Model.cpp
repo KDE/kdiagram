@@ -10,6 +10,7 @@
 
 #include "KChartMath_p.h"
 
+#include <QRandomGenerator>
 #include <QDebug>
 #include <QTime>
 #include <QElapsedTimer>
@@ -123,7 +124,7 @@ qreal Model::nextFunctionValue()
         fx = x < M_PI ? 1 : -1;
         break; }
     case NoiseFunction:
-        fx = -1.0 + qreal( qrand() ) * 2.0 / qreal( RAND_MAX );
+        fx = -1.0 + qreal( QRandomGenerator::global()->generate() ) * 2.0 / qreal( RAND_MAX );
         break;
     case SineOneDivFunction: {
         // we want this repeating and we want negative arguments, too.

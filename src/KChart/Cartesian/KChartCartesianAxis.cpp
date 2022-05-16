@@ -146,7 +146,7 @@ static QMap< qreal, QString > allAxisAnnotations( const AbstractCoordinatePlane 
         for ( const CartesianAxis* axis : axes ) {
             const CartesianAxis::Private *axisPriv = CartesianAxis::Private::get( axis );
             if ( axisPriv->isVertical() == isY ) {
-                annotations.unite( axisPriv->annotations );
+                annotations.insert( axisPriv->annotations );
             }
         }
     }

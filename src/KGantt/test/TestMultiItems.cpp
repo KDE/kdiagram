@@ -23,7 +23,6 @@
 #include "kgantttreeviewrowcontroller.h"
 
 #include <QListView>
-#include <QTreeView>
 
 
 using namespace KGantt;

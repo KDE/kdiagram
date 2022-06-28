@@ -8,7 +8,6 @@
 
 #include "KChartLeveyJenningsDiagram_p.h"
 
-#include "KChartLeveyJenningsDiagram.h"
 #include "KChartDataValueAttributes.h"
 
 using namespace KChart;

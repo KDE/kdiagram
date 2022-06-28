@@ -12,7 +12,6 @@
 #include "kganttabstractrowcontroller.h"
 
 #include <QApplication>
-#include <QDateTime>
 #include <QLocale>
 #include <QPainter>
 #include <QPainterPath>

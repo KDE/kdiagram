@@ -7,13 +7,11 @@
  */
 
 #include "kganttitemdelegate_p.h"
-#include "kganttglobal.h"
 #include "kganttstyleoptionganttitem.h"
 #include "kganttconstraint.h"
 
 #include <QPainter>
 #include <QPainterPath>
-#include <QPen>
 #include <QModelIndex>
 #include <QAbstractItemModel>
 #include <QApplication>

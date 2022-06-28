@@ -9,7 +9,6 @@
 #include "KChartAttributesModel.h"
 
 #include "KChartPalette.h"
-#include "KChartGlobal.h"
 #include "KChartMath_p.h"
 
 #include <QDebug>

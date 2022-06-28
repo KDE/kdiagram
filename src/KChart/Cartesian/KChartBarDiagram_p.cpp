@@ -6,7 +6,6 @@
  * SPDX-License-Identifier: GPL-2.0-or-later
  */
 
-#include "KChartBarDiagram.h"
 #include "KChartBarDiagram_p.h"
 
 #include "KChartDataValueAttributes.h"

@@ -11,7 +11,6 @@
 #include "ModelParamVsParam.h"
 #include "ModelParamVsParamPlot.h"
 
-#include <QWidget>
 #include <QLabel>
 #include <QLineEdit>
 

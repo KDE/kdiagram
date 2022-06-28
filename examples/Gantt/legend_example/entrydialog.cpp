@@ -13,7 +13,6 @@
 #include <KGanttConstraintModel>
 #include <KGanttGlobal>
 #include <QAbstractItemModel>
-#include <QDateTime>
 #include <QPersistentModelIndex>
 
 Q_DECLARE_METATYPE( QPersistentModelIndex )

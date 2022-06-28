@@ -13,7 +13,6 @@
 #include <QFile>
 #include <QByteArray>
 #include <QString>
-#include <QStringList>
 
 TableModel::TableModel( QObject* parent )
     : QAbstractTableModel( parent ),

@@ -12,7 +12,6 @@
 
 #include <QtDebug>
 #include <QImage>
-#include <QPixmap>
 #include <QPainter>
 #include <QApplication>
 

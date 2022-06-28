@@ -8,7 +8,6 @@
 
 #include "KChartModelDataCache_p.h"
 
-#include <limits>
 
 using namespace KChart::ModelDataCachePrivate;
 

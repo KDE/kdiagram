@@ -21,7 +21,6 @@
 #include "KChartChart.h"
 #include "KChartDataValueAttributes.h"
 #include "KChartTextAttributes.h"
-#include "KChartMarkerAttributes.h"
 #include "KChartAbstractThreeDAttributes.h"
 #include "KChartThreeDLineAttributes.h"
 #include "KChartPainterSaver_p.h"

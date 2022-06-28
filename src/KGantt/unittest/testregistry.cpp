@@ -15,7 +15,6 @@
 #include <memory>
 #include <iostream>
 #include <iomanip>
-#include <cassert>
 
 KDAB::UnitTest::TestRegistry::TestRegistry()
     : mTests()

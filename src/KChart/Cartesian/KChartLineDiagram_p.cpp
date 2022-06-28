@@ -7,7 +7,6 @@
  */
 
 #include "KChartLineDiagram_p.h"
-#include "KChartLineDiagram.h"
 #include "KChartDataValueAttributes.h"
 
 #include "KChartPainterSaver_p.h"

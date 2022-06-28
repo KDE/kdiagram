@@ -11,7 +11,6 @@
 
 #include "KChartMath_p.h"
 
-#include <QRectF>
 #include <QPainter>
 
 using namespace KChart;

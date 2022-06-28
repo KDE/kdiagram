@@ -9,7 +9,6 @@
 #include "kganttconstraintmodel.h"
 #include "kganttconstraintmodel_p.h"
 
-#include <QDebug>
 
 #include <cassert>
 #include <algorithm>

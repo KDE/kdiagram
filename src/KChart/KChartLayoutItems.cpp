@@ -22,7 +22,6 @@
 #include <QTextBlockFormat>
 #include <QTextDocumentFragment>
 #include <QAbstractTextDocumentLayout>
-#include <QLayout>
 #include <QPainter>
 #include <QDebug>
 #include <QCoreApplication>

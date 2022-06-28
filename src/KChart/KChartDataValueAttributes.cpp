@@ -10,7 +10,6 @@
 
 #include <QVariant>
 #include <QDebug>
-#include "KChartRelativePosition.h"
 #include "KChartPosition.h"
 #include "KChartMath_p.h"
 #include <KChartTextAttributes.h>

@@ -7,7 +7,6 @@
  */
 
 #include "KChartPlotter_p.h"
-#include "KChartPlotter.h"
 
 #include "KChartPainterSaver_p.h"
 #include "KChartValueTrackerAttributes.h"

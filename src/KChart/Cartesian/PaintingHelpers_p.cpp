@@ -11,7 +11,6 @@
 #include "KChartGlobal.h"
 
 #include "KChartAbstractDiagram.h"
-#include "KChartAbstractDiagram_p.h"
 #include "KChartCartesianCoordinatePlane.h"
 #include "KChartLineDiagram.h"
 #include "KChartValueTrackerAttributes.h"

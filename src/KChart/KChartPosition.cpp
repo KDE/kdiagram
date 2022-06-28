@@ -12,7 +12,6 @@
 #include "KChartMath_p.h"
 
 #include <QString>
-#include <QStringList>
 #include <QList>
 #include <QByteArray>
 

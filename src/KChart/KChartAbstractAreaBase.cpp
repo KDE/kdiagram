@@ -6,7 +6,6 @@
  * SPDX-License-Identifier: GPL-2.0-or-later
  */
 
-#include "KChartAbstractAreaBase.h"
 #include "KChartAbstractAreaBase_p.h"
 
 #include <KChartBackgroundAttributes.h>

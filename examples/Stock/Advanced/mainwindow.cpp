@@ -7,7 +7,6 @@
  */
 
 #include "mainwindow.h"
-#include <KChartChart>
 #include <KChartLegend>
 #include <KChartCartesianAxis>
 #include <QColorDialog>

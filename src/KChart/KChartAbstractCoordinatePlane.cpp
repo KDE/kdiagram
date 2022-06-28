@@ -419,7 +419,6 @@ AbstractCoordinatePlane* KChart::AbstractCoordinatePlane::sharedAxisMasterPlane(
 }
 
 #if !defined(QT_NO_DEBUG_STREAM)
-#include "KChartEnums.h"
 
 QDebug KChart::operator<<( QDebug stream, const DataDimension& r )
 {

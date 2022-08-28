@@ -51,15 +51,6 @@ qt_wrap_ui(kgantt_LIB_SRCS
     kganttdatetimetimelinedialog.ui
 )
 
-if(CMAKE_COMPILER_IS_GNUCXX)
-# remove once c++11-only
-# avoid warning about deprecated std::auto_ptr
-set_source_files_properties(unittest/testregistry.cpp
-    PROPERTIES
-        COMPILE_FLAGS "-Wno-deprecated-declarations"
-)
-endif(CMAKE_COMPILER_IS_GNUCXX)
-
 ecm_create_qm_loader(kgantt_LIB_SRCS kgantt_qt)
 
 add_library( KGantt ${kgantt_LIB_SRCS} )

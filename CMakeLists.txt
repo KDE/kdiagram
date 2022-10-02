@@ -75,9 +75,7 @@ add_definitions(
 # TODO: port g++.pri to cmake and check what is still needed
 
 
-if (IS_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/po")
-    ecm_install_po_files_as_qm(po)
-endif()
+ecm_install_po_files_as_qm(poqm)
 
 add_subdirectory( src )
 

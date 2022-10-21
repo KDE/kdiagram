@@ -22,7 +22,7 @@
 
 #include "KChartMath_p.h"
 
-#include <qpainter.h>
+#include <QPainter>
 
 
 namespace KChart {

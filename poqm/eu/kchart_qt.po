@@ -1,0 +1,173 @@
+# Translation of kchart_qt.po to Euskara/Basque (eu).
+# Copyright (C) 2020, This file is copyright:
+# This file is distributed under the same license as the original file.
+# KDE euskaratzeko proiektuko arduraduna <xalba@euskalnet.net>.
+#
+# Translators:
+# Iñigo Salvador Azurmendi <xalba@euskalnet.net>, 2020.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"PO-Revision-Date: 2020-04-17 11:27+0200\n"
+"Last-Translator: Iñigo Salvador Azurmendi <xalba@euskalnet.net>\n"
+"Language-Team: Basque <kde-i18n-eu@kde.org>\n"
+"Language: eu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Qt-Contexts: true\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 19.12.3\n"
+
+#: Cartesian/KChartLeveyJenningsAxis.cpp:63
+msgctxt "KChart::LeveyJenningsAxis|"
+msgid "-3sd"
+msgstr "-3ds"
+
+#: Cartesian/KChartLeveyJenningsAxis.cpp:63
+msgctxt "KChart::LeveyJenningsAxis|"
+msgid "-2sd"
+msgstr "-2ds"
+
+#: Cartesian/KChartLeveyJenningsAxis.cpp:63
+#: Cartesian/KChartLeveyJenningsAxis.cpp:163
+msgctxt "KChart::LeveyJenningsAxis|"
+msgid "mean"
+msgstr "batez bestekoa"
+
+#: Cartesian/KChartLeveyJenningsAxis.cpp:64
+msgctxt "KChart::LeveyJenningsAxis|"
+msgid "+2sd"
+msgstr "+2ds"
+
+#: Cartesian/KChartLeveyJenningsAxis.cpp:64
+msgctxt "KChart::LeveyJenningsAxis|"
+msgid "+3sd"
+msgstr "+3ds"
+
+#: KChartDatasetSelector.ui:30
+msgctxt "DatasetSelector|"
+msgid "Data Selector"
+msgstr "Datu-hautatzailea"
+
+#: KChartDatasetSelector.ui:42
+msgctxt "DatasetSelector|"
+msgid "Only display a subset of the model in the chart:"
+msgstr "Grafikoan ereduaren azpimultzo bat besterik ez erakutsi:"
+
+#: KChartDatasetSelector.ui:60 KChartDatasetSelector.ui:126
+msgctxt "DatasetSelector|"
+msgid "in reverse order."
+msgstr "alderantzizko ordenan."
+
+#: KChartDatasetSelector.ui:67 KChartDatasetSelector.ui:103
+msgctxt "DatasetSelector|"
+msgid "..."
+msgstr "..."
+
+#: KChartDatasetSelector.ui:80
+msgctxt "DatasetSelector|"
+msgid "columns starting at column"
+msgstr "zutabean hasten diren zutabeak"
+
+#: KChartDatasetSelector.ui:93 KChartDatasetSelector.ui:133
+msgctxt "DatasetSelector|"
+msgid "Display"
+msgstr "Azaldu"
+
+#: KChartDatasetSelector.ui:116
+msgctxt "DatasetSelector|"
+msgid "rows starting at row"
+msgstr "errenkadan hasten diren errenkadak"
+
+#: KChartLegend.cpp:54
+msgctxt "QObject|"
+msgid "Legend"
+msgstr "legenda"
+
+#: KChartPosition.cpp:40
+msgctxt "Position|"
+msgid "Unknown Position"
+msgstr "Kokapen ezezaguna"
+
+#: KChartPosition.cpp:41
+msgctxt "Position|"
+msgid "Center"
+msgstr "Erdian"
+
+#: KChartPosition.cpp:42
+msgctxt "Position|"
+msgid "NorthWest"
+msgstr "Ipar-mendebaldean"
+
+#: KChartPosition.cpp:43
+msgctxt "Position|"
+msgid "North"
+msgstr "Iparraldean"
+
+#: KChartPosition.cpp:44
+msgctxt "Position|"
+msgid "NorthEast"
+msgstr "Ipar-ekialdean"
+
+#: KChartPosition.cpp:45
+msgctxt "Position|"
+msgid "East"
+msgstr "Ekialdean"
+
+#: KChartPosition.cpp:46
+msgctxt "Position|"
+msgid "SouthEast"
+msgstr "Hego-ekialdean"
+
+#: KChartPosition.cpp:47
+msgctxt "Position|"
+msgid "South"
+msgstr "Hegoaldean"
+
+#: KChartPosition.cpp:48
+msgctxt "Position|"
+msgid "SouthWest"
+msgstr "Hego-mendebaldean"
+
+#: KChartPosition.cpp:49
+msgctxt "Position|"
+msgid "West"
+msgstr "Mendebaldean"
+
+#: KChartPosition.cpp:50
+msgctxt "Position|"
+msgid "Floating"
+msgstr "Mugikorra"
+
+#: Ternary/KChartTernaryAxis.cpp:48
+msgctxt "QObject|"
+msgid "50%"
+msgstr "50%"
+
+#: Ternary/KChartTernaryAxis.cpp:145
+msgctxt "KChart::TernaryAxis|"
+msgid "A"
+msgstr "A"
+
+#: Ternary/KChartTernaryAxis.cpp:148
+msgctxt "KChart::TernaryAxis|"
+msgid "C"
+msgstr "C"
+
+#: Ternary/KChartTernaryAxis.cpp:151
+msgctxt "KChart::TernaryAxis|"
+msgid "B"
+msgstr "B"
+
+#: Ternary/KChartTernaryLineDiagram.cpp:133
+#, qt-format
+msgctxt "KChart::TernaryLineDiagram|(x, y, z) values of the data point"
+msgid "(%1, %2, %3)"
+msgstr "(%1, %2, %3)"
+
+#: Ternary/KChartTernaryPointDiagram.cpp:116
+#, qt-format
+msgctxt "KChart::TernaryPointDiagram|(x, y, z) values of the data point"
+msgid "(%1, %2, %3)"
+msgstr "(%1, %2, %3)"

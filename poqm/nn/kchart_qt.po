@@ -1,0 +1,172 @@
+# Translation of kchart_qt to Norwegian Nynorsk
+#
+# Karl Ove Hufthammer <karl@huftis.org>, 2016.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"PO-Revision-Date: 2016-03-12 08:11+0100\n"
+"Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
+"Language-Team: Norwegian Nynorsk <l10n-no@lister.huftis.org>\n"
+"Language: nn\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 2.0\n"
+"X-Environment: kde\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: qtrich\n"
+"X-Qt-Contexts: true\n"
+
+#: Cartesian/KChartLeveyJenningsAxis.cpp:63
+msgctxt "KChart::LeveyJenningsAxis|"
+msgid "-3sd"
+msgstr "−3 SD"
+
+#: Cartesian/KChartLeveyJenningsAxis.cpp:63
+msgctxt "KChart::LeveyJenningsAxis|"
+msgid "-2sd"
+msgstr "−2 SD"
+
+#: Cartesian/KChartLeveyJenningsAxis.cpp:63
+#: Cartesian/KChartLeveyJenningsAxis.cpp:163
+msgctxt "KChart::LeveyJenningsAxis|"
+msgid "mean"
+msgstr "snitt"
+
+#: Cartesian/KChartLeveyJenningsAxis.cpp:64
+msgctxt "KChart::LeveyJenningsAxis|"
+msgid "+2sd"
+msgstr "+2 SD"
+
+#: Cartesian/KChartLeveyJenningsAxis.cpp:64
+msgctxt "KChart::LeveyJenningsAxis|"
+msgid "+3sd"
+msgstr "+3 SD"
+
+#: KChartDatasetSelector.ui:30
+msgctxt "DatasetSelector|"
+msgid "Data Selector"
+msgstr "Dataveljar"
+
+#: KChartDatasetSelector.ui:42
+msgctxt "DatasetSelector|"
+msgid "Only display a subset of the model in the chart:"
+msgstr "Vis berre eit utdrag av modellen i diagrammet:"
+
+#: KChartDatasetSelector.ui:60 KChartDatasetSelector.ui:126
+msgctxt "DatasetSelector|"
+msgid "in reverse order."
+msgstr "i omvend rekkjefølgje."
+
+#: KChartDatasetSelector.ui:67 KChartDatasetSelector.ui:103
+msgctxt "DatasetSelector|"
+msgid "..."
+msgstr "…"
+
+#: KChartDatasetSelector.ui:80
+msgctxt "DatasetSelector|"
+msgid "columns starting at column"
+msgstr "kolonnar som startar i kolonne"
+
+#: KChartDatasetSelector.ui:93 KChartDatasetSelector.ui:133
+msgctxt "DatasetSelector|"
+msgid "Display"
+msgstr "Vis"
+
+#: KChartDatasetSelector.ui:116
+msgctxt "DatasetSelector|"
+msgid "rows starting at row"
+msgstr "radar som startar i rad"
+
+#: KChartLegend.cpp:54
+msgctxt "QObject|"
+msgid "Legend"
+msgstr "Teiknforklaring"
+
+#: KChartPosition.cpp:40
+msgctxt "Position|"
+msgid "Unknown Position"
+msgstr "Ukjend plassering"
+
+#: KChartPosition.cpp:41
+msgctxt "Position|"
+msgid "Center"
+msgstr "I midten"
+
+#: KChartPosition.cpp:42
+msgctxt "Position|"
+msgid "NorthWest"
+msgstr "Nordvest"
+
+#: KChartPosition.cpp:43
+msgctxt "Position|"
+msgid "North"
+msgstr "Nord"
+
+#: KChartPosition.cpp:44
+msgctxt "Position|"
+msgid "NorthEast"
+msgstr "Nordaust"
+
+#: KChartPosition.cpp:45
+msgctxt "Position|"
+msgid "East"
+msgstr "Aust"
+
+#: KChartPosition.cpp:46
+msgctxt "Position|"
+msgid "SouthEast"
+msgstr "Søraust"
+
+#: KChartPosition.cpp:47
+msgctxt "Position|"
+msgid "South"
+msgstr "Sør"
+
+#: KChartPosition.cpp:48
+msgctxt "Position|"
+msgid "SouthWest"
+msgstr "Sørvest"
+
+#: KChartPosition.cpp:49
+msgctxt "Position|"
+msgid "West"
+msgstr "Vest"
+
+#: KChartPosition.cpp:50
+msgctxt "Position|"
+msgid "Floating"
+msgstr "Flytande"
+
+#: Ternary/KChartTernaryAxis.cpp:48
+msgctxt "QObject|"
+msgid "50%"
+msgstr "50 %"
+
+#: Ternary/KChartTernaryAxis.cpp:145
+msgctxt "KChart::TernaryAxis|"
+msgid "A"
+msgstr "A"
+
+#: Ternary/KChartTernaryAxis.cpp:148
+msgctxt "KChart::TernaryAxis|"
+msgid "C"
+msgstr "C"
+
+#: Ternary/KChartTernaryAxis.cpp:151
+msgctxt "KChart::TernaryAxis|"
+msgid "B"
+msgstr "B"
+
+#: Ternary/KChartTernaryLineDiagram.cpp:133
+#, qt-format
+msgctxt "KChart::TernaryLineDiagram|(x, y, z) values of the data point"
+msgid "(%1, %2, %3)"
+msgstr "(%1, %2, %3)"
+
+#: Ternary/KChartTernaryPointDiagram.cpp:116
+#, qt-format
+msgctxt "KChart::TernaryPointDiagram|(x, y, z) values of the data point"
+msgid "(%1, %2, %3)"
+msgstr "(%1, %2, %3)"

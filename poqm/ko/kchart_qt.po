@@ -1,0 +1,167 @@
+# Shinjo Park <kde@peremen.name>, 2015.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"PO-Revision-Date: 2015-07-30 15:27+0200\n"
+"Last-Translator: Shinjo Park <kde@peremen.name>\n"
+"Language-Team: Korean <kde-kr@kde.org>\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Lokalize 1.5\n"
+"X-Qt-Contexts: true\n"
+
+#: Cartesian/KChartLeveyJenningsAxis.cpp:63
+msgctxt "KChart::LeveyJenningsAxis|"
+msgid "-3sd"
+msgstr "-3sd"
+
+#: Cartesian/KChartLeveyJenningsAxis.cpp:63
+msgctxt "KChart::LeveyJenningsAxis|"
+msgid "-2sd"
+msgstr "-2sd"
+
+#: Cartesian/KChartLeveyJenningsAxis.cpp:63
+#: Cartesian/KChartLeveyJenningsAxis.cpp:163
+msgctxt "KChart::LeveyJenningsAxis|"
+msgid "mean"
+msgstr "평균값"
+
+#: Cartesian/KChartLeveyJenningsAxis.cpp:64
+msgctxt "KChart::LeveyJenningsAxis|"
+msgid "+2sd"
+msgstr "+2sd"
+
+#: Cartesian/KChartLeveyJenningsAxis.cpp:64
+msgctxt "KChart::LeveyJenningsAxis|"
+msgid "+3sd"
+msgstr "+3sd"
+
+#: KChartDatasetSelector.ui:30
+msgctxt "DatasetSelector|"
+msgid "Data Selector"
+msgstr "데이터 선택기"
+
+#: KChartDatasetSelector.ui:42
+msgctxt "DatasetSelector|"
+msgid "Only display a subset of the model in the chart:"
+msgstr "차트에 모델의 다음 하위 집합 표시:"
+
+#: KChartDatasetSelector.ui:60 KChartDatasetSelector.ui:126
+msgctxt "DatasetSelector|"
+msgid "in reverse order."
+msgstr "역순으로."
+
+#: KChartDatasetSelector.ui:67 KChartDatasetSelector.ui:103
+msgctxt "DatasetSelector|"
+msgid "..."
+msgstr "..."
+
+#: KChartDatasetSelector.ui:80
+msgctxt "DatasetSelector|"
+msgid "columns starting at column"
+msgstr "열이 다음 열 번호에서 시작함"
+
+#: KChartDatasetSelector.ui:93 KChartDatasetSelector.ui:133
+msgctxt "DatasetSelector|"
+msgid "Display"
+msgstr "표시"
+
+#: KChartDatasetSelector.ui:116
+msgctxt "DatasetSelector|"
+msgid "rows starting at row"
+msgstr "행이 다음 행 번호에서 시작함"
+
+#: KChartLegend.cpp:54
+msgctxt "QObject|"
+msgid "Legend"
+msgstr "범례"
+
+#: KChartPosition.cpp:40
+msgctxt "Position|"
+msgid "Unknown Position"
+msgstr "알 수 없는 위치"
+
+#: KChartPosition.cpp:41
+msgctxt "Position|"
+msgid "Center"
+msgstr "가운데"
+
+#: KChartPosition.cpp:42
+msgctxt "Position|"
+msgid "NorthWest"
+msgstr "북서"
+
+#: KChartPosition.cpp:43
+msgctxt "Position|"
+msgid "North"
+msgstr "북"
+
+#: KChartPosition.cpp:44
+msgctxt "Position|"
+msgid "NorthEast"
+msgstr "북동"
+
+#: KChartPosition.cpp:45
+msgctxt "Position|"
+msgid "East"
+msgstr "동"
+
+#: KChartPosition.cpp:46
+msgctxt "Position|"
+msgid "SouthEast"
+msgstr "남동"
+
+#: KChartPosition.cpp:47
+msgctxt "Position|"
+msgid "South"
+msgstr "남"
+
+#: KChartPosition.cpp:48
+msgctxt "Position|"
+msgid "SouthWest"
+msgstr "남서"
+
+#: KChartPosition.cpp:49
+msgctxt "Position|"
+msgid "West"
+msgstr "서"
+
+#: KChartPosition.cpp:50
+msgctxt "Position|"
+msgid "Floating"
+msgstr "유동적"
+
+#: Ternary/KChartTernaryAxis.cpp:48
+msgctxt "QObject|"
+msgid "50%"
+msgstr "50%"
+
+#: Ternary/KChartTernaryAxis.cpp:145
+msgctxt "KChart::TernaryAxis|"
+msgid "A"
+msgstr "A"
+
+#: Ternary/KChartTernaryAxis.cpp:148
+msgctxt "KChart::TernaryAxis|"
+msgid "C"
+msgstr "C"
+
+#: Ternary/KChartTernaryAxis.cpp:151
+msgctxt "KChart::TernaryAxis|"
+msgid "B"
+msgstr "B"
+
+#: Ternary/KChartTernaryLineDiagram.cpp:133
+#, qt-format
+msgctxt "KChart::TernaryLineDiagram|(x, y, z) values of the data point"
+msgid "(%1, %2, %3)"
+msgstr "(%1, %2, %3)"
+
+#: Ternary/KChartTernaryPointDiagram.cpp:116
+#, qt-format
+msgctxt "KChart::TernaryPointDiagram|(x, y, z) values of the data point"
+msgid "(%1, %2, %3)"
+msgstr "(%1, %2, %3)"

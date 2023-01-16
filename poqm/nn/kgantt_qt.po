@@ -1,0 +1,70 @@
+# Translation of kgantt_qt to Norwegian Nynorsk
+#
+# Karl Ove Hufthammer <karl@huftis.org>, 2016, 2020.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"PO-Revision-Date: 2020-04-16 21:39+0200\n"
+"Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
+"Language-Team: Norwegian Nynorsk <l10n-no@lister.huftis.org>\n"
+"Language: nn\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 19.12.3\n"
+"X-Environment: kde\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: qtrich\n"
+"X-Qt-Contexts: true\n"
+
+#: kganttgraphicsview.cpp:196
+msgctxt "KGantt::HeaderWidget|@title:menu"
+msgid "Scale"
+msgstr "Skala"
+
+#: kganttgraphicsview.cpp:200
+msgctxt "KGantt::HeaderWidget|@item:inmenu Automatic scale"
+msgid "Auto"
+msgstr "Auto"
+
+#: kganttgraphicsview.cpp:203
+msgctxt "KGantt::HeaderWidget|@item:inmenu"
+msgid "Month"
+msgstr "Månad"
+
+#: kganttgraphicsview.cpp:206
+msgctxt "KGantt::HeaderWidget|@item:inmenu"
+msgid "Week"
+msgstr "Veke"
+
+#: kganttgraphicsview.cpp:209
+msgctxt "KGantt::HeaderWidget|@item:inmenu"
+msgid "Day"
+msgstr "Dag"
+
+#: kganttgraphicsview.cpp:212
+msgctxt "KGantt::HeaderWidget|@item:inmenu"
+msgid "Hour"
+msgstr "Time"
+
+#: kganttgraphicsview.cpp:235
+msgctxt "KGantt::HeaderWidget|@action:inmenu"
+msgid "Zoom In"
+msgstr "Forstørr"
+
+#: kganttgraphicsview.cpp:237
+msgctxt "KGantt::HeaderWidget|@action:inmenu"
+msgid "Zoom Out"
+msgstr "Forminsk"
+
+#: kganttgraphicsview.cpp:241
+msgctxt "KGantt::HeaderWidget|@action:inmenu"
+msgid "Timeline..."
+msgstr "Tidslinje …"
+
+#: kganttitemdelegate.cpp:154
+#, qt-format
+msgctxt "KGantt::ItemDelegate|start time -> end time: item name"
+msgid "%1 -> %2: %3"
+msgstr "%1 → %2: %3"

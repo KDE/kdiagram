@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Qt-Contexts: true\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: kganttgraphicsview.cpp:187
 msgctxt "KGantt::HeaderWidget|@title:menu"
@@ -51,7 +51,7 @@ msgstr "გადიდება"
 #: kganttgraphicsview.cpp:228
 msgctxt "KGantt::HeaderWidget|@action:inmenu"
 msgid "Zoom Out"
-msgstr "და_პატარავება"
+msgstr "დაპატარავება"
 
 #: kganttgraphicsview.cpp:232
 msgctxt "KGantt::HeaderWidget|@action:inmenu"

@@ -1280,7 +1280,7 @@ void Chart::takeCoordinatePlane( AbstractCoordinatePlane* plane )
         d->mouseClickedPlanes.removeAll(plane);
     }
     d->slotLayoutPlanes();
-    // Need to Q_EMIT the signal: In case somebody has connected the signal
+    // Need to emit the signal: In case somebody has connected the signal
     // to her own slot for e.g. calling update() on a widget containing the chart.
     Q_EMIT propertiesChanged();
 }

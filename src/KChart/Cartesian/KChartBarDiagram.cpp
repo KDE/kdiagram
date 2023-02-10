@@ -218,7 +218,7 @@ void BarDiagram::setThreeDBarAttributes( int column, const ThreeDBarAttributes& 
 {
     setDataBoundariesDirty();
     d->setDatasetAttrs( column,  QVariant::fromValue( threeDAttrs ), ThreeDBarAttributesRole );
-    //emit layoutChanged( this );
+    //Q_EMIT layoutChanged( this );
     Q_EMIT propertiesChanged();
 }
 
@@ -229,7 +229,7 @@ void BarDiagram::setThreeDBarAttributes( const QModelIndex& index, const ThreeDB
         d->attributesModel->mapFromSource(index),
         QVariant::fromValue( threeDAttrs ),
         ThreeDBarAttributesRole );
-    //emit layoutChanged( this );
+    //Q_EMIT layoutChanged( this );
     Q_EMIT propertiesChanged();
 }
 

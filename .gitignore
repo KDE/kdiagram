@@ -14,8 +14,15 @@
 .swp.*
 Doxyfile
 Makefile
+avail
+random_seed
 /build*/
-.cmake/
 CMakeLists.txt.user*
 *.unc-backup*
-.clang-format
+.cmake/
+/.clang-format
+/compile_commands.json
+.clangd
+.idea
+/cmake-build*
+.cache

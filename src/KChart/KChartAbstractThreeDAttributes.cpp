@@ -27,6 +27,8 @@ AbstractThreeDAttributes::Private::Private()
 {
 }
 
+AbstractThreeDAttributes::Private::~Private() = default;
+
 
 AbstractThreeDAttributes::AbstractThreeDAttributes()
     : _d( new Private() )

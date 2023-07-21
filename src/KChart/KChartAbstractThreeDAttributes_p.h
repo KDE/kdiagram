@@ -35,6 +35,7 @@ class Q_DECL_HIDDEN AbstractThreeDAttributes::Private
     friend class AbstractThreeDAttributes;
 public:
     Private();
+    virtual ~Private();
 
 private:
     bool enabled;

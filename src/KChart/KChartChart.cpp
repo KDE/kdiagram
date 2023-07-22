@@ -1167,6 +1167,15 @@ Chart::Chart ( QWidget* parent )
 
 Chart::~Chart()
 {
+    // early disconnect the legend, otherwise destruction of a diagram might trigger an
+    // update of the legend properties during destruction of the chart, leading to the
+    // following assert in Qt6:
+    // qobjectdefs_impl.h:119: ASSERT failure in KChart::Chart:
+    // "Called object is not of the correct type (class destructor may have already run)"
+    for (auto legend : d->legends) {
+        disconnect(legend, nullptr, this, nullptr);
+    }
+
     delete d;
 }
 

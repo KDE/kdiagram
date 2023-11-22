@@ -4,6 +4,7 @@ ecm_setup_version(${KCHARTLIB_VERSION}
     VARIABLE_PREFIX KCHART
     VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/kchart_version.h"
     PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KChartConfigVersion.cmake"
+    SOVERSION 3
 )
 
 include_directories(

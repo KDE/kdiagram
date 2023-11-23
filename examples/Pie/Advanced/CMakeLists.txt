@@ -14,4 +14,4 @@ qt_add_resources(PieAdvanced_SRCS
 
 add_executable(PieAdvanced  ${PieAdvanced_SRCS})
 
-target_link_libraries(PieAdvanced testtools KChart Qt::Widgets)
+target_link_libraries(PieAdvanced testtools KChartQt6 Qt::Widgets)

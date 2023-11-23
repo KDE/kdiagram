@@ -10,4 +10,4 @@ qt_wrap_ui(WidgetAdvanced_SRCS
 
 add_executable(WidgetAdvanced  ${WidgetAdvanced_SRCS})
 
-target_link_libraries(WidgetAdvanced KChart Qt::Widgets)
+target_link_libraries(WidgetAdvanced KChartQt6 Qt::Widgets)

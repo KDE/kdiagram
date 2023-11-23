@@ -9,5 +9,5 @@ qt_add_resources(TestPolarDiagrams_SRCS
 ecm_add_test(
     ${TestPolarDiagrams_SRCS}
     TEST_NAME TestPolarDiagrams
-    LINK_LIBRARIES testtools KChart Qt::Widgets Qt::Test
+    LINK_LIBRARIES testtools KChartQt6 Qt::Widgets Qt::Test
 )

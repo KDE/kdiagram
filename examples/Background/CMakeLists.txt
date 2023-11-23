@@ -1,3 +1,3 @@
 add_executable(Background  main.cpp)
 
-target_link_libraries(Background KChart Qt::Widgets)
+target_link_libraries(Background KChartQt6 Qt::Widgets)

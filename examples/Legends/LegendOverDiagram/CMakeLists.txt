@@ -1,3 +1,3 @@
 add_executable(LegendOverDiagram  main.cpp)
 
-target_link_libraries(LegendOverDiagram KChart Qt::Widgets)
+target_link_libraries(LegendOverDiagram KChartQt6 Qt::Widgets)

@@ -52,7 +52,7 @@ qt_wrap_ui(kgantt_LIB_SRCS
     kganttdatetimetimelinedialog.ui
 )
 
-ecm_create_qm_loader(kgantt_LIB_SRCS kgantt_qt)
+ecm_create_qm_loader(kgantt_LIB_SRCS kgantt_qt6)
 
 add_library( KGanttQt6 ${kgantt_LIB_SRCS} )
 

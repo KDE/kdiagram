@@ -189,7 +189,7 @@ qt_add_resources(kchart_LIB_SRCS
     KChart_LeveyJennings_resources.qrc
 )
 
-ecm_create_qm_loader(kchart_LIB_SRCS kchart_qt)
+ecm_create_qm_loader(kchart_LIB_SRCS kchart_qt6)
 
 qt_wrap_cpp(kchart_LIB_SRCS KChartEnums.h)
 

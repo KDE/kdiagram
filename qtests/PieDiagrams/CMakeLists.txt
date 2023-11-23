@@ -9,5 +9,5 @@ qt_add_resources(TestPieDiagrams_SRCS
 ecm_add_test(
     ${TestPieDiagrams_SRCS}
     TEST_NAME TestPieDiagrams
-    LINK_LIBRARIES testtools KChart Qt::Widgets Qt::Test
+    LINK_LIBRARIES testtools KChartQt6 Qt::Widgets Qt::Test
 )

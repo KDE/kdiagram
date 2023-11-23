@@ -10,4 +10,4 @@ qt_add_resources(EmptyValues_SRCS
 
 add_executable(EmptyValues  ${EmptyValues_SRCS})
 
-target_link_libraries(EmptyValues testtools KChart Qt::Widgets)
+target_link_libraries(EmptyValues testtools KChartQt6 Qt::Widgets)

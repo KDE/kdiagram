@@ -14,4 +14,4 @@ qt_add_resources(PointChart_SRCS
 
 add_executable(PointChart  ${PointChart_SRCS})
 
-target_link_libraries(PointChart testtools KChart Qt::Widgets)
+target_link_libraries(PointChart testtools KChartQt6 Qt::Widgets)

@@ -1,3 +1,3 @@
 add_executable(TestListView  main.cpp)
 
-target_link_libraries(TestListView KGantt Qt::Widgets)
+target_link_libraries(TestListView KGanttQt6 Qt::Widgets)

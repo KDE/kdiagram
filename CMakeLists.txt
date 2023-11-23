@@ -2,10 +2,11 @@ cmake_minimum_required(VERSION 3.16)
 
 project( kdiagram )
 
-set(KF5_MIN_VERSION "5.90.0")
-set(QT_REQUIRED_VERSION "5.15.2")
+set(QT_REQUIRED_VERSION "6.5.0")
+set(KF_MIN_VERSION "5.245.0")
+set(KF_MAJOR_VERSION "6")
 
-find_package(ECM ${KF5_MIN_VERSION} REQUIRED NO_MODULE)
+find_package(ECM ${KF_MIN_VERSION} REQUIRED NO_MODULE)
 
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 
@@ -34,21 +35,21 @@ cmake_dependent_option(BUILD_QCH
 )
 add_feature_info(QCH ${BUILD_QCH} "API documentation in QCH format (for e.g. Qt Assistant, Qt Creator & KDevelop)")
 
-find_package(Qt${QT_MAJOR_VERSION} ${QT_REQUIRED_VERSION} REQUIRED NO_MODULE
+find_package(Qt6 ${QT_REQUIRED_VERSION} REQUIRED NO_MODULE
     COMPONENTS
     PrintSupport
     Svg
     Widgets
 )
 if(BUILD_TESTING)
-    find_package(Qt${QT_MAJOR_VERSION}Test QUIET)
-    if (NOT Qt${QT_MAJOR_VERSION}Test_FOUND)
-        message(STATUS "Qt${QT_MAJOR_VERSION}Test not found, unit tests will not be built.")
+    find_package(Qt6Test QUIET)
+    if (NOT Qt6Test_FOUND)
+        message(STATUS "Qt6Test not found, unit tests will not be built.")
     endif()
 endif()
 
-find_package(Qt${QT_MAJOR_VERSION}Sql QUIET)
-if (NOT Qt${QT_MAJOR_VERSION}Sql_FOUND)
+find_package(Qt6Sql QUIET)
+if (NOT Qt6Sql_FOUND)
     message(STATUS "Qt5Sql not found, examples with SQL will not be built.")
 endif()
 
@@ -92,7 +93,7 @@ if(BUILD_TESTING)
     add_subdirectory( examples )
     add_subdirectory( tests )
 
-    if(Qt${QT_MAJOR_VERSION}Test_FOUND)
+    if(Qt6Test_FOUND)
         add_subdirectory( qtests )
     endif()
 endif()

@@ -8,4 +8,4 @@ set(project_SRCS
 
 add_executable(project  ${project_SRCS})
 
-target_link_libraries(project KGantt Qt::Widgets Qt::PrintSupport)
+target_link_libraries(project KGanttQt6 Qt::Widgets Qt::PrintSupport)

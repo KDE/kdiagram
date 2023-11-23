@@ -14,4 +14,4 @@ qt_add_resources(AxisParameters_SRCS
 
 add_executable(AxisParameters  ${AxisParameters_SRCS})
 
-target_link_libraries(AxisParameters testtools KChart Qt::Widgets)
+target_link_libraries(AxisParameters testtools KChartQt6 Qt::Widgets)

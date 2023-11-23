@@ -1,3 +1,3 @@
 add_executable(DelayedData main.cpp)
 
-target_link_libraries(DelayedData KChart Qt::Widgets)
+target_link_libraries(DelayedData KChartQt6 Qt::Widgets)

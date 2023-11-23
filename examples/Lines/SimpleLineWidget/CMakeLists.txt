@@ -1,3 +1,3 @@
 add_executable(SimpleLineWidget main.cpp)
 
-target_link_libraries(SimpleLineWidget KChart Qt::Widgets)
+target_link_libraries(SimpleLineWidget KChartQt6 Qt::Widgets)

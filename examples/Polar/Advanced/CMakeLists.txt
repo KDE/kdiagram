@@ -10,4 +10,4 @@ qt_wrap_ui(PolarAdvanced_SRCS
 
 add_executable(PolarAdvanced  ${PolarAdvanced_SRCS})
 
-target_link_libraries(PolarAdvanced KChartQt6 Qt::Widgets)
+target_link_libraries(PolarAdvanced KChart6 Qt::Widgets)

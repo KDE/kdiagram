@@ -10,4 +10,4 @@ qt_add_resources(TableView_SRCS
 
 add_executable(TableView  ${TableView_SRCS})
 
-target_link_libraries(TableView testtools KChartQt6 Qt::Widgets)
+target_link_libraries(TableView testtools KChart6 Qt::Widgets)

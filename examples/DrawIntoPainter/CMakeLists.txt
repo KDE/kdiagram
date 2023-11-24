@@ -16,4 +16,4 @@ qt_add_resources(DrawIntoPainter_SRCS
 
 add_executable(DrawIntoPainter  ${DrawIntoPainter_SRCS})
 
-target_link_libraries(DrawIntoPainter testtools KChartQt6 Qt::Widgets Qt::PrintSupport)
+target_link_libraries(DrawIntoPainter testtools KChart6 Qt::Widgets Qt::PrintSupport)

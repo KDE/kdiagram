@@ -10,4 +10,4 @@ qt_wrap_ui(BubbleChart_SRCS
 
 add_executable(BubbleChart  ${BubbleChart_SRCS})
 
-target_link_libraries(BubbleChart KChartQt6 Qt::Widgets)
+target_link_libraries(BubbleChart KChart6 Qt::Widgets)

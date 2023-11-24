@@ -9,5 +9,5 @@ qt_add_resources(TestMeasure_SRCS
 ecm_add_test(
     ${TestMeasure_SRCS}
     TEST_NAME TestMeasure
-    LINK_LIBRARIES testtools KChartQt6 Qt::Widgets Qt::Test
+    LINK_LIBRARIES testtools KChart6 Qt::Widgets Qt::Test
 )

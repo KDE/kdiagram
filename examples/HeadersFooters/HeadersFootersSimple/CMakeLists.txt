@@ -1,3 +1,3 @@
 add_executable(HeadersFootersSimple  main.cpp)
 
-target_link_libraries(HeadersFootersSimple KChartQt6 Qt::Widgets)
+target_link_libraries(HeadersFootersSimple KChart6 Qt::Widgets)

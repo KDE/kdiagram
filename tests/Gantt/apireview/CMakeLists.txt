@@ -15,4 +15,4 @@ qt_wrap_ui(TestApiReview_SRCS
 
 add_executable(TestApiReview  ${TestApiReview_SRCS})
 
-target_link_libraries(TestApiReview KGanttQt6 Qt::Widgets Qt::PrintSupport)
+target_link_libraries(TestApiReview KGantt6 Qt::Widgets Qt::PrintSupport)

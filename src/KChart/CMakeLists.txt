@@ -3,7 +3,7 @@ set( KCHARTLIB_VERSION "3.0.0" )
 ecm_setup_version(${KCHARTLIB_VERSION}
     VARIABLE_PREFIX KCHART
     VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/kchart_version.h"
-    PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KChartQt6ConfigVersion.cmake"
+    PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KChart6ConfigVersion.cmake"
     SOVERSION 3
 )
 
@@ -193,7 +193,7 @@ ecm_create_qm_loader(kchart_LIB_SRCS kchart_qt6)
 
 qt_wrap_cpp(kchart_LIB_SRCS KChartEnums.h)
 
-add_library(KChartQt6 ${kchart_LIB_SRCS} ${kchart_LIB_HEADERS})
+add_library(KChart6 ${kchart_LIB_SRCS} ${kchart_LIB_HEADERS})
 
 # TODO: check if this snippet from .pro file should be ported, otherwise remove file
 # linux-*{
@@ -203,26 +203,26 @@ add_library(KChartQt6 ${kchart_LIB_SRCS} ${kchart_LIB_HEADERS})
 #   }
 # }
 
-generate_export_header( KChartQt6 BASE_NAME KChart )
+generate_export_header( KChart6 BASE_NAME KChart )
 
-target_include_directories(KChartQt6
-    INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KChart>"
+target_include_directories(KChart6
+    INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR}/KChart>"
 )
 
-target_link_libraries(KChartQt6
+target_link_libraries(KChart6
 PUBLIC
     Qt::Widgets
 PRIVATE
     Qt::Svg
 )
-set_target_properties( KChartQt6 PROPERTIES
+set_target_properties( KChart6 PROPERTIES
   VERSION     ${KCHART_VERSION}
   SOVERSION   ${KCHART_SOVERSION}
-  EXPORT_NAME "KChartQt6"
+  EXPORT_NAME "KChart6"
 )
 
-install( TARGETS KChartQt6
-    EXPORT KChartQt6Targets
+install( TARGETS KChart6
+    EXPORT KChart6Targets
     ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
 
@@ -299,12 +299,12 @@ install(FILES
             ${CMAKE_CURRENT_BINARY_DIR}/kchart_export.h
             ${kchart_LIB_HEADERS}
             ${kchart_LIB_FWDHEADERS}
-        DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KChart
+        DESTINATION ${KDE_INSTALL_INCLUDEDIR}/KChart
         COMPONENT Devel)
 
 install(FILES
     ${CMAKE_CURRENT_BINARY_DIR}/kchart_version.h
-    DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KChart COMPONENT Devel)
+    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/KChart COMPONENT Devel)
 
 if(BUILD_QCH)
     ecm_add_qch(
@@ -330,7 +330,7 @@ if(BUILD_QCH)
 endif()
 
 # create a Config.cmake and a ConfigVersion.cmake file and install them
-set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KChartQt6")
+set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KChart6")
 
 if (BUILD_QCH)
     ecm_install_qch_export(
@@ -343,28 +343,28 @@ if (BUILD_QCH)
 endif()
 
 configure_package_config_file(
-    "${CMAKE_CURRENT_SOURCE_DIR}/KChartQt6Config.cmake.in"
-    "${CMAKE_CURRENT_BINARY_DIR}/KChartQt6Config.cmake"
+    "${CMAKE_CURRENT_SOURCE_DIR}/KChart6Config.cmake.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/KChart6Config.cmake"
     INSTALL_DESTINATION ${CMAKECONFIG_INSTALL_DIR}
 )
 
 install(FILES
-            "${CMAKE_CURRENT_BINARY_DIR}/KChartQt6Config.cmake"
-            "${CMAKE_CURRENT_BINARY_DIR}/KChartQt6ConfigVersion.cmake"
+            "${CMAKE_CURRENT_BINARY_DIR}/KChart6Config.cmake"
+            "${CMAKE_CURRENT_BINARY_DIR}/KChart6ConfigVersion.cmake"
         DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
         COMPONENT Devel)
 
-install(EXPORT KChartQt6Targets
+install(EXPORT KChart6Targets
         DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
-        FILE KChartQt6Targets.cmake)
+        FILE KChart6Targets.cmake)
 
 ecm_generate_pri_file(
     VERSION ${KCHARTLIB_VERSION}
-    BASE_NAME KChartQt6
-    LIB_NAME KChartQt6
+    BASE_NAME KChart6
+    LIB_NAME KChart6
     DEPS "widgets svg"
     FILENAME_VAR PRI_FILENAME
-    INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR_KF}/KChartQt6
+    INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR}/KChart
 )
 
 install(FILES ${PRI_FILENAME}

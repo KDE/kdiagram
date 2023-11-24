@@ -10,4 +10,4 @@ qt_wrap_ui(RootIndex_SRCS
 
 add_executable(RootIndex  ${RootIndex_SRCS})
 
-target_link_libraries(RootIndex KChartQt6 Qt::Widgets)
+target_link_libraries(RootIndex KChart6 Qt::Widgets)

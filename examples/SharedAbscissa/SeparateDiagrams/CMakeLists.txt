@@ -14,4 +14,4 @@ qt_add_resources(SeparateDiagrams_SRCS
 
 add_executable(SeparateDiagrams  ${SeparateDiagrams_SRCS})
 
-target_link_libraries(SeparateDiagrams testtools KChartQt6 Qt::Widgets)
+target_link_libraries(SeparateDiagrams testtools KChart6 Qt::Widgets)

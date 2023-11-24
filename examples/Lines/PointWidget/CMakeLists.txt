@@ -1,3 +1,3 @@
 add_executable(PointWidget main.cpp)
 
-target_link_libraries(PointWidget KChartQt6 Qt::Widgets)
+target_link_libraries(PointWidget KChart6 Qt::Widgets)

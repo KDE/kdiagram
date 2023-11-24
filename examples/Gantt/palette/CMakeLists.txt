@@ -8,4 +8,4 @@ set(GanttPalette_SRCS
 
 add_executable(GanttPalette  ${GanttPalette_SRCS})
 
-target_link_libraries(GanttPalette KGanttQt6 Qt::Widgets Qt::PrintSupport)
+target_link_libraries(GanttPalette KGantt6 Qt::Widgets Qt::PrintSupport)

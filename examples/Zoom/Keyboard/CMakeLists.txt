@@ -12,4 +12,4 @@ qt_wrap_ui(ZoomKeyboard_SRCS
 
 add_executable(ZoomKeyboard  ${ZoomKeyboard_SRCS})
 
-target_link_libraries(ZoomKeyboard KChartQt6 Qt::Widgets)
+target_link_libraries(ZoomKeyboard KChart6 Qt::Widgets)

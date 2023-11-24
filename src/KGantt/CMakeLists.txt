@@ -3,7 +3,7 @@ set( KGANTTLIB_VERSION "3.0.0" )
 ecm_setup_version(${KGANTTLIB_VERSION}
     VARIABLE_PREFIX KGANTT
     VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/kgantt_version.h"
-    PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KGanttQt6ConfigVersion.cmake"
+    PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KGantt6ConfigVersion.cmake"
     SOVERSION 3
 )
 
@@ -54,29 +54,29 @@ qt_wrap_ui(kgantt_LIB_SRCS
 
 ecm_create_qm_loader(kgantt_LIB_SRCS kgantt_qt6)
 
-add_library( KGanttQt6 ${kgantt_LIB_SRCS} )
+add_library( KGantt6 ${kgantt_LIB_SRCS} )
 
-generate_export_header( KGanttQt6 BASE_NAME KGantt )
+generate_export_header( KGantt6 BASE_NAME KGantt )
 
-target_include_directories(KGanttQt6
-    INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KGantt>"
+target_include_directories(KGantt6
+    INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR}/KGantt>"
 )
 
-target_link_libraries( KGanttQt6
+target_link_libraries( KGantt6
 PUBLIC
     Qt::Widgets
 PRIVATE
     Qt::PrintSupport
 )
 
-set_target_properties( KGanttQt6 PROPERTIES
+set_target_properties( KGantt6 PROPERTIES
   VERSION     ${KGANTT_VERSION}
   SOVERSION   ${KGANTT_SOVERSION}
-  EXPORT_NAME "KGanttQt6"
+  EXPORT_NAME "KGantt6"
 )
 
-install( TARGETS KGanttQt6
-    EXPORT KGanttQt6Targets
+install( TARGETS KGantt6
+    EXPORT KGantt6Targets
     ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
 ecm_generate_headers(kgantt_LIB_HEADERS
@@ -113,12 +113,12 @@ install(FILES
             ${CMAKE_CURRENT_BINARY_DIR}/kgantt_export.h
             ${kgantt_LIB_HEADERS}
             kganttabstractgrid_p.h
-        DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KGantt
+        DESTINATION ${KDE_INSTALL_INCLUDEDIR}/KGantt
         COMPONENT Devel)
 
 install(FILES
     ${CMAKE_CURRENT_BINARY_DIR}/kgantt_version.h
-    DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KGantt COMPONENT Devel)
+    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/KGantt COMPONENT Devel)
 
 if(BUILD_QCH)
     ecm_add_qch(
@@ -144,7 +144,7 @@ if(BUILD_QCH)
 endif()
 
 # create a Config.cmake and a ConfigVersion.cmake file and install them
-set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KGantt")
+set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KGantt6")
 
 if (BUILD_QCH)
     ecm_install_qch_export(
@@ -157,28 +157,28 @@ if (BUILD_QCH)
 endif()
 
 configure_package_config_file(
-    "${CMAKE_CURRENT_SOURCE_DIR}/KGanttQt6Config.cmake.in"
-    "${CMAKE_CURRENT_BINARY_DIR}/KGanttQt6Config.cmake"
+    "${CMAKE_CURRENT_SOURCE_DIR}/KGantt6Config.cmake.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/KGantt6Config.cmake"
     INSTALL_DESTINATION ${CMAKECONFIG_INSTALL_DIR}
 )
 
 install(FILES
-            "${CMAKE_CURRENT_BINARY_DIR}/KGanttQt6Config.cmake"
-            "${CMAKE_CURRENT_BINARY_DIR}/KGanttQt6ConfigVersion.cmake"
+            "${CMAKE_CURRENT_BINARY_DIR}/KGantt6Config.cmake"
+            "${CMAKE_CURRENT_BINARY_DIR}/KGantt6ConfigVersion.cmake"
         DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
         COMPONENT Devel)
 
-install(EXPORT KGanttQt6Targets
+install(EXPORT KGantt6Targets
         DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
-        FILE KGanttQt6Targets.cmake)
+        FILE KGantt6Targets.cmake)
 
 ecm_generate_pri_file(
     VERSION ${KGANTTLIB_VERSION}
-    BASE_NAME KGanttQt6
-    LIB_NAME KGanttQt6
+    BASE_NAME KGantt6
+    LIB_NAME KGantt6
     DEPS "widgets printsupport"
     FILENAME_VAR PRI_FILENAME
-    INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR_KF}/KGantt
+    INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR}/KGantt
 )
 
 install(FILES ${PRI_FILENAME}

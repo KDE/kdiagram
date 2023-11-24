@@ -8,5 +8,5 @@ set(TestParamVsParam_SRCS
 ecm_add_test(
     ${TestParamVsParam_SRCS}
     TEST_NAME TestParamVsParam
-    LINK_LIBRARIES testtools KChartQt6 Qt::Widgets Qt::Test
+    LINK_LIBRARIES testtools KChart6 Qt::Widgets Qt::Test
 )

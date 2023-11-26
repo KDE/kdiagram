@@ -59,7 +59,7 @@ add_library( KGantt6 ${kgantt_LIB_SRCS} )
 generate_export_header( KGantt6 BASE_NAME KGantt )
 
 target_include_directories(KGantt6
-    INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR}/KGantt>"
+    INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR}/KGantt6>"
 )
 
 target_link_libraries( KGantt6
@@ -113,12 +113,12 @@ install(FILES
             ${CMAKE_CURRENT_BINARY_DIR}/kgantt_export.h
             ${kgantt_LIB_HEADERS}
             kganttabstractgrid_p.h
-        DESTINATION ${KDE_INSTALL_INCLUDEDIR}/KGantt
+        DESTINATION ${KDE_INSTALL_INCLUDEDIR}/KGantt6
         COMPONENT Devel)
 
 install(FILES
     ${CMAKE_CURRENT_BINARY_DIR}/kgantt_version.h
-    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/KGantt COMPONENT Devel)
+    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/KGantt6 COMPONENT Devel)
 
 if(BUILD_QCH)
     ecm_add_qch(

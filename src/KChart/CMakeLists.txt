@@ -206,7 +206,7 @@ add_library(KChart6 ${kchart_LIB_SRCS} ${kchart_LIB_HEADERS})
 generate_export_header( KChart6 BASE_NAME KChart )
 
 target_include_directories(KChart6
-    INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR}/KChart>"
+    INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR}/KChart6>"
 )
 
 target_link_libraries(KChart6
@@ -299,12 +299,20 @@ install(FILES
             ${CMAKE_CURRENT_BINARY_DIR}/kchart_export.h
             ${kchart_LIB_HEADERS}
             ${kchart_LIB_FWDHEADERS}
+<<<<<<< HEAD
         DESTINATION ${KDE_INSTALL_INCLUDEDIR}/KChart
+=======
+        DESTINATION ${KDE_INSTALL_INCLUDEDIR}/KChart6
+>>>>>>> antonio/rename-include-dir
         COMPONENT Devel)
 
 install(FILES
     ${CMAKE_CURRENT_BINARY_DIR}/kchart_version.h
+<<<<<<< HEAD
     DESTINATION ${KDE_INSTALL_INCLUDEDIR}/KChart COMPONENT Devel)
+=======
+    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/KChart6 COMPONENT Devel)
+>>>>>>> antonio/rename-include-dir
 
 if(BUILD_QCH)
     ecm_add_qch(

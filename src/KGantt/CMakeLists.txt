@@ -113,20 +113,12 @@ install(FILES
             ${CMAKE_CURRENT_BINARY_DIR}/kgantt_export.h
             ${kgantt_LIB_HEADERS}
             kganttabstractgrid_p.h
-<<<<<<< HEAD
-        DESTINATION ${KDE_INSTALL_INCLUDEDIR}/KGantt
-=======
         DESTINATION ${KDE_INSTALL_INCLUDEDIR}/KGantt6
->>>>>>> antonio/rename-include-dir
         COMPONENT Devel)
 
 install(FILES
     ${CMAKE_CURRENT_BINARY_DIR}/kgantt_version.h
-<<<<<<< HEAD
-    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/KGantt COMPONENT Devel)
-=======
     DESTINATION ${KDE_INSTALL_INCLUDEDIR}/KGantt6 COMPONENT Devel)
->>>>>>> antonio/rename-include-dir
 
 if(BUILD_QCH)
     ecm_add_qch(

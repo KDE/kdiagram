@@ -308,7 +308,7 @@ install(FILES
 
 if(BUILD_QCH)
     ecm_add_qch(
-        KChart_QCH
+        KChart6_QCH
         NAME KChart6
         VERSION ${KCHARTLIB_VERSION}
         ORG_DOMAIN org.kde
@@ -333,12 +333,12 @@ set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KChart6")
 
 if (BUILD_QCH)
     ecm_install_qch_export(
-        TARGETS KChart_QCH
+        TARGETS KChart6_QCH
         FILE KChart6QchTargets.cmake
         DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
         COMPONENT Devel
     )
-    set(PACKAGE_INCLUDE_QCHTARGETS "include(\"\${CMAKE_CURRENT_LIST_DIR}/KChartQchTargets.cmake\")")
+    set(PACKAGE_INCLUDE_QCHTARGETS "include(\"\${CMAKE_CURRENT_LIST_DIR}/KChart6QchTargets.cmake\")")
 endif()
 
 configure_package_config_file(

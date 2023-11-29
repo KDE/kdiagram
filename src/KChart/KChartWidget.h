@@ -17,12 +17,7 @@
 #include "KChartHeaderFooter.h"
 
 QT_BEGIN_NAMESPACE
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-template <typename T> class QVector;
-template <typename T1, typename T2> struct QPair;
-#else
 template <typename T> class QList;
-#endif
 QT_END_NAMESPACE
 
 namespace KChart {

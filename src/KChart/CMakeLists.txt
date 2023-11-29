@@ -309,7 +309,7 @@ install(FILES
 if(BUILD_QCH)
     ecm_add_qch(
         KChart_QCH
-        NAME KChart
+        NAME KChart6
         VERSION ${KCHARTLIB_VERSION}
         ORG_DOMAIN org.kde
         SOURCES
@@ -317,9 +317,8 @@ if(BUILD_QCH)
             ${kchart_LIB_HEADERS}
         IMAGE_DIRS "${CMAKE_SOURCE_DIR}/images"
         LINK_QCHS
-            Qt5Core_QCH
-            Qt5Gui_QCH
-            Qt5Widgets_QCH
+            Qt6Core_QCH
+            Qt6Widgets_QCH
         BLANK_MACROS
             KCHART_EXPORT
             KCHART_DEPRECATED
@@ -335,7 +334,7 @@ set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KChart6")
 if (BUILD_QCH)
     ecm_install_qch_export(
         TARGETS KChart_QCH
-        FILE KChartQchTargets.cmake
+        FILE KChart6QchTargets.cmake
         DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
         COMPONENT Devel
     )

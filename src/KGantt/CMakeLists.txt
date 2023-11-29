@@ -123,7 +123,7 @@ install(FILES
 if(BUILD_QCH)
     ecm_add_qch(
         KGantt_QCH
-        NAME KGantt
+        NAME KGantt6
         VERSION ${KGANTTLIB_VERSION}
         ORG_DOMAIN org.kde
         SOURCES
@@ -131,9 +131,8 @@ if(BUILD_QCH)
             ${kgantt_LIB_HEADERS}
             ${kgantt_LIB_SRCS}
         LINK_QCHS
-            Qt5Core_QCH
-            Qt5Gui_QCH
-            Qt5Widgets_QCH
+            Qt6Core_QCH
+            Qt6Widgets_QCH
         BLANK_MACROS
             KGANTT_EXPORT
             KGANTT_DEPRECATED
@@ -149,7 +148,7 @@ set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KGantt6")
 if (BUILD_QCH)
     ecm_install_qch_export(
         TARGETS KGantt_QCH
-        FILE KGanttQchTargets.cmake
+        FILE KGantt6QchTargets.cmake
         DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
         COMPONENT Devel
     )

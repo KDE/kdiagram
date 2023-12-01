@@ -1,4 +1,4 @@
-# Translation of kgantt_qt to Norwegian Nynorsk
+# Translation of kgantt6_qt to Norwegian Nynorsk
 #
 # Karl Ove Hufthammer <karl@huftis.org>, 2016, 2020.
 msgid ""

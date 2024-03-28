@@ -1,140 +1,138 @@
+# SPDX-FileCopyrightText: 2024 Enol P. <enolp@softastur.org>
 msgid ""
 msgstr ""
-"Project-Id-Version: kdeorg\n"
-"PO-Revision-Date: 2024-03-27 19:45\n"
-"Language-Team: Chinese Simplified\n"
-"Language: zh_CN\n"
+"Project-Id-Version: \n"
+"PO-Revision-Date: 2024-03-27 22:23+0100\n"
+"Last-Translator: Enol P. <enolp@softastur.org>\n"
+"Language-Team: Asturian <alministradores@softastur.org>\n"
+"Language: ast_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Qt-Contexts: true\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Crowdin-Project: kdeorg\n"
-"X-Crowdin-Project-ID: 269464\n"
-"X-Crowdin-Language: zh-CN\n"
-"X-Crowdin-File: /kf6-trunk/messages/kdiagram/kchart6_qt.pot\n"
-"X-Crowdin-File-ID: 48720\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 24.02.1\n"
 
 #: Cartesian/KChartLeveyJenningsAxis.cpp:52
 msgctxt "KChart::LeveyJenningsAxis|"
 msgid "-3sd"
-msgstr "-3sd"
+msgstr ""
 
 #: Cartesian/KChartLeveyJenningsAxis.cpp:52
 msgctxt "KChart::LeveyJenningsAxis|"
 msgid "-2sd"
-msgstr "-2sd"
+msgstr ""
 
 #: Cartesian/KChartLeveyJenningsAxis.cpp:52
 #: Cartesian/KChartLeveyJenningsAxis.cpp:152
 msgctxt "KChart::LeveyJenningsAxis|"
 msgid "mean"
-msgstr "均值"
+msgstr ""
 
 #: Cartesian/KChartLeveyJenningsAxis.cpp:53
 msgctxt "KChart::LeveyJenningsAxis|"
 msgid "+2sd"
-msgstr "+2sd"
+msgstr ""
 
 #: Cartesian/KChartLeveyJenningsAxis.cpp:53
 msgctxt "KChart::LeveyJenningsAxis|"
 msgid "+3sd"
-msgstr "+3sd"
+msgstr ""
 
 #: KChartDatasetSelector.ui:30
 msgctxt "DatasetSelector|"
 msgid "Data Selector"
-msgstr "数据选择器"
+msgstr ""
 
 #: KChartDatasetSelector.ui:42
 msgctxt "DatasetSelector|"
 msgid "Only display a subset of the model in the chart:"
-msgstr "仅在图表中显示模型的子集："
+msgstr ""
 
 #: KChartDatasetSelector.ui:60 KChartDatasetSelector.ui:126
 msgctxt "DatasetSelector|"
 msgid "in reverse order."
-msgstr "逆序。"
+msgstr ""
 
 #: KChartDatasetSelector.ui:67 KChartDatasetSelector.ui:103
 msgctxt "DatasetSelector|"
 msgid "..."
-msgstr "..."
+msgstr ""
 
 #: KChartDatasetSelector.ui:80
 msgctxt "DatasetSelector|"
 msgid "columns starting at column"
-msgstr "列的起始列数"
+msgstr ""
 
 #: KChartDatasetSelector.ui:93 KChartDatasetSelector.ui:133
 msgctxt "DatasetSelector|"
 msgid "Display"
-msgstr "显示"
+msgstr ""
 
 #: KChartDatasetSelector.ui:116
 msgctxt "DatasetSelector|"
 msgid "rows starting at row"
-msgstr "行的起始行数"
+msgstr ""
 
 #: KChartLegend.cpp:43
 msgctxt "QObject|"
 msgid "Legend"
-msgstr "图例"
+msgstr ""
 
 #: KChartPosition.cpp:28
 msgctxt "Position|"
 msgid "Unknown Position"
-msgstr "未知位置"
+msgstr ""
 
 #: KChartPosition.cpp:29
 msgctxt "Position|"
 msgid "Center"
-msgstr "居中"
+msgstr ""
 
 #: KChartPosition.cpp:30
 msgctxt "Position|"
 msgid "NorthWest"
-msgstr "西北"
+msgstr ""
 
 #: KChartPosition.cpp:31
 msgctxt "Position|"
 msgid "North"
-msgstr "北"
+msgstr ""
 
 #: KChartPosition.cpp:32
 msgctxt "Position|"
 msgid "NorthEast"
-msgstr "东北"
+msgstr ""
 
 #: KChartPosition.cpp:33
 msgctxt "Position|"
 msgid "East"
-msgstr "东"
+msgstr ""
 
 #: KChartPosition.cpp:34
 msgctxt "Position|"
 msgid "SouthEast"
-msgstr "东南"
+msgstr ""
 
 #: KChartPosition.cpp:35
 msgctxt "Position|"
 msgid "South"
-msgstr "南"
+msgstr ""
 
 #: KChartPosition.cpp:36
 msgctxt "Position|"
 msgid "SouthWest"
-msgstr "西南"
+msgstr ""
 
 #: KChartPosition.cpp:37
 msgctxt "Position|"
 msgid "West"
-msgstr "西"
+msgstr ""
 
 #: KChartPosition.cpp:38
 msgctxt "Position|"
 msgid "Floating"
-msgstr "浮动"
+msgstr ""
 
 #: Ternary/KChartTernaryAxis.cpp:37
 msgctxt "QObject|"
@@ -160,10 +158,10 @@ msgstr "B"
 #, qt-format
 msgctxt "KChart::TernaryLineDiagram|(x, y, z) values of the data point"
 msgid "(%1, %2, %3)"
-msgstr "(%1, %2, %3)"
+msgstr ""
 
 #: Ternary/KChartTernaryPointDiagram.cpp:105
 #, qt-format
 msgctxt "KChart::TernaryPointDiagram|(x, y, z) values of the data point"
 msgid "(%1, %2, %3)"
-msgstr "(%1, %2, %3)"
+msgstr ""

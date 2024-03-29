@@ -1,19 +1,23 @@
+# translation of kchart_qt.pot to Esperanto
+# Copyright (C) 2024 Free Software Foundation, Inc.
+# This file is distributed under the same license as the kdiagram package.
+# Oliver Kellogg <okellogg@users.sourceforge.net>, 2024.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: kdeorg\n"
-"PO-Revision-Date: 2024-03-28 19:25\n"
-"Language-Team: Chinese Simplified\n"
-"Language: zh_CN\n"
+"Project-Id-Version: kdiagram\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2015-02-08 03:09+0100\n"
+"PO-Revision-Date: 2024-03-28 09:21+0100\n"
+"Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
+"Language-Team: Esperanto <kde-i18n-eo.org>\n"
+"Language: eo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Qt-Contexts: true\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Crowdin-Project: kdeorg\n"
-"X-Crowdin-Project-ID: 269464\n"
-"X-Crowdin-Language: zh-CN\n"
-"X-Crowdin-File: /kf5-stable/messages/kdiagram/kchart_qt.pot\n"
-"X-Crowdin-File-ID: 7027\n"
+"X-Generator: translate-po (https://github.com/zcribe/translate-po)\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: Cartesian/KChartLeveyJenningsAxis.cpp:63
 msgctxt "KChart::LeveyJenningsAxis|"
@@ -29,7 +33,7 @@ msgstr "-2sd"
 #: Cartesian/KChartLeveyJenningsAxis.cpp:163
 msgctxt "KChart::LeveyJenningsAxis|"
 msgid "mean"
-msgstr "均值"
+msgstr "signifas"
 
 #: Cartesian/KChartLeveyJenningsAxis.cpp:64
 msgctxt "KChart::LeveyJenningsAxis|"
@@ -44,17 +48,17 @@ msgstr "+3sd"
 #: KChartDatasetSelector.ui:30
 msgctxt "DatasetSelector|"
 msgid "Data Selector"
-msgstr "数据选择器"
+msgstr "Elektilo de datumoj"
 
 #: KChartDatasetSelector.ui:42
 msgctxt "DatasetSelector|"
 msgid "Only display a subset of the model in the chart:"
-msgstr "仅在图表中显示模型的子集："
+msgstr "Montri nur subaron de la modelo en la diagramo:"
 
 #: KChartDatasetSelector.ui:60 KChartDatasetSelector.ui:126
 msgctxt "DatasetSelector|"
 msgid "in reverse order."
-msgstr "逆序。"
+msgstr "en inversa ordo."
 
 #: KChartDatasetSelector.ui:67 KChartDatasetSelector.ui:103
 msgctxt "DatasetSelector|"
@@ -64,77 +68,77 @@ msgstr "..."
 #: KChartDatasetSelector.ui:80
 msgctxt "DatasetSelector|"
 msgid "columns starting at column"
-msgstr "列的起始列数"
+msgstr "kolumnoj komencante ĉe kolumno"
 
 #: KChartDatasetSelector.ui:93 KChartDatasetSelector.ui:133
 msgctxt "DatasetSelector|"
 msgid "Display"
-msgstr "显示"
+msgstr "Montri"
 
 #: KChartDatasetSelector.ui:116
 msgctxt "DatasetSelector|"
 msgid "rows starting at row"
-msgstr "行的起始行数"
+msgstr "vicoj komencante ĉe vico"
 
 #: KChartLegend.cpp:54
 msgctxt "QObject|"
 msgid "Legend"
-msgstr "图例"
+msgstr "Klarigeto"
 
 #: KChartPosition.cpp:40
 msgctxt "Position|"
 msgid "Unknown Position"
-msgstr "未知位置"
+msgstr "Nekonata Pozicio"
 
 #: KChartPosition.cpp:41
 msgctxt "Position|"
 msgid "Center"
-msgstr "居中"
+msgstr "Centro"
 
 #: KChartPosition.cpp:42
 msgctxt "Position|"
 msgid "NorthWest"
-msgstr "西北"
+msgstr "Nordokcidenta"
 
 #: KChartPosition.cpp:43
 msgctxt "Position|"
 msgid "North"
-msgstr "北"
+msgstr "Nordo"
 
 #: KChartPosition.cpp:44
 msgctxt "Position|"
 msgid "NorthEast"
-msgstr "东北"
+msgstr "Nordorienta"
 
 #: KChartPosition.cpp:45
 msgctxt "Position|"
 msgid "East"
-msgstr "东"
+msgstr "Oriento"
 
 #: KChartPosition.cpp:46
 msgctxt "Position|"
 msgid "SouthEast"
-msgstr "东南"
+msgstr "Sudorienta"
 
 #: KChartPosition.cpp:47
 msgctxt "Position|"
 msgid "South"
-msgstr "南"
+msgstr "Sudo"
 
 #: KChartPosition.cpp:48
 msgctxt "Position|"
 msgid "SouthWest"
-msgstr "西南"
+msgstr "Sudokcidenta"
 
 #: KChartPosition.cpp:49
 msgctxt "Position|"
 msgid "West"
-msgstr "西"
+msgstr "Okcidenta"
 
 #: KChartPosition.cpp:50
 msgctxt "Position|"
 msgid "Floating"
-msgstr "浮动"
+msgstr "Flosanta"
 
 #: Ternary/KChartTernaryAxis.cpp:48
 msgctxt "QObject|"

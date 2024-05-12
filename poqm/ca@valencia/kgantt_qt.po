@@ -64,7 +64,7 @@ msgstr "Allunya"
 #: kganttgraphicsview.cpp:241
 msgctxt "KGantt::HeaderWidget|@action:inmenu"
 msgid "Timeline..."
-msgstr "Línia de temps..."
+msgstr "Línia de temps…"
 
 #: kganttitemdelegate.cpp:154
 #, qt-format

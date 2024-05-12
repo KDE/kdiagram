@@ -65,7 +65,7 @@ msgstr "en ordre invers."
 #: KChartDatasetSelector.ui:67 KChartDatasetSelector.ui:103
 msgctxt "DatasetSelector|"
 msgid "..."
-msgstr "..."
+msgstr "…"
 
 #: KChartDatasetSelector.ui:80
 msgctxt "DatasetSelector|"

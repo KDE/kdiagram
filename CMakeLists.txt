@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.16)
 project( kdiagram )
 
 set(QT_REQUIRED_VERSION "6.5.0")
-set(KF_MIN_VERSION "5.245.0")
+set(KF_MIN_VERSION "6.3.0")
 set(KF_MAJOR_VERSION "6")
 
 find_package(ECM ${KF_MIN_VERSION} REQUIRED NO_MODULE)

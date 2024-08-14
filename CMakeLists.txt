@@ -25,6 +25,7 @@ include(CMakePackageConfigHelpers)
 include(CMakeDependentOption)
 include(FeatureSummary)
 include(GenerateExportHeader)
+include(ECMDeprecationSettings)
 
 set(HAS_ECMAddQch TRUE)
 include(ECMAddQch)
@@ -64,11 +65,8 @@ add_definitions(
     -DUSE_EXCEPTIONS
 )
 
-add_definitions(
-    -DQT_DISABLE_DEPRECATED_BEFORE=0x050c00
-    -DQT_DEPRECATED_WARNINGS_SINCE=0x060000
-    -DKF_DISABLE_DEPRECATED_BEFORE_AND_AT=0x055A00
-    -DKF_DEPRECATED_WARNINGS_SINCE=0x060000
+ecm_set_disabled_deprecation_versions(QT 5.15
+    KF 6.5.0
 )
 
 

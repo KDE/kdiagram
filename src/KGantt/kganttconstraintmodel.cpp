@@ -142,7 +142,7 @@ void ConstraintModel::cleanup()
 {
 #if 0
     QSet<Constraint> orphans;
-    for ( const Constraint& c : qAsConst(d->constraints) ) {
+    for ( const Constraint& c : std::as_const(d->constraints) ) {
         if ( !c.startIndex().isValid() || !c.endIndex().isValid() ) orphans.insert( c );
     }
     //qDebug() << "Constraint::cleanup() found" << orphans << "orphans";
@@ -164,13 +164,13 @@ QList<Constraint> ConstraintModel::constraintsForIndex( const QModelIndex& idx )
     if ( !idx.isValid() ) {
         // Because of a Qt bug we need to treat this as a special case
         QSet<Constraint> result;
-        for ( const Constraint& c : qAsConst(d->constraints) ) {
+        for ( const Constraint& c : std::as_const(d->constraints) ) {
             if ( !c.startIndex().isValid() || !c.endIndex().isValid() ) result.insert( c );
         }
         return result.values();
     } else {
         QList<Constraint> result;
-        for ( const Constraint& c : qAsConst(d->constraints) ) {
+        for ( const Constraint& c : std::as_const(d->constraints) ) {
             if ( c.startIndex() == idx || c.endIndex() == idx ) result.push_back( c );
         }
         return result;
@@ -183,7 +183,7 @@ bool ConstraintModel::hasConstraint( const Constraint& c ) const
 {
     /*
     // Because of a Qt bug we have to search like this
-    for ( Constraint c2 : qAsConst(d->constraints) ) {
+    for ( Constraint c2 : std::as_const(d->constraints) ) {
         if ( c==c2 ) return true;
     }
     return false;

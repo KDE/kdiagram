@@ -348,7 +348,7 @@ QRectF MainWindow::calcSceneRect(const QDateTime &startDateTime, const QDateTime
     // Remove all items that is completely outside rect
     bool startFound = false;
     QModelIndexList lst = items;
-    for (const QModelIndex &idx : qAsConst(lst)) {
+    for (const QModelIndex &idx : std::as_const(lst)) {
         const QDateTime sdt = idx.sibling(idx.row(), startCol).data(startRole).toDateTime();
         const QDateTime edt = idx.sibling(idx.row(), endCol).data(endRole).toDateTime();
         //qInfo()<<Q_FUNC_INFO<<idx<<"start:"<<startTime<<idx.data().toString()<<idx.sibling(idx.row(), endCol).data(endRole);

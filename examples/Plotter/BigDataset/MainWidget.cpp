@@ -54,7 +54,7 @@ MainWidget::MainWidget()
     m_functionSelector << m_controls.sineRadio << m_controls.triangleRadio << m_controls.squareRadio
                        << m_controls.noiseRadio << m_controls.oneDivSineRadio
                        << m_controls.sineOneDivRadio;
-    for ( QRadioButton* r : qAsConst(m_functionSelector) ) {
+    for ( QRadioButton* r : std::as_const(m_functionSelector) ) {
         connect( r, SIGNAL(toggled(bool)), SLOT(functionToggled(bool)) );
     }
 
@@ -63,7 +63,7 @@ MainWidget::MainWidget()
 
     // order matters again
     m_addPointsButtons << m_controls.add1kButton << m_controls.add10kButton << m_controls.add100kButton;
-    for ( QPushButton* b : qAsConst(m_addPointsButtons) ) {
+    for ( QPushButton* b : std::as_const(m_addPointsButtons) ) {
         connect( b, SIGNAL(clicked(bool)), SLOT(addPointsButtonClicked()) );
     }
 }

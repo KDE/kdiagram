@@ -222,7 +222,7 @@ void PrerenderedLabel::paint() const
                   << KChartEnums::PositionSouth
                   << KChartEnums::PositionSouthWest
                   << KChartEnums::PositionWest;
-        for ( KChartEnums::PositionValue position : qAsConst(positions) ) { //krazy:exclude=foreach
+        for ( KChartEnums::PositionValue position : std::as_const(positions) ) { //krazy:exclude=foreach
             static const double Radius = 0.5;
             static const double Diameter = 2 * Radius;
 

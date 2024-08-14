@@ -77,7 +77,7 @@ namespace KChart {
                                                     antiAliasing );
             if ( !axesList.isEmpty() ) {
 
-                for ( TernaryAxis* axis : qAsConst(axesList) ) {
+                for ( TernaryAxis* axis : std::as_const(axesList) ) {
                     PainterSaver s( paintContext->painter() );
                     axis->paintCtx( paintContext );
                 }

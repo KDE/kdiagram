@@ -385,7 +385,7 @@ CartesianAxis::~CartesianAxis()
         AbstractCartesianDiagram *cd = qobject_cast< AbstractCartesianDiagram* >( d->mDiagram );
         cd->takeAxis( this );
     }
-    for ( AbstractDiagram *diagram : qAsConst(d->secondaryDiagrams) ) {
+    for ( AbstractDiagram *diagram : std::as_const(d->secondaryDiagrams) ) {
         AbstractCartesianDiagram *cd = qobject_cast< AbstractCartesianDiagram* >( diagram );
         cd->takeAxis( this );
     }

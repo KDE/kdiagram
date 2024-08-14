@@ -68,9 +68,9 @@ GraphicsScene::Private::~Private()
 
 void GraphicsScene::Private::clearConstraintItems()
 {
-    for(ConstraintGraphicsItem *citem : qAsConst(constraintItems)) {
+    for(ConstraintGraphicsItem *citem : std::as_const(constraintItems)) {
         // remove constraint from items first
-        for(GraphicsItem *item : qAsConst(items)) {
+        for(GraphicsItem *item : std::as_const(items)) {
             item->removeStartConstraint(citem);
             item->removeEndConstraint(citem);
         }
@@ -164,7 +164,7 @@ ConstraintGraphicsItem* GraphicsScene::Private::findConstraintItem( const Constr
 // NOTE: we might get here after indexes are invalidated, so cannot do any controlled cleanup
 void GraphicsScene::Private::clearItems()
 {
-    for(GraphicsItem *item : qAsConst(items)) {
+    for(GraphicsItem *item : std::as_const(items)) {
         q->removeItem(item);
         delete item;
     }
@@ -874,7 +874,7 @@ void GraphicsScene::doPrintScene( QPrinter *printer, QPainter *painter, const QR
         } while ( ( sidx = rowController()->indexBelow( sidx ) ).isValid() );
         d->labelsWidth = textWidth;
         scnRect.setLeft( scnRect.left() - textWidth );
-        for( QGraphicsTextItem* item : qAsConst(textLabels) ) {
+        for( QGraphicsTextItem* item : std::as_const(textLabels) ) {
             item->setPos( scnRect.left(), item->y() );
             item->show();
         }

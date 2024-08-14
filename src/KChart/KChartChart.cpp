@@ -262,7 +262,7 @@ void Chart::Private::slotUnregisterDestroyedHeaderFooter( HeaderFooter* hf )
 void Chart::Private::slotUnregisterDestroyedPlane( AbstractCoordinatePlane* plane )
 {
     coordinatePlanes.removeAll( plane );
-    for ( AbstractCoordinatePlane* p : qAsConst(coordinatePlanes) ) {
+    for ( AbstractCoordinatePlane* p : std::as_const(coordinatePlanes) ) {
         if ( p->referenceCoordinatePlane() == plane) {
             p->setReferenceCoordinatePlane( nullptr );
         }
@@ -438,7 +438,7 @@ static CoordinatePlaneList findSharingAxisDiagrams( AbstractCoordinatePlane* pla
                 qobject_cast< AbstractCartesianDiagram* > ( curPlane->diagram() );
         if ( !diagram )
             continue;
-        for ( CartesianAxis* curSearchedAxis : qAsConst(axes) )
+        for ( CartesianAxis* curSearchedAxis : std::as_const(axes) )
         {
             for( CartesianAxis* curAxis : diagram->axes() )
             {
@@ -466,7 +466,7 @@ QVector< LayoutGraphNode* > Chart::Private::buildPlaneLayoutGraph()
     QHash< AbstractCoordinatePlane*, LayoutGraphNode* > planeNodeMapping;
     QVector< LayoutGraphNode* > allNodes;
     // create all nodes and a mapping between plane and nodes
-    for ( AbstractCoordinatePlane* curPlane : qAsConst(coordinatePlanes) )
+    for ( AbstractCoordinatePlane* curPlane : std::as_const(coordinatePlanes) )
     {
         if ( curPlane->diagram() )
         {
@@ -478,7 +478,7 @@ QVector< LayoutGraphNode* > Chart::Private::buildPlaneLayoutGraph()
         }
     }
     // build the graph connections
-    for ( LayoutGraphNode* curNode : qAsConst(allNodes) )
+    for ( LayoutGraphNode* curNode : std::as_const(allNodes) )
     {
         QVector< CartesianAxis* > sharedAxes;
         CoordinatePlaneList xSharedPlanes = findSharingAxisDiagrams( curNode->diagramPlane, coordinatePlanes, Abscissa, &sharedAxes );
@@ -573,7 +573,7 @@ QHash<AbstractCoordinatePlane*, PlaneInfo> Chart::Private::buildPlaneLayoutInfos
      * laid out vertically or horizontally next to each other. */
     QHash<CartesianAxis*, AxisInfo> axisInfos;
     QHash<AbstractCoordinatePlane*, PlaneInfo> planeInfos;
-    for (AbstractCoordinatePlane* plane : qAsConst(coordinatePlanes) ) {
+    for (AbstractCoordinatePlane* plane : std::as_const(coordinatePlanes) ) {
         PlaneInfo p;
         // first check if we share space with another plane
         p.referencePlane = plane->referenceCoordinatePlane();
@@ -653,11 +653,11 @@ void Chart::Private::slotLayoutPlanes()
     if ( hadPlanesLayout )
         planesLayout->getContentsMargins(&left, &top, &right, &bottom);
 
-    for ( AbstractLayoutItem* plane : qAsConst(planeLayoutItems) ) {
+    for ( AbstractLayoutItem* plane : std::as_const(planeLayoutItems) ) {
         plane->removeFromParentLayout();
     }
     //TODO they should get a correct parent, but for now it works
-    for ( AbstractLayoutItem* plane : qAsConst(planeLayoutItems) ) {
+    for ( AbstractLayoutItem* plane : std::as_const(planeLayoutItems) ) {
         if ( dynamic_cast< AutoSpacerLayoutItem* >( plane ) )
             delete plane;
     }
@@ -834,7 +834,7 @@ void Chart::Private::slotLayoutPlanes()
          * gets their own. See buildPlaneLayoutInfos() for more details. */
         QHash<AbstractCoordinatePlane*, PlaneInfo> planeInfos = buildPlaneLayoutInfos();
         QHash<AbstractAxis*, AxisInfo> axisInfos;
-        for ( AbstractCoordinatePlane* plane : qAsConst(coordinatePlanes) ) {
+        for ( AbstractCoordinatePlane* plane : std::as_const(coordinatePlanes) ) {
             Q_ASSERT( planeInfos.contains(plane) );
             PlaneInfo& pi = planeInfos[ plane ];
             const int column = pi.horizontalOffset;
@@ -1081,7 +1081,7 @@ void Chart::Private::slotResizePlanes()
         layout->activate();
     }
     // Adapt diagram drawing to the new size
-    for ( AbstractCoordinatePlane* plane : qAsConst(coordinatePlanes) ) {
+    for ( AbstractCoordinatePlane* plane : std::as_const(coordinatePlanes) ) {
         plane->layoutDiagrams();
     }
 }
@@ -1089,7 +1089,7 @@ void Chart::Private::slotResizePlanes()
 void Chart::Private::updateDirtyLayouts()
 {
     if ( isPlanesLayoutDirty ) {
-        for ( AbstractCoordinatePlane* p : qAsConst(coordinatePlanes) ) {
+        for ( AbstractCoordinatePlane* p : std::as_const(coordinatePlanes) ) {
             p->setGridNeedsRecalculate();
             p->layoutPlanes();
             p->layoutDiagrams();
@@ -1126,13 +1126,13 @@ void Chart::Private::paintAll( QPainter* painter )
 
     chart->reLayoutFloatingLegends();
 
-    for( AbstractLayoutItem* planeLayoutItem : qAsConst(planeLayoutItems) ) {
+    for( AbstractLayoutItem* planeLayoutItem : std::as_const(planeLayoutItems) ) {
         planeLayoutItem->paintAll( *painter );
     }
-    for( TextArea* textLayoutItem : qAsConst(textLayoutItems) ) {
+    for( TextArea* textLayoutItem : std::as_const(textLayoutItems) ) {
         textLayoutItem->paintAll( *painter );
     }
-    for ( Legend *legend : qAsConst(legends) ) {
+    for ( Legend *legend : std::as_const(legends) ) {
         const bool hidden = legend->isHidden() && legend->testAttribute( Qt::WA_WState_ExplicitShowHide );
         if ( !hidden ) {
             //qDebug() << "painting legend at " << legend->geometry();
@@ -1395,7 +1395,7 @@ void Chart::resizeEvent ( QResizeEvent* event )
 
 void Chart::reLayoutFloatingLegends()
 {
-    for( Legend *legend : qAsConst(d->legends) ) {
+    for( Legend *legend : std::as_const(d->legends) ) {
         const bool hidden = legend->isHidden() && legend->testAttribute( Qt::WA_WState_ExplicitShowHide );
         if ( legend->position().isFloating() && !hidden ) {
             // resize the legend
@@ -1684,7 +1684,7 @@ void Chart::mousePressEvent( QMouseEvent* event )
 {
     const QPoint pos = mapFromGlobal( event->globalPos() );
 
-    for( AbstractCoordinatePlane* plane : qAsConst(d->coordinatePlanes) ) {
+    for( AbstractCoordinatePlane* plane : std::as_const(d->coordinatePlanes) ) {
         if ( plane->geometry().contains( event->pos() ) && plane->diagrams().size() > 0 ) {
             QMouseEvent ev( QEvent::MouseButtonPress, pos, event->globalPos(),
                             event->button(), event->buttons(), event->modifiers() );
@@ -1698,7 +1698,7 @@ void Chart::mouseDoubleClickEvent( QMouseEvent* event )
 {
     const QPoint pos = mapFromGlobal( event->globalPos() );
 
-    for( AbstractCoordinatePlane* plane : qAsConst(d->coordinatePlanes) ) {
+    for( AbstractCoordinatePlane* plane : std::as_const(d->coordinatePlanes) ) {
         if ( plane->geometry().contains( event->pos() ) && plane->diagrams().size() > 0 ) {
             QMouseEvent ev( QEvent::MouseButtonPress, pos, event->globalPos(),
                             event->button(), event->buttons(), event->modifiers() );
@@ -1711,7 +1711,7 @@ void Chart::mouseMoveEvent( QMouseEvent* event )
 {
     auto eventReceivers = QSet<AbstractCoordinatePlane*>(d->mouseClickedPlanes.cbegin(), d->mouseClickedPlanes.cend());
 
-    for( AbstractCoordinatePlane* plane : qAsConst(d->coordinatePlanes) ) {
+    for( AbstractCoordinatePlane* plane : std::as_const(d->coordinatePlanes) ) {
         if ( plane->geometry().contains( event->pos() ) && plane->diagrams().size() > 0 ) {
             eventReceivers.insert( plane );
         }
@@ -1719,7 +1719,7 @@ void Chart::mouseMoveEvent( QMouseEvent* event )
 
     const QPoint pos = mapFromGlobal( event->globalPos() );
 
-    for( AbstractCoordinatePlane* plane : qAsConst(eventReceivers) ) {
+    for( AbstractCoordinatePlane* plane : std::as_const(eventReceivers) ) {
         QMouseEvent ev( QEvent::MouseMove, pos, event->globalPos(),
                          event->button(), event->buttons(), event->modifiers() );
         plane->mouseMoveEvent( &ev );
@@ -1730,7 +1730,7 @@ void Chart::mouseReleaseEvent( QMouseEvent* event )
 {
     auto eventReceivers = QSet<AbstractCoordinatePlane*>(d->mouseClickedPlanes.cbegin(), d->mouseClickedPlanes.cend());
 
-    for ( AbstractCoordinatePlane* plane :  qAsConst(d->coordinatePlanes) ) {
+    for ( AbstractCoordinatePlane* plane :  std::as_const(d->coordinatePlanes) ) {
         if ( plane->geometry().contains( event->pos() ) && plane->diagrams().size() > 0 ) {
             eventReceivers.insert( plane );
         }
@@ -1738,7 +1738,7 @@ void Chart::mouseReleaseEvent( QMouseEvent* event )
 
     const QPoint pos = mapFromGlobal( event->globalPos() );
 
-    for( AbstractCoordinatePlane* plane : qAsConst(eventReceivers) ) {
+    for( AbstractCoordinatePlane* plane : std::as_const(eventReceivers) ) {
         QMouseEvent ev( QEvent::MouseButtonRelease, pos, event->globalPos(),
                          event->button(), event->buttons(), event->modifiers() );
         plane->mouseReleaseEvent( &ev );
@@ -1751,7 +1751,7 @@ bool Chart::event( QEvent* event )
 {
     if ( event->type() == QEvent::ToolTip ) {
         const QHelpEvent* const helpEvent = static_cast< QHelpEvent* >( event );
-        for( const AbstractCoordinatePlane* const plane : qAsConst(d->coordinatePlanes) ) {
+        for( const AbstractCoordinatePlane* const plane : std::as_const(d->coordinatePlanes) ) {
             // iterate diagrams in reverse, so that the top-most painted diagram is
             // queried first for a tooltip before the diagrams behind it
             const ConstAbstractDiagramList& diagrams = plane->diagrams();

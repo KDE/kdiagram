@@ -315,7 +315,7 @@ void KChart::AbstractCoordinatePlane::mousePressEvent( QMouseEvent* event )
         }
     }
 
-    for ( AbstractDiagram * a : qAsConst(d->diagrams) )
+    for ( AbstractDiagram * a : std::as_const(d->diagrams) )
     {
         a->mousePressEvent( event );
     }
@@ -329,7 +329,7 @@ void KChart::AbstractCoordinatePlane::mouseDoubleClickEvent( QMouseEvent* event 
         // which is pretty annoying when zooming out fast
         mousePressEvent( event );
     }
-    for ( AbstractDiagram * a : qAsConst(d->diagrams) )
+    for ( AbstractDiagram * a : std::as_const(d->diagrams) )
     {
         a->mouseDoubleClickEvent( event );
     }
@@ -382,7 +382,7 @@ void KChart::AbstractCoordinatePlane::mouseReleaseEvent( QMouseEvent* event )
         event->accept();
     }
 
-    for ( AbstractDiagram * a : qAsConst(d->diagrams) )
+    for ( AbstractDiagram * a : std::as_const(d->diagrams) )
     {
         a->mouseReleaseEvent( event );
     }
@@ -398,7 +398,7 @@ void KChart::AbstractCoordinatePlane::mouseMoveEvent( QMouseEvent* event )
         event->accept();
     }
 
-    for ( AbstractDiagram * a : qAsConst(d->diagrams) )
+    for ( AbstractDiagram * a : std::as_const(d->diagrams) )
     {
         a->mouseMoveEvent( event );
     }

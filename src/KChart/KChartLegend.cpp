@@ -235,7 +235,7 @@ void Legend::paint( QPainter* painter )
 
     activateTheLayout();
 
-    for ( AbstractLayoutItem* paintItem : qAsConst(d->paintItems) ) {
+    for ( AbstractLayoutItem* paintItem : std::as_const(d->paintItems) ) {
         paintItem->paint( painter );
     }
 

@@ -118,7 +118,7 @@ private Q_SLOTS:
             QModelIndexList indexes;
             CachePosition point( 0, 0 );
             indexes = compressor.mapToModel( point );
-            for ( const QModelIndex& index : qAsConst(indexes) ) {
+            for ( const QModelIndex& index : std::as_const(indexes) ) {
                 QVERIFY2( compressor.mapToCache( index ) == point,
                           "index mapToModel does not map back to the original cache point" );
             }

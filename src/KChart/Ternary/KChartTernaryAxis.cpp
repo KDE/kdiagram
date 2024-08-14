@@ -65,7 +65,7 @@ void  TernaryAxis::paintCtx (PaintContext * paintContext)
     // paint the axis label (across the triangle, that one):
     QList<PrerenderedLabel*> labels;
     labels << m_label << m_fifty;
-    for ( PrerenderedLabel* label : qAsConst(labels) ) {
+    for ( PrerenderedLabel* label : std::as_const(labels) ) {
         const QPixmap& pixmap = label->pixmap();
         const QPointF point = plane->translate( label->position() )
                         - label->referencePointLocation();

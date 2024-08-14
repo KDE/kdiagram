@@ -54,11 +54,6 @@ if (NOT Qt6Sql_FOUND)
     message(STATUS "Qt5Sql not found, examples with SQL will not be built.")
 endif()
 
-# We want users of kdiagram libs to be able to use the lib without interference with Qt-specific keywords, e.g. "signals" that collides with Boost's Signals
-add_definitions(
-    -DQT_NO_KEYWORDS
-    -Demit=
-)
 add_definitions(
     -DQT_NO_STL
     -DQT_FATAL_ASSERT

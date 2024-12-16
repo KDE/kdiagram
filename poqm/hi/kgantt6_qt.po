@@ -1,20 +1,19 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: kgantt6_qt\n"
-"PO-Revision-Date: 2024-12-13 19:10+0530\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"PO-Revision-Date: 2024-12-15 17:37+0530\n"
 "Last-Translator: Kali <EMAIL@ADDRESS>\n"
-"Language-Team: Sanskrit\n"
-"Language: sa\n"
+"Language-Team: Hindi <fedora-trans-hi@redhat.com>\n"
+"Language: hi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Qt-Contexts: true\n"
-"Plural-Forms: nplurals=2; plural=(n>1);\n"
 
 #: kganttgraphicsview.cpp:187
 msgctxt "KGantt::HeaderWidget|@title:menu"
 msgid "Scale"
-msgstr "मापन"
+msgstr "पैमाना"
 
 #: kganttgraphicsview.cpp:191
 msgctxt "KGantt::HeaderWidget|@item:inmenu Automatic scale"
@@ -24,32 +23,32 @@ msgstr "ऑटो"
 #: kganttgraphicsview.cpp:194
 msgctxt "KGantt::HeaderWidget|@item:inmenu"
 msgid "Month"
-msgstr "माह"
+msgstr "महीना"
 
 #: kganttgraphicsview.cpp:197
 msgctxt "KGantt::HeaderWidget|@item:inmenu"
 msgid "Week"
-msgstr "सप्ताहः"
+msgstr "सप्ताह"
 
 #: kganttgraphicsview.cpp:200
 msgctxt "KGantt::HeaderWidget|@item:inmenu"
 msgid "Day"
-msgstr "दिनं"
+msgstr "दिन"
 
 #: kganttgraphicsview.cpp:203
 msgctxt "KGantt::HeaderWidget|@item:inmenu"
 msgid "Hour"
-msgstr "घटकः"
+msgstr "घंटा"
 
 #: kganttgraphicsview.cpp:226
 msgctxt "KGantt::HeaderWidget|@action:inmenu"
 msgid "Zoom In"
-msgstr "Zoom In इति"
+msgstr "ज़ूम इन"
 
 #: kganttgraphicsview.cpp:228
 msgctxt "KGantt::HeaderWidget|@action:inmenu"
 msgid "Zoom Out"
-msgstr "Zoom Out इति"
+msgstr "ज़ूम आउट"
 
 #: kganttgraphicsview.cpp:232
 msgctxt "KGantt::HeaderWidget|@action:inmenu"

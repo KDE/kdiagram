@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2024-12-14 01:13+0530\n"
+"PO-Revision-Date: 2024-12-20 12:25+0530\n"
 "Last-Translator: kali <skkalwar999@gmail.com>\n"
 "Language-Team: Sanskrit <kde-i18n-doc@kde.org>\n"
 "Language: sa\n"
@@ -137,7 +137,7 @@ msgstr "प्लवमानः"
 #: Ternary/KChartTernaryAxis.cpp:37
 msgctxt "QObject|"
 msgid "50%"
-msgstr "५०% २."
+msgstr "५०%"
 
 #: Ternary/KChartTernaryAxis.cpp:134
 msgctxt "KChart::TernaryAxis|"
@@ -158,10 +158,10 @@ msgstr "ख"
 #, qt-format
 msgctxt "KChart::TernaryLineDiagram|(x, y, z) values of the data point"
 msgid "(%1, %2, %3)"
-msgstr "(%1, %2, %3) २."
+msgstr "(%1, %2, %3)"
 
 #: Ternary/KChartTernaryPointDiagram.cpp:105
 #, qt-format
 msgctxt "KChart::TernaryPointDiagram|(x, y, z) values of the data point"
 msgid "(%1, %2, %3)"
-msgstr "(%1, %2, %3) २."
+msgstr "(%1, %2, %3)"

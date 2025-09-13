@@ -48,7 +48,7 @@ MainWindow::MainWindow( QWidget* parent ) :
 
     setupUi( this );
 
-    connect( lineTypeCB, SIGNAL(currentIndexChanged(QString)), this, SLOT(setLineType(QString)) );
+    connect( lineTypeCB, &QComboBox::currentTextChanged, this, &MainWindow::setLineType );
     connect( paintLegendCB, SIGNAL(toggled(bool)), this, SLOT(setLegendVisible(bool)) );
     connect( paintValuesCB, SIGNAL(toggled(bool)), this, SLOT(setValuesVisible(bool)) );
     connect( paintMarkersCB, SIGNAL(toggled(bool)), this, SLOT(setMarkersVisible(bool)) );

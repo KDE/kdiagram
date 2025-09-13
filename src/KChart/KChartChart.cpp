@@ -1682,11 +1682,11 @@ LegendList Chart::legends()
 
 void Chart::mousePressEvent( QMouseEvent* event )
 {
-    const QPoint pos = mapFromGlobal( event->globalPos() );
+    const QPoint pos = mapFromGlobal( event->globalPosition().toPoint() );
 
     for( AbstractCoordinatePlane* plane : std::as_const(d->coordinatePlanes) ) {
         if ( plane->geometry().contains( event->pos() ) && plane->diagrams().size() > 0 ) {
-            QMouseEvent ev( QEvent::MouseButtonPress, pos, event->globalPos(),
+            QMouseEvent ev( QEvent::MouseButtonPress, pos, event->globalPosition().toPoint(),
                             event->button(), event->buttons(), event->modifiers() );
             plane->mousePressEvent( &ev );
             d->mouseClickedPlanes.append( plane );
@@ -1696,11 +1696,11 @@ void Chart::mousePressEvent( QMouseEvent* event )
 
 void Chart::mouseDoubleClickEvent( QMouseEvent* event )
 {
-    const QPoint pos = mapFromGlobal( event->globalPos() );
+    const QPoint pos = mapFromGlobal( event->globalPosition().toPoint() );
 
     for( AbstractCoordinatePlane* plane : std::as_const(d->coordinatePlanes) ) {
         if ( plane->geometry().contains( event->pos() ) && plane->diagrams().size() > 0 ) {
-            QMouseEvent ev( QEvent::MouseButtonPress, pos, event->globalPos(),
+            QMouseEvent ev( QEvent::MouseButtonPress, pos, event->globalPosition().toPoint(),
                             event->button(), event->buttons(), event->modifiers() );
             plane->mouseDoubleClickEvent( &ev );
         }
@@ -1717,10 +1717,10 @@ void Chart::mouseMoveEvent( QMouseEvent* event )
         }
     }
 
-    const QPoint pos = mapFromGlobal( event->globalPos() );
+    const QPoint pos = mapFromGlobal( event->globalPosition().toPoint() );
 
     for( AbstractCoordinatePlane* plane : std::as_const(eventReceivers) ) {
-        QMouseEvent ev( QEvent::MouseMove, pos, event->globalPos(),
+        QMouseEvent ev( QEvent::MouseMove, pos, event->globalPosition().toPoint(),
                          event->button(), event->buttons(), event->modifiers() );
         plane->mouseMoveEvent( &ev );
     }
@@ -1736,10 +1736,10 @@ void Chart::mouseReleaseEvent( QMouseEvent* event )
         }
     }
 
-    const QPoint pos = mapFromGlobal( event->globalPos() );
+    const QPoint pos = mapFromGlobal( event->globalPosition().toPoint() );
 
     for( AbstractCoordinatePlane* plane : std::as_const(eventReceivers) ) {
-        QMouseEvent ev( QEvent::MouseButtonRelease, pos, event->globalPos(),
+        QMouseEvent ev( QEvent::MouseButtonRelease, pos, event->globalPosition().toPoint(),
                          event->button(), event->buttons(), event->modifiers() );
         plane->mouseReleaseEvent( &ev );
     }

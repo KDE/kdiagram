@@ -390,8 +390,8 @@ QBrush DateTimeGrid::noInformationBrush() const
 
 qreal DateTimeGrid::mapToChart( const QVariant& value ) const
 {
-    if ( ! value.canConvert( QVariant::DateTime ) ||
-         ( value.type() == QVariant::String && value.toString().isEmpty() ) )
+    if ( ! value.canConvert<QDateTime>() ||
+         ( value.typeId() == QMetaType::QString && value.toString().isEmpty() ) )
     {
         return -1.0;
     }
@@ -412,10 +412,10 @@ Span DateTimeGrid::mapToChart( const QModelIndex& idx ) const
     assert( idx.model()==model() );
     const QVariant sv = model()->data( idx, StartTimeRole );
     const QVariant ev = model()->data( idx, EndTimeRole );
-    if ( sv.canConvert( QVariant::DateTime ) &&
-        ev.canConvert( QVariant::DateTime ) &&
-    !(sv.type() == QVariant::String && sv.toString().isEmpty()) &&
-    !(ev.type() == QVariant::String && ev.toString().isEmpty())
+    if ( sv.canConvert<QDateTime>() &&
+        ev.canConvert<QDateTime>() &&
+    !(sv.typeId() == QMetaType::QString && sv.toString().isEmpty()) &&
+    !(ev.typeId() == QMetaType::QString && ev.toString().isEmpty())
     ) {
       QDateTime st = sv.toDateTime();
       QDateTime et = ev.toDateTime();
@@ -427,7 +427,7 @@ Span DateTimeGrid::mapToChart( const QModelIndex& idx ) const
       }
     }
     // Special case for Events with only a start date
-    if ( sv.canConvert( QVariant::DateTime ) && !(sv.type() == QVariant::String && sv.toString().isEmpty()) ) {
+    if ( sv.canConvert<QDateTime>() && !(sv.typeId() == QMetaType::QString && sv.toString().isEmpty()) ) {
       QDateTime st = sv.toDateTime();
       if ( st.isValid() ) {
         qreal sx = d->dateTimeToChartX( st );
@@ -721,7 +721,7 @@ int DateTimeGrid::Private::tabHeight( const QString& txt, QWidget* widget ) cons
 
 void DateTimeGrid::Private::getAutomaticFormatters( DateTimeScaleFormatter** lower, DateTimeScaleFormatter** upper)
 {
-    const qreal tabw = QApplication::fontMetrics().boundingRect( QLatin1String( "XXXXX" ) ).width();
+    const qreal tabw = QFontMetricsF(qApp->font()).boundingRect( QLatin1String( "XXXXX" ) ).width();
     const qreal dayw = dayWidth;
     if ( dayw > 24*60*60*tabw ) {
         *lower = &minute_lower;

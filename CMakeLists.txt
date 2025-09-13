@@ -60,7 +60,8 @@ add_definitions(
     -DUSE_EXCEPTIONS
 )
 
-ecm_set_disabled_deprecation_versions(QT 5.15
+ecm_set_disabled_deprecation_versions(
+    QT 6.9
     KF 6.5.0
 )
 

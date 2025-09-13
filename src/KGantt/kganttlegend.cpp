@@ -116,7 +116,7 @@ QRect Legend::drawItem( QPainter* painter, const QModelIndex& index, const QPoin
 
     if ( index.isValid() && index.model() == &d->proxyModel )
     {
-        ItemDelegate* const delegate = qobject_cast< ItemDelegate* >( itemDelegate( index ) );
+        ItemDelegate* const delegate = qobject_cast< ItemDelegate* >( itemDelegateForIndex( index ) );
         assert( delegate != nullptr );
         const QRect r( pos, measureItem( index, false ) );
         StyleOptionGanttItem opt = getStyleOption( index );

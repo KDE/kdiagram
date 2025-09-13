@@ -45,15 +45,15 @@ using namespace KGantt;
 ItemDelegate::Private::Private()
 {
     // Brushes
-    QLinearGradient taskgrad( 0., 0., 0., QApplication::fontMetrics().height() );
+    QLinearGradient taskgrad( 0., 0., 0., QFontMetricsF(qApp->font()).height() );
     taskgrad.setColorAt( 0., Qt::green );
     taskgrad.setColorAt( 1., Qt::darkGreen );
 
-    QLinearGradient summarygrad( 0., 0., 0., QApplication::fontMetrics().height() );
+    QLinearGradient summarygrad( 0., 0., 0., QFontMetricsF(qApp->font()).height() );
     summarygrad.setColorAt( 0., Qt::blue );
     summarygrad.setColorAt( 1., Qt::darkBlue );
 
-    QLinearGradient eventgrad( 0., 0., 0., QApplication::fontMetrics().height() );
+    QLinearGradient eventgrad( 0., 0., 0., QFontMetricsF(qApp->font()).height() );
     eventgrad.setColorAt( 0., Qt::red );
     eventgrad.setColorAt( 1., Qt::darkRed );
 
@@ -84,7 +84,7 @@ QPen ItemDelegate::Private::constraintPen( const QPointF& start, const QPointF& 
     }
 
     // ... unless constraint.data() returned a valid pen for this case
-    if ( dataPen.canConvert( QVariant::Pen ) ) {
+    if ( dataPen.canConvert<QPen>() ) {
         pen = dataPen.value< QPen >();
     }
 

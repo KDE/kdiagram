@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kchart6_qt\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"PO-Revision-Date: 2025-08-16 01:44+0100\n"
+"PO-Revision-Date: 2025-09-20 17:02+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Qt-Contexts: true\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 1.5\n"
+"X-Generator: Lokalize 25.08.1\n"
 
 #: Cartesian/KChartLeveyJenningsAxis.cpp:52
 msgctxt "KChart::LeveyJenningsAxis|"
@@ -142,7 +142,7 @@ msgstr "Flotante"
 #: Ternary/KChartTernaryAxis.cpp:37
 msgctxt "QObject|"
 msgid "50%"
-msgstr "50%"
+msgstr "50 %"
 
 #: Ternary/KChartTernaryAxis.cpp:134
 msgctxt "KChart::TernaryAxis|"

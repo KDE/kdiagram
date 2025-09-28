@@ -29,7 +29,7 @@ namespace KGantt {
      * 
      * The datetime can be set using setDateTime().
      * 
-     * The timeline can priodically moved to the current datetime
+     * The timeline can periodically be moved to the current datetime
      * by setting the interval > 0 with setInterval().
      * Setting a zero interval turns the periodically update off.
      * 

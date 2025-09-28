@@ -22,7 +22,7 @@ namespace KGantt {
     /*!\class KGantt::AbstractRowController kganttabstractrowcontroller.h KGanttAbstractRowController
      * \ingroup KGantt
      * \brief Abstract baseclass for row controllers. A row controller is used
-     * by the GraphicsView to nagivate the model and to determine the
+     * by the GraphicsView to navigate the model and to determine the
      * row geometries
      */
     class KGANTT_EXPORT AbstractRowController {

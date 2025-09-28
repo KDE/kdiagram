@@ -953,7 +953,7 @@ void Chart::Private::slotLayoutPlanes()
                     axisInfos.insert( axis, AxisInfo() );
                 }
                 /* Put each stack of axes-layouts in the cells surrounding the
-                 * associated plane. We are laying out in the oder the planes
+                 * associated plane. We are laying out in the order the planes
                  * were added, and the first one gets to lay out shared axes.
                  * Private axes go here as well, of course. */
 

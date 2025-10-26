@@ -9,65 +9,67 @@
 #ifndef KCHARTLEVEYJENNINGSGRIDATTRIBUTES_H
 #define KCHARTLEVEYJENNINGSGRIDATTRIBUTES_H
 
-#include <QMetaType>
-#include "KChartGlobal.h"
 #include "KChartEnums.h"
+#include "KChartGlobal.h"
+#include <QMetaType>
 
 QT_BEGIN_NAMESPACE
 class QPen;
 QT_END_NAMESPACE
 
-namespace KChart {
+namespace KChart
+{
 
 /**
-  * @brief A set of attributes controlling the appearance of grids
-  */
+ * @brief A set of attributes controlling the appearance of grids
+ */
 class KCHART_EXPORT LeveyJenningsGridAttributes
 {
 public:
     LeveyJenningsGridAttributes();
-    LeveyJenningsGridAttributes( const LeveyJenningsGridAttributes& );
-    LeveyJenningsGridAttributes &operator= ( const LeveyJenningsGridAttributes& );
+    LeveyJenningsGridAttributes(const LeveyJenningsGridAttributes &);
+    LeveyJenningsGridAttributes &operator=(const LeveyJenningsGridAttributes &);
 
     ~LeveyJenningsGridAttributes();
 
-    enum GridType
-    {
+    enum GridType {
         Expected,
         Calculated
     };
 
-    enum Range
-    {
+    enum Range {
         NormalRange,
         CriticalRange,
         OutOfRange
     };
 
-    void setGridVisible( GridType type, bool visible );
-    bool isGridVisible( GridType type ) const;
+    void setGridVisible(GridType type, bool visible);
+    bool isGridVisible(GridType type) const;
 
-    void setGridPen( GridType type, const QPen& pen );
-    QPen gridPen( GridType type ) const;
+    void setGridPen(GridType type, const QPen &pen);
+    QPen gridPen(GridType type) const;
 
-    void setRangeBrush( Range range, const QBrush& brush );
-    QBrush rangeBrush( Range range ) const;
+    void setRangeBrush(Range range, const QBrush &brush);
+    QBrush rangeBrush(Range range) const;
 
-    bool operator==( const LeveyJenningsGridAttributes& ) const;
-    inline bool operator!=( const LeveyJenningsGridAttributes& other ) const { return !operator==(other); }
+    bool operator==(const LeveyJenningsGridAttributes &) const;
+    inline bool operator!=(const LeveyJenningsGridAttributes &other) const
+    {
+        return !operator==(other);
+    }
 
 private:
-    KCHART_DECLARE_PRIVATE_BASE_VALUE( LeveyJenningsGridAttributes )
+    KCHART_DECLARE_PRIVATE_BASE_VALUE(LeveyJenningsGridAttributes)
 }; // End of class GridAttributes
 
 }
 
-KCHART_DECLARE_SWAP_SPECIALISATION( KChart::LeveyJenningsGridAttributes )
+KCHART_DECLARE_SWAP_SPECIALISATION(KChart::LeveyJenningsGridAttributes)
 
 QT_BEGIN_NAMESPACE
-Q_DECLARE_TYPEINFO( KChart::LeveyJenningsGridAttributes, Q_MOVABLE_TYPE );
+Q_DECLARE_TYPEINFO(KChart::LeveyJenningsGridAttributes, Q_MOVABLE_TYPE);
 QT_END_NAMESPACE
 
-Q_DECLARE_METATYPE( KChart::LeveyJenningsGridAttributes )
+Q_DECLARE_METATYPE(KChart::LeveyJenningsGridAttributes)
 
 #endif // KCHARTLEVEYJENNINGSGRIDATTRIBUTES_H

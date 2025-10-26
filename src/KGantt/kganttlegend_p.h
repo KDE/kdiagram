@@ -13,12 +13,13 @@
 
 #include "kganttproxymodel.h"
 
-namespace KGantt {
-    class Q_DECL_HIDDEN Legend::Private {
-    public:
-        ProxyModel proxyModel;
-    };
+namespace KGantt
+{
+class Q_DECL_HIDDEN Legend::Private
+{
+public:
+    ProxyModel proxyModel;
+};
 }
 
 #endif /* KGANTTLEGEND_P_H */
-

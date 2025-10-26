@@ -29,8 +29,8 @@
 
 #include "KChartMath_p.h"
 
-
-namespace KChart {
+namespace KChart
+{
 
 /**
  * \internal
@@ -38,27 +38,28 @@ namespace KChart {
 class Q_DECL_HIDDEN AbstractArea::Private : public AbstractAreaBase::Private
 {
     friend class AbstractArea;
+
 public:
     explicit Private();
     ~Private() override;
 };
 
-
-inline AbstractArea::AbstractArea( Private * p )
-  :  QObject(), AbstractAreaBase( p ), AbstractLayoutItem()
+inline AbstractArea::AbstractArea(Private *p)
+    : QObject()
+    , AbstractAreaBase(p)
+    , AbstractLayoutItem()
 {
     init();
 }
-inline AbstractArea::Private * AbstractArea::d_func()
+inline AbstractArea::Private *AbstractArea::d_func()
 {
-    return static_cast<Private*>( AbstractAreaBase::d_func() );
+    return static_cast<Private *>(AbstractAreaBase::d_func());
 }
-inline const AbstractArea::Private * AbstractArea::d_func() const
+inline const AbstractArea::Private *AbstractArea::d_func() const
 {
-    return static_cast<const Private*>( AbstractAreaBase::d_func() );
+    return static_cast<const Private *>(AbstractAreaBase::d_func());
 }
 
 }
 
 #endif /* KCHARTABSTRACTAREA_P_H */
-

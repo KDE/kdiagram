@@ -13,10 +13,9 @@
 
 using namespace KGantt;
 
-
-AbstractGrid::AbstractGrid( QObject* parent )
-    : QObject( parent ),
-      _d( new Private )
+AbstractGrid::AbstractGrid(QObject *parent)
+    : QObject(parent)
+    , _d(new Private)
 {
 }
 
@@ -27,17 +26,17 @@ AbstractGrid::~AbstractGrid()
 
 #define d d_func()
 
-void AbstractGrid::setModel( QAbstractItemModel* model )
+void AbstractGrid::setModel(QAbstractItemModel *model)
 {
     d->model = model;
 }
 
-QAbstractItemModel* AbstractGrid::model() const
+QAbstractItemModel *AbstractGrid::model() const
 {
     return d->model;
 }
 
-void AbstractGrid::setRootIndex( const QModelIndex& idx )
+void AbstractGrid::setRootIndex(const QModelIndex &idx)
 {
     d->root = idx;
 }
@@ -47,41 +46,40 @@ QModelIndex AbstractGrid::rootIndex() const
     return d->root;
 }
 
-bool AbstractGrid::isSatisfiedConstraint( const Constraint& c ) const
+bool AbstractGrid::isSatisfiedConstraint(const Constraint &c) const
 {
     // First check if the data is valid,
     // TODO: review if true is the right choice
-    if ( !c.startIndex().isValid() || !c.endIndex().isValid() ) return true;
+    if (!c.startIndex().isValid() || !c.endIndex().isValid())
+        return true;
 
-    Span ss = mapToChart( c.startIndex() );
-    Span es = mapToChart( c.endIndex() );
-    return ( ss.end() <= es.start() );
+    Span ss = mapToChart(c.startIndex());
+    Span es = mapToChart(c.endIndex());
+    return (ss.end() <= es.start());
 }
 
-qreal AbstractGrid::mapToChart( const QVariant& value ) const
+qreal AbstractGrid::mapToChart(const QVariant &value) const
 {
-    Q_UNUSED( value );
+    Q_UNUSED(value);
     return -1.0;
 }
 
-QVariant AbstractGrid::mapFromChart( qreal x ) const
+QVariant AbstractGrid::mapFromChart(qreal x) const
 {
-    Q_UNUSED( x );
+    Q_UNUSED(x);
     return QVariant();
 }
 
-void AbstractGrid::drawBackground(QPainter* paint, const QRectF& rect)
+void AbstractGrid::drawBackground(QPainter *paint, const QRectF &rect)
 {
     Q_UNUSED(paint);
     Q_UNUSED(rect);
 }
 
-void AbstractGrid::drawForeground(QPainter* paint, const QRectF& rect)
+void AbstractGrid::drawForeground(QPainter *paint, const QRectF &rect)
 {
     Q_UNUSED(paint);
     Q_UNUSED(rect);
 }
-
 
 #include "moc_kganttabstractgrid.cpp"
-

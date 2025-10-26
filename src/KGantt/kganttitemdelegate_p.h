@@ -13,17 +13,18 @@
 
 #include <QHash>
 
-namespace KGantt {
-    class Q_DECL_HIDDEN ItemDelegate::Private {
-    public:
-        Private();
+namespace KGantt
+{
+class Q_DECL_HIDDEN ItemDelegate::Private
+{
+public:
+    Private();
 
-        QPen constraintPen( const QPointF& start, const QPointF& end, const Constraint& constraint, const QStyleOptionGraphicsItem& opt  );
+    QPen constraintPen(const QPointF &start, const QPointF &end, const Constraint &constraint, const QStyleOptionGraphicsItem &opt);
 
-        QHash<ItemType, QBrush> defaultbrush;
-        QHash<ItemType, QPen> defaultpen;
-    };
+    QHash<ItemType, QBrush> defaultbrush;
+    QHash<ItemType, QPen> defaultpen;
+};
 }
 
 #endif /* KGANTTITEMDELEGATE_P_H */
-

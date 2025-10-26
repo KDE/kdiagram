@@ -11,18 +11,18 @@
 
 #include <QAbstractItemModel>
 
+#include "KChartAbstractCartesianDiagram.h"
+#include "KChartAttributesModel.h"
 #include "KChartBarDiagram.h"
 #include "KChartLineDiagram.h"
 #include "KChartTextAttributes.h"
-#include "KChartAttributesModel.h"
-#include "KChartAbstractCartesianDiagram.h"
 #include "PaintingHelpers_p.h"
 
 using namespace KChart;
 using namespace std;
 
-NormalLineDiagram::NormalLineDiagram( LineDiagram* d )
-    : LineDiagramType( d )
+NormalLineDiagram::NormalLineDiagram(LineDiagram *d)
+    : LineDiagramType(d)
 {
 }
 
@@ -31,19 +31,20 @@ LineDiagram::LineType NormalLineDiagram::type() const
     return LineDiagram::Normal;
 }
 
-const QPair< QPointF, QPointF > NormalLineDiagram::calculateDataBoundaries() const
+const QPair<QPointF, QPointF> NormalLineDiagram::calculateDataBoundaries() const
 {
     return compressor().dataBoundaries();
 }
 
-void NormalLineDiagram::paint( PaintContext* ctx )
+void NormalLineDiagram::paint(PaintContext *ctx)
 {
     reverseMapper().clear();
-    Q_ASSERT( dynamic_cast<CartesianCoordinatePlane*>( ctx->coordinatePlane() ) );
-    CartesianCoordinatePlane* plane = static_cast<CartesianCoordinatePlane*>( ctx->coordinatePlane() );
+    Q_ASSERT(dynamic_cast<CartesianCoordinatePlane *>(ctx->coordinatePlane()));
+    CartesianCoordinatePlane *plane = static_cast<CartesianCoordinatePlane *>(ctx->coordinatePlane());
     const int columnCount = compressor().modelDataColumns();
     const int rowCount = compressor().modelDataRows();
-    if ( columnCount == 0 || rowCount == 0 ) return; // maybe blank out the area?
+    if (columnCount == 0 || rowCount == 0)
+        return; // maybe blank out the area?
 
     // Reverse order of data sets?
     bool rev = diagram()->reverseDatasetOrder();
@@ -52,7 +53,7 @@ void NormalLineDiagram::paint( PaintContext* ctx )
 
     const int step = rev ? -1 : 1;
     const int end = rev ? -1 : columnCount;
-    for ( int column = rev ? columnCount - 1 : 0; column != end; column += step ) {
+    for (int column = rev ? columnCount - 1 : 0; column != end; column += step) {
         LineAttributes laPreviousCell;
         CartesianDiagramDataCompressor::DataPoint lastPoint;
         qreal lastAreaBoundingValue = 0;
@@ -61,33 +62,31 @@ void NormalLineDiagram::paint( PaintContext* ctx )
         const qreal minYValue = qMin(plane->visibleDataRange().bottom(), plane->visibleDataRange().top());
 
         CartesianDiagramDataCompressor::CachePosition previousCellPosition;
-        for ( int row = 0; row < rowCount; ++row ) {
-            const CartesianDiagramDataCompressor::CachePosition position( row, column );
+        for (int row = 0; row < rowCount; ++row) {
+            const CartesianDiagramDataCompressor::CachePosition position(row, column);
             // get where to draw the line from:
-            CartesianDiagramDataCompressor::DataPoint point = compressor().data( position );
-            if ( point.hidden ) {
+            CartesianDiagramDataCompressor::DataPoint point = compressor().data(position);
+            if (point.hidden) {
                 continue;
             }
 
-            const QModelIndex sourceIndex = attributesModel()->mapToSource( point.index );
+            const QModelIndex sourceIndex = attributesModel()->mapToSource(point.index);
 
-            const LineAttributes laCell = diagram()->lineAttributes( sourceIndex );
+            const LineAttributes laCell = diagram()->lineAttributes(sourceIndex);
             const LineAttributes::MissingValuesPolicy policy = laCell.missingValuesPolicy();
 
             // lower or upper bounding for the highlighted area
             qreal areaBoundingValue;
-            if ( laCell.areaBoundingDataset() != -1 ) {
-                const CartesianDiagramDataCompressor::CachePosition areaBoundingCachePosition( row, laCell.areaBoundingDataset() );
-                areaBoundingValue = compressor().data( areaBoundingCachePosition ).value;
+            if (laCell.areaBoundingDataset() != -1) {
+                const CartesianDiagramDataCompressor::CachePosition areaBoundingCachePosition(row, laCell.areaBoundingDataset());
+                areaBoundingValue = compressor().data(areaBoundingCachePosition).value;
             } else {
                 // Use min. y value (i.e. zero line in most cases) if no bounding dataset is set
                 areaBoundingValue = minYValue;
             }
 
-            if ( ISNAN( point.value ) )
-            {
-                switch ( policy )
-                {
+            if (ISNAN(point.value)) {
+                switch (policy) {
                 case LineAttributes::MissingValuesAreBridged:
                     // we just bridge both values
                     continue;
@@ -104,28 +103,26 @@ void NormalLineDiagram::paint( PaintContext* ctx )
                 }
             }
 
-            if ( !ISNAN( point.value ) ) {
+            if (!ISNAN(point.value)) {
                 // area corners, a + b are the line ends:
                 const qreal offset = diagram()->centerDataPoints() ? 0.5 : 0;
-                const QPointF a( plane->translate( QPointF( lastPoint.key + offset, lastPoint.value ) ) );
-                const QPointF b( plane->translate( QPointF( point.key + offset, point.value ) ) );
-                const QPointF c( plane->translate( QPointF( lastPoint.key + offset, lastAreaBoundingValue ) ) );
-                const QPointF d( plane->translate( QPointF( point.key + offset, areaBoundingValue ) ) );
-                const PositionPoints pts = PositionPoints( b, a, d, c );
+                const QPointF a(plane->translate(QPointF(lastPoint.key + offset, lastPoint.value)));
+                const QPointF b(plane->translate(QPointF(point.key + offset, point.value)));
+                const QPointF c(plane->translate(QPointF(lastPoint.key + offset, lastAreaBoundingValue)));
+                const QPointF d(plane->translate(QPointF(point.key + offset, areaBoundingValue)));
+                const PositionPoints pts = PositionPoints(b, a, d, c);
 
                 // add label
-                m_private->addLabel( &lpc, sourceIndex, &position, pts, Position::NorthWest,
-                                     Position::NorthWest, point.value );
+                m_private->addLabel(&lpc, sourceIndex, &position, pts, Position::NorthWest, Position::NorthWest, point.value);
 
                 // add line and area, if switched on and we have a current and previous value
-                if ( !ISNAN( lastPoint.value ) ) {
-                    lineList.append( LineAttributesInfo( sourceIndex, a, b ) );
+                if (!ISNAN(lastPoint.value)) {
+                    lineList.append(LineAttributesInfo(sourceIndex, a, b));
 
-                    if ( laCell.displayArea() ) {
+                    if (laCell.displayArea()) {
                         QList<QPolygonF> areas;
-                        areas << ( QPolygonF() << a << b << d << c );
-                        PaintingHelpers::paintAreas( m_private, ctx, attributesModel()->mapToSource( lastPoint.index ),
-                                                     areas, laCell.transparency() );
+                        areas << (QPolygonF() << a << b << d << c);
+                        PaintingHelpers::paintAreas(m_private, ctx, attributesModel()->mapToSource(lastPoint.index), areas, laCell.transparency());
                     }
                 }
             }
@@ -138,5 +135,5 @@ void NormalLineDiagram::paint( PaintContext* ctx )
     }
 
     // paint the lines
-    PaintingHelpers::paintElements( m_private, ctx, lpc, lineList );
+    PaintingHelpers::paintElements(m_private, ctx, lpc, lineList);
 }

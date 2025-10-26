@@ -20,43 +20,50 @@
 // We mean it.
 //
 
+#include "KChartCartesianAxis_p.h"
 #include "KChartLeveyJenningsAxis.h"
 #include "KChartLeveyJenningsDiagram.h"
-#include "KChartCartesianAxis_p.h"
 #include "KChartMath_p.h"
 
-
-namespace KChart {
+namespace KChart
+{
 
 /**
-  * \internal
-  */
+ * \internal
+ */
 class Q_DECL_HIDDEN LeveyJenningsAxis::Private : public CartesianAxis::Private
 {
     friend class LeveyJenningsAxis;
 
 public:
-    Private( LeveyJenningsDiagram* diagram, LeveyJenningsAxis* axis )
-        : CartesianAxis::Private( diagram, axis )
-        , type( LeveyJenningsGridAttributes::Expected )
-        , format( Qt::ISODate )
-    {}
-    ~Private() override {}
+    Private(LeveyJenningsDiagram *diagram, LeveyJenningsAxis *axis)
+        : CartesianAxis::Private(diagram, axis)
+        , type(LeveyJenningsGridAttributes::Expected)
+        , format(Qt::ISODate)
+    {
+    }
+    ~Private() override
+    {
+    }
 
 private:
     LeveyJenningsGridAttributes::GridType type;
     Qt::DateFormat format;
 };
 
-inline LeveyJenningsAxis::LeveyJenningsAxis( Private * p, AbstractDiagram* diagram )
-    : CartesianAxis( p, diagram )
+inline LeveyJenningsAxis::LeveyJenningsAxis(Private *p, AbstractDiagram *diagram)
+    : CartesianAxis(p, diagram)
 {
     init();
 }
-inline LeveyJenningsAxis::Private * LeveyJenningsAxis::d_func()
-{ return static_cast<Private*>( CartesianAxis::d_func() ); }
-inline const LeveyJenningsAxis::Private * LeveyJenningsAxis::d_func() const
-{ return static_cast<const Private*>( CartesianAxis::d_func() ); }
+inline LeveyJenningsAxis::Private *LeveyJenningsAxis::d_func()
+{
+    return static_cast<Private *>(CartesianAxis::d_func());
+}
+inline const LeveyJenningsAxis::Private *LeveyJenningsAxis::d_func() const
+{
+    return static_cast<const Private *>(CartesianAxis::d_func());
+}
 
 }
 

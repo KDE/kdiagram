@@ -9,11 +9,11 @@
 #ifndef KCHARTMEASURE_H
 #define KCHARTMEASURE_H
 
-#include <QDebug>
-#include <Qt>
-#include <QStack>
-#include "KChartGlobal.h"
 #include "KChartEnums.h"
+#include "KChartGlobal.h"
+#include <QDebug>
+#include <QStack>
+#include <Qt>
 
 /** \file KChartMeasure.h
  *  \brief Declaring the class KChart::Measure.
@@ -26,36 +26,48 @@ class QObject;
 class QPaintDevice;
 QT_END_NAMESPACE
 
-namespace KChart {
+namespace KChart
+{
 
 /**
-  * \class Measure KChartMeasure.h KChartMeasure
-  * \brief Measure is used to specify relative and absolute sizes in KChart, e.g. font sizes.
-  *
-  */
+ * \class Measure KChartMeasure.h KChartMeasure
+ * \brief Measure is used to specify relative and absolute sizes in KChart, e.g. font sizes.
+ *
+ */
 
 class KCHART_EXPORT Measure
 {
 public:
     Measure();
-    /*implicit*/ Measure( qreal value,
-                          KChartEnums::MeasureCalculationMode mode = KChartEnums::MeasureCalculationModeAuto,
-                          KChartEnums::MeasureOrientation orientation = KChartEnums::MeasureOrientationAuto );
-    Measure( const Measure& );
-    Measure &operator= ( const Measure& );
+    /*implicit*/ Measure(qreal value,
+                         KChartEnums::MeasureCalculationMode mode = KChartEnums::MeasureCalculationModeAuto,
+                         KChartEnums::MeasureOrientation orientation = KChartEnums::MeasureOrientationAuto);
+    Measure(const Measure &);
+    Measure &operator=(const Measure &);
 
-    void setValue( qreal val ) { mValue = val; }
-    qreal value() const { return mValue; }
+    void setValue(qreal val)
+    {
+        mValue = val;
+    }
+    qreal value() const
+    {
+        return mValue;
+    }
 
-    void setCalculationMode( KChartEnums::MeasureCalculationMode mode ) { mMode = mode; }
-    KChartEnums::MeasureCalculationMode calculationMode() const { return mMode; }
+    void setCalculationMode(KChartEnums::MeasureCalculationMode mode)
+    {
+        mMode = mode;
+    }
+    KChartEnums::MeasureCalculationMode calculationMode() const
+    {
+        return mMode;
+    }
 
     /**
-      * The reference area must either be derived from AbstractArea
-      * or from QWidget, so it can also be derived from AbstractAreaWidget.
-      */
-    void setRelativeMode( const QObject * area,
-                          KChartEnums::MeasureOrientation orientation )
+     * The reference area must either be derived from AbstractArea
+     * or from QWidget, so it can also be derived from AbstractAreaWidget.
+     */
+    void setRelativeMode(const QObject *area, KChartEnums::MeasureOrientation orientation)
     {
         mMode = KChartEnums::MeasureCalculationModeRelative;
         mArea = area;
@@ -72,45 +84,58 @@ public:
     setCalculationMode( KChartEnums::MeasureCalculationModeAbsolute );
 \endverbatim
      */
-    void setAbsoluteValue( qreal val )
+    void setAbsoluteValue(qreal val)
     {
         mMode = KChartEnums::MeasureCalculationModeAbsolute;
         mValue = val;
     }
 
     /**
-      * The reference area must either be derived from AbstractArea
-      * or from QWidget, so it can also be derived from AbstractAreaWidget.
-      */
-    void setReferenceArea( const QObject * area ) { mArea = area; }
+     * The reference area must either be derived from AbstractArea
+     * or from QWidget, so it can also be derived from AbstractAreaWidget.
+     */
+    void setReferenceArea(const QObject *area)
+    {
+        mArea = area;
+    }
     /**
-      * The returned reference area will be derived from AbstractArea
-      * or QWidget or both.
-      */
-    const QObject * referenceArea() const { return mArea; }
+     * The returned reference area will be derived from AbstractArea
+     * or QWidget or both.
+     */
+    const QObject *referenceArea() const
+    {
+        return mArea;
+    }
 
-    void setReferenceOrientation( KChartEnums::MeasureOrientation orientation ) { mOrientation = orientation; }
-    KChartEnums::MeasureOrientation referenceOrientation() const { return mOrientation; }
+    void setReferenceOrientation(KChartEnums::MeasureOrientation orientation)
+    {
+        mOrientation = orientation;
+    }
+    KChartEnums::MeasureOrientation referenceOrientation() const
+    {
+        return mOrientation;
+    }
 
     /**
-      * The reference area must either be derived from AbstractArea
-      * or from QWidget, so it can also be derived from AbstractAreaWidget.
-      */
-    qreal calculatedValue( const QObject * autoArea, KChartEnums::MeasureOrientation autoOrientation ) const;
-    qreal calculatedValue( const QSizeF& autoSize, KChartEnums::MeasureOrientation autoOrientation ) const;
-    const QSizeF sizeOfArea( const QObject* area ) const;
+     * The reference area must either be derived from AbstractArea
+     * or from QWidget, so it can also be derived from AbstractAreaWidget.
+     */
+    qreal calculatedValue(const QObject *autoArea, KChartEnums::MeasureOrientation autoOrientation) const;
+    qreal calculatedValue(const QSizeF &autoSize, KChartEnums::MeasureOrientation autoOrientation) const;
+    const QSizeF sizeOfArea(const QObject *area) const;
 
-    bool operator==( const Measure& ) const;
-    bool operator!=( const Measure& other ) const { return !operator==(other); }
+    bool operator==(const Measure &) const;
+    bool operator!=(const Measure &other) const
+    {
+        return !operator==(other);
+    }
 
 private:
     qreal mValue;
     KChartEnums::MeasureCalculationMode mMode;
-    const QObject* mArea;
+    const QObject *mArea;
     KChartEnums::MeasureOrientation mOrientation;
 }; // End of class Measure
-
-
 
 /**
  * Auxiliary class used by the KChart::Measure and KChart::Chart class.
@@ -126,7 +151,7 @@ private:
 class GlobalMeasureScaling
 {
 public:
-    static GlobalMeasureScaling* instance();
+    static GlobalMeasureScaling *instance();
 
     GlobalMeasureScaling();
     virtual ~GlobalMeasureScaling();
@@ -147,27 +172,27 @@ public:
     /**
      * Return the currently active factors.
      */
-    static const QPair< qreal, qreal > currentFactors();
+    static const QPair<qreal, qreal> currentFactors();
 
     /**
      * Set the paint device to use for calculating font metrics.
      */
-    static void setPaintDevice( QPaintDevice* paintDevice );
+    static void setPaintDevice(QPaintDevice *paintDevice);
 
     /**
      * Return the paint device to use for calculating font metrics.
      */
-    static QPaintDevice* paintDevice();
+    static QPaintDevice *paintDevice();
 
 private:
-    QStack< QPair< qreal, qreal > > mFactors;
-    QPaintDevice* m_paintDevice;
+    QStack<QPair<qreal, qreal>> mFactors;
+    QPaintDevice *m_paintDevice;
 };
 
 }
 
 #if !defined(QT_NO_DEBUG_STREAM)
-KCHART_EXPORT QDebug operator<<(QDebug, const KChart::Measure& );
+KCHART_EXPORT QDebug operator<<(QDebug, const KChart::Measure &);
 #endif /* QT_NO_DEBUG_STREAM */
 
 #endif // KCHARTMEASURE_H

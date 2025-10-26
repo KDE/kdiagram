@@ -24,46 +24,47 @@
  *  \internal
  */
 
-#include "KChartTextArea.h"
 #include "KChartAbstractAreaBase_p.h"
 #include "KChartMath_p.h"
+#include "KChartTextArea.h"
 
-
-namespace KChart {
+namespace KChart
+{
 
 /**
  * \internal
  */
-    class Q_DECL_HIDDEN TextArea::Private : public AbstractAreaBase::Private
-    {
-        friend class TextArea;
-    public:
-        explicit Private();
-        ~Private() override;
+class Q_DECL_HIDDEN TextArea::Private : public AbstractAreaBase::Private
+{
+    friend class TextArea;
 
-        Private( const Private& rhs ) :
-            AbstractAreaBase::Private( rhs )
-            {
-                // Just for consistency
-            }
-    };
+public:
+    explicit Private();
+    ~Private() override;
 
+    Private(const Private &rhs)
+        : AbstractAreaBase::Private(rhs)
+    {
+        // Just for consistency
+    }
+};
 
-    inline TextArea::TextArea( Private * p )
-        :  QObject(), AbstractAreaBase( p ), TextLayoutItem()
-    {
-        init();
-    }
-    inline TextArea::Private * TextArea::d_func()
-    {
-        return static_cast<Private*>( AbstractAreaBase::d_func() );
-    }
-    inline const TextArea::Private * TextArea::d_func() const
-    {
-        return static_cast<const Private*>( AbstractAreaBase::d_func() );
-    }
+inline TextArea::TextArea(Private *p)
+    : QObject()
+    , AbstractAreaBase(p)
+    , TextLayoutItem()
+{
+    init();
+}
+inline TextArea::Private *TextArea::d_func()
+{
+    return static_cast<Private *>(AbstractAreaBase::d_func());
+}
+inline const TextArea::Private *TextArea::d_func() const
+{
+    return static_cast<const Private *>(AbstractAreaBase::d_func());
+}
 
 }
 
 #endif /* KCHART_TEXT_AREA_P_H */
-

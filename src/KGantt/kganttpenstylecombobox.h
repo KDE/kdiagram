@@ -17,20 +17,21 @@ QT_BEGIN_NAMESPACE
 class QPaintEvent;
 QT_END_NAMESPACE
 
-namespace KGantt {
+namespace KGantt
+{
 
-    class KGANTT_EXPORT PenStyleComboBox : public QComboBox
-    {
-        Q_OBJECT
-    public:
-        explicit PenStyleComboBox(QWidget *parent = nullptr);
+class KGANTT_EXPORT PenStyleComboBox : public QComboBox
+{
+    Q_OBJECT
+public:
+    explicit PenStyleComboBox(QWidget *parent = nullptr);
 
-        void setCurrentStyle(Qt::PenStyle style);
-        Qt::PenStyle currentStyle() const;
+    void setCurrentStyle(Qt::PenStyle style);
+    Qt::PenStyle currentStyle() const;
 
-    protected:
-        void paintEvent(QPaintEvent *pe) override;
-    };
+protected:
+    void paintEvent(QPaintEvent *pe) override;
+};
 }
 
 #endif

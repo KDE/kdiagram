@@ -9,36 +9,41 @@
 #ifndef KCHARTRADARGrid_H
 #define KCHARTRADARGrid_H
 
-//#include "KChartRadarCoordinatePlane.h"
+// #include "KChartRadarCoordinatePlane.h"
 #include "KChartAbstractGrid.h"
 
-namespace KChart {
+namespace KChart
+{
 
-    class PaintContext;
-    class RadarCoordinatePlane;
+class PaintContext;
+class RadarCoordinatePlane;
 
-    /**
-     * \internal
-     *
-     * \brief Class for the grid in a radar plane.
-     *
-     * The RadarGrid interface is used
-     * for calculating and for drawing
-     * the grid lines of a radar charts including "axis" 
-     * labels.
-     */
-    class RadarGrid : public AbstractGrid
+/**
+ * \internal
+ *
+ * \brief Class for the grid in a radar plane.
+ *
+ * The RadarGrid interface is used
+ * for calculating and for drawing
+ * the grid lines of a radar charts including "axis"
+ * labels.
+ */
+class RadarGrid : public AbstractGrid
+{
+public:
+    RadarGrid()
+        : AbstractGrid()
     {
-    public:
-        RadarGrid() : AbstractGrid() {}
-        ~RadarGrid() override {}
+    }
+    ~RadarGrid() override
+    {
+    }
 
-        void drawGrid( PaintContext* context ) override;
+    void drawGrid(PaintContext *context) override;
 
-    private:
-        DataDimensionsList calculateGrid(
-            const DataDimensionsList& rawDataDimensions ) const override;
-    };
+private:
+    DataDimensionsList calculateGrid(const DataDimensionsList &rawDataDimensions) const override;
+};
 
 }
 

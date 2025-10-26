@@ -20,12 +20,12 @@
 // We mean it.
 //
 
-#include "KChartRingDiagram.h"
 #include "KChartAbstractPieDiagram_p.h"
 #include "KChartMath_p.h"
+#include "KChartRingDiagram.h"
 
-
-namespace KChart {
+namespace KChart
+{
 
 /**
  * \internal
@@ -33,26 +33,27 @@ namespace KChart {
 class Q_DECL_HIDDEN RingDiagram::Private : public AbstractPieDiagram::Private
 {
     friend class RingDiagram;
+
 public:
     Private();
     ~Private() override;
 
-    Private( const Private& rhs ) :
-        AbstractPieDiagram::Private( rhs ),
-        startAngles(),
-        angleLens(),
-        position(),
-        size( 0 ),
-        polygonsToRender()
-        {
-            relativeThickness = rhs.relativeThickness;
-            expandWhenExploded = rhs.expandWhenExploded;
-        }
+    Private(const Private &rhs)
+        : AbstractPieDiagram::Private(rhs)
+        , startAngles()
+        , angleLens()
+        , position()
+        , size(0)
+        , polygonsToRender()
+    {
+        relativeThickness = rhs.relativeThickness;
+        expandWhenExploded = rhs.expandWhenExploded;
+    }
 
 protected:
     // this information needed temporarily at drawing time
-    QVector< QVector < qreal > > startAngles;
-    QVector< QVector < qreal > > angleLens;
+    QVector<QVector<qreal>> startAngles;
+    QVector<QVector<qreal>> angleLens;
     QRectF position;
     qreal size;
     bool relativeThickness;
@@ -61,7 +62,7 @@ protected:
     QMap<qreal, QPolygon> polygonsToRender;
 };
 
-KCHART_IMPL_DERIVED_DIAGRAM( RingDiagram, AbstractPieDiagram, PolarCoordinatePlane )
+KCHART_IMPL_DERIVED_DIAGRAM(RingDiagram, AbstractPieDiagram, PolarCoordinatePlane)
 
 }
 

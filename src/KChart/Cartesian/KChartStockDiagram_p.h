@@ -9,12 +9,13 @@
 #ifndef KCHART_STOCK_DIAGRAM_P_H
 #define KCHART_STOCK_DIAGRAM_P_H
 
-#include "KChartStockDiagram.h"
 #include "KChartAbstractCartesianDiagram_p.h"
 #include "KChartCartesianDiagramDataCompressor_p.h"
 #include "KChartPaintContext.h"
+#include "KChartStockDiagram.h"
 
-namespace KChart {
+namespace KChart
+{
 
 class Q_DECL_HIDDEN StockDiagram::Private : public AbstractCartesianDiagram::Private
 {
@@ -22,11 +23,14 @@ class Q_DECL_HIDDEN StockDiagram::Private : public AbstractCartesianDiagram::Pri
 
 public:
     Private();
-    Private( const Private& r );
+    Private(const Private &r);
     ~Private() override;
 
     Type type;
-    StockDiagram* stockDiagram() { return static_cast< StockDiagram* >( diagram ); }
+    StockDiagram *stockDiagram()
+    {
+        return static_cast<StockDiagram *>(diagram);
+    }
 
     QBrush upTrendCandlestickBrush;
     QBrush downTrendCandlestickBrush;
@@ -41,26 +45,28 @@ public:
     QPen lowHighLinePen;
     QMap<int, QPen> lowHighLinePens;
 
-
-    void drawOHLCBar( int dataset, const CartesianDiagramDataCompressor::DataPoint &open,
-                      const CartesianDiagramDataCompressor::DataPoint &high,
-                      const CartesianDiagramDataCompressor::DataPoint &low,
-                      const CartesianDiagramDataCompressor::DataPoint &close,
-                      PaintContext *context );
-    void drawHLCBar( int dataset, const CartesianDiagramDataCompressor::DataPoint &high,
+    void drawOHLCBar(int dataset,
+                     const CartesianDiagramDataCompressor::DataPoint &open,
+                     const CartesianDiagramDataCompressor::DataPoint &high,
                      const CartesianDiagramDataCompressor::DataPoint &low,
                      const CartesianDiagramDataCompressor::DataPoint &close,
-                     PaintContext *context );
-    void drawCandlestick( int dataset, const CartesianDiagramDataCompressor::DataPoint &open,
-                          const CartesianDiagramDataCompressor::DataPoint &high,
-                          const CartesianDiagramDataCompressor::DataPoint &low,
-                          const CartesianDiagramDataCompressor::DataPoint &close,
-                          PaintContext *context );
+                     PaintContext *context);
+    void drawHLCBar(int dataset,
+                    const CartesianDiagramDataCompressor::DataPoint &high,
+                    const CartesianDiagramDataCompressor::DataPoint &low,
+                    const CartesianDiagramDataCompressor::DataPoint &close,
+                    PaintContext *context);
+    void drawCandlestick(int dataset,
+                         const CartesianDiagramDataCompressor::DataPoint &open,
+                         const CartesianDiagramDataCompressor::DataPoint &high,
+                         const CartesianDiagramDataCompressor::DataPoint &low,
+                         const CartesianDiagramDataCompressor::DataPoint &close,
+                         PaintContext *context);
 
 private:
-    void drawLine( int dataset, int col, const QPointF &point1, const QPointF &p2, PaintContext *context );
-    QPointF projectPoint( PaintContext *context, const QPointF &point ) const;
-    QRectF projectCandlestick( PaintContext *context, const QPointF &open, const QPointF &close, qreal width ) const;
+    void drawLine(int dataset, int col, const QPointF &point1, const QPointF &p2, PaintContext *context);
+    QPointF projectPoint(PaintContext *context, const QPointF &point) const;
+    QRectF projectCandlestick(PaintContext *context, const QPointF &open, const QPointF &close, qreal width) const;
     int openValueColumn() const;
     int highValueColumn() const;
     int lowValueColumn() const;
@@ -69,9 +75,8 @@ private:
     class ThreeDPainter;
 };
 
-KCHART_IMPL_DERIVED_DIAGRAM( StockDiagram, AbstractCartesianDiagram, CartesianCoordinatePlane )
+KCHART_IMPL_DERIVED_DIAGRAM(StockDiagram, AbstractCartesianDiagram, CartesianCoordinatePlane)
 
 }
 
 #endif // KCHART_STOCK_DIAGRAM_P_H
-

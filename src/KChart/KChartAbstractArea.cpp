@@ -16,23 +16,20 @@
 #include <QPainter>
 #include <QRect>
 
-
 using namespace KChart;
 
 #define d (d_func())
 
-AbstractArea::Private::Private() :
-    AbstractAreaBase::Private()
+AbstractArea::Private::Private()
+    : AbstractAreaBase::Private()
 {
     // this block left empty intentionally
 }
-
 
 AbstractArea::Private::~Private()
 {
     // this block left empty intentionally
 }
-
 
 AbstractArea::AbstractArea()
     : QObject()
@@ -47,7 +44,6 @@ AbstractArea::~AbstractArea()
     // this block left empty intentionally
 }
 
-
 void AbstractArea::init()
 {
     d->amountOfLeftOverlap = 0;
@@ -56,82 +52,79 @@ void AbstractArea::init()
     d->amountOfBottomOverlap = 0;
 }
 
-
-int AbstractArea::leftOverlap( bool doNotRecalculate ) const
+int AbstractArea::leftOverlap(bool doNotRecalculate) const
 {
     // Re-calculate the sizes,
     // so we also get the amountOf..Overlap members set newly:
-    if ( ! doNotRecalculate )
+    if (!doNotRecalculate)
         sizeHint();
     return d->amountOfLeftOverlap;
 }
-int AbstractArea::rightOverlap( bool doNotRecalculate ) const
+int AbstractArea::rightOverlap(bool doNotRecalculate) const
 {
     // Re-calculate the sizes,
     // so we also get the amountOf..Overlap members set newly:
-    if ( ! doNotRecalculate )
+    if (!doNotRecalculate)
         sizeHint();
     return d->amountOfRightOverlap;
 }
-int AbstractArea::topOverlap( bool doNotRecalculate ) const
+int AbstractArea::topOverlap(bool doNotRecalculate) const
 {
     // Re-calculate the sizes,
     // so we also get the amountOf..Overlap members set newly:
-    if ( ! doNotRecalculate )
+    if (!doNotRecalculate)
         sizeHint();
     return d->amountOfTopOverlap;
 }
-int AbstractArea::bottomOverlap( bool doNotRecalculate ) const
+int AbstractArea::bottomOverlap(bool doNotRecalculate) const
 {
     // Re-calculate the sizes,
     // so we also get the amountOf..Overlap members set newly:
-    if ( ! doNotRecalculate )
+    if (!doNotRecalculate)
         sizeHint();
     return d->amountOfBottomOverlap;
 }
 
-
-void AbstractArea::paintIntoRect( QPainter& painter, const QRect& rect )
+void AbstractArea::paintIntoRect(QPainter &painter, const QRect &rect)
 {
-    const QRect oldGeometry( geometry() );
-    if ( oldGeometry != rect )
-        setGeometry( rect );
-    painter.translate( rect.left(), rect.top() );
-    paintAll( painter );
-    painter.translate( -rect.left(), -rect.top() );
-    if ( oldGeometry != rect )
-        setGeometry( oldGeometry );
+    const QRect oldGeometry(geometry());
+    if (oldGeometry != rect)
+        setGeometry(rect);
+    painter.translate(rect.left(), rect.top());
+    paintAll(painter);
+    painter.translate(-rect.left(), -rect.top());
+    if (oldGeometry != rect)
+        setGeometry(oldGeometry);
 }
 
-void AbstractArea::paintAll( QPainter& painter )
+void AbstractArea::paintAll(QPainter &painter)
 {
     // Paint the background and frame
-    const QRect overlappingArea( geometry().adjusted( -d->amountOfLeftOverlap, -d->amountOfTopOverlap,
-                                                      d->amountOfRightOverlap, d->amountOfBottomOverlap ) );
-    paintBackground( painter, overlappingArea );
-    paintFrame( painter, overlappingArea );
+    const QRect overlappingArea(geometry().adjusted(-d->amountOfLeftOverlap, -d->amountOfTopOverlap, d->amountOfRightOverlap, d->amountOfBottomOverlap));
+    paintBackground(painter, overlappingArea);
+    paintFrame(painter, overlappingArea);
 
     // temporarily adjust the widget size, to be sure all content gets calculated
     // to fit into the inner rectangle
-    const QRect oldGeometry( areaGeometry() );
-    QRect inner( innerRect() );
-    inner.moveTo( oldGeometry.left() + inner.left(), oldGeometry.top() + inner.top() );
+    const QRect oldGeometry(areaGeometry());
+    QRect inner(innerRect());
+    inner.moveTo(oldGeometry.left() + inner.left(), oldGeometry.top() + inner.top());
     const bool needAdjustGeometry = oldGeometry != inner;
-    if ( needAdjustGeometry ) {
+    if (needAdjustGeometry) {
         // don't notify others of this change for internal purposes
         bool prevSignalBlocked = signalsBlocked();
-        blockSignals( true );
-        setGeometry( inner );
-        blockSignals( prevSignalBlocked );
+        blockSignals(true);
+        setGeometry(inner);
+        blockSignals(prevSignalBlocked);
     }
-    paint( &painter );
-    if ( needAdjustGeometry ) {
+    paint(&painter);
+    if (needAdjustGeometry) {
         bool prevSignalBlocked = signalsBlocked();
-        blockSignals( true );
-        setGeometry( oldGeometry );
-        blockSignals( prevSignalBlocked );
+        blockSignals(true);
+        setGeometry(oldGeometry);
+        blockSignals(prevSignalBlocked);
     }
-    //qDebug() << "AbstractAreaWidget::paintAll() done.";
+    // qDebug() << "AbstractAreaWidget::paintAll() done.";
 }
 
 QRect AbstractArea::areaGeometry() const
@@ -141,6 +134,5 @@ QRect AbstractArea::areaGeometry() const
 
 void AbstractArea::positionHasChanged()
 {
-    Q_EMIT positionChanged( this );
+    Q_EMIT positionChanged(this);
 }
-

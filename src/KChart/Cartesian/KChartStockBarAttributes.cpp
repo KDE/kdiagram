@@ -12,7 +12,8 @@
 
 using namespace KChart;
 
-class Q_DECL_HIDDEN StockBarAttributes::Private {
+class Q_DECL_HIDDEN StockBarAttributes::Private
+{
 public:
     Private();
 
@@ -21,24 +22,24 @@ public:
 };
 
 StockBarAttributes::Private::Private()
-    : candlestickWidth( 0.3 )
-    , tickLength( 0.15 )
+    : candlestickWidth(0.3)
+    , tickLength(0.15)
 {
 }
 
 StockBarAttributes::StockBarAttributes()
-    : _d( new Private )
+    : _d(new Private)
 {
 }
 
-StockBarAttributes::StockBarAttributes( const StockBarAttributes& r )
-    : _d( new Private( *r.d ) )
+StockBarAttributes::StockBarAttributes(const StockBarAttributes &r)
+    : _d(new Private(*r.d))
 {
 }
 
-StockBarAttributes &StockBarAttributes::operator= ( const StockBarAttributes& r )
+StockBarAttributes &StockBarAttributes::operator=(const StockBarAttributes &r)
 {
-    if ( this == &r )
+    if (this == &r)
         return *this;
 
     *d = *r.d;
@@ -51,7 +52,7 @@ StockBarAttributes::~StockBarAttributes()
     delete _d;
 }
 
-void StockBarAttributes::setCandlestickWidth( qreal width )
+void StockBarAttributes::setCandlestickWidth(qreal width)
 {
     d->candlestickWidth = width;
 }
@@ -60,7 +61,7 @@ qreal StockBarAttributes::candlestickWidth() const
     return d->candlestickWidth;
 }
 
-void StockBarAttributes::setTickLength( qreal length )
+void StockBarAttributes::setTickLength(qreal length)
 {
     d->tickLength = length;
 }
@@ -70,8 +71,7 @@ qreal StockBarAttributes::tickLength() const
     return d->tickLength;
 }
 
-bool StockBarAttributes::operator==( const StockBarAttributes& r ) const
+bool StockBarAttributes::operator==(const StockBarAttributes &r) const
 {
-    return candlestickWidth() == r.candlestickWidth() &&
-           tickLength() == r.tickLength();
+    return candlestickWidth() == r.candlestickWidth() && tickLength() == r.tickLength();
 }

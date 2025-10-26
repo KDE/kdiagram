@@ -22,39 +22,41 @@
 
 #include <QRectF>
 
+#include "KChartCartesianCoordinatePlane_p.h"
 #include "KChartLeveyJenningsCoordinatePlane.h"
 #include "KChartLeveyJenningsGrid.h"
-#include "KChartCartesianCoordinatePlane_p.h"
 #include "KChartMath_p.h"
 
-namespace KChart {
+namespace KChart
+{
 
-    class CartesianAxis;
+class CartesianAxis;
 
-    /**
-     * \internal
-     */
+/**
+ * \internal
+ */
 
-    class Q_DECL_HIDDEN LeveyJenningsCoordinatePlane::Private : public CartesianCoordinatePlane::Private
+class Q_DECL_HIDDEN LeveyJenningsCoordinatePlane::Private : public CartesianCoordinatePlane::Private
+{
+    friend class LeveyJenningsCoordinatePlane;
+
+public:
+    explicit Private();
+
+    ~Private() override
     {
-        friend class LeveyJenningsCoordinatePlane;
+        // grid is delete in base class dtor
+    }
 
-    public:
-        explicit Private();
+    void initialize() override
+    {
+        grid = new LeveyJenningsGrid();
+    }
 
-        ~Private() override {
-            // grid is delete in base class dtor
-        }
+    LeveyJenningsGridAttributes gridAttributes;
+};
 
-        void initialize() override
-        {
-            grid = new LeveyJenningsGrid();
-        }
-
-        LeveyJenningsGridAttributes gridAttributes;
-    };
-
-    KCHART_IMPL_DERIVED_PLANE(LeveyJenningsCoordinatePlane, CartesianCoordinatePlane)
+KCHART_IMPL_DERIVED_PLANE(LeveyJenningsCoordinatePlane, CartesianCoordinatePlane)
 }
 
 #endif /* KCHARTTERNARYCOORDINATEPLANE_P_H */

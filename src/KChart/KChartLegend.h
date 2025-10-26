@@ -10,72 +10,71 @@
 #define KCHARTLEGEND_H
 
 #include "KChartAbstractAreaWidget.h"
-#include "KChartPosition.h"
 #include "KChartMarkerAttributes.h"
+#include "KChartPosition.h"
 
 class QTextTable;
 
-namespace KChart {
+namespace KChart
+{
 
 class AbstractDiagram;
-typedef QList<AbstractDiagram*> DiagramList;
-typedef QList<const AbstractDiagram*> ConstDiagramList;
+typedef QList<AbstractDiagram *> DiagramList;
+typedef QList<const AbstractDiagram *> ConstDiagramList;
 
 /**
-  * @brief Legend defines the interface for the legend drawing class.
-  *
-  * Legend is the class for drawing legends for all kinds of diagrams ("chart types").
-  *
-  * Legend is drawn on chart level, not per diagram, but you can have more than one
-  * legend per chart, using KChart::Chart::addLegend().
-  *
-  * \note Legend is different from all other classes of KChart, since it can be
-  * displayed outside of the Chart's area.  If you want to, you can embed the legend
-  * into your own widget, or into another part of a bigger layout, into which you might
-  * have inserted the Chart.
-  *
-  * On the other hand, please note that you MUST call Chart::addLegend to get your
-  * legend positioned into the correct place of your chart - if you want to have
-  * the legend shown inside of the chart (that's probably true for most cases).
-  */
+ * @brief Legend defines the interface for the legend drawing class.
+ *
+ * Legend is the class for drawing legends for all kinds of diagrams ("chart types").
+ *
+ * Legend is drawn on chart level, not per diagram, but you can have more than one
+ * legend per chart, using KChart::Chart::addLegend().
+ *
+ * \note Legend is different from all other classes of KChart, since it can be
+ * displayed outside of the Chart's area.  If you want to, you can embed the legend
+ * into your own widget, or into another part of a bigger layout, into which you might
+ * have inserted the Chart.
+ *
+ * On the other hand, please note that you MUST call Chart::addLegend to get your
+ * legend positioned into the correct place of your chart - if you want to have
+ * the legend shown inside of the chart (that's probably true for most cases).
+ */
 class KCHART_EXPORT Legend : public AbstractAreaWidget
 {
     Q_OBJECT
 
-    Q_DISABLE_COPY( Legend )
-    KCHART_DECLARE_PRIVATE_DERIVED_QWIDGET( Legend )
+    Q_DISABLE_COPY(Legend)
+    KCHART_DECLARE_PRIVATE_DERIVED_QWIDGET(Legend)
 
 public:
-    explicit Legend( QWidget* parent = nullptr );
-    explicit Legend( KChart::AbstractDiagram* diagram, QWidget* parent = nullptr );
+    explicit Legend(QWidget *parent = nullptr);
+    explicit Legend(KChart::AbstractDiagram *diagram, QWidget *parent = nullptr);
     ~Legend() override;
 
+    enum LegendStyle {
+        MarkersOnly = 0,
+        LinesOnly = 1,
+        MarkersAndLines = 2
+    };
 
-    enum LegendStyle { MarkersOnly     = 0,
-                       LinesOnly       = 1,
-                       MarkersAndLines = 2 };
-
-
-    void setLegendStyle( LegendStyle style );
+    void setLegendStyle(LegendStyle style);
     LegendStyle legendStyle() const;
 
-
-
     /**
-      * Creates an exact copy of this legend.
-      */
-    virtual Legend * clone() const;
+     * Creates an exact copy of this legend.
+     */
+    virtual Legend *clone() const;
 
     /**
      * Returns true if both legends have the same settings.
      */
-    bool compare( const Legend* other ) const;
+    bool compare(const Legend *other) const;
 
-    void resizeEvent( QResizeEvent * event ) override; // TODO: should be protected
+    void resizeEvent(QResizeEvent *event) override; // TODO: should be protected
 
-    virtual void paint( QPainter* painter ) override;
-    void paint( QPainter* painter, const QRect &rect);
-    void setVisible( bool visible ) override;
+    virtual void paint(QPainter *painter) override;
+    void paint(QPainter *painter, const QRect &rect);
+    void setVisible(bool visible) override;
 
     /**
         Specifies the reference area for font size of title text,
@@ -92,7 +91,7 @@ public:
 
         \sa KChart::Measure, KChartEnums::MeasureCalculationMode
     */
-    void setReferenceArea( const QWidget* area );
+    void setReferenceArea(const QWidget *area);
     /**
         Returns the reference area, that is used for font size of title text,
         and for font size of the item texts, IF automatic area
@@ -100,22 +99,22 @@ public:
 
         \sa setReferenceArea
     */
-    const QWidget* referenceArea() const;
+    const QWidget *referenceArea() const;
 
     /**
-      * The first diagram of the legend or 0 if there was none added to the legend.
-      * @return The first diagram of the legend or 0.
-      *
-      * \sa diagrams, addDiagram, removeDiagram, removeDiagrams, replaceDiagram, setDiagram
-      */
-    KChart::AbstractDiagram* diagram() const;
+     * The first diagram of the legend or 0 if there was none added to the legend.
+     * @return The first diagram of the legend or 0.
+     *
+     * \sa diagrams, addDiagram, removeDiagram, removeDiagrams, replaceDiagram, setDiagram
+     */
+    KChart::AbstractDiagram *diagram() const;
 
     /**
-      * The list of all diagrams associated with the legend.
-      * @return The list of all diagrams associated with the legend.
-      *
-      * \sa diagram, addDiagram, removeDiagram, removeDiagrams, replaceDiagram, setDiagram
-      */
+     * The list of all diagrams associated with the legend.
+     * @return The list of all diagrams associated with the legend.
+     *
+     * \sa diagram, addDiagram, removeDiagram, removeDiagrams, replaceDiagram, setDiagram
+     */
     DiagramList diagrams() const;
 
     /**
@@ -124,59 +123,58 @@ public:
     ConstDiagramList constDiagrams() const;
 
     /**
-      * Add the given diagram to the legend.
-      * @param newDiagram The diagram to add.
-      *
-      * \sa diagram, diagrams, removeDiagram, removeDiagrams, replaceDiagram, setDiagram
-      */
-    void addDiagram( KChart::AbstractDiagram* newDiagram );
+     * Add the given diagram to the legend.
+     * @param newDiagram The diagram to add.
+     *
+     * \sa diagram, diagrams, removeDiagram, removeDiagrams, replaceDiagram, setDiagram
+     */
+    void addDiagram(KChart::AbstractDiagram *newDiagram);
 
     /**
-      * Removes the diagram from the legend's list of diagrams.
-      *
-      * \sa diagram, diagrams, addDiagram, removeDiagrams, replaceDiagram, setDiagram
-      */
-    void removeDiagram( KChart::AbstractDiagram* oldDiagram );
+     * Removes the diagram from the legend's list of diagrams.
+     *
+     * \sa diagram, diagrams, addDiagram, removeDiagrams, replaceDiagram, setDiagram
+     */
+    void removeDiagram(KChart::AbstractDiagram *oldDiagram);
 
     /**
-      * Removes all diagrams from the legend's list of diagrams.
-      *
-      * \sa diagram, diagrams, addDiagram, removeDiagram, replaceDiagram, setDiagram
-      */
+     * Removes all diagrams from the legend's list of diagrams.
+     *
+     * \sa diagram, diagrams, addDiagram, removeDiagram, replaceDiagram, setDiagram
+     */
     void removeDiagrams();
 
     /**
-      * Replaces the old diagram, or appends the
-      * new diagram, it there is none yet.
-      *
-      * @param newDiagram The diagram to be used instead of the old one.
-      * If this parameter is zero, the first diagram will just be removed.
-      *
-      * @param oldDiagram The diagram to be removed by the new one. This
-      * diagram will be deleted automatically. If the parameter is omitted,
-      * the very first diagram will be replaced. In case, there was no
-      * diagram yet, the new diagram will just be added.
-      *
-      * \sa diagram, diagrams, addDiagram, removeDiagram, removeDiagrams, setDiagram
-      */
-    void replaceDiagram( KChart::AbstractDiagram* newDiagram,
-                         KChart::AbstractDiagram* oldDiagram = nullptr );
+     * Replaces the old diagram, or appends the
+     * new diagram, it there is none yet.
+     *
+     * @param newDiagram The diagram to be used instead of the old one.
+     * If this parameter is zero, the first diagram will just be removed.
+     *
+     * @param oldDiagram The diagram to be removed by the new one. This
+     * diagram will be deleted automatically. If the parameter is omitted,
+     * the very first diagram will be replaced. In case, there was no
+     * diagram yet, the new diagram will just be added.
+     *
+     * \sa diagram, diagrams, addDiagram, removeDiagram, removeDiagrams, setDiagram
+     */
+    void replaceDiagram(KChart::AbstractDiagram *newDiagram, KChart::AbstractDiagram *oldDiagram = nullptr);
 
     /**
-      * Returns the offset of the first dataset of \c diagram.
-      *
-      */
-    uint dataSetOffset( KChart::AbstractDiagram* diagram );
+     * Returns the offset of the first dataset of \c diagram.
+     *
+     */
+    uint dataSetOffset(KChart::AbstractDiagram *diagram);
 
     /**
-      * @brief A convenience method doing the same as replaceDiagram( newDiagram, 0 );
-      *
-      * Replaces the first diagram by the given diagram.
-      * If the legend's list of diagram is empty the given diagram is added to the list.
-      *
-      * \sa diagram, diagrams, addDiagram, removeDiagram, removeDiagrams, replaceDiagram
-      */
-    void setDiagram( KChart::AbstractDiagram* newDiagram );
+     * @brief A convenience method doing the same as replaceDiagram( newDiagram, 0 );
+     *
+     * Replaces the first diagram by the given diagram.
+     * If the legend's list of diagram is empty the given diagram is added to the list.
+     *
+     * \sa diagram, diagrams, addDiagram, removeDiagram, removeDiagrams, replaceDiagram
+     */
+    void setDiagram(KChart::AbstractDiagram *newDiagram);
 
     /**
      * \brief Specify the position of a non-floating legend.
@@ -186,7 +184,7 @@ public:
      *
      * \sa setAlignment, setFloatingPosition
      */
-    void setPosition( Position position );
+    void setPosition(Position position);
 
     /**
      * Returns the position of a non-floating legend.
@@ -202,7 +200,7 @@ public:
      *
      * \sa alignment, setPosition, setFloatingPosition
      */
-    void setAlignment( Qt::Alignment );
+    void setAlignment(Qt::Alignment);
 
     /**
      * Returns the alignment of a non-floating legend.
@@ -215,30 +213,30 @@ public:
      *
      * \sa textAlignment()
      */
-    void setTextAlignment( Qt::Alignment );
+    void setTextAlignment(Qt::Alignment);
 
     /**
      * \brief Returns the alignment used while rendering text elements within the legend.
      *
      * \sa setTextAlignment()
      */
-     Qt::Alignment textAlignment() const;
+    Qt::Alignment textAlignment() const;
 
-     /**
-      * \brief Specify the alignment of the legend symbol( alignment of Legend::LinesOnly)
-      *  within the legend
-      *
-      * \sa legendSymbolAlignment()
-      */
-     void setLegendSymbolAlignment(Qt::Alignment);
+    /**
+     * \brief Specify the alignment of the legend symbol( alignment of Legend::LinesOnly)
+     *  within the legend
+     *
+     * \sa legendSymbolAlignment()
+     */
+    void setLegendSymbolAlignment(Qt::Alignment);
 
-     /**
-      * \brief Returns the alignment used while drawing legend symbol(alignment of Legend::LinesOnly)
-      * within the legend.
-      *
-      * \sa setLegendSymbolAlignment()
-      */
-     Qt::Alignment legendSymbolAlignment() const;
+    /**
+     * \brief Returns the alignment used while drawing legend symbol(alignment of Legend::LinesOnly)
+     * within the legend.
+     *
+     * \sa setLegendSymbolAlignment()
+     */
+    Qt::Alignment legendSymbolAlignment() const;
 
     /**
      * \brief Specify the position and alignment of a floating legend.
@@ -284,7 +282,7 @@ m_legend->setFloatingPosition( relativePosition );
      *
      * \sa setPosition, setAlignment
      */
-    void setFloatingPosition( const RelativePosition& relativePosition );
+    void setFloatingPosition(const RelativePosition &relativePosition);
 
     /**
      * Returns the position of a floating legend.
@@ -292,16 +290,14 @@ m_legend->setFloatingPosition( relativePosition );
      */
     const RelativePosition floatingPosition() const;
 
-    void setOrientation( Qt::Orientation orientation );
+    void setOrientation(Qt::Orientation orientation);
     Qt::Orientation orientation() const;
 
-
-    void setSortOrder( Qt::SortOrder order );
+    void setSortOrder(Qt::SortOrder order);
     Qt::SortOrder sortOrder() const;
 
-    void setShowLines( bool legendShowLines );
+    void setShowLines(bool legendShowLines);
     bool showLines() const;
-
 
     /**
         \brief Removes all legend texts that might have been set by setText.
@@ -309,9 +305,9 @@ m_legend->setFloatingPosition( relativePosition );
         This resets the Legend to default behaviour: Texts are created automatically.
     */
     void resetTexts();
-    void setText( uint dataset, const QString& text );
-    QString text( uint dataset ) const;
-    const QMap<uint,QString> texts() const;
+    void setText(uint dataset, const QString &text);
+    QString text(uint dataset) const;
+    const QMap<uint, QString> texts() const;
 
     /**
      * Sets a list of datasets that are to be hidden in the legend.
@@ -320,41 +316,41 @@ m_legend->setFloatingPosition( relativePosition );
      * All datasets are shown by default, which means
      * that hiddenDatasets() returns an empty list.
      */
-    void setHiddenDatasets( const QList<uint> hiddenDatasets );
+    void setHiddenDatasets(const QList<uint> hiddenDatasets);
     const QList<uint> hiddenDatasets() const;
-    void setDatasetHidden( uint dataset, bool hidden );
-    bool datasetIsHidden( uint dataset ) const;
+    void setDatasetHidden(uint dataset, bool hidden);
+    bool datasetIsHidden(uint dataset) const;
 
     uint datasetCount() const;
 
     void setDefaultColors();
     void setRainbowColors();
-    void setSubduedColors( bool ordered = false );
+    void setSubduedColors(bool ordered = false);
 
-    void setBrushesFromDiagram( KChart::AbstractDiagram* diagram );
+    void setBrushesFromDiagram(KChart::AbstractDiagram *diagram);
 
     /**
      * Note: there is no color() getter method, since setColor
      * just sets a QBrush with the respective color, so the
      * brush() getter method is sufficient.
      */
-    void setColor( uint dataset, const QColor& color );
+    void setColor(uint dataset, const QColor &color);
 
-    void setBrush( uint dataset, const QBrush& brush );
-    QBrush brush( uint dataset ) const;
-    const QMap<uint,QBrush> brushes() const;
+    void setBrush(uint dataset, const QBrush &brush);
+    QBrush brush(uint dataset) const;
+    const QMap<uint, QBrush> brushes() const;
 
-    void setPen( uint dataset, const QPen& pen );
-    QPen pen( uint dataset ) const;
-    const QMap<uint,QPen> pens() const;
+    void setPen(uint dataset, const QPen &pen);
+    QPen pen(uint dataset) const;
+    const QMap<uint, QPen> pens() const;
 
     /**
      * Note that any sizes specified via setMarkerAttributes are ignored,
      * unless you disable the automatic size calculation, by saying
      * setUseAutomaticMarkerSize( false )
      */
-    void setMarkerAttributes( uint dataset, const MarkerAttributes& );
-    MarkerAttributes markerAttributes( uint dataset ) const;
+    void setMarkerAttributes(uint dataset, const MarkerAttributes &);
+    MarkerAttributes markerAttributes(uint dataset) const;
     const QMap<uint, MarkerAttributes> markerAttributes() const;
 
     /**
@@ -364,19 +360,19 @@ m_legend->setFloatingPosition( relativePosition );
      * Set this to false, if you want to specify the marker sizes via setMarkerAttributes
      * or if you want the Legend to use the same marker sizes as they are used in the Diagrams.
      */
-    void setUseAutomaticMarkerSize( bool useAutomaticMarkerSize );
+    void setUseAutomaticMarkerSize(bool useAutomaticMarkerSize);
     bool useAutomaticMarkerSize() const;
 
-    void setTextAttributes( const TextAttributes &a );
+    void setTextAttributes(const TextAttributes &a);
     TextAttributes textAttributes() const;
 
-    void setTitleText( const QString& text );
+    void setTitleText(const QString &text);
     QString titleText() const;
 
-    void setTitleTextAttributes( const TextAttributes &a );
+    void setTitleTextAttributes(const TextAttributes &a);
     TextAttributes titleTextAttributes() const;
 
-    void setSpacing( uint space );
+    void setSpacing(uint space);
     uint spacing() const;
 
     // called internally by KChart::Chart, when painting into a custom QPainter
@@ -385,24 +381,23 @@ m_legend->setFloatingPosition( relativePosition );
     QSize minimumSizeHint() const override;
     QSize sizeHint() const override;
     bool hasHeightForWidth() const override;
-    int heightForWidth( int width ) const override;
+    int heightForWidth(int width) const override;
     void needSizeHint() override;
-    void resizeLayout( const QSize& size ) override;
+    void resizeLayout(const QSize &size) override;
 
 Q_SIGNALS:
-    void destroyedLegend( KChart::Legend* );
+    void destroyedLegend(KChart::Legend *);
     /** Emitted upon change of a property of the Legend or any of its components. */
     void propertiesChanged();
 
 private Q_SLOTS:
     void emitPositionChanged();
-    void resetDiagram( KChart::AbstractDiagram* );
+    void resetDiagram(KChart::AbstractDiagram *);
     void activateTheLayout();
     void setNeedRebuild();
     void buildLegend();
 }; // End of class Legend
 
 }
-
 
 #endif // KCHARTLEGEND_H

@@ -9,71 +9,78 @@
 #ifndef KGANTTGRAPHICSVIEW_P_H
 #define KGANTTGRAPHICSVIEW_P_H
 
-#include "kganttgraphicsview.h"
-#include "kganttgraphicsscene.h"
 #include "kganttdatetimegrid.h"
+#include "kganttgraphicsscene.h"
+#include "kganttgraphicsview.h"
 
 #include <QPointer>
 
-namespace KGantt {
-    class HeaderWidget : public QWidget {
-        Q_OBJECT
-    public:
-        explicit HeaderWidget( GraphicsView* parent );
-        ~HeaderWidget() override;
+namespace KGantt
+{
+class HeaderWidget : public QWidget
+{
+    Q_OBJECT
+public:
+    explicit HeaderWidget(GraphicsView *parent);
+    ~HeaderWidget() override;
 
-        GraphicsView* view() const { return qobject_cast<GraphicsView*>( parent() );}
+    GraphicsView *view() const
+    {
+        return qobject_cast<GraphicsView *>(parent());
+    }
 
-    public Q_SLOTS:
-        void scrollTo( int );
-    protected:
-        /*reimp*/ bool event( QEvent* ev ) override;
-        /*reimp*/ void paintEvent( QPaintEvent* ev ) override;
-        /*reimp*/ void mousePressEvent(QMouseEvent *event) override;
-        /*reimp*/ void mouseReleaseEvent(QMouseEvent *event) override;
-        /*reimp*/ void mouseMoveEvent(QMouseEvent *event) override;
-        /*reimp*/ void wheelEvent(QWheelEvent *event) override;
-        /*reimp*/ void contextMenuEvent( QContextMenuEvent* ev ) override;
-    private:
-        qreal m_offset;
-        DateTimeGrid::HeaderType m_headerType;
-        int m_mousePosX;
-    };
+public Q_SLOTS:
+    void scrollTo(int);
 
-    class Q_DECL_HIDDEN GraphicsView::Private {
-        Q_DISABLE_COPY( Private )
-    public:
-        explicit Private(GraphicsView* _q);
-        ~Private();
+protected:
+    /*reimp*/ bool event(QEvent *ev) override;
+    /*reimp*/ void paintEvent(QPaintEvent *ev) override;
+    /*reimp*/ void mousePressEvent(QMouseEvent *event) override;
+    /*reimp*/ void mouseReleaseEvent(QMouseEvent *event) override;
+    /*reimp*/ void mouseMoveEvent(QMouseEvent *event) override;
+    /*reimp*/ void wheelEvent(QWheelEvent *event) override;
+    /*reimp*/ void contextMenuEvent(QContextMenuEvent *ev) override;
 
-        void updateHeaderGeometry();
+private:
+    qreal m_offset;
+    DateTimeGrid::HeaderType m_headerType;
+    int m_mousePosX;
+};
 
-        void slotGridChanged();
-        void slotHorizontalScrollValueChanged( int val );
+class Q_DECL_HIDDEN GraphicsView::Private
+{
+    Q_DISABLE_COPY(Private)
+public:
+    explicit Private(GraphicsView *_q);
+    ~Private();
 
-        /* slots for QAbstractItemModel signals */
-        void slotColumnsInserted( const QModelIndex& parent,  int start, int end );
-        void slotColumnsRemoved( const QModelIndex& parent,  int start, int end );
-        void slotDataChanged( const QModelIndex& topLeft, const QModelIndex& bottomRight );
-        void slotLayoutChanged();
-        void slotModelReset();
-        void slotRowsInserted( const QModelIndex& parent,  int start, int end );
-        void slotRowsAboutToBeRemoved( const QModelIndex& parent,  int start, int end );
-        void slotRowsRemoved( const QModelIndex& parent,  int start, int end );
+    void updateHeaderGeometry();
 
-        void slotItemClicked( const QModelIndex& idx );
-        void slotItemDoubleClicked( const QModelIndex& idx );
+    void slotGridChanged();
+    void slotHorizontalScrollValueChanged(int val);
 
-        void slotHeaderContextMenuRequested( const QPoint& pt );
+    /* slots for QAbstractItemModel signals */
+    void slotColumnsInserted(const QModelIndex &parent, int start, int end);
+    void slotColumnsRemoved(const QModelIndex &parent, int start, int end);
+    void slotDataChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight);
+    void slotLayoutChanged();
+    void slotModelReset();
+    void slotRowsInserted(const QModelIndex &parent, int start, int end);
+    void slotRowsAboutToBeRemoved(const QModelIndex &parent, int start, int end);
+    void slotRowsRemoved(const QModelIndex &parent, int start, int end);
 
-        void removeConstraintsRecursive( QAbstractProxyModel *summaryModel, const QModelIndex& index );
+    void slotItemClicked(const QModelIndex &idx);
+    void slotItemDoubleClicked(const QModelIndex &idx);
 
-        GraphicsView* q;
-        AbstractRowController* rowcontroller;
-        HeaderWidget headerwidget;
-        GraphicsScene scene;
-    };
+    void slotHeaderContextMenuRequested(const QPoint &pt);
+
+    void removeConstraintsRecursive(QAbstractProxyModel *summaryModel, const QModelIndex &index);
+
+    GraphicsView *q;
+    AbstractRowController *rowcontroller;
+    HeaderWidget headerwidget;
+    GraphicsScene scene;
+};
 }
 
 #endif /* KGANTTGRAPHICSVIEW_P_H */
-

@@ -9,52 +9,54 @@
 #ifndef KCHARTHEADERFOOTER_H
 #define KCHARTHEADERFOOTER_H
 
-#include "KChartTextArea.h"
 #include "KChartPosition.h"
+#include "KChartTextArea.h"
 
-namespace KChart {
+namespace KChart
+{
 
-    class Chart;
-    class TextAttributes;
+class Chart;
+class TextAttributes;
 
 /**
-  * @brief A header or footer displaying text above or below charts
-  */
+ * @brief A header or footer displaying text above or below charts
+ */
 class KCHART_EXPORT HeaderFooter : public TextArea
 {
     Q_OBJECT
 
-    KCHART_DECLARE_PRIVATE_DERIVED_PARENT( HeaderFooter, Chart* )
+    KCHART_DECLARE_PRIVATE_DERIVED_PARENT(HeaderFooter, Chart *)
 
 public:
-    HeaderFooter( Chart* parent = nullptr );
+    HeaderFooter(Chart *parent = nullptr);
     ~HeaderFooter() override;
 
     /**
-      * Creates an exact copy of this header/footer.
-      */
-    virtual HeaderFooter * clone() const;
+     * Creates an exact copy of this header/footer.
+     */
+    virtual HeaderFooter *clone() const;
 
-    bool compare( const HeaderFooter& other ) const;
+    bool compare(const HeaderFooter &other) const;
 
-    enum HeaderFooterType{ Header,
-                           Footer };
+    enum HeaderFooterType {
+        Header,
+        Footer
+    };
 
-    void setType( HeaderFooterType type );
+    void setType(HeaderFooterType type);
     HeaderFooterType type() const;
 
-    void setPosition( Position position );
+    void setPosition(Position position);
     Position position() const;
 
-    void setParent( QObject* parent );
+    void setParent(QObject *parent);
 
 Q_SIGNALS:
-    void destroyedHeaderFooter( KChart::HeaderFooter* );
-    void positionChanged( KChart::HeaderFooter* );
+    void destroyedHeaderFooter(KChart::HeaderFooter *);
+    void positionChanged(KChart::HeaderFooter *);
 
 }; // End of class HeaderFooter
 
 }
-
 
 #endif // KCHARTHEADERFOOTER_H

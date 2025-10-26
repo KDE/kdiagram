@@ -9,22 +9,28 @@
 #ifndef KGANTTABSTRACTGRID_P_H
 #define KGANTTABSTRACTGRID_P_H
 
-#include <QPointer>
 #include <QAbstractItemModel>
 #include <QPersistentModelIndex>
+#include <QPointer>
 
 #include "kganttabstractgrid.h"
 
-namespace KGantt {
-    class Q_DECL_HIDDEN AbstractGrid::Private {
-    public:
-        virtual ~Private() {}
-        QPointer<QAbstractItemModel> model;
-        QPersistentModelIndex root;
-    };
+namespace KGantt
+{
+class Q_DECL_HIDDEN AbstractGrid::Private
+{
+public:
+    virtual ~Private()
+    {
+    }
+    QPointer<QAbstractItemModel> model;
+    QPersistentModelIndex root;
+};
 
-    inline AbstractGrid::AbstractGrid( Private* d ) : _d( d ) {}
+inline AbstractGrid::AbstractGrid(Private *d)
+    : _d(d)
+{
+}
 }
 
 #endif /* KGANTTABSTRACTGRID_P_H */
-

@@ -2,7 +2,7 @@
  * SPDX-FileCopyrightText: 2018 Dag Andersen <danders@get2net.dk>
  *
  * This file is part of the KGantt library.
- * 
+ *
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
@@ -40,12 +40,12 @@ void TestKGanttConstraint::test()
 
     Constraint c3(QModelIndex(), QModelIndex(), Constraint::TypeHard);
     QCOMPARE(c3.type(), Constraint::TypeHard);
-    QVERIFY(c1 != c3);    
+    QVERIFY(c1 != c3);
     QVERIFY(c1.compareIndexes(c3));
-    
+
     Constraint c4(QModelIndex(), QModelIndex(), Constraint::TypeSoft, Constraint::StartFinish);
     QCOMPARE(c4.relationType(), Constraint::StartFinish);
-    QVERIFY(c1 != c4);    
+    QVERIFY(c1 != c4);
     QVERIFY(c1.compareIndexes(c4));
 
     Constraint c5 = c4;

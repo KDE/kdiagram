@@ -9,50 +9,54 @@
 #ifndef KCHARTTHREEDPIEATTRIBUTES_H
 #define KCHARTTHREEDPIEATTRIBUTES_H
 
-#include <QMetaType>
 #include "KChartAbstractThreeDAttributes.h"
 #include "KChartGlobal.h"
+#include <QMetaType>
 
-namespace KChart {
+namespace KChart
+{
 
-  /**
-    * @brief A set of 3D pie attributes
-    */
-  class KCHART_EXPORT ThreeDPieAttributes : public AbstractThreeDAttributes
-  {
-  public:
+/**
+ * @brief A set of 3D pie attributes
+ */
+class KCHART_EXPORT ThreeDPieAttributes : public AbstractThreeDAttributes
+{
+public:
     ThreeDPieAttributes();
-    ThreeDPieAttributes( const ThreeDPieAttributes& );
-    ThreeDPieAttributes &operator= ( const ThreeDPieAttributes& );
+    ThreeDPieAttributes(const ThreeDPieAttributes &);
+    ThreeDPieAttributes &operator=(const ThreeDPieAttributes &);
 
     ~ThreeDPieAttributes() override;
 
     /* threeD Pies specific */
-    void setUseShadowColors( bool useShadowColors );
+    void setUseShadowColors(bool useShadowColors);
     bool useShadowColors() const;
 
-    bool operator==( const ThreeDPieAttributes& ) const;
-    inline bool operator!=( const ThreeDPieAttributes& other ) const { return !operator==(other); }
+    bool operator==(const ThreeDPieAttributes &) const;
+    inline bool operator!=(const ThreeDPieAttributes &other) const
+    {
+        return !operator==(other);
+    }
 
     KCHART_DECLARE_SWAP_DERIVED(ThreeDPieAttributes)
 
 private:
     KCHART_DECLARE_PRIVATE_DERIVED(ThreeDPieAttributes)
 
-  }; // End of class ThreeDPieAttributes
+}; // End of class ThreeDPieAttributes
 
 }
 
 #if !defined(QT_NO_DEBUG_STREAM)
-KCHART_EXPORT QDebug operator<<(QDebug, const KChart::ThreeDPieAttributes& );
+KCHART_EXPORT QDebug operator<<(QDebug, const KChart::ThreeDPieAttributes &);
 #endif /* QT_NO_DEBUG_STREAM */
 
-KCHART_DECLARE_SWAP_SPECIALISATION_DERIVED( KChart::ThreeDPieAttributes )
+KCHART_DECLARE_SWAP_SPECIALISATION_DERIVED(KChart::ThreeDPieAttributes)
 
 QT_BEGIN_NAMESPACE
-Q_DECLARE_TYPEINFO( KChart::ThreeDPieAttributes, Q_MOVABLE_TYPE );
+Q_DECLARE_TYPEINFO(KChart::ThreeDPieAttributes, Q_MOVABLE_TYPE);
 QT_END_NAMESPACE
 
-Q_DECLARE_METATYPE( KChart::ThreeDPieAttributes )
+Q_DECLARE_METATYPE(KChart::ThreeDPieAttributes)
 
 #endif // KCHARTTHREEDPIEATTRIBUTES_H

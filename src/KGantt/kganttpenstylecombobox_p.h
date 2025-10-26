@@ -13,21 +13,22 @@
 #include <QListView>
 #include <QStyleOptionMenuItem>
 
-namespace KGantt {
+namespace KGantt
+{
 
-    class PenStyleComboBoxListView : public QListView
-    {
-        Q_OBJECT
-    public:
-        PenStyleComboBoxListView(QComboBox *cmb = nullptr);
-        
-    protected:
-        void resizeEvent(QResizeEvent *event) override;
-        void paintEvent(QPaintEvent *e) override;
+class PenStyleComboBoxListView : public QListView
+{
+    Q_OBJECT
+public:
+    PenStyleComboBoxListView(QComboBox *cmb = nullptr);
 
-    private:
-        QComboBox *combo;
-    };
+protected:
+    void resizeEvent(QResizeEvent *event) override;
+    void paintEvent(QPaintEvent *e) override;
+
+private:
+    QComboBox *combo;
+};
 }
 
 #endif

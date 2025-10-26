@@ -18,26 +18,24 @@
 using namespace KChart;
 
 ThreeDLineAttributes::Private::Private()
-    : lineXRotation( 15 ),
-      lineYRotation( 15 )
+    : lineXRotation(15)
+    , lineYRotation(15)
 {
 }
-
 
 ThreeDLineAttributes::ThreeDLineAttributes()
-    : AbstractThreeDAttributes( new Private() )
-{
-
-}
-
-ThreeDLineAttributes::ThreeDLineAttributes( const ThreeDLineAttributes& r )
-    : AbstractThreeDAttributes( new Private( *r.d) )
+    : AbstractThreeDAttributes(new Private())
 {
 }
 
-ThreeDLineAttributes& ThreeDLineAttributes::operator= ( const ThreeDLineAttributes& r )
+ThreeDLineAttributes::ThreeDLineAttributes(const ThreeDLineAttributes &r)
+    : AbstractThreeDAttributes(new Private(*r.d))
 {
-    if ( this == &r )
+}
+
+ThreeDLineAttributes &ThreeDLineAttributes::operator=(const ThreeDLineAttributes &r)
+{
+    if (this == &r)
         return *this;
 
     *d = *r.d;
@@ -53,17 +51,12 @@ void ThreeDLineAttributes::init()
 {
 }
 
-
-bool ThreeDLineAttributes::operator==( const ThreeDLineAttributes& r ) const
+bool ThreeDLineAttributes::operator==(const ThreeDLineAttributes &r) const
 {
-    return ( lineXRotation() == r.lineXRotation() &&
-             lineYRotation() == r.lineYRotation() &&
-             AbstractThreeDAttributes::operator==(r));
+    return (lineXRotation() == r.lineXRotation() && lineYRotation() == r.lineYRotation() && AbstractThreeDAttributes::operator==(r));
 }
 
-
-
-void ThreeDLineAttributes::setLineXRotation( const uint degrees )
+void ThreeDLineAttributes::setLineXRotation(const uint degrees)
 {
     d->lineXRotation = degrees;
 }
@@ -73,7 +66,7 @@ uint ThreeDLineAttributes::lineXRotation() const
     return d->lineXRotation;
 }
 
-void ThreeDLineAttributes::setLineYRotation( const uint degrees )
+void ThreeDLineAttributes::setLineYRotation(const uint degrees)
 {
     d->lineYRotation = degrees;
 }
@@ -83,17 +76,13 @@ uint ThreeDLineAttributes::lineYRotation() const
     return d->lineYRotation;
 }
 
-
 #if !defined(QT_NO_DEBUG_STREAM)
 
-QDebug operator<<(QDebug dbg, const KChart::ThreeDLineAttributes& a)
+QDebug operator<<(QDebug dbg, const KChart::ThreeDLineAttributes &a)
 {
     dbg << "KChart::ThreeDLineAttributes(";
-    dbg = operator <<( dbg, static_cast<const AbstractThreeDAttributes&>(a) );
-    dbg << " lineXRotation="<< a.lineXRotation()
-        << " lineYRotation="<< a.lineYRotation()
-        << ")";
+    dbg = operator<<(dbg, static_cast<const AbstractThreeDAttributes &>(a));
+    dbg << " lineXRotation=" << a.lineXRotation() << " lineYRotation=" << a.lineYRotation() << ")";
     return dbg;
 }
 #endif /* QT_NO_DEBUG_STREAM */
-

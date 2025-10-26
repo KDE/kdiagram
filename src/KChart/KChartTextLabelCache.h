@@ -9,40 +9,43 @@
 #ifndef KCHARTTEXTLABELCACHE_H
 #define KCHARTTEXTLABELCACHE_H
 
-#include <QPixmap>
-#include <QFont>
 #include <QBrush>
+#include <QFont>
 #include <QPen>
+#include <QPixmap>
 
 #include "KChartEnums.h"
 
 /**
-  * @brief  base class for prerendered elements like labels, pixmaps, markers, etc.
-  */
-class PrerenderedElement {
+ * @brief  base class for prerendered elements like labels, pixmaps, markers, etc.
+ */
+class PrerenderedElement
+{
 public:
     PrerenderedElement();
-    virtual ~PrerenderedElement() {}
+    virtual ~PrerenderedElement()
+    {
+    }
 
     /** Returns the rendered element.
         If any of the properties have change, the element will be
         regenerated. */
-    virtual const QPixmap& pixmap() const = 0;
+    virtual const QPixmap &pixmap() const = 0;
 
     /** Return the location of the reference point relatively to the
         pixmap's origin. */
-    virtual QPointF referencePointLocation( KChartEnums::PositionValue ) const = 0;
+    virtual QPointF referencePointLocation(KChartEnums::PositionValue) const = 0;
 
     /** Set the position of the element. */
-    void setPosition( const QPointF& position );
+    void setPosition(const QPointF &position);
     /** Get the position of the element. */
-    const QPointF& position() const;
+    const QPointF &position() const;
 
     /** Set the reference point of the element.
         Every element has nine possible reference points (all compass
         directions, plus the center.
      */
-    void setReferencePoint( KChartEnums::PositionValue );
+    void setReferencePoint(KChartEnums::PositionValue);
     /** Get the reference point of the element. */
     KChartEnums::PositionValue referencePoint() const;
 
@@ -86,64 +89,59 @@ public:
     PrerenderedLabel();
     ~PrerenderedLabel() override;
 
+    /**
+     * Sets the label's font to \a font.
+     */
+    void setFont(const QFont &font);
 
     /**
-      * Sets the label's font to \a font.
-      */
-    void setFont( const QFont& font );
+     * @return the label's font.
+     */
+    const QFont &font() const;
 
     /**
-      * @return the label's font.
-      */
-    const QFont& font() const;
-
-
-    /**
-      * Sets the label's text to \a text
-      */
-    void setText( const QString& text );
+     * Sets the label's text to \a text
+     */
+    void setText(const QString &text);
 
     /**
-      * @return the label's text
-      */
-    const QString& text() const;
-
-
-    /**
-      * Sets the label's brush to \a brush
-      */
-    void setBrush( const QBrush& brush );
+     * @return the label's text
+     */
+    const QString &text() const;
 
     /**
-      * @return the label's brush
-      */
-    const QBrush& brush() const;
-
-    void setPen( const QPen& );
-    const QPen& pen() const;
-
+     * Sets the label's brush to \a brush
+     */
+    void setBrush(const QBrush &brush);
 
     /**
-      * Sets the angle of the label to \a angle degrees
-      */
-    void setAngle( qreal angle );
+     * @return the label's brush
+     */
+    const QBrush &brush() const;
+
+    void setPen(const QPen &);
+    const QPen &pen() const;
 
     /**
-      * @return the label's angle in degrees
-      */
+     * Sets the angle of the label to \a angle degrees
+     */
+    void setAngle(qreal angle);
+
+    /**
+     * @return the label's angle in degrees
+     */
     qreal angle() const;
 
     // reimpl PrerenderedElement:
-    const QPixmap& pixmap() const override;
-    QPointF referencePointLocation( KChartEnums::PositionValue position ) const override;
+    const QPixmap &pixmap() const override;
+    QPointF referencePointLocation(KChartEnums::PositionValue position) const override;
     // overload: return location of referencePoint():
     QPointF referencePointLocation() const;
 
 protected:
-
     /**
-      * Invalidates the preredendered data, forces re-rendering.
-      */
+     * Invalidates the preredendered data, forces re-rendering.
+     */
     void invalidate() const override;
 
 private:

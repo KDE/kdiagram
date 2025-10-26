@@ -20,19 +20,19 @@
 // We mean it.
 //
 
-#include "KChartHeaderFooter.h"
-#include "KChartTextArea_p.h"
 #include "KChartChart.h"
+#include "KChartHeaderFooter.h"
 #include "KChartMath_p.h"
+#include "KChartTextArea_p.h"
 
 #include <QMap>
 
-
 class KTextDocument;
 
-namespace KChart {
-    class Chart;
-    class TextAttributes;
+namespace KChart
+{
+class Chart;
+class TextAttributes;
 }
 
 /**
@@ -41,16 +41,17 @@ namespace KChart {
 class Q_DECL_HIDDEN KChart::HeaderFooter::Private : public KChart::TextArea::Private
 {
     friend class KChart::HeaderFooter;
+
 public:
     explicit Private();
     ~Private() override;
 
-    Private( const Private& rhs ) :
-        TextArea::Private( rhs ),
-        type( rhs.type ),
-        position( rhs.position )
-        {
-        }
+    Private(const Private &rhs)
+        : TextArea::Private(rhs)
+        , type(rhs.type)
+        , position(rhs.position)
+    {
+    }
 
     void updateTextDoc();
 
@@ -60,20 +61,19 @@ private:
     Position position;
 };
 
-inline KChart::HeaderFooter::HeaderFooter( Private* d, KChart::Chart* parent )
-    : TextArea( d )
+inline KChart::HeaderFooter::HeaderFooter(Private *d, KChart::Chart *parent)
+    : TextArea(d)
 {
-    setParent( parent );
+    setParent(parent);
     init();
 }
-inline KChart::HeaderFooter::Private * KChart::HeaderFooter::d_func()
+inline KChart::HeaderFooter::Private *KChart::HeaderFooter::d_func()
 {
-    return static_cast<Private*>( TextArea::d_func() );
+    return static_cast<Private *>(TextArea::d_func());
 }
-inline const KChart::HeaderFooter::Private * KChart::HeaderFooter::d_func() const
+inline const KChart::HeaderFooter::Private *KChart::HeaderFooter::d_func() const
 {
-    return static_cast<const Private*>( TextArea::d_func() );
+    return static_cast<const Private *>(TextArea::d_func());
 }
-
 
 #endif /* KCHARTHEADERFOOTER_P_H */

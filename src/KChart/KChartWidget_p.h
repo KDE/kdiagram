@@ -20,11 +20,11 @@
 // We mean it.
 //
 
-#include <KChartWidget.h>
-#include <KChartChart.h>
-#include <KChartCartesianCoordinatePlane.h>
-#include <KChartPolarCoordinatePlane.h>
 #include "KChartMath_p.h"
+#include <KChartCartesianCoordinatePlane.h>
+#include <KChartChart.h>
+#include <KChartPolarCoordinatePlane.h>
+#include <KChartWidget.h>
 
 #include <QGridLayout>
 #include <QStandardItemModel>
@@ -35,9 +35,10 @@
 class Q_DECL_HIDDEN KChart::Widget::Private
 {
     friend class ::KChart::Widget;
-    Widget * const q;
+    Widget *const q;
+
 public:
-    explicit Private( Widget * qq );
+    explicit Private(Widget *qq);
     ~Private(); // non-virtual, since nothing inherits this
 
 protected:
@@ -49,6 +50,5 @@ protected:
 
     int usedDatasetWidth;
 };
-
 
 #endif // KChartWidget_p_H

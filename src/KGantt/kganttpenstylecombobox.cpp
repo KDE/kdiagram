@@ -6,24 +6,24 @@
  * SPDX-License-Identifier: GPL-2.0-or-later
  */
 
-
 #include "kganttpenstylecombobox.h"
 #include "kganttpenstylecombobox_p.h"
 
+#include <QDebug>
+#include <QMetaEnum>
+#include <QPaintEvent>
+#include <QPainter>
+#include <QPen>
+#include <QPixmap>
 #include <QStandardItemModel>
 #include <QStyleOptionComboBox>
-#include <QPainter>
-#include <QPaintEvent>
-#include <QPen>
-#include <QMetaEnum>
-#include <QPixmap>
-#include <QDebug>
 
 using namespace KGantt;
 
 PenStyleComboBoxListView::PenStyleComboBoxListView(QComboBox *cmb)
     : combo(cmb)
-{}
+{
+}
 
 void PenStyleComboBoxListView::resizeEvent(QResizeEvent *event)
 {
@@ -38,7 +38,7 @@ void PenStyleComboBoxListView::paintEvent(QPaintEvent *e)
         opt.initFrom(combo);
         opt.editable = combo->isEditable();
         if (combo->style()->styleHint(QStyle::SH_ComboBox_Popup, &opt, combo)) {
-            //we paint the empty menu area to avoid having blank space that can happen when scrolling
+            // we paint the empty menu area to avoid having blank space that can happen when scrolling
             QStyleOptionMenuItem menuOpt;
             menuOpt.initFrom(this);
             menuOpt.palette = palette();
@@ -61,10 +61,10 @@ void PenStyleComboBoxListView::paintEvent(QPaintEvent *e)
         pen.setStyle(static_cast<Qt::PenStyle>(idx.data(Qt::UserRole).toInt()));
         QPainter painter(viewport());
         painter.setPen(pen);
-        painter.drawLine(itemRect.left()+1, itemRect.center().y(), itemRect.right()-1, itemRect.center().y());
+        painter.drawLine(itemRect.left() + 1, itemRect.center().y(), itemRect.right() - 1, itemRect.center().y());
         rect.adjust(0, itemRect.height(), 0, 0);
         idx = indexAt(rect.topLeft());
-    }    
+    }
 }
 
 PenStyleComboBox::PenStyleComboBox(QWidget *parent)
@@ -113,7 +113,7 @@ void PenStyleComboBox::paintEvent(QPaintEvent *pe)
     pen.setStyle(currentStyle());
     pen.setColor(Qt::black);
     pen.setWidth(2);
-    
+
     QPainter painter(this);
     painter.setPen(pen);
     painter.drawLine(r.left(), r.center().y(), r.right(), r.center().y());

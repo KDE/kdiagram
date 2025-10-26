@@ -9,53 +9,57 @@
 #ifndef KCHARTTHREEDBARATTRIBUTES_H
 #define KCHARTTHREEDBARATTRIBUTES_H
 
-#include <QMetaType>
 #include "KChartAbstractThreeDAttributes.h"
 #include "KChartGlobal.h"
+#include <QMetaType>
 
-namespace KChart {
+namespace KChart
+{
 
-  /**
-    * @brief A set of 3D bar attributes
-    */
-  class KCHART_EXPORT ThreeDBarAttributes : public AbstractThreeDAttributes
-  {
-  public:
+/**
+ * @brief A set of 3D bar attributes
+ */
+class KCHART_EXPORT ThreeDBarAttributes : public AbstractThreeDAttributes
+{
+public:
     ThreeDBarAttributes();
-    ThreeDBarAttributes( const ThreeDBarAttributes& );
-    ThreeDBarAttributes &operator= ( const ThreeDBarAttributes& );
+    ThreeDBarAttributes(const ThreeDBarAttributes &);
+    ThreeDBarAttributes &operator=(const ThreeDBarAttributes &);
 
     ~ThreeDBarAttributes() override;
 
     /* threeD Bars specific */
-    void setUseShadowColors( bool useShadowColors );
+    void setUseShadowColors(bool useShadowColors);
     bool useShadowColors() const;
 
-    //Pending Michel I am not sure this will be used
-    void setAngle( uint threeDAngle );
+    // Pending Michel I am not sure this will be used
+    void setAngle(uint threeDAngle);
     uint angle() const;
 
-    bool operator==( const ThreeDBarAttributes& ) const;
-    inline bool operator!=( const ThreeDBarAttributes& other ) const { return !operator==(other); }
+    bool operator==(const ThreeDBarAttributes &) const;
+    inline bool operator!=(const ThreeDBarAttributes &other) const
+    {
+        return !operator==(other);
+    }
 
     KCHART_DECLARE_SWAP_DERIVED(ThreeDBarAttributes)
 
     KCHART_DECLARE_PRIVATE_DERIVED(ThreeDBarAttributes)
 
-  }; // End of class ThreeDBarAttributes
+}; // End of class ThreeDBarAttributes
 
 }
 
 #if !defined(QT_NO_DEBUG_STREAM)
-KCHART_EXPORT QDebug operator<<(QDebug, const KChart::ThreeDBarAttributes& );
+KCHART_EXPORT QDebug operator<<(QDebug, const KChart::ThreeDBarAttributes &);
 #endif /* QT_NO_DEBUG_STREAM */
 
-KCHART_DECLARE_SWAP_SPECIALISATION_DERIVED( KChart::ThreeDBarAttributes )
+KCHART_DECLARE_SWAP_SPECIALISATION_DERIVED(KChart::ThreeDBarAttributes)
 
 QT_BEGIN_NAMESPACE
-Q_DECLARE_TYPEINFO( KChart::ThreeDBarAttributes, Q_MOVABLE_TYPE );
+Q_DECLARE_TYPEINFO(KChart::ThreeDBarAttributes, Q_MOVABLE_TYPE);
 QT_END_NAMESPACE
 
-Q_DECLARE_METATYPE( KChart::ThreeDBarAttributes )
+Q_DECLARE_METATYPE(KChart::ThreeDBarAttributes)
 
 #endif // KCHARTTHREEDBARATTRIBUTES_H

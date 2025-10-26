@@ -17,8 +17,10 @@ using namespace KChart;
 class Q_DECL_HIDDEN FrameAttributes::Private
 {
     friend class FrameAttributes;
+
 public:
     Private();
+
 private:
     bool visible;
     QPen pen;
@@ -26,27 +28,26 @@ private:
     int padding;
 };
 
-FrameAttributes::Private::Private() :
-    visible( false ),
-    cornerRadius( 0 ),
-    padding( 0 )
+FrameAttributes::Private::Private()
+    : visible(false)
+    , cornerRadius(0)
+    , padding(0)
 {
 }
-
 
 FrameAttributes::FrameAttributes()
-    : _d( new Private() )
+    : _d(new Private())
 {
 }
 
-FrameAttributes::FrameAttributes( const FrameAttributes& r )
-    : _d( new Private( *r.d ) )
+FrameAttributes::FrameAttributes(const FrameAttributes &r)
+    : _d(new Private(*r.d))
 {
 }
 
-FrameAttributes & FrameAttributes::operator=( const FrameAttributes& r )
+FrameAttributes &FrameAttributes::operator=(const FrameAttributes &r)
 {
-    if ( this == &r )
+    if (this == &r)
         return *this;
 
     *d = *r.d;
@@ -56,22 +57,16 @@ FrameAttributes & FrameAttributes::operator=( const FrameAttributes& r )
 
 FrameAttributes::~FrameAttributes()
 {
-    delete _d; _d = nullptr;
+    delete _d;
+    _d = nullptr;
 }
 
-
-bool FrameAttributes::operator==( const FrameAttributes& r ) const
+bool FrameAttributes::operator==(const FrameAttributes &r) const
 {
-    return ( isVisible() == r.isVisible() &&
-            pen() == r.pen() &&
-            cornerRadius() == r.cornerRadius() &&
-            padding() == r.padding() );
+    return (isVisible() == r.isVisible() && pen() == r.pen() && cornerRadius() == r.cornerRadius() && padding() == r.padding());
 }
 
-
-
-
-void FrameAttributes::setVisible( bool visible )
+void FrameAttributes::setVisible(bool visible)
 {
     d->visible = visible;
 }
@@ -81,7 +76,7 @@ bool FrameAttributes::isVisible() const
     return d->visible;
 }
 
-void FrameAttributes::setPen( const QPen & pen )
+void FrameAttributes::setPen(const QPen &pen)
 {
     d->pen = pen;
 }
@@ -101,7 +96,7 @@ qreal FrameAttributes::cornerRadius() const
     return d->cornerRadius;
 }
 
-void FrameAttributes::setPadding( int padding )
+void FrameAttributes::setPadding(int padding)
 {
     d->padding = padding;
 }
@@ -112,14 +107,10 @@ int FrameAttributes::padding() const
 }
 
 #if !defined(QT_NO_DEBUG_STREAM)
-QDebug operator<<(QDebug dbg, const KChart::FrameAttributes& fa)
+QDebug operator<<(QDebug dbg, const KChart::FrameAttributes &fa)
 {
     dbg << "KChart::FrameAttributes("
-	<< "visible="<<fa.isVisible()
-	<< "pen="<<fa.pen()
-        << "cornerRadius="<<fa.cornerRadius()
-        << "padding="<<fa.padding()
-	<< ")";
+        << "visible=" << fa.isVisible() << "pen=" << fa.pen() << "cornerRadius=" << fa.cornerRadius() << "padding=" << fa.padding() << ")";
     return dbg;
 }
 #endif /* QT_NO_DEBUG_STREAM */

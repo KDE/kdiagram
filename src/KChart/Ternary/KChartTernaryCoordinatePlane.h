@@ -11,41 +11,41 @@
 
 #include "KChartAbstractCoordinatePlane.h"
 
-namespace KChart {
+namespace KChart
+{
 
-    class TernaryGrid;
+class TernaryGrid;
 
-    /**
-      * @brief Ternary coordinate plane
-      */
-    class KCHART_EXPORT TernaryCoordinatePlane
-        : public AbstractCoordinatePlane
-    {
-        Q_OBJECT
-        Q_DISABLE_COPY( TernaryCoordinatePlane )
-        KCHART_DECLARE_PRIVATE_DERIVED_PARENT( TernaryCoordinatePlane, Chart* )
+/**
+ * @brief Ternary coordinate plane
+ */
+class KCHART_EXPORT TernaryCoordinatePlane : public AbstractCoordinatePlane
+{
+    Q_OBJECT
+    Q_DISABLE_COPY(TernaryCoordinatePlane)
+    KCHART_DECLARE_PRIVATE_DERIVED_PARENT(TernaryCoordinatePlane, Chart *)
 
-    public:
-        explicit TernaryCoordinatePlane( Chart* parent = nullptr );
-        ~TernaryCoordinatePlane() override;
+public:
+    explicit TernaryCoordinatePlane(Chart *parent = nullptr);
+    ~TernaryCoordinatePlane() override;
 
-        void addDiagram( AbstractDiagram* diagram ) override;
+    void addDiagram(AbstractDiagram *diagram) override;
 
-        void layoutDiagrams() override;
+    void layoutDiagrams() override;
 
-        const QPointF translate ( const QPointF& diagramPoint ) const override;
+    const QPointF translate(const QPointF &diagramPoint) const override;
 
-        void paint( QPainter* ) override;
-        DataDimensionsList getDataDimensionsList() const override;
+    void paint(QPainter *) override;
+    DataDimensionsList getDataDimensionsList() const override;
 
-        /** \reimpl */
-        QSize minimumSizeHint() const;
-        /** \reimpl */
-        QSizePolicy sizePolicy() const;
+    /** \reimpl */
+    QSize minimumSizeHint() const;
+    /** \reimpl */
+    QSizePolicy sizePolicy() const;
 
-    private:
-        TernaryGrid* grid() const;
-    };
+private:
+    TernaryGrid *grid() const;
+};
 
 }
 

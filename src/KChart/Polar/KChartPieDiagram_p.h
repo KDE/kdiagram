@@ -20,12 +20,12 @@
 // We mean it.
 //
 
-#include "KChartPieDiagram.h"
 #include "KChartAbstractPieDiagram_p.h"
 #include "KChartMath_p.h"
+#include "KChartPieDiagram.h"
 
-
-namespace KChart {
+namespace KChart
+{
 
 /**
  * \internal
@@ -33,32 +33,33 @@ namespace KChart {
 class Q_DECL_HIDDEN PieDiagram::Private : public AbstractPieDiagram::Private
 {
     friend class PieDiagram;
+
 public:
     Private();
     ~Private() override;
 
-    Private( const Private& rhs ) :
-        AbstractPieDiagram::Private( rhs ),
-        startAngles(),
-        angleLens(),
-        size( 0 ),
-        labelDecorations( NoDecoration ),
-        isCollisionAvoidanceEnabled( false )
-        {
-            // just for consistency
-        }
+    Private(const Private &rhs)
+        : AbstractPieDiagram::Private(rhs)
+        , startAngles()
+        , angleLens()
+        , size(0)
+        , labelDecorations(NoDecoration)
+        , isCollisionAvoidanceEnabled(false)
+    {
+        // just for consistency
+    }
 
 protected:
     // this information needed temporarily at drawing time
-    QVector< qreal > startAngles;
-    QVector< qreal > angleLens;
+    QVector<qreal> startAngles;
+    QVector<qreal> angleLens;
     qreal size;
     LabelPaintCache labelPaintCache;
     PieDiagram::LabelDecorations labelDecorations;
     bool isCollisionAvoidanceEnabled;
 };
 
-KCHART_IMPL_DERIVED_DIAGRAM( PieDiagram, AbstractPieDiagram, PolarCoordinatePlane )
+KCHART_IMPL_DERIVED_DIAGRAM(PieDiagram, AbstractPieDiagram, PolarCoordinatePlane)
 
 }
 

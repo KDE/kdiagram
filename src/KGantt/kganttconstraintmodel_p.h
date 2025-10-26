@@ -15,20 +15,21 @@
 #include <QMultiHash>
 #include <QPersistentModelIndex>
 
-namespace KGantt {
-    class Q_DECL_HIDDEN ConstraintModel::Private {
-    public:
-        Private();
+namespace KGantt
+{
+class Q_DECL_HIDDEN ConstraintModel::Private
+{
+public:
+    Private();
 
-        void addConstraintToIndex( const QModelIndex& idx, const Constraint& c );
-        void removeConstraintFromIndex( const QModelIndex& idx,  const Constraint& c );
+    void addConstraintToIndex(const QModelIndex &idx, const Constraint &c);
+    void removeConstraintFromIndex(const QModelIndex &idx, const Constraint &c);
 
-        typedef QMultiHash<QPersistentModelIndex,Constraint> IndexType;
+    typedef QMultiHash<QPersistentModelIndex, Constraint> IndexType;
 
-        QList<Constraint> constraints;
-        IndexType indexMap;
-    };
+    QList<Constraint> constraints;
+    IndexType indexMap;
+};
 }
 
 #endif /* KGANTTCONSTRAINTMODEL_P_H */
-

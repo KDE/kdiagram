@@ -6,38 +6,41 @@
  * SPDX-License-Identifier: GPL-2.0-or-later
  */
 
-
 #include "kganttdatetimetimelinedialog.h"
-#include "ui_kganttdatetimetimelinedialog.h"
 #include "kganttdatetimetimeline.h"
 #include "kganttpenstylecombobox.h"
+#include "ui_kganttdatetimetimelinedialog.h"
 
-#include <QPixmap>
+#include <QAbstractItemModel>
+#include <QColorDialog>
+#include <QMetaEnum>
 #include <QPainter>
 #include <QPen>
-#include <QColorDialog>
+#include <QPixmap>
 #include <QTime>
 #include <QTimer>
-#include <QMetaEnum>
-#include <QAbstractItemModel>
 
-namespace KGantt {
-    class DateTimeTimeLineDialog::Private
+namespace KGantt
+{
+class DateTimeTimeLineDialog::Private
+{
+public:
+    Private()
+        : timeLine(nullptr)
     {
-    public:
-        Private() : timeLine(nullptr) {}
+    }
 
-        Ui::DateTimeTimeLineDialog ui;
-        DateTimeTimeLine *timeLine;
-        QColor penColor;
-    };
+    Ui::DateTimeTimeLineDialog ui;
+    DateTimeTimeLine *timeLine;
+    QColor penColor;
+};
 }
 
 using namespace KGantt;
 
-DateTimeTimeLineDialog::DateTimeTimeLineDialog(DateTimeTimeLine *timeLine, QWidget* parent)
+DateTimeTimeLineDialog::DateTimeTimeLineDialog(DateTimeTimeLine *timeLine, QWidget *parent)
     : QDialog(parent)
-    , d( new Private())
+    , d(new Private())
 {
     d->timeLine = timeLine;
     d->ui.setupUi(this);
@@ -93,12 +96,12 @@ void DateTimeTimeLineDialog::ok()
 void DateTimeTimeLineDialog::updateColorButton()
 {
     QSize size = d->ui.openColorDialog->size();
-    qInfo()<<Q_FUNC_INFO<<size<<d->penColor;
+    qInfo() << Q_FUNC_INFO << size << d->penColor;
     QPixmap px(size);
     px.fill();
     QPainter painter(&px);
     painter.fillRect(0, 0, size.width(), size.height(), d->penColor);
-    d->ui.openColorDialog->setIcon(QIcon(px));    
+    d->ui.openColorDialog->setIcon(QIcon(px));
 }
 
 void DateTimeTimeLineDialog::openColorDialog()

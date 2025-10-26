@@ -10,11 +10,9 @@
 
 using namespace KGantt;
 
-
 AbstractRowController::AbstractRowController()
 {
 }
-
 
 AbstractRowController::~AbstractRowController()
 {

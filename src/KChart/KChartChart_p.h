@@ -20,20 +20,20 @@
 // We mean it.
 //
 
-#include <QObject>
 #include <QHBoxLayout>
+#include <QObject>
 #include <QVBoxLayout>
 
-#include "KChartChart.h"
 #include "KChartAbstractArea.h"
-#include "KChartTextArea.h"
-#include "KChartFrameAttributes.h"
 #include "KChartBackgroundAttributes.h"
+#include "KChartChart.h"
+#include "KChartFrameAttributes.h"
 #include "KChartLayoutItems.h"
 #include "KChartMath_p.h"
+#include "KChartTextArea.h"
 
-
-namespace KChart {
+namespace KChart
+{
 
 class AbstractAreaWidget;
 class CartesianAxis;
@@ -52,55 +52,55 @@ class CartesianAxis;
  */
 struct PlaneInfo {
     PlaneInfo()
-        : referencePlane( nullptr ),
-          horizontalOffset( 1 ),
-          verticalOffset( 1 ),
-          gridLayout( nullptr ),
-          topAxesLayout( nullptr ),
-          bottomAxesLayout( nullptr ),
-          leftAxesLayout( nullptr ),
-          rightAxesLayout( nullptr )
-    {}
+        : referencePlane(nullptr)
+        , horizontalOffset(1)
+        , verticalOffset(1)
+        , gridLayout(nullptr)
+        , topAxesLayout(nullptr)
+        , bottomAxesLayout(nullptr)
+        , leftAxesLayout(nullptr)
+        , rightAxesLayout(nullptr)
+    {
+    }
     AbstractCoordinatePlane *referencePlane;
     int horizontalOffset;
     int verticalOffset;
-    QGridLayout* gridLayout;
-    QVBoxLayout* topAxesLayout;
-    QVBoxLayout* bottomAxesLayout;
-    QHBoxLayout* leftAxesLayout;
-    QHBoxLayout* rightAxesLayout;
+    QGridLayout *gridLayout;
+    QVBoxLayout *topAxesLayout;
+    QVBoxLayout *bottomAxesLayout;
+    QHBoxLayout *leftAxesLayout;
+    QHBoxLayout *rightAxesLayout;
 };
 
-struct LayoutGraphNode
-{
+struct LayoutGraphNode {
     LayoutGraphNode()
-        : diagramPlane( nullptr )
-        , leftSuccesor( nullptr )
-        , bottomSuccesor( nullptr )
-        , sharedSuccesor( nullptr )
-        , gridLayout( nullptr )
-        , topAxesLayout( false )
-        , bottomAxesLayout( false )
-        , leftAxesLayout( false )
-        , rightAxesLayout( false )
-        , priority( -1 )
-    {}
-    AbstractCoordinatePlane* diagramPlane;
-    LayoutGraphNode* leftSuccesor;
-    LayoutGraphNode* bottomSuccesor;
-    LayoutGraphNode* sharedSuccesor;
-    QGridLayout* gridLayout;
+        : diagramPlane(nullptr)
+        , leftSuccesor(nullptr)
+        , bottomSuccesor(nullptr)
+        , sharedSuccesor(nullptr)
+        , gridLayout(nullptr)
+        , topAxesLayout(false)
+        , bottomAxesLayout(false)
+        , leftAxesLayout(false)
+        , rightAxesLayout(false)
+        , priority(-1)
+    {
+    }
+    AbstractCoordinatePlane *diagramPlane;
+    LayoutGraphNode *leftSuccesor;
+    LayoutGraphNode *bottomSuccesor;
+    LayoutGraphNode *sharedSuccesor;
+    QGridLayout *gridLayout;
     bool topAxesLayout;
     bool bottomAxesLayout;
     bool leftAxesLayout;
     bool rightAxesLayout;
     int priority;
-    bool operator<( const LayoutGraphNode &other ) const
+    bool operator<(const LayoutGraphNode &other) const
     {
         return priority < other.priority;
     }
 };
-
 
 /**
  * \internal
@@ -108,75 +108,79 @@ struct LayoutGraphNode
 class Q_DECL_HIDDEN Chart::Private : public QObject
 {
     Q_OBJECT
-    public:
-        Chart* chart;
+public:
+    Chart *chart;
 
-        enum AxisType { Abscissa, Ordinate };
-        bool useNewLayoutSystem;
-        CoordinatePlaneList coordinatePlanes;
-        HeaderFooterList headerFooters;
-        LegendList legends;
+    enum AxisType {
+        Abscissa,
+        Ordinate
+    };
+    bool useNewLayoutSystem;
+    CoordinatePlaneList coordinatePlanes;
+    HeaderFooterList headerFooters;
+    LegendList legends;
 
-        QHBoxLayout* layout;
-        QVBoxLayout* vLayout;
-        QBoxLayout*  planesLayout;
-        QGridLayout* gridPlaneLayout;
-        QGridLayout* headerLayout;
-        QGridLayout* footerLayout;
-        QGridLayout* dataAndLegendLayout;
-        QSpacerItem* leftOuterSpacer;
-        QSpacerItem* rightOuterSpacer;
-        QSpacerItem* topOuterSpacer;
-        QSpacerItem* bottomOuterSpacer;
+    QHBoxLayout *layout;
+    QVBoxLayout *vLayout;
+    QBoxLayout *planesLayout;
+    QGridLayout *gridPlaneLayout;
+    QGridLayout *headerLayout;
+    QGridLayout *footerLayout;
+    QGridLayout *dataAndLegendLayout;
+    QSpacerItem *leftOuterSpacer;
+    QSpacerItem *rightOuterSpacer;
+    QSpacerItem *topOuterSpacer;
+    QSpacerItem *bottomOuterSpacer;
 
-        QVBoxLayout* innerHdFtLayouts[2][3][3];
+    QVBoxLayout *innerHdFtLayouts[2][3][3];
 
-        QVector<KChart::TextArea*> textLayoutItems;
-        QVector<KChart::AbstractLayoutItem*> planeLayoutItems;
-        QVector<KChart::Legend*> legendLayoutItems;
+    QVector<KChart::TextArea *> textLayoutItems;
+    QVector<KChart::AbstractLayoutItem *> planeLayoutItems;
+    QVector<KChart::Legend *> legendLayoutItems;
 
-        QSize overrideSize;
-        bool isFloatingLegendsLayoutDirty;
-        bool isPlanesLayoutDirty;
+    QSize overrideSize;
+    bool isFloatingLegendsLayoutDirty;
+    bool isPlanesLayoutDirty;
 
-        // since we do not want to derive Chart from AbstractAreaBase, we store the attributes
-        // here and call two static painting methods to draw the background and frame.
-        KChart::FrameAttributes frameAttributes;
-        KChart::BackgroundAttributes backgroundAttributes;
+    // since we do not want to derive Chart from AbstractAreaBase, we store the attributes
+    // here and call two static painting methods to draw the background and frame.
+    KChart::FrameAttributes frameAttributes;
+    KChart::BackgroundAttributes backgroundAttributes;
 
-        // ### wrong names, "leading" means inter-line distance of text. spacing? margin?
-        int globalLeadingLeft, globalLeadingRight, globalLeadingTop, globalLeadingBottom;
+    // ### wrong names, "leading" means inter-line distance of text. spacing? margin?
+    int globalLeadingLeft, globalLeadingRight, globalLeadingTop, globalLeadingBottom;
 
-        QList< AbstractCoordinatePlane* > mouseClickedPlanes;
+    QList<AbstractCoordinatePlane *> mouseClickedPlanes;
 
-        Qt::LayoutDirection layoutDirection;
+    Qt::LayoutDirection layoutDirection;
 
-        Private( Chart* );
+    Private(Chart *);
 
-        ~Private() override;
+    ~Private() override;
 
-        void createLayouts();
-        void updateDirtyLayouts();
-        void reapplyInternalLayouts(); // TODO: see if this can be merged with updateDirtyLayouts()
-        void paintAll( QPainter* painter );
+    void createLayouts();
+    void updateDirtyLayouts();
+    void reapplyInternalLayouts(); // TODO: see if this can be merged with updateDirtyLayouts()
+    void paintAll(QPainter *painter);
 
-        struct AxisInfo {
-            AxisInfo()
-                :plane(nullptr)
-            {}
-            AbstractCoordinatePlane *plane;
-        };
-        QHash<AbstractCoordinatePlane*, PlaneInfo> buildPlaneLayoutInfos();
-        QVector< LayoutGraphNode* > buildPlaneLayoutGraph();
+    struct AxisInfo {
+        AxisInfo()
+            : plane(nullptr)
+        {
+        }
+        AbstractCoordinatePlane *plane;
+    };
+    QHash<AbstractCoordinatePlane *, PlaneInfo> buildPlaneLayoutInfos();
+    QVector<LayoutGraphNode *> buildPlaneLayoutGraph();
 
-    public Q_SLOTS:
-        void slotLayoutPlanes();
-        void slotResizePlanes();
-        void slotLegendPositionChanged( KChart::AbstractAreaWidget* legend );
-        void slotHeaderFooterPositionChanged( KChart::HeaderFooter* hf );
-        void slotUnregisterDestroyedLegend( KChart::Legend * legend );
-        void slotUnregisterDestroyedHeaderFooter( KChart::HeaderFooter* headerFooter );
-        void slotUnregisterDestroyedPlane( KChart::AbstractCoordinatePlane* plane );
+public Q_SLOTS:
+    void slotLayoutPlanes();
+    void slotResizePlanes();
+    void slotLegendPositionChanged(KChart::AbstractAreaWidget *legend);
+    void slotHeaderFooterPositionChanged(KChart::HeaderFooter *hf);
+    void slotUnregisterDestroyedLegend(KChart::Legend *legend);
+    void slotUnregisterDestroyedHeaderFooter(KChart::HeaderFooter *headerFooter);
+    void slotUnregisterDestroyedPlane(KChart::AbstractCoordinatePlane *plane);
 };
 
 }

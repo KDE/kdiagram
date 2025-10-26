@@ -19,25 +19,25 @@ typedef QStyleOptionViewItem BASE;
 
 /*! Constructor. Sets grid to 0. */
 StyleOptionGanttItem::StyleOptionGanttItem()
-    : BASE(),
-      displayPosition( Left ),
-      grid( nullptr )
+    : BASE()
+    , displayPosition(Left)
+    , grid(nullptr)
 {
-    type = QStyleOption::SO_CustomBase+89;
+    type = QStyleOption::SO_CustomBase + 89;
     version = 1;
 }
 
 /*! Copy constructor. Creates a copy of \a other */
-StyleOptionGanttItem::StyleOptionGanttItem( const StyleOptionGanttItem& other )
+StyleOptionGanttItem::StyleOptionGanttItem(const StyleOptionGanttItem &other)
     : BASE(other)
 {
-    operator=( other );
+    operator=(other);
 }
 
 /*! Assignment operator */
-StyleOptionGanttItem& StyleOptionGanttItem::operator=( const StyleOptionGanttItem& other )
+StyleOptionGanttItem &StyleOptionGanttItem::operator=(const StyleOptionGanttItem &other)
 {
-    BASE::operator=( other );
+    BASE::operator=(other);
     boundingRect = other.boundingRect;
     itemRect = other.itemRect;
     displayPosition = other.displayPosition;
@@ -47,31 +47,35 @@ StyleOptionGanttItem& StyleOptionGanttItem::operator=( const StyleOptionGanttIte
 }
 
 #ifndef QT_NO_DEBUG_STREAM
-QDebug operator<<( QDebug dbg, KGantt::StyleOptionGanttItem::Position p)
+QDebug operator<<(QDebug dbg, KGantt::StyleOptionGanttItem::Position p)
 {
-    switch ( p ) {
-    case KGantt::StyleOptionGanttItem::Left:   dbg << "KGantt::StyleOptionGanttItem::Left"; break;
-    case KGantt::StyleOptionGanttItem::Right:  dbg << "KGantt::StyleOptionGanttItem::Right"; break;
-    case KGantt::StyleOptionGanttItem::Center: dbg << "KGantt::StyleOptionGanttItem::Center"; break;
-    case KGantt::StyleOptionGanttItem::Hidden: dbg << "KGantt::StyleOptionGanttItem::Hidden"; break;
-    default: dbg << static_cast<int>( p );
+    switch (p) {
+    case KGantt::StyleOptionGanttItem::Left:
+        dbg << "KGantt::StyleOptionGanttItem::Left";
+        break;
+    case KGantt::StyleOptionGanttItem::Right:
+        dbg << "KGantt::StyleOptionGanttItem::Right";
+        break;
+    case KGantt::StyleOptionGanttItem::Center:
+        dbg << "KGantt::StyleOptionGanttItem::Center";
+        break;
+    case KGantt::StyleOptionGanttItem::Hidden:
+        dbg << "KGantt::StyleOptionGanttItem::Hidden";
+        break;
+    default:
+        dbg << static_cast<int>(p);
     }
     return dbg;
 }
 
-QDebug operator<<( QDebug dbg, const KGantt::StyleOptionGanttItem& s )
+QDebug operator<<(QDebug dbg, const KGantt::StyleOptionGanttItem &s)
 {
-    dbg << "KGantt::StyleOptionGanttItem[ boundingRect="<<s.boundingRect
-        <<", itemRect="<<s.itemRect
-        <<", displayPosition="<<s.displayPosition
-        <<", grid="<<s.grid
-        <<", text="<<s.text
-        <<"]";
+    dbg << "KGantt::StyleOptionGanttItem[ boundingRect=" << s.boundingRect << ", itemRect=" << s.itemRect << ", displayPosition=" << s.displayPosition
+        << ", grid=" << s.grid << ", text=" << s.text << "]";
     return dbg;
 }
 
 #endif /* QT_NO_DEBUG_STREAM */
-
 
 /*!\enum KGantt::StyleOptionGanttItem::Position
  * This enum is used to describe where the Qt::DisplayRole

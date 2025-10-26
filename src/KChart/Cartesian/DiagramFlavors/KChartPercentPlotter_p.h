@@ -11,17 +11,20 @@
 
 #include "KChartPlotter_p.h"
 
-namespace KChart {
+namespace KChart
+{
 
-    class PercentPlotter : public Plotter::PlotterType
+class PercentPlotter : public Plotter::PlotterType
+{
+public:
+    explicit PercentPlotter(Plotter *);
+    ~PercentPlotter() override
     {
-    public:
-        explicit PercentPlotter( Plotter* );
-        ~PercentPlotter() override {}
-        Plotter::PlotType type() const override;
-        const QPair< QPointF,  QPointF > calculateDataBoundaries() const override;
-        void paint( PaintContext* ctx ) override;
-    };
+    }
+    Plotter::PlotType type() const override;
+    const QPair<QPointF, QPointF> calculateDataBoundaries() const override;
+    void paint(PaintContext *ctx) override;
+};
 }
 
 #endif

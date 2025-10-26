@@ -20,13 +20,13 @@
 // We mean it.
 //
 
-#include "KChartPolarDiagram.h"
 #include "KChartAbstractPolarDiagram_p.h"
+#include "KChartPolarDiagram.h"
 
 #include "KChartMath_p.h"
 
-
-namespace KChart {
+namespace KChart
+{
 
 /**
  * \internal
@@ -34,28 +34,29 @@ namespace KChart {
 class Q_DECL_HIDDEN PolarDiagram::Private : public AbstractPolarDiagram::Private
 {
     friend class PolarDiagram;
+
 public:
     Private();
     ~Private() override;
 
-    Private( const Private& rhs ) :
-        AbstractPolarDiagram::Private( rhs ),
-        showDelimitersAtPosition( rhs.showDelimitersAtPosition ),
-        showLabelsAtPosition( rhs.showLabelsAtPosition ),
-        rotateCircularLabels( rhs.rotateCircularLabels ),
-        closeDatasets( rhs.closeDatasets )
-        {
-        }
+    Private(const Private &rhs)
+        : AbstractPolarDiagram::Private(rhs)
+        , showDelimitersAtPosition(rhs.showDelimitersAtPosition)
+        , showLabelsAtPosition(rhs.showLabelsAtPosition)
+        , rotateCircularLabels(rhs.rotateCircularLabels)
+        , closeDatasets(rhs.closeDatasets)
+    {
+    }
 
 private:
-    QMap<int,bool> showDelimitersAtPosition;
-    QMap<int,bool> showLabelsAtPosition;
+    QMap<int, bool> showDelimitersAtPosition;
+    QMap<int, bool> showLabelsAtPosition;
     bool rotateCircularLabels;
     bool closeDatasets;
     LabelPaintCache labelPaintCache;
 };
 
-KCHART_IMPL_DERIVED_DIAGRAM( PolarDiagram, AbstractPolarDiagram, PolarCoordinatePlane )
+KCHART_IMPL_DERIVED_DIAGRAM(PolarDiagram, AbstractPolarDiagram, PolarCoordinatePlane)
 
 }
 

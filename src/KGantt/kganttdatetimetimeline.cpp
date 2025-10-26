@@ -10,35 +10,34 @@
 
 #include <QApplication>
 #include <QDateTime>
-#include <QString>
+#include <QDebug>
 #include <QPalette>
 #include <QPen>
+#include <QString>
 #include <QTimer>
-#include <QDebug>
 
-
-
-namespace KGantt {
-    class Q_DECL_HIDDEN DateTimeTimeLine::Private
+namespace KGantt
+{
+class Q_DECL_HIDDEN DateTimeTimeLine::Private
+{
+public:
+    Private()
+        : options(Foreground)
     {
-    public:
-        Private() : options(Foreground) {}
-        
-        DateTimeTimeLine::Options options;
-        QDateTime dateTime;
-        QPen pen;
-        QTimer timer;
-    };
-    
+    }
+
+    DateTimeTimeLine::Options options;
+    QDateTime dateTime;
+    QPen pen;
+    QTimer timer;
+};
+
 }
 
 using namespace KGantt;
 
-
-
-
 DateTimeTimeLine::DateTimeTimeLine()
-    : _d( new Private())
+    : _d(new Private())
 {
     _d->options = {};
     _d->pen = QPen(QApplication::palette().color(QPalette::Highlight), 0);
@@ -52,7 +51,6 @@ DateTimeTimeLine::Options DateTimeTimeLine::options() const
     return d->options;
 }
 
-
 void DateTimeTimeLine::setOptions(DateTimeTimeLine::Options options)
 {
     d->options = options;
@@ -62,12 +60,10 @@ void DateTimeTimeLine::setOptions(DateTimeTimeLine::Options options)
     Q_EMIT updated();
 }
 
-
 QDateTime DateTimeTimeLine::dateTime() const
 {
     return d->dateTime.isValid() ? d->dateTime : QDateTime::currentDateTime();
 }
-
 
 void DateTimeTimeLine::setDateTime(const QDateTime &dt)
 {
@@ -75,12 +71,10 @@ void DateTimeTimeLine::setDateTime(const QDateTime &dt)
     Q_EMIT updated();
 }
 
-
 int DateTimeTimeLine::interval() const
 {
     return d->timer.interval();
 }
-
 
 void DateTimeTimeLine::setInterval(int msecs)
 {
@@ -92,7 +86,6 @@ void DateTimeTimeLine::setInterval(int msecs)
     }
 }
 
-
 QPen DateTimeTimeLine::pen() const
 {
     if (d->options & DateTimeTimeLine::UseCustomPen) {
@@ -101,18 +94,15 @@ QPen DateTimeTimeLine::pen() const
     return QPen(QApplication::palette().color(QPalette::Highlight), 0);
 }
 
-
 void DateTimeTimeLine::setPen(const QPen &pen)
 {
     d->pen = pen;
     Q_EMIT updated();
 }
 
-
 QPen DateTimeTimeLine::customPen() const
 {
     return d->pen;
 }
-
 
 #undef d

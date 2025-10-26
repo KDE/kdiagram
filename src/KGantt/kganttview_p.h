@@ -9,22 +9,22 @@
 #ifndef KGANTTVIEW_P_H
 #define KGANTTVIEW_P_H
 
-#include "kganttview.h"
-#include "kganttgraphicsscene.h"
-#include "kgantttreeviewrowcontroller.h"
 #include "kganttconstraintmodel.h"
 #include "kganttconstraintproxy.h"
+#include "kganttgraphicsscene.h"
+#include "kgantttreeviewrowcontroller.h"
+#include "kganttview.h"
 
-#include "kganttgraphicsview.h"
 #include "kganttdatetimegrid.h"
+#include "kganttgraphicsview.h"
 
 #include "kganttproxymodel.h"
 
-#include <QSplitter>
-#include <QTreeView>
 #include <QGraphicsView>
 #include <QModelIndex>
 #include <QPointer>
+#include <QSplitter>
+#include <QTreeView>
 
 QT_BEGIN_NAMESPACE
 class QAbstractProxyModel;
@@ -33,66 +33,71 @@ class QGraphicsScene;
 class QGraphicsRectItem;
 QT_END_NAMESPACE
 
-namespace KGantt {
-    class GraphicsItem;
-    class KGanttTreeView;
+namespace KGantt
+{
+class GraphicsItem;
+class KGanttTreeView;
 
-    /*! \internal */
-    class KGanttTreeView : public QTreeView {
-        Q_OBJECT
-    public:
-        explicit KGanttTreeView( QAbstractProxyModel* proxy, QWidget* parent = nullptr );
-        ~KGanttTreeView() override;
+/*! \internal */
+class KGanttTreeView : public QTreeView
+{
+    Q_OBJECT
+public:
+    explicit KGanttTreeView(QAbstractProxyModel *proxy, QWidget *parent = nullptr);
+    ~KGanttTreeView() override;
 
-        AbstractRowController* rowController() { return &m_controller; }
+    AbstractRowController *rowController()
+    {
+        return &m_controller;
+    }
 
-    public Q_SLOTS:
-        void expandAll(QModelIndex index = QModelIndex());
-        void collapseAll(QModelIndex index = QModelIndex());
+public Q_SLOTS:
+    void expandAll(QModelIndex index = QModelIndex());
+    void collapseAll(QModelIndex index = QModelIndex());
 
-    private:
-        TreeViewRowController m_controller;
-    };
+private:
+    TreeViewRowController m_controller;
+};
 
-    /*! \internal */
-    class Q_DECL_HIDDEN View::Private {
-    public:
-        explicit Private(View*);
-        virtual ~Private();
+/*! \internal */
+class Q_DECL_HIDDEN View::Private
+{
+public:
+    explicit Private(View *);
+    virtual ~Private();
 
-        void init();
+    void init();
 
-        GraphicsItem* createItem( ItemType type ) const;
+    GraphicsItem *createItem(ItemType type) const;
 
-        void updateScene();
+    void updateScene();
 
-        void setupGraphicsView();
+    void setupGraphicsView();
 
-        // slots
-        void slotCollapsed(const QModelIndex&);
-        void slotExpanded(const QModelIndex&);
-        void slotVerticalScrollValueChanged( int );
-        void slotLeftWidgetVerticalRangeChanged( int, int );
-        void slotGfxViewVerticalRangeChanged( int, int );
+    // slots
+    void slotCollapsed(const QModelIndex &);
+    void slotExpanded(const QModelIndex &);
+    void slotVerticalScrollValueChanged(int);
+    void slotLeftWidgetVerticalRangeChanged(int, int);
+    void slotGfxViewVerticalRangeChanged(int, int);
 
-        View* q;
+    View *q;
 
-        QSplitter splitter;
+    QSplitter splitter;
 
-        /* TODO: Refine/subclass */
-        //KGanttTreeView treeview;
-        QPointer<QAbstractItemView> leftWidget;
-        AbstractRowController* rowController;
-        QPointer<GraphicsView> gfxview;
-        //KGanttHeaderWidget headerwidget;
+    /* TODO: Refine/subclass */
+    // KGanttTreeView treeview;
+    QPointer<QAbstractItemView> leftWidget;
+    AbstractRowController *rowController;
+    QPointer<GraphicsView> gfxview;
+    // KGanttHeaderWidget headerwidget;
 
-        QPointer<QAbstractItemModel> model;
-        ProxyModel ganttProxyModel;
-        //KGanttTreeViewRowController rowController;
-        ConstraintModel mappedConstraintModel;
-        ConstraintProxy constraintProxy;
-    };
+    QPointer<QAbstractItemModel> model;
+    ProxyModel ganttProxyModel;
+    // KGanttTreeViewRowController rowController;
+    ConstraintModel mappedConstraintModel;
+    ConstraintProxy constraintProxy;
+};
 
 }
 #endif /* KGANTTVIEW_P_H */
-

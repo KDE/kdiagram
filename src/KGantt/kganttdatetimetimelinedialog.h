@@ -16,24 +16,26 @@ QT_BEGIN_NAMESPACE
 class QWidget;
 QT_END_NAMESPACE
 
-namespace KGantt {
-    class DateTimeTimeLine;
+namespace KGantt
+{
+class DateTimeTimeLine;
 
-    class DateTimeTimeLineDialog : public QDialog {
-        Q_OBJECT
-    public:
-        explicit DateTimeTimeLineDialog(DateTimeTimeLine *timeLine, QWidget* parent = nullptr);
-        ~DateTimeTimeLineDialog() override;
+class DateTimeTimeLineDialog : public QDialog
+{
+    Q_OBJECT
+public:
+    explicit DateTimeTimeLineDialog(DateTimeTimeLine *timeLine, QWidget *parent = nullptr);
+    ~DateTimeTimeLineDialog() override;
 
-    private Q_SLOTS:
-        void ok();
-        void openColorDialog();
-        void updateColorButton();
+private Q_SLOTS:
+    void ok();
+    void openColorDialog();
+    void updateColorButton();
 
-    private:
-        class Private;
-        Private *d;
-    };
+private:
+    class Private;
+    Private *d;
+};
 }
 
 #endif

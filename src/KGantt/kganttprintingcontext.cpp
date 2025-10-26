@@ -11,7 +11,8 @@
 namespace KGantt
 {
 
-class Q_DECL_HIDDEN PrintingContext::Private {
+class Q_DECL_HIDDEN PrintingContext::Private
+{
 public:
     PrintingContext::Fitting fitting;
     QRectF sceneRect;
@@ -23,7 +24,7 @@ PrintingContext::PrintingContext()
     : d(new Private())
 {
     d->fitting = NoFitting;
-    d->drawRowLabels= true;
+    d->drawRowLabels = true;
     d->drawColumnLabels = true;
 }
 
@@ -40,7 +41,8 @@ PrintingContext &PrintingContext::operator=(const PrintingContext &other)
 
 PrintingContext::~PrintingContext()
 {
-    delete d; d = nullptr;
+    delete d;
+    d = nullptr;
 }
 
 QRectF PrintingContext::sceneRect() const
@@ -126,17 +128,24 @@ void PrintingContext::setBottom(qreal bottom)
 }
 
 #ifndef QT_NO_DEBUG_STREAM
-QDebug operator<<( QDebug dbg, const KGantt::PrintingContext::Fitting &f)
+QDebug operator<<(QDebug dbg, const KGantt::PrintingContext::Fitting &f)
 {
     switch (f) {
-        case KGantt::PrintingContext::NoFitting: dbg << "Fitting::NoFitting"; break;
-        case KGantt::PrintingContext::FitSinglePage: dbg << "Fitting::FitSinglePage"; break;
-        case KGantt::PrintingContext::FitPageHeight: dbg << "Fitting::FitPageHeight"; break;
-        default: break;
+    case KGantt::PrintingContext::NoFitting:
+        dbg << "Fitting::NoFitting";
+        break;
+    case KGantt::PrintingContext::FitSinglePage:
+        dbg << "Fitting::FitSinglePage";
+        break;
+    case KGantt::PrintingContext::FitPageHeight:
+        dbg << "Fitting::FitPageHeight";
+        break;
+    default:
+        break;
     }
     return dbg;
 }
-QDebug operator<<( QDebug dbg, const KGantt::PrintingContext &ctx)
+QDebug operator<<(QDebug dbg, const KGantt::PrintingContext &ctx)
 {
     dbg << "KGantt::PrintingContext[";
     dbg << ctx.fitting();

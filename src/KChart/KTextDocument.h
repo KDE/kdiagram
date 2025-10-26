@@ -20,27 +20,27 @@
 // We mean it.
 //
 
-#include <QTextDocument>
 #include <QSize>
+#include <QTextDocument>
 
 /**
-  * KTextDocument is an internally used enhanced QTextDocument
-  * \internal
-  */
+ * KTextDocument is an internally used enhanced QTextDocument
+ * \internal
+ */
 class KTextDocument : public QTextDocument
 {
     Q_OBJECT
 
 public:
-    explicit KTextDocument( QObject* parent = nullptr );
-    explicit KTextDocument( const QString& text, QObject* parent = nullptr );
+    explicit KTextDocument(QObject *parent = nullptr);
+    explicit KTextDocument(const QString &text, QObject *parent = nullptr);
     ~KTextDocument() override;
 
     QSize sizeHint();
     QSize minimumSizeHint();
 
 private:
-    QSize sizeForWidth( int width );
+    QSize sizeForWidth(int width);
 
 private:
     bool mHintValid;
@@ -48,6 +48,4 @@ private:
     QSize mMinimumSizeHint;
 };
 
-
 #endif /* KTEXTDOCUMENT_H */
-

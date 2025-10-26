@@ -16,30 +16,30 @@ class QAbstractProxyModel;
 class QTreeView;
 QT_END_NAMESPACE
 
-namespace KGantt {
+namespace KGantt
+{
 
+/*!\class TreeViewRowController
+ * This is an implementation of AbstractRowController that
+ * aligns a gantt view with a QTreeView.
+ */
+class KGANTT_EXPORT TreeViewRowController : public AbstractRowController
+{
+    KGANTT_DECLARE_PRIVATE_BASE_POLYMORPHIC(TreeViewRowController)
+public:
+    TreeViewRowController(QTreeView *tv, QAbstractProxyModel *proxy);
+    ~TreeViewRowController() override;
 
-    /*!\class TreeViewRowController
-     * This is an implementation of AbstractRowController that
-     * aligns a gantt view with a QTreeView.
-     */
-    class KGANTT_EXPORT TreeViewRowController :  public AbstractRowController {
-        KGANTT_DECLARE_PRIVATE_BASE_POLYMORPHIC(TreeViewRowController)
-    public:
-        TreeViewRowController( QTreeView* tv, QAbstractProxyModel* proxy );
-        ~TreeViewRowController() override;
-
-        /*reimp*/ int headerHeight() const override;
-        /*reimp*/ int maximumItemHeight() const override;
-        /*reimp*/ int totalHeight() const override;
-        /*reimp*/ bool isRowVisible( const QModelIndex& idx ) const override;
-        /*reimp*/ bool isRowExpanded( const QModelIndex& idx ) const override;
-        /*reimp*/ Span rowGeometry( const QModelIndex& idx ) const override;
-        /*reimp*/ QModelIndex indexAt( int height ) const override;
-        /*reimp*/ QModelIndex indexAbove( const QModelIndex& idx ) const override;
-        /*reimp*/ QModelIndex indexBelow( const QModelIndex& idx ) const override;
-    };
+    /*reimp*/ int headerHeight() const override;
+    /*reimp*/ int maximumItemHeight() const override;
+    /*reimp*/ int totalHeight() const override;
+    /*reimp*/ bool isRowVisible(const QModelIndex &idx) const override;
+    /*reimp*/ bool isRowExpanded(const QModelIndex &idx) const override;
+    /*reimp*/ Span rowGeometry(const QModelIndex &idx) const override;
+    /*reimp*/ QModelIndex indexAt(int height) const override;
+    /*reimp*/ QModelIndex indexAbove(const QModelIndex &idx) const override;
+    /*reimp*/ QModelIndex indexBelow(const QModelIndex &idx) const override;
+};
 }
 
 #endif /* KGANTTTREEVIEWROWCONTROLLER_H */
-

@@ -11,17 +11,20 @@
 
 #include "KChartLineDiagram_p.h"
 
-namespace KChart {
+namespace KChart
+{
 
-    class PercentLineDiagram : public LineDiagram::LineDiagramType
+class PercentLineDiagram : public LineDiagram::LineDiagramType
+{
+public:
+    explicit PercentLineDiagram(LineDiagram *);
+    ~PercentLineDiagram() override
     {
-    public:
-        explicit PercentLineDiagram( LineDiagram* );
-        ~PercentLineDiagram() override {}
-        LineDiagram::LineType type() const override;
-        const QPair<QPointF,  QPointF> calculateDataBoundaries() const override;
-        void paint( PaintContext* ctx ) override;
-    };
+    }
+    LineDiagram::LineType type() const override;
+    const QPair<QPointF, QPointF> calculateDataBoundaries() const override;
+    void paint(PaintContext *ctx) override;
+};
 
 }
 

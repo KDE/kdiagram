@@ -20,15 +20,15 @@
 // We mean it.
 //
 
-#include "KChartAbstractPolarDiagram.h"
 #include "KChartAbstractDiagram_p.h"
-#include <KChartGridAttributes.h>
+#include "KChartAbstractPolarDiagram.h"
 #include "KChartMath_p.h"
+#include <KChartGridAttributes.h>
 
+namespace KChart
+{
 
-namespace KChart {
-
-  class PolarCoordinatePlane;
+class PolarCoordinatePlane;
 
 /**
  * \internal
@@ -36,35 +36,36 @@ namespace KChart {
 class Q_DECL_HIDDEN AbstractPolarDiagram::Private : public AbstractDiagram::Private
 {
     friend class AbstractPolarDiagram;
+
 public:
     Private();
     ~Private() override;
 
-    Private( const Private& rhs ) :
-        AbstractDiagram::Private( rhs ),
-        granularity( 0 )
-        {
-            // just for consistency
-        }
+    Private(const Private &rhs)
+        : AbstractDiagram::Private(rhs)
+        , granularity(0)
+    {
+        // just for consistency
+    }
 
     /** \reimpl */
     // FIXME: Optimize when needed
-    qreal calcPercentValue( const QModelIndex & index ) const override
+    qreal calcPercentValue(const QModelIndex &index) const override
     {
-        Q_ASSERT( index.isValid() );
+        Q_ASSERT(index.isValid());
         qreal sum = 0.0;
-        for ( int row = 0; row < attributesModel->rowCount( QModelIndex() ); row++ )
-            sum += attributesModel->data( attributesModel->index( row, index.column(), QModelIndex() ) ).toReal(); // checked
-        if ( sum == 0.0 )
+        for (int row = 0; row < attributesModel->rowCount(QModelIndex()); row++)
+            sum += attributesModel->data(attributesModel->index(row, index.column(), QModelIndex())).toReal(); // checked
+        if (sum == 0.0)
             return 0.0;
-        return attributesModel->data( attributesModel->mapFromSource( index ) ).toReal() / sum * 100.0;
+        return attributesModel->data(attributesModel->mapFromSource(index)).toReal() / sum * 100.0;
     }
 
 private:
     qreal granularity;
 };
 
-KCHART_IMPL_DERIVED_DIAGRAM( AbstractPolarDiagram, AbstractDiagram, PolarCoordinatePlane )
+KCHART_IMPL_DERIVED_DIAGRAM(AbstractPolarDiagram, AbstractDiagram, PolarCoordinatePlane)
 /*
 inline AbstractPolarDiagram::AbstractPolarDiagram( Private * p )
     : AbstractDiagram( p ) { init(); }

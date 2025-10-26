@@ -9,20 +9,22 @@
 #ifndef KCHARTPERCENTBARDIAGRAM_P_H
 #define KCHARTPERCENTBARDIAGRAM_P_H
 
-
 #include "KChartBarDiagram_p.h"
 
-namespace KChart {
+namespace KChart
+{
 
-    class PercentBarDiagram : public BarDiagram::BarDiagramType
+class PercentBarDiagram : public BarDiagram::BarDiagramType
+{
+public:
+    explicit PercentBarDiagram(BarDiagram *);
+    ~PercentBarDiagram() override
     {
-    public:
-        explicit PercentBarDiagram( BarDiagram* );
-        ~PercentBarDiagram() override {}
-        BarDiagram::BarType type() const override;
-        const QPair<QPointF,  QPointF> calculateDataBoundaries() const override;
-        void paint( PaintContext* ctx ) override;
-    };
+    }
+    BarDiagram::BarType type() const override;
+    const QPair<QPointF, QPointF> calculateDataBoundaries() const override;
+    void paint(PaintContext *ctx) override;
+};
 
 }
 

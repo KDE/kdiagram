@@ -14,16 +14,17 @@
 #include "KChartStockBarAttributes.h"
 #include "KChartThreeDBarAttributes.h"
 
-namespace KChart {
-    class PaintContext;
+namespace KChart
+{
+class PaintContext;
 
 class KCHART_EXPORT StockDiagram : public AbstractCartesianDiagram
 {
     Q_OBJECT
 
-    Q_DISABLE_COPY( StockDiagram )
+    Q_DISABLE_COPY(StockDiagram)
 
-    KCHART_DECLARE_DERIVED_DIAGRAM( StockDiagram, CartesianCoordinatePlane )
+    KCHART_DECLARE_DERIVED_DIAGRAM(StockDiagram, CartesianCoordinatePlane)
 
 public:
     enum Type {
@@ -32,45 +33,43 @@ public:
         Candlestick
     };
 
-    explicit StockDiagram( QWidget *parent = nullptr, CartesianCoordinatePlane *plane = nullptr );
+    explicit StockDiagram(QWidget *parent = nullptr, CartesianCoordinatePlane *plane = nullptr);
     ~StockDiagram() override;
 
- 
     /**
-      * Switches between the supported types of stock charts,
-      * depending on \a type
-      */
-   void setType( Type type );
- 
-    /**
-      * @return the type of this diagram
-      */
-   Type type() const;
+     * Switches between the supported types of stock charts,
+     * depending on \a type
+     */
+    void setType(Type type);
 
-    void setStockBarAttributes( const StockBarAttributes &attr );
+    /**
+     * @return the type of this diagram
+     */
+    Type type() const;
+
+    void setStockBarAttributes(const StockBarAttributes &attr);
     StockBarAttributes stockBarAttributes() const;
 
-    void setStockBarAttributes( int column, const StockBarAttributes &attr );
-    StockBarAttributes stockBarAttributes( int column ) const;
+    void setStockBarAttributes(int column, const StockBarAttributes &attr);
+    StockBarAttributes stockBarAttributes(int column) const;
 
- 
     /**
      * Sets the 3D attributes for all bars (i.e. candlesticks)
      *
      * @param attr The 3D attributes to set
      */
- 
-   /**
-    * Sets the 3D attributes for the bar (i.e. candlestick) in certain column
-    * of the diagram
-    *
-    * Note: Every column in a StockDiagram is represented by a row in the model
-    *
-    * @param column The column to set the 3D bar attributes for
-    * @param attr The 3D attributes to set
-    */
-  void setThreeDBarAttributes( const ThreeDBarAttributes &attr );
- 
+
+    /**
+     * Sets the 3D attributes for the bar (i.e. candlestick) in certain column
+     * of the diagram
+     *
+     * Note: Every column in a StockDiagram is represented by a row in the model
+     *
+     * @param column The column to set the 3D bar attributes for
+     * @param attr The 3D attributes to set
+     */
+    void setThreeDBarAttributes(const ThreeDBarAttributes &attr);
+
     /**
      * Returns the 3D attributes for all bars (i.e. candlesticks)
      *
@@ -79,47 +78,47 @@ public:
     ThreeDBarAttributes threeDBarAttributes() const;
 
     /**
-    * Returns the 3D attributes for a bars (i.e. candlestick) in a certain column
-    * of the diagram
-    *
-    * Note: Every column in a StockDiagram is represented by a row in the model
-    *
-    * @param column The column to get the 3D bar attributes for
-    * @return The 3D attributes for the specified column
-    */
-    ThreeDBarAttributes threeDBarAttributes( int column ) const;
+     * Returns the 3D attributes for a bars (i.e. candlestick) in a certain column
+     * of the diagram
+     *
+     * Note: Every column in a StockDiagram is represented by a row in the model
+     *
+     * @param column The column to get the 3D bar attributes for
+     * @return The 3D attributes for the specified column
+     */
+    ThreeDBarAttributes threeDBarAttributes(int column) const;
 
-    void setThreeDBarAttributes( int column, const ThreeDBarAttributes &attr );
+    void setThreeDBarAttributes(int column, const ThreeDBarAttributes &attr);
 
-    void setLowHighLinePen( const QPen &pen );
+    void setLowHighLinePen(const QPen &pen);
     QPen lowHighLinePen() const;
 
-    void setLowHighLinePen( int column, const QPen &pen );
-    QPen lowHighLinePen( int column ) const;
+    void setLowHighLinePen(int column, const QPen &pen);
+    QPen lowHighLinePen(int column) const;
 
-    void setUpTrendCandlestickBrush( const QBrush &brush );
+    void setUpTrendCandlestickBrush(const QBrush &brush);
     QBrush upTrendCandlestickBrush() const;
 
-    void setDownTrendCandlestickBrush( const QBrush &brush );
+    void setDownTrendCandlestickBrush(const QBrush &brush);
     QBrush downTrendCandlestickBrush() const;
 
-    void setUpTrendCandlestickBrush( int column, const QBrush &brush );
-    QBrush upTrendCandlestickBrush( int column ) const;
+    void setUpTrendCandlestickBrush(int column, const QBrush &brush);
+    QBrush upTrendCandlestickBrush(int column) const;
 
-    void setDownTrendCandlestickBrush( int column, const QBrush &brush );
-    QBrush downTrendCandlestickBrush( int column ) const;
+    void setDownTrendCandlestickBrush(int column, const QBrush &brush);
+    QBrush downTrendCandlestickBrush(int column) const;
 
-    void setUpTrendCandlestickPen( const QPen &pen );
+    void setUpTrendCandlestickPen(const QPen &pen);
     QPen upTrendCandlestickPen() const;
 
-    void setDownTrendCandlestickPen( const QPen &pen );
+    void setDownTrendCandlestickPen(const QPen &pen);
     QPen downTrendCandlestickPen() const;
 
-    void setUpTrendCandlestickPen( int column, const QPen &pen );
-    QPen upTrendCandlestickPen( int column ) const;
+    void setUpTrendCandlestickPen(int column, const QPen &pen);
+    QPen upTrendCandlestickPen(int column) const;
 
-    void setDownTrendCandlestickPen( int column, const QPen &pen );
-    QPen downTrendCandlestickPen( int column ) const;
+    void setDownTrendCandlestickPen(int column, const QPen &pen);
+    QPen downTrendCandlestickPen(int column) const;
 
 #if defined(Q_COMPILER_MANGLES_RETURN_TYPE)
     virtual const int numberOfAbscissaSegments() const;
@@ -129,12 +128,12 @@ public:
     int numberOfOrdinateSegments() const override;
 #endif
 
-    void paint( PaintContext *paintContext ) override;
+    void paint(PaintContext *paintContext) override;
 
-    void resize( const QSizeF &size ) override;
+    void resize(const QSizeF &size) override;
 
-    qreal threeDItemDepth( int column ) const override;
-    qreal threeDItemDepth( const QModelIndex &index ) const override;
+    qreal threeDItemDepth(int column) const override;
+    qreal threeDItemDepth(const QModelIndex &index) const override;
 
 protected:
     const QPair<QPointF, QPointF> calculateDataBoundaries() const override;
@@ -143,4 +142,3 @@ protected:
 } // namespace KChart
 
 #endif // KCHART_STOCK_DIAGRAM_H
-

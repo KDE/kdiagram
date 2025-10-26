@@ -17,48 +17,46 @@ QT_BEGIN_NAMESPACE
 class QAbstractProxyModel;
 QT_END_NAMESPACE
 
-namespace KGantt {
-    class Constraint;
-    class ConstraintModel;
+namespace KGantt
+{
+class Constraint;
+class ConstraintModel;
 
+/*!\class KGantt::ConstraintProxy
+ * \internal
+ */
+class KGANTT_EXPORT ConstraintProxy : public QObject
+{
+    Q_OBJECT
+public:
+    explicit ConstraintProxy(QObject *parent = nullptr);
+    ~ConstraintProxy() override;
 
+    void setSourceModel(ConstraintModel *src);
+    void setDestinationModel(ConstraintModel *dest);
+    void setProxyModel(QAbstractProxyModel *proxy);
 
-    /*!\class KGantt::ConstraintProxy
-     * \internal
-     */
-    class KGANTT_EXPORT ConstraintProxy : public QObject {
-        Q_OBJECT
-    public:
-        explicit ConstraintProxy( QObject* parent = nullptr );
-        ~ConstraintProxy() override;
+    ConstraintModel *sourceModel() const;
+    ConstraintModel *destinationModel() const;
+    QAbstractProxyModel *proxyModel() const;
 
-        void setSourceModel( ConstraintModel* src );
-        void setDestinationModel( ConstraintModel* dest );
-        void setProxyModel( QAbstractProxyModel* proxy );
+private Q_SLOTS:
 
-        ConstraintModel* sourceModel() const;
-        ConstraintModel* destinationModel() const;
-        QAbstractProxyModel* proxyModel() const;
+    void slotSourceConstraintAdded(const KGantt::Constraint &);
+    void slotSourceConstraintRemoved(const KGantt::Constraint &);
 
+    void slotDestinationConstraintAdded(const KGantt::Constraint &);
+    void slotDestinationConstraintRemoved(const KGantt::Constraint &);
 
-    private Q_SLOTS:
+    void slotLayoutChanged();
 
-        void slotSourceConstraintAdded( const KGantt::Constraint& );
-        void slotSourceConstraintRemoved( const KGantt::Constraint& );
+private:
+    void copyFromSource();
 
-        void slotDestinationConstraintAdded( const KGantt::Constraint& );
-        void slotDestinationConstraintRemoved( const KGantt::Constraint& );
-
-        void slotLayoutChanged();
-
-    private:
-        void copyFromSource();
-
-        QPointer<QAbstractProxyModel> m_proxy;
-        QPointer<ConstraintModel> m_source;
-        QPointer<ConstraintModel> m_destination;
-    };
+    QPointer<QAbstractProxyModel> m_proxy;
+    QPointer<ConstraintModel> m_source;
+    QPointer<ConstraintModel> m_destination;
+};
 }
 
 #endif /* KGANTTCONSTRAINTPROXY_H */
-

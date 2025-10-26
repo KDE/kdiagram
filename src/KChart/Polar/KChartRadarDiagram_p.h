@@ -21,11 +21,11 @@
 //
 
 #include "KChartAbstractPolarDiagram_p.h"
-#include "KChartRadarDiagram.h"
 #include "KChartMath_p.h"
+#include "KChartRadarDiagram.h"
 
-
-namespace KChart {
+namespace KChart
+{
 
 /**
  * \internal
@@ -33,17 +33,18 @@ namespace KChart {
 class Q_DECL_HIDDEN RadarDiagram::Private : public AbstractPolarDiagram::Private
 {
     friend class RadarDiagram;
+
 public:
     Private();
     ~Private() override;
 
-    Private( const Private& rhs ) :
-        AbstractPolarDiagram::Private( rhs ),
-        closeDatasets( rhs.closeDatasets ),
-        reverseData( rhs.reverseData ),
-        fillAlpha( rhs.fillAlpha )
-        {
-        }
+    Private(const Private &rhs)
+        : AbstractPolarDiagram::Private(rhs)
+        , closeDatasets(rhs.closeDatasets)
+        , reverseData(rhs.reverseData)
+        , fillAlpha(rhs.fillAlpha)
+    {
+    }
 
 private:
     bool closeDatasets;
@@ -52,7 +53,7 @@ private:
     LabelPaintCache labelPaintCache;
 };
 
-KCHART_IMPL_DERIVED_DIAGRAM( RadarDiagram, AbstractPolarDiagram, RadarCoordinatePlane )
+KCHART_IMPL_DERIVED_DIAGRAM(RadarDiagram, AbstractPolarDiagram, RadarCoordinatePlane)
 
 }
 

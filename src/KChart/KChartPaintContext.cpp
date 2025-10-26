@@ -17,21 +17,22 @@ using namespace KChart;
 
 #define d (d_func())
 
-class Q_DECL_HIDDEN PaintContext::Private {
-
+class Q_DECL_HIDDEN PaintContext::Private
+{
 public:
-    QPainter* painter;
+    QPainter *painter;
     QRectF rect;
-    AbstractCoordinatePlane* plane;
+    AbstractCoordinatePlane *plane;
 
     Private()
-        : painter( nullptr )
-        , plane ( nullptr )
-    {}
+        : painter(nullptr)
+        , plane(nullptr)
+    {
+    }
 };
 
 PaintContext::PaintContext()
-    : _d ( new Private() )
+    : _d(new Private())
 {
 }
 
@@ -45,27 +46,27 @@ const QRectF PaintContext::rectangle() const
     return d->rect;
 }
 
-void PaintContext::setRectangle ( const QRectF& rect )
+void PaintContext::setRectangle(const QRectF &rect)
 {
     d->rect = rect;
 }
 
-QPainter* PaintContext::painter() const
+QPainter *PaintContext::painter() const
 {
     return d->painter;
 }
 
-void PaintContext::setPainter( QPainter* painter )
+void PaintContext::setPainter(QPainter *painter)
 {
     d->painter = painter;
 }
 
-AbstractCoordinatePlane* PaintContext::coordinatePlane() const
+AbstractCoordinatePlane *PaintContext::coordinatePlane() const
 {
     return d->plane;
 }
 
-void PaintContext::setCoordinatePlane( AbstractCoordinatePlane* plane)
+void PaintContext::setCoordinatePlane(AbstractCoordinatePlane *plane)
 {
     d->plane = plane;
 }

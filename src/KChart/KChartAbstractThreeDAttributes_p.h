@@ -24,8 +24,8 @@
 
 #include "KChartMath_p.h"
 
-
-namespace KChart {
+namespace KChart
+{
 
 /**
  * \internal
@@ -33,19 +33,24 @@ namespace KChart {
 class Q_DECL_HIDDEN AbstractThreeDAttributes::Private
 {
     friend class AbstractThreeDAttributes;
+
 public:
     Private();
     virtual ~Private();
 
 private:
     bool enabled;
-// FIXME: What is this needed for? height is not referenced anywhere.
-//    int height;
+    // FIXME: What is this needed for? height is not referenced anywhere.
+    //    int height;
     qreal depth;
     bool threeDBrushEnabled;
 };
 
-inline AbstractThreeDAttributes::AbstractThreeDAttributes( Private * p ) : _d( p ) { init(); }
+inline AbstractThreeDAttributes::AbstractThreeDAttributes(Private *p)
+    : _d(p)
+{
+    init();
+}
 
 }
 

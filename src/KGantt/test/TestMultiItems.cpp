@@ -10,20 +10,18 @@
 
 #include "TestMultiItems.h"
 
-#include "kganttglobal.h"
-#include "kganttgraphicsview.h"
-#include "kganttgraphicsscene.h"
-#include "kganttgraphicsitem.h"
 #include "kganttconstraintmodel.h"
-#include "kgantttreeviewrowcontroller.h"
-#include "kganttlistviewrowcontroller.h"
-#include "kganttforwardingproxymodel.h"
-#include "kganttitemdelegate.h"
 #include "kganttdatetimegrid.h"
+#include "kganttforwardingproxymodel.h"
+#include "kganttglobal.h"
+#include "kganttgraphicsitem.h"
+#include "kganttgraphicsscene.h"
+#include "kganttgraphicsview.h"
+#include "kganttitemdelegate.h"
+#include "kganttlistviewrowcontroller.h"
 #include "kgantttreeviewrowcontroller.h"
 
 #include <QListView>
-
 
 using namespace KGantt;
 
@@ -49,10 +47,10 @@ void TestMultiItems::cleanup()
 void TestMultiItems::initMultiModel()
 {
     if (itemModel->columnCount() == 0) {
-        itemModel->setHorizontalHeaderLabels(QStringList()<< "Title"<<"Type"<<"Start"<<"End");
+        itemModel->setHorizontalHeaderLabels(QStringList() << "Title" << "Type" << "Start" << "End");
     }
 
-    QList<QStandardItem*> items;
+    QList<QStandardItem *> items;
     QStandardItem *multi = new QStandardItem("Multi 1");
     items << multi;
     QStandardItem *item = new QStandardItem(QString::number((int)KGantt::TypeMulti));

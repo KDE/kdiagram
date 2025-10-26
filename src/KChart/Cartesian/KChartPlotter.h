@@ -14,184 +14,185 @@
 #include "KChartLineAttributes.h"
 #include "KChartValueTrackerAttributes.h"
 
-namespace KChart {
+namespace KChart
+{
 
-    class ThreeDLineAttributes;
+class ThreeDLineAttributes;
 
 /**
-  * @brief Plotter defines a diagram type plotting two-dimensional data.
-  */
+ * @brief Plotter defines a diagram type plotting two-dimensional data.
+ */
 class KCHART_EXPORT Plotter : public AbstractCartesianDiagram
 {
     Q_OBJECT
 
-    Q_DISABLE_COPY( Plotter )
+    Q_DISABLE_COPY(Plotter)
 
-    KCHART_DECLARE_DERIVED_DIAGRAM( Plotter, CartesianCoordinatePlane )
-    Q_PROPERTY( CompressionMode useDataCompression READ useDataCompression WRITE setUseDataCompression )
-    Q_PROPERTY( qreal mergeRadiusPercentage READ mergeRadiusPercentage WRITE setMergeRadiusPercentage )
+    KCHART_DECLARE_DERIVED_DIAGRAM(Plotter, CartesianCoordinatePlane)
+    Q_PROPERTY(CompressionMode useDataCompression READ useDataCompression WRITE setUseDataCompression)
+    Q_PROPERTY(qreal mergeRadiusPercentage READ mergeRadiusPercentage WRITE setMergeRadiusPercentage)
 
 public:
     // SLOPE enables a compression based on minimal slope changes
     // DISTANCE is still buggy and can fail, same for BOTH, NONE is the default mode
-    enum CompressionMode{ SLOPE, DISTANCE, BOTH, NONE };
-    Q_ENUM( CompressionMode )
+    enum CompressionMode {
+        SLOPE,
+        DISTANCE,
+        BOTH,
+        NONE
+    };
+    Q_ENUM(CompressionMode)
     class PlotterType;
     friend class PlotterType;
 
-    explicit Plotter( QWidget* parent = nullptr, CartesianCoordinatePlane* plane = nullptr );
+    explicit Plotter(QWidget *parent = nullptr, CartesianCoordinatePlane *plane = nullptr);
     ~Plotter() override;
 
-
     /**
-      * Creates an exact copy of this diagram.
-      */
-   virtual Plotter* clone() const;
+     * Creates an exact copy of this diagram.
+     */
+    virtual Plotter *clone() const;
 
     /**
      * Returns true if both diagrams have the same settings.
      */
-    bool compare( const Plotter* other ) const;
+    bool compare(const Plotter *other) const;
 
     enum PlotType {
-        Normal =  0,
+        Normal = 0,
         Percent,
         Stacked
     };
 
-
+    /**
+     * Sets the plotter's type to \a type
+     */
+    void setType(const PlotType type);
 
     /**
-      * Sets the plotter's type to \a type
-      */
-   void setType( const PlotType type );
-
-    /**
-      * @return the type of the plotter
-      */
+     * @return the type of the plotter
+     */
     PlotType type() const;
 
     /**
-      * Sets the global line attributes to \a la
-      */
-    void setLineAttributes( const LineAttributes & la );
+     * Sets the global line attributes to \a la
+     */
+    void setLineAttributes(const LineAttributes &la);
 
     /**
      * Sets the line attributes of data set \a column to \a la
      */
-    void setLineAttributes( int column, const LineAttributes &la );
+    void setLineAttributes(int column, const LineAttributes &la);
 
     /**
-    * Sets the line attributes for the model index \a index to \a la
-    */
-    void setLineAttributes( const QModelIndex & index, const LineAttributes &la );
+     * Sets the line attributes for the model index \a index to \a la
+     */
+    void setLineAttributes(const QModelIndex &index, const LineAttributes &la);
 
     /**
-      * Resets the line attributes of data set \a column
-      */
-    void resetLineAttributes( int column );
+     * Resets the line attributes of data set \a column
+     */
+    void resetLineAttributes(int column);
 
     /**
-    * Remove any explicit line attributes settings that might have been specified before.
-    */
-    void resetLineAttributes( const QModelIndex & index );
+     * Remove any explicit line attributes settings that might have been specified before.
+     */
+    void resetLineAttributes(const QModelIndex &index);
 
     /**
-      * @return the global line attribute set
-      */
+     * @return the global line attribute set
+     */
     LineAttributes lineAttributes() const;
 
-   /**
+    /**
      * @return the line attribute set of data set \a column
      */
-   LineAttributes lineAttributes( int column ) const;
+    LineAttributes lineAttributes(int column) const;
 
     /**
-    * @return the line attribute set of the model index \a index
-    */
-    LineAttributes lineAttributes( const QModelIndex & index ) const;
+     * @return the line attribute set of the model index \a index
+     */
+    LineAttributes lineAttributes(const QModelIndex &index) const;
 
     /**
-      * Sets the global 3D line attributes to \a la
-      */
-    void setThreeDLineAttributes( const ThreeDLineAttributes & la );
+     * Sets the global 3D line attributes to \a la
+     */
+    void setThreeDLineAttributes(const ThreeDLineAttributes &la);
 
     /**
      * Sets the 3D line attributes of data set \a column to \a la
      */
-    void setThreeDLineAttributes( int column, const ThreeDLineAttributes & la );
+    void setThreeDLineAttributes(int column, const ThreeDLineAttributes &la);
 
     /**
-    * Sets the 3D line attributes of model index \a index to \a la
-    */
-    void setThreeDLineAttributes( const QModelIndex & index,
-                                  const ThreeDLineAttributes & la );
+     * Sets the 3D line attributes of model index \a index to \a la
+     */
+    void setThreeDLineAttributes(const QModelIndex &index, const ThreeDLineAttributes &la);
 
     /**
-      * @return the global 3D line attributes
-      */
+     * @return the global 3D line attributes
+     */
     ThreeDLineAttributes threeDLineAttributes() const;
 
     /**
      * @return the 3D line attributes of data set \a column
      */
-    ThreeDLineAttributes threeDLineAttributes( int column ) const;
+    ThreeDLineAttributes threeDLineAttributes(int column) const;
 
     /**
-    * @return the 3D line attributes of the model index \a index
-    */
-    ThreeDLineAttributes threeDLineAttributes( const QModelIndex & index ) const;
+     * @return the 3D line attributes of the model index \a index
+     */
+    ThreeDLineAttributes threeDLineAttributes(const QModelIndex &index) const;
 
     /**
-      * Sets the value tracker attributes of the model index \a index to \a va
-      */
-   void setValueTrackerAttributes( const QModelIndex & index,
-                                    const ValueTrackerAttributes & va );
+     * Sets the value tracker attributes of the model index \a index to \a va
+     */
+    void setValueTrackerAttributes(const QModelIndex &index, const ValueTrackerAttributes &va);
 
     /**
-      * Returns the value tracker attributes of the model index \a index
-      */
-   ValueTrackerAttributes valueTrackerAttributes( const QModelIndex & index ) const;
+     * Returns the value tracker attributes of the model index \a index
+     */
+    ValueTrackerAttributes valueTrackerAttributes(const QModelIndex &index) const;
 
     CompressionMode useDataCompression() const;
-    void setUseDataCompression( CompressionMode value );
+    void setUseDataCompression(CompressionMode value);
 
     qreal maxSlopeChange() const;
-    void setMaxSlopeChange( qreal value );
+    void setMaxSlopeChange(qreal value);
 
     qreal mergeRadiusPercentage() const;
-    void setMergeRadiusPercentage( qreal value );
+    void setMergeRadiusPercentage(qreal value);
 
 #if defined(Q_COMPILER_MANGLES_RETURN_TYPE)
     // implement AbstractCartesianDiagram
     /* reimpl */
-    const int numberOfAbscissaSegments () const;
+    const int numberOfAbscissaSegments() const;
     /* reimpl */
-    const int numberOfOrdinateSegments () const;
+    const int numberOfOrdinateSegments() const;
 #else
     // implement AbstractCartesianDiagram
     /* reimpl */
-    int numberOfAbscissaSegments () const override;
+    int numberOfAbscissaSegments() const override;
     /* reimpl */
-    int numberOfOrdinateSegments () const override;
+    int numberOfOrdinateSegments() const override;
 #endif
 
 protected Q_SLOTS:
-    void connectAttributesModel( KChart::AttributesModel* );
+    void connectAttributesModel(KChart::AttributesModel *);
 
 protected:
-    void paint ( PaintContext* paintContext ) override;
+    void paint(PaintContext *paintContext) override;
 
 public:
-    void resize ( const QSizeF& area ) override;
+    void resize(const QSizeF &area) override;
 
 protected:
-    qreal threeDItemDepth( const QModelIndex & index ) const override;
-    qreal threeDItemDepth( int column ) const override;
+    qreal threeDItemDepth(const QModelIndex &index) const override;
+    qreal threeDItemDepth(int column) const override;
     /** \reimpl */
     const QPair<QPointF, QPointF> calculateDataBoundaries() const override;
-    void paintEvent ( QPaintEvent* ) override;
-    void resizeEvent ( QResizeEvent* ) override;
+    void paintEvent(QPaintEvent *) override;
+    void resizeEvent(QResizeEvent *) override;
 protected Q_SLOTS:
     void setDataBoundariesDirty();
     void calcMergeRadius();

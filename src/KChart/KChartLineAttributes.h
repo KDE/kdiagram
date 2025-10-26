@@ -9,14 +9,15 @@
 #ifndef KCHARTLINEATTRIBUTES_H
 #define KCHARTLINEATTRIBUTES_H
 
-#include <QMetaType>
 #include "KChartGlobal.h"
+#include <QMetaType>
 
-namespace KChart {
+namespace KChart
+{
 
 /**
-  * @brief Set of attributes for changing the appearance of line charts
-  */
+ * @brief Set of attributes for changing the appearance of line charts
+ */
 class KCHART_EXPORT LineAttributes
 {
 public:
@@ -42,16 +43,17 @@ public:
         MissingValuesAreBridged,
         MissingValuesHideSegments,
         MissingValuesShownAsZero,
-        MissingValuesPolicyIgnored };
+        MissingValuesPolicyIgnored
+    };
 
     LineAttributes();
-    LineAttributes( const LineAttributes& );
-    LineAttributes &operator= ( const LineAttributes& );
+    LineAttributes(const LineAttributes &);
+    LineAttributes &operator=(const LineAttributes &);
 
     ~LineAttributes();
 
     /* line chart and area chart - all types */
-    void setMissingValuesPolicy( MissingValuesPolicy policy );
+    void setMissingValuesPolicy(MissingValuesPolicy policy);
     MissingValuesPolicy missingValuesPolicy() const;
 
     /* area chart - all types */
@@ -61,7 +63,7 @@ public:
      * is then drawn between this line and the line of the specified dataset.
      * Pass -1 to draw the area between this line and the zero line.
      */
-    void setAreaBoundingDataset( int dataset );
+    void setAreaBoundingDataset(int dataset);
     int areaBoundingDataset() const;
 
     /**
@@ -73,34 +75,37 @@ public:
      *
      * By default lines are drawn, i.e. this property is true.
      */
-    void setVisible( bool visible );
+    void setVisible(bool visible);
     bool isVisible() const;
 
-    void setDisplayArea( bool display );
+    void setDisplayArea(bool display);
     bool displayArea() const;
     /*allows viewing the covered areas*/
-    void setTransparency( uint alpha );
+    void setTransparency(uint alpha);
     uint transparency() const;
 
-    bool operator==( const LineAttributes& ) const;
-    inline bool operator!=( const LineAttributes& other ) const { return !operator==(other); }
+    bool operator==(const LineAttributes &) const;
+    inline bool operator!=(const LineAttributes &other) const
+    {
+        return !operator==(other);
+    }
 
 private:
-    KCHART_DECLARE_PRIVATE_BASE_VALUE( LineAttributes )
+    KCHART_DECLARE_PRIVATE_BASE_VALUE(LineAttributes)
 }; // End of class LineAttributes
 
 }
 
 #if !defined(QT_NO_DEBUG_STREAM)
-KCHART_EXPORT QDebug operator<<(QDebug, const KChart::LineAttributes& );
+KCHART_EXPORT QDebug operator<<(QDebug, const KChart::LineAttributes &);
 #endif /* QT_NO_DEBUG_STREAM */
 
-KCHART_DECLARE_SWAP_SPECIALISATION( KChart::LineAttributes )
+KCHART_DECLARE_SWAP_SPECIALISATION(KChart::LineAttributes)
 
 QT_BEGIN_NAMESPACE
-Q_DECLARE_TYPEINFO( KChart::LineAttributes, Q_MOVABLE_TYPE );
+Q_DECLARE_TYPEINFO(KChart::LineAttributes, Q_MOVABLE_TYPE);
 QT_END_NAMESPACE
 
-Q_DECLARE_METATYPE( KChart::LineAttributes )
+Q_DECLARE_METATYPE(KChart::LineAttributes)
 
 #endif // KCHARTLINEATTRIBUTES_H

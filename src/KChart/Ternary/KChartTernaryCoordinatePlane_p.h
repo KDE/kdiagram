@@ -20,57 +20,58 @@
 // We mean it.
 //
 
-#include "KChartTernaryCoordinatePlane.h"
-#include "KChartTernaryGrid.h"
 #include "KChartAbstractCoordinatePlane_p.h"
 #include "KChartMath_p.h"
+#include "KChartTernaryCoordinatePlane.h"
+#include "KChartTernaryGrid.h"
 
 #include <QRectF>
 
-namespace KChart {
+namespace KChart
+{
 
-    class TernaryAxis;
+class TernaryAxis;
 
-    /**
-     * \internal
-     */
+/**
+ * \internal
+ */
 
-    class Q_DECL_HIDDEN TernaryCoordinatePlane::Private : public AbstractCoordinatePlane::Private
+class Q_DECL_HIDDEN TernaryCoordinatePlane::Private : public AbstractCoordinatePlane::Private
+{
+    friend class TernaryCoordinatePlane;
+
+public:
+    explicit Private();
+
+    ~Private() override
     {
-        friend class TernaryCoordinatePlane;
+        // grid is delete in base class dtor
+    }
 
-    public:
-        explicit Private();
+    void initialize() override
+    {
+        grid = new TernaryGrid();
+        xUnit = 0.0;
+        yUnit = 0.0;
+    }
 
-        ~Private() override {
-            // grid is delete in base class dtor
-        }
+    QList<TernaryAxis *> axes;
 
-        void initialize() override
-        {
-            grid = new TernaryGrid();
-            xUnit = 0.0;
-            yUnit = 0.0;
-        }
+    TextAttributes labelAttributes;
 
-        QList<TernaryAxis*> axes;
+    // the diagram is drawn within this rectangle, which is within
+    // this widget:
+    QRectF diagramRectContainer;
+    // this is the "frame" of the plot area
+    QRectF diagramRect;
+    // multiply m_xUnit with a [0..1] value to get an isometric
+    // widget coordinate
+    qreal xUnit;
+    // same for y:
+    qreal yUnit;
+};
 
-        TextAttributes labelAttributes;
-
-        // the diagram is drawn within this rectangle, which is within
-        // this widget:
-        QRectF diagramRectContainer;
-        // this is the "frame" of the plot area
-        QRectF diagramRect;
-        // multiply m_xUnit with a [0..1] value to get an isometric
-        // widget coordinate
-        qreal xUnit;
-        // same for y:
-        qreal yUnit;
-
-    };
-
-    KCHART_IMPL_DERIVED_PLANE(TernaryCoordinatePlane, AbstractCoordinatePlane)
+KCHART_IMPL_DERIVED_PLANE(TernaryCoordinatePlane, AbstractCoordinatePlane)
 }
 
 #endif /* KCHARTTERNARYCOORDINATEPLANE_P_H */

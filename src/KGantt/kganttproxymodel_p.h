@@ -13,16 +13,17 @@
 
 #include <QHash>
 
-namespace KGantt {
-    class Q_DECL_HIDDEN ProxyModel::Private {
-    public:
-        explicit Private( ProxyModel* _q );
+namespace KGantt
+{
+class Q_DECL_HIDDEN ProxyModel::Private
+{
+public:
+    explicit Private(ProxyModel *_q);
 
-        QHash<int, int> columnMap;
-        QHash<int, int> roleMap;
-        bool calendarMode;
-    };
+    QHash<int, int> columnMap;
+    QHash<int, int> roleMap;
+    bool calendarMode;
+};
 }
 
 #endif /* KGANTTPROXYMODEL_P_H */
-

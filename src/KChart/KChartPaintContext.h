@@ -9,44 +9,50 @@
 #ifndef PAINTCONTEXT_H
 #define PAINTCONTEXT_H
 
-#include <QRectF>
 #include "KChartGlobal.h"
+#include <QRectF>
 
 QT_BEGIN_NAMESPACE
 class QPainter;
 QT_END_NAMESPACE
 
-namespace KChart {
+namespace KChart
+{
 
-    class AbstractCoordinatePlane;
+class AbstractCoordinatePlane;
 
-    /**
-      * @brief Stores information about painting diagrams
-      * \internal
-      */
-    class KCHART_EXPORT PaintContext
+/**
+ * @brief Stores information about painting diagrams
+ * \internal
+ */
+class KCHART_EXPORT PaintContext
+{
+public:
+    PaintContext();
+    ~PaintContext();
+
+    const QRectF rectangle() const;
+    void setRectangle(const QRectF &rect);
+
+    QPainter *painter() const;
+    void setPainter(QPainter *painter);
+
+    AbstractCoordinatePlane *coordinatePlane() const;
+    void setCoordinatePlane(AbstractCoordinatePlane *plane);
+
+private:
+    class Private;
+    Private *_d;
+    Private *d_func()
     {
-    public:
-        PaintContext();
-        ~PaintContext();
-
-        const QRectF rectangle () const;
-        void setRectangle( const QRectF& rect );
-
-        QPainter* painter() const;
-        void setPainter( QPainter* painter );
-
-        AbstractCoordinatePlane* coordinatePlane() const;
-        void setCoordinatePlane( AbstractCoordinatePlane* plane );
-
-    private:
-        class Private;
-        Private * _d;
-        Private * d_func() { return _d; }
-        const Private * d_func() const { return _d; }
-    };
+        return _d;
+    }
+    const Private *d_func() const
+    {
+        return _d;
+    }
+};
 
 }
 
 #endif /* PAINTCONTEXT_H */
-

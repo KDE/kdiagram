@@ -2,7 +2,7 @@
  * SPDX-FileCopyrightText: 2018 Dag Andersen <danders@get2net.dk>
  *
  * This file is part of the KGantt library.
- * 
+ *
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
@@ -10,20 +10,18 @@
 
 #include "TestKGanttView.h"
 
-#include "kganttglobal.h"
-#include "kganttgraphicsview.h"
-#include "kganttgraphicsscene.h"
-#include "kganttgraphicsitem.h"
 #include "kganttconstraintmodel.h"
-#include "kgantttreeviewrowcontroller.h"
-#include "kganttlistviewrowcontroller.h"
-#include "kganttforwardingproxymodel.h"
-#include "kganttitemdelegate.h"
 #include "kganttdatetimegrid.h"
+#include "kganttforwardingproxymodel.h"
+#include "kganttglobal.h"
+#include "kganttgraphicsitem.h"
+#include "kganttgraphicsscene.h"
+#include "kganttgraphicsview.h"
+#include "kganttitemdelegate.h"
+#include "kganttlistviewrowcontroller.h"
 #include "kgantttreeviewrowcontroller.h"
 
 #include <QListView>
-
 
 using namespace KGantt;
 
@@ -32,7 +30,7 @@ void TestKGanttView::init()
     view = new KGantt::View();
 
     itemModel = new QStandardItemModel();
- 
+
     view->setModel(itemModel);
     view->setConstraintModel(new KGantt::ConstraintModel());
     QCOMPARE(view->model(), itemModel);
@@ -49,7 +47,7 @@ void TestKGanttView::cleanup()
 void TestKGanttView::testApi()
 {
     // this should never change
-    KGantt::GraphicsScene *scene = qobject_cast<KGantt::GraphicsScene*>(view->graphicsView()->scene());
+    KGantt::GraphicsScene *scene = qobject_cast<KGantt::GraphicsScene *>(view->graphicsView()->scene());
     QVERIFY(scene);
 
     QTreeView *treeview = new QTreeView();
@@ -64,7 +62,7 @@ void TestKGanttView::testApi()
     QVERIFY(view->leftView()->model() == model);
     QEXPECT_FAIL("", "model() returns different model than set with setModel()! This should be changed in next major release", Continue);
     QVERIFY(view->graphicsView()->model() == model);
-    KGantt::ForwardingProxyModel *fpm = qobject_cast<KGantt::ForwardingProxyModel*>(view->graphicsView()->model());
+    KGantt::ForwardingProxyModel *fpm = qobject_cast<KGantt::ForwardingProxyModel *>(view->graphicsView()->model());
     QVERIFY(fpm);
     QVERIFY(fpm->sourceModel() == model);
     QVERIFY(view->ganttProxyModel()->sourceModel() == model);
@@ -108,7 +106,7 @@ void TestKGanttView::testApi()
     QVERIFY(view->graphicsView()->grid() == grid);
     QVERIFY(scene->grid() == grid);
 
-//  TODO: rootIndex
+    //  TODO: rootIndex
 
     KGantt::ConstraintModel *old_cmodel = view->graphicsView()->constraintModel();
     KGantt::GraphicsView *gv = new KGantt::GraphicsView();
@@ -119,7 +117,7 @@ void TestKGanttView::testApi()
 
     QVERIFY(view->graphicsView()->rowController() == tvr);
 
-    KGantt::ForwardingProxyModel *new_fpm = qobject_cast<KGantt::ForwardingProxyModel*>(view->graphicsView()->model());
+    KGantt::ForwardingProxyModel *new_fpm = qobject_cast<KGantt::ForwardingProxyModel *>(view->graphicsView()->model());
     QVERIFY(new_fpm != nullptr);
     QVERIFY(view->graphicsView()->model() == new_fpm);
     QVERIFY(new_fpm->sourceModel() == model);
@@ -127,7 +125,6 @@ void TestKGanttView::testApi()
     QVERIFY(view->ganttProxyModel() == new_fpm);
 
     QVERIFY(view->graphicsView()->constraintModel() == old_cmodel);
-
 
     QVERIFY(treeview->parent() != nullptr); // QSplitter takes ownership
 
@@ -143,22 +140,21 @@ void TestKGanttView::testApi()
 
     delete tvr; // does not have a parent
     delete grid; // does not have a parent
-
 }
 
 void TestKGanttView::initTreeModel()
 {
     if (itemModel->columnCount() == 0) {
-        itemModel->setHorizontalHeaderLabels(QStringList()<< "Title"<<"Type"<<"Start"<<"End");
+        itemModel->setHorizontalHeaderLabels(QStringList() << "Title" << "Type" << "Start" << "End");
     }
 
-    QList<QStandardItem*> items;
+    QList<QStandardItem *> items;
     QStandardItem *sum = new QStandardItem("Summary 1");
     items << sum;
     QStandardItem *item = new QStandardItem(QString::number((int)KGantt::TypeSummary));
     items << item;
     itemModel->appendRow(items);
-    
+
     items.clear();
     item = new QStandardItem("T1");
     items << item;
@@ -170,7 +166,7 @@ void TestKGanttView::initTreeModel()
     item = new QStandardItem(now.addDays(1).toString());
     items << item;
     sum->appendRow(items);
-    
+
     items.clear();
     item = new QStandardItem("T2");
     items << item;
@@ -181,7 +177,6 @@ void TestKGanttView::initTreeModel()
     item = new QStandardItem(now.addDays(2).toString());
     items << item;
     sum->appendRow(items);
-    
 }
 
 void TestKGanttView::testDefaultView()
@@ -194,7 +189,6 @@ void TestKGanttView::testDefaultView()
     QCOMPARE(view->graphicsView()->scene()->items().count(), 3);
     view->collapseAll();
     QCOMPARE(view->graphicsView()->scene()->items().count(), 1);
-    
 }
 
 void TestKGanttView::testTreeView()
@@ -202,7 +196,7 @@ void TestKGanttView::testTreeView()
     QTreeView *treeview = new QTreeView(view);
     view->setLeftView(treeview);
     view->setModel(itemModel); // must be set again
-    
+
     initTreeModel();
 
     QCOMPARE(itemModel->rowCount(), 1);
@@ -221,7 +215,7 @@ void TestKGanttView::testTreeView()
 
 void TestKGanttView::initListModel()
 {
-    QList<QStandardItem*> items;
+    QList<QStandardItem *> items;
     QStandardItem *item = new QStandardItem("T1");
     items << item;
     item = new QStandardItem(QString::number((int)KGantt::TypeTask));
@@ -232,9 +226,9 @@ void TestKGanttView::initListModel()
     item = new QStandardItem(now.addDays(1).toString());
     items << item;
     itemModel->appendRow(items);
-    
+
     QCOMPARE(view->graphicsView()->scene()->items().count(), 1);
-    
+
     items.clear();
     item = new QStandardItem("T2");
     items << item;
@@ -261,14 +255,14 @@ void TestKGanttView::testConstraints()
     initTreeModel();
 
     ConstraintModel *model = view->constraintModel();
-    
+
     QPersistentModelIndex idx1 = itemModel->index(0, 0, itemModel->index(0, 0));
     QPersistentModelIndex idx2 = itemModel->index(1, 0, itemModel->index(0, 0));
 
     model->addConstraint(Constraint(idx1, idx2));
     QCOMPARE(model->constraints().count(), 1);
     QVERIFY(model->hasConstraint(Constraint(idx1, idx2)));
-    
+
     QCOMPARE(view->graphicsView()->scene()->items().count(), 1);
     view->expandAll();
     QCOMPARE(view->graphicsView()->scene()->items().count(), 4);
@@ -294,7 +288,7 @@ void TestKGanttView::testConstraints()
 
     idx1 = itemModel->index(0, 0, itemModel->index(0, 0));
     idx2 = itemModel->index(1, 0, itemModel->index(0, 0));
-    
+
     model->addConstraint(Constraint(idx1, idx2));
     QCOMPARE(model->constraints().count(), 1);
     QVERIFY(model->hasConstraint(Constraint(idx1, idx2)));
@@ -311,7 +305,7 @@ void TestKGanttView::testConstraints()
 
     // must be possible to add constraints between items with different parent
     QPersistentModelIndex idx3 = itemModel->index(0, 0, itemModel->index(1, 0));
-    
+
     model->addConstraint(Constraint(idx2, idx3));
     QCOMPARE(model->constraints().count(), 2);
     QVERIFY(model->hasConstraint(Constraint(idx2, idx3)));
@@ -321,7 +315,6 @@ void TestKGanttView::testConstraints()
     QVERIFY(itemModel->removeRows(1, 1));
     QCOMPARE(model->constraints().count(), 1);
     QCOMPARE(view->graphicsView()->scene()->items().count(), 4);
-    
 }
 
 void TestKGanttView::testSetGraphicsView()
@@ -345,7 +338,7 @@ void TestKGanttView::testSetGraphicsView()
 
 void TestKGanttView::testSetRowController()
 {
-    TreeViewRowController *rc = new TreeViewRowController(qobject_cast<QTreeView*>(view->leftView()), view->ganttProxyModel());
+    TreeViewRowController *rc = new TreeViewRowController(qobject_cast<QTreeView *>(view->leftView()), view->ganttProxyModel());
     view->setRowController(rc);
     QVERIFY(view->rowController() == rc);
 

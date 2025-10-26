@@ -10,8 +10,8 @@
 #include "KChartPlotter_p.h"
 
 #include "KChartAbstractGrid.h"
-#include "KChartPainterSaver_p.h"
 #include "KChartMath_p.h"
+#include "KChartPainterSaver_p.h"
 
 #include "KChartNormalPlotter_p.h"
 #include "KChartPercentPlotter_p.h"
@@ -20,10 +20,10 @@
 using namespace KChart;
 
 Plotter::Private::Private()
-    : implementor( nullptr )
-    , normalPlotter( nullptr )
-    , percentPlotter( nullptr )
-    , stackedPlotter( nullptr )
+    : implementor(nullptr)
+    , normalPlotter(nullptr)
+    , percentPlotter(nullptr)
+    , stackedPlotter(nullptr)
 {
 }
 
@@ -34,12 +34,10 @@ Plotter::Private::~Private()
     delete stackedPlotter;
 }
 
-
 #define d d_func()
 
-
-Plotter::Plotter( QWidget* parent, CartesianCoordinatePlane* plane ) :
-    AbstractCartesianDiagram( new Private(), parent, plane )
+Plotter::Plotter(QWidget *parent, CartesianCoordinatePlane *plane)
+    : AbstractCartesianDiagram(new Private(), parent, plane)
 {
     init();
 }
@@ -47,68 +45,65 @@ Plotter::Plotter( QWidget* parent, CartesianCoordinatePlane* plane ) :
 void Plotter::init()
 {
     d->diagram = this;
-    d->normalPlotter = new NormalPlotter( this );
-    d->percentPlotter = new PercentPlotter( this );
-    d->stackedPlotter = new StackedPlotter( this );
+    d->normalPlotter = new NormalPlotter(this);
+    d->percentPlotter = new PercentPlotter(this);
+    d->stackedPlotter = new StackedPlotter(this);
     d->implementor = d->normalPlotter;
-    QObject* test = d->implementor->plotterPrivate();
-    connect( this, SIGNAL(boundariesChanged()), test, SLOT(changedProperties()) );
+    QObject *test = d->implementor->plotterPrivate();
+    connect(this, SIGNAL(boundariesChanged()), test, SLOT(changedProperties()));
     // The signal is connected to the superclass's slot at this point because the connection happened
     // in its constructor when "its type was not Plotter yet".
-    disconnect( this, SIGNAL(attributesModelAboutToChange(KChart::AttributesModel*,KChart::AttributesModel*)),
-                this, SLOT(connectAttributesModel(KChart::AttributesModel*)) );
-    connect( this, SIGNAL(attributesModelAboutToChange(KChart::AttributesModel*,KChart::AttributesModel*)),
-             this, SLOT(connectAttributesModel(KChart::AttributesModel*)) );
-    setDatasetDimensionInternal( 2 );
+    disconnect(this,
+               SIGNAL(attributesModelAboutToChange(KChart::AttributesModel *, KChart::AttributesModel *)),
+               this,
+               SLOT(connectAttributesModel(KChart::AttributesModel *)));
+    connect(this,
+            SIGNAL(attributesModelAboutToChange(KChart::AttributesModel *, KChart::AttributesModel *)),
+            this,
+            SLOT(connectAttributesModel(KChart::AttributesModel *)));
+    setDatasetDimensionInternal(2);
 }
 
 Plotter::~Plotter()
 {
 }
 
-Plotter* Plotter::clone() const
+Plotter *Plotter::clone() const
 {
-    Plotter* newDiagram = new Plotter( new Private( *d ) );
-    newDiagram->setType( type() );
+    Plotter *newDiagram = new Plotter(new Private(*d));
+    newDiagram->setType(type());
     return newDiagram;
 }
 
-bool Plotter::compare( const Plotter* other ) const
+bool Plotter::compare(const Plotter *other) const
 {
-    if ( other == this )
+    if (other == this)
         return true;
-    if ( other == nullptr )
+    if (other == nullptr)
         return false;
-    return  // compare the base class
-            ( static_cast< const AbstractCartesianDiagram* >( this )->compare( other ) ) &&
-            // compare own properties
-            ( type() == other->type() );
+    return // compare the base class
+        (static_cast<const AbstractCartesianDiagram *>(this)->compare(other)) &&
+        // compare own properties
+        (type() == other->type());
 }
 
-void Plotter::connectAttributesModel( AttributesModel* newModel )
+void Plotter::connectAttributesModel(AttributesModel *newModel)
 {
     // Order of setting the AttributesModel in compressor and diagram is very important due to slot
     // invocation order. Refer to the longer comment in
     // AbstractCartesianDiagram::connectAttributesModel() for details.
 
-    if ( useDataCompression() == Plotter::NONE )
-    {
-        d->plotterCompressor.setModel( nullptr );
-        AbstractCartesianDiagram::connectAttributesModel( newModel );
-    }
-    else
-    {
-        d->compressor.setModel( nullptr );
-        if ( attributesModel() != d->plotterCompressor.model() )
-        {
-            d->plotterCompressor.setModel( attributesModel() );
-            connect( &d->plotterCompressor, SIGNAL(boundariesChanged()), this, SLOT(setDataBoundariesDirty()) );
-            if ( useDataCompression() != Plotter::SLOPE )
-            {
-                connect( coordinatePlane(), SIGNAL(internal_geometryChanged(QRect,QRect)),
-                         this, SLOT(setDataBoundariesDirty()) );
-                connect( coordinatePlane(), SIGNAL(geometryChanged(QRect,QRect)),
-                         this, SLOT(setDataBoundariesDirty()) );
+    if (useDataCompression() == Plotter::NONE) {
+        d->plotterCompressor.setModel(nullptr);
+        AbstractCartesianDiagram::connectAttributesModel(newModel);
+    } else {
+        d->compressor.setModel(nullptr);
+        if (attributesModel() != d->plotterCompressor.model()) {
+            d->plotterCompressor.setModel(attributesModel());
+            connect(&d->plotterCompressor, SIGNAL(boundariesChanged()), this, SLOT(setDataBoundariesDirty()));
+            if (useDataCompression() != Plotter::SLOPE) {
+                connect(coordinatePlane(), SIGNAL(internal_geometryChanged(QRect, QRect)), this, SLOT(setDataBoundariesDirty()));
+                connect(coordinatePlane(), SIGNAL(geometryChanged(QRect, QRect)), this, SLOT(setDataBoundariesDirty()));
                 calcMergeRadius();
             }
         }
@@ -116,20 +111,18 @@ void Plotter::connectAttributesModel( AttributesModel* newModel )
 }
 
 Plotter::CompressionMode Plotter::useDataCompression() const
-{    
+{
     return d->implementor->useCompression();
 }
 
-void Plotter::setUseDataCompression( Plotter::CompressionMode value )
+void Plotter::setUseDataCompression(Plotter::CompressionMode value)
 {
-    if ( useDataCompression() != value )
-    {
-        d->implementor->setUseCompression( value );
-        if ( useDataCompression() != Plotter::NONE )
-        {
-            d->compressor.setModel( nullptr );
-            if ( attributesModel() != d->plotterCompressor.model() )                
-                d->plotterCompressor.setModel( attributesModel() );
+    if (useDataCompression() != value) {
+        d->implementor->setUseCompression(value);
+        if (useDataCompression() != Plotter::NONE) {
+            d->compressor.setModel(nullptr);
+            if (attributesModel() != d->plotterCompressor.model())
+                d->plotterCompressor.setModel(attributesModel());
         }
     }
 }
@@ -139,9 +132,9 @@ qreal Plotter::maxSlopeChange() const
     return d->plotterCompressor.maxSlopeChange();
 }
 
-void Plotter::setMaxSlopeChange( qreal value )
+void Plotter::setMaxSlopeChange(qreal value)
 {
-    d->plotterCompressor.setMaxSlopeChange( value );
+    d->plotterCompressor.setMaxSlopeChange(value);
 }
 
 qreal Plotter::mergeRadiusPercentage() const
@@ -149,27 +142,25 @@ qreal Plotter::mergeRadiusPercentage() const
     return d->mergeRadiusPercentage;
 }
 
-void Plotter::setMergeRadiusPercentage( qreal value )
+void Plotter::setMergeRadiusPercentage(qreal value)
 {
-    if ( d->mergeRadiusPercentage != value )
-    {
+    if (d->mergeRadiusPercentage != value) {
         d->mergeRadiusPercentage = value;
-        //d->plotterCompressor.setMergeRadiusPercentage( value );
-        //update();
+        // d->plotterCompressor.setMergeRadiusPercentage( value );
+        // update();
     }
 }
 
-void Plotter::setType( const PlotType type )
+void Plotter::setType(const PlotType type)
 {
-    if ( d->implementor->type() == type ) {
+    if (d->implementor->type() == type) {
         return;
     }
-    if ( datasetDimension() != 2 )  {
-        Q_ASSERT_X ( false, "setType()",
-                     "This line chart type can only be used with two-dimensional data." );
+    if (datasetDimension() != 2) {
+        Q_ASSERT_X(false, "setType()", "This line chart type can only be used with two-dimensional data.");
         return;
     }
-    switch ( type ) {
+    switch (type) {
     case Normal:
         d->implementor = d->normalPlotter;
         break;
@@ -180,18 +171,17 @@ void Plotter::setType( const PlotType type )
         d->implementor = d->stackedPlotter;
         break;
     default:
-        Q_ASSERT_X( false, "Plotter::setType", "unknown plotter subtype" );
+        Q_ASSERT_X(false, "Plotter::setType", "unknown plotter subtype");
     }
-    bool connection = connect( this, SIGNAL(boundariesChanged()),
-                               d->implementor->plotterPrivate(), SLOT(changedProperties()) );
-    Q_ASSERT( connection );
-    Q_UNUSED( connection );
+    bool connection = connect(this, SIGNAL(boundariesChanged()), d->implementor->plotterPrivate(), SLOT(changedProperties()));
+    Q_ASSERT(connection);
+    Q_UNUSED(connection);
 
     // d->lineType = type;
-    Q_ASSERT( d->implementor->type() == type );
+    Q_ASSERT(d->implementor->type() == type);
 
     setDataBoundariesDirty();
-    Q_EMIT layoutChanged( this );
+    Q_EMIT layoutChanged(this);
     Q_EMIT propertiesChanged();
 }
 
@@ -200,130 +190,123 @@ Plotter::PlotType Plotter::type() const
     return d->implementor->type();
 }
 
-void Plotter::setLineAttributes( const LineAttributes& la )
+void Plotter::setLineAttributes(const LineAttributes &la)
 {
-    d->attributesModel->setModelData( QVariant::fromValue( la ), LineAttributesRole );
+    d->attributesModel->setModelData(QVariant::fromValue(la), LineAttributesRole);
     Q_EMIT propertiesChanged();
 }
 
-void Plotter::setLineAttributes( int column, const LineAttributes& la )
+void Plotter::setLineAttributes(int column, const LineAttributes &la)
 {
-    d->setDatasetAttrs( column, QVariant::fromValue( la ), LineAttributesRole );
+    d->setDatasetAttrs(column, QVariant::fromValue(la), LineAttributesRole);
     Q_EMIT propertiesChanged();
 }
 
-void Plotter::resetLineAttributes( int column )
+void Plotter::resetLineAttributes(int column)
 {
-    d->resetDatasetAttrs( column, LineAttributesRole );
+    d->resetDatasetAttrs(column, LineAttributesRole);
     Q_EMIT propertiesChanged();
 }
 
-void Plotter::setLineAttributes( const QModelIndex & index, const LineAttributes& la )
+void Plotter::setLineAttributes(const QModelIndex &index, const LineAttributes &la)
 {
-    d->attributesModel->setData( d->attributesModel->mapFromSource( index ),
-                                 QVariant::fromValue( la ), LineAttributesRole );
+    d->attributesModel->setData(d->attributesModel->mapFromSource(index), QVariant::fromValue(la), LineAttributesRole);
     Q_EMIT propertiesChanged();
 }
 
-void Plotter::resetLineAttributes( const QModelIndex & index )
+void Plotter::resetLineAttributes(const QModelIndex &index)
 {
-    d->attributesModel->resetData(
-            d->attributesModel->mapFromSource(index), LineAttributesRole );
+    d->attributesModel->resetData(d->attributesModel->mapFromSource(index), LineAttributesRole);
     Q_EMIT propertiesChanged();
 }
 
 LineAttributes Plotter::lineAttributes() const
 {
-    return d->attributesModel->data( KChart::LineAttributesRole ).value<LineAttributes>();
+    return d->attributesModel->data(KChart::LineAttributesRole).value<LineAttributes>();
 }
 
-LineAttributes Plotter::lineAttributes( int column ) const
+LineAttributes Plotter::lineAttributes(int column) const
 {
-    const QVariant attrs( d->datasetAttrs( column, LineAttributesRole ) );
-    if ( attrs.isValid() )
+    const QVariant attrs(d->datasetAttrs(column, LineAttributesRole));
+    if (attrs.isValid())
         return attrs.value<LineAttributes>();
     return lineAttributes();
 }
 
-LineAttributes Plotter::lineAttributes( const QModelIndex& index ) const
+LineAttributes Plotter::lineAttributes(const QModelIndex &index) const
 {
-    return d->attributesModel->data(
-        d->attributesModel->mapFromSource( index ), KChart::LineAttributesRole ).value<LineAttributes>();
+    return d->attributesModel->data(d->attributesModel->mapFromSource(index), KChart::LineAttributesRole).value<LineAttributes>();
 }
 
-void Plotter::setThreeDLineAttributes( const ThreeDLineAttributes& la )
+void Plotter::setThreeDLineAttributes(const ThreeDLineAttributes &la)
 {
     setDataBoundariesDirty();
-    d->attributesModel->setModelData( QVariant::fromValue( la ), ThreeDLineAttributesRole );
+    d->attributesModel->setModelData(QVariant::fromValue(la), ThreeDLineAttributesRole);
     Q_EMIT propertiesChanged();
 }
 
-void Plotter::setThreeDLineAttributes( int column, const ThreeDLineAttributes& la )
+void Plotter::setThreeDLineAttributes(int column, const ThreeDLineAttributes &la)
 {
     setDataBoundariesDirty();
-    d->setDatasetAttrs( column, QVariant::fromValue( la ), ThreeDLineAttributesRole );
+    d->setDatasetAttrs(column, QVariant::fromValue(la), ThreeDLineAttributesRole);
     Q_EMIT propertiesChanged();
 }
 
-void Plotter::setThreeDLineAttributes( const QModelIndex& index, const ThreeDLineAttributes& la )
+void Plotter::setThreeDLineAttributes(const QModelIndex &index, const ThreeDLineAttributes &la)
 {
     setDataBoundariesDirty();
-    d->attributesModel->setData( d->attributesModel->mapFromSource( index ), QVariant::fromValue( la ),
-                                 ThreeDLineAttributesRole );
+    d->attributesModel->setData(d->attributesModel->mapFromSource(index), QVariant::fromValue(la), ThreeDLineAttributesRole);
     Q_EMIT propertiesChanged();
 }
 
 ThreeDLineAttributes Plotter::threeDLineAttributes() const
 {
-    return d->attributesModel->data( KChart::ThreeDLineAttributesRole ).value<ThreeDLineAttributes>();
+    return d->attributesModel->data(KChart::ThreeDLineAttributesRole).value<ThreeDLineAttributes>();
 }
 
-ThreeDLineAttributes Plotter::threeDLineAttributes( int column ) const
+ThreeDLineAttributes Plotter::threeDLineAttributes(int column) const
 {
-    const QVariant attrs( d->datasetAttrs( column, ThreeDLineAttributesRole ) );
-    if ( attrs.isValid() ) {
+    const QVariant attrs(d->datasetAttrs(column, ThreeDLineAttributesRole));
+    if (attrs.isValid()) {
         return attrs.value<ThreeDLineAttributes>();
     }
     return threeDLineAttributes();
 }
 
-ThreeDLineAttributes Plotter::threeDLineAttributes( const QModelIndex& index ) const
+ThreeDLineAttributes Plotter::threeDLineAttributes(const QModelIndex &index) const
 {
-    return d->attributesModel->data(
-        d->attributesModel->mapFromSource( index ), KChart::ThreeDLineAttributesRole ).value<ThreeDLineAttributes>();
+    return d->attributesModel->data(d->attributesModel->mapFromSource(index), KChart::ThreeDLineAttributesRole).value<ThreeDLineAttributes>();
 }
 
-qreal Plotter::threeDItemDepth( const QModelIndex & index ) const
+qreal Plotter::threeDItemDepth(const QModelIndex &index) const
 {
-    return threeDLineAttributes( index ).validDepth();
+    return threeDLineAttributes(index).validDepth();
 }
 
-qreal Plotter::threeDItemDepth( int column ) const
+qreal Plotter::threeDItemDepth(int column) const
 {
-    return threeDLineAttributes( column ).validDepth();
+    return threeDLineAttributes(column).validDepth();
 }
 
-void Plotter::setValueTrackerAttributes( const QModelIndex & index, const ValueTrackerAttributes & va )
+void Plotter::setValueTrackerAttributes(const QModelIndex &index, const ValueTrackerAttributes &va)
 {
-    d->attributesModel->setData( d->attributesModel->mapFromSource( index ),
-                                 QVariant::fromValue( va ), KChart::ValueTrackerAttributesRole );
+    d->attributesModel->setData(d->attributesModel->mapFromSource(index), QVariant::fromValue(va), KChart::ValueTrackerAttributesRole);
     Q_EMIT propertiesChanged();
 }
 
-ValueTrackerAttributes Plotter::valueTrackerAttributes( const QModelIndex & index ) const
+ValueTrackerAttributes Plotter::valueTrackerAttributes(const QModelIndex &index) const
 {
-    return d->attributesModel->data(
-        d->attributesModel->mapFromSource( index ), KChart::ValueTrackerAttributesRole ).value<ValueTrackerAttributes>();
+    return d->attributesModel->data(d->attributesModel->mapFromSource(index), KChart::ValueTrackerAttributesRole).value<ValueTrackerAttributes>();
 }
 
-void Plotter::resizeEvent ( QResizeEvent* )
+void Plotter::resizeEvent(QResizeEvent *)
 {
 }
 
-const QPair< QPointF, QPointF > Plotter::calculateDataBoundaries() const
+const QPair<QPointF, QPointF> Plotter::calculateDataBoundaries() const
 {
-    if ( !checkInvariants( true ) )
-        return QPair< QPointF, QPointF >( QPointF( 0, 0 ), QPointF( 0, 0 ) );
+    if (!checkInvariants(true))
+        return QPair<QPointF, QPointF>(QPointF(0, 0), QPointF(0, 0));
 
     // note: calculateDataBoundaries() is ignoring the hidden flags.
     //       That's not a bug but a feature: Hiding data does not mean removing them.
@@ -333,88 +316,90 @@ const QPair< QPointF, QPointF > Plotter::calculateDataBoundaries() const
     return d->implementor->calculateDataBoundaries();
 }
 
-
-void Plotter::paintEvent ( QPaintEvent*)
+void Plotter::paintEvent(QPaintEvent *)
 {
-    QPainter painter ( viewport() );
+    QPainter painter(viewport());
     PaintContext ctx;
-    ctx.setPainter ( &painter );
-    ctx.setRectangle ( QRectF ( 0, 0, width(), height() ) );
-    paint ( &ctx );
+    ctx.setPainter(&painter);
+    ctx.setRectangle(QRectF(0, 0, width(), height()));
+    paint(&ctx);
 }
 
-void Plotter::paint( PaintContext* ctx )
+void Plotter::paint(PaintContext *ctx)
 {
     // note: Not having any data model assigned is no bug
     //       but we can not draw a diagram then either.
-    if ( !checkInvariants( true ) ) return;
+    if (!checkInvariants(true))
+        return;
 
-    AbstractCoordinatePlane* const plane = ctx->coordinatePlane();
-    if ( ! plane ) return;
-    d->setCompressorResolution( size(), plane );
+    AbstractCoordinatePlane *const plane = ctx->coordinatePlane();
+    if (!plane)
+        return;
+    d->setCompressorResolution(size(), plane);
 
-    if ( !AbstractGrid::isBoundariesValid(dataBoundaries()) ) return;
+    if (!AbstractGrid::isBoundariesValid(dataBoundaries()))
+        return;
 
-    const PainterSaver p( ctx->painter() );
-    if ( model()->rowCount( rootIndex() ) == 0 || model()->columnCount( rootIndex() ) == 0 )
+    const PainterSaver p(ctx->painter());
+    if (model()->rowCount(rootIndex()) == 0 || model()->columnCount(rootIndex()) == 0)
         return; // nothing to paint for us
 
-    ctx->setCoordinatePlane( plane->sharedAxisMasterPlane( ctx->painter() ) );
+    ctx->setCoordinatePlane(plane->sharedAxisMasterPlane(ctx->painter()));
 
     // paint different line types Normal - Stacked - Percent - Default Normal
-    d->implementor->paint( ctx );
+    d->implementor->paint(ctx);
 
-    ctx->setCoordinatePlane( plane );
+    ctx->setCoordinatePlane(plane);
 }
 
-void Plotter::resize ( const QSizeF& size )
+void Plotter::resize(const QSizeF &size)
 {
-    d->setCompressorResolution( size, coordinatePlane() );
-    if ( useDataCompression() == Plotter::BOTH || useDataCompression() == Plotter::DISTANCE )
-    {
+    d->setCompressorResolution(size, coordinatePlane());
+    if (useDataCompression() == Plotter::BOTH || useDataCompression() == Plotter::DISTANCE) {
         d->plotterCompressor.cleanCache();
         calcMergeRadius();
     }
     setDataBoundariesDirty();
-    AbstractCartesianDiagram::resize( size );
+    AbstractCartesianDiagram::resize(size);
 }
 
 void Plotter::setDataBoundariesDirty()
 {
     AbstractCartesianDiagram::setDataBoundariesDirty();
-    if ( useDataCompression() == Plotter::DISTANCE || useDataCompression() == Plotter::BOTH )
-    {
+    if (useDataCompression() == Plotter::DISTANCE || useDataCompression() == Plotter::BOTH) {
         calcMergeRadius();
-        //d->plotterCompressor.setMergeRadiusPercentage( d->mergeRadiusPercentage );
+        // d->plotterCompressor.setMergeRadiusPercentage( d->mergeRadiusPercentage );
     }
 }
 
 void Plotter::calcMergeRadius()
 {
-    CartesianCoordinatePlane *plane = dynamic_cast< CartesianCoordinatePlane* >( coordinatePlane() );
-    Q_ASSERT( plane );
-    //Q_ASSERT( plane->translate( plane->translateBack( plane->visibleDiagramArea().topLeft() ) ) == plane->visibleDiagramArea().topLeft() );
+    CartesianCoordinatePlane *plane = dynamic_cast<CartesianCoordinatePlane *>(coordinatePlane());
+    Q_ASSERT(plane);
+    // Q_ASSERT( plane->translate( plane->translateBack( plane->visibleDiagramArea().topLeft() ) ) == plane->visibleDiagramArea().topLeft() );
     QRectF range = plane->visibleDataRange();
-    //qDebug() << range;
-    const qreal radius = std::sqrt( ( range.x() + range.width() ) * ( range.y() +  range.height() ) );
-    //qDebug() << radius;
-    //qDebug() << radius * d->mergeRadiusPercentage;
-    //qDebug() << d->mergeRadiusPercentage;
-    d->plotterCompressor.setMergeRadius( radius * d->mergeRadiusPercentage );
+    // qDebug() << range;
+    const qreal radius = std::sqrt((range.x() + range.width()) * (range.y() + range.height()));
+    // qDebug() << radius;
+    // qDebug() << radius * d->mergeRadiusPercentage;
+    // qDebug() << d->mergeRadiusPercentage;
+    d->plotterCompressor.setMergeRadius(radius * d->mergeRadiusPercentage);
 }
 
 #if defined(Q_COMPILER_MANGLES_RETURN_TYPE)
 const
 #endif
-int Plotter::numberOfAbscissaSegments () const
+    int
+    Plotter::numberOfAbscissaSegments() const
 {
-    return d->attributesModel->rowCount( attributesModelRootIndex() );
+    return d->attributesModel->rowCount(attributesModelRootIndex());
 }
 
 #if defined(Q_COMPILER_MANGLES_RETURN_TYPE)
 const
 #endif
-int Plotter::numberOfOrdinateSegments () const
+    int
+    Plotter::numberOfOrdinateSegments() const
 {
-    return d->attributesModel->columnCount( attributesModelRootIndex() );
+    return d->attributesModel->columnCount(attributesModelRootIndex());
 }

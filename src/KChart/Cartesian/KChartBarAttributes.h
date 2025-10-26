@@ -9,62 +9,72 @@
 #ifndef KCHARTBARATTRIBUTES_H
 #define KCHARTBARATTRIBUTES_H
 
-#include <QMetaType>
 #include "KChartGlobal.h"
+#include <QMetaType>
 
-namespace KChart {
+namespace KChart
+{
 
 /**
-  * @brief Set of attributes for changing the appearance of bar charts
-  */
+ * @brief Set of attributes for changing the appearance of bar charts
+ */
 class KCHART_EXPORT BarAttributes
 {
 public:
     BarAttributes();
-    BarAttributes( const BarAttributes& );
-    BarAttributes &operator= ( const BarAttributes& );
+    BarAttributes(const BarAttributes &);
+    BarAttributes &operator=(const BarAttributes &);
 
     ~BarAttributes();
 
-    void setFixedDataValueGap( qreal gap );
+    void setFixedDataValueGap(qreal gap);
     qreal fixedDataValueGap() const;
 
-    void setUseFixedDataValueGap( bool gapIsFixed );
+    void setUseFixedDataValueGap(bool gapIsFixed);
     bool useFixedDataValueGap() const;
 
-    void setFixedValueBlockGap( qreal gap );
+    void setFixedValueBlockGap(qreal gap);
     qreal fixedValueBlockGap() const;
 
-    void setUseFixedValueBlockGap( bool gapIsFixed );
+    void setUseFixedValueBlockGap(bool gapIsFixed);
     bool useFixedValueBlockGap() const;
 
-    void setFixedBarWidth( qreal width );
+    void setFixedBarWidth(qreal width);
     qreal fixedBarWidth() const;
 
-    void setUseFixedBarWidth( bool useFixedBarWidth );
+    void setUseFixedBarWidth(bool useFixedBarWidth);
     bool useFixedBarWidth() const;
 
-    void setGroupGapFactor ( qreal gapFactor );
+    void setGroupGapFactor(qreal gapFactor);
     qreal groupGapFactor() const;
 
-    void setBarGapFactor( qreal gapFactor );
+    void setBarGapFactor(qreal gapFactor);
     qreal barGapFactor() const;
 
-    void setDrawSolidExcessArrows( bool solidArrows );
+    void setDrawSolidExcessArrows(bool solidArrows);
     bool drawSolidExcessArrows() const;
 
-    bool operator==( const BarAttributes& ) const;
-    inline bool operator!=( const BarAttributes& other ) const { return !operator==(other); }
+    bool operator==(const BarAttributes &) const;
+    inline bool operator!=(const BarAttributes &other) const
+    {
+        return !operator==(other);
+    }
 
 private:
     class Private;
-    Private * _d;
-    Private * d_func() { return _d; }
-    const Private * d_func() const { return _d; }
+    Private *_d;
+    Private *d_func()
+    {
+        return _d;
+    }
+    const Private *d_func() const
+    {
+        return _d;
+    }
 }; // End of class BarAttributes
 
 }
 
-Q_DECLARE_METATYPE( KChart::BarAttributes )
+Q_DECLARE_METATYPE(KChart::BarAttributes)
 
 #endif // KCHARTBARATTRIBUTES_H

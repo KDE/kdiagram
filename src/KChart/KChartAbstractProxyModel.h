@@ -15,29 +15,28 @@
 
 namespace KChart
 {
-    /**
-      * @brief Base class for all proxy models used inside KChart
-      * \internal
-      */
-    class KCHART_EXPORT AbstractProxyModel : public QAbstractProxyModel
-    {
-        Q_OBJECT
-    public:
+/**
+ * @brief Base class for all proxy models used inside KChart
+ * \internal
+ */
+class KCHART_EXPORT AbstractProxyModel : public QAbstractProxyModel
+{
+    Q_OBJECT
+public:
+    /** This is basically KDAbstractProxyModel, but only the
+          bits that we really need from it */
+    explicit AbstractProxyModel(QObject *parent = nullptr);
 
-        /** This is basically KDAbstractProxyModel, but only the
-              bits that we really need from it */
-        explicit AbstractProxyModel( QObject* parent = nullptr );
+    /*! \reimpl */
+    QModelIndex mapFromSource(const QModelIndex &sourceIndex) const override;
+    /*! \reimpl */
+    QModelIndex mapToSource(const QModelIndex &proxyIndex) const override;
 
-        /*! \reimpl */
-        QModelIndex mapFromSource( const QModelIndex & sourceIndex ) const override;
-        /*! \reimpl */
-        QModelIndex mapToSource( const QModelIndex &proxyIndex ) const override;
-
-        /*! \reimpl */
-        QModelIndex index( int row, int col, const QModelIndex& index ) const override;
-        /*! \reimpl */
-        QModelIndex parent( const QModelIndex& index ) const override;
-    };
+    /*! \reimpl */
+    QModelIndex index(int row, int col, const QModelIndex &index) const override;
+    /*! \reimpl */
+    QModelIndex parent(const QModelIndex &index) const override;
+};
 }
 
 #endif /* KCHARTABSTRACTPROXYMODEL_H */

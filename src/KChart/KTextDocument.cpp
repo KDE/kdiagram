@@ -10,39 +10,38 @@
 
 #include "KChartMath_p.h"
 
-#include <QRect>
 #include <QAbstractTextDocumentLayout>
-#include <QtDebug>
+#include <QRect>
 #include <QTextBlock>
+#include <QtDebug>
 
 // This is an internal class that mimics some of the behavior of a
 // QLabel with rich text assigned, this is mostly a workaround around
 // QTextDocumentLayout not being a public class.
 
-KTextDocument::KTextDocument( QObject * p )
-    : QTextDocument( p ),
-      mHintValid( false ),
-      mSizeHint(),
-      mMinimumSizeHint()
+KTextDocument::KTextDocument(QObject *p)
+    : QTextDocument(p)
+    , mHintValid(false)
+    , mSizeHint()
+    , mMinimumSizeHint()
 {
-
 }
 
-KTextDocument::KTextDocument( const QString & text, QObject * p )
-    : QTextDocument( text, p ),
-      mHintValid( false ),
-      mSizeHint(),
-      mMinimumSizeHint()
+KTextDocument::KTextDocument(const QString &text, QObject *p)
+    : QTextDocument(text, p)
+    , mHintValid(false)
+    , mSizeHint()
+    , mMinimumSizeHint()
 {
-
 }
 
-KTextDocument::~KTextDocument() {}
-
+KTextDocument::~KTextDocument()
+{
+}
 
 QSize KTextDocument::sizeHint()
 {
-    if ( !mHintValid )
+    if (!mHintValid)
         (void)minimumSizeHint();
     return mSizeHint;
 }
@@ -60,27 +59,26 @@ QSize KTextDocument::minimumSizeHint()
                   static_cast<int>(s.height()) );
     */
 
-    if ( mHintValid )
+    if (mHintValid)
         return mMinimumSizeHint;
 
     mHintValid = true;
-    mSizeHint = sizeForWidth( -1 );
+    mSizeHint = sizeForWidth(-1);
     QSize sz(-1, -1);
 
     // PENDING(kalle) Cache
-    sz.rwidth() = sizeForWidth( 0 ).width();
-    sz.rheight() = sizeForWidth( 32000 ).height();
-    if ( mSizeHint.height() < sz.height())
+    sz.rwidth() = sizeForWidth(0).width();
+    sz.rheight() = sizeForWidth(32000).height();
+    if (mSizeHint.height() < sz.height())
         sz.rheight() = mSizeHint.height();
 
     mMinimumSizeHint = sz;
     return sz;
 }
 
-
 QSize KTextDocument::sizeForWidth(int w)
 {
-    Q_UNUSED( w );
+    Q_UNUSED(w);
 
     setPageSize(QSize(0, 100000));
 

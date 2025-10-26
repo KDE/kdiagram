@@ -22,11 +22,11 @@
 
 #include "KChartAbstractPieDiagram.h"
 #include "KChartAbstractPolarDiagram_p.h"
-#include <KChartAbstractThreeDAttributes.h>
 #include "KChartMath_p.h"
+#include <KChartAbstractThreeDAttributes.h>
 
-
-namespace KChart {
+namespace KChart
+{
 
 class PolarCoordinatePlane;
 
@@ -36,23 +36,24 @@ class PolarCoordinatePlane;
 class Q_DECL_HIDDEN AbstractPieDiagram::Private : public AbstractPolarDiagram::Private
 {
     friend class AbstractPieDiagram;
+
 public:
     Private();
     ~Private() override;
 
-    Private( const Private& rhs ) :
-        AbstractPolarDiagram::Private( rhs ),
-        granularity( rhs.granularity ),
-        autoRotateLabels( false )
-        {
-        }
+    Private(const Private &rhs)
+        : AbstractPolarDiagram::Private(rhs)
+        , granularity(rhs.granularity)
+        , autoRotateLabels(false)
+    {
+    }
 
 private:
     qreal granularity;
     bool autoRotateLabels;
 };
 
-KCHART_IMPL_DERIVED_DIAGRAM( AbstractPieDiagram, AbstractPolarDiagram, PolarCoordinatePlane )
+KCHART_IMPL_DERIVED_DIAGRAM(AbstractPieDiagram, AbstractPolarDiagram, PolarCoordinatePlane)
 
 }
 #endif /* KCHARTABSTRACTPIEDIAGRAM_P_H */

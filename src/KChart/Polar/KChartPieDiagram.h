@@ -11,29 +11,29 @@
 
 #include "KChartAbstractPieDiagram.h"
 
-namespace KChart {
+namespace KChart
+{
 
-    class LabelPaintCache;
+class LabelPaintCache;
 
 /**
-  * @brief PieDiagram defines a common pie diagram
-  */
+ * @brief PieDiagram defines a common pie diagram
+ */
 class KCHART_EXPORT PieDiagram : public AbstractPieDiagram
 {
     Q_OBJECT
 
-    Q_DISABLE_COPY( PieDiagram )
-    KCHART_DECLARE_DERIVED_DIAGRAM( PieDiagram, PolarCoordinatePlane )
+    Q_DISABLE_COPY(PieDiagram)
+    KCHART_DECLARE_DERIVED_DIAGRAM(PieDiagram, PolarCoordinatePlane)
 
 public:
-    explicit PieDiagram(
-        QWidget* parent = nullptr, PolarCoordinatePlane* plane = nullptr );
+    explicit PieDiagram(QWidget *parent = nullptr, PolarCoordinatePlane *plane = nullptr);
     ~PieDiagram() override;
 
 protected:
     // Implement AbstractDiagram
     /** \reimpl */
-    void paint( PaintContext* paintContext ) override;
+    void paint(PaintContext *paintContext) override;
 
 public:
     /**
@@ -44,9 +44,9 @@ public:
         FrameDecoration = 1, ///< A rectangular frame is painted around the label text
         LineFromSliceDecoration = 2 ///< A line is drawn from the pie slice to its label
     };
-    Q_DECLARE_FLAGS( LabelDecorations, LabelDecoration )
+    Q_DECLARE_FLAGS(LabelDecorations, LabelDecoration)
     /// Set the decorations to be painted around data labels according to @p decorations.
-    void setLabelDecorations( LabelDecorations decorations );
+    void setLabelDecorations(LabelDecorations decorations);
     /// Return the decorations to be painted around data labels.
     LabelDecorations labelDecorations() const;
 
@@ -54,39 +54,38 @@ public:
     /// \note Collision avoidance may allow labels to be closer than AbstractDiagram with
     ///       allowOverlappingDataValueTexts() == false, so you should usually also call
     ///       setAllowOverlappingDataValueTexts( true ) if you enable this feature.
-    void setLabelCollisionAvoidanceEnabled( bool enabled );
+    void setLabelCollisionAvoidanceEnabled(bool enabled);
     /// Return whether overlapping labels will be moved to until they don't overlap anymore.
     bool isLabelCollisionAvoidanceEnabled() const;
 
     /** \reimpl */
-    void resize ( const QSizeF& area ) override;
+    void resize(const QSizeF &area) override;
 
     // Implement AbstractPolarDiagram
     /** \reimpl */
-    qreal valueTotals () const override;
+    qreal valueTotals() const override;
     /** \reimpl */
     qreal numberOfValuesPerDataset() const override;
     /** \reimpl */
     qreal numberOfGridRings() const override;
 
-
     /**
-      * Creates an exact copy of this diagram.
-      */
-   virtual PieDiagram * clone() const;
+     * Creates an exact copy of this diagram.
+     */
+    virtual PieDiagram *clone() const;
 
 protected:
     /** \reimpl */
     const QPair<QPointF, QPointF> calculateDataBoundaries() const override;
-    void paintEvent( QPaintEvent* ) override;
-    void resizeEvent( QResizeEvent* ) override;
+    void paintEvent(QPaintEvent *) override;
+    void resizeEvent(QResizeEvent *) override;
 
 private:
     // ### move to private class?
-    void placeLabels( PaintContext* paintContext );
+    void placeLabels(PaintContext *paintContext);
     // Solve problems with label overlap by changing label positions inside d->labelPaintCache.
-    void shuffleLabels( QRectF* textBoundingRect );
-    void paintInternal( PaintContext* paintContext );
+    void shuffleLabels(QRectF *textBoundingRect);
+    void paintInternal(PaintContext *paintContext);
 
     /**
       Internal method that draws one of the slices in a pie chart.
@@ -96,7 +95,7 @@ private:
       \param slice the slice to draw
       \param threeDPieHeight the height of the three dimensional effect
       */
-    void drawSlice( QPainter* painter, const QRectF& drawPosition, uint slice );
+    void drawSlice(QPainter *painter, const QRectF &drawPosition, uint slice);
 
     /**
       Internal method that draws the surface of one of the slices in a pie chart.
@@ -105,8 +104,8 @@ private:
       \param dataset the dataset to draw the slice for
       \param slice the slice to draw
       */
-    void drawSliceSurface( QPainter* painter, const QRectF& drawPosition, uint slice );
-    void addSliceLabel( LabelPaintCache* lpc, const QRectF& drawPosition, uint slice );
+    void drawSliceSurface(QPainter *painter, const QRectF &drawPosition, uint slice);
+    void addSliceLabel(LabelPaintCache *lpc, const QRectF &drawPosition, uint slice);
 
     /**
       Internal method that draws the shadow creating the 3D effect of a pie
@@ -115,7 +114,7 @@ private:
       \param drawPosition the position to draw at
       \param slice the slice to draw the shadow for
       */
-    void draw3DEffect( QPainter* painter, const QRectF& drawPosition, uint slice );
+    void draw3DEffect(QPainter *painter, const QRectF &drawPosition, uint slice);
 
     /**
       Internal method that draws the cut surface of a slice (think of a real pie cut into slices)
@@ -126,10 +125,7 @@ private:
       \param threeDHeight the height of the shadow
       \param angle the angle of the segment
       */
-    void draw3dCutSurface( QPainter* painter,
-        const QRectF& rect,
-        qreal threeDHeight,
-        qreal angle );
+    void draw3dCutSurface(QPainter *painter, const QRectF &rect, qreal threeDHeight, qreal angle);
 
     /**
       Internal method that draws the outer rim of a slice when the rim is facing the observer.
@@ -140,15 +136,11 @@ private:
       \param startAngle the starting angle of the segment
       \param endAngle the ending angle of the segment
       */
-    void draw3dOuterRim( QPainter* painter,
-        const QRectF& rect,
-        qreal threeDHeight,
-        qreal startAngle,
-        qreal endAngle );
+    void draw3dOuterRim(QPainter *painter, const QRectF &rect, qreal threeDHeight, qreal startAngle, qreal endAngle);
     void calcSliceAngles();
-    void calcPieSize( const QRectF &contentsRect );
-    QRectF twoDPieRect( const QRectF &contentsRect, const ThreeDPieAttributes& threeDAttrs ) const;
-    QRectF explodedDrawPosition( const QRectF& drawPosition, uint slice ) const;
+    void calcPieSize(const QRectF &contentsRect);
+    QRectF twoDPieRect(const QRectF &contentsRect, const ThreeDPieAttributes &threeDAttrs) const;
+    QRectF explodedDrawPosition(const QRectF &drawPosition, uint slice) const;
 
     /**
       Internal method that finds the slice that is located at the position specified by \c angle.
@@ -156,7 +148,7 @@ private:
       \param angle the angle at which to search for a slice
       \return the number of the slice found
       */
-    uint findSliceAt( qreal angle, int columnCount );
+    uint findSliceAt(qreal angle, int columnCount);
 
     /**
       Internal method that finds the slice that is located to the left of \c slice.
@@ -164,7 +156,7 @@ private:
       \param slice the slice to start the search from
       \return the number of the pie to the left of \c pie
       */
-    uint findLeftSlice( uint slice, int columnCount );
+    uint findLeftSlice(uint slice, int columnCount);
 
     /**
       Internal method that finds the slice that is located to the right of \c slice.
@@ -172,16 +164,16 @@ private:
       \param slice the slice to start the search from
       \return the number of the slice to the right of \c slice
       */
-    uint findRightSlice( uint slice, int columnCount );
+    uint findRightSlice(uint slice, int columnCount);
 
     /**
-      * Auxiliary method returning a point to a given boundary
-      * rectangle of the enclosed ellipse and an angle.
-      */
-    QPointF pointOnEllipse( const QRectF& boundingBox, qreal angle );
+     * Auxiliary method returning a point to a given boundary
+     * rectangle of the enclosed ellipse and an angle.
+     */
+    QPointF pointOnEllipse(const QRectF &boundingBox, qreal angle);
 }; // End of class KChartPieDiagram
 
-Q_DECLARE_OPERATORS_FOR_FLAGS( PieDiagram::LabelDecorations )
+Q_DECLARE_OPERATORS_FOR_FLAGS(PieDiagram::LabelDecorations)
 
 }
 #endif // KCHARTPIEDIAGRAM_H

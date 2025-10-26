@@ -9,29 +9,30 @@
 #ifndef KCHARTGRIDATTRIBUTES_H
 #define KCHARTGRIDATTRIBUTES_H
 
-#include <QMetaType>
-#include "KChartGlobal.h"
 #include "KChartEnums.h"
+#include "KChartGlobal.h"
+#include <QMetaType>
 
 QT_BEGIN_NAMESPACE
 class QPen;
 QT_END_NAMESPACE
 
-namespace KChart {
+namespace KChart
+{
 
 /**
-  * @brief A set of attributes controlling the appearance of grids
-  */
+ * @brief A set of attributes controlling the appearance of grids
+ */
 class KCHART_EXPORT GridAttributes
 {
 public:
     GridAttributes();
-    GridAttributes( const GridAttributes& );
-    GridAttributes &operator= ( const GridAttributes& );
+    GridAttributes(const GridAttributes &);
+    GridAttributes &operator=(const GridAttributes &);
 
     ~GridAttributes();
 
-    void setGridVisible( bool visible );
+    void setGridVisible(bool visible);
     bool isGridVisible() const;
 
     /**
@@ -40,87 +41,85 @@ public:
      *
      * The default is false.
      */
-    void setLinesOnAnnotations( bool );
+    void setLinesOnAnnotations(bool);
     bool linesOnAnnotations() const;
 
+    /**
+     * Specifies the step width to be used for calculating
+     * the grid lines.
+     *
+     * \note Step with can be set for Linear axis calculation mode only,
+     * there is no way to specify a step width for Logarithmic axes.
+     *
+     * By default the GridAttributes class does not use a fixed step width,
+     * but it uses KChartEnums::GranularitySequence_10_20.
+     *
+     * \param stepWidth the step width to be used.
+     * If this parameter is omitted (or set to Zero, resp.)
+     * the automatic step width calculation will be done,
+     * using the granularity sequence specified.
+     * This is the default.
+     *
+     * \sa gridStepWidth, setGranularitySequence
+     */
+    void setGridStepWidth(qreal stepWidth = 0.0);
 
     /**
-      * Specifies the step width to be used for calculating
-      * the grid lines.
-      *
-      * \note Step with can be set for Linear axis calculation mode only,
-      * there is no way to specify a step width for Logarithmic axes.
-      *
-      * By default the GridAttributes class does not use a fixed step width,
-      * but it uses KChartEnums::GranularitySequence_10_20.
-      *
-      * \param stepWidth the step width to be used.
-      * If this parameter is omitted (or set to Zero, resp.)
-      * the automatic step width calculation will be done,
-      * using the granularity sequence specified.
-      * This is the default.
-      *
-      * \sa gridStepWidth, setGranularitySequence
-      */
-    void setGridStepWidth( qreal stepWidth = 0.0 );
-
-    /**
-      * Returns the step width to be used for calculating
-      * the grid lines.
-      *
-      * \sa setGridStepWidth
-      */
+     * Returns the step width to be used for calculating
+     * the grid lines.
+     *
+     * \sa setGridStepWidth
+     */
     qreal gridStepWidth() const;
 
+    /**
+     * Specifies the sub-step width to be used for calculating
+     * the grid sub-lines.
+     *
+     *
+     * \param subStepWidth the sub-step width to be used.
+     * If this parameter is omitted (or set to Zero, resp.)
+     * the automatic calculation will be done, using the
+     * granularity sequence specified.
+     * This is the default.
+     *
+     * \sa gridSubStepWidth
+     */
+    void setGridSubStepWidth(qreal subStepWidth = 0.0);
 
     /**
-      * Specifies the sub-step width to be used for calculating
-      * the grid sub-lines.
-      *
-      *
-      * \param subStepWidth the sub-step width to be used.
-      * If this parameter is omitted (or set to Zero, resp.)
-      * the automatic calculation will be done, using the
-      * granularity sequence specified.
-      * This is the default.
-      *
-      * \sa gridSubStepWidth
-      */
-    void setGridSubStepWidth( qreal subStepWidth = 0.0 );
-
-    /**
-      * Returns the sub-step width to be used for calculating
-      * the sub-grid lines.
-      *
-      * \sa setGridStepWidth
-      */
+     * Returns the sub-step width to be used for calculating
+     * the sub-grid lines.
+     *
+     * \sa setGridStepWidth
+     */
     qreal gridSubStepWidth() const;
 
     /**
-      * Specifies the granularity sequence to be used for calculating
-      * the grid lines.
-      *
-      * By default the GridAttributes class uses KChartEnums::GranularitySequence_10_20.
-      *
-      * \note Granularity can be set for Linear axis calculation mode only,
-      * there is no way to specify a step width for Logarithmic axes.
-      *
-      * \note The sequence specified by this method is ignored, if
-      * a fixed step width was specified via setStepWidth.
-      *
-      * \param sequence one of the sequences declared in
-      * KChartEnums::GranularitySequence.
-      *
-      * \sa gridGranularitySequence, setStepWidth
-      */
-    void setGridGranularitySequence( KChartEnums::GranularitySequence sequence );
+     * Specifies the granularity sequence to be used for calculating
+     * the grid lines.
+     *
+     * By default the GridAttributes class uses KChartEnums::GranularitySequence_10_20.
+     *
+     * \note Granularity can be set for Linear axis calculation mode only,
+     * there is no way to specify a step width for Logarithmic axes.
+     *
+     * \note The sequence specified by this method is ignored, if
+     * a fixed step width was specified via setStepWidth.
+     *
+     * \param sequence one of the sequences declared in
+     * KChartEnums::GranularitySequence.
+     *
+     * \sa gridGranularitySequence, setStepWidth
+     */
+    void setGridGranularitySequence(KChartEnums::GranularitySequence sequence);
 
     /**
-      * Returns the granularity sequence to be used for calculating
-      * the grid lines.
-      *
-      * \sa setGridGranularitySequence
-      */
+     * Returns the granularity sequence to be used for calculating
+     * the grid lines.
+     *
+     * \sa setGridGranularitySequence
+     */
     KChartEnums::GranularitySequence gridGranularitySequence() const;
 
     /**
@@ -133,44 +132,47 @@ public:
      * \sa CartesianCoordinatePlane::setHorizontalRange
      * \sa CartesianCoordinatePlane::setVerticalRange
      */
-    void setAdjustBoundsToGrid( bool adjustLower, bool adjustUpper );
+    void setAdjustBoundsToGrid(bool adjustLower, bool adjustUpper);
     bool adjustLowerBoundToGrid() const;
     bool adjustUpperBoundToGrid() const;
 
-    void setGridPen( const QPen & pen );
+    void setGridPen(const QPen &pen);
     QPen gridPen() const;
 
-    void setSubGridVisible( bool visible );
+    void setSubGridVisible(bool visible);
     bool isSubGridVisible() const;
 
-    void setSubGridPen( const QPen & pen );
+    void setSubGridPen(const QPen &pen);
     QPen subGridPen() const;
 
-    void setOuterLinesVisible( bool visible );
+    void setOuterLinesVisible(bool visible);
     bool isOuterLinesVisible() const;
 
-    void setZeroLinePen( const QPen & pen );
+    void setZeroLinePen(const QPen &pen);
     QPen zeroLinePen() const;
 
-    bool operator==( const GridAttributes& ) const;
-    inline bool operator!=( const GridAttributes& other ) const { return !operator==(other); }
+    bool operator==(const GridAttributes &) const;
+    inline bool operator!=(const GridAttributes &other) const
+    {
+        return !operator==(other);
+    }
 
 private:
-    KCHART_DECLARE_PRIVATE_BASE_VALUE( GridAttributes )
+    KCHART_DECLARE_PRIVATE_BASE_VALUE(GridAttributes)
 }; // End of class GridAttributes
 
 }
 
 #if !defined(QT_NO_DEBUG_STREAM)
-KCHART_EXPORT QDebug operator<<(QDebug, const KChart::GridAttributes& );
+KCHART_EXPORT QDebug operator<<(QDebug, const KChart::GridAttributes &);
 #endif /* QT_NO_DEBUG_STREAM */
 
-KCHART_DECLARE_SWAP_SPECIALISATION( KChart::GridAttributes )
+KCHART_DECLARE_SWAP_SPECIALISATION(KChart::GridAttributes)
 
 QT_BEGIN_NAMESPACE
-Q_DECLARE_TYPEINFO( KChart::GridAttributes, Q_MOVABLE_TYPE );
+Q_DECLARE_TYPEINFO(KChart::GridAttributes, Q_MOVABLE_TYPE);
 QT_END_NAMESPACE
 
-Q_DECLARE_METATYPE( KChart::GridAttributes )
+Q_DECLARE_METATYPE(KChart::GridAttributes)
 
 #endif // KCHARTGRIDATTRIBUTES_H

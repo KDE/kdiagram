@@ -20,12 +20,12 @@
 // We mean it.
 //
 
-#include <KChartThreeDLineAttributes.h>
-#include <KChartAbstractThreeDAttributes_p.h>
 #include "KChartMath_p.h"
+#include <KChartAbstractThreeDAttributes_p.h>
+#include <KChartThreeDLineAttributes.h>
 
-
-namespace KChart {
+namespace KChart
+{
 
 /**
  * \internal
@@ -33,11 +33,12 @@ namespace KChart {
 class Q_DECL_HIDDEN ThreeDLineAttributes::Private : public AbstractThreeDAttributes::Private
 {
     friend class ThreeDLineAttributes;
+
 public:
     Private();
 
 private:
-    //ThreeDLines
+    // ThreeDLines
     uint lineXRotation;
     uint lineYRotation;
 };
@@ -45,6 +46,5 @@ private:
 KCHART_DERIVED_PRIVATE_FOOTER(ThreeDLineAttributes, AbstractThreeDAttributes)
 
 }
-
 
 #endif // KCHARTTHREEDLINEATTRIBUTES_P_H

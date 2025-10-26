@@ -15,73 +15,74 @@
 
 #include "KChartLeveyJenningsGridAttributes.h"
 
-namespace KChart {
+namespace KChart
+{
 
-    class LeveyJenningsDiagram;
+class LeveyJenningsDiagram;
+
+/**
+ * The class for levey jennings axes.
+ *
+ * For being useful, axes need to be assigned to a diagram, see
+ * LeveyJenningsDiagram::addAxis and LeveyJenningsDiagram::takeAxis.
+ *
+ * \sa PolarAxis, AbstractCartesianDiagram
+ */
+class KCHART_EXPORT LeveyJenningsAxis : public CartesianAxis
+{
+    Q_OBJECT
+
+    Q_DISABLE_COPY(LeveyJenningsAxis)
+    KCHART_DECLARE_PRIVATE_DERIVED_PARENT(LeveyJenningsAxis, AbstractDiagram *)
+
+public:
+    /**
+     * C'tor of the class for levey jennings axes.
+     *
+     * \note If using a zero parent for the constructor, you need to call
+     * your diagram's addAxis function to add your axis to the diagram.
+     * Otherwise, there is no need to call addAxis, since the constructor
+     * does that automatically for you, if you pass a diagram as parameter.
+     *
+     * \sa AbstractCartesianDiagram::addAxis
+     */
+    explicit LeveyJenningsAxis(LeveyJenningsDiagram *diagram = nullptr);
+    ~LeveyJenningsAxis() override;
 
     /**
-      * The class for levey jennings axes.
-      *
-      * For being useful, axes need to be assigned to a diagram, see
-      * LeveyJenningsDiagram::addAxis and LeveyJenningsDiagram::takeAxis.
-      *
-      * \sa PolarAxis, AbstractCartesianDiagram
-      */
-    class KCHART_EXPORT LeveyJenningsAxis : public CartesianAxis
-    {
-        Q_OBJECT
+     * @return The axis' type.
+     */
+    LeveyJenningsGridAttributes::GridType type() const;
 
-        Q_DISABLE_COPY( LeveyJenningsAxis )
-        KCHART_DECLARE_PRIVATE_DERIVED_PARENT( LeveyJenningsAxis, AbstractDiagram* )
+    /**
+     * Sets the type of the axis to \a type.
+     * This method colors the label to the default color of the
+     * respective type.
+     * Please make sure to re-set the colors after calling this,
+     * if you want them different.
+     * Setting the type is only valid for axes located right or left
+     * from the diagram. An axis on the bottom always shows the timeline.
+     */
+    void setType(LeveyJenningsGridAttributes::GridType type);
 
-    public:
-        /**
-          * C'tor of the class for levey jennings axes.
-          *
-          * \note If using a zero parent for the constructor, you need to call
-          * your diagram's addAxis function to add your axis to the diagram.
-          * Otherwise, there is no need to call addAxis, since the constructor
-          * does that automatically for you, if you pass a diagram as parameter.
-          *
-          * \sa AbstractCartesianDiagram::addAxis
-          */
-        explicit LeveyJenningsAxis ( LeveyJenningsDiagram* diagram = nullptr );
-        ~LeveyJenningsAxis() override;
+    Qt::DateFormat dateFormat() const;
+    void setDateFormat(Qt::DateFormat format);
 
-        /**
-          * @return The axis' type.
-          */
-        LeveyJenningsGridAttributes::GridType type() const;
+    /**
+     * Returns true if both axes have the same settings.
+     */
+    bool compare(const LeveyJenningsAxis *other) const;
 
-        /**
-          * Sets the type of the axis to \a type.
-          * This method colors the label to the default color of the
-          * respective type.
-          * Please make sure to re-set the colors after calling this,
-          * if you want them different.
-          * Setting the type is only valid for axes located right or left
-          * from the diagram. An axis on the bottom always shows the timeline.
-          */
-        void setType( LeveyJenningsGridAttributes::GridType type );
+    /** reimpl */
+    void paintCtx(PaintContext *) override;
 
-        Qt::DateFormat dateFormat() const;
-        void setDateFormat( Qt::DateFormat format );
+protected:
+    virtual void paintAsOrdinate(PaintContext *);
 
-        /**
-         * Returns true if both axes have the same settings.
-         */
-        bool compare( const LeveyJenningsAxis* other ) const;
+    virtual void paintAsAbscissa(PaintContext *);
+};
 
-        /** reimpl */
-        void paintCtx( PaintContext* ) override;
-
-    protected:
-        virtual void paintAsOrdinate( PaintContext* );
-
-        virtual void paintAsAbscissa( PaintContext* );
-    };
-
-    typedef QList<LeveyJenningsAxis*> LeveyJenningsAxisList;
+typedef QList<LeveyJenningsAxis *> LeveyJenningsAxisList;
 }
 
 #endif

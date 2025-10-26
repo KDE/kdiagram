@@ -9,20 +9,19 @@
 #include "KChartRadarCoordinatePlane.h"
 #include "KChartRadarCoordinatePlane_p.h"
 
-
 using namespace KChart;
 
 #define d d_func()
 
-KChart::RadarCoordinatePlane::RadarCoordinatePlane ( Chart* parent ) :
-    PolarCoordinatePlane( new Private(), parent )
+KChart::RadarCoordinatePlane::RadarCoordinatePlane(Chart *parent)
+    : PolarCoordinatePlane(new Private(), parent)
 {
 }
 KChart::RadarCoordinatePlane::~RadarCoordinatePlane()
 {
 }
 
-void KChart::RadarCoordinatePlane::setTextAttributes(const KChart::TextAttributes& attr)
+void KChart::RadarCoordinatePlane::setTextAttributes(const KChart::TextAttributes &attr)
 {
     d->textAttributes = attr;
 }

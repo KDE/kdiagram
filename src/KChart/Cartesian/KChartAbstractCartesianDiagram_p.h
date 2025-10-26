@@ -22,16 +22,16 @@
 
 #include "KChartAbstractCartesianDiagram.h"
 
+#include "KChartMath_p.h"
 #include <KChartAbstractDiagram_p.h>
 #include <KChartAbstractThreeDAttributes.h>
 #include <KChartGridAttributes.h>
-#include "KChartMath_p.h"
 
+namespace KChart
+{
 
-namespace KChart {
-
-  class CartesianCoordinatePlane;
-  class AbstractCartesianDiagram;
+class CartesianCoordinatePlane;
+class AbstractCartesianDiagram;
 
 /**
  * \internal
@@ -39,40 +39,41 @@ namespace KChart {
 class Q_DECL_HIDDEN AbstractCartesianDiagram::Private : public AbstractDiagram::Private
 {
     friend class AbstractCartesianDiagram;
+
 public:
     Private();
     ~Private() override;
 
-    Private( const Private& rhs ) :
-        AbstractDiagram::Private( rhs ),
+    Private(const Private &rhs)
+        : AbstractDiagram::Private(rhs)
+        ,
         // Do not copy axes and reference diagrams.
-        axesList(),
-        referenceDiagram( nullptr ),
-        referenceDiagramOffset()
-        {
-        }
+        axesList()
+        , referenceDiagram(nullptr)
+        , referenceDiagramOffset()
+    {
+    }
 
     /** \reimpl */
-    CartesianDiagramDataCompressor::AggregatedDataValueAttributes aggregatedAttrs(
-            const QModelIndex & index,
-            const CartesianDiagramDataCompressor::CachePosition * position ) const override
+    CartesianDiagramDataCompressor::AggregatedDataValueAttributes aggregatedAttrs(const QModelIndex &index,
+                                                                                  const CartesianDiagramDataCompressor::CachePosition *position) const override
     {
-        if ( position )
-            return compressor.aggregatedAttrs( diagram, index, *position );
+        if (position)
+            return compressor.aggregatedAttrs(diagram, index, *position);
         CartesianDiagramDataCompressor::AggregatedDataValueAttributes allAttrs;
-        allAttrs[index] = diagram->dataValueAttributes( index );
+        allAttrs[index] = diagram->dataValueAttributes(index);
         return allAttrs;
     }
 
-   CartesianAxisList axesList;
+    CartesianAxisList axesList;
 
-   AbstractCartesianDiagram* referenceDiagram;
-   QPointF referenceDiagramOffset;
+    AbstractCartesianDiagram *referenceDiagram;
+    QPointF referenceDiagramOffset;
 
-   mutable CartesianDiagramDataCompressor compressor;
+    mutable CartesianDiagramDataCompressor compressor;
 };
 
-KCHART_IMPL_DERIVED_DIAGRAM( AbstractCartesianDiagram, AbstractDiagram, CartesianCoordinatePlane )
+KCHART_IMPL_DERIVED_DIAGRAM(AbstractCartesianDiagram, AbstractDiagram, CartesianCoordinatePlane)
 
 }
 #endif /* KCHARTABSTRACTCARTESIANDIAGRAM_P_H */

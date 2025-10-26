@@ -20,11 +20,11 @@
 // We mean it.
 //
 
-#include <KChartPieAttributes.h>
 #include "KChartMath_p.h"
+#include <KChartPieAttributes.h>
 
-
-namespace KChart {
+namespace KChart
+{
 
 /**
  * \internal
@@ -32,6 +32,7 @@ namespace KChart {
 class Q_DECL_HIDDEN PieAttributes::Private
 {
     friend class PieAttributes;
+
 public:
     Private();
 

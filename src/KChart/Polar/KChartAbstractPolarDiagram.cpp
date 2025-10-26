@@ -11,7 +11,6 @@
 
 #include "KChartMath_p.h"
 
-
 using namespace KChart;
 
 AbstractPolarDiagram::Private::Private()
@@ -28,24 +27,22 @@ void AbstractPolarDiagram::init()
 
 #define d d_func()
 
-AbstractPolarDiagram::AbstractPolarDiagram (
-    QWidget* parent, PolarCoordinatePlane* plane )
-    : AbstractDiagram ( new Private(), parent, plane )
+AbstractPolarDiagram::AbstractPolarDiagram(QWidget *parent, PolarCoordinatePlane *plane)
+    : AbstractDiagram(new Private(), parent, plane)
 {
 }
 
-
-const PolarCoordinatePlane * AbstractPolarDiagram::polarCoordinatePlane() const
+const PolarCoordinatePlane *AbstractPolarDiagram::polarCoordinatePlane() const
 {
-    return dynamic_cast<const PolarCoordinatePlane*>( coordinatePlane() );
+    return dynamic_cast<const PolarCoordinatePlane *>(coordinatePlane());
 }
 
 int AbstractPolarDiagram::columnCount() const
 {
-    return static_cast<int>( numberOfValuesPerDataset() );
+    return static_cast<int>(numberOfValuesPerDataset());
 }
 
 int AbstractPolarDiagram::rowCount() const
 {
-    return static_cast<int>( numberOfDatasets() );
+    return static_cast<int>(numberOfDatasets());
 }

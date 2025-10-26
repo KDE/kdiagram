@@ -9,18 +9,19 @@
 #ifndef KCHARTRELATIVEPOSITION_H
 #define KCHARTRELATIVEPOSITION_H
 
+#include "KChartGlobal.h"
 #include <QDebug>
 #include <QMetaType>
-#include <Qt>
 #include <QPointF>
 #include <QSizeF>
-#include "KChartGlobal.h"
+#include <Qt>
 
-namespace KChart {
+namespace KChart
+{
 
-    class Position;
-    class PositionPoints;
-    class Measure;
+class Position;
+class PositionPoints;
+class Measure;
 
 /**
   \class RelativePosition KChartRelativePosition.h
@@ -44,9 +45,9 @@ class KCHART_EXPORT RelativePosition
 {
 public:
     RelativePosition();
-    RelativePosition( const RelativePosition& );
+    RelativePosition(const RelativePosition &);
 
-    RelativePosition & operator=( const RelativePosition & other );
+    RelativePosition &operator=(const RelativePosition &other);
 
     ~RelativePosition();
 
@@ -65,8 +66,8 @@ public:
      *
      * \sa setReferencePosition, setAlignment, setHorizontalPadding, setVerticalPadding
      */
-    void setReferenceArea( QObject* area );
-    QObject* referenceArea() const;
+    void setReferenceArea(QObject *area);
+    QObject *referenceArea() const;
 
     /**
      * \brief Set a set of points from which the anchor point will be selected.
@@ -81,7 +82,7 @@ public:
      *
      * \sa setReferenceArea, setReferencePosition, setAlignment, setHorizontalPadding, setVerticalPadding
      */
-    void setReferencePoints( const PositionPoints& points );
+    void setReferencePoints(const PositionPoints &points);
     const PositionPoints referencePoints() const;
 
     /**
@@ -95,7 +96,7 @@ public:
      *
      *  \sa resetReferencePosition, setReferenceArea, setAlignment, setHorizontalPadding, setVerticalPadding, KChart::Position
      */
-    void setReferencePosition( Position position );
+    void setReferencePosition(Position position);
 
     /**
      * \brief Resets the position of the anchor point to the built-in default.
@@ -121,7 +122,7 @@ public:
      *
      * \sa setReferencePosition, setReferenceArea, setHorizontalPadding, setVerticalPadding
      */
-    void setAlignment( Qt::Alignment flags );
+    void setAlignment(Qt::Alignment flags);
     Qt::Alignment alignment() const;
 
     /**
@@ -136,7 +137,7 @@ public:
      *
      * \sa setVerticalPadding, setReferencePosition, setReferenceArea
      */
-    void setHorizontalPadding( const Measure& padding );
+    void setHorizontalPadding(const Measure &padding);
     Measure horizontalPadding() const;
 
     /**
@@ -151,10 +152,10 @@ public:
      *
      * \sa setHorizontalPadding, setReferencePosition, setReferenceArea
      */
-    void setVerticalPadding( const Measure& padding );
+    void setVerticalPadding(const Measure &padding);
     Measure verticalPadding() const;
 
-    void setRotation( qreal rot );
+    void setRotation(qreal rot);
     qreal rotation() const;
 
     /**
@@ -169,7 +170,7 @@ public:
      * padding settings should affect the position of the data value texts' reference points.
      * \sa calculatedPoint, setReferenceArea, setReferencePosition, setHorizontalPadding, setVerticalPadding
      */
-    const QPointF referencePoint(qreal* polarDegrees = nullptr) const;
+    const QPointF referencePoint(qreal *polarDegrees = nullptr) const;
 
     /**
      * \brief Calculate a point, according to the reference area/position and the padding.
@@ -181,28 +182,31 @@ public:
      *
      * \sa referencePoint, setReferenceArea, setReferencePosition, setHorizontalPadding, setVerticalPadding
      */
-    const QPointF calculatedPoint( const QSizeF& autoSize ) const;
+    const QPointF calculatedPoint(const QSizeF &autoSize) const;
 
-    bool operator==( const RelativePosition& ) const;
-    bool operator!=( const RelativePosition & other ) const;
+    bool operator==(const RelativePosition &) const;
+    bool operator!=(const RelativePosition &other) const;
 
 private:
-    KCHART_DECLARE_PRIVATE_BASE_VALUE( RelativePosition )
+    KCHART_DECLARE_PRIVATE_BASE_VALUE(RelativePosition)
 };
 
-inline bool RelativePosition::operator!=( const RelativePosition & other ) const { return !operator==( other ); }
+inline bool RelativePosition::operator!=(const RelativePosition &other) const
+{
+    return !operator==(other);
+}
 }
 
 #if !defined(QT_NO_DEBUG_STREAM)
-KCHART_EXPORT QDebug operator<<(QDebug, const KChart::RelativePosition& );
+KCHART_EXPORT QDebug operator<<(QDebug, const KChart::RelativePosition &);
 #endif /* QT_NO_DEBUG_STREAM */
 
-KCHART_DECLARE_SWAP_SPECIALISATION( KChart::RelativePosition )
+KCHART_DECLARE_SWAP_SPECIALISATION(KChart::RelativePosition)
 
 QT_BEGIN_NAMESPACE
-Q_DECLARE_TYPEINFO( KChart::RelativePosition, Q_MOVABLE_TYPE );
+Q_DECLARE_TYPEINFO(KChart::RelativePosition, Q_MOVABLE_TYPE);
 QT_END_NAMESPACE
 
-Q_DECLARE_METATYPE( KChart::RelativePosition )
+Q_DECLARE_METATYPE(KChart::RelativePosition)
 
 #endif // KCHARTRELATIVEPOSITION_H

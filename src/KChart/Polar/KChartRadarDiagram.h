@@ -9,40 +9,37 @@
 #ifndef KCHARTRADARDIAGRAM_H
 #define KCHARTRADARDIAGRAM_H
 
-
-#include "KChartPosition.h"
 #include "KChartPolarDiagram.h"
+#include "KChartPosition.h"
 #include "KChartRadarCoordinatePlane.h"
 
 QT_BEGIN_NAMESPACE
 class QPolygonF;
 QT_END_NAMESPACE
 
-namespace KChart {
+namespace KChart
+{
 
 /**
-  * @brief RadarDiagram defines a common radar diagram
-  */
+ * @brief RadarDiagram defines a common radar diagram
+ */
 class KCHART_EXPORT RadarDiagram : public AbstractPolarDiagram
 {
-  Q_OBJECT
+    Q_OBJECT
 
-  Q_DISABLE_COPY( RadarDiagram )
-  KCHART_DECLARE_DERIVED_DIAGRAM( RadarDiagram, RadarCoordinatePlane )
+    Q_DISABLE_COPY(RadarDiagram)
+    KCHART_DECLARE_DERIVED_DIAGRAM(RadarDiagram, RadarCoordinatePlane)
 
 public:
-    explicit RadarDiagram(
-        QWidget* parent = nullptr, RadarCoordinatePlane* plane = nullptr );
+    explicit RadarDiagram(QWidget *parent = nullptr, RadarCoordinatePlane *plane = nullptr);
     ~RadarDiagram() override;
 
-    virtual void paint ( PaintContext* paintContext,
-                         bool calculateListAndReturnScale,
-                         qreal& newZoomX, qreal& newZoomY );
+    virtual void paint(PaintContext *paintContext, bool calculateListAndReturnScale, qreal &newZoomX, qreal &newZoomY);
     /** \reimpl */
-    void resize ( const QSizeF& area ) override;
+    void resize(const QSizeF &area) override;
 
     /** \reimpl */
-    qreal valueTotals () const override;
+    qreal valueTotals() const override;
     /** \reimpl */
     qreal numberOfValuesPerDataset() const override;
     /** \reimpl */
@@ -51,19 +48,19 @@ public:
     /**
      * if val is true the diagram will mirror the diagram datapoints
      */
-    void setReverseData( bool val );
+    void setReverseData(bool val);
     bool reverseData();
 
     /**
-      * Creates an exact copy of this diagram.
-      */
-   virtual RadarDiagram * clone() const;
+     * Creates an exact copy of this diagram.
+     */
+    virtual RadarDiagram *clone() const;
 
     /**
      * Close each of the data series by connecting the last point to its
      * respective start point
      */
-    void setCloseDatasets( bool closeDatasets );
+    void setCloseDatasets(bool closeDatasets);
     bool closeDatasets() const;
 
     /**
@@ -79,9 +76,9 @@ public:
 protected:
     /** \reimpl */
     const QPair<QPointF, QPointF> calculateDataBoundaries() const override;
-    void paintEvent ( QPaintEvent* ) override;
-    void resizeEvent ( QResizeEvent* ) override;
-    void paint ( PaintContext* paintContext ) override;
+    void paintEvent(QPaintEvent *) override;
+    void resizeEvent(QResizeEvent *) override;
+    void paint(PaintContext *paintContext) override;
 
 }; // End of class RadarDiagram
 

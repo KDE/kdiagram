@@ -23,16 +23,16 @@
 #include <QQueue>
 #include <QTimer>
 
-#include "KChartAbstractAxis.h"
 #include "KChartAbstractArea_p.h"
+#include "KChartAbstractAxis.h"
 #include "KChartAbstractDiagram.h"
 #include "KChartMath_p.h"
-#include <KChartTextAttributes.h>
-#include <KChartRulerAttributes.h>
 #include <KChartDiagramObserver.h>
+#include <KChartRulerAttributes.h>
+#include <KChartTextAttributes.h>
 
-
-namespace KChart {
+namespace KChart
+{
 
 /**
  * \internal
@@ -42,46 +42,48 @@ class Q_DECL_HIDDEN AbstractAxis::Private : public AbstractArea::Private
     friend class AbstractAxis;
 
 public:
-    Private( AbstractDiagram* diagram, AbstractAxis* axis );
+    Private(AbstractDiagram *diagram, AbstractAxis *axis);
     ~Private() override;
 
-    bool setDiagram( AbstractDiagram* diagram, bool delayedInit = false );
-    void unsetDiagram( AbstractDiagram* diagram );
-    AbstractDiagram* diagram() const
+    bool setDiagram(AbstractDiagram *diagram, bool delayedInit = false);
+    void unsetDiagram(AbstractDiagram *diagram);
+    AbstractDiagram *diagram() const
     {
         return mDiagram;
     }
-    bool hasDiagram( AbstractDiagram* diagram ) const;
+    bool hasDiagram(AbstractDiagram *diagram) const;
 
     void updateLayouts();
 
-    DiagramObserver* observer;
+    DiagramObserver *observer;
 
     TextAttributes textAttributes;
     RulerAttributes rulerAttributes;
     QStringList hardLabels;
     QStringList hardShortLabels;
-    QQueue<AbstractDiagram*> secondaryDiagrams;
+    QQueue<AbstractDiagram *> secondaryDiagrams;
 
 protected:
-    AbstractDiagram* mDiagram;
-    AbstractAxis*    mAxis;
+    AbstractDiagram *mDiagram;
+    AbstractAxis *mAxis;
 };
 
-
-inline AbstractAxis::AbstractAxis( Private * p, AbstractDiagram* diagram )
-    :  AbstractArea( p )
+inline AbstractAxis::AbstractAxis(Private *p, AbstractDiagram *diagram)
+    : AbstractArea(p)
 {
-    Q_UNUSED( diagram );
+    Q_UNUSED(diagram);
     init();
     QTimer::singleShot(0, this, SLOT(delayedInit()));
 }
 
-inline AbstractAxis::Private * AbstractAxis::d_func()
-{ return static_cast<Private*>( AbstractArea::d_func() ); }
-inline const AbstractAxis::Private * AbstractAxis::d_func() const
-{ return static_cast<const Private*>( AbstractArea::d_func() ); }
+inline AbstractAxis::Private *AbstractAxis::d_func()
+{
+    return static_cast<Private *>(AbstractArea::d_func());
+}
+inline const AbstractAxis::Private *AbstractAxis::d_func() const
+{
+    return static_cast<const Private *>(AbstractArea::d_func());
+}
 
 }
 #endif /* KCHARTABSTRACTAXIS_P_H */
-

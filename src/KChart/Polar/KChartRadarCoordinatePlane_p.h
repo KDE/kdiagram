@@ -24,24 +24,28 @@
 #include "KChartRadarCoordinatePlane.h"
 #include "KChartRadarGrid.h"
 
+namespace KChart
+{
 
-namespace KChart {
-  
 class Q_DECL_HIDDEN RadarCoordinatePlane::Private : public PolarCoordinatePlane::Private
 {
     friend class RadarCoordinatePlane;
-public:
-    explicit Private() { }
 
-    ~Private() override { }
+public:
+    explicit Private()
+    {
+    }
+
+    ~Private() override
+    {
+    }
     TextAttributes textAttributes;
-    
+
     void initialize() override
     {
         grid = new RadarGrid();
     }
 };
-
 
 KCHART_IMPL_DERIVED_PLANE(RadarCoordinatePlane, PolarCoordinatePlane)
 

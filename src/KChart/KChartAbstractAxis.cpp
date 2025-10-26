@@ -8,20 +8,20 @@
 
 #include "KChartAbstractAxis.h"
 #include "KChartAbstractAxis_p.h"
-#include "KChartAbstractDiagram.h"
 #include "KChartAbstractCartesianDiagram.h"
+#include "KChartAbstractDiagram.h"
 #include "KChartEnums.h"
-#include "KChartMeasure.h"
 #include "KChartMath_p.h"
+#include "KChartMeasure.h"
 
 using namespace KChart;
 
 #define d d_func()
 
-AbstractAxis::Private::Private( AbstractDiagram* diagram, AbstractAxis* axis )
-    : observer( nullptr )
-    , mDiagram( diagram )
-    , mAxis( axis )
+AbstractAxis::Private::Private(AbstractDiagram *diagram, AbstractAxis *axis)
+    : observer(nullptr)
+    , mDiagram(diagram)
+    , mAxis(axis)
 {
     // Note: We do NOT call setDiagram( diagram, axis );
     //       but it is called in AbstractAxis::delayedInit() instead!
@@ -33,70 +33,68 @@ AbstractAxis::Private::~Private()
     observer = nullptr;
 }
 
-bool AbstractAxis::Private::setDiagram( AbstractDiagram* diagram_, bool delayedInit )
+bool AbstractAxis::Private::setDiagram(AbstractDiagram *diagram_, bool delayedInit)
 {
-    AbstractDiagram* diagram = delayedInit ? mDiagram : diagram_;
-    if ( delayedInit ) {
+    AbstractDiagram *diagram = delayedInit ? mDiagram : diagram_;
+    if (delayedInit) {
         mDiagram = nullptr;
     }
 
     // do not set a diagram again that was already set
-    if ( diagram &&
-        ((diagram == mDiagram) || secondaryDiagrams.contains( diagram )) )
+    if (diagram && ((diagram == mDiagram) || secondaryDiagrams.contains(diagram)))
         return false;
 
     bool bNewDiagramStored = false;
-    if ( ! mDiagram ) {
+    if (!mDiagram) {
         mDiagram = diagram;
         delete observer;
-        if ( mDiagram ) {
-            observer = new DiagramObserver( mDiagram, mAxis );
-            const bool con = connect( observer, &DiagramObserver::diagramDataChanged,
-                    mAxis, &AbstractAxis::coordinateSystemChanged );
-            Q_UNUSED( con )
-            Q_ASSERT( con );
+        if (mDiagram) {
+            observer = new DiagramObserver(mDiagram, mAxis);
+            const bool con = connect(observer, &DiagramObserver::diagramDataChanged, mAxis, &AbstractAxis::coordinateSystemChanged);
+            Q_UNUSED(con)
+            Q_ASSERT(con);
             bNewDiagramStored = true;
         } else {
             observer = nullptr;
         }
     } else {
-        if ( diagram )
-            secondaryDiagrams.enqueue( diagram );
+        if (diagram)
+            secondaryDiagrams.enqueue(diagram);
     }
     return bNewDiagramStored;
 }
 
-void AbstractAxis::Private::unsetDiagram( AbstractDiagram* diagram )
+void AbstractAxis::Private::unsetDiagram(AbstractDiagram *diagram)
 {
-    if ( diagram == mDiagram ) {
+    if (diagram == mDiagram) {
         mDiagram = nullptr;
         delete observer;
         observer = nullptr;
     } else {
-        secondaryDiagrams.removeAll( diagram );
+        secondaryDiagrams.removeAll(diagram);
     }
-    if ( !secondaryDiagrams.isEmpty() ) {
+    if (!secondaryDiagrams.isEmpty()) {
         AbstractDiagram *nextDiagram = secondaryDiagrams.dequeue();
-        setDiagram( nextDiagram );
+        setDiagram(nextDiagram);
     }
 }
 
-bool AbstractAxis::Private::hasDiagram( AbstractDiagram* diagram ) const
+bool AbstractAxis::Private::hasDiagram(AbstractDiagram *diagram) const
 {
-    return diagram == mDiagram || secondaryDiagrams.contains( diagram );
+    return diagram == mDiagram || secondaryDiagrams.contains(diagram);
 }
 
 void AbstractAxis::Private::updateLayouts()
 {
-    if ( CartesianAxis* cartesianAxis = qobject_cast< CartesianAxis* >( mAxis ) ) {
+    if (CartesianAxis *cartesianAxis = qobject_cast<CartesianAxis *>(mAxis)) {
         cartesianAxis->layoutPlanes();
     } else {
         mAxis->update();
     }
 }
 
-AbstractAxis::AbstractAxis ( AbstractDiagram* diagram )
-    : AbstractArea( new Private( diagram, this ) )
+AbstractAxis::AbstractAxis(AbstractDiagram *diagram)
+    : AbstractArea(new Private(diagram, this))
 {
     init();
     QTimer::singleShot(0, this, SLOT(delayedInit()));
@@ -108,71 +106,65 @@ AbstractAxis::~AbstractAxis()
     d->secondaryDiagrams.clear();
 }
 
-
 void AbstractAxis::init()
 {
-    Measure m( 14, KChartEnums::MeasureCalculationModeAuto, KChartEnums::MeasureOrientationAuto );
-    d->textAttributes.setFontSize( m );
-    m.setValue( 6 );
-    m.setCalculationMode( KChartEnums::MeasureCalculationModeAbsolute );
-    d->textAttributes.setMinimalFontSize( m );
-    if ( d->diagram() )
-        createObserver( d->diagram() );
+    Measure m(14, KChartEnums::MeasureCalculationModeAuto, KChartEnums::MeasureOrientationAuto);
+    d->textAttributes.setFontSize(m);
+    m.setValue(6);
+    m.setCalculationMode(KChartEnums::MeasureCalculationModeAbsolute);
+    d->textAttributes.setMinimalFontSize(m);
+    if (d->diagram())
+        createObserver(d->diagram());
 }
 
 void AbstractAxis::delayedInit()
 {
     // We call setDiagram() here, because the c'tor of Private
     // only has stored the pointers, but it did not call setDiagram().
-    if ( d )
-        d->setDiagram( nullptr, true /* delayedInit */ );
+    if (d)
+        d->setDiagram(nullptr, true /* delayedInit */);
 }
 
-bool AbstractAxis::compare( const AbstractAxis* other ) const
+bool AbstractAxis::compare(const AbstractAxis *other) const
 {
-    if ( other == this ) {
+    if (other == this) {
         return true;
     }
-    if ( !other ) {
+    if (!other) {
         return false;
     }
 
-    return  ( static_cast<const AbstractAreaBase*>(this)->compare( other ) ) &&
-            (textAttributes() == other->textAttributes()) &&
-            (labels()         == other->labels()) &&
-            (shortLabels()    == other->shortLabels());
+    return (static_cast<const AbstractAreaBase *>(this)->compare(other)) && (textAttributes() == other->textAttributes()) && (labels() == other->labels())
+        && (shortLabels() == other->shortLabels());
 }
 
-
-const QString AbstractAxis::customizedLabel( const QString& label ) const
+const QString AbstractAxis::customizedLabel(const QString &label) const
 {
     return label;
 }
 
-
-void AbstractAxis::createObserver( AbstractDiagram* diagram )
+void AbstractAxis::createObserver(AbstractDiagram *diagram)
 {
-    d->setDiagram( diagram );
+    d->setDiagram(diagram);
 }
 
-void AbstractAxis::deleteObserver( AbstractDiagram* diagram )
+void AbstractAxis::deleteObserver(AbstractDiagram *diagram)
 {
-    d->unsetDiagram( diagram );
+    d->unsetDiagram(diagram);
 }
 
 void AbstractAxis::connectSignals()
 {
-    if ( d->observer ) {
-        const bool con = connect( d->observer, &DiagramObserver::diagramDataChanged,
-                this, &AbstractAxis::coordinateSystemChanged );
-        Q_UNUSED( con );
-        Q_ASSERT( con );
+    if (d->observer) {
+        const bool con = connect(d->observer, &DiagramObserver::diagramDataChanged, this, &AbstractAxis::coordinateSystemChanged);
+        Q_UNUSED(con);
+        Q_ASSERT(con);
     }
 }
 
-void AbstractAxis::setTextAttributes( const TextAttributes &a )
+void AbstractAxis::setTextAttributes(const TextAttributes &a)
 {
-    if ( d->textAttributes == a )
+    if (d->textAttributes == a)
         return;
 
     d->textAttributes = a;
@@ -184,8 +176,7 @@ TextAttributes AbstractAxis::textAttributes() const
     return d->textAttributes;
 }
 
-
-void AbstractAxis::setRulerAttributes( const RulerAttributes &a )
+void AbstractAxis::setRulerAttributes(const RulerAttributes &a)
 {
     d->rulerAttributes = a;
     d->updateLayouts();
@@ -196,9 +187,9 @@ RulerAttributes AbstractAxis::rulerAttributes() const
     return d->rulerAttributes;
 }
 
-void AbstractAxis::setLabels( const QStringList& list )
+void AbstractAxis::setLabels(const QStringList &list)
 {
-    if ( d->hardLabels == list )
+    if (d->hardLabels == list)
         return;
 
     d->hardLabels = list;
@@ -210,9 +201,9 @@ QStringList AbstractAxis::labels() const
     return d->hardLabels;
 }
 
-void AbstractAxis::setShortLabels( const QStringList& list )
+void AbstractAxis::setShortLabels(const QStringList &list)
 {
-    if ( d->hardShortLabels == list )
+    if (d->hardShortLabels == list)
         return;
 
     d->hardShortLabels = list;
@@ -224,25 +215,25 @@ QStringList AbstractAxis::shortLabels() const
     return d->hardShortLabels;
 }
 
-const AbstractCoordinatePlane* AbstractAxis::coordinatePlane() const
+const AbstractCoordinatePlane *AbstractAxis::coordinatePlane() const
 {
-    if ( d->diagram() )
+    if (d->diagram())
         return d->diagram()->coordinatePlane();
     return nullptr;
 }
 
-const AbstractDiagram * KChart::AbstractAxis::diagram() const
+const AbstractDiagram *KChart::AbstractAxis::diagram() const
 {
     return d->diagram();
 }
 
-bool KChart::AbstractAxis::observedBy( AbstractDiagram * diagram ) const
+bool KChart::AbstractAxis::observedBy(AbstractDiagram *diagram) const
 {
-    return d->hasDiagram( diagram );
+    return d->hasDiagram(diagram);
 }
 
 void KChart::AbstractAxis::update()
 {
-    if ( d->diagram() )
+    if (d->diagram())
         d->diagram()->update();
 }

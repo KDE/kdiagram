@@ -10,25 +10,26 @@
 #include "KChartAbstractPieDiagram_p.h"
 
 #include "KChartAttributesModel.h"
+#include "KChartMath_p.h"
 #include "KChartPieAttributes.h"
 #include "KChartThreeDPieAttributes.h"
-#include "KChartMath_p.h"
 
 #include <QMap>
-
 
 using namespace KChart;
 
 AbstractPieDiagram::Private::Private()
-    : granularity( 1.0 )
-    , autoRotateLabels( false )
+    : granularity(1.0)
+    , autoRotateLabels(false)
 {
 }
 
-AbstractPieDiagram::Private::~Private() {}
+AbstractPieDiagram::Private::~Private()
+{
+}
 
-AbstractPieDiagram::AbstractPieDiagram( QWidget* parent, PolarCoordinatePlane *plane ) :
-    AbstractPolarDiagram( new Private(), parent, plane )
+AbstractPieDiagram::AbstractPieDiagram(QWidget *parent, PolarCoordinatePlane *plane)
+    : AbstractPolarDiagram(new Private(), parent, plane)
 {
     init();
 }
@@ -37,17 +38,16 @@ AbstractPieDiagram::~AbstractPieDiagram()
 {
 }
 
-
 void AbstractPieDiagram::init()
 {
 }
 
-
-bool AbstractPieDiagram::compare( const AbstractPieDiagram* other ) const
+bool AbstractPieDiagram::compare(const AbstractPieDiagram *other) const
 {
-    if ( other == this ) return true;
-    if ( ! other ) {
-        //qDebug() << "AbstractPieDiagram::compare() cannot compare to Null pointer";
+    if (other == this)
+        return true;
+    if (!other) {
+        // qDebug() << "AbstractPieDiagram::compare() cannot compare to Null pointer";
         return false;
     }
     /*
@@ -57,32 +57,27 @@ bool AbstractPieDiagram::compare( const AbstractPieDiagram* other ) const
             (granularity() == other->granularity()) &&
             (startPosition() == other->startPosition());
     */
-    return  // compare the base class
-            ( static_cast<const AbstractPolarDiagram*>(this)->compare( other ) ) &&
-            // compare own properties
-            (granularity() == other->granularity()) &&
-            (startPosition() == other->startPosition());
+    return // compare the base class
+        (static_cast<const AbstractPolarDiagram *>(this)->compare(other)) &&
+        // compare own properties
+        (granularity() == other->granularity()) && (startPosition() == other->startPosition());
 }
-
 
 #define d d_func()
 
-void AbstractPieDiagram::setGranularity( qreal value )
+void AbstractPieDiagram::setGranularity(qreal value)
 {
     d->granularity = value;
 }
 
 qreal AbstractPieDiagram::granularity() const
 {
-    return (d->granularity < 0.05 || d->granularity > 36.0)
-            ? 1.0
-    : d->granularity;
+    return (d->granularity < 0.05 || d->granularity > 36.0) ? 1.0 : d->granularity;
 }
 
-
-void AbstractPieDiagram::setStartPosition( int degrees )
+void AbstractPieDiagram::setStartPosition(int degrees)
 {
-    Q_UNUSED( degrees );
+    Q_UNUSED(degrees);
     qWarning() << "Deprecated AbstractPieDiagram::setStartPosition() called, setting ignored.";
 }
 
@@ -92,7 +87,7 @@ int AbstractPieDiagram::startPosition() const
     return 0;
 }
 
-void AbstractPieDiagram::setAutoRotateLabels( bool autoRotate )
+void AbstractPieDiagram::setAutoRotateLabels(bool autoRotate)
 {
     d->autoRotateLabels = autoRotate;
 }
@@ -102,80 +97,74 @@ bool AbstractPieDiagram::autoRotateLabels() const
     return d->autoRotateLabels;
 }
 
-void AbstractPieDiagram::setPieAttributes( const PieAttributes & attrs )
+void AbstractPieDiagram::setPieAttributes(const PieAttributes &attrs)
 {
-    d->attributesModel->setModelData( QVariant::fromValue( attrs ), PieAttributesRole );
-    Q_EMIT layoutChanged( this );
+    d->attributesModel->setModelData(QVariant::fromValue(attrs), PieAttributesRole);
+    Q_EMIT layoutChanged(this);
 }
 
-void AbstractPieDiagram::setPieAttributes( int column, const PieAttributes & attrs )
+void AbstractPieDiagram::setPieAttributes(int column, const PieAttributes &attrs)
 {
-    d->setDatasetAttrs( column, QVariant::fromValue( attrs ), PieAttributesRole );
-    Q_EMIT layoutChanged( this );
+    d->setDatasetAttrs(column, QVariant::fromValue(attrs), PieAttributesRole);
+    Q_EMIT layoutChanged(this);
 }
 
-void AbstractPieDiagram::setPieAttributes( const QModelIndex & index, const PieAttributes & attrs )
+void AbstractPieDiagram::setPieAttributes(const QModelIndex &index, const PieAttributes &attrs)
 {
-	d->attributesModel->setData( index, QVariant::fromValue( attrs), PieAttributesRole );
-    Q_EMIT layoutChanged( this );
+    d->attributesModel->setData(index, QVariant::fromValue(attrs), PieAttributesRole);
+    Q_EMIT layoutChanged(this);
 }
 
 PieAttributes AbstractPieDiagram::pieAttributes() const
 {
-    return d->attributesModel->data( PieAttributesRole ).value<PieAttributes>();
+    return d->attributesModel->data(PieAttributesRole).value<PieAttributes>();
 }
 
-PieAttributes AbstractPieDiagram::pieAttributes( int column ) const
+PieAttributes AbstractPieDiagram::pieAttributes(int column) const
 {
-    const QVariant attrs( d->datasetAttrs( column, PieAttributesRole ) );
-    if ( attrs.isValid() )
-        return attrs.value< PieAttributes >();
+    const QVariant attrs(d->datasetAttrs(column, PieAttributesRole));
+    if (attrs.isValid())
+        return attrs.value<PieAttributes>();
     return pieAttributes();
 }
 
-PieAttributes AbstractPieDiagram::pieAttributes( const QModelIndex & index ) const
+PieAttributes AbstractPieDiagram::pieAttributes(const QModelIndex &index) const
 {
-    return d->attributesModel->data(
-            d->attributesModel->mapFromSource( index ),
-            PieAttributesRole ).value<PieAttributes>();
+    return d->attributesModel->data(d->attributesModel->mapFromSource(index), PieAttributesRole).value<PieAttributes>();
 }
 
-
-void AbstractPieDiagram::setThreeDPieAttributes( const ThreeDPieAttributes & tda )
+void AbstractPieDiagram::setThreeDPieAttributes(const ThreeDPieAttributes &tda)
 {
-    d->attributesModel->setModelData( QVariant::fromValue( tda ), ThreeDPieAttributesRole );
-    Q_EMIT layoutChanged( this );
+    d->attributesModel->setModelData(QVariant::fromValue(tda), ThreeDPieAttributesRole);
+    Q_EMIT layoutChanged(this);
 }
 
-void AbstractPieDiagram::setThreeDPieAttributes( int column, const ThreeDPieAttributes & tda )
+void AbstractPieDiagram::setThreeDPieAttributes(int column, const ThreeDPieAttributes &tda)
 {
-    d->setDatasetAttrs( column, QVariant::fromValue( tda ), ThreeDPieAttributesRole );
-    Q_EMIT layoutChanged( this );
+    d->setDatasetAttrs(column, QVariant::fromValue(tda), ThreeDPieAttributesRole);
+    Q_EMIT layoutChanged(this);
 }
 
-void AbstractPieDiagram::setThreeDPieAttributes( const QModelIndex & index, const ThreeDPieAttributes & tda )
+void AbstractPieDiagram::setThreeDPieAttributes(const QModelIndex &index, const ThreeDPieAttributes &tda)
 {
-    model()->setData( index, QVariant::fromValue( tda ), ThreeDPieAttributesRole );
-    Q_EMIT layoutChanged( this );
+    model()->setData(index, QVariant::fromValue(tda), ThreeDPieAttributesRole);
+    Q_EMIT layoutChanged(this);
 }
 
 ThreeDPieAttributes AbstractPieDiagram::threeDPieAttributes() const
 {
-    return d->attributesModel->data( ThreeDPieAttributesRole ).value<ThreeDPieAttributes>();
+    return d->attributesModel->data(ThreeDPieAttributesRole).value<ThreeDPieAttributes>();
 }
 
-ThreeDPieAttributes AbstractPieDiagram::threeDPieAttributes( int column ) const
+ThreeDPieAttributes AbstractPieDiagram::threeDPieAttributes(int column) const
 {
-    const QVariant attrs( d->datasetAttrs( column, ThreeDPieAttributesRole ) );
-    if ( attrs.isValid() )
-        return attrs.value< ThreeDPieAttributes >();
+    const QVariant attrs(d->datasetAttrs(column, ThreeDPieAttributesRole));
+    if (attrs.isValid())
+        return attrs.value<ThreeDPieAttributes>();
     return threeDPieAttributes();
 }
 
-ThreeDPieAttributes AbstractPieDiagram::threeDPieAttributes( const QModelIndex & index ) const
+ThreeDPieAttributes AbstractPieDiagram::threeDPieAttributes(const QModelIndex &index) const
 {
-    return d->attributesModel->data(
-            d->attributesModel->mapFromSource( index ),
-            ThreeDPieAttributesRole ).value<ThreeDPieAttributes>();
+    return d->attributesModel->data(d->attributesModel->mapFromSource(index), ThreeDPieAttributesRole).value<ThreeDPieAttributes>();
 }
-

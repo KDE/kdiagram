@@ -30,18 +30,21 @@
 
 #include "KChartPlotter_p.h"
 
-namespace KChart {
+namespace KChart
+{
 
-    class StackedPlotter : public Plotter::PlotterType
+class StackedPlotter : public Plotter::PlotterType
+{
+public:
+    explicit StackedPlotter(Plotter *);
+    ~StackedPlotter() override
     {
-    public:
-        explicit StackedPlotter( Plotter* );
-        ~StackedPlotter() override {}
-        Plotter::PlotType type() const override;
-        const QPair< QPointF,  QPointF > calculateDataBoundaries() const override;
-        void paint( PaintContext* ctx ) override;
-        double interpolateMissingValue( const CartesianDiagramDataCompressor::CachePosition& pos ) const;
-    };
+    }
+    Plotter::PlotType type() const override;
+    const QPair<QPointF, QPointF> calculateDataBoundaries() const override;
+    void paint(PaintContext *ctx) override;
+    double interpolateMissingValue(const CartesianDiagramDataCompressor::CachePosition &pos) const;
+};
 }
 
 #endif

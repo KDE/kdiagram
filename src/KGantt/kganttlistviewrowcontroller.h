@@ -16,32 +16,32 @@ class QAbstractProxyModel;
 class QListView;
 QT_END_NAMESPACE
 
-namespace KGantt {
+namespace KGantt
+{
 
+/*!\class ListViewRowController
+ * This is an implementation of AbstractRowController that
+ * aligns a gantt view with a QListView. Provided for
+ * convenience for users who want to use View with QListView
+ * instead of QTreeView.
+ */
+class KGANTT_EXPORT ListViewRowController : public AbstractRowController
+{
+    KGANTT_DECLARE_PRIVATE_BASE_POLYMORPHIC(ListViewRowController)
+public:
+    ListViewRowController(QListView *lv, QAbstractProxyModel *proxy);
+    ~ListViewRowController() override;
 
-    /*!\class ListViewRowController
-     * This is an implementation of AbstractRowController that
-     * aligns a gantt view with a QListView. Provided for
-     * convenience for users who want to use View with QListView
-     * instead of QTreeView.
-     */
-    class KGANTT_EXPORT ListViewRowController : public AbstractRowController {
-        KGANTT_DECLARE_PRIVATE_BASE_POLYMORPHIC(ListViewRowController)
-    public:
-	ListViewRowController( QListView* lv, QAbstractProxyModel* proxy );
-        ~ListViewRowController() override;
-
-        /*reimp*/ int headerHeight() const override;
-        /*reimp*/ int maximumItemHeight() const override;
-        /*reimp*/ int totalHeight() const override;
-        /*reimp*/ bool isRowVisible( const QModelIndex& idx ) const override;
-        /*reimp*/ bool isRowExpanded( const QModelIndex& idx ) const override;
-        /*reimp*/ Span rowGeometry( const QModelIndex& idx ) const override;
-        /*reimp*/ QModelIndex indexAt( int height ) const override;
-        /*reimp*/ QModelIndex indexAbove( const QModelIndex& idx ) const override;
-        /*reimp*/ QModelIndex indexBelow( const QModelIndex& idx ) const override;
-    };
+    /*reimp*/ int headerHeight() const override;
+    /*reimp*/ int maximumItemHeight() const override;
+    /*reimp*/ int totalHeight() const override;
+    /*reimp*/ bool isRowVisible(const QModelIndex &idx) const override;
+    /*reimp*/ bool isRowExpanded(const QModelIndex &idx) const override;
+    /*reimp*/ Span rowGeometry(const QModelIndex &idx) const override;
+    /*reimp*/ QModelIndex indexAt(int height) const override;
+    /*reimp*/ QModelIndex indexAbove(const QModelIndex &idx) const override;
+    /*reimp*/ QModelIndex indexBelow(const QModelIndex &idx) const override;
+};
 }
 
 #endif /* KGANTTLISTVIEWROWCONTROLLER_H */
-

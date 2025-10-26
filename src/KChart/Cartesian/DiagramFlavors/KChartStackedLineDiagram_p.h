@@ -11,17 +11,20 @@
 
 #include "KChartLineDiagram_p.h"
 
-namespace KChart {
+namespace KChart
+{
 
-    class StackedLineDiagram : public LineDiagram::LineDiagramType
+class StackedLineDiagram : public LineDiagram::LineDiagramType
+{
+public:
+    explicit StackedLineDiagram(LineDiagram *);
+    ~StackedLineDiagram() override
     {
-    public:
-        explicit StackedLineDiagram( LineDiagram* );
-        ~StackedLineDiagram() override {}
-        LineDiagram::LineType type() const override;
-        const QPair<QPointF,  QPointF> calculateDataBoundaries() const override;
-        void paint( PaintContext* ctx ) override;
-    };
+    }
+    LineDiagram::LineType type() const override;
+    const QPair<QPointF, QPointF> calculateDataBoundaries() const override;
+    void paint(PaintContext *ctx) override;
+};
 
 }
 

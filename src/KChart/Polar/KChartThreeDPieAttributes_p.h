@@ -20,19 +20,20 @@
 // We mean it.
 //
 
-#include <KChartThreeDPieAttributes.h>
-#include <KChartAbstractThreeDAttributes_p.h>
 #include "KChartMath_p.h"
+#include <KChartAbstractThreeDAttributes_p.h>
+#include <KChartThreeDPieAttributes.h>
 
-
-namespace KChart {
+namespace KChart
+{
 
 /**
-* \internal
-*/
+ * \internal
+ */
 class Q_DECL_HIDDEN ThreeDPieAttributes::Private : public AbstractThreeDAttributes::Private
 {
     friend class ThreeDPieAttributes;
+
 public:
     Private();
 
@@ -43,6 +44,5 @@ private:
 KCHART_DERIVED_PRIVATE_FOOTER(ThreeDPieAttributes, AbstractThreeDAttributes)
 
 }
-
 
 #endif // KCHARTTHREEDPIEATTRIBUTES_P_H

@@ -24,13 +24,13 @@
  *  \internal
  */
 
-#include "KChartAbstractAreaWidget.h"
 #include "KChartAbstractAreaBase_p.h"
+#include "KChartAbstractAreaWidget.h"
 
 #include "KChartMath_p.h"
 
-
-namespace KChart {
+namespace KChart
+{
 
 /**
  * \internal
@@ -38,38 +38,38 @@ namespace KChart {
 class Q_DECL_HIDDEN AbstractAreaWidget::Private : public AbstractAreaBase::Private
 {
     friend class AbstractAreaWidget;
+
 public:
     explicit Private();
     ~Private() override;
 
-    Private( const Private& rhs ) :
-        AbstractAreaBase::Private( rhs ),
-        currentLayoutSize()
-        {
-            // Just for consistency
-        }
+    Private(const Private &rhs)
+        : AbstractAreaBase::Private(rhs)
+        , currentLayoutSize()
+    {
+        // Just for consistency
+    }
 
     QSize currentLayoutSize;
 
     // non-virtual method, calling widget->resizeLayout( size )
-    void resizeLayout( AbstractAreaWidget* widget, const QSize& sz );
+    void resizeLayout(AbstractAreaWidget *widget, const QSize &sz);
 };
 
-
-inline AbstractAreaWidget::AbstractAreaWidget( AbstractAreaWidget::Private * p, QWidget* parent )
-  : QWidget( parent ), AbstractAreaBase( p )
+inline AbstractAreaWidget::AbstractAreaWidget(AbstractAreaWidget::Private *p, QWidget *parent)
+    : QWidget(parent)
+    , AbstractAreaBase(p)
 {
     init();
 }
-inline AbstractAreaWidget::Private * AbstractAreaWidget::d_func()
+inline AbstractAreaWidget::Private *AbstractAreaWidget::d_func()
 {
-    return static_cast<Private*>( AbstractAreaBase::d_func() );
+    return static_cast<Private *>(AbstractAreaBase::d_func());
 }
-inline const AbstractAreaWidget::Private * AbstractAreaWidget::d_func() const
+inline const AbstractAreaWidget::Private *AbstractAreaWidget::d_func() const
 {
-    return static_cast<const Private*>( AbstractAreaBase::d_func() );
+    return static_cast<const Private *>(AbstractAreaBase::d_func());
 }
-
 
 }
 

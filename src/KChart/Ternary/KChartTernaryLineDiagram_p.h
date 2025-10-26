@@ -20,30 +20,33 @@
 // We mean it.
 //
 
-#include "KChartTernaryLineDiagram.h"
 #include "KChartAbstractTernaryDiagram_p.h"
 #include "KChartMath_p.h"
+#include "KChartTernaryLineDiagram.h"
 
-namespace KChart {
+namespace KChart
+{
 
 /**
  * \internal
  */
-    class Q_DECL_HIDDEN TernaryLineDiagram::Private : public AbstractTernaryDiagram::Private
+class Q_DECL_HIDDEN TernaryLineDiagram::Private : public AbstractTernaryDiagram::Private
+{
+    friend class TernaryLineDiagram;
+
+public:
+    Private();
+    ~Private() override
     {
-        friend class TernaryLineDiagram;
-    public:
-        Private();
-        ~Private() override {}
+    }
 
-        Private( const Private& rhs )
-            : AbstractTernaryDiagram::Private( rhs )
-        {
-        }
+    Private(const Private &rhs)
+        : AbstractTernaryDiagram::Private(rhs)
+    {
+    }
+};
 
-    };
-
-    KCHART_IMPL_DERIVED_DIAGRAM( TernaryLineDiagram, AbstractTernaryDiagram, TernaryCoordinatePlane )
+KCHART_IMPL_DERIVED_DIAGRAM(TernaryLineDiagram, AbstractTernaryDiagram, TernaryCoordinatePlane)
 /*
   inline LineDiagram::LineDiagram( Private * p, TernaryCoordinatePlane* plane )
   : AbstractTernaryDiagram( p, plane ) { init(); }
@@ -56,4 +59,3 @@ namespace KChart {
 }
 
 #endif /* KCHARTTERNARYLINEDIAGRAM_P_H */
-

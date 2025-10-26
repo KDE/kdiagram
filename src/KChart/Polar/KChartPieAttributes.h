@@ -9,21 +9,22 @@
 #ifndef KCHART_PIE_ATTRIBUTES_H
 #define KCHART_PIE_ATTRIBUTES_H
 
-#include <QMetaType>
 #include "KChartAbstractThreeDAttributes.h"
 #include "KChartGlobal.h"
+#include <QMetaType>
 
-namespace KChart {
+namespace KChart
+{
 
 /**
-  * @brief A set of attributes controlling the appearance of pie charts
-  */
+ * @brief A set of attributes controlling the appearance of pie charts
+ */
 class KCHART_EXPORT PieAttributes
 {
 public:
     PieAttributes();
-    PieAttributes( const PieAttributes& );
-    PieAttributes &operator= ( const PieAttributes& );
+    PieAttributes(const PieAttributes &);
+    PieAttributes &operator=(const PieAttributes &);
 
     ~PieAttributes();
 
@@ -38,7 +39,7 @@ public:
      *
      * \sa setExplodeFactor
      */
-    void setExplode( bool explode );
+    void setExplode(bool explode);
 
     /** @return whether the respective pie piece(s) will be exploded.  */
     bool explode() const;
@@ -49,33 +50,36 @@ public:
      *
      * \sa setExplode
      */
-    void setExplodeFactor( qreal factor );
+    void setExplodeFactor(qreal factor);
 
     /** @return the explode factor set by setExplode or by setExplodeFactor. */
     qreal explodeFactor() const;
 
-    void setGapFactor( bool circular, qreal factor );
-    qreal gapFactor( bool circular ) const;
+    void setGapFactor(bool circular, qreal factor);
+    qreal gapFactor(bool circular) const;
 
-    bool operator==( const PieAttributes& ) const;
-    inline bool operator!=( const PieAttributes& other ) const { return !operator==(other); }
+    bool operator==(const PieAttributes &) const;
+    inline bool operator!=(const PieAttributes &other) const
+    {
+        return !operator==(other);
+    }
 
 private:
-    KCHART_DECLARE_PRIVATE_BASE_VALUE( PieAttributes )
+    KCHART_DECLARE_PRIVATE_BASE_VALUE(PieAttributes)
 }; // End of class PieAttributes
 
 }
 
 #if !defined(QT_NO_DEBUG_STREAM)
-KCHART_EXPORT QDebug operator<<(QDebug, const KChart::PieAttributes& );
+KCHART_EXPORT QDebug operator<<(QDebug, const KChart::PieAttributes &);
 #endif /* QT_NO_DEBUG_STREAM */
 
-KCHART_DECLARE_SWAP_SPECIALISATION( KChart::PieAttributes )
+KCHART_DECLARE_SWAP_SPECIALISATION(KChart::PieAttributes)
 
 QT_BEGIN_NAMESPACE
-Q_DECLARE_TYPEINFO( KChart::PieAttributes, Q_MOVABLE_TYPE );
+Q_DECLARE_TYPEINFO(KChart::PieAttributes, Q_MOVABLE_TYPE);
 QT_END_NAMESPACE
 
-Q_DECLARE_METATYPE( KChart::PieAttributes )
+Q_DECLARE_METATYPE(KChart::PieAttributes)
 
 #endif // KCHART_PIE_ATTRIBUTES_H

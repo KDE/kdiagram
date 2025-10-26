@@ -9,24 +9,23 @@
 #include "KChartCartesianCoordinatePlane.h"
 #include "KChartCartesianCoordinatePlane_p.h"
 
+#include "CartesianCoordinateTransformation.h"
+#include "KChartAbstractCartesianDiagram.h"
 #include "KChartAbstractDiagram.h"
 #include "KChartAbstractDiagram_p.h"
-#include "KChartAbstractCartesianDiagram.h"
-#include "CartesianCoordinateTransformation.h"
+#include "KChartBarDiagram.h"
 #include "KChartGridAttributes.h"
 #include "KChartPaintContext.h"
 #include "KChartPainterSaver_p.h"
-#include "KChartBarDiagram.h"
 #include "KChartStockDiagram.h"
 
 #include <QApplication>
+#include <QElapsedTimer>
 #include <QFont>
 #include <QList>
-#include <QtDebug>
 #include <QPainter>
 #include <QTime>
-#include <QElapsedTimer>
-
+#include <QtDebug>
 
 using namespace KChart;
 
@@ -34,26 +33,26 @@ using namespace KChart;
 
 CartesianCoordinatePlane::Private::Private()
     : AbstractCoordinatePlane::Private()
-    , bPaintIsRunning( false )
-    , hasOwnGridAttributesHorizontal( false )
-    , hasOwnGridAttributesVertical( false )
-    , isometricScaling( false )
-    , horizontalMin( 0 )
-    , horizontalMax( 0 )
-    , verticalMin( 0 )
-    , verticalMax( 0 )
-    , autoAdjustHorizontalRangeToData( 67 )
-    , autoAdjustVerticalRangeToData( 67 )
-    , autoAdjustGridToZoom( true )
-    , fixedDataCoordinateSpaceRelation( false )
-    , xAxisStartAtZero( true )
-    , reverseVerticalPlane( false )
-    , reverseHorizontalPlane( false )
+    , bPaintIsRunning(false)
+    , hasOwnGridAttributesHorizontal(false)
+    , hasOwnGridAttributesVertical(false)
+    , isometricScaling(false)
+    , horizontalMin(0)
+    , horizontalMax(0)
+    , verticalMin(0)
+    , verticalMax(0)
+    , autoAdjustHorizontalRangeToData(67)
+    , autoAdjustVerticalRangeToData(67)
+    , autoAdjustGridToZoom(true)
+    , fixedDataCoordinateSpaceRelation(false)
+    , xAxisStartAtZero(true)
+    , reverseVerticalPlane(false)
+    , reverseHorizontalPlane(false)
 {
 }
 
-CartesianCoordinatePlane::CartesianCoordinatePlane( Chart* parent )
-    : AbstractCoordinatePlane( new Private(), parent )
+CartesianCoordinatePlane::CartesianCoordinatePlane(Chart *parent)
+    : AbstractCoordinatePlane(new Private(), parent)
 {
     // this block left empty intentionally
 }
@@ -68,72 +67,66 @@ void CartesianCoordinatePlane::init()
     // this block left empty intentionally
 }
 
-
-void CartesianCoordinatePlane::addDiagram( AbstractDiagram* diagram )
+void CartesianCoordinatePlane::addDiagram(AbstractDiagram *diagram)
 {
-    Q_ASSERT_X( dynamic_cast<AbstractCartesianDiagram*>( diagram ),
-                "CartesianCoordinatePlane::addDiagram", "Only cartesian "
-                "diagrams can be added to a cartesian coordinate plane!" );
-    AbstractCoordinatePlane::addDiagram( diagram );
-    connect( diagram,  &AbstractDiagram::layoutChanged,
-             this, &CartesianCoordinatePlane::slotLayoutChanged );
+    Q_ASSERT_X(dynamic_cast<AbstractCartesianDiagram *>(diagram),
+               "CartesianCoordinatePlane::addDiagram",
+               "Only cartesian "
+               "diagrams can be added to a cartesian coordinate plane!");
+    AbstractCoordinatePlane::addDiagram(diagram);
+    connect(diagram, &AbstractDiagram::layoutChanged, this, &CartesianCoordinatePlane::slotLayoutChanged);
 
-    connect( diagram, &AbstractDiagram::propertiesChanged, this, &CartesianCoordinatePlane::propertiesChanged );
+    connect(diagram, &AbstractDiagram::propertiesChanged, this, &CartesianCoordinatePlane::propertiesChanged);
 }
 
-
-void CartesianCoordinatePlane::paint( QPainter* painter )
+void CartesianCoordinatePlane::paint(QPainter *painter)
 {
     // prevent recursive call:
-    if ( d->bPaintIsRunning ) {
+    if (d->bPaintIsRunning) {
         return;
     }
     d->bPaintIsRunning = true;
 
     AbstractDiagramList diags = diagrams();
-    if ( !diags.isEmpty() )
-    {
+    if (!diags.isEmpty()) {
         PaintContext ctx;
-        ctx.setPainter ( painter );
-        ctx.setCoordinatePlane ( this );
-        const QRectF drawArea( drawingArea() );
-        ctx.setRectangle ( drawArea );
+        ctx.setPainter(painter);
+        ctx.setCoordinatePlane(this);
+        const QRectF drawArea(drawingArea());
+        ctx.setRectangle(drawArea);
 
         // enabling clipping so that we're not drawing outside
-        PainterSaver painterSaver( painter );
-        QRect clipRect = drawArea.toRect().adjusted( -1, -1, 1, 1 );
-        QRegion clipRegion( clipRect );
-        painter->setClipRegion( clipRegion );
+        PainterSaver painterSaver(painter);
+        QRect clipRect = drawArea.toRect().adjusted(-1, -1, 1, 1);
+        QRegion clipRegion(clipRect);
+        painter->setClipRegion(clipRegion);
 
         // paint the coordinate system rulers:
-        d->grid->drawGrid( &ctx );
+        d->grid->drawGrid(&ctx);
 
         // paint the diagrams:
-        for ( int i = 0; i < diags.size(); i++ )
-        {
-            if ( diags[i]->isHidden() ) {
+        for (int i = 0; i < diags.size(); i++) {
+            if (diags[i]->isHidden()) {
                 continue;
             }
-            bool doDumpPaintTime = AbstractDiagram::Private::get( diags[ i ] )->doDumpPaintTime;
+            bool doDumpPaintTime = AbstractDiagram::Private::get(diags[i])->doDumpPaintTime;
             QElapsedTimer stopWatch;
-            if ( doDumpPaintTime ) {
+            if (doDumpPaintTime) {
                 stopWatch.start();
             }
 
-            PainterSaver diagramPainterSaver( painter );
-            diags[i]->paint( &ctx );
+            PainterSaver diagramPainterSaver(painter);
+            diags[i]->paint(&ctx);
 
-            if ( doDumpPaintTime ) {
+            if (doDumpPaintTime) {
                 qDebug() << "Painting diagram" << i << "took" << stopWatch.elapsed() << "milliseconds";
             }
         }
-
     }
     d->bPaintIsRunning = false;
 }
 
-
-void CartesianCoordinatePlane::slotLayoutChanged( AbstractDiagram* )
+void CartesianCoordinatePlane::slotLayoutChanged(AbstractDiagram *)
 {
     layoutDiagrams();
 }
@@ -147,57 +140,60 @@ QRectF CartesianCoordinatePlane::getRawDataBoundingRectFromDiagrams() const
     qreal maxY = 0;
     bool bStarting = true;
     const auto ds = diagrams();
-    for (const AbstractDiagram* diagram : ds)
-    {
+    for (const AbstractDiagram *diagram : ds) {
         QPair<QPointF, QPointF> dataBoundariesPair = diagram->dataBoundaries();
-        //qDebug() << "CartesianCoordinatePlane::getRawDataBoundingRectFromDiagrams()\ngets diagram->dataBoundaries: " << dataBoundariesPair.first << dataBoundariesPair.second;
-        if ( bStarting || dataBoundariesPair.first.x()  < minX ) minX = dataBoundariesPair.first.x();
-        if ( bStarting || dataBoundariesPair.first.y()  < minY ) minY = dataBoundariesPair.first.y();
-        if ( bStarting || dataBoundariesPair.second.x() > maxX ) maxX = dataBoundariesPair.second.x();
-        if ( bStarting || dataBoundariesPair.second.y() > maxY ) maxY = dataBoundariesPair.second.y();
+        // qDebug() << "CartesianCoordinatePlane::getRawDataBoundingRectFromDiagrams()\ngets diagram->dataBoundaries: " << dataBoundariesPair.first <<
+        // dataBoundariesPair.second;
+        if (bStarting || dataBoundariesPair.first.x() < minX)
+            minX = dataBoundariesPair.first.x();
+        if (bStarting || dataBoundariesPair.first.y() < minY)
+            minY = dataBoundariesPair.first.y();
+        if (bStarting || dataBoundariesPair.second.x() > maxX)
+            maxX = dataBoundariesPair.second.x();
+        if (bStarting || dataBoundariesPair.second.y() > maxY)
+            maxY = dataBoundariesPair.second.y();
         bStarting = false;
     }
-    //qDebug() << "CartesianCoordinatePlane::getRawDataBoundingRectFromDiagrams()\nreturns data boundaries: " << QRectF( QPointF(minX, minY), QSizeF(maxX - minX, maxY - minY) );
+    // qDebug() << "CartesianCoordinatePlane::getRawDataBoundingRectFromDiagrams()\nreturns data boundaries: " << QRectF( QPointF(minX, minY), QSizeF(maxX -
+    // minX, maxY - minY) );
     QRectF dataBoundingRect;
-    dataBoundingRect.setBottomLeft( QPointF( minX, minY ) );
-    dataBoundingRect.setTopRight( QPointF( maxX, maxY ) );
+    dataBoundingRect.setBottomLeft(QPointF(minX, minY));
+    dataBoundingRect.setTopRight(QPointF(maxX, maxY));
     return dataBoundingRect;
 }
 
-
-QRectF CartesianCoordinatePlane::adjustedToMaxEmptyInnerPercentage(
-        const QRectF& r, unsigned int percentX, unsigned int percentY ) const
+QRectF CartesianCoordinatePlane::adjustedToMaxEmptyInnerPercentage(const QRectF &r, unsigned int percentX, unsigned int percentY) const
 {
     QRectF ret = r;
-    if ( ( axesCalcModeX() != Logarithmic || r.left() < 0.0 ) && percentX > 0 && percentX != 100 ) {
+    if ((axesCalcModeX() != Logarithmic || r.left() < 0.0) && percentX > 0 && percentX != 100) {
         const bool isPositive = r.left() >= 0;
-        if ( ( r.right() >= 0 ) == isPositive ) {
-            qreal upperBound = qMax( r.left(), r.right() );
-            qreal lowerBound = qMin( r.left(), r.right() );
+        if ((r.right() >= 0) == isPositive) {
+            qreal upperBound = qMax(r.left(), r.right());
+            qreal lowerBound = qMin(r.left(), r.right());
             qreal innerBound = isPositive ? lowerBound : upperBound;
             qreal outerBound = isPositive ? upperBound : lowerBound;
-            if ( innerBound / outerBound * 100 <= percentX && d->xAxisStartAtZero ) {
-                if ( isPositive ) {
-                    ret.setLeft( 0.0 );
+            if (innerBound / outerBound * 100 <= percentX && d->xAxisStartAtZero) {
+                if (isPositive) {
+                    ret.setLeft(0.0);
                 } else {
-                    ret.setRight( 0.0 );
+                    ret.setRight(0.0);
                 }
             }
         }
     }
     // ### this doesn't seem to take into account that Qt's y coordinate is inverted
-    if ( ( axesCalcModeY() != Logarithmic || r.bottom() < 0.0 ) && percentY > 0 && percentY != 100 ) {
+    if ((axesCalcModeY() != Logarithmic || r.bottom() < 0.0) && percentY > 0 && percentY != 100) {
         const bool isPositive = r.bottom() >= 0;
-        if ( ( r.top() >= 0 ) == isPositive ) {
-            qreal upperBound = qMax( r.top(), r.bottom() );
-            qreal lowerBound = qMin( r.top(), r.bottom() );
+        if ((r.top() >= 0) == isPositive) {
+            qreal upperBound = qMax(r.top(), r.bottom());
+            qreal lowerBound = qMin(r.top(), r.bottom());
             const qreal innerBound = isPositive ? lowerBound : upperBound;
             const qreal outerBound = isPositive ? upperBound : lowerBound;
-            if ( innerBound / outerBound * 100 <= percentY ) {
-                if ( isPositive ) {
-                    ret.setBottom( 0.0 );
+            if (innerBound / outerBound * 100 <= percentY) {
+                if (isPositive) {
+                    ret.setBottom(0.0);
                 } else {
-                    ret.setTop( 0.0 );
+                    ret.setTop(0.0);
                 }
             }
         }
@@ -205,65 +201,62 @@ QRectF CartesianCoordinatePlane::adjustedToMaxEmptyInnerPercentage(
     return ret;
 }
 
-
 QRectF CartesianCoordinatePlane::calculateRawDataBoundingRect() const
 {
     // are manually set ranges to be applied?
     const bool bAutoAdjustHorizontalRange = d->autoAdjustHorizontalRangeToData < 100;
     const bool bAutoAdjustVerticalRange = d->autoAdjustVerticalRangeToData < 100;
 
-    const bool bHardHorizontalRange = (!bAutoAdjustHorizontalRange) && (d->horizontalMin != d->horizontalMax || (ISNAN(d->horizontalMin) != ISNAN(d->horizontalMax)));
+    const bool bHardHorizontalRange =
+        (!bAutoAdjustHorizontalRange) && (d->horizontalMin != d->horizontalMax || (ISNAN(d->horizontalMin) != ISNAN(d->horizontalMax)));
     const bool bHardVerticalRange = (!bAutoAdjustVerticalRange) && (d->verticalMin != d->verticalMax || (ISNAN(d->verticalMin) != ISNAN(d->verticalMax)));
     QRectF dataBoundingRect;
 
     // if custom boundaries are set on the plane, use them
-    if ( bHardHorizontalRange && bHardVerticalRange ) {
-        dataBoundingRect.setLeft( d->horizontalMin );
-        dataBoundingRect.setRight( d->horizontalMax );
-        dataBoundingRect.setBottom( d->verticalMin );
-        dataBoundingRect.setTop( d->verticalMax );
+    if (bHardHorizontalRange && bHardVerticalRange) {
+        dataBoundingRect.setLeft(d->horizontalMin);
+        dataBoundingRect.setRight(d->horizontalMax);
+        dataBoundingRect.setBottom(d->verticalMin);
+        dataBoundingRect.setTop(d->verticalMax);
     } else {
         // determine unit of the rectangles of all involved diagrams:
         dataBoundingRect = getRawDataBoundingRectFromDiagrams();
-        if ( bHardHorizontalRange ) {
+        if (bHardHorizontalRange) {
             if (!ISNAN(d->horizontalMin))
-                dataBoundingRect.setLeft( d->horizontalMin );
+                dataBoundingRect.setLeft(d->horizontalMin);
             if (!ISNAN(d->horizontalMax))
-                dataBoundingRect.setRight( d->horizontalMax );
+                dataBoundingRect.setRight(d->horizontalMax);
         }
-        if ( bHardVerticalRange ) {
+        if (bHardVerticalRange) {
             if (!ISNAN(d->verticalMin))
-                dataBoundingRect.setBottom( d->verticalMin );
+                dataBoundingRect.setBottom(d->verticalMin);
             if (!ISNAN(d->verticalMax))
-                dataBoundingRect.setTop( d->verticalMax );
+                dataBoundingRect.setTop(d->verticalMax);
         }
     }
     // recalculate the bounds, if automatic adjusting of ranges is desired AND
     //                         both bounds are at the same side of the zero line
-    dataBoundingRect = adjustedToMaxEmptyInnerPercentage(
-            dataBoundingRect, d->autoAdjustHorizontalRangeToData, d->autoAdjustVerticalRangeToData );
-    if ( bAutoAdjustHorizontalRange ) {
-        const_cast<CartesianCoordinatePlane*>( this )->d->horizontalMin = dataBoundingRect.left();
-        const_cast<CartesianCoordinatePlane*>( this )->d->horizontalMax = dataBoundingRect.right();
+    dataBoundingRect = adjustedToMaxEmptyInnerPercentage(dataBoundingRect, d->autoAdjustHorizontalRangeToData, d->autoAdjustVerticalRangeToData);
+    if (bAutoAdjustHorizontalRange) {
+        const_cast<CartesianCoordinatePlane *>(this)->d->horizontalMin = dataBoundingRect.left();
+        const_cast<CartesianCoordinatePlane *>(this)->d->horizontalMax = dataBoundingRect.right();
     }
-    if ( bAutoAdjustVerticalRange ) {
-        const_cast<CartesianCoordinatePlane*>( this )->d->verticalMin = dataBoundingRect.bottom();
-        const_cast<CartesianCoordinatePlane*>( this )->d->verticalMax = dataBoundingRect.top();
+    if (bAutoAdjustVerticalRange) {
+        const_cast<CartesianCoordinatePlane *>(this)->d->verticalMin = dataBoundingRect.bottom();
+        const_cast<CartesianCoordinatePlane *>(this)->d->verticalMax = dataBoundingRect.top();
     }
     // qDebug() << Q_FUNC_INFO << dataBoundingRect;
     return dataBoundingRect;
 }
 
-
 DataDimensionsList CartesianCoordinatePlane::getDataDimensionsList() const
 {
-    const AbstractCartesianDiagram* dgr = diagrams().isEmpty() ? nullptr :
-                   qobject_cast< const AbstractCartesianDiagram* >( diagrams().first() );
-    if ( dgr && dgr->referenceDiagram() ) {
+    const AbstractCartesianDiagram *dgr = diagrams().isEmpty() ? nullptr : qobject_cast<const AbstractCartesianDiagram *>(diagrams().first());
+    if (dgr && dgr->referenceDiagram()) {
         dgr = dgr->referenceDiagram();
     }
-    const BarDiagram *barDiagram = qobject_cast< const BarDiagram* >( dgr );
-    const StockDiagram *stockDiagram = qobject_cast< const StockDiagram* >( dgr );
+    const BarDiagram *barDiagram = qobject_cast<const BarDiagram *>(dgr);
+    const StockDiagram *stockDiagram = qobject_cast<const StockDiagram *>(dgr);
 
     // note:
     // It does make sense to retrieve the orientation from the first diagram. This is because
@@ -273,33 +266,31 @@ DataDimensionsList CartesianCoordinatePlane::getDataDimensionsList() const
     const bool diagramIsVertical = diagramOrientation == Qt::Vertical;
 
     DataDimensionsList l;
-    if ( dgr ) {
-        const QRectF r( calculateRawDataBoundingRect() );
+    if (dgr) {
+        const QRectF r(calculateRawDataBoundingRect());
         // We do not access d->gridAttributesHorizontal/Vertical here, but we use the getter function,
         // to get the global attrs, if no special ones have been set for the given orientation.
-        const GridAttributes gaH( gridAttributes( Qt::Horizontal ) );
-        const GridAttributes gaV( gridAttributes( Qt::Vertical ) );
+        const GridAttributes gaH(gridAttributes(Qt::Horizontal));
+        const GridAttributes gaV(gridAttributes(Qt::Vertical));
         // append the first dimension: for Abscissa axes
-        l.append(
-            DataDimension(
-                r.left(), r.right(),
-                diagramIsVertical ? ( !stockDiagram && dgr->datasetDimension() > 1 ) : true,
-                axesCalcModeX(),
-                gaH.gridGranularitySequence(),
-                gaH.gridStepWidth(),
-                gaH.gridSubStepWidth() ) );
+        l.append(DataDimension(r.left(),
+                               r.right(),
+                               diagramIsVertical ? (!stockDiagram && dgr->datasetDimension() > 1) : true,
+                               axesCalcModeX(),
+                               gaH.gridGranularitySequence(),
+                               gaH.gridStepWidth(),
+                               gaH.gridSubStepWidth()));
         // append the second dimension: for Ordinate axes
-        l.append(
-            DataDimension(
-                r.bottom(), r.top(),
-                diagramIsVertical ? true : ( dgr->datasetDimension() > 1 ),
-                axesCalcModeY(),
-                gaV.gridGranularitySequence(),
-                gaV.gridStepWidth(),
-                gaV.gridSubStepWidth() ) );
+        l.append(DataDimension(r.bottom(),
+                               r.top(),
+                               diagramIsVertical ? true : (dgr->datasetDimension() > 1),
+                               axesCalcModeY(),
+                               gaV.gridGranularitySequence(),
+                               gaV.gridStepWidth(),
+                               gaV.gridSubStepWidth()));
     } else {
-        l.append( DataDimension() ); // This gets us the default 1..0 / 1..0 grid
-        l.append( DataDimension() ); // shown, if there is no diagram on this plane.
+        l.append(DataDimension()); // This gets us the default 1..0 / 1..0 grid
+        l.append(DataDimension()); // shown, if there is no diagram on this plane.
     }
     return l;
 }
@@ -312,71 +303,69 @@ QRectF CartesianCoordinatePlane::drawingArea() const
     // accounts for another pixel that we subtract from height and width.
     // This way, most clipping for regular pens should be avoided. When pens with a width larger
     // than 1 are used, this may not be sufficient.
-    return QRectF( areaGeometry() ).adjusted( 1.0, 1.0, -2.0, -2.0 );
+    return QRectF(areaGeometry()).adjusted(1.0, 1.0, -2.0, -2.0);
 }
-
 
 QRectF CartesianCoordinatePlane::logicalArea() const
 {
-    if ( d->dimensions.isEmpty() )
+    if (d->dimensions.isEmpty())
         return QRectF();
 
     const DataDimension dimX = d->dimensions.first();
     const DataDimension dimY = d->dimensions.last();
-    const QPointF pt( qMin( dimX.start, dimX.end ), qMax( dimY.start, dimY.end ) );
-    const QSizeF siz( qAbs( dimX.distance() ), -qAbs( dimY.distance() ) );
-    const QRectF dataBoundingRect( pt, siz );
+    const QPointF pt(qMin(dimX.start, dimX.end), qMax(dimY.start, dimY.end));
+    const QSizeF siz(qAbs(dimX.distance()), -qAbs(dimY.distance()));
+    const QRectF dataBoundingRect(pt, siz);
 
     // determine logical top left, taking the "reverse" options into account
-    const QPointF topLeft( d->reverseHorizontalPlane ? dataBoundingRect.right() : dataBoundingRect.left(),
-                           d->reverseVerticalPlane ? dataBoundingRect.bottom() : dataBoundingRect.top() );
+    const QPointF topLeft(d->reverseHorizontalPlane ? dataBoundingRect.right() : dataBoundingRect.left(),
+                          d->reverseVerticalPlane ? dataBoundingRect.bottom() : dataBoundingRect.top());
 
-    const qreal width  = dataBoundingRect.width()  * ( d->reverseHorizontalPlane ? -1.0 : 1.0 );
-    const qreal height = dataBoundingRect.height() * ( d->reverseVerticalPlane   ? -1.0 : 1.0 );
+    const qreal width = dataBoundingRect.width() * (d->reverseHorizontalPlane ? -1.0 : 1.0);
+    const qreal height = dataBoundingRect.height() * (d->reverseVerticalPlane ? -1.0 : 1.0);
 
-    return QRectF( topLeft, QSizeF( width, height ) );
+    return QRectF(topLeft, QSizeF(width, height));
 }
 
 QRectF CartesianCoordinatePlane::diagramArea() const
 {
-    const QRectF logArea( logicalArea() );
-    QPointF physicalTopLeft = d->coordinateTransformation.translate( logArea.topLeft() );
-    QPointF physicalBottomRight = d->coordinateTransformation.translate( logArea.bottomRight() );
+    const QRectF logArea(logicalArea());
+    QPointF physicalTopLeft = d->coordinateTransformation.translate(logArea.topLeft());
+    QPointF physicalBottomRight = d->coordinateTransformation.translate(logArea.bottomRight());
 
-    return QRectF( physicalTopLeft, physicalBottomRight ).normalized();
+    return QRectF(physicalTopLeft, physicalBottomRight).normalized();
 }
 
 QRectF CartesianCoordinatePlane::visibleDiagramArea() const
 {
-    return diagramArea().intersected( drawingArea() );
+    return diagramArea().intersected(drawingArea());
 }
 
 void CartesianCoordinatePlane::layoutDiagrams()
 {
     d->dimensions = gridDimensionsList();
-    Q_ASSERT_X ( d->dimensions.count() == 2, "CartesianCoordinatePlane::layoutDiagrams",
-                 "Error: gridDimensionsList() did not return exactly two dimensions." );
+    Q_ASSERT_X(d->dimensions.count() == 2, "CartesianCoordinatePlane::layoutDiagrams", "Error: gridDimensionsList() did not return exactly two dimensions.");
 
     // physical area of the plane
-    const QRectF physicalArea( drawingArea() );
+    const QRectF physicalArea(drawingArea());
     // .. in contrast to the logical area
-    const QRectF logArea( logicalArea() );
+    const QRectF logArea(logicalArea());
 
     // TODO: isometric scaling for zooming?
 
     // the plane area might have changed, so the zoom values might also be changed
-    handleFixedDataCoordinateSpaceRelation( physicalArea );
+    handleFixedDataCoordinateSpaceRelation(physicalArea);
 
-    d->coordinateTransformation.updateTransform( logArea, physicalArea );
+    d->coordinateTransformation.updateTransform(logArea, physicalArea);
 
     update();
 }
 
-void CartesianCoordinatePlane::setFixedDataCoordinateSpaceRelation( bool fixed )
+void CartesianCoordinatePlane::setFixedDataCoordinateSpaceRelation(bool fixed)
 {
     d->fixedDataCoordinateSpaceRelation = fixed;
     d->fixedDataCoordinateSpaceRelationPinnedSize = QSize();
-    handleFixedDataCoordinateSpaceRelation( drawingArea() );
+    handleFixedDataCoordinateSpaceRelation(drawingArea());
 }
 
 bool CartesianCoordinatePlane::hasFixedDataCoordinateSpaceRelation() const
@@ -397,65 +386,65 @@ bool CartesianCoordinatePlane::xAxisStartAtZero() const
     return d->xAxisStartAtZero;
 }
 
-void CartesianCoordinatePlane::handleFixedDataCoordinateSpaceRelation( const QRectF& geometry )
+void CartesianCoordinatePlane::handleFixedDataCoordinateSpaceRelation(const QRectF &geometry)
 {
-    if ( !d->fixedDataCoordinateSpaceRelation ) {
+    if (!d->fixedDataCoordinateSpaceRelation) {
         return;
     }
     // is the new geometry ok?
-    if ( !geometry.isValid() ) {
+    if (!geometry.isValid()) {
         return;
     }
 
     // note that the pinned size can be invalid even after setting it, if geometry wasn't valid.
     // this is relevant for the cooperation between this method, setFixedDataCoordinateSpaceRelation(),
     // and handleFixedDataCoordinateSpaceRelation().
-    if ( !d->fixedDataCoordinateSpaceRelationPinnedSize.isValid() ) {
+    if (!d->fixedDataCoordinateSpaceRelationPinnedSize.isValid()) {
         d->fixedDataCoordinateSpaceRelationPinnedSize = geometry.size();
-        d->fixedDataCoordinateSpaceRelationPinnedZoom = ZoomParameters( zoomFactorX(), zoomFactorY(), zoomCenter() );
+        d->fixedDataCoordinateSpaceRelationPinnedZoom = ZoomParameters(zoomFactorX(), zoomFactorY(), zoomCenter());
         return;
     }
 
     // if the plane size was changed, change zoom factors to keep the diagram size constant
-    if ( d->fixedDataCoordinateSpaceRelationPinnedSize != geometry.size() ) {
+    if (d->fixedDataCoordinateSpaceRelationPinnedSize != geometry.size()) {
         const qreal widthScaling = d->fixedDataCoordinateSpaceRelationPinnedSize.width() / geometry.width();
         const qreal heightScaling = d->fixedDataCoordinateSpaceRelationPinnedSize.height() / geometry.height();
 
         const qreal newZoomX = d->fixedDataCoordinateSpaceRelationPinnedZoom.xFactor * widthScaling;
         const qreal newZoomY = d->fixedDataCoordinateSpaceRelationPinnedZoom.yFactor * heightScaling;
 
-        const QPointF newCenter = QPointF( d->fixedDataCoordinateSpaceRelationPinnedZoom.xCenter / widthScaling,
-                                           d->fixedDataCoordinateSpaceRelationPinnedZoom.yCenter / heightScaling );
+        const QPointF newCenter = QPointF(d->fixedDataCoordinateSpaceRelationPinnedZoom.xCenter / widthScaling,
+                                          d->fixedDataCoordinateSpaceRelationPinnedZoom.yCenter / heightScaling);
         // Use these internal methods to avoid sending the propertiesChanged signal more than once
         bool changed = false;
-        if ( doneSetZoomFactorY( newZoomY ) )
+        if (doneSetZoomFactorY(newZoomY))
             changed = true;
-        if ( doneSetZoomFactorX( newZoomX ) )
+        if (doneSetZoomFactorX(newZoomX))
             changed = true;
-        if ( doneSetZoomCenter( newCenter ) )
+        if (doneSetZoomCenter(newCenter))
             changed = true;
-        if ( changed )
+        if (changed)
             Q_EMIT propertiesChanged();
     }
 }
 
-const QPointF CartesianCoordinatePlane::translate( const QPointF& diagramPoint ) const
+const QPointF CartesianCoordinatePlane::translate(const QPointF &diagramPoint) const
 {
     // Note: We do not test if the point lays inside of the data area,
     //       but we just apply the transformation calculations to the point.
     //       This allows for basic calculations done by the user, see e.g.
     //       the file  examples/Lines/BubbleChart/mainwindow.cpp
-    return d->coordinateTransformation.translate( diagramPoint );
+    return d->coordinateTransformation.translate(diagramPoint);
 }
 
-const QPointF CartesianCoordinatePlane::translateBack( const QPointF& screenPoint ) const
+const QPointF CartesianCoordinatePlane::translateBack(const QPointF &screenPoint) const
 {
-    return d->coordinateTransformation.translateBack( screenPoint );
+    return d->coordinateTransformation.translateBack(screenPoint);
 }
 
-void CartesianCoordinatePlane::setIsometricScaling( bool isOn )
+void CartesianCoordinatePlane::setIsometricScaling(bool isOn)
 {
-    if ( d->isometricScaling != isOn ) {
+    if (d->isometricScaling != isOn) {
         d->isometricScaling = isOn;
         layoutDiagrams();
         Q_EMIT propertiesChanged();
@@ -467,70 +456,70 @@ bool CartesianCoordinatePlane::doesIsometricScaling() const
     return d->isometricScaling;
 }
 
-bool CartesianCoordinatePlane::doneSetZoomFactorX( qreal factor )
+bool CartesianCoordinatePlane::doneSetZoomFactorX(qreal factor)
 {
-    if ( d->coordinateTransformation.zoom.xFactor == factor ) {
+    if (d->coordinateTransformation.zoom.xFactor == factor) {
         return false;
     }
     d->coordinateTransformation.zoom.xFactor = factor;
-    if ( d->autoAdjustGridToZoom ) {
+    if (d->autoAdjustGridToZoom) {
         d->grid->setNeedRecalculate();
     }
     return true;
 }
 
-bool CartesianCoordinatePlane::doneSetZoomFactorY( qreal factor )
+bool CartesianCoordinatePlane::doneSetZoomFactorY(qreal factor)
 {
-    if ( d->coordinateTransformation.zoom.yFactor == factor ) {
+    if (d->coordinateTransformation.zoom.yFactor == factor) {
         return false;
     }
     d->coordinateTransformation.zoom.yFactor = factor;
-    if ( d->autoAdjustGridToZoom ) {
+    if (d->autoAdjustGridToZoom) {
         d->grid->setNeedRecalculate();
     }
     return true;
 }
 
-bool CartesianCoordinatePlane::doneSetZoomCenter( const QPointF& point )
+bool CartesianCoordinatePlane::doneSetZoomCenter(const QPointF &point)
 {
-    if ( d->coordinateTransformation.zoom.center() == point ) {
+    if (d->coordinateTransformation.zoom.center() == point) {
         return false;
     }
-    d->coordinateTransformation.zoom.setCenter( point );
-    if ( d->autoAdjustGridToZoom ) {
+    d->coordinateTransformation.zoom.setCenter(point);
+    if (d->autoAdjustGridToZoom) {
         d->grid->setNeedRecalculate();
     }
     return true;
 }
 
-void CartesianCoordinatePlane::setZoomFactors( qreal factorX, qreal factorY )
+void CartesianCoordinatePlane::setZoomFactors(qreal factorX, qreal factorY)
 {
-    if ( doneSetZoomFactorX( factorX ) || doneSetZoomFactorY( factorY ) ) {
-        d->coordinateTransformation.updateTransform( logicalArea(), drawingArea() );
+    if (doneSetZoomFactorX(factorX) || doneSetZoomFactorY(factorY)) {
+        d->coordinateTransformation.updateTransform(logicalArea(), drawingArea());
         Q_EMIT propertiesChanged();
     }
 }
 
-void CartesianCoordinatePlane::setZoomFactorX( qreal factor )
+void CartesianCoordinatePlane::setZoomFactorX(qreal factor)
 {
-    if ( doneSetZoomFactorX( factor ) ) {
-        d->coordinateTransformation.updateTransform( logicalArea(), drawingArea() );
+    if (doneSetZoomFactorX(factor)) {
+        d->coordinateTransformation.updateTransform(logicalArea(), drawingArea());
         Q_EMIT propertiesChanged();
     }
 }
 
-void CartesianCoordinatePlane::setZoomFactorY( qreal factor )
+void CartesianCoordinatePlane::setZoomFactorY(qreal factor)
 {
-    if ( doneSetZoomFactorY( factor ) ) {
-        d->coordinateTransformation.updateTransform( logicalArea(), drawingArea() );
+    if (doneSetZoomFactorY(factor)) {
+        d->coordinateTransformation.updateTransform(logicalArea(), drawingArea());
         Q_EMIT propertiesChanged();
     }
 }
 
-void CartesianCoordinatePlane::setZoomCenter( const QPointF& point )
+void CartesianCoordinatePlane::setZoomCenter(const QPointF &point)
 {
-    if ( doneSetZoomCenter( point ) ) {
-        d->coordinateTransformation.updateTransform( logicalArea(), drawingArea() );
+    if (doneSetZoomCenter(point)) {
+        d->coordinateTransformation.updateTransform(logicalArea(), drawingArea());
         Q_EMIT propertiesChanged();
     }
 }
@@ -550,7 +539,6 @@ qreal CartesianCoordinatePlane::zoomFactorY() const
     return d->coordinateTransformation.zoom.yFactor;
 }
 
-
 CartesianCoordinatePlane::AxesCalcMode CartesianCoordinatePlane::axesCalcModeY() const
 {
     return d->coordinateTransformation.axesCalcModeY;
@@ -561,23 +549,22 @@ CartesianCoordinatePlane::AxesCalcMode CartesianCoordinatePlane::axesCalcModeX()
     return d->coordinateTransformation.axesCalcModeX;
 }
 
-void CartesianCoordinatePlane::setAxesCalcModes( AxesCalcMode mode )
+void CartesianCoordinatePlane::setAxesCalcModes(AxesCalcMode mode)
 {
-    if ( d->coordinateTransformation.axesCalcModeY != mode ||
-        d->coordinateTransformation.axesCalcModeX != mode ) {
+    if (d->coordinateTransformation.axesCalcModeY != mode || d->coordinateTransformation.axesCalcModeX != mode) {
         d->coordinateTransformation.axesCalcModeY = mode;
         d->coordinateTransformation.axesCalcModeX = mode;
         Q_EMIT propertiesChanged();
         Q_EMIT viewportCoordinateSystemChanged();
         const auto ds = diagrams();
-        for (AbstractDiagram* diag : ds)
-            slotLayoutChanged( diag );
+        for (AbstractDiagram *diag : ds)
+            slotLayoutChanged(diag);
     }
 }
 
-void CartesianCoordinatePlane::setAxesCalcModeY( AxesCalcMode mode )
+void CartesianCoordinatePlane::setAxesCalcModeY(AxesCalcMode mode)
 {
-    if ( d->coordinateTransformation.axesCalcModeY != mode ) {
+    if (d->coordinateTransformation.axesCalcModeY != mode) {
         d->coordinateTransformation.axesCalcModeY = mode;
         Q_EMIT propertiesChanged();
         setGridNeedsRecalculate();
@@ -585,29 +572,30 @@ void CartesianCoordinatePlane::setAxesCalcModeY( AxesCalcMode mode )
     }
 }
 
-void CartesianCoordinatePlane::setAxesCalcModeX( AxesCalcMode mode )
+void CartesianCoordinatePlane::setAxesCalcModeX(AxesCalcMode mode)
 {
-    if ( d->coordinateTransformation.axesCalcModeX != mode ) {
+    if (d->coordinateTransformation.axesCalcModeX != mode) {
         d->coordinateTransformation.axesCalcModeX = mode;
         Q_EMIT propertiesChanged();
         Q_EMIT viewportCoordinateSystemChanged();
     }
 }
 
-namespace {
-    inline bool fuzzyCompare( qreal a, qreal b )
-    {
-        if ( ISNAN(a) && ISNAN(b) )
-            return true;
-        if ( qFuzzyIsNull(a) && qFuzzyIsNull(b) )
-            return true;
-        return qFuzzyCompare( a, b );
-    }
+namespace
+{
+inline bool fuzzyCompare(qreal a, qreal b)
+{
+    if (ISNAN(a) && ISNAN(b))
+        return true;
+    if (qFuzzyIsNull(a) && qFuzzyIsNull(b))
+        return true;
+    return qFuzzyCompare(a, b);
+}
 }
 
-void CartesianCoordinatePlane::setHorizontalRange( const QPair< qreal, qreal > & range )
+void CartesianCoordinatePlane::setHorizontalRange(const QPair<qreal, qreal> &range)
 {
-    if ( !fuzzyCompare(d->horizontalMin, range.first) || !fuzzyCompare(d->horizontalMax, range.second) ) {
+    if (!fuzzyCompare(d->horizontalMin, range.first) || !fuzzyCompare(d->horizontalMax, range.second)) {
         d->autoAdjustHorizontalRangeToData = 100;
         d->horizontalMin = range.first;
         d->horizontalMax = range.second;
@@ -617,9 +605,9 @@ void CartesianCoordinatePlane::setHorizontalRange( const QPair< qreal, qreal > &
     }
 }
 
-void CartesianCoordinatePlane::setVerticalRange( const QPair< qreal, qreal > & range )
+void CartesianCoordinatePlane::setVerticalRange(const QPair<qreal, qreal> &range)
 {
-    if ( !fuzzyCompare(d->verticalMin, range.first) || !fuzzyCompare(d->verticalMax, range.second) ) {
+    if (!fuzzyCompare(d->verticalMin, range.first) || !fuzzyCompare(d->verticalMax, range.second)) {
         d->autoAdjustVerticalRangeToData = 100;
         d->verticalMin = range.first;
         d->verticalMax = range.second;
@@ -629,19 +617,19 @@ void CartesianCoordinatePlane::setVerticalRange( const QPair< qreal, qreal > & r
     }
 }
 
-QPair< qreal, qreal > CartesianCoordinatePlane::horizontalRange() const
+QPair<qreal, qreal> CartesianCoordinatePlane::horizontalRange() const
 {
-    return QPair<qreal, qreal>( d->horizontalMin, d->horizontalMax );
+    return QPair<qreal, qreal>(d->horizontalMin, d->horizontalMax);
 }
 
-QPair< qreal, qreal > CartesianCoordinatePlane::verticalRange() const
+QPair<qreal, qreal> CartesianCoordinatePlane::verticalRange() const
 {
-    return QPair<qreal, qreal>( d->verticalMin, d->verticalMax );
+    return QPair<qreal, qreal>(d->verticalMin, d->verticalMax);
 }
 
 void CartesianCoordinatePlane::adjustRangesToData()
 {
-    const QRectF dataBoundingRect( getRawDataBoundingRectFromDiagrams() );
+    const QRectF dataBoundingRect(getRawDataBoundingRectFromDiagrams());
     d->horizontalMin = dataBoundingRect.left();
     d->horizontalMax = dataBoundingRect.right();
     d->verticalMin = dataBoundingRect.top();
@@ -652,7 +640,7 @@ void CartesianCoordinatePlane::adjustRangesToData()
 
 void CartesianCoordinatePlane::adjustHorizontalRangeToData()
 {
-    const QRectF dataBoundingRect( getRawDataBoundingRectFromDiagrams() );
+    const QRectF dataBoundingRect(getRawDataBoundingRectFromDiagrams());
     d->horizontalMin = dataBoundingRect.left();
     d->horizontalMax = dataBoundingRect.right();
     layoutDiagrams();
@@ -661,17 +649,16 @@ void CartesianCoordinatePlane::adjustHorizontalRangeToData()
 
 void CartesianCoordinatePlane::adjustVerticalRangeToData()
 {
-    const QRectF dataBoundingRect( getRawDataBoundingRectFromDiagrams() );
+    const QRectF dataBoundingRect(getRawDataBoundingRectFromDiagrams());
     d->verticalMin = dataBoundingRect.bottom();
     d->verticalMax = dataBoundingRect.top();
     layoutDiagrams();
     Q_EMIT propertiesChanged();
 }
 
-void CartesianCoordinatePlane::setAutoAdjustHorizontalRangeToData( unsigned int percentEmpty )
+void CartesianCoordinatePlane::setAutoAdjustHorizontalRangeToData(unsigned int percentEmpty)
 {
-    if ( d->autoAdjustHorizontalRangeToData != percentEmpty )
-    {
+    if (d->autoAdjustHorizontalRangeToData != percentEmpty) {
         d->autoAdjustHorizontalRangeToData = percentEmpty;
         d->horizontalMin = 0.0;
         d->horizontalMax = 0.0;
@@ -680,10 +667,9 @@ void CartesianCoordinatePlane::setAutoAdjustHorizontalRangeToData( unsigned int 
     }
 }
 
-void CartesianCoordinatePlane::setAutoAdjustVerticalRangeToData( unsigned int percentEmpty )
+void CartesianCoordinatePlane::setAutoAdjustVerticalRangeToData(unsigned int percentEmpty)
 {
-    if ( d->autoAdjustVerticalRangeToData != percentEmpty )
-    {
+    if (d->autoAdjustVerticalRangeToData != percentEmpty) {
         d->autoAdjustVerticalRangeToData = percentEmpty;
         d->verticalMin = 0.0;
         d->verticalMax = 0.0;
@@ -702,29 +688,27 @@ unsigned int CartesianCoordinatePlane::autoAdjustVerticalRangeToData() const
     return d->autoAdjustVerticalRangeToData;
 }
 
-void CartesianCoordinatePlane::setGridAttributes(
-    Qt::Orientation orientation,
-    const GridAttributes& a )
+void CartesianCoordinatePlane::setGridAttributes(Qt::Orientation orientation, const GridAttributes &a)
 {
-    if ( orientation == Qt::Horizontal )
+    if (orientation == Qt::Horizontal)
         d->gridAttributesHorizontal = a;
     else
         d->gridAttributesVertical = a;
-    setHasOwnGridAttributes( orientation, true );
+    setHasOwnGridAttributes(orientation, true);
     update();
     Q_EMIT propertiesChanged();
 }
 
-void CartesianCoordinatePlane::resetGridAttributes( Qt::Orientation orientation )
+void CartesianCoordinatePlane::resetGridAttributes(Qt::Orientation orientation)
 {
-    setHasOwnGridAttributes( orientation, false );
+    setHasOwnGridAttributes(orientation, false);
     update();
 }
 
-const GridAttributes CartesianCoordinatePlane::gridAttributes( Qt::Orientation orientation ) const
+const GridAttributes CartesianCoordinatePlane::gridAttributes(Qt::Orientation orientation) const
 {
-    if ( hasOwnGridAttributes( orientation ) ) {
-        if ( orientation == Qt::Horizontal )
+    if (hasOwnGridAttributes(orientation)) {
+        if (orientation == Qt::Horizontal)
             return d->gridAttributesHorizontal;
         else
             return d->gridAttributesVertical;
@@ -733,24 +717,23 @@ const GridAttributes CartesianCoordinatePlane::gridAttributes( Qt::Orientation o
     }
 }
 
-void CartesianCoordinatePlane::setHasOwnGridAttributes( Qt::Orientation orientation, bool on )
+void CartesianCoordinatePlane::setHasOwnGridAttributes(Qt::Orientation orientation, bool on)
 {
-    if ( orientation == Qt::Horizontal )
+    if (orientation == Qt::Horizontal)
         d->hasOwnGridAttributesHorizontal = on;
     else
         d->hasOwnGridAttributesVertical = on;
     Q_EMIT propertiesChanged();
 }
 
-bool CartesianCoordinatePlane::hasOwnGridAttributes( Qt::Orientation orientation ) const
+bool CartesianCoordinatePlane::hasOwnGridAttributes(Qt::Orientation orientation) const
 {
-    return orientation == Qt::Horizontal ? d->hasOwnGridAttributesHorizontal
-                                         : d->hasOwnGridAttributesVertical;
+    return orientation == Qt::Horizontal ? d->hasOwnGridAttributesHorizontal : d->hasOwnGridAttributesVertical;
 }
 
-void CartesianCoordinatePlane::setAutoAdjustGridToZoom( bool autoAdjust )
+void CartesianCoordinatePlane::setAutoAdjustGridToZoom(bool autoAdjust)
 {
-    if ( d->autoAdjustGridToZoom != autoAdjust ) {
+    if (d->autoAdjustGridToZoom != autoAdjust) {
         d->autoAdjustGridToZoom = autoAdjust;
         d->grid->setNeedRecalculate();
         Q_EMIT propertiesChanged();
@@ -760,61 +743,54 @@ void CartesianCoordinatePlane::setAutoAdjustGridToZoom( bool autoAdjust )
 #if defined(Q_COMPILER_MANGLES_RETURN_TYPE)
 const
 #endif
-bool CartesianCoordinatePlane::autoAdjustGridToZoom() const
+    bool
+    CartesianCoordinatePlane::autoAdjustGridToZoom() const
 {
     return d->autoAdjustGridToZoom;
 }
 
-AbstractCoordinatePlane* CartesianCoordinatePlane::sharedAxisMasterPlane( QPainter* painter )
+AbstractCoordinatePlane *CartesianCoordinatePlane::sharedAxisMasterPlane(QPainter *painter)
 {
-    CartesianCoordinatePlane* plane = this;
-    AbstractCartesianDiagram* diag = dynamic_cast< AbstractCartesianDiagram* >( plane->diagram() );
-    const CartesianAxis* sharedAxis = nullptr;
-    if ( diag != nullptr )
-    {
+    CartesianCoordinatePlane *plane = this;
+    AbstractCartesianDiagram *diag = dynamic_cast<AbstractCartesianDiagram *>(plane->diagram());
+    const CartesianAxis *sharedAxis = nullptr;
+    if (diag != nullptr) {
         const CartesianAxisList axes = diag->axes();
-        for ( const CartesianAxis* a : axes )
-        {
-            CartesianCoordinatePlane* p = const_cast< CartesianCoordinatePlane* >(
-                                              dynamic_cast< const CartesianCoordinatePlane* >( a->coordinatePlane() ) );
-            if ( p != nullptr && p != this )
-            {
+        for (const CartesianAxis *a : axes) {
+            CartesianCoordinatePlane *p = const_cast<CartesianCoordinatePlane *>(dynamic_cast<const CartesianCoordinatePlane *>(a->coordinatePlane()));
+            if (p != nullptr && p != this) {
                 plane = p;
                 sharedAxis = a;
             }
         }
     }
 
-    if ( plane == this || painter == nullptr )
+    if (plane == this || painter == nullptr)
         return plane;
 
-    const QPointF zero = QPointF( 0, 0 );
-    const QPointF tenX = QPointF( 10, 0 );
-    const QPointF tenY = QPointF( 0, 10 );
+    const QPointF zero = QPointF(0, 0);
+    const QPointF tenX = QPointF(10, 0);
+    const QPointF tenY = QPointF(0, 10);
 
-
-    if ( sharedAxis->isOrdinate() )
-    {
-        painter->translate( translate( zero ).x(), 0.0 );
-        const qreal factor = (translate( tenX ) - translate( zero ) ).x() / ( plane->translate( tenX ) - plane->translate( zero ) ).x();
-        painter->scale( factor, 1.0 );
-        painter->translate( -plane->translate( zero ).x(), 0.0 );
+    if (sharedAxis->isOrdinate()) {
+        painter->translate(translate(zero).x(), 0.0);
+        const qreal factor = (translate(tenX) - translate(zero)).x() / (plane->translate(tenX) - plane->translate(zero)).x();
+        painter->scale(factor, 1.0);
+        painter->translate(-plane->translate(zero).x(), 0.0);
     }
-    if ( sharedAxis->isAbscissa() )
-    {
-        painter->translate( 0.0, translate( zero ).y() );
-        const qreal factor = (translate( tenY ) - translate( zero ) ).y() / ( plane->translate( tenY ) - plane->translate( zero ) ).y();
-        painter->scale( 1.0, factor );
-        painter->translate( 0.0, -plane->translate( zero ).y() );
+    if (sharedAxis->isAbscissa()) {
+        painter->translate(0.0, translate(zero).y());
+        const qreal factor = (translate(tenY) - translate(zero)).y() / (plane->translate(tenY) - plane->translate(zero)).y();
+        painter->scale(1.0, factor);
+        painter->translate(0.0, -plane->translate(zero).y());
     }
-
 
     return plane;
 }
 
-void CartesianCoordinatePlane::setHorizontalRangeReversed( bool reverse )
+void CartesianCoordinatePlane::setHorizontalRangeReversed(bool reverse)
 {
-    if ( d->reverseHorizontalPlane == reverse )
+    if (d->reverseHorizontalPlane == reverse)
         return;
 
     d->reverseHorizontalPlane = reverse;
@@ -827,9 +803,9 @@ bool CartesianCoordinatePlane::isHorizontalRangeReversed() const
     return d->reverseHorizontalPlane;
 }
 
-void CartesianCoordinatePlane::setVerticalRangeReversed( bool reverse )
+void CartesianCoordinatePlane::setVerticalRangeReversed(bool reverse)
 {
-    if ( d->reverseVerticalPlane == reverse )
+    if (d->reverseVerticalPlane == reverse)
         return;
 
     d->reverseVerticalPlane = reverse;
@@ -848,43 +824,42 @@ QRectF CartesianCoordinatePlane::visibleDataRange() const
 
     const QRectF drawArea = drawingArea();
 
-    result.setTopLeft( translateBack( drawArea.topLeft() ) );
-    result.setBottomRight( translateBack( drawArea.bottomRight() ) );
+    result.setTopLeft(translateBack(drawArea.topLeft()));
+    result.setBottomRight(translateBack(drawArea.bottomRight()));
 
     return result;
 }
 
-void CartesianCoordinatePlane::setGeometry( const QRect& rectangle )
+void CartesianCoordinatePlane::setGeometry(const QRect &rectangle)
 {
-    if ( rectangle == geometry() ) {
+    if (rectangle == geometry()) {
         return;
     }
 
     d->geometry = rectangle;
-    if ( d->isometricScaling ) {
-        const int hfw = heightForWidth( rectangle.width() );
+    if (d->isometricScaling) {
+        const int hfw = heightForWidth(rectangle.width());
         // same scaling for x and y means a fixed aspect ratio, which is enforced here
         // always shrink the too large dimension
-        if ( hfw < rectangle.height() ) {
-            d->geometry.setHeight( hfw );
+        if (hfw < rectangle.height()) {
+            d->geometry.setHeight(hfw);
         } else {
-            d->geometry.setWidth( qRound( qreal( rectangle.width() ) *
-                                          qreal( rectangle.height() ) / qreal( hfw ) ) );
+            d->geometry.setWidth(qRound(qreal(rectangle.width()) * qreal(rectangle.height()) / qreal(hfw)));
         }
     }
 
-    AbstractCoordinatePlane::setGeometry( d->geometry );
+    AbstractCoordinatePlane::setGeometry(d->geometry);
 
     const auto ds = diagrams();
-    for (AbstractDiagram* diagram : ds) {
-        diagram->resize( d->geometry.size() );
+    for (AbstractDiagram *diagram : ds) {
+        diagram->resize(d->geometry.size());
     }
 }
 
 Qt::Orientations CartesianCoordinatePlane::expandingDirections() const
 {
     // not completely sure why this is required for isometric scaling...
-    return d->isometricScaling ? Qt::Horizontal : ( Qt::Horizontal | Qt::Vertical );
+    return d->isometricScaling ? Qt::Horizontal : (Qt::Horizontal | Qt::Vertical);
 }
 
 bool CartesianCoordinatePlane::hasHeightForWidth() const
@@ -892,22 +867,22 @@ bool CartesianCoordinatePlane::hasHeightForWidth() const
     return d->isometricScaling;
 }
 
-int CartesianCoordinatePlane::heightForWidth( int w ) const
+int CartesianCoordinatePlane::heightForWidth(int w) const
 {
     // ### using anything for dataRect that depends on geometry will close a feedback loop which
     //     prevents the geometry from stabilizing. specifically, visibleDataRange() depends on
     //     drawingArea(), and no good will come out of using it here.
     QRectF dataRect = logicalArea();
-    return qRound( qreal( w ) * qAbs( qreal( dataRect.height() ) / qreal( dataRect.width() ) ) );
+    return qRound(qreal(w) * qAbs(qreal(dataRect.height()) / qreal(dataRect.width())));
 }
 
 QSize CartesianCoordinatePlane::sizeHint() const
 {
     QSize sh = AbstractCoordinatePlane::sizeHint();
-    if ( d->isometricScaling ) {
+    if (d->isometricScaling) {
         // not sure why the next line doesn't cause an infinite loop, but it improves initial size allocation
         sh = d->geometry.size();
-        sh.setHeight( heightForWidth( sh.width() ) );
+        sh.setHeight(heightForWidth(sh.width()));
     }
     return sh;
 }

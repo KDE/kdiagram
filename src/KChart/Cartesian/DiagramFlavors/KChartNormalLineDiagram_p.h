@@ -21,17 +21,20 @@
 //
 #include "KChartLineDiagram_p.h"
 
-namespace KChart {
+namespace KChart
+{
 
-    class NormalLineDiagram : public LineDiagram::LineDiagramType
+class NormalLineDiagram : public LineDiagram::LineDiagramType
+{
+public:
+    explicit NormalLineDiagram(LineDiagram *);
+    ~NormalLineDiagram() override
     {
-    public:
-        explicit NormalLineDiagram( LineDiagram* );
-        ~NormalLineDiagram() override {}
-        LineDiagram::LineType type() const override;
-        const QPair<QPointF,  QPointF> calculateDataBoundaries() const override;
-        void paint( PaintContext* ctx ) override;
-    };
+    }
+    LineDiagram::LineType type() const override;
+    const QPair<QPointF, QPointF> calculateDataBoundaries() const override;
+    void paint(PaintContext *ctx) override;
+};
 
 }
 

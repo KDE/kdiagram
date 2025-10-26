@@ -9,8 +9,8 @@
 #ifndef KCHARTLEVEYJENNINGSDIAGRAM_H
 #define KCHARTLEVEYJENNINGSDIAGRAM_H
 
-#include "KChartLineDiagram.h"
 #include "KChartLeveyJenningsCoordinatePlane.h"
+#include "KChartLineDiagram.h"
 
 QT_BEGIN_NAMESPACE
 class QPainter;
@@ -18,9 +18,10 @@ class QPolygonF;
 class QSvgRenderer;
 QT_END_NAMESPACE
 
-namespace KChart {
+namespace KChart
+{
 
-    class ThreeDLineAttributes;
+class ThreeDLineAttributes;
 
 /**
  * @brief LeveyDiagram defines a Levey Jennings chart.
@@ -31,24 +32,21 @@ class KCHART_EXPORT LeveyJenningsDiagram : public LineDiagram
 {
     Q_OBJECT
 
-    Q_DISABLE_COPY( LeveyJenningsDiagram )
-//    KCHART_DECLARE_PRIVATE_DERIVED_PARENT( LineDiagram, CartesianCoordinatePlane * )
+    Q_DISABLE_COPY(LeveyJenningsDiagram)
+    //    KCHART_DECLARE_PRIVATE_DERIVED_PARENT( LineDiagram, CartesianCoordinatePlane * )
 
-    KCHART_DECLARE_DERIVED_DIAGRAM( LeveyJenningsDiagram, LeveyJenningsCoordinatePlane )
-
+    KCHART_DECLARE_DERIVED_DIAGRAM(LeveyJenningsDiagram, LeveyJenningsCoordinatePlane)
 
 public:
-    explicit LeveyJenningsDiagram( QWidget* parent = nullptr, LeveyJenningsCoordinatePlane* plane = nullptr );
+    explicit LeveyJenningsDiagram(QWidget *parent = nullptr, LeveyJenningsCoordinatePlane *plane = nullptr);
     ~LeveyJenningsDiagram() override;
 
-
     /**
-      * Creates an exact copy of this diagram.
-      */
-   LineDiagram * clone() const override;
+     * Creates an exact copy of this diagram.
+     */
+    LineDiagram *clone() const override;
 
-    enum Symbol
-    {
+    enum Symbol {
         OkDataPoint,
         NotOkDataPoint,
         LotChanged,
@@ -59,66 +57,60 @@ public:
     /**
      * Returns true if both diagrams have the same settings.
      */
-    bool compare( const LeveyJenningsDiagram* other ) const;
-
+    bool compare(const LeveyJenningsDiagram *other) const;
 
     /**
      * Sets the position of the lot change symbol to \a pos.
      * Valid values are: Qt::AlignTop (default), Qt::AlignBottom.
      */
-    void setLotChangedSymbolPosition( Qt::Alignment pos );
+    void setLotChangedSymbolPosition(Qt::Alignment pos);
 
     /**
      * Returns the position of the lot change symbol.
      */
     Qt::Alignment lotChangedSymbolPosition() const;
 
-
     /**
      * Sets the position of the fluidics pack changed symbol to \a pos.
      * Valid values are: Qt::AlignBottom (default), Qt::AlignTop.
      */
-    void setFluidicsPackChangedSymbolPosition( Qt::Alignment pos );
+    void setFluidicsPackChangedSymbolPosition(Qt::Alignment pos);
 
     /**
      * Returns the position of the fluidics pack changed symbol.
      */
     Qt::Alignment fluidicsPackChangedSymbolPosition() const;
 
-
     /**
      * Sets the position of the sensor changed symbol to \a pos.
      * Valid values are: Qt::AlignBottom (default), Qt::AlignTop.
      */
-    void setSensorChangedSymbolPosition( Qt::Alignment pos );
+    void setSensorChangedSymbolPosition(Qt::Alignment pos);
 
     /**
      * Returns the position of the sensor changed symbol.
      */
     Qt::Alignment sensorChangedSymbolPosition() const;
 
-
     /**
      * Sets the expected mean value over all QC values to \a meanValue.
      */
-    void setExpectedMeanValue( float meanValue );
+    void setExpectedMeanValue(float meanValue);
 
     /**
      * Returns the expected mean values over all QC values.
      */
     float expectedMeanValue() const;
 
-
     /**
      * Sets the expected standard deviaction over all QC values to \a sd.
      */
-    void setExpectedStandardDeviation( float sd );
+    void setExpectedStandardDeviation(float sd);
 
     /**
      * Returns the expected standard deviation over all QC values.
      */
     float expectedStandardDeviation() const;
-
 
     /**
      * Returns the calculated mean values over all QC values.
@@ -130,75 +122,68 @@ public:
      */
     float calculatedStandardDeviation() const;
 
-
     /**
      * Sets the date/time of all fluidics pack changes to \a changes.
      */
-    void setFluidicsPackChanges( const QVector< QDateTime >& changes );
+    void setFluidicsPackChanges(const QVector<QDateTime> &changes);
 
     /**
      * Returns the list of all fluidics pack changes.
      */
-    QVector< QDateTime > fluidicsPackChanges() const;
-
+    QVector<QDateTime> fluidicsPackChanges() const;
 
     /**
      * Sets the date/time of all sensor changes to \a changes.
      */
-    void setSensorChanges( const QVector< QDateTime >& changes );
+    void setSensorChanges(const QVector<QDateTime> &changes);
 
     /**
      * Returns the list of all sensor changes.
      */
-    QVector< QDateTime > sensorChanges() const;
-
+    QVector<QDateTime> sensorChanges() const;
 
     /**
      * Sets the pen used for drawing the scan line to \a pen
      */
-    void setScanLinePen( const QPen& pen );
+    void setScanLinePen(const QPen &pen);
 
     /**
      * Returns the pen being used for drawing the scan line.
      */
     QPen scanLinePen() const;
 
-
     /**
      * Sets the symbol being used for \a symbol to a SVG file \a filename.
      */
-    void setSymbol( Symbol symbol, const QString& filename );
+    void setSymbol(Symbol symbol, const QString &filename);
 
     /**
      * Returns the SVG file name usef for \a symbol
      */
-    QString symbol( Symbol symbol ) const;
+    QString symbol(Symbol symbol) const;
 
     /* \reimpl */
-    void setModel( QAbstractItemModel* model ) override;
-
+    void setModel(QAbstractItemModel *model) override;
 
     /**
      * Returns the timerange of the diagram's data.
      */
-    QPair< QDateTime, QDateTime > timeRange() const;
+    QPair<QDateTime, QDateTime> timeRange() const;
 
     /**
      * Sets the \a timeRange visible on the x axis. Set it to QPair< QDateTime, QDateTime >()
      * to use the default auto calculation.
      */
-    void setTimeRange( const QPair< QDateTime, QDateTime >& timeRange );
+    void setTimeRange(const QPair<QDateTime, QDateTime> &timeRange);
 
 protected:
-
     /** \reimpl */
-    void paint( PaintContext* paintContext ) override;
+    void paint(PaintContext *paintContext) override;
 
     /**
      * Draws the fluidics pack and sensor changed symbols.
      */
-    void drawChanges( PaintContext* paintContext );
-
+    void drawChanges(PaintContext *paintContext);
 
     /**
      * Draws a data point symbol for the data point at \a pos.
@@ -207,7 +192,7 @@ protected:
      * @param pos Position
      * @param ok Draw as Ok or notOK data point
      */
-    virtual void drawDataPointSymbol( PaintContext* paintContext, const QPointF& pos, bool ok );
+    virtual void drawDataPointSymbol(PaintContext *paintContext, const QPointF &pos, bool ok);
 
     /**
      * Draws a lot changed symbol for the data point at \a pos.
@@ -215,7 +200,7 @@ protected:
      * @param pos Position
      * \sa lotChangedSymbolPosition
      */
-    virtual void drawLotChangeSymbol( PaintContext* paintContext, const QPointF& pos );
+    virtual void drawLotChangeSymbol(PaintContext *paintContext, const QPointF &pos);
 
     /**
      * Draws a sensor changed symbol for the data point at \a pos.
@@ -223,7 +208,7 @@ protected:
      * @param pos Position
      * \sa sensorChangedSymbolPosition
      */
-    virtual void drawSensorChangedSymbol( PaintContext* paintContext, const QPointF& pos );
+    virtual void drawSensorChangedSymbol(PaintContext *paintContext, const QPointF &pos);
 
     /**
      * Draws a fluidics pack changed symbol for the data point at \a pos.
@@ -231,19 +216,17 @@ protected:
      * @param pos Position
      * \sa fluidicsPackChangedSymbolPosition
      */
-    virtual void drawFluidicsPackChangedSymbol( PaintContext* paintContext, const QPointF& pos );
-
+    virtual void drawFluidicsPackChangedSymbol(PaintContext *paintContext, const QPointF &pos);
 
     /**
      * Returns the rectangle being used for drawing the icons
      */
     virtual QRectF iconRect() const;
 
-
     /**
      * Returns the SVG icon renderer for \a symbol
      */
-    QSvgRenderer* iconRenderer( Symbol symbol );
+    QSvgRenderer *iconRenderer(Symbol symbol);
 
     /* \reimpl */
 

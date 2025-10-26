@@ -9,37 +9,42 @@
 #ifndef KCHARTABSTRACTPOLARDIAGRAM_H
 #define KCHARTABSTRACTPOLARDIAGRAM_H
 
-#include "KChartPolarCoordinatePlane.h"
 #include "KChartAbstractDiagram.h"
+#include "KChartPolarCoordinatePlane.h"
 
-namespace KChart {
+namespace KChart
+{
 
-    class GridAttributes;
+class GridAttributes;
 
-    /**
-      * @brief Base class for diagrams based on a polar coordinate system.
-      */
-    class KCHART_EXPORT AbstractPolarDiagram : public AbstractDiagram
+/**
+ * @brief Base class for diagrams based on a polar coordinate system.
+ */
+class KCHART_EXPORT AbstractPolarDiagram : public AbstractDiagram
+{
+    Q_OBJECT
+    Q_DISABLE_COPY(AbstractPolarDiagram)
+    KCHART_DECLARE_DERIVED_DIAGRAM(AbstractPolarDiagram, PolarCoordinatePlane)
+
+public:
+    explicit AbstractPolarDiagram(QWidget *parent = nullptr, PolarCoordinatePlane *plane = nullptr);
+    ~AbstractPolarDiagram() override
     {
-        Q_OBJECT
-        Q_DISABLE_COPY( AbstractPolarDiagram )
-        KCHART_DECLARE_DERIVED_DIAGRAM( AbstractPolarDiagram, PolarCoordinatePlane )
+    }
 
-    public:
-        explicit AbstractPolarDiagram (
-            QWidget* parent = nullptr, PolarCoordinatePlane* plane = nullptr );
-        ~AbstractPolarDiagram() override {}
-
-        virtual qreal valueTotals () const = 0;
-        virtual qreal numberOfValuesPerDataset() const = 0;
-        virtual qreal numberOfDatasets() const { return 1; };
-        virtual qreal numberOfGridRings() const = 0;
-
-        const PolarCoordinatePlane * polarCoordinatePlane() const;
-
-        int columnCount() const;
-        int rowCount() const;
+    virtual qreal valueTotals() const = 0;
+    virtual qreal numberOfValuesPerDataset() const = 0;
+    virtual qreal numberOfDatasets() const
+    {
+        return 1;
     };
+    virtual qreal numberOfGridRings() const = 0;
+
+    const PolarCoordinatePlane *polarCoordinatePlane() const;
+
+    int columnCount() const;
+    int rowCount() const;
+};
 
 }
 

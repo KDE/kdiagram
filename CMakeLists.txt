@@ -10,10 +10,11 @@ find_package(ECM ${KF_MIN_VERSION} REQUIRED NO_MODULE)
 
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 
-set(KDE_COMPILERSETTINGS_LEVEL 5.84)
 include(KDEInstallDirs)
 include(KDECMakeSettings)
 include(KDECompilerSettings NO_POLICY_SCOPE)
+include(KDEGitCommitHooks)
+include(KDEClangFormat)
 
 include(ECMGenerateHeaders)
 include(ECMSetupVersion)
@@ -51,7 +52,7 @@ endif()
 
 find_package(Qt6Sql QUIET)
 if (NOT Qt6Sql_FOUND)
-    message(STATUS "Qt5Sql not found, examples with SQL will not be built.")
+    message(STATUS "Qt6Sql not found, examples with SQL will not be built.")
 endif()
 
 add_definitions(
@@ -91,5 +92,10 @@ if(BUILD_TESTING)
         add_subdirectory( qtests )
     endif()
 endif()
+
+file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES src/*.cpp src/*.h)
+kde_clang_format(${ALL_CLANG_FORMAT_SOURCE_FILES})
+
+kde_configure_git_pre_commit_hook(CHECKS CLANG_FORMAT)
 
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)

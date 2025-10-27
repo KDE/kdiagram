@@ -25,17 +25,17 @@ msgid "-2sd"
 msgstr "-2sd"
 
 #: Cartesian/KChartLeveyJenningsAxis.cpp:52
-#: Cartesian/KChartLeveyJenningsAxis.cpp:152
+#: Cartesian/KChartLeveyJenningsAxis.cpp:140
 msgctxt "KChart::LeveyJenningsAxis|"
 msgid "mean"
 msgstr "المتوسط"
 
-#: Cartesian/KChartLeveyJenningsAxis.cpp:53
+#: Cartesian/KChartLeveyJenningsAxis.cpp:52
 msgctxt "KChart::LeveyJenningsAxis|"
 msgid "+2sd"
 msgstr "+2sd"
 
-#: Cartesian/KChartLeveyJenningsAxis.cpp:53
+#: Cartesian/KChartLeveyJenningsAxis.cpp:52
 msgctxt "KChart::LeveyJenningsAxis|"
 msgid "+3sd"
 msgstr "+3sd"
@@ -135,33 +135,33 @@ msgctxt "Position|"
 msgid "Floating"
 msgstr "عائم"
 
-#: Ternary/KChartTernaryAxis.cpp:37
+#: Ternary/KChartTernaryAxis.cpp:36
 msgctxt "QObject|"
 msgid "50%"
 msgstr "50٪"
 
-#: Ternary/KChartTernaryAxis.cpp:134
+#: Ternary/KChartTernaryAxis.cpp:131
 msgctxt "KChart::TernaryAxis|"
 msgid "A"
 msgstr "أ"
 
-#: Ternary/KChartTernaryAxis.cpp:137
+#: Ternary/KChartTernaryAxis.cpp:134
 msgctxt "KChart::TernaryAxis|"
 msgid "C"
 msgstr "ب"
 
-#: Ternary/KChartTernaryAxis.cpp:140
+#: Ternary/KChartTernaryAxis.cpp:137
 msgctxt "KChart::TernaryAxis|"
 msgid "B"
 msgstr "ت"
 
-#: Ternary/KChartTernaryLineDiagram.cpp:122
+#: Ternary/KChartTernaryLineDiagram.cpp:117
 #, qt-format
 msgctxt "KChart::TernaryLineDiagram|(x, y, z) values of the data point"
 msgid "(%1, %2, %3)"
 msgstr "‏(%1، %2، %3)"
 
-#: Ternary/KChartTernaryPointDiagram.cpp:105
+#: Ternary/KChartTernaryPointDiagram.cpp:101
 #, qt-format
 msgctxt "KChart::TernaryPointDiagram|(x, y, z) values of the data point"
 msgid "(%1, %2, %3)"

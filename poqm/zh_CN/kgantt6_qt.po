@@ -15,52 +15,52 @@ msgstr ""
 "X-Crowdin-File: /kf6-trunk/messages/kdiagram/kgantt6_qt.pot\n"
 "X-Crowdin-File-ID: 48718\n"
 
-#: kganttgraphicsview.cpp:187
+#: kganttgraphicsview.cpp:186
 msgctxt "KGantt::HeaderWidget|@title:menu"
 msgid "Scale"
 msgstr "缩放"
 
-#: kganttgraphicsview.cpp:191
+#: kganttgraphicsview.cpp:190
 msgctxt "KGantt::HeaderWidget|@item:inmenu Automatic scale"
 msgid "Auto"
 msgstr "自动"
 
-#: kganttgraphicsview.cpp:194
+#: kganttgraphicsview.cpp:193
 msgctxt "KGantt::HeaderWidget|@item:inmenu"
 msgid "Month"
 msgstr "月"
 
-#: kganttgraphicsview.cpp:197
+#: kganttgraphicsview.cpp:196
 msgctxt "KGantt::HeaderWidget|@item:inmenu"
 msgid "Week"
 msgstr "周"
 
-#: kganttgraphicsview.cpp:200
+#: kganttgraphicsview.cpp:199
 msgctxt "KGantt::HeaderWidget|@item:inmenu"
 msgid "Day"
 msgstr "日"
 
-#: kganttgraphicsview.cpp:203
+#: kganttgraphicsview.cpp:202
 msgctxt "KGantt::HeaderWidget|@item:inmenu"
 msgid "Hour"
 msgstr "小时"
 
-#: kganttgraphicsview.cpp:226
+#: kganttgraphicsview.cpp:225
 msgctxt "KGantt::HeaderWidget|@action:inmenu"
 msgid "Zoom In"
 msgstr "放大"
 
-#: kganttgraphicsview.cpp:228
+#: kganttgraphicsview.cpp:227
 msgctxt "KGantt::HeaderWidget|@action:inmenu"
 msgid "Zoom Out"
 msgstr "缩小"
 
-#: kganttgraphicsview.cpp:232
+#: kganttgraphicsview.cpp:231
 msgctxt "KGantt::HeaderWidget|@action:inmenu"
 msgid "Timeline..."
 msgstr "时间线..."
 
-#: kganttitemdelegate.cpp:141
+#: kganttitemdelegate.cpp:139
 #, qt-format
 msgctxt "KGantt::ItemDelegate|start time -> end time: item name"
 msgid "%1 -> %2: %3"

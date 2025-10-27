@@ -13,52 +13,52 @@ msgstr ""
 "X-Qt-Contexts: true\n"
 "X-Generator: Poedit 3.2.2\n"
 
-#: kganttgraphicsview.cpp:187
+#: kganttgraphicsview.cpp:186
 msgctxt "KGantt::HeaderWidget|@title:menu"
 msgid "Scale"
 msgstr "მასშტაბირება"
 
-#: kganttgraphicsview.cpp:191
+#: kganttgraphicsview.cpp:190
 msgctxt "KGantt::HeaderWidget|@item:inmenu Automatic scale"
 msgid "Auto"
 msgstr "ავტომატური"
 
-#: kganttgraphicsview.cpp:194
+#: kganttgraphicsview.cpp:193
 msgctxt "KGantt::HeaderWidget|@item:inmenu"
 msgid "Month"
 msgstr "თვე"
 
-#: kganttgraphicsview.cpp:197
+#: kganttgraphicsview.cpp:196
 msgctxt "KGantt::HeaderWidget|@item:inmenu"
 msgid "Week"
 msgstr "კვირა"
 
-#: kganttgraphicsview.cpp:200
+#: kganttgraphicsview.cpp:199
 msgctxt "KGantt::HeaderWidget|@item:inmenu"
 msgid "Day"
 msgstr "დღე"
 
-#: kganttgraphicsview.cpp:203
+#: kganttgraphicsview.cpp:202
 msgctxt "KGantt::HeaderWidget|@item:inmenu"
 msgid "Hour"
 msgstr "საათი"
 
-#: kganttgraphicsview.cpp:226
+#: kganttgraphicsview.cpp:225
 msgctxt "KGantt::HeaderWidget|@action:inmenu"
 msgid "Zoom In"
 msgstr "გადიდება"
 
-#: kganttgraphicsview.cpp:228
+#: kganttgraphicsview.cpp:227
 msgctxt "KGantt::HeaderWidget|@action:inmenu"
 msgid "Zoom Out"
 msgstr "დაპატარავება"
 
-#: kganttgraphicsview.cpp:232
+#: kganttgraphicsview.cpp:231
 msgctxt "KGantt::HeaderWidget|@action:inmenu"
 msgid "Timeline..."
 msgstr "დროის ხაზი..."
 
-#: kganttitemdelegate.cpp:141
+#: kganttitemdelegate.cpp:139
 #, qt-format
 msgctxt "KGantt::ItemDelegate|start time -> end time: item name"
 msgid "%1 -> %2: %3"

@@ -14,52 +14,52 @@ msgstr ""
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
 "X-Qt-Contexts: true\n"
 
-#: kganttgraphicsview.cpp:187
+#: kganttgraphicsview.cpp:186
 msgctxt "KGantt::HeaderWidget|@title:menu"
 msgid "Scale"
 msgstr "مقياس"
 
-#: kganttgraphicsview.cpp:191
+#: kganttgraphicsview.cpp:190
 msgctxt "KGantt::HeaderWidget|@item:inmenu Automatic scale"
 msgid "Auto"
 msgstr "آليّ"
 
-#: kganttgraphicsview.cpp:194
+#: kganttgraphicsview.cpp:193
 msgctxt "KGantt::HeaderWidget|@item:inmenu"
 msgid "Month"
 msgstr "شعر"
 
-#: kganttgraphicsview.cpp:197
+#: kganttgraphicsview.cpp:196
 msgctxt "KGantt::HeaderWidget|@item:inmenu"
 msgid "Week"
 msgstr "أسبوع"
 
-#: kganttgraphicsview.cpp:200
+#: kganttgraphicsview.cpp:199
 msgctxt "KGantt::HeaderWidget|@item:inmenu"
 msgid "Day"
 msgstr "يوم"
 
-#: kganttgraphicsview.cpp:203
+#: kganttgraphicsview.cpp:202
 msgctxt "KGantt::HeaderWidget|@item:inmenu"
 msgid "Hour"
 msgstr "ساعة"
 
-#: kganttgraphicsview.cpp:226
+#: kganttgraphicsview.cpp:225
 msgctxt "KGantt::HeaderWidget|@action:inmenu"
 msgid "Zoom In"
 msgstr "قرّب"
 
-#: kganttgraphicsview.cpp:228
+#: kganttgraphicsview.cpp:227
 msgctxt "KGantt::HeaderWidget|@action:inmenu"
 msgid "Zoom Out"
 msgstr "بعّد"
 
-#: kganttgraphicsview.cpp:232
+#: kganttgraphicsview.cpp:231
 msgctxt "KGantt::HeaderWidget|@action:inmenu"
 msgid "Timeline..."
 msgstr "الخطّ الزّمني..."
 
-#: kganttitemdelegate.cpp:141
+#: kganttitemdelegate.cpp:139
 #, qt-format
 msgctxt "KGantt::ItemDelegate|start time -> end time: item name"
 msgid "%1 -> %2: %3"

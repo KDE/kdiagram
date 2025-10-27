@@ -19,52 +19,52 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 19.12.3\n"
 
-#: kganttgraphicsview.cpp:187
+#: kganttgraphicsview.cpp:186
 msgctxt "KGantt::HeaderWidget|@title:menu"
 msgid "Scale"
 msgstr "Eskala"
 
-#: kganttgraphicsview.cpp:191
+#: kganttgraphicsview.cpp:190
 msgctxt "KGantt::HeaderWidget|@item:inmenu Automatic scale"
 msgid "Auto"
 msgstr "Automatikoa"
 
-#: kganttgraphicsview.cpp:194
+#: kganttgraphicsview.cpp:193
 msgctxt "KGantt::HeaderWidget|@item:inmenu"
 msgid "Month"
 msgstr "Hilabetea"
 
-#: kganttgraphicsview.cpp:197
+#: kganttgraphicsview.cpp:196
 msgctxt "KGantt::HeaderWidget|@item:inmenu"
 msgid "Week"
 msgstr "Astea"
 
-#: kganttgraphicsview.cpp:200
+#: kganttgraphicsview.cpp:199
 msgctxt "KGantt::HeaderWidget|@item:inmenu"
 msgid "Day"
 msgstr "Eguna"
 
-#: kganttgraphicsview.cpp:203
+#: kganttgraphicsview.cpp:202
 msgctxt "KGantt::HeaderWidget|@item:inmenu"
 msgid "Hour"
 msgstr "Ordua"
 
-#: kganttgraphicsview.cpp:226
+#: kganttgraphicsview.cpp:225
 msgctxt "KGantt::HeaderWidget|@action:inmenu"
 msgid "Zoom In"
 msgstr "Zooma hurbildu"
 
-#: kganttgraphicsview.cpp:228
+#: kganttgraphicsview.cpp:227
 msgctxt "KGantt::HeaderWidget|@action:inmenu"
 msgid "Zoom Out"
 msgstr "Zooma urrundu"
 
-#: kganttgraphicsview.cpp:232
+#: kganttgraphicsview.cpp:231
 msgctxt "KGantt::HeaderWidget|@action:inmenu"
 msgid "Timeline..."
 msgstr "Denbora-lerroa"
 
-#: kganttitemdelegate.cpp:141
+#: kganttitemdelegate.cpp:139
 #, qt-format
 msgctxt "KGantt::ItemDelegate|start time -> end time: item name"
 msgid "%1 -> %2: %3"

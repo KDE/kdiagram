@@ -13,52 +13,52 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-#: kganttgraphicsview.cpp:187
+#: kganttgraphicsview.cpp:186
 msgctxt "KGantt::HeaderWidget|@title:menu"
 msgid "Scale"
 msgstr "Razmjer"
 
-#: kganttgraphicsview.cpp:191
+#: kganttgraphicsview.cpp:190
 msgctxt "KGantt::HeaderWidget|@item:inmenu Automatic scale"
 msgid "Auto"
 msgstr "Automatski"
 
-#: kganttgraphicsview.cpp:194
+#: kganttgraphicsview.cpp:193
 msgctxt "KGantt::HeaderWidget|@item:inmenu"
 msgid "Month"
 msgstr "Mjesec"
 
-#: kganttgraphicsview.cpp:197
+#: kganttgraphicsview.cpp:196
 msgctxt "KGantt::HeaderWidget|@item:inmenu"
 msgid "Week"
 msgstr "Sedmica"
 
-#: kganttgraphicsview.cpp:200
+#: kganttgraphicsview.cpp:199
 msgctxt "KGantt::HeaderWidget|@item:inmenu"
 msgid "Day"
 msgstr "Dan"
 
-#: kganttgraphicsview.cpp:203
+#: kganttgraphicsview.cpp:202
 msgctxt "KGantt::HeaderWidget|@item:inmenu"
 msgid "Hour"
 msgstr "Sat"
 
-#: kganttgraphicsview.cpp:226
+#: kganttgraphicsview.cpp:225
 msgctxt "KGantt::HeaderWidget|@action:inmenu"
 msgid "Zoom In"
 msgstr "Uveličaj"
 
-#: kganttgraphicsview.cpp:228
+#: kganttgraphicsview.cpp:227
 msgctxt "KGantt::HeaderWidget|@action:inmenu"
 msgid "Zoom Out"
 msgstr "Umanji"
 
-#: kganttgraphicsview.cpp:232
+#: kganttgraphicsview.cpp:231
 msgctxt "KGantt::HeaderWidget|@action:inmenu"
 msgid "Timeline..."
 msgstr ""
 
-#: kganttitemdelegate.cpp:141
+#: kganttitemdelegate.cpp:139
 #, qt-format
 msgctxt "KGantt::ItemDelegate|start time -> end time: item name"
 msgid "%1 -> %2: %3"

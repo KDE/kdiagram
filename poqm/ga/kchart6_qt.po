@@ -1,0 +1,159 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Qt-Contexts: true\n"
+
+#: Cartesian/KChartLeveyJenningsAxis.cpp:52
+msgctxt "KChart::LeveyJenningsAxis|"
+msgid "-3sd"
+msgstr ""
+
+#: Cartesian/KChartLeveyJenningsAxis.cpp:52
+msgctxt "KChart::LeveyJenningsAxis|"
+msgid "-2sd"
+msgstr ""
+
+#: Cartesian/KChartLeveyJenningsAxis.cpp:52
+#: Cartesian/KChartLeveyJenningsAxis.cpp:140
+msgctxt "KChart::LeveyJenningsAxis|"
+msgid "mean"
+msgstr ""
+
+#: Cartesian/KChartLeveyJenningsAxis.cpp:52
+msgctxt "KChart::LeveyJenningsAxis|"
+msgid "+2sd"
+msgstr ""
+
+#: Cartesian/KChartLeveyJenningsAxis.cpp:52
+msgctxt "KChart::LeveyJenningsAxis|"
+msgid "+3sd"
+msgstr ""
+
+#: KChartDatasetSelector.ui:30
+msgctxt "DatasetSelector|"
+msgid "Data Selector"
+msgstr ""
+
+#: KChartDatasetSelector.ui:42
+msgctxt "DatasetSelector|"
+msgid "Only display a subset of the model in the chart:"
+msgstr ""
+
+#: KChartDatasetSelector.ui:60 KChartDatasetSelector.ui:126
+msgctxt "DatasetSelector|"
+msgid "in reverse order."
+msgstr ""
+
+#: KChartDatasetSelector.ui:67 KChartDatasetSelector.ui:103
+msgctxt "DatasetSelector|"
+msgid "..."
+msgstr ""
+
+#: KChartDatasetSelector.ui:80
+msgctxt "DatasetSelector|"
+msgid "columns starting at column"
+msgstr ""
+
+#: KChartDatasetSelector.ui:93 KChartDatasetSelector.ui:133
+msgctxt "DatasetSelector|"
+msgid "Display"
+msgstr ""
+
+#: KChartDatasetSelector.ui:116
+msgctxt "DatasetSelector|"
+msgid "rows starting at row"
+msgstr ""
+
+#: KChartLegend.cpp:43
+msgctxt "QObject|"
+msgid "Legend"
+msgstr ""
+
+#: KChartPosition.cpp:28
+msgctxt "Position|"
+msgid "Unknown Position"
+msgstr ""
+
+#: KChartPosition.cpp:29
+msgctxt "Position|"
+msgid "Center"
+msgstr ""
+
+#: KChartPosition.cpp:30
+msgctxt "Position|"
+msgid "NorthWest"
+msgstr ""
+
+#: KChartPosition.cpp:31
+msgctxt "Position|"
+msgid "North"
+msgstr ""
+
+#: KChartPosition.cpp:32
+msgctxt "Position|"
+msgid "NorthEast"
+msgstr ""
+
+#: KChartPosition.cpp:33
+msgctxt "Position|"
+msgid "East"
+msgstr ""
+
+#: KChartPosition.cpp:34
+msgctxt "Position|"
+msgid "SouthEast"
+msgstr ""
+
+#: KChartPosition.cpp:35
+msgctxt "Position|"
+msgid "South"
+msgstr ""
+
+#: KChartPosition.cpp:36
+msgctxt "Position|"
+msgid "SouthWest"
+msgstr ""
+
+#: KChartPosition.cpp:37
+msgctxt "Position|"
+msgid "West"
+msgstr ""
+
+#: KChartPosition.cpp:38
+msgctxt "Position|"
+msgid "Floating"
+msgstr ""
+
+#: Ternary/KChartTernaryAxis.cpp:36
+msgctxt "QObject|"
+msgid "50%"
+msgstr ""
+
+#: Ternary/KChartTernaryAxis.cpp:131
+msgctxt "KChart::TernaryAxis|"
+msgid "A"
+msgstr ""
+
+#: Ternary/KChartTernaryAxis.cpp:134
+msgctxt "KChart::TernaryAxis|"
+msgid "C"
+msgstr ""
+
+#: Ternary/KChartTernaryAxis.cpp:137
+msgctxt "KChart::TernaryAxis|"
+msgid "B"
+msgstr ""
+
+#: Ternary/KChartTernaryLineDiagram.cpp:117
+#, qt-format
+msgctxt "KChart::TernaryLineDiagram|(x, y, z) values of the data point"
+msgid "(%1, %2, %3)"
+msgstr ""
+
+#: Ternary/KChartTernaryPointDiagram.cpp:101
+#, qt-format
+msgctxt "KChart::TernaryPointDiagram|(x, y, z) values of the data point"
+msgid "(%1, %2, %3)"
+msgstr ""

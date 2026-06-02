@@ -1,0 +1,64 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Abduqadir Abliz <sahranbay@gmail.com>\n"
+"Language-Team: \n"
+"Language: ug\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Qt-Contexts: true\n"
+"X-Generator: Poedit 3.9\n"
+
+#: kganttgraphicsview.cpp:186
+msgctxt "KGantt::HeaderWidget|@title:menu"
+msgid "Scale"
+msgstr "نىسبەت"
+
+#: kganttgraphicsview.cpp:190
+msgctxt "KGantt::HeaderWidget|@item:inmenu Automatic scale"
+msgid "Auto"
+msgstr "ئاپتوماتىك"
+
+#: kganttgraphicsview.cpp:193
+msgctxt "KGantt::HeaderWidget|@item:inmenu"
+msgid "Month"
+msgstr "ئاي"
+
+#: kganttgraphicsview.cpp:196
+msgctxt "KGantt::HeaderWidget|@item:inmenu"
+msgid "Week"
+msgstr "ھەپتە"
+
+#: kganttgraphicsview.cpp:199
+msgctxt "KGantt::HeaderWidget|@item:inmenu"
+msgid "Day"
+msgstr "كۈن"
+
+#: kganttgraphicsview.cpp:202
+msgctxt "KGantt::HeaderWidget|@item:inmenu"
+msgid "Hour"
+msgstr "سائەت"
+
+#: kganttgraphicsview.cpp:225
+msgctxt "KGantt::HeaderWidget|@action:inmenu"
+msgid "Zoom In"
+msgstr "يېقىنلات"
+
+#: kganttgraphicsview.cpp:227
+msgctxt "KGantt::HeaderWidget|@action:inmenu"
+msgid "Zoom Out"
+msgstr "يىراقلات"
+
+#: kganttgraphicsview.cpp:231
+msgctxt "KGantt::HeaderWidget|@action:inmenu"
+msgid "Timeline..."
+msgstr ""
+
+#: kganttitemdelegate.cpp:139
+#, qt-format
+msgctxt "KGantt::ItemDelegate|start time -> end time: item name"
+msgid "%1 -> %2: %3"
+msgstr ""

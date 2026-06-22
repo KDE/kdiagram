@@ -1,164 +1,167 @@
+# SPDX-FileCopyrightText: 2026 Mincho Kondarev <mkondarev@yahoo.de>
 msgid ""
 msgstr ""
 "Project-Id-Version: kchart_qt\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2026-06-21 16:05+0200\n"
+"Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
+"Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Qt-Contexts: true\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 26.04.2\n"
 
 #: Cartesian/KChartLeveyJenningsAxis.cpp:52
 msgctxt "KChart::LeveyJenningsAxis|"
 msgid "-3sd"
-msgstr ""
+msgstr "-3sd"
 
 #: Cartesian/KChartLeveyJenningsAxis.cpp:52
 msgctxt "KChart::LeveyJenningsAxis|"
 msgid "-2sd"
-msgstr ""
+msgstr "-2sd"
 
 #: Cartesian/KChartLeveyJenningsAxis.cpp:52
 #: Cartesian/KChartLeveyJenningsAxis.cpp:140
 msgctxt "KChart::LeveyJenningsAxis|"
 msgid "mean"
-msgstr ""
+msgstr "средно"
 
 #: Cartesian/KChartLeveyJenningsAxis.cpp:52
 msgctxt "KChart::LeveyJenningsAxis|"
 msgid "+2sd"
-msgstr ""
+msgstr "+2sd"
 
 #: Cartesian/KChartLeveyJenningsAxis.cpp:52
 msgctxt "KChart::LeveyJenningsAxis|"
 msgid "+3sd"
-msgstr ""
+msgstr "+3sd"
 
 #: KChartDatasetSelector.ui:30
 msgctxt "DatasetSelector|"
 msgid "Data Selector"
-msgstr ""
+msgstr "Селектор на данни"
 
 #: KChartDatasetSelector.ui:42
 msgctxt "DatasetSelector|"
 msgid "Only display a subset of the model in the chart:"
-msgstr ""
+msgstr "Показване само на подмножество от модела в диаграмата:"
 
 #: KChartDatasetSelector.ui:60 KChartDatasetSelector.ui:126
 msgctxt "DatasetSelector|"
 msgid "in reverse order."
-msgstr ""
+msgstr "в обратен ред."
 
 #: KChartDatasetSelector.ui:67 KChartDatasetSelector.ui:103
 msgctxt "DatasetSelector|"
 msgid "..."
-msgstr ""
+msgstr "..."
 
 #: KChartDatasetSelector.ui:80
 msgctxt "DatasetSelector|"
 msgid "columns starting at column"
-msgstr ""
+msgstr "колони, започващи от колона"
 
 #: KChartDatasetSelector.ui:93 KChartDatasetSelector.ui:133
 msgctxt "DatasetSelector|"
 msgid "Display"
-msgstr ""
+msgstr "Показване"
 
 #: KChartDatasetSelector.ui:116
 msgctxt "DatasetSelector|"
 msgid "rows starting at row"
-msgstr ""
+msgstr "редове, започващи от ред"
 
 #: KChartLegend.cpp:43
 msgctxt "QObject|"
 msgid "Legend"
-msgstr ""
+msgstr "Легенда"
 
 #: KChartPosition.cpp:28
 msgctxt "Position|"
 msgid "Unknown Position"
-msgstr ""
+msgstr "Неизвестна позиция"
 
 #: KChartPosition.cpp:29
 msgctxt "Position|"
 msgid "Center"
-msgstr ""
+msgstr "Централно"
 
 #: KChartPosition.cpp:30
 msgctxt "Position|"
 msgid "NorthWest"
-msgstr ""
+msgstr "Северозапад"
 
 #: KChartPosition.cpp:31
 msgctxt "Position|"
 msgid "North"
-msgstr ""
+msgstr "Север"
 
 #: KChartPosition.cpp:32
 msgctxt "Position|"
 msgid "NorthEast"
-msgstr ""
+msgstr "Североизток"
 
 #: KChartPosition.cpp:33
 msgctxt "Position|"
 msgid "East"
-msgstr ""
+msgstr "Изток"
 
 #: KChartPosition.cpp:34
 msgctxt "Position|"
 msgid "SouthEast"
-msgstr ""
+msgstr "Югоизток"
 
 #: KChartPosition.cpp:35
 msgctxt "Position|"
 msgid "South"
-msgstr ""
+msgstr "Юг"
 
 #: KChartPosition.cpp:36
 msgctxt "Position|"
 msgid "SouthWest"
-msgstr ""
+msgstr "Югозапад"
 
 #: KChartPosition.cpp:37
 msgctxt "Position|"
 msgid "West"
-msgstr ""
+msgstr "Запад"
 
 #: KChartPosition.cpp:38
 msgctxt "Position|"
 msgid "Floating"
-msgstr ""
+msgstr "Плаващ"
 
 #: Ternary/KChartTernaryAxis.cpp:36
 msgctxt "QObject|"
 msgid "50%"
-msgstr ""
+msgstr "50%"
 
 #: Ternary/KChartTernaryAxis.cpp:131
 msgctxt "KChart::TernaryAxis|"
 msgid "A"
-msgstr ""
+msgstr "A"
 
 #: Ternary/KChartTernaryAxis.cpp:134
 msgctxt "KChart::TernaryAxis|"
 msgid "C"
-msgstr ""
+msgstr "C"
 
 #: Ternary/KChartTernaryAxis.cpp:137
 msgctxt "KChart::TernaryAxis|"
 msgid "B"
-msgstr ""
+msgstr "B"
 
 #: Ternary/KChartTernaryLineDiagram.cpp:117
 #, qt-format
 msgctxt "KChart::TernaryLineDiagram|(x, y, z) values of the data point"
 msgid "(%1, %2, %3)"
-msgstr ""
+msgstr "(%1, %2, %3)"
 
 #: Ternary/KChartTernaryPointDiagram.cpp:101
 #, qt-format
 msgctxt "KChart::TernaryPointDiagram|(x, y, z) values of the data point"
 msgid "(%1, %2, %3)"
-msgstr ""
+msgstr "(%1, %2, %3)"

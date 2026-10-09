@@ -41,6 +41,7 @@ private Q_SLOTS:
         m_axis = new CartesianAxis(m_bars);
         QCOMPARE(m_axis->diagram(), static_cast<const AbstractDiagram *>(m_bars));
         QVERIFY(m_axis->observedBy(m_bars));
+        delete m_axis;
     }
 
     void testTakingOwnership()
@@ -50,6 +51,7 @@ private Q_SLOTS:
         QCOMPARE(m_axis->diagram(), static_cast<const AbstractDiagram *>(m_bars));
         QVERIFY(m_axis->observedBy(m_bars));
         QVERIFY(!m_axis->observedBy(m_lines));
+        delete m_axis;
     }
 
     void testGivingUpOwnership()
@@ -64,6 +66,7 @@ private Q_SLOTS:
         QCOMPARE(m_axis->diagram(), static_cast<const AbstractDiagram *>(m_lines));
         QVERIFY(m_axis->observedBy(m_lines));
         QVERIFY(!m_axis->observedBy(m_bars));
+        delete m_axis;
     }
 
     void testReplacing()
@@ -79,10 +82,12 @@ private Q_SLOTS:
         AbstractDiagram *nullDiagram = nullptr;
         QCOMPARE(m_axis->diagram(), static_cast<const AbstractDiagram *>(nullDiagram));
         QVERIFY(!m_axis->observedBy(m_bars));
+        delete m_axis;
     }
 
     void testReplacingWithPropagation()
     {
+        delete m_chart;
         initTestCase();
         m_axis = new CartesianAxis;
         m_lines->addAxis(m_axis);
@@ -95,10 +100,12 @@ private Q_SLOTS:
         QVERIFY(!p);
         QCOMPARE(m_axis->diagram(), static_cast<const AbstractDiagram *>(m_bars));
         QVERIFY(m_axis->observedBy(m_bars));
+        delete m_axis;
     }
 
     void testAxisDeletion()
     {
+        delete m_chart;
         initTestCase();
         m_axis = new CartesianAxis;
         m_lines->addAxis(m_axis);
@@ -111,6 +118,7 @@ private Q_SLOTS:
 
     void testAxisDeletionAndUnregister()
     {
+        delete m_chart;
         initTestCase();
         m_axis = new CartesianAxis;
         m_lines->addAxis(m_axis);
@@ -126,6 +134,7 @@ private Q_SLOTS:
 
     void testFreeStanding()
     {
+        delete m_chart;
         initTestCase();
         m_axis = new CartesianAxis;
         m_bars->addAxis(m_axis);
@@ -133,10 +142,12 @@ private Q_SLOTS:
         bars2->setModel(m_tableModel);
         m_chart->coordinatePlane()->replaceDiagram(bars2);
         m_axis->sizeHint();
+        delete m_axis;
     }
 
     void cleanupTestCase()
     {
+        delete m_chart;
     }
 
 private:

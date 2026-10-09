@@ -67,6 +67,8 @@ private Q_SLOTS:
         QCOMPARE(diagram.threeDBarAttributes(), clone->threeDBarAttributes());
 
         QVERIFY(diagram.attributesModel() != clone->attributesModel());
+
+        delete axis;
     }
 
     void testCloningLineDiagram()

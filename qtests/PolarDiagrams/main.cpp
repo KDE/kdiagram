@@ -67,6 +67,7 @@ private Q_SLOTS:
 
     void cleanupTestCase()
     {
+        delete m_chart;
     }
 
 private:

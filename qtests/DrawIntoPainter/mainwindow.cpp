@@ -180,6 +180,11 @@ MainWindow::MainWindow(QWidget *parent)
     setMarkersVisible(false);
 }
 
+MainWindow::~MainWindow()
+{
+    delete m_chart;
+}
+
 void MainWindow::updateData(QString data)
 {
     QElapsedTimer t;

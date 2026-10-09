@@ -30,6 +30,7 @@ class MainWindow : public QWidget, private Ui::MainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
+    ~MainWindow();
     void updateData(QString data);
 
 protected:

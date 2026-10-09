@@ -73,10 +73,13 @@ private Q_SLOTS:
         QCOMPARE(l->referenceArea(), (const QWidget *)nullptr);
         l->setReferenceArea(m_chart);
         QCOMPARE(dynamic_cast<const Chart *>(l->referenceArea()), const_cast<const Chart *>(m_chart));
+        delete l;
         Legend *l1 = new Legend(m_chart);
         QCOMPARE(dynamic_cast<const Chart *>(l1->referenceArea()), const_cast<const Chart *>(m_chart));
+        delete l1;
         Legend *l2 = new Legend(m_lines, m_chart);
         QCOMPARE(dynamic_cast<const Chart *>(l2->referenceArea()), const_cast<const Chart *>(m_chart));
+        delete l2;
     }
 
     void testDiagramOwnership()
@@ -124,6 +127,9 @@ private Q_SLOTS:
 
     void cleanupTestCase()
     {
+        delete m_bars;
+        delete m_lines;
+        delete m_chart;
     }
 
 private:

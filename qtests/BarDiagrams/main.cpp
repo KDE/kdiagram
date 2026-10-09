@@ -176,6 +176,9 @@ private Q_SLOTS:
 
     void cleanupTestCase()
     {
+        delete m_bars;
+        delete m_model;
+        delete m_chart;
     }
 
 private:
